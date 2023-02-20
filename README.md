@@ -2,7 +2,7 @@
 
 >보호자님과 변려견이 항상 행복하길 바라며 만드는 늘 봄 프로젝트
 
-![](./images/readmeThumbnail.png)
+![](./WebContent//images/readmeThumbnail.png)
 
 
 
