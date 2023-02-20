@@ -10,10 +10,14 @@
   * JavaScript / jQuery
   * Tomcat 9.0
 
+## 업데이트 내역
+* 0.1 
+  * 작업 진행중.
+
+
 
 ## 프로젝트 리뷰
 
 #### 늘 봄 프로젝트
->보호자와 변려견이 항상 행복하길 바라며 만드는 늘 봄 프로젝트
 
 ![](./WebContent/images/readmeThumbnail.png)
