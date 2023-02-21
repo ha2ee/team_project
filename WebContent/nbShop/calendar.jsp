@@ -1,165 +1,525 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	// 현재 날짜 정보를 불러오고, SimpleDateForamt 메소드로 월만 가져온다
+	Date MonthDate = new Date();
+	SimpleDateFormat sdf = new SimpleDateFormat("MM월");
+
+%>
 <!DOCTYPE html>
 <html>
 <head> 
 <style>
-body {
-    color: #000;
-    overflow-x: hidden;
-    height: 100%;
-    background-color: #CE93D8 !important;
-    background-repeat: no-repeat;
-}
 
-.container-fluid { 
-  padding-top: 120px;
-  padding-bottom: 120px;
-}
+/* 	달력을 출력해줄 CSS 설정 */
 
-input {
-    padding: 10px 20px 10px 20px;
-    border: 1px solid lightgrey !important;
-    border-radius: 6px !important;
-    box-sizing: border-box;
-    background-color: #fff !important;
-    color: #2C3E50;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        
+        달력 안에 마우스가 지나갈때 마다 CSS 설정
+        
+        td.mon, td.tue, td.wed, td.thu, td.fri, td.sat, td.sun {
+        
+        
+        }
+        
+        td.mon:hover, td.tue:hover, td.wed:hover, td.thu:hover, td.fri:hover, td.sat:hover, td.sun:hover {
+       	
+       	background : #ffebcd;
+        
+        }
+        
+        
+        a#prev, a#next {
+        font-size: 20px;
+        background : #cccccc21;
+        border-radius : 15px;
+        margin : 0 10px;
+        
+        }
+        
+        a#prev:hover, a#next:hover {
+     	background : #ffebcd;
+     	
+        }
 
-input:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: 1px solid #512DA8;
-    outline-width: 0;
-}
+        div#calAndTable {
+        
+        	border : 1px solid red;
+         	position : relative;
+         	width : 1200px;
+         	height : 780px;
+         	margin : 0 auto 0 auto;
+         	left: 0;
+         	right : 0;
+         	top : 50px;
+        }
 
-::placeholder {
-    color: #BDBDBD;
-    opacity: 1;
-}
+        div#calWrapper {
+        	position : relative;
+            width: 600px;
+            height: 600px;
+            border: 1px solid black;
+            margin: 0 auto 0 auto;
+            left : -270px;
+            top : 30px;
+            border : ridge;
+            
+        }
+        
+        div#TotalWrapper{
+        	position : relative;
+        	margin : 0 auto 0 auto;
+        	left : 0;
+        	right : 0;
+        	top : -530px;
+        	width : 100%;
+        	height : 150px;
+        	text-align : left;
+        	
+        
+        }
+        
+        div#totalvalue{
+        
+        	font-size : 14px;
+        	position : relative;
+        	height : 100%;
+        	width : 390px;
+        	margin : 0 auto 0 auto;
+        	left : 320px;
+        	top : -215px;
+        	
+        
+        }
+        
+        div#totalvalue > div{
+        
+/*         	border : 1px solid red; */
+        	text-align : right;
+        	padding : 10px;
+        	border-radius : 10px;
+        	background: #cccccc21;
+        	margin : 5px auto;
+        
+        }
+        
+       div#Totalsubmit {
+       		position : relative;
+       		margin : 0 auto 0 auto;
+       		font-size : 20px;
+       		left : 410px;
+       		right : 0;
+       		top : -140px;
+       		width: 100%;
+       		height : 150px;
+       		
+       }
+       
+       div#Totalsubmit > a{
+       
+        	background : #cccccc21; 
+       		border-radius : 20px;
+       		margin : 0 10px;
+       		font-size : 22px;
 
-:-ms-input-placeholder {
-    color: #BDBDBD;
-}
+       		
+       }
+       
+       div#Totalsubmit > a:hover{
 
-::-ms-input-placeholder {
-    color: #BDBDBD;
-}
+			background : #ffebcd;
+       		border-radius : 20px;
+       		font-size : 22px;
 
-button:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    outline-width: 0;
-}
+       		
+       }
+        
 
-.datepicker {
-  background-color: #fff;
-  border: none;
-}
+        div#upper_menu {
+       		background : #ffebcd;
+        	position : relative;
+            width: 100%;
+            height: 50px;
+            border-bottom: 1px solid black;
+            text-align: center;
+            left : 0;
+            right : 0;
+            border : ridge;
+        }
+        
+        div#tr_name {
+        	margin : 0 auto 0 auto;
+        	text-align: center;
+        	position: relative;
+        	top : -10px;
+        	left : 0;
+        	right : 0;
+        	height: 100%;
+        	width : 100%;
+        }
 
-.datepicker-dropdown {
-  top: 0;
-  left: 0;
-}
+        div#period {
+            border: 1px solid black;
+            width: 100px;
+            height: 25px;
+            text-align: right;
+            background-color: rgb(223, 219, 219);
+            margin-top: 12.5px;
+        }
 
-.datepicker table tr td.today, span.focused {
-  border-radius: 50% !important;
-}
+        input[type="date"] {
+            width: 125px;
+            height: 25px;
+            margin-top: 12.5px;
+        }
 
-thead tr:nth-child(2) {
-  background-color: #FF80AB !important;
-}
+        div#betweenDate {
+            margin-top: 12.5px;
+        }
 
-thead tr:nth-child(3) th {
-  color: #FF80AB !important;
-  padding-top: 20px;
-  padding-bottom: 10px;
-}
+        button#searchButton {
+            width: 70px;
+            height: 25px;
+            font-size: 1.1rem;
+            margin-top: 12.5px;
+        }
 
-.dow, .old-day, .day, .new-day {
-  width: 40px !important;
-  height: 40px !important;
-  border-radius: 0px !important;
-}
+        div#dateTitle {
+            font-size: 17px;
+            text-align: center;
+            margin : 0 auto 0 auto;
+            position: relative;
+            top : 10px;
+            left : 0px;
+            right : 0px;
+            color : rgb(255 0 0);
+        }
 
-.old-day:hover, .day:hover, .new-day:hover, .month:hover, .year:hover, .decade:hover, .century:hover {
-  border-radius: 50% !important;
-  background-color: #eee;
-}
+        div#betweenDate {
+            margin-left: -20px;
+            margin-right: -20px;
+        }
+        
+        
+        div#notice{
+        	
+        	width : 100%;
+        	height : 100px;
+        	position : relative;
+        	margin : 0 auto;
+        	left : 0;
+ 	        top : 0;
+        	right : 0;
+        	
+        }
+        
+       div#notice > div{
+        
+        	position : relative;
+        	font-size : 18px;
+        	margin : 5px auto;
+        	left : 0;
+ 	        top : 0;
+        	right : 0;
+        	padding : 10px;
+        	
+        }
 
-.active {
-  border-radius: 50% !important;
-  background-image: linear-gradient(#90CAF9, #64B5F6) !important;
-  color: #fff !important;
-}
+        div#calendar {
+        	position : relative;
+            width: 90%;
+            height: 350px;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            top : 10px;
+            border : ridge;
+        }
+        
+        div#calendar > table {
+           border :  1px solid rgb(0 0 0 / 8%);
+        }
 
-.prev, .next, .datepicker-switch {
-  border-radius: 0 !important;
-  padding: 20px 10px !important;
-  text-transform: uppercase;
-  font-size: 20px;
-  color: #fff;
-  opacity: 0.8; 
-}
+        div#pnButtonWrapper {
+            width: 100%;
+            margin: 0 auto;
+       		position : relative;
+       		height : 50px;     
+       		top : 25px;
+       		left : 0;
+       		right : 0;
+       		
+        }
 
-.prev:hover, .next:hover, .datepicker-switch:hover {
-  background-color: inherit !important;
-  opacity: 1;
-}
+        div#pnButtonWrapper > a {
+        
+            padding : 10px;
+        }
+
+        div#selectedDateWrapper {
+            text-align: center;
+        }
+
+        div#submitButtonWrapper {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        button#submit {
+            width: 80px;
+            height: 40px;
+            font-size: 1.3rem;
+            font-weight: 550;
+            margin-right: 50px;
+            margin-top: 20px;
+        }
+
+        td {
+            width: calc(100%/7);
+            font-weight: 550;
+            height: 45px;
+        }
+
+        td.sun {
+            color: red;
+        }
+
+        td.sat {
+            color: blue;
+        }
+
+        table {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        tr:first-child {
+            height: 45px;
+            background-color: #cccccc21;
+        }
+
+        div#tableWrapper {
+        	position : relative;
+            margin: 0 auto 0 auto;
+            width: 500px;
+            height:600px;
+            border: 1px solid black;
+            overflow: auto;
+            top : -570px;
+            left : 320px;
+            border : ridge;
+        }
+
+        div.table {
+        
+       		position : relative;
+            display : flex;
+            margin : 0 auto;
+            width : 100%;
+            height : 9%;
+            border : ridge;
+        }
+
+        div.table div {
+            width: calc(100% / 3);
+            height:46px;
+            line-height: 30px;
+            text-align: center;
+            blackground : #ffebcd;
+            color : black;
+        }
+
+/*         div.table div:nth-child(2) { */
+/*             border-left: 1px solid black; */
+/*             border-right: 1px solid black; */
+/*         } */
+
+/*         div.table:nth-child(2n) div { */
+/*             background-color: rgb(159, 206, 206); */
+/*         } */
+
+/*         div.table:nth-child(2n+1) div { */
+/*             background-color: rgb(228, 240, 240); */
+/*         } */
+
+         div.table:first-child div { 
+             background-color: #ffebcd;
+             color: black; 
+             font-weight: 550; 
+         } 
+
+/*         div.table:first-child div{ */
+/*             height:50px; */
+/*             line-height: 50px; */
+/*             font-size: 1.1rem; */
+/*         } */
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        img {
+            width:40px;
+            height:40px;
+        }
+
+        div#iconWrapper {
+            width:200px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        
+        #tr_Month {
+        width : 180px;
+        border-radius : 15px;
+        background :  #ffebcd;	
+        
+        }
 
 </style>
+
 <meta charset="UTF-8">
 <title>intro.jsp</title>
 </head>
 <body>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+<!-- 캘린더 넣기 -->
 
-<div class="container-fluid px-1 px-sm-5 mx-auto">
-    <div class="row d-flex justify-content-sm-center px-2">
-      <form autocomplete="off">
-        <div class="form-group row">
-          <input type="text" id="dp1" class="datepicker mr-2" placeholder="Select Date" name="date"><br>
-          <button type="submit" class="btn btn-success">Submit</button>
+   <h1>예약 가능 일자 선택하기</h1>
+
+    <div id="calAndTable">
+    <!-- 캘린더 전체 Wrapper -->
+    <div id="calWrapper">
+
+<!--         상단 날짜 조회 메뉴 -->
+        <div id="upper_menu">
+        	<div id="tr_name"><h3>??? 훈련사님 예약 스케쥴표</h3></div>
+<!--             <div id="period"><span style="color:red">*</span> 기간</div> -->
+<!--             <input type="date" id="firstDate"> -->
+<!--             <div id="betweenDate">~</div> -->
+<!--             <input type="date" id="secondDate"> -->
+<!--             <button id="searchButton">조회</button> -->
         </div>
-      </form>
+
+        <!-- 달력 상단 년, 월 -->
+        <div id = "notice">
+        <div id="dateTitle"> * 오늘 기준으로 일주일 뒤부터, 그리고 한달 뒤 까지 예약 가능합니다 *</div>
+		<div id = "tr_Month"><%=sdf.format(MonthDate)%></div>
+		</div>	
+        <!-- 달력 -->
+        <div id="calendar">
+            <table border="1">
+                <tr>
+                    
+                    <td>월</td>
+                    <td>화</td>
+                    <td>수</td>
+                    <td>목</td>
+                    <td>금</td>
+                    <td>토</td>
+                    <td>일</td>
+                </tr>
+                <tr>
+                    <td class="mon"></td>
+                    <td class="tue"></td>
+                    <td class="wed"></td>
+                    <td class="thu"></td>
+                    <td class="fri"></td>
+                    <td class="sat"></td>
+                    <td class="sun"></td>
+                </tr>
+                <tr>
+                    <td class="mon"></td>
+                    <td class="tue"></td>
+                    <td class="wed"></td>
+                    <td class="thu"></td>
+                    <td class="fri"></td>
+                    <td class="sat"></td>
+                    <td class="sun"></td>
+                </tr>
+                <tr>
+                    <td class="mon"></td>
+                    <td class="tue"></td>
+                    <td class="wed"></td>
+                    <td class="thu"></td>
+                    <td class="fri"></td>
+                    <td class="sat"></td>
+                    <td class="sun"></td>
+                </tr>
+                <tr>
+                    <td class="mon"></td>
+                    <td class="tue"></td>
+                    <td class="wed"></td>
+                    <td class="thu"></td>
+                    <td class="fri"></td>
+                    <td class="sat"></td>
+                    <td class="sun"></td>
+                </tr>
+                <tr>
+                    <td class="mon"></td>
+                    <td class="tue"></td>
+                    <td class="wed"></td>
+                    <td class="thu"></td>
+                    <td class="fri"></td>
+                    <td class="sat"></td>
+                    <td class="sun"></td>
+                </tr>
+                <tr>
+                    <td class="mon"></td>
+                    <td class="tue"></td>
+                    <td class="wed"></td>
+                    <td class="thu"></td>
+                    <td class="fri"></td>
+                    <td class="sat"></td>
+                    <td class="sun"></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 달력 하단 이전, 다음 버튼 -->
+        <div id="pnButtonWrapper"><a id="prev" class="btn">이전</a><a  id="next" class="btn">다음</a></div>
+
+        <!-- 적용 버튼 -->
+<!--         <div id="submitButtonWrapper"><button id="submit">적용</button></div> -->
+
+    </div>
+
+	<!-- 	우측에 결과 값 테이블 -->
+    <div id="tableWrapper">
+        <div class="table" id="tableHeader">
+            <div><h4>날짜</h4></div>
+            <div><h4>요일</h4></div>
+            <div><h4>횟수</h4></div>
+        </div>
+    </div>
+    
+    <!-- 하단의 요약 테이블 -->
+    <div id="TotalWrapper">
+        <div id="totalvalue">
+            <div id = "totalcnt">횟수 : <input style="text-align: right;" type="text" value="5" readonly="readonly"></div>
+            <div id = "tr_price">금액 : <input style="text-align: right;" type="text" value="???원"readonly="readonly"></div>
+            <div id = "tr_totalprice">총 예약금액 : <input style="text-align: right;" type="text" value="???원" readonly="readonly"></div>
+        </div>
+        <div id = "Totalsubmit">
+         <a class = "btn" href="<%=request.getContextPath()%>/nb/calendar.do?center=/nbShop/calendar.jsp" >예약 초기화</a> 
+         <a class = "btn" href="<%=request.getContextPath()%>/nb/member.do?center=/nbShop/edu_reservation.jsp" >예약 신청</a>
+         <a class = "btn" href="<%=request.getContextPath()%>/nb/Main" >홈으로</a>
+        </div>
     </div>
 </div>
 
 
-<table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: block;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">April 2023</th><th class="next">»</th></tr>
-<tr><th class="dow">일요일</th><th class="dow">월요일</th><th class="dow">화요일</th><th class="dow">수요일</th><th class="dow">목요일</th><th class="dow">금요일</th><th class="dow">토요일</th></tr></thead>
-<tbody><tr><td class="old day" data-date="1679788800000">26</td><td class="old day" data-date="1679875200000">27</td>
-<td class="old day" data-date="1679961600000">28</td><td class="old day" data-date="1680048000000">29</td>
-<td class="old day" data-date="1680134400000">30</td><td class="old day" data-date="1680220800000">31</td>
-<td class="day" data-date="1680307200000">1</td></tr><tr><td class="day" data-date="1680393600000">2</td>
-<td class="day" data-date="1680480000000">3</td><td class="day" data-date="1680566400000">4</td>
-<td class="day" data-date="1680652800000">5</td><td class="day" data-date="1680739200000">6</td>
-<td class="day" data-date="1680825600000">7</td><td class="day" data-date="1680912000000">8</td>
-</tr><tr><td class="day" data-date="1680998400000">9</td><td class="day" data-date="1681084800000">10</td>
-<td class="day" data-date="1681171200000">11</td><td class="day" data-date="1681257600000">12</td>
-<td class="day" data-date="1681344000000">13</td><td class="day" data-date="1681430400000">14</td>
-<td class="day" data-date="1681516800000">15</td></tr><tr><td class="day" data-date="1681603200000">16</td>
-<td class="day" data-date="1681689600000">17</td><td class="day" data-date="1681776000000">18</td>
-<td class="day" data-date="1681862400000">19</td><td class="day" data-date="1681948800000">20</td>
-<td class="day" data-date="1682035200000">21</td><td class="day" data-date="1682121600000">22</td>
-</tr><tr><td class="day" data-date="1682208000000">23</td><td class="day" data-date="1682294400000">24</td>
-<td class="day" data-date="1682380800000">25</td><td class="day" data-date="1682467200000">26</td>
-<td class="day" data-date="1682553600000">27</td><td class="day" data-date="1682640000000">28</td>
-<td class="day" data-date="1682726400000">29</td></tr><tr><td class="day" data-date="1682812800000">30</td>
-<td class="new day" data-date="1682899200000">1</td><td class="new day" data-date="1682985600000">2</td>
-<td class="new day" data-date="1683072000000">3</td><td class="new day" data-date="1683158400000">4</td>
-<td class="new day" data-date="1683244800000">5</td><td class="new day" data-date="1683331200000">6</td></tr></tbody>
-<tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr>
-<tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table>
+
+
 
 
 	<br>
@@ -183,38 +543,25 @@ thead tr:nth-child(3) th {
 	  
 	  
 	  
-	  <a href="<%=request.getContextPath()%>/nb/member.do?center=/nbShop/edu_reservation.jsp" ><button>회원 예약</button></a> / <a href="<%=request.getContextPath()%>/nb/calendar.do?center=/nbShop/calendar.jsp" ><button>예약 초기화</button></a>
 	 <br>
 	 <br>
-	 
-<script>	 
+<script>
+
+// 함수 생성 (다음 버튼을 눌렀을때 현재월 기준 다음달로 넘기기) and (바로 이전 버튼 눌렀을때는 작동하지 않고, 다음 눌리고 난뒤에 작동 시키기)
 $(document).ready(function(){
+	$("#next").on("click", function(){
+		<% MonthDate.setMonth(MonthDate.getMonth() +1); %>
+		$("#tr_Month").text("<%=sdf.format(MonthDate)%>");
+	})
+	
+	$("#prev").on("click", function(){
+		<% MonthDate.setMonth(MonthDate.getMonth() -1); %>
+		$("#tr_Month").text("<%=sdf.format(MonthDate)%>");
+	})
+	
+})
 
-	$('.datepicker').datepicker({
-	    format: 'dd-mm-yyyy',
-	    todayHighlight: true,
-	    toggleActive: true
-	});
 
-	});
-
-
-	$(function() {
-    	$(".datepicker").datepicker();
-			$.datepicker.setDefaults({
-		        dateFormat: 'yyyymmdd',
-		        prevText: '이전 달',
-		        nextText: '다음 달',
-		        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-		        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-		        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-		        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-		        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-		        showMonthAfterYear: true,
-		        yearSuffix: '년'
-		   	});
-		});	 
- 
-</script>
+</script>	 
 </body>
 </html>
