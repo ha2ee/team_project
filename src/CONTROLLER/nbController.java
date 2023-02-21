@@ -58,7 +58,6 @@ public class nbController extends HttpServlet{
 		// 5)	 /edu.do           	<- "수강신청"   ->  " 수강 신청가기"  회원 요청
 		// 6)    /calendar.do     	<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼"을 눌렀을때
 		// 7-1) /member.do			<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼" -> "회원 예약 "버튼"을 눌렀을때
-		// 7-2)	 /nonMember.do 	<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼" -> "비회원 예약 "버튼"을 눌렀을때
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		// 8) /pet.shop        <-  " 늘 봄샵 "   -> "   샵 으로 이동   " 요청
 		
@@ -162,22 +161,6 @@ public class nbController extends HttpServlet{
 		}else if(action.equals("/member.do")) {
 			
 			System.out.println("member.do 메소드 호출!");
-			
-			// 중앙 화면 요청한 주소 얻기
-			String center = request.getParameter("center");
-			
-			// 중앙 화면 바인딩 하기
-			System.out.println("요청한 center : "+ center);
-			
-			//request에 "center" 값으로 저장
-			request.setAttribute("center", center);
-			
-			nextPage = "/nbMain.jsp";
-			
-		// 7-2)	 /nonMember.do 	<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼" -> "비회원 예약 "버튼"을 눌렀을때
-		}else if(action.equals("/nonMember.do")) {
-			
-			System.out.println("pet.shop 메소드 호출!");
 			
 			// 중앙 화면 요청한 주소 얻기
 			String center = request.getParameter("center");
