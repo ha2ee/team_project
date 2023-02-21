@@ -1,27 +1,23 @@
-# Always Spring
+# 요약
 
->보호자님과 변려견이 항상 행복하길 바라며 만드는 늘 봄 프로젝트
-
-![](./WebContent//images/readmeThumbnail.png)
-
-
-
-
-## 개발 환경
-```
-eclipse
-java 10
-git
-```
+* 설명 : 교육기간 2022 11.15 ~ 2023 04.21 파이널 팀 프로젝트
+* 기간 : 약 두달 (2023.2.15 ~
+* 주제 : 반려동물 교육 매칭과, 반려동물 물품 판매 사이트
+* 사용 기술 :
+  * JAVA (JSP/ Servlet - MVC2)
+  * DB : ORACLE 11g
+  * HTML / CSS
+  * JavaScript / jQuery
+  * Tomcat 9.0
 
 ## 업데이트 내역
 * 0.1 
-  * 작업진행중
-  
-
-## 참여자
+  * 작업 진행중.
 
 
 
-## 정보
-https://github.com/ha2ee/TeamProject
+## 프로젝트 리뷰
+
+#### 늘 봄 프로젝트
+
+![](./WebContent/images/readmeThumbnail.png)
