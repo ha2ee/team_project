@@ -26,7 +26,7 @@
 	  
 	  
 	  
-	  <button>회원 예약</button> / <button>비회원 예약</button> / <button>예약 초기화</button>
+	  <a href="<%=request.getContextPath()%>/nb/member.do?center=/nbShop/edu_reservation.jsp" ><button>회원 예약</button></a> / <a href="<%=request.getContextPath()%>/nb/nonMember.do?center=/nbShop/non_edu_reservation.jsp" ><button>비회원 예약</button></a> / <a href="<%=request.getContextPath()%>/nb/calendar.do?center=/nbShop/calendar.jsp" ><button>예약 초기화</button></a>
 	 <br>
 	 <br>
 </body>
