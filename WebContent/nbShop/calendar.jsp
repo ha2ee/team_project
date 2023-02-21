@@ -11,6 +11,13 @@
 	request.setCharacterEncoding("utf-8");
 	String contextPath = request.getContextPath();
 %>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
 	<!-- 	캘린더  들어갈 항목 -->
 	 예약 일정 확인 화면. jsp <br>
 	 설명 : 캘린더를 띄워주고, 하단에 가능한 강사를 선택(?), 또는 자동으로 비어있는 강사를 매칭해서 일정 및 금액 확인 페이지로 넘김<br>

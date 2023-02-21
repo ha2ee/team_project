@@ -3,6 +3,7 @@ package CONTROLLER;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import DAO.MemberDAO;
 import VO.MemberVo;
 
-@WebServlet("/nb_member/*")
+@WebServlet("/nbMember/*")
 public class nbMemberController extends HttpServlet{
 	
 	//MemberDAO객체를 저장할 참조변수 선언
@@ -57,14 +58,15 @@ public class nbMemberController extends HttpServlet{
 		System.out.println("요청한  주소 : "+action);
 		
 		
-		// /join.member <- 회원가입시 입력하는 화면 요청!
-		// /joinIdCheck.member <- 아이디 중복 확인 요청 !
-		// /joinPro.member <- 회원가입 요청 주소!
-		// /login.member <- 로그인 요청을 위해 아이디와 비밀번호를 입력하는 화면 요청!
-		// /loginPro.member <- 로그인을 요청!
-		// /logout.member <- 로그아웃 요청!
-		// /mypage.member <- 마이페이지 요청!
-		// /cart.member <- 장바구니 요청!
+		// /join.me <- 회원가입시 입력하는 화면 요청!
+		// /joinIdCheck.me <- 아이디 중복 확인 요청 !
+		// /joinPro.me <- 회원가입 요청 주소!
+		// /login.me <- 로그인 요청을 위해 아이디와 비밀번호를 입력하는 화면 요청!
+		// /loginPro.me <- 로그인을 요청!
+		// /logout.me <- 로그아웃 요청!
+		// /eduOrder.me <- 수강신청 시 "회원" 또는 "비회원"권한으로 예약할때   -- 진행중 --
+		// /mypage.me <- 마이페이지 요청!
+		// /cart.me <- 장바구니 요청!
 		
 		//조건에 따라서 포워딩 또는 보여줄 VIEW주소 경로를 저장할 변수
 		String nextPage = null;
@@ -200,9 +202,38 @@ public class nbMemberController extends HttpServlet{
 				nextPage = "/CarMain.jsp";
 				break;
 				
+			// /eduOrder.me <- 수강신청 시 "회원" 또는 "비회원"권한으로 예약할때
+			case "/eduOrder.me":
+				
+				
+				// 회원 & 비회원 권한으로 예약할때 1) 인적사항)
+				String sorder_code = request.getParameter("code");
+				int sorder_qty = Integer.parseInt(request.getParameter("qty"));
+				String sorder_id = request.getParameter("id");
+				String sorder_name = request.getParameter("name");
+				String sorder_hp = request.getParameter("hp");
+				String sorder_date = request.getParameter("nowdate");
+				String sorder_address1 = request.getParameter("address1");
+				String sorder_address2 = request.getParameter("address2");
+				String sorder_address3 = request.getParameter("address3");
+				String sorder_address4 = request.getParameter("address4");
+				String sorder_address5 = request.getParameter("address5");
+				
+				MemberVo vo = new MemberVo(user_id, user_pass, user_name,
+											user_age, user_gender, user_address,
+											user_email, user_tel, user_hp);
+				memberdao.insertMember(vo);
+				
+				nextPage="/CarMain.jsp";
+				
+				break;	
+				
+				
 				
 			default:
 				break;
+				
+
 		}
 		
 		
