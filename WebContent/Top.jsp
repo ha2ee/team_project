@@ -14,7 +14,7 @@ $(document).ready(function(){
 	})
 	
 	$("#mega_wrapper").on("mouseleave", function(){
-		$("#mega_menu").stop().slideUp("slow");
+		$("#mega-menu").stop().slideUp("slow");
 	})
 
 });
@@ -209,7 +209,17 @@ body{
 	right : 0;
 }
 
+/* 네브 박스 CSS  설정 */
+	
+#nav_box {
 
+	height : 100%;
+	width : 100%;
+	position : relative;
+	margin : 0 auto 0 auto;
+	z-index : 5;
+
+}
 /* @ 네브바에 대한 CSS 설정 */
 #main_menu {
 
@@ -456,6 +466,7 @@ body{
 		margin : 0 auto 0 auto;
 		left : 0;
 		right : 0;
+		top : -150px;
 	}
 
 
@@ -580,6 +591,7 @@ body{
 <!--  #   menu2 :  네브바 + 날씨 API  -->		
 
 	<div id="menu2" align="center" >
+	  <div id = "nav_box">
 		<nav id="main_menu">
 			<ul class="list_gnb">
 				<li style="font-family: 'Nanum Gothic', sans-serif;">
@@ -599,6 +611,7 @@ body{
 			  </li>
 			</ul>
 		</nav>
+	</div>
 		<!-- 					2) 날씨 구현 파트 -->
 	   <div id = "weather_box">
 	   
