@@ -20,7 +20,7 @@ public class MemberDAO {
 	public MemberDAO() {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/oracle");
+			ds = (DataSource)ctx.lookup("java:/comp/env/jdbc/oracle");
 			
 		} catch (Exception e) {
 			System.out.println("DB연결 실패! - "+ e);
@@ -35,41 +35,95 @@ public class MemberDAO {
 	}
 	
 	//아이디 중복 체크
-	public boolean overlappedId(String id) {
+	public boolean memCkeck(String id) {
 		
-		boolean result = false;
-		
+		boolean memResult = false;
 		try {
-			
 			//DB접속 : 커넥션풀에 만들어져 있는 커넥션 얻기
 			con = ds.getConnection();
 			//오라클의 decode()함수를 이용하여 서블릿에서 전달되는
 			//입력한 ID에 해당하는 데이터를 검색하여 true 또는 false를 반환하는데
 			//검색한 갯수가 1(검색한 레코드가 존재하면)이면 'true'를 반환,
 			//존재하지 않으면 'false'를 문자열로 반환하여 조회합니다.
-			String sql = "select decode(count(*), 1, 'true', 'false') as result from member where id=?";
+			System.out.println(id);
+
+			String sql = "select mem_id from ys_member where mem_id=?";
+//			String sql = "select decode(count(*),1,'true','false') as result from ys_member where mem_id=?";
+			
+			
 			//SELECT문장을 DB의 member테이블에 전송해서 조회할 PreparedStatement객체 얻기
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			//SLELCT문장을 실행하여 조회된 데이터들을 ResultSet에 담아 반환 받기
 			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memResult = true;
+			}
 			
-			rs.next(); //조회된 제목줄에 커서(화살표)가 있다가 조회된 줄로 내려가 위치함
+//			 조회된 제목줄에 커서(화살표)가 있다가 조회된 줄로 내려가 위치함			
+//			memResult = Boolean.parseBoolean(value);
 			
-			String value = rs.getString("result");
-			result = Boolean.parseBoolean(value);
-			//true면 중복 , false면 중복아님
+			
+			System.out.println("일반멤버 :"+memResult);
+//			true면 중복 , false면 중복아님
 			
 		} catch (Exception e) {
-			System.out.println("overlappedId 메소드 내부에서 오류!");
+			System.out.println("memCkeck 메소드 내부에서 오류!");
 			e.printStackTrace();
 		}finally {
 			closeResource();
 		}
 		
-		return result;
+		return memResult;
 	}
+	
 
+	
+	public boolean trCheck(String id) {
+		
+		boolean trResult = false;
+		try {
+			//DB접속 : 커넥션풀에 만들어져 있는 커넥션 얻기
+			con = ds.getConnection();
+			//오라클의 decode()함수를 이용하여 서블릿에서 전달되는
+			//입력한 ID에 해당하는 데이터를 검색하여 true 또는 false를 반환하는데
+			//검색한 갯수가 1(검색한 레코드가 존재하면)이면 'true'를 반환,
+			//존재하지 않으면 'false'를 문자열로 반환하여 조회합니다.
+			System.out.println(id);
+
+			String sql = "select tr_id from member_trainer where tr_id=?";
+//			String sql = "select decode(count(*),1,'true','false') as result from member_trainer where tr_id=?";
+			
+			
+			//SELECT문장을 DB의 member테이블에 전송해서 조회할 PreparedStatement객체 얻기
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			//SLELCT문장을 실행하여 조회된 데이터들을 ResultSet에 담아 반환 받기
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				trResult = true;
+			}
+			
+//			 조회된 제목줄에 커서(화살표)가 있다가 조회된 줄로 내려가 위치함			
+//			String value = rs.getString("result");
+			
+//			System.out.println(value);
+			System.out.println("트레이너멤버 :"+trResult);
+//			true면 중복 , false면 중복아님
+			
+		} catch (Exception e) {
+			System.out.println("trResult 메소드 내부에서 오류!");
+			e.printStackTrace();
+		}finally {
+			closeResource();
+		}
+		
+		return trResult;
+	}
+	
+	//---------------------------------------------------
+		
 	public void insertMember(MemberVo vo) {
 		
 		
@@ -82,15 +136,15 @@ public class MemberDAO {
 			String sql = "INSERT INTO MEMBER(id, pass, name, reg_date, age, gender, address, email, tel, hp) "
 					+" VALUES (?, ?, ?, sysdate, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, vo.getId());
-			pstmt.setString(2, vo.getPass());
-			pstmt.setString(3, vo.getName());
-			pstmt.setInt(4, vo.getAge());
-			pstmt.setString(5, vo.getGender());
-			pstmt.setString(6, vo.getAddress());
-			pstmt.setString(7, vo.getEmail());
-			pstmt.setString(8, vo.getTel());
-			pstmt.setString(9, vo.getHp());
+//			pstmt.setString(1, vo.getId());
+//			pstmt.setString(2, vo.getPass());
+//			pstmt.setString(3, vo.getName());
+//			pstmt.setInt(4, vo.getAge());
+//			pstmt.setString(5, vo.getGender());
+//			pstmt.setString(6, vo.getAddress());
+//			pstmt.setString(7, vo.getEmail());
+//			pstmt.setString(8, vo.getTel());
+//			pstmt.setString(9, vo.getHp());
 			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
 			pstmt.executeUpdate();
 			
@@ -162,10 +216,10 @@ public class MemberDAO {
 			if (rs.next()) {
 				
 				//membervo 객체 생성
-				membervo = new MemberVo();
-				membervo.setEmail(rs.getString("email"));
-				membervo.setId(rs.getString("id"));
-				membervo.setName(rs.getString("name"));
+//				membervo = new MemberVo();
+//				membervo.setEmail(rs.getString("email"));
+//				membervo.setId(rs.getString("id"));
+//				membervo.setName(rs.getString("name"));
 				
 			}
 			
@@ -195,10 +249,10 @@ public class MemberDAO {
 	         
 	         if(rs.next()) {//입력한 아이디로 조회한 행이 있으면? (아이디가 있으면?)
 	            
-	            membervo = new MemberVo();
-	            membervo.setId(rs.getString("id"));
-	            membervo.setPass(rs.getString("pass"));
-	            membervo.setHp(rs.getString("hp"));
+//	            membervo = new MemberVo();
+//	            membervo.setId(rs.getString("id"));
+//	            membervo.setPass(rs.getString("pass"));
+//	            membervo.setHp(rs.getString("hp"));
 	         }
 	         
 	      } catch (Exception e) {

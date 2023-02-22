@@ -73,27 +73,31 @@ public class nbMemberController extends HttpServlet{
 		
 		switch (action) {
 		 	//회원가입 화면 요청
-			case "/join.me":
+			case "/join.member":
 				// members/join.jsp 중앙화면뷰 주소 얻기
 				center = request.getParameter("center");
+				System.out.println(center);
 				// members/join.jsp 중앙화면뷰 주소 바인딩
-				request.setAttribute("center", center);
-				nextPage = "/CarMain.jsp";
+				request.setAttribute("center", "nbMember/join.jsp");
+				nextPage = "/nbMain.jsp";
 				break;
+			
 			//아이디 중복 체크 요청!
 			case "/joinIdCheck.me":
 				//입력한 아이디 얻기
 				String id = request.getParameter("id");
+//				System.out.println(id);
 				//입력한 아이디가 DB에 저장되어 있는지 중복 체크 작업
 				//true -> 중복 , false -> 중복아님 둘중 하나를 반환 받음
-				boolean result = memberdao.overlappedId(id);
+				boolean memResult = memberdao.memCkeck(id);
+				boolean trResult = memberdao.trCheck(id);
 				//아이디 중복결과를 다시 한번 확인 하여 조건값을
 				//join.jsp파일과 연결된 join.js파일에 작성해 놓은
 				//success:function의 data매개변수로 웹브라우저를 거쳐 보냅니다!
-				if (result == true) {
+				if (memResult == true || trResult == true) {
 					out.write("not_usable");
 					return;
-				} else if (result == false) {
+				} else if (memResult == false && trResult == false) {
 					out.write("usable");
 					return;
 				}
@@ -102,29 +106,32 @@ public class nbMemberController extends HttpServlet{
 			//회원가입 요청 주소를 받았을때!!
 			case "/joinPro.me":
 				
-				String user_id = request.getParameter("id");
-				String user_pass = request.getParameter("pass");
-				String user_name = request.getParameter("name");
-				int user_age = Integer.parseInt(request.getParameter("age"));
-				String user_gender = request.getParameter("gender");
-				
+				String mem_id = request.getParameter("id");
+				String mem_name = request.getParameter("name");
+				String mem_nickName = request.getParameter("nickname");
+				String mem_pass = request.getParameter("pass");
+				String mem_email = request.getParameter("email");
+				String mem_hp = request.getParameter("hp");
+				String mem_gender = request.getParameter("gender");
+				String mem_birth_year = request.getParameter("year");
+				String mem_birth_month = request.getParameter("month");
+				String mem_birth_day = request.getParameter("day");
+				String mem_birth = mem_birth_year + mem_birth_month + mem_birth_day;
 				String address1 = request.getParameter("address1");
 				String address2 = request.getParameter("address2");
 				String address3 = request.getParameter("address3");
 				String address4 = request.getParameter("address4");
 				String address5 = request.getParameter("address5");
-				String user_address = address1+address2+address3+address4+address5;
+				String mem_pet = request.getParameter("pet");
 				
-				String user_email = request.getParameter("email");
-				String user_tel = request.getParameter("tel");
-				String user_hp = request.getParameter("hp");
 				
-				MemberVo vo = new MemberVo(user_id, user_pass, user_name,
-											user_age, user_gender, user_address,
-											user_email, user_tel, user_hp);
+				MemberVo vo = new MemberVo(mem_id, mem_name, mem_nickName,
+										   mem_pass, mem_email, mem_hp,
+										    mem_birth,mem_gender, address1,
+										   address2,address3,address4,address5,mem_pet);
 				memberdao.insertMember(vo);
 				
-				nextPage="/CarMain.jsp";
+				nextPage="/nbMain.jsp";
 				break;
 			
 			//로그인 요청 화면
