@@ -580,7 +580,7 @@ body{
 				<div id = "nb_box">
 					<ul id = "login_box">	                    			
 		               <li><a href="<%=request.getContextPath()%>/nb/login.member?center=/nbMember/login.jsp" class="btn">로그인</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb/mypage.member?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
 		               <li><a href="<%=request.getContextPath()%>/nb/join.member?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
 		               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
 					</ul>

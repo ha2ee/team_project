@@ -155,6 +155,15 @@ public class nbController extends HttpServlet{
 			
 			nextPage = "/nbMain.jsp";
 			
+		}else if(action.equals("/mypage.me")) {
+			System.out.println("mypage.do 호출!");
+			
+			String center = request.getParameter("center");
+			
+			request.setAttribute("center", center);
+			
+			nextPage = "/nbMain.jsp";
+			
 		}
 		
 		//포워딩 (디스패처 방식)

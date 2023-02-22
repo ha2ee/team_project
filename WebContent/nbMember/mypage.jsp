@@ -24,26 +24,26 @@
 					</div>
 				</div>
 				<div class = "myPageRight mptr">
-					<div>
-						<img alt="" src="<%=contextPath%>/images/deli.png">&nbsp;&nbsp;&nbsp;주문 조회
+					<div onclick="location.href ='<%=contextPath%>/nbMain.jsp'">
+						<img class = "mypageImg" alt="" src="<%=contextPath%>/images/deli.png">&nbsp;&nbsp;&nbsp;주문 조회
 					</div>
 					<div>
-						<img alt="" src="<%=contextPath%>/images/cart.png">&nbsp;&nbsp;&nbsp;장바구니
+						<img class = "mypageImg" alt="" src="<%=contextPath%>/images/cart.png">&nbsp;&nbsp;&nbsp;장바구니
 					</div>
-					<div>
-						<img alt="" src="<%=contextPath%>/images/info.png">&nbsp;&nbsp;&nbsp;훈련사 상담
+					<div onclick="location.href = '<%=contextPath%>/nbBoard/trainerboard.jsp'">
+						<img class = "mypageImg" alt="" src="<%=contextPath%>/images/info.png">&nbsp;&nbsp;&nbsp;훈련사 상담
 					</div>
 				</div> 
 			</div>	 
 			<div class ="myPageBottom">
 				<div class = "myPageLeft mpbl">
 					<div>
-					<img alt="" src="<%=contextPath%>/images/lessonlist.png">&nbsp;&nbsp;&nbsp;레슨 목록
+					<img class = "mypageImg" alt="" src="<%=contextPath%>/images/lessonlist.png">&nbsp;&nbsp;&nbsp;레슨 목록
 					</div>
 				</div>
 				<div class ="myPageRight mpbr">
 					<div>
-					<img alt="" src="<%=contextPath%>/images/lesson.png">&nbsp;&nbsp;&nbsp;레슨 신청
+					<img class = "mypageImg" alt="" src="<%=contextPath%>/images/lesson.png">&nbsp;&nbsp;&nbsp;레슨 신청
 					</div>
 				</div>
 			</div>
