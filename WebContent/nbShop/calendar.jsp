@@ -6,8 +6,7 @@
 	// 현재 날짜 정보를 불러오고, SimpleDateForamt 메소드로 월만 가져온다
 	Date MonthDate = new Date();
 	Date dayDate = new Date();
-	Date day = dayDate = new Date(dayDate.getYear(), dayDate.getMonth(), 1);
-	SimpleDateFormat sdf = new SimpleDateFormat("MM");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 	SimpleDateFormat sdf2 = new SimpleDateFormat("dd");
 	
 	
