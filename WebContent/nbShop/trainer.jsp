@@ -314,7 +314,7 @@
 	<br>
 	<br>
 	<!-- 	강사 소개  들어갈 항목 -->
-	 <a class ="btn" href="<%=request.getContextPath()%>/nb/calendar.do?center=/nbShop/newcalendar.jsp" >가능일정 확인</a>
+	 <a class ="btn" href="<%=request.getContextPath()%>/nb/calendar.do?center=/nbShop/calendar.jsp" >가능일정 확인</a>
 	 <br>
 	 <br>
 	 <br>

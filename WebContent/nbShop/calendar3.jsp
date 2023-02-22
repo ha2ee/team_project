@@ -427,13 +427,13 @@
                     <td>일</td>
                 </tr>
                 <tr>
-                    <td class="mon"><%=sdf2.format(day)%></td>
-                    <td class="tue"><%=sdf2.format(day)%></td>
-                    <td class="wed"><%=sdf2.format(day)%></td>
-                    <td class="thu"><%=sdf2.format(day)%></td>
-                    <td class="fri"><%=sdf2.format(day)%></td>
-                    <td class="sat"><%=sdf2.format(day)%></td>
-                    <td class="sun"><%=sdf2.format(day)%></td>
+                    <td class="mon"></td>
+                    <td class="tue"></td>
+                    <td class="wed"></td>
+                    <td class="thu"></td>
+                    <td class="fri"></td>
+                    <td class="sat"></td>
+                    <td class="sun"></td>
                 </tr>
                 <tr>
                     <td class="mon"></td>
