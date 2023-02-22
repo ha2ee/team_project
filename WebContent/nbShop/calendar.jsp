@@ -2,567 +2,236 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	// 현재 날짜 정보를 불러오고, SimpleDateForamt 메소드로 월만 가져온다
-	Date MonthDate = new Date();
-	Date dayDate = new Date();
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
-	SimpleDateFormat sdf2 = new SimpleDateFormat("dd");
-	
-	
-
-%>
-<!DOCTYPE html>
 <html>
 <head>
-<!--  	달력을 출력해줄 CSS 설정  -->
-
-<style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        
-        달력 안에 마우스가 지나갈때 마다 CSS 설정
-        
-        td.mon, td.tue, td.wed, td.thu, td.fri, td.sat, td.sun {
-        
-        
-        }
-        
-        td.mon:hover, td.tue:hover, td.wed:hover, td.thu:hover, td.fri:hover, td.sat:hover, td.sun:hover {
-       	
-       	background : #ffebcd;
-        
-        }
-        
-        
-        a#prev, a#next {
-        font-size: 20px;
-        background : #cccccc21;
-        border-radius : 15px;
-        margin : 0 10px;
-        
-        }
-        
-        a#prev:hover, a#next:hover {
-     	background : #ffebcd;
-     	
-        }
-
-        div#calAndTable {
-        
-        	border : 1px solid red;
-         	position : relative;
-         	width : 1200px;
-         	height : 780px;
-         	margin : 0 auto 0 auto;
-         	left: 0;
-         	right : 0;
-         	top : 50px;
-        }
-
-        div#calWrapper {
-        	position : relative;
-            width: 600px;
-            height: 600px;
-            border: 1px solid black;
-            margin: 0 auto 0 auto;
-            left : -270px;
-            top : 30px;
-            border : ridge;
-            
-        }
-        
-        div#TotalWrapper{
-        	position : relative;
-        	margin : 0 auto 0 auto;
-        	left : 0;
-        	right : 0;
-        	top : -530px;
-        	width : 100%;
-        	height : 150px;
-        	text-align : left;
-        	
-        
-        }
-        
-        div#totalvalue{
-        
-        	font-size : 14px;
-        	position : relative;
-        	height : 100%;
-        	width : 390px;
-        	margin : 0 auto 0 auto;
-        	left : 320px;
-        	top : -215px;
-        	
-        
-        }
-        
-        div#totalvalue > div{
-        
-/*         	border : 1px solid red; */
-        	text-align : right;
-        	padding : 10px;
-        	border-radius : 10px;
-        	background: #cccccc21;
-        	margin : 5px auto;
-        
-        }
-        
-       div#Totalsubmit {
-       		position : relative;
-       		margin : 0 auto 0 auto;
-       		font-size : 20px;
-       		left : 410px;
-       		right : 0;
-       		top : -140px;
-       		width: 100%;
-       		height : 150px;
-       		
-       }
-       
-       div#Totalsubmit > a{
-       
-        	background : #cccccc21; 
-       		border-radius : 20px;
-       		margin : 0 10px;
-       		font-size : 22px;
-
-       		
-       }
-       
-       div#Totalsubmit > a:hover{
-
-			background : #ffebcd;
-       		border-radius : 20px;
-       		font-size : 22px;
-
-       		
-       }
-        
-
-        div#upper_menu {
-       		background : #ffebcd;
-        	position : relative;
-            width: 100%;
-            height: 50px;
-            border-bottom: 1px solid black;
-            text-align: center;
-            left : 0;
-            right : 0;
-            border : ridge;
-        }
-        
-        div#tr_name {
-        	margin : 0 auto 0 auto;
-        	text-align: center;
-        	position: relative;
-        	top : -10px;
-        	left : 0;
-        	right : 0;
-        	height: 100%;
-        	width : 100%;
-        }
-
-        div#period {
-            border: 1px solid black;
-            width: 100px;
-            height: 25px;
-            text-align: right;
-            background-color: rgb(223, 219, 219);
-            margin-top: 12.5px;
-        }
-
-        input[type="date"] {
-            width: 125px;
-            height: 25px;
-            margin-top: 12.5px;
-        }
-
-        div#betweenDate {
-            margin-top: 12.5px;
-        }
-
-        button#searchButton {
-            width: 70px;
-            height: 25px;
-            font-size: 1.1rem;
-            margin-top: 12.5px;
-        }
-
-        div#dateTitle {
-            font-size: 17px;
-            text-align: center;
-            margin : 0 auto 0 auto;
-            position: relative;
-            top : 10px;
-            left : 0px;
-            right : 0px;
-            color : rgb(255 0 0);
-        }
-
-        div#betweenDate {
-            margin-left: -20px;
-            margin-right: -20px;
-        }
-        
-        
-        div#notice{
-        	
-        	width : 100%;
-        	height : 100px;
-        	position : relative;
-        	margin : 0 auto;
-        	left : 0;
- 	        top : 0;
-        	right : 0;
-        	
-        }
-        
-       div#notice > div{
-        
-        	position : relative;
-        	font-size : 18px;
-        	margin : 5px auto;
-        	left : 0;
- 	        top : 0;
-        	right : 0;
-        	padding : 10px;
-        	
-        }
-
-        div#calendar {
-        	position : relative;
-            width: 90%;
-            height: 350px;
-            margin: 0 auto;
-            left: 0;
-            right: 0;
-            top : 10px;
-            border : ridge;
-        }
-        
-        div#calendar > table {
-           border :  1px solid rgb(0 0 0 / 8%);
-        }
-
-        div#pnButtonWrapper {
-            width: 100%;
-            margin: 0 auto;
-       		position : relative;
-       		height : 50px;     
-       		top : 25px;
-       		left : 0;
-       		right : 0;
-       		
-        }
-
-        div#pnButtonWrapper > a {
-        
-            padding : 10px;
-        }
-
-        div#selectedDateWrapper {
-            text-align: center;
-        }
-
-        div#submitButtonWrapper {
-            display: flex;
-            flex-direction: row-reverse;
-        }
-
-        button#submit {
-            width: 80px;
-            height: 40px;
-            font-size: 1.3rem;
-            font-weight: 550;
-            margin-right: 50px;
-            margin-top: 20px;
-        }
-
-        td {
-            width: calc(100%/7);
-            font-weight: 550;
-            height: 45px;
-        }
-
-        td.sun {
-            color: red;
-        }
-
-        td.sat {
-            color: blue;
-        }
-
-        table {
-            width: 100%;
-            height: 100%;
-            text-align: center;
-        }
-
-        tr:first-child {
-            height: 45px;
-            background-color: #cccccc21;
-        }
-
-        div#tableWrapper {
-        	position : relative;
-            margin: 0 auto 0 auto;
-            width: 500px;
-            height:600px;
-            border: 1px solid black;
-            overflow: auto;
-            top : -570px;
-            left : 320px;
-            border : ridge;
-        }
-
-        div.table {
-        
-       		position : relative;
-            display : flex;
-            margin : 0 auto;
-            width : 100%;
-            height : 9%;
-            border : ridge;
-        }
-
-        div.table div {
-            width: calc(100% / 3);
-            height:46px;
-            line-height: 30px;
-            text-align: center;
-            blackground : #ffebcd;
-            color : black;
-        }
-
-/*         div.table div:nth-child(2) { */
-/*             border-left: 1px solid black; */
-/*             border-right: 1px solid black; */
-/*         } */
-
-/*         div.table:nth-child(2n) div { */
-/*             background-color: rgb(159, 206, 206); */
-/*         } */
-
-/*         div.table:nth-child(2n+1) div { */
-/*             background-color: rgb(228, 240, 240); */
-/*         } */
-
-         div.table:first-child div { 
-             background-color: #ffebcd;
-             color: black; 
-             font-weight: 550; 
-         } 
-
-/*         div.table:first-child div{ */
-/*             height:50px; */
-/*             line-height: 50px; */
-/*             font-size: 1.1rem; */
-/*         } */
-
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        img {
-            width:40px;
-            height:40px;
-        }
-
-        div#iconWrapper {
-            width:200px;
-            margin: 0 auto;
-            margin-bottom: 20px;
-        }
-        
-        #tr_Month {
-        width : 180px;
-        border-radius : 15px;
-        background :  #ffebcd;	
-        
-        }
-
+<title>일정 예약 페이지</title>
+<style type="text/css">
+    a { color:#000000;text-decoration:none; }
+    .scriptCalendar { text-align:center; }
+    .scriptCalendar > thead > tr > td { width:50px;height:50px; }
+    .scriptCalendar > thead > tr:first-child > td { font-weight:bold; }
+    .scriptCalendar > thead > tr:last-child > td { background-color:#90EE90; }
+    .scriptCalendar > tbody > tr > td { width:50px;height:50px; }
 </style>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        buildCalendar();
+    });
 
-<meta charset="UTF-8">
-<title>intro.jsp</title>
+    var today = new Date(); // @param 전역 변수, 오늘 날짜 / 내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
+    var date = new Date();  // @param 전역 변수, today의 Date를 세어주는 역할
+
+    /**
+     * @brief   이전달 버튼 클릭
+     */
+    function prevCalendar() {
+        this.today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+        buildCalendar();    // @param 전월 캘린더 출력 요청
+    }
+
+    /**
+     * @brief   다음달 버튼 클릭
+     */
+    function nextCalendar() {
+        this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+        buildCalendar();    // @param 명월 캘린더 출력 요청
+    }
+
+    /**
+     * @brief   캘린더 오픈
+     * @details 날짜 값을 받아 캘린더 폼을 생성하고, 날짜값을 채워넣는다.
+     */
+    function buildCalendar() {
+
+        var doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+        var tbCalendar = document.querySelector(".scriptCalendar > tbody");
+
+        document.getElementById("calYear").innerText = today.getFullYear();                                  // @param YYYY월
+        document.getElementById("calMonth").innerText = autoLeftPad((today.getMonth() + 1), 2);   // @param MM월
+
+
+        // @details 이전 캘린더의 출력결과가 남아있다면, 이전 캘린더를 삭제한다.
+        while(tbCalendar.rows.length > 0) {
+            tbCalendar.deleteRow(tbCalendar.rows.length - 1);
+        }
+
+
+        // @param 첫번째 개행
+        var row = tbCalendar.insertRow();
+
+
+
+        // @param 날짜가 표기될 열의 증가값
+        var dom = 1;
+
+        // @details 시작일의 요일값( doMonth.getDay() ) + 해당월의 전체일( lastDate.getDate())을  더해준 값에서
+        //               7로 나눈값을 올림( Math.ceil() )하고 다시 시작일의 요일값( doMonth.getDay() )을 빼준다.
+        var daysLength = (Math.ceil((doMonth.getDay() + lastDate.getDate()) / 7) * 7) - doMonth.getDay();
+
+        // @param 달력 출력
+        // @details 시작값은 1일을 직접 지정하고 요일값( doMonth.getDay() )를 빼서 마이너스( - )로 for문을 시작한다.
+        for(var day = 1 - doMonth.getDay(); daysLength >= day; day++) {
+
+            var column = row.insertCell();
+
+
+            // @param 평일( 전월일과 익월일의 데이터 제외 )
+            if(Math.sign(day) == 1 && lastDate.getDate() >= day) {
+
+
+                // @param 평일 날짜 데이터 삽입
+
+                column.innerText = autoLeftPad(day, 2);
+                
+
+
+                // @param 일요일인 경우
+                if(dom % 7 == 1) {
+                    column.style.color = "#FF4D4D";
+                }
+
+                // @param 토요일인 경우
+                if(dom % 7 == 0) {
+                    column.style.color = "#4D4DFF";
+                    row = tbCalendar.insertRow();   // @param 토요일이 지나면 다시 가로 행을 한줄 추가한다.
+                }
+
+            }
+
+            // @param 평일 전월일과 익월일의 데이터 날짜변경
+            else {
+                var exceptDay = new Date(doMonth.getFullYear(), doMonth.getMonth(), day);
+                column.innerText = autoLeftPad(exceptDay.getDate(), 2);
+                column.style.color = "#A9A9A9";
+            }
+
+            // @brief   전월, 명월 음영처리
+            // @details 현재년과 선택 년도가 같은경우
+            if(today.getFullYear() == date.getFullYear()) {
+
+                // @details 현재월과 선택월이 같은경우
+                if(today.getMonth() == date.getMonth()) {
+
+                    // @details 현재일보다 이전인 경우이면서 현재월에 포함되는 일인경우
+                    if(date.getDate() > day && Math.sign(day) == 1) {
+                        column.style.backgroundColor = "#E5E5E5";
+                    }
+
+                    // @details 현재일보다 이후이면서 현재월에 포함되는 일인경우
+                    else if(date.getDate() < day && lastDate.getDate() >= day) {
+                        column.style.backgroundColor = "#FFFFFF";
+                        column.style.cursor = "pointer";
+                        column.onclick = function(){ calendarChoiceDay(this); }
+                    }
+
+                    // @details 현재일인 경우
+                    else if(date.getDate() == day) {
+                        column.style.backgroundColor = "#FFFFE6";
+                        column.style.cursor = "pointer";
+                        column.onclick = function(){ calendarChoiceDay(this); }
+                    }
+
+                // @details 현재월보다 이전인경우
+                } else if(today.getMonth() < date.getMonth()) {
+                    if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                        column.style.backgroundColor = "#E5E5E5";
+                    }
+                }
+
+                // @details 현재월보다 이후인경우
+                else {
+                    if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                        column.style.backgroundColor = "#FFFFFF";
+                        column.style.cursor = "pointer";
+                        column.onclick = function(){ calendarChoiceDay(this); }
+                    }
+                }
+            }
+
+            // @details 선택한년도가 현재년도보다 작은경우
+            else if(today.getFullYear() < date.getFullYear()) {
+                if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                    column.style.backgroundColor = "#E5E5E5";
+                }
+            }
+
+            // @details 선택한년도가 현재년도보다 큰경우
+            else {
+                if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                    column.style.backgroundColor = "#FFFFFF";
+                    column.style.cursor = "pointer";
+                    column.onclick = function(){ calendarChoiceDay(this); }
+                }
+            }
+
+
+            dom++;
+
+        }
+    }
+
+    /**
+     * @brief   날짜 선택
+     * @details 사용자가 선택한 날짜에 체크표시를 남긴다.
+     */
+    function calendarChoiceDay(column) {
+
+        // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
+        if(document.getElementsByClassName("choiceDay")[0]) {
+            document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
+            document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
+        }
+
+        // @param 선택일 체크 표시
+        column.style.backgroundColor = "#FF9999";
+
+
+        // @param 선택일 클래스명 변경
+        column.classList.add("choiceDay");
+    }
+
+    /**
+     * @brief   숫자 두자릿수( 00 ) 변경
+     * @details 자릿수가 한자리인 ( 1, 2, 3등 )의 값을 10, 11, 12등과 같은 두자리수 형식으로 맞추기위해 0을 붙인다.
+     * @param   num     앞에 0을 붙일 숫자 값
+     * @param   digit   글자의 자릿수를 지정 ( 2자릿수인 경우 00, 3자릿수인 경우 000 … )
+     */
+    function autoLeftPad(num, digit) {
+        if(String(num).length < digit) {
+            num = new Array(digit - String(num).length + 1).join("0") + num;
+        }
+        return num;
+    }
+
+</script>
 </head>
 <body>
-<!-- 캘린더 넣기 -->
-
-   <h1>예약 가능 일자 선택하기</h1>
-
-    <div id="calAndTable">
-    <!-- 캘린더 전체 Wrapper -->
-    <div id="calWrapper">
-
-<!--         상단 날짜 조회 메뉴 -->
-        <div id="upper_menu">
-        	<div id="tr_name"><h3>??? 훈련사님 예약 스케쥴표</h3></div>
-
-        </div>
-
-        <!-- 달력 상단 년, 월 -->
-        <div id = "notice">
-        <div id="dateTitle"> * 오늘 기준으로 일주일 뒤부터, 그리고 한달 뒤 까지 예약 가능합니다 *</div>
-		<div id = "tr_Month"><%=sdf.format(MonthDate)%>월</div>
-		</div>	
-        <!-- 달력 -->
-        <div id="calendar">
-            <table border="1">
-                <tr>
-                    
-                    <td>월</td>
-                    <td>화</td>
-                    <td>수</td>
-                    <td>목</td>
-                    <td>금</td>
-                    <td>토</td>
-                    <td>일</td>
-                </tr>
-                <tr>
-                    <td class="mon"><%=sdf2.format(day)%></td>
-                    <td class="tue"><%=sdf2.format(day)%></td>
-                    <td class="wed"><%=sdf2.format(day)%></td>
-                    <td class="thu"><%=sdf2.format(day)%></td>
-                    <td class="fri"><%=sdf2.format(day)%></td>
-                    <td class="sat"><%=sdf2.format(day)%></td>
-                    <td class="sun"><%=sdf2.format(day)%></td>
-                </tr>
-                <tr>
-                    <td class="mon"></td>
-                    <td class="tue"></td>
-                    <td class="wed"></td>
-                    <td class="thu"></td>
-                    <td class="fri"></td>
-                    <td class="sat"></td>
-                    <td class="sun"></td>
-                </tr>
-                <tr>
-                    <td class="mon"></td>
-                    <td class="tue"></td>
-                    <td class="wed"></td>
-                    <td class="thu"></td>
-                    <td class="fri"></td>
-                    <td class="sat"></td>
-                    <td class="sun"></td>
-                </tr>
-                <tr>
-                    <td class="mon"></td>
-                    <td class="tue"></td>
-                    <td class="wed"></td>
-                    <td class="thu"></td>
-                    <td class="fri"></td>
-                    <td class="sat"></td>
-                    <td class="sun"></td>
-                </tr>
-                <tr>
-                    <td class="mon"></td>
-                    <td class="tue"></td>
-                    <td class="wed"></td>
-                    <td class="thu"></td>
-                    <td class="fri"></td>
-                    <td class="sat"></td>
-                    <td class="sun"></td>
-                </tr>
-                <tr>
-                    <td class="mon"></td>
-                    <td class="tue"></td>
-                    <td class="wed"></td>
-                    <td class="thu"></td>
-                    <td class="fri"></td>
-                    <td class="sat"></td>
-                    <td class="sun"></td>
-                </tr>
-            </table>
-        </div>
-
-        <!-- 달력 하단 이전, 다음 버튼 -->
-        <div id="pnButtonWrapper"><a id="prev" class="btn">이전</a><a  id="next" class="btn">다음</a></div>
-
-        <!-- 적용 버튼 -->
-<!--         <div id="submitButtonWrapper"><button id="submit">적용</button></div> -->
-
-    </div>
-
-	<!-- 	우측에 결과 값 테이블 -->
-    <div id="tableWrapper">
-        <div class="table" id="tableHeader">
-            <div><h4>날짜</h4></div>
-            <div><h4>요일</h4></div>
-            <div><h4>횟수</h4></div>
-        </div>
-    </div>
-    
-    <!-- 하단의 요약 테이블 -->
-    <div id="TotalWrapper">
-        <div id="totalvalue">
-            <div id = "totalcnt">횟수 : <input style="text-align: right;" type="text" value="5" readonly="readonly"></div>
-            <div id = "tr_price">금액 : <input style="text-align: right;" type="text" value="???원"readonly="readonly"></div>
-            <div id = "tr_totalprice">총 예약금액 : <input style="text-align: right;" type="text" value="???원" readonly="readonly"></div>
-        </div>
-        <div id = "Totalsubmit">
-         <a class = "btn" href="<%=request.getContextPath()%>/nb/calendar.do?center=/nbShop/calendar.jsp" >예약 초기화</a> 
-         <a class = "btn" href="<%=request.getContextPath()%>/nb/member.do?center=/nbShop/edu_reservation.jsp" >예약 신청</a>
-         <a class = "btn" href="<%=request.getContextPath()%>/nb/Main" >홈으로</a>
-        </div>
-    </div>
+<div id = "calendarWrapper">
+<table class="scriptCalendar">
+    	<thead>
+        	<tr>
+            	<td onClick="prevCalendar();" style="cursor:pointer;">&#60;&#60;</td>
+            	<td colspan="5">
+                	<span id="calYear">YYYY</span>년
+                	<span id="calMonth">MM</span>월
+            </td>
+            	<td onClick="nextCalendar();" style="cursor:pointer;">&#62;&#62;</td>
+        	</tr>
+        	<tr>
+            	<td>일</td>
+            	<td>월</td>
+            	<td>화</td>
+            	<td>수</td>
+            	<td>목</td>
+            	<td>금</td>
+            	<td>토</td>
+        	</tr>
+    	</thead>
+    		<tbody>
+    		</tbody>
+	</table>
 </div>
-
-
-
-
-
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	
-	<!-- 	캘린더  들어갈 항목 -->
-	 예약 일정 확인 화면. jsp <br>
-	 설명 : 캘린더를 띄워주고, 하단에 가능한 강사를 선택(?), 또는 자동으로 비어있는 강사를 매칭해서 일정 및 금액 확인 페이지로 넘김<br>
-	 <br>
-	 상단부에 캘린더, 하단부에 캘린더에 원하는 날짜를 클릭 했을때, 훈련사들의 예약내역을 조회 해 와서, 1명이라도 비어있으면 가능하다는 메세지를 띄우고 <br>
-	 아무도 없을 경우에는 마감되었다고 메세지를 띄워준다. <br>
-	 선택 된 값을 다음 페이지로 전달 시켜서 일정과 금액을 확인시킨다 <br>
-	 <br>
-	 예약 시작 가능일은 현재 날짜에서 1주일 이후부터 가능 (주문취소,주문수정 가능일이 7일 이내 이기 때문)<br>
-	 
-	 
-	  체크 사항 : 가능한 트레이너를 초이스 하고 일정  배정<br>
-	  
-	  
-	  
-	 <br>
-	 <br>
-	 
-<script>
-
-
-
-// 함수 생성 (다음 버튼을 눌렀을때 현재월 기준 다음달로 넘기기) and (바로 이전 버튼 눌렀을때는 작동하지 않고, 다음 눌리고 난뒤에 작동 시키기)
-$(document).ready(function(){
-	$("#next").on("click", function(){
-		<% MonthDate.setMonth(MonthDate.getMonth() +1); %>
-		$("#tr_Month").text("<%=sdf.format(MonthDate)%>");
-	})
-	
-	$("#prev").on("click", function(){
-		<% MonthDate.setMonth(MonthDate.getMonth() -1); %>
-		$("#tr_Month").text("<%=sdf.format(MonthDate)%>");
-	})
-	
-})
-
-
-</script>	 
 </body>
 </html>
