@@ -5,15 +5,18 @@
 <%
 	// 현재 날짜 정보를 불러오고, SimpleDateForamt 메소드로 월만 가져온다
 	Date MonthDate = new Date();
-	SimpleDateFormat sdf = new SimpleDateFormat("MM월");
+	Date dayDate = new Date();
+	Date day = dayDate = new Date(dayDate.getYear(), dayDate.getMonth(), 1);
+	SimpleDateFormat sdf = new SimpleDateFormat("MM");
+	SimpleDateFormat sdf2 = new SimpleDateFormat("dd");
+	
+	
 
 %>
 <!DOCTYPE html>
 <html>
-<head> 
-<style>
-
-/* 	달력을 출력해줄 CSS 설정 */
+<head>
+<!--  	달력을 출력해줄 CSS 설정  -->
 
 <style>
         * {
@@ -403,17 +406,13 @@
 <!--         상단 날짜 조회 메뉴 -->
         <div id="upper_menu">
         	<div id="tr_name"><h3>??? 훈련사님 예약 스케쥴표</h3></div>
-<!--             <div id="period"><span style="color:red">*</span> 기간</div> -->
-<!--             <input type="date" id="firstDate"> -->
-<!--             <div id="betweenDate">~</div> -->
-<!--             <input type="date" id="secondDate"> -->
-<!--             <button id="searchButton">조회</button> -->
+
         </div>
 
         <!-- 달력 상단 년, 월 -->
         <div id = "notice">
         <div id="dateTitle"> * 오늘 기준으로 일주일 뒤부터, 그리고 한달 뒤 까지 예약 가능합니다 *</div>
-		<div id = "tr_Month"><%=sdf.format(MonthDate)%></div>
+		<div id = "tr_Month"><%=sdf.format(MonthDate)%>월</div>
 		</div>	
         <!-- 달력 -->
         <div id="calendar">
@@ -429,13 +428,13 @@
                     <td>일</td>
                 </tr>
                 <tr>
-                    <td class="mon"></td>
-                    <td class="tue"></td>
-                    <td class="wed"></td>
-                    <td class="thu"></td>
-                    <td class="fri"></td>
-                    <td class="sat"></td>
-                    <td class="sun"></td>
+                    <td class="mon"><%=sdf2.format(day)%></td>
+                    <td class="tue"><%=sdf2.format(day)%></td>
+                    <td class="wed"><%=sdf2.format(day)%></td>
+                    <td class="thu"><%=sdf2.format(day)%></td>
+                    <td class="fri"><%=sdf2.format(day)%></td>
+                    <td class="sat"><%=sdf2.format(day)%></td>
+                    <td class="sun"><%=sdf2.format(day)%></td>
                 </tr>
                 <tr>
                     <td class="mon"></td>
@@ -545,7 +544,10 @@
 	  
 	 <br>
 	 <br>
+	 
 <script>
+
+
 
 // 함수 생성 (다음 버튼을 눌렀을때 현재월 기준 다음달로 넘기기) and (바로 이전 버튼 눌렀을때는 작동하지 않고, 다음 눌리고 난뒤에 작동 시키기)
 $(document).ready(function(){
