@@ -57,7 +57,7 @@ public class nbController extends HttpServlet{
 		// 4)	 /navi.do				<- "늘 봄이란?" ->  "  오 시 는 길  " 요청
 		// 5)	 /edu.do           	<- "수강신청"   ->  " 수강 신청가기"  회원 요청
 		// 6)    /calendar.do     	<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼"을 눌렀을때
-		// 7-1) /member.do			<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼" -> "회원 예약 "버튼"을 눌렀을때
+		// 7-1) /edureservation.do			<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼" -> "회원 예약 "버튼"을 눌렀을때
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		// 8) /pet.shop        <-  " 늘 봄샵 "   -> "   샵 으로 이동   " 요청
 		
@@ -157,10 +157,10 @@ public class nbController extends HttpServlet{
 			nextPage = "/nbMain.jsp";
 			
 			
-		// 7-1) /member.do			<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼" -> "회원 예약 "버튼"을 눌렀을때
-		}else if(action.equals("/member.do")) {
+		// 7-1) /edureservation.do			<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼" -> "회원 예약 "버튼"을 눌렀을때
+		}else if(action.equals("/edureservation.do")) {
 			
-			System.out.println("member.do 메소드 호출!");
+			System.out.println("edureservation.do 메소드 호출!");
 			
 			// 중앙 화면 요청한 주소 얻기
 			String center = request.getParameter("center");
