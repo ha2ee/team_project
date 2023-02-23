@@ -187,7 +187,7 @@
     margin: 0 auto 0 auto;
     width: 500px;
     height:600px;
-    overflow: auto;
+    overflow: hidden;
     top : 40px;
     left : 670px;
     border : ridge;
@@ -232,7 +232,7 @@
 	right : 0;
 	top : 10px;
 	position : relative;
-	height: 350px;
+	height: 320px;
 	width : 100%;
 	}
 	
@@ -281,6 +281,46 @@
 	right: 0;
 	top : 0;
 	margin : 0 auto;
+	}
+	
+	#selectResetBox{
+	position : relative;
+	left : 0;
+	right: 0;
+	top : 340px;
+	margin : 0 auto;
+	width: 100%;
+	height : 40px;
+	}
+	
+	#selectReset{
+	position : relative;
+	left : 0;
+	right: 0;
+	top : 0px;
+	margin : 0 auto;
+	width: 100%;
+	height : 100%;
+	
+	}
+	
+	#selectReset > a{
+	position : relative;
+	left : 0;
+	right: 0;
+	top : -339px;
+	margin : 0 auto;
+	width: 150px;
+	height : 100%;
+	text-align: center;
+	font-size: 20px;
+	background: #cccccc50;
+	
+	}
+	
+	#selectReset > a:hover{
+	background : #ffebcd;
+	
 	}
 	
 	div#resultBox{
@@ -361,7 +401,7 @@
 	position : relative;
 	margin : 0 auto;
 	font-size : 20px;
-	left : 20px;
+	left : 15px;
 	right : 0;
 	top : 0;
 	width: 1200px;
@@ -399,16 +439,35 @@
     }
     
      
-     
-
-
     a { color:#000000;text-decoration:none; }
     .scriptCalendar > thead > tr > td { width:50px;height:50px; }
     .scriptCalendar > thead > tr:first-child > td { font-weight:bold; }
     .scriptCalendar > thead > tr:last-child > td { background-color:#f8f8f8; }
     .scriptCalendar > tbody > tr > td { width:50px;height:50px; }
+
 </style>
+<script>
+// 요일을 클릭 했을 때, 밸류가 리절트로 넘어갈 수 있게
+$(document).ready(function(){
+	
+	var clickday = 0;
+	
+	$(" tbody > tr > td").on("click", function(){
+		
+		alert("날짜선택하셨습니다");
+		
+// 	    clickday = $(this).prop('value');
+// 		console.log("value : " + clickday);
+		
+// 		clickday = $(this).val();
+// 		console.log("value2 : " + clickday);
+		
+	})
+
+});
+</script>
 <script type="text/javascript">
+
     document.addEventListener("DOMContentLoaded", function() {
         buildCalendar();
     });
@@ -416,6 +475,7 @@
     var today = new Date(); // @param 전역 변수, 오늘 날짜 / 내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
     var date = new Date();  // @param 전역 변수, today의 Date를 세어주는 역할
     var realMonth = today.getMonth()+1;
+
 
 
     
@@ -600,19 +660,97 @@
      * @details 사용자가 선택한 날짜에 체크표시를 남긴다.
      */
     function calendarChoiceDay(column) {
+    	
+        var clickday = 0;
+        var clickmonth = $("#calMonth").text();
+        var clickyear = today.getFullYear();
+		var clickdate = 0;
 
+
+    	
         // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
         if(document.getElementsByClassName("choiceDay")[0]) {
-            document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#E5E5E5";
+            document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#8bc34a";
             document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
         }
 
         // @param 선택일 체크 표시
-        column.style.backgroundColor = "#4caf50ad";
+        column.style.backgroundColor = "#8bc34a";
 
 
         // @param 선택일 클래스명 변경
         column.classList.add("choiceDay");
+        
+        clickday = $(".choiceDay").text();
+        clickdate = clickyear+"-"+clickmonth+"-"+clickday;
+        
+        // @현재요일 구하기
+		
+        
+           
+           //첫번째 예약란이 빈공백이면,
+           if($("#selectDate1").val() == ""){
+        	   
+	   	        // 첫번째 예약 날짜에 입력 시킨다.
+	           	$("#selectDate1").attr("value", clickdate);
+	   	        $(".choiceDay").css("cursor", "text");
+	   	        $(".choiceDay").css("pointer-events" , "none");
+	   	        $(".choiceDay").css("background", "#8bc34a");
+	       //두번째 예약란이 공백일때
+           }else if($("#selectDate2").val() == ""){
+	   	        
+        	   // 두번째 예약 날짜에 입력 시킨다.
+	           	$("#selectDate2").attr("value", clickdate);
+	           	$(".choiceDay").css("cursor" , "text");
+	           	$(".choiceDay").css("pointer-events" , "none");
+   	       		$(".choiceDay").css("background", "#8bc34a");
+ 	       //세번째 예약란이 공백일때
+           }else if($("#selectDate3").val() == ""){
+	   	        
+        	   // 세번째 예약 날짜에 입력 시킨다.
+	           	$("#selectDate3").attr("value", clickdate);
+	           	$(".choiceDay").css("cursor" , "text");
+	           	$(".choiceDay").css("pointer-events" , "none");
+	   	        $(".choiceDay").css("background", "#8bc34a");
+  	       //네번째 예약란이 공백일때
+           }else if($("#selectDate4").val() == ""){
+	   	        
+        	   // 네번째 예약 날짜에 입력 시킨다.
+	           	$("#selectDate4").attr("value", clickdate);
+	           	$(".choiceDay").css("cursor" , "text");
+	           	$(".choiceDay").css("pointer-events" , "none");
+	   	        $(".choiceDay").css("background", "#8bc34a");
+  	       //다섯번째 예약란이 공백일때
+           }else if($("#selectDate5").val() == ""){
+	   	        
+        	   // 다섯번째 예약 날짜에 입력 시킨다.
+	           	$("#selectDate5").attr("value", clickdate);
+	           	$(".choiceDay").css("cursor" , "text");
+	           	$(".choiceDay").css("pointer-events" , "none");
+	   	        $(".choiceDay").css("background", "#8bc34a");
+  	       //여섯번째 예약란이 공백일때
+           }else if($("#selectDate6").val() == ""){
+	        
+	 	  		 // 여섯번째 예약 날짜에 입력 시킨다.
+	        	$("#selectDate6").attr("value", clickdate);
+	           	$(".choiceDay").css("cursor" , "text");
+	           	$(".choiceDay").css("pointer-events" , "none");
+	   	        $(".choiceDay").css("background", "#8bc34a");
+  	       //일곱번째 예약란이 공백일때
+           }else if($("#selectDate7").val() == ""){
+        
+	  		 	// 여섯번째 예약 날짜에 입력 시킨다.
+	   			$("#selectDate7").attr("value", clickdate);
+	           	$(".choiceDay").css("cursor" , "text");
+	           	$(".choiceDay").css("pointer-events" , "none");
+	   	        $(".choiceDay").css("background", "#8bc34a");
+			}else if($("#selectDate7").val() != ""){
+				
+				alert("최대 7회까지 예약가능합니다");
+
+			}
+
+
     }
 
     /**
@@ -627,6 +765,17 @@
         }
         return num;
     }
+    
+    
+    $(document).ready(function(){
+    	$("#resetbtn").on("click",function(){
+    		
+    		$("#result > div > input").attr("value", "");
+    		
+    	})
+    	
+    })
+    
 
 </script>
 </head>
@@ -691,34 +840,42 @@
         </div>
         	<div id="result">
         		<div id="selectDate">
-	        		<input id="selectDate1" type="text" value="" readonly="readonly"/>
-	        		<input id="selectDate2" type="text" value="" readonly="readonly"/>
-	        		<input id="selectDate3" type="text" value="" readonly="readonly"/>
-	        		<input id="selectDate4" type="text" value="" readonly="readonly"/>
-	        		<input id="selectDate5" type="text" value="" readonly="readonly"/>
-	        		<input id="selectDate6" type="text" value="" readonly="readonly"/>
-	        		<input id="selectDate7" type="text" value="" readonly="readonly"/>
+	        		<input id="selectDate1" type="text"  readonly="readonly"/>
+	        		<input id="selectDate2" type="text"  readonly="readonly"/>
+	        		<input id="selectDate3" type="text"  readonly="readonly"/>
+	        		<input id="selectDate4" type="text"  readonly="readonly"/>
+	        		<input id="selectDate5" type="text"  readonly="readonly"/>
+	        		<input id="selectDate6" type="text"  readonly="readonly"/>
+	        		<input id="selectDate7" type="text"  readonly="readonly"/>
         		</div>
         		<div id="selectDow">
-	        		<input id="dow1" type="text" value="" readonly="readonly"/>
-	        		<input id="dow2" type="text" value="" readonly="readonly"/>
-	        		<input id="dow3" type="text" value="" readonly="readonly"/>
-	        		<input id="dow4" type="text" value="" readonly="readonly"/>
-	        		<input id="dow5" type="text" value="" readonly="readonly"/>
-	        		<input id="dow6" type="text" value="" readonly="readonly"/>
-	        		<input id="dow7" type="text" value="" readonly="readonly"/>
+	        		<input id="dow1" type="text"  readonly="readonly"/>
+	        		<input id="dow2" type="text"  readonly="readonly"/>
+	        		<input id="dow3" type="text"  readonly="readonly"/>
+	        		<input id="dow4" type="text"  readonly="readonly"/>
+	        		<input id="dow5" type="text"  readonly="readonly"/>
+	        		<input id="dow6" type="text"  readonly="readonly"/>
+	        		<input id="dow7" type="text"  readonly="readonly"/>
         		</div>
         		<div id="selectNum">
-	        		<input id="Num1" type="text" value="" readonly="readonly"/>
-	        		<input id="Num2" type="text" value="" readonly="readonly"/>
-	        		<input id="Num3" type="text" value="" readonly="readonly"/>
-	        		<input id="Num4" type="text" value="" readonly="readonly"/>
-	        		<input id="Num5" type="text" value="" readonly="readonly"/>
-	        		<input id="Num6" type="text" value="" readonly="readonly"/>
-	        		<input id="Num7" type="text" value="" readonly="readonly"/>
+	        		<input id="Num1" type="text"  readonly="readonly"/>
+	        		<input id="Num2" type="text"  readonly="readonly"/>
+	        		<input id="Num3" type="text"  readonly="readonly"/>
+	        		<input id="Num4" type="text"  readonly="readonly"/>
+	        		<input id="Num5" type="text"  readonly="readonly"/>
+	        		<input id="Num6" type="text"  readonly="readonly"/>
+	        		<input id="Num7" type="text"  readonly="readonly"/>
         		</div>
+
         </div>	
+        
       </div>
+<!--       우측 중단 초기화 버튼 테이블 -->
+	<div id="selectResetBox">
+		<div id="selectReset">
+		<a class = "btn" id="resetbtn" onclick="buildCalendar();">예약 초기화</a>
+		</div>
+	</div>
   
     
 <!--       우측 하단의 요약 테이블 -->
@@ -734,7 +891,7 @@
 <!-- 	   하단의 3가지 버튼 메뉴 -->
 		<div id = "btnBox2">
       		<div id = "Totalsubmit">
-         	<a class = "btn" href="<%=request.getContextPath()%>/nb/calendar.do?center=/nbShop/calendar.jsp" >예약 초기화</a> 
+         	<a class = "btn" href="<%=request.getContextPath()%>/nb/calendar.do?center=/nbShop/trainer.jsp" >이전 페이지로</a> 
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/member.do?center=/nbShop/edu_reservation.jsp" >예약 신청</a>
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/Main" >홈으로</a>
         	</div>

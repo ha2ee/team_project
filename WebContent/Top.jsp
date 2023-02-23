@@ -16,21 +16,18 @@ $(document).ready(function(){
 	$("#mega_wrapper").on("mouseleave", function(){
 		$("#mega-menu").stop().slideUp("slow");
 	})
+	
+    	$("#news-slider1").owlCarousel({
+		        items:3,
+		        itemsDesktop:[1199,3],
+		        itemsDesktopSmall:[1000,2],
+		        itemsMobile : [650,1],
+		        navigationText:false,
+		        autoPlay:true
+    	})
+
 
 });
-
-
-//	함수로 캐러셀 동작 시키기
-$(document).ready(function() {
-	    $("#news-slider1").owlCarousel({
-	        items:3,
-	        itemsDesktop:[1199,3],
-	        itemsDesktopSmall:[1000,2],
-	        itemsMobile : [650,1],
-	        navigationText:false,
-	        autoPlay:true
-	    });
-		});
 
 
 </script>
