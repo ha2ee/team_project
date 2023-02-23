@@ -599,7 +599,7 @@
                     // 현재일 +6일 뒤 부터 선택 가능하게 만듬
                     }else if((date.getDate()+6) < day ) {
 
-                        column.style.backgroundColor = "#E5E5E5";
+                        column.style.backgroundColor = "#f8f8f8";
                         column.style.color = "";
                         column.style.cursor = "pointer";
                         column.onclick = function(){ calendarChoiceDay(this); }    
@@ -622,7 +622,7 @@
                 // @details 현재월보다 이후인경우
                 else {
                     if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
-                        column.style.backgroundColor = "#E5E5E5";
+                        column.style.backgroundColor = "#f8f8f8";
                         column.style.cursor = "pointer";
                         column.onclick = function(){ calendarChoiceDay(this); }
                     }
@@ -663,12 +663,12 @@
     	
         // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
         if(document.getElementsByClassName("choiceDay")[0]) {
-            document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#8bc34a";
+            document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#f8f8f8";
             document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
         }
 
         // @param 선택일 체크 표시
-        column.style.backgroundColor = "#E5E5E5";
+        column.style.backgroundColor = "#9e9e9e2e";
 
 
         // @param 선택일 클래스명 변경
@@ -703,7 +703,7 @@
 	   	        $("#tr_totalprice > input").attr("value", totalresult);
 	   	        $(".choiceDay").css("cursor", "text");
 	   	        $(".choiceDay").css("pointer-events" , "none");
-	   	        $(".choiceDay").css("background", "#8bc34a");
+	   	        $(".choiceDay").css("background", "#00ff9575");
 	   	   	
 	   	     return false;
 	   	   
@@ -722,7 +722,7 @@
 	   	    	$("#tr_totalprice > input").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
-   	       		$(".choiceDay").css("background", "#8bc34a");
+   	       		$(".choiceDay").css("background", "#00ff9575");
    	       		
    	       	return false;
    	       		
@@ -741,7 +741,7 @@
 	   	    	$("#tr_totalprice > input").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
-	   	        $(".choiceDay").css("background", "#8bc34a");
+	   	        $(".choiceDay").css("background", "#00ff9575");
 	   	       
    	       return false;    
 	   	        
@@ -760,7 +760,7 @@
 	   	    	$("#tr_totalprice > input").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
-	   	        $(".choiceDay").css("background", "#8bc34a");
+	   	        $(".choiceDay").css("background", "##00ff9575");
 	   	        
    	     	return false;     
 	   	        
@@ -779,7 +779,7 @@
 	   	    	$("#tr_totalprice > input").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
-	   	        $(".choiceDay").css("background", "#8bc34a");
+	   	        $(".choiceDay").css("background", "#00ff9575");
 		  	   
    	    	 return false;
 	   	        
@@ -798,7 +798,7 @@
 	   	    	$("#tr_totalprice > input").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
-	   	        $(".choiceDay").css("background", "#8bc34a");
+	   	        $(".choiceDay").css("background", "#00ff9575");
 	   	   
    	    	 return false;     
 	   	        
@@ -817,7 +817,7 @@
 	   	    	$("#tr_totalprice > input").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
-	   	        $(".choiceDay").css("background", "#8bc34a");
+	   	        $(".choiceDay").css("background", "#00ff9575");
 	   	        
 	   	     return false;     
 	   	        
