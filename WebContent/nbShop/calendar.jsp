@@ -451,7 +451,7 @@
     .scriptCalendar > thead > tr > td { width:50px;height:50px; }
     .scriptCalendar > thead > tr:first-child > td { font-weight:bold; }
     .scriptCalendar > thead > tr:last-child > td { background-color:#f8f8f8; }
-    .scriptCalendar > tbody > tr > td { width:50px;height:50px; }
+    .scriptCalendar > tbody > tr > td { width:50px;height:50px; border:1px solid white; border-radius : 5px;}
 
 </style>
 <script type="text/javascript">
