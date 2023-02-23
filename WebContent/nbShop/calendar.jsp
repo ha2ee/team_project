@@ -259,7 +259,7 @@
     background : #cccccc21;
     text-align: center;
     font-weight : bold;
-    color : dodgerblue;
+    color : steelblue;
     
 	}
 	
@@ -867,8 +867,6 @@
 <form action ="<%=request.getContextPath()%>/nb/edureservation.do?center=/nbShop/edu_reservation.jsp">
 
 <!-- 캘린더 넣기 -->
-
-   <h1>예약 가능 일자 선택하기</h1>
 <div id = "calandtotalWrapper">
 	<div id = "calendarWrapper">
 
