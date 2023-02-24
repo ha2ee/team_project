@@ -7,7 +7,7 @@
 <style>
 	#weatherbox{
 	
-	border : 1px solid green;
+/* 	border : 1px solid green; */
 	
 	position : relative;
 	top : 0;
@@ -37,7 +37,7 @@
 	
 	#topTitle{
 	
-	border : 1px solid blue;
+/* 	border : 1px solid blue; */
 	
 	position : relative;
 	top : 0;
@@ -47,11 +47,13 @@
 	width : 250px;
 	height : 25px;
 	border-radius: 5px;
+	background : aliceblue;
+	border-radius: 20px;
 	}
 	
 	#topTitle > div{
 	
-	border : 1px solid red;
+/* 	border : 1px solid red; */
 	
 	float:left;
 	text-align : center;
@@ -79,7 +81,7 @@
 	
 	#weatherBody > div{
 	
-	border : 1px solid red;
+/* 	border : 1px solid red; */
 	
 	float:left;
 	text-align : center;
@@ -110,7 +112,7 @@
 	
 	#weatherResult {
 	
-	border : 1px solid red;
+/* 	border : 1px solid red; */
 	
 	text-align : center;
 	position : relative;
@@ -126,25 +128,41 @@
 	
 	#weatherResult > img {
 	
-	border : 1px solid orange;
+/* 	border : 1px solid orange; */
 	
 	text-align : center;
 	position : relative;
 	top : 0;
-	left : -2px;
+	left : -86px;
 	right : 0;
 	margin : 0 auto;
-	width : 100px;
-	height : 98%;
+	width : 70px;
+	height : 96%;
 	border-radius: 5px;
 
 	}
 	
 /* 	날씨에 대한 결과값 계산 후 출력할 곳 */
 
+	#weatherResult > input {
+	
+/* 	border : 1px solid blue; */
+	
+	text-align : center;
+	position : relative;
+	top : -70px;
+	left : 37px;
+	right : 0;
+	margin : 0 auto;
+	width : 166px;
+	height : calc(89% / 2);
+	border-radius: 5px;
+	
+	}
+	
 	#weatherzone {
 	
-	border : 1px solid blue;
+/* 	border : 1px solid blue; */
 	
 	text-align : center;
 	position : relative;
@@ -152,9 +170,27 @@
 	left : 0;
 	right : 0;
 	margin : 0 auto;
-	width : 135px;
-	height : 90%;
+	width : 166px;
+	height : 100%;
 	border-radius: 5px;
+	border : 1px dotted white;
+	
+	}
+	
+	#weatherzone2 {
+	
+/* 	border : 1px solid blue; */
+	
+	text-align : center;
+	position : relative;
+	top : -27px;
+	left : 0;
+	right : 0;
+	margin : 0 auto;
+	width : 166px;
+	height : 100%;
+	border-radius: 5px;
+	border: 1px dotted white;;
 	
 	}
 </style>
@@ -185,7 +221,9 @@
 		</div>
 		<div id="weatherFooter">
 			<div id="weatherResult">
-				<img src="#" /><input id="weatherzone" type="text" />
+				<img src="#" />
+				<input id="weatherzone" type="text" />
+				<input id="weatherzone2" type="text" />
 			</div>
 		</div>
 	</div>
@@ -196,28 +234,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
 <script>
-    // 1) getJSON을 활용해서 데이터값을 가져오는 방법 
-// 	$.getJSON("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=SswoUAmXtjH%2FEZIxjrzCxbjXuV0AhAdO5rXvMxXfxqis8wmCcKFciA72WHxnWC1Uyosdebw1T1HP5qH9bEyu7w%3D%3D&pageNo=1&numOfRows=1000&dataType=JSON&base_date=20230224&base_time=0600&nx=55&ny=127"
-// 			, function(data){
-// 				console.log(data.response.body.items.item[3].obsrValue);
-				
-// 				var content = data.response.body.items.item[3].baseDate+","+data.response.body.items.item[3].baseTime+","+data.response.body.items.item[3].obsrValue;
-// 				$(".weatherResult").text(content);
-// 		}
-// 	)
-	// 2) ajax를 활용해서 데이터 값을 가져오는 방법	
-// 	$.ajax({
-// 			url: "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=SswoUAmXtjH%2FEZIxjrzCxbjXuV0AhAdO5rXvMxXfxqis8wmCcKFciA72WHxnWC1Uyosdebw1T1HP5qH9bEyu7w%3D%3D&pageNo=1&numOfRows=1000&dataType=JSON&base_date=20230224&base_time=0600&nx=55&ny=127", 
-// 			success: function(data){
-				
-// 				console.log(data);
-// 				var item = data.response.body.items.item[3];
-// 				console.log(item);
-// 				var content = item.baseDate+","+item.baseTime+","+item.obsrValue;
-// 				console.log(content);
-// 				$(".weatherResult").text(content);
-// 		   	},
-// 	});	
+
 			// 전역변수로 url에 들어갈 실시간 날짜 받아오기
 			var Wdate = new Date();
 			var initDate = moment(Wdate).format('YYYYMMDD');
@@ -262,31 +279,157 @@
 			console.log(wind);
 			console.log(rain);
 			
-				// 온도와 바람에 따라서 변경 노출 될 이미지와 문구 설정
-				if(temp >= 11 && rain == 0){
-					
-					// 온도는 11도 이상이지만 비가올 경우
-					if(temp >= 11 && rain > 0){
-						
-						$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nb/nbShop/img/rainy.gif");
-						
-					}else{
-					
-					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nb/nbShop/img/sunny.gif");
-					$("#weatherzone").text("산책하기 딱 좋은 날씨!");
-					
-					}
-				}else if(temp >= 6){
-					
-					
-				}
-			
-			
 			// 홈페이지를 이동할때마다 변경된 값을 저장시키기
 			$("#resultDate").text(koDate);
 			$("#resultTime").text(KoTime);
 			$("#resultTemp").text(temp+" 도");
 			$("#resultWind").text(wind+" m/s");
+			
+				// 온도와 바람에 따라서 변경 노출 될 이미지와 문구 설정
+				
+				// #1) 11도 보다 온도가 높거나 같고, 16도 미만 일 경우
+				if(temp >= 11 && temp < 16){
+					
+						// 온도는 11도 이상이지만 비가올 경우
+						if(rain > 0){
+							
+							$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+							$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
+							$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+						
+						// 오후 6시 이후일 경우,
+						}else if(rain == 0 && initTime > 18){
+							
+							$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+							$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
+							$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
+							
+							
+							
+						// 온도가 11도 이상이고 비가 오지 않을경우,	
+						}else{
+						
+						$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+						$("#weatherzone").attr("value", "산책하기").css("font-weight","bold");
+						$("#weatherzone2").attr("value", "딱 좋은 날씨!").css("color", "#009688").css("font-weight","bold");
+						
+						}
+					
+				// #2) 온도가 6도 보다는 높지만, 11도 보다는 낮을때	
+				}else if(temp >= 6 && temp < 11){
+					
+						// 온도는 6도 이상 11도 미만이지만 비가올 경우
+						if(rain > 0){
+							
+							
+							
+							$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+							$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
+							$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+						
+						// 오후 6시 이후일 경우,
+						}else if(rain == 0 && initTime > 18){
+							
+							$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+							$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
+							$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
+								
+							
+							
+						// 온도가 6도 이상 11도 미만에 비가 안 올 경우
+						}else{
+						
+						$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+						$("#weatherzone").attr("value", "산책하기 괜찮지만").css("font-weight","bold");
+						$("#weatherzone2").attr("value", "조심히 산책하세요!").css("color", "#8bc34a").css("font-weight","bold");
+						
+						}
+				// #3) 온도가 -1도 이상 6도 미만일때
+				}else if(temp >= -1 && temp < 6){
+						
+						// 온도는 -1도 이상 6도 미만이지만 비가올 경우
+						if(rain > 0){
+							
+							$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+							$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
+							$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+						
+						// 오후 6시 이후일 경우,
+						}else if(rain == 0 && initTime > 18){
+							
+							$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+							$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
+							$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
+								
+							
+						// 온도가 -1도 이상 6도 미만에 비가 안 올 경우
+						}else{
+						
+						$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+						$("#weatherzone").attr("value", "방한용품을 권장하고").css("font-weight","bold");
+						$("#weatherzone2").attr("value", "많은 주의가 필요합니다!").css("color", "#ff5722").css("font-weight","bold");
+						}
+
+					
+				// #4) 온도가 -2도보다 이하고 -4도 초과 일때	
+				}else if (temp <= -2 && temp > -4){
+					
+						// 온도는 -2도 이하 -4도 초과이지만 비가올 경우
+						if(rain > 0){
+							
+							$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+							$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
+							$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+						
+						// 오후 6시 이후일 경우,
+						}else if(rain == 0 && initTime > 18){
+							
+							$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+							$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
+							$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
+								
+							
+							
+						// 온도가 -2도 이하 -4도 초고에 비가 안 올 경우
+						}else{
+						
+						$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+						$("#weatherzone").attr("value", "산책하기엔 쌀쌀해요").css("font-weight","bold");
+						$("#weatherzone2").attr("value", "방한대책 필수에요!!").css("color", "#ff5722").css("font-weight","bold");
+						
+						}
+					
+				// #5) 온도가 -5도 이하일 경우	
+				}else if(temp <= -5){
+					
+					// 온도는 -5도 이하에 비가올 경우
+					if(rain > 0){
+						
+						$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+						$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
+						$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+					
+					// 오후 6시 이후일 경우,
+					}else if(rain == 0 && initTime > 18){
+						
+						$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+						$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
+						$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
+
+					
+					// 온도가 -5도 이하에 비가 안 올 경우
+					}else{
+					
+					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+					$("#weatherzone").attr("value", "실내 놀이를").css("font-weight","bold");
+					$("#weatherzone2").attr("value", "적극 권장합니다!!").css("color", "#ff5722").css("font-weight","bold");
+					
+					}
+					
+					
+					
+				}
+			
 
 		   	},
 	});
