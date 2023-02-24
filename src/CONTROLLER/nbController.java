@@ -165,11 +165,12 @@ public class nbController extends HttpServlet{
 			// 중앙 화면 요청한 주소 얻기
 			String center = request.getParameter("center");
 			
-			// 중앙 화면 바인딩 하기
-			System.out.println("요청한 center : "+ center);
+			//request에 "center" 값을 edu_reservation.jsp로 저장
+			request.setAttribute("center", "nbShop/edu_reservation.jsp");
 			
-			//request에 "center" 값으로 저장
-			request.setAttribute("center", center);
+			//edu_reservation.jsp로 이동!
+			System.out.println("edu_reservation.jsp로 폼액션 넘기기");
+			
 			
 			nextPage = "/nbMain.jsp";
 			

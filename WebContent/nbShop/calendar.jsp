@@ -437,6 +437,24 @@
     		
     } 
     
+    #Totalsubmit > button {
+    
+   	background : #cccccc21; 
+	border-radius : 20px;
+	margin : 0 10px;
+	font-size : 22px;
+	touch-action : manipulation;
+    
+    }
+    
+    #Totalsubmit > button:hover {
+    
+	background : #ffebcd;
+	border-radius : 20px;
+	font-size : 22px;
+    transition : 0.5s;
+    }
+    
     tbody > tr > td:first-child {
     	color : red;
     	pointer-events : none;
@@ -452,6 +470,7 @@
     .scriptCalendar > thead > tr:first-child > td { font-weight:bold; }
     .scriptCalendar > thead > tr:last-child > td { background-color:#f8f8f8; }
     .scriptCalendar > tbody > tr > td { width:50px;height:50px; border:1px solid white; border-radius : 5px;}
+    .btn:hover > button {background : #ffebcd; }
 
 </style>
 <script type="text/javascript">
@@ -663,12 +682,12 @@
     	
         // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
         if(document.getElementsByClassName("choiceDay")[0]) {
-            document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#f8f8f8";
+            document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "##00ff9575";
             document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
         }
 
         // @param 선택일 체크 표시
-        column.style.backgroundColor = "#9e9e9e2e";
+        column.style.backgroundColor = "##00ff9575";
 
 
         // @param 선택일 클래스명 변경
@@ -760,7 +779,7 @@
 	   	    	$("#tr_totalprice > input").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
-	   	        $(".choiceDay").css("background", "##00ff9575");
+	   	        $(".choiceDay").css("background", "#00ff9575");
 	   	        
    	     	return false;     
 	   	        
@@ -864,7 +883,7 @@
 </script>
 </head>
 <body>
-<form action ="<%=request.getContextPath()%>/nb/edureservation.do?center=/nbShop/edu_reservation.jsp">
+<form action ="<%=request.getContextPath()%>/nb/edureservation.do">
 
 <!-- 캘린더 넣기 -->
 <div id = "calandtotalWrapper">
@@ -941,13 +960,13 @@
 	        		<input id="dow7" type="text"  readonly="readonly"/>
         		</div>
         		<div id="selectNum">
-	        		<input id="Num1" name="num1" type="text"  readonly="readonly"/>
-	        		<input id="Num2" name="num2" type="text"  readonly="readonly"/>
-	        		<input id="Num3" name="num3" type="text"  readonly="readonly"/>
-	        		<input id="Num4" name="num4" type="text"  readonly="readonly"/>
-	        		<input id="Num5" name="num5" type="text"  readonly="readonly"/>
-	        		<input id="Num6" name="num6" type="text"  readonly="readonly"/>
-	        		<input id="Num7" name="num7" type="text"  readonly="readonly"/>
+	        		<input id="Num1" type="text"  readonly="readonly"/>
+	        		<input id="Num2" type="text"  readonly="readonly"/>
+	        		<input id="Num3" type="text"  readonly="readonly"/>
+	        		<input id="Num4" type="text"  readonly="readonly"/>
+	        		<input id="Num5" type="text"  readonly="readonly"/>
+	        		<input id="Num6" type="text"  readonly="readonly"/>
+	        		<input id="Num7" type="text"  readonly="readonly"/>
         		</div>
 
         </div>	
@@ -975,7 +994,7 @@
 		<div id = "btnBox2">
       		<div id = "Totalsubmit">
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/calendar.do?center=/nbShop/trainer.jsp" >이전 페이지로</a> 
-         	<a type="submit" class = "btn" href="<%=request.getContextPath()%>/nb/member.do?center=/nbShop/edu_reservation.jsp" >예약 신청</a>
+         	<button type="submit" style="font-weight : 400; padding : 6px 12px; margin : 0 10px; font-size : 22px; border-radius: 20px; border:0px; background : #8f8f8; ">예약 신청</button>
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/Main" >홈으로</a>
         	</div>
         </div>
