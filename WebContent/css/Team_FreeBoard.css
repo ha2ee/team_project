@@ -93,18 +93,25 @@ html > body {
 
 
 .Contents-Box > .List-Box > ul > li:first-child {
-  width: 13%;
+  width: 5%;
 }
 .Contents-Box > .List-Box > ul > li:nth-child(2) {
-  width: 10%;
+  width: 15%;
   justify-content: start;
   padding: 0 40px;
 }
 .Contents-Box > .List-Box > ul > li:nth-child(3) {
-  width: 60%;
+  width: 50%;
 }
+.Contents-Box > .List-Box > ul > li:nth-child(4) {
+  width: 15%;
+}
+.Contents-Box > .List-Box > ul > li:nth-child(5) {
+  width: 7.5%;
+}
+
 .Contents-Box > .List-Box > ul > li:last-child {
-  width: 17%;
+  width: 7.5%;
 }
 .Contents-Box > .List-Box > .List-1 {
   height: auto;
@@ -131,8 +138,8 @@ html > body {
 .Contents-Box > .List-Box > .List-1 > div:nth-child(3) {
   width: 60%;
 /*   justify-content: start; */
-  padding-left: 50px;
-  color: #696969;
+/*   padding-left: 50px;
+ */  color: #696969;
 }
 .Contents-Box > .List-Box > .List-1 > div:last-child {
   width: 17%;

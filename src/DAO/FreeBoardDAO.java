@@ -42,7 +42,7 @@ public class FreeBoardDAO {
 		try {
 			con = ds.getConnection();
 
-			String sql = "SELECT * FROM FREE_BOARD";
+			String sql = "SELECT * FROM FREE_BOARD ORDER BY B_IDX DESC";
 			
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -94,6 +94,31 @@ public class FreeBoardDAO {
 		}
 		
 		return count;
+	}
+
+	public int insertBoard(FreeBoardVo vo) {
+		int result = 0 ;
+		try {
+			con = ds.getConnection();
+
+			String sql = "INSERT INTO FREE_BOARD VALUES(FREEBOARD_SEQ.NEXTVAL,?,?,?,?,0,0,SYSDATE,0,?,0)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getB_id());
+			pstmt.setString(2, vo.getB_nickname());
+			pstmt.setString(3, vo.getB_title());
+			pstmt.setString(4, vo.getB_content());
+			pstmt.setString(5, vo.getB_file());
+			result = pstmt.executeUpdate();
+			System.out.println(result);
+			
+		} catch (Exception e) {
+			System.out.println("insertBoard 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
+			e.printStackTrace();
+		} finally {
+			closeResource();
+		}
+		
+		return result;
 	}
 	
 	

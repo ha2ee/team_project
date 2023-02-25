@@ -65,7 +65,7 @@ public class BoardController extends HttpServlet{
 		//웹브라우저로 응답할 데이터 종류 설정
 		response.setContentType("text/html;charset=utf-8");
 		//웹브라우저와 연결된 출력 스트림 통로 만들기
-//		PrintWriter out = response.getWriter();
+		PrintWriter out = response.getWriter();
 		//서블릿으로 요청한 주소를 request에서 얻기
 		String action = request.getPathInfo();//2단계 요청 주소
 		System.out.println("요청한  주소 : "+action);
@@ -107,6 +107,7 @@ public class BoardController extends HttpServlet{
 //			request.setAttribute("nowPage", nowPage);
 //			request.setAttribute("nowBlock", nowBlock);
 	    	  
+	    	  
 
 	    	  list = boarddao.boardListAll();
 	    	  int count = boarddao.getTotalRecord();
@@ -140,14 +141,36 @@ public class BoardController extends HttpServlet{
 	         break;
 //
 //			
-//		case "/writePro.bo":
+		case "/writePro.fb":
 //			//요청한 값 얻기
-//			String writer = request.getParameter("w");
-//			String email = request.getParameter("e");
-//			String title = request.getParameter("t");
-//			String content = request.getParameter("c");
-//			String pass = request.getParameter("p");
-//			String id = request.getParameter("i");
+//
+//			//세션값으로 아이디 + 닉네임을 구할 것입니다.
+			String id = "inseop";
+			String nickname = "seeeop2";
+			
+			String title = request.getParameter("title");
+			String content = request.getParameter("editor1");
+			String fileName = request.getParameter("fileName");
+			
+			if(fileName == null || fileName.length() == 0) {
+				fileName = "파일없음";
+			}
+
+			vo= new FreeBoardVo(id, nickname, title, content, fileName);
+			int result = boarddao.insertBoard(vo);
+//			
+			if(result ==1) {
+				out.println("<script>");
+				out.println("alert('작성 성공!')");
+				out.println("</script>");
+			} else {
+				out.println("<script>");
+				out.println("alert('작성 실패!')");
+				out.println("</script>");
+			}
+	         nextPage = "/freeboard/list.fb";
+	         break;
+			
 //			
 //			//요청한 값을 BoardVo객체의 각 변수에 저장
 //			vo = new FreeBoardVo();

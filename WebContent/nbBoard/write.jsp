@@ -29,15 +29,10 @@ String contextPath = request.getContextPath();
   
   	<div style="width: 1200px; margin: 0 auto; margin-bottom: 20px">
   		<div>
-  		
-	      <h1> 게시글 작성 </h1> <br>
-          <input type="text" style="width: 100%; box-sizing: border-box; font-size: 20px" placeholder="제목을 입력해주세요"> 
-                  											<%-- box-sizing: border-box를 style에 넣어줘야 너비 끝부분 처리가 완벽 --%>
-	      
-	      
-	      
-	                
-	        <form>
+	        <form action="<%=contextPath%>/freeboard/writePro.fb" method="post">
+		      <h1> 게시글 작성 </h1> <br>
+	          <input type="text" name="title" style="width: 100%; box-sizing: border-box; font-size: 20px" placeholder="제목을 입력해주세요"> 
+	                  											<%-- box-sizing: border-box를 style에 넣어줘야 너비 끝부분 처리가 완벽 --%>
 	            <textarea name="editor1" id="editor1" rows="10" cols="80">
 	            </textarea>
 	            <script>
@@ -47,22 +42,75 @@ String contextPath = request.getContextPath();
 	                	height : 500
 	                } );
 	            </script>
+	             <br>
+	            <div style="width: 1200px; display:flex; justify-content:space-between;  margin:0 auto;  " >
+	             
+               		<div><input type="file" name="fileName" id="fileName"></div>
+               	
+               		<div>
+                		<div style="display: inline-block;"><input type="button" value="목 록" style="width: 100%; font-weight: bold;" onclick="location.href='<%=contextPath%>/freeboard/list.fb'" /></div>
+                		&nbsp;
+	                	<div style="display: inline-block;"><input type="submit" value="등 록" id="registration" style="width: 100%; font-weight: bold;" onclick="checkFile()"></div>
+               		</div>
+               	
+  				</div>
+	            
 	        </form>
 
   		</div>
   		
   	</div>
- 		<div style="width: 1200px; display:flex; justify-content:space-between;  margin:0 auto;  " >
+<%--  		<div style="width: 1200px; display:flex; justify-content:space-between;  margin:0 auto;  " >
                	<div><input type="file"></div>
                	
                	
                	<div>
-                	<div style="display: inline-block;"><button type="submit"  style="width: 100%; font-weight: bold;">목   록</button></div>
+                	<div style="display: inline-block;"><button style="width: 100%; font-weight: bold;" onclick="location.href='<%=contextPath%>/freeboard/list.fb'">목   록</button></div>
                 	&nbsp;
-	                <div style="display: inline-block;"><button type="submit"  style="width: 100%; font-weight: bold;">등   록</button></div>
+	                <div style="display: inline-block;"><input type="submit" value="등 록" style="width: 100%; font-weight: bold;"></div>
                	</div>
                	
-  		</div>
+  		</div> --%>
   		<br>
+  		
+  		
+<%-- 제이쿼리가 안 먹힌다....................   		
+  	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  	<script type="text/javascript">
+  		
+  		$("#registration").click(function(){
+  			var title = $(".title").val();
+  			var content = $("#editor1").val();
+  			var fileName = $(".fileName").val();
+  			
+  			$.ajax({
+  			  	 type:"post",
+				 async:true,
+				 url:"<%=contextPath%>/freeboard/writePro.fb",
+				 data:{ title : title, 
+					 	content : content,
+					 	fileName : fileName
+					 	}, 
+				 dataType : "text",
+				 success:function(data){
+					 console.log(data);
+				 }
+  				
+  				
+  			})
+  			
+  			
+  			
+  			
+  		})
+  	
+  	
+  	
+  	</script>
+ --%>  		
+  		
+  		
+  		
+  		
     </body>
 </html>

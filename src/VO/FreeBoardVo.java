@@ -18,7 +18,15 @@ public class FreeBoardVo {
 
 	
 	
-	
+	//vo 생성자 하나 생성하겠습니다.
+	public FreeBoardVo(String b_id, String b_nickname, String b_title, String b_content, String b_file) {
+		super();
+		this.b_id = b_id;
+		this.b_nickname = b_nickname;
+		this.b_title = b_title;
+		this.b_content = b_content;
+		this.b_file = b_file;
+	}
 	
 	public FreeBoardVo(int b_idx, String b_id, String b_nickname, String b_title, String b_content, int b_group,
 			int b_level, Date b_date, int b_cnt, String b_file, int b_like) {
@@ -35,6 +43,8 @@ public class FreeBoardVo {
 		this.b_file = b_file;
 		this.b_like = b_like;
 	}
+
+
 
 	public FreeBoardVo(int b_idx, String b_id, String b_nickname, String b_title, String b_content, int b_group,
 			int b_level, int b_cnt, String b_file, int b_like) {

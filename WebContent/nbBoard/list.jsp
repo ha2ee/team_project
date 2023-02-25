@@ -102,6 +102,12 @@ function fnSearch(){
           <li>
             <span>작성일</span>
           </li>
+          <li>
+            <span>조회수</span>
+          </li>
+          <li>
+            <span>좋아요</span>
+          </li>
         </ul>
         <!--1-->
         <!--{{#each contents}}-->
@@ -113,17 +119,23 @@ function fnSearch(){
         %>
         		
                 <a href="#" class="List-1 flex">
-                <div>
+                <div style="width: 5%">
                   <span><%=vo.getB_idx()%></span>	
                 </div>
-                <div>
+                <div style="width: 15%">
                   <span><%=vo.getB_nickname() %></span>
                 </div>
-                <div>
+                <div style="width: 50%">
                   <span><%=vo.getB_title() %></span>
                 </div>
-                <div>
+                <div style="width: 15%">
                   <span><%=vo.getB_date() %></span>
+                </div>
+                <div style="width: 7.5%">
+                  <span><%=vo.getB_cnt() %></span>
+                </div>
+                <div style="width: 7.5%">
+                  <span><%=vo.getB_like() %></span>
                 </div>
               </a>
         <%       
@@ -172,6 +184,7 @@ function fnSearch(){
         </div>
       </form>
     </div>
+   	
  
  
  
