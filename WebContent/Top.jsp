@@ -792,8 +792,8 @@ body{
 		<div id="weatherFooter">
 			<div id="weatherResult">
 				<img src="#" />
-				<input id="weatherzone" type="text" />
-				<input id="weatherzone2" type="text" />
+				<input id="weatherzone" type="text" value="날씨정보가 안나올경우" />
+				<input id="weatherzone2" type="text" value="위치서비스 동의필요!" />
 			</div>
 		</div>
 	</div>
