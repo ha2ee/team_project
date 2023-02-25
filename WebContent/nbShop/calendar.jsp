@@ -92,7 +92,6 @@ String tr_price = request.getParameter("tr_price");
     background : #ffebcd;
     width: 150px;
     font-weight : bold;
-    text-decoration: underline;
     
     }
        
@@ -507,7 +506,7 @@ String tr_price = request.getParameter("tr_price");
 		
     	// 현재월이 전월보다 클 경우, 얼러트를 띄우고 빠져나가게 한다.
         if(today.getMonth() < realMonth){
-        	alert("수강 예약은 당일 포함 7일 이후 부터 가능합니다 (예약관리)");
+        	alert("수강 예약은 당일기준 7일 이후 부터 가능합니다 (예약관리)");
         	return false;
 
         }
@@ -523,7 +522,7 @@ String tr_price = request.getParameter("tr_price");
     	if(today.getMonth()+1 == (realMonth +1)){
     		
     		// 금일기준 30일 이하로만 가능하다
-    		alert('수강 예약은 "다음달!"만 가능합니다');
+    		alert('수강 예약은 "당일 + 한달이전!"까지만 가능합니다');
     		return false;
     		
     	}

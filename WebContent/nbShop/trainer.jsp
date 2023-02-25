@@ -185,7 +185,7 @@
 
 #tr_selectbox {
 	margin : 0 auto;
-	height : 150px;
+	height : 200px;
 	width : 100%;
 	position : relative;
 	left : 0;
@@ -215,13 +215,16 @@
 	font-weight : bold;
 	font-size : 20px;
 	float : left;
-	margin : 0 auto;
-	height : 100%;
-	width : 20%;
+	margin : 0 5px;
+	height : 80%;
+	width : 18%;
 	position : relative;
-	left : 0;
+	left : 35px;
 	right : 0;
 	top : 0;
+	border-radius: 10px;
+	border : 1px solid aliceblue;
+	padding: 15px;
 
 }
 
