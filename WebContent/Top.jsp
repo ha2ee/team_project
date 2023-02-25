@@ -971,7 +971,7 @@ $.ajax({
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 				
 				// 오후 6시 이후일 경우,
-				}else if(rain == 0 && initTime > 18){
+				}else if(rain == 0 && initTime >= 18){
 					
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
 					$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
@@ -1001,7 +1001,7 @@ $.ajax({
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 				
 				// 오후 6시 이후일 경우,
-				}else if(rain == 0 && initTime > 18){
+				}else if(rain == 0 && initTime >= 18){
 					
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
 					$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
@@ -1028,7 +1028,7 @@ $.ajax({
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 				
 				// 오후 6시 이후일 경우,
-				}else if(rain == 0 && initTime > 18){
+				}else if(rain == 0 && initTime >= 18){
 					
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
 					$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
@@ -1055,7 +1055,7 @@ $.ajax({
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 				
 				// 오후 6시 이후일 경우,
-				}else if(rain == 0 && initTime > 18){
+				}else if(rain == 0 && initTime >= 18){
 					
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
 					$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
@@ -1083,7 +1083,7 @@ $.ajax({
 				$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 			
 			// 오후 6시 이후일 경우,
-			}else if(rain == 0 && initTime > 18){
+			}else if(rain == 0 && initTime >= 18){
 				
 				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
 				$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");

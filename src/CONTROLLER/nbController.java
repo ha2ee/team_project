@@ -148,11 +148,11 @@ public class nbController extends HttpServlet{
 			// 중앙 화면 요청한 주소 얻기
 			String center = request.getParameter("center");
 			
+			//request에 calendar.jsp로 저장
+			request.setAttribute("center", center);
+			
 			// 중앙 화면 바인딩 하기
 			System.out.println("요청한 center : "+ center);
-			
-			//request에 "center" 값으로 저장
-			request.setAttribute("center", center);
 			
 			nextPage = "/nbMain.jsp";
 			

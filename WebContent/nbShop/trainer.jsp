@@ -12,7 +12,16 @@
 
 /*  # CSS 사용을 위한 임포트  */
 
-.btn {
+ .btn:hover {
+  background: #ffebcd;
+  text-decoration: none;
+  border-radius: 20px;
+}
+ .btn:focus {
+  outline: none;
+}
+
+ .btn {
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size : 15px;
 	text-transform: uppercase;
@@ -28,27 +37,6 @@
 	background : #fff;
 }
 
-#menu3 > #login1 > a {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size : 15px;
-	text-transform: uppercase;
-	font-weight : 700;
-	padding: 7px 21px;
-	margin-bottom : 4px;
-	letter-spacing: .75px;
-	border-radius : 3px;
-	border : transparent;
-	transition : all 0.3s;
-	position : relative;
-	display: inline-block;
-	background : #fff;
-}
-
-#menu3 > #login1 > a:hover {
-	border-radius : 20px;
-	background-color : #ffebcd;
-	color: black;
-}
 
 .post-slide{
     margin: 0 15px;
@@ -195,6 +183,109 @@
     padding: 15px;
 }
 
+#tr_selectbox {
+	margin : 0 auto;
+	height : 150px;
+	width : 100%;
+	position : relative;
+	left : 0;
+	right : 0;
+	top : 0;
+	
+
+}
+
+#tr_select {
+	margin : 0 auto;
+	height : 100%;
+	width : 1200px;
+	position : relative;
+	left : 0;
+	right : 0;
+	top : 0;
+
+}
+
+
+#tr_select > div {
+
+/*  	border : 1px solid green;  */
+
+	text-align : center;
+	font-weight : bold;
+	font-size : 20px;
+	float : left;
+	margin : 0 auto;
+	height : 100%;
+	width : 20%;
+	position : relative;
+	left : 0;
+	right : 0;
+	top : 0;
+
+}
+
+#tr_select > div > a > input {
+	
+/*  	border : 1px solid red;  */
+	
+	
+	text-align : center;
+	margin : 0 auto;
+	height : 40px;
+	width : 90%;
+	position : relative;
+	left : 0;
+	right : 0;
+	top : -1px;
+	background : #9e9e9e29;
+	font-size : 20px;
+	border-radius : 15px;
+}
+
+#tr_select > div > a > input:hover {
+
+	background : #ffebcd;
+
+
+}
+
+#tr_select > div > a {
+
+/*  	border : 1px solid blue;  */
+	
+	text-align : center;
+	margin : 0 auto;
+	height : 40px;
+	width : 90%;
+	position : relative;
+	left : 0;
+	right : 0;
+	top : 30px;
+	display: block;
+}
+
+
+.btn:hover > button {background : #ffebcd; }
+
+   #tr_submit > button {
+   
+background : #cccccc21; 
+border-radius : 20px;
+margin : 0 10px;
+font-size : 22px;
+touch-action : manipulation;
+   
+   }
+   
+   #tr_submit > button:hover {
+   
+background : #ffebcd;
+border-radius : 20px;
+font-size : 22px;
+   transition : 0.5s;
+   }
+
 }@charset "utf-8";
 /* CSS Document */
 
@@ -217,12 +308,8 @@
 <title>edu.jsp</title>
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+
+
 	<!-- 	강사 소개  들어갈 항목 -->
 	<div class="container">
                 <h1 class="heading-title">늘 봄 훈련사 소개</h1>
@@ -241,7 +328,7 @@
                                 <img src="<%=contextPath%>/nbShop/img/trainer1.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <br>훈련사 1 설명<br>
+                               <br>훈련사 1 설명<br><br><br><br><br>
                             </p>
                         </div>
 
@@ -255,7 +342,7 @@
                                 <img src="<%=contextPath%>/nbShop/img/trainer2.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <br>훈련사 2 설명<br>
+                               <br>훈련사 2 설명<br><br><br><br><br>
                             </p>
                         </div>
 
@@ -269,7 +356,7 @@
                                 <img src="<%=contextPath%>/nbShop/img/trainer3.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <Br>훈련사 3 설명<br>
+                               <Br>훈련사 3 설명<br><br><br><br><br>
                             </p>
                         </div>
 
@@ -283,7 +370,7 @@
                                 <img src="<%=contextPath%>/nbShop/img/trainer4.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <br>훈련사 4 설명<br>
+                               <br>훈련사 4 설명<br><br><br><br><br>
                             </p>
                         </div>
    
@@ -298,7 +385,7 @@
                                 <img src="<%=contextPath%>/nbShop/img/trainer5.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <br>훈련사 5 설명<br>
+                               <br>훈련사 5 설명<br><br><br><br><br>
                             </p>
                         </div>
                     </div>
@@ -306,25 +393,45 @@
                </div>
 	</div>
 	
+	<div id="tr_selectbox">
+		<div id="tr_select">
+			<div id= "tr_name1">강형욱<br>특급 훈련사님
+			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=강형욱&tr_price=300000&center=/nbShop/calendar.jsp">
+				<input class ="btn" type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+				<input type="hidden" name="tr_price" value="300000" readonly ="readonly" />
+			</a>	
+			</div>
+			<div id= "tr_name2">이순신<br>훈련사님<br>
+			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=이순신&tr_price=100000&center=/nbShop/calendar.jsp">
+				<input class ="btn"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+				<input type="hidden" name="tr_price" value="100000"  readonly ="readonly" />
+			</a>
+			</div>
+			<div id= "tr_name3">세종대왕<br>훈련사님<br>
+			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=세종대왕&tr_price=100000&center=/nbShop/calendar.jsp">
+				<input class ="btn"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+				<input type="hidden" name="tr_price" value="100000"  readonly ="readonly" />
+			</a>
+			</div>
+			<div id= "tr_name4">이경규<br>훈련사님<br>
+			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=이경규&tr_price=100000&center=/nbShop/calendar.jsp">
+				<input class ="btn"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+				<input type="hidden" name="tr_price" value="100000"  readonly ="readonly" />
+			</a>
+			</div>	
+			<div id= "tr_name5">박봄<br>대표 훈련사님
+			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=박봄&tr_price=200000&center=/nbShop/calendar.jsp">
+				<input class ="btn"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+				<input type="hidden" name="tr_price" value="200000" readonly ="readonly" />
+			</a>
+			</div>
+		</div>
+		
+	</div>
+	<br><br>
+	
 	
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<!-- 	강사 소개  들어갈 항목 -->
-	 <a class ="btn" href="<%=request.getContextPath()%>/nb/calendar.do?center=/nbShop/calendar.jsp" >가능일정 확인</a>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
 <script>
 
 // 	함수로 캐러셀 동작 시키기
@@ -337,7 +444,10 @@
 		        navigationText:false,
 		        autoPlay:true
 		    });
-			});
+		
+
+		
+	});
 </script>			  
 </body>
 </html>

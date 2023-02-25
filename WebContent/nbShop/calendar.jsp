@@ -2,7 +2,11 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%
+String tr_name = request.getParameter("tr_name");
+String tr_price = request.getParameter("tr_price");
+	
+%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <html>
 <head>
@@ -484,7 +488,7 @@
     var realMonth = today.getMonth()+1;
     var resultcnt = 0;
     var resultprice = 0;
-    var totalresult = 0;
+    var totalresult = <%=tr_price%>;
     
     var clickday = 0;
     var clickmonth = $("#calMonth").text();
@@ -710,7 +714,7 @@
            if($("#selectDate1").val() == ""){
         	   
         	   resultcnt++;
-        	   resultprice = 100000;
+        	   resultprice = <%=tr_price%>;
         	   totalresult = resultcnt * resultprice;
         	   
 	   	        // 첫번째 예약 날짜에 입력 시킨다.
@@ -893,7 +897,7 @@
         <div id="notice">
         	<div id="tr_name_box">
         		<div id="tr_name">
-        			<input type="text" name="tr_name" value="테스트"  />&nbsp;&nbsp;훈련사님 예약 스케쥴표
+        			<input type="text" name="tr_name" value="<%=tr_name%>" />&nbsp;훈련사님 예약 스케쥴표
         		</div>
        		</div>
         	<div id="dateTitle"> 
@@ -984,7 +988,7 @@
     <div id="resultBox">
         <div id="totalvalue">
             <div id = "totalcnt">수강 횟수 : <input name="totalcnt" style="text-align: right;" type="text"  readonly="readonly">&nbsp;&nbsp;회</div>
-            <div id = "tr_price">회당 금액 : <input name="tr_price" style="text-align: right;" type="text" readonly="readonly">&nbsp;&nbsp;원</div>
+            <div id = "tr_price">회당 금액 : <input name="tr_price" style="text-align: right;" type="text"  readonly="readonly" >&nbsp;&nbsp;원</div>
             <div id = "tr_totalprice">총 예약금액 : <input name="totalprice" style="text-align: right;" type="text"  readonly="readonly">&nbsp;&nbsp;원</div>
         </div>
 	  </div>
@@ -993,7 +997,7 @@
 <!-- 	   하단의 3가지 버튼 메뉴 -->
 		<div id = "btnBox2">
       		<div id = "Totalsubmit">
-         	<a class = "btn" href="<%=request.getContextPath()%>/nb/calendar.do?center=/nbShop/trainer.jsp" >이전 페이지로</a> 
+         	<a class = "btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp" >이전 페이지로</a> 
          	<button type="submit" style="font-weight : 400; padding : 6px 12px; margin : 0 10px; font-size : 22px; border-radius: 20px; border:0px; background : #8f8f8; ">예약 신청</button>
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/Main" >홈으로</a>
         	</div>
