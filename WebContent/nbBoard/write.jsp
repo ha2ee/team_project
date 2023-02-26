@@ -52,7 +52,7 @@ String contextPath = request.getContextPath();
                		<div>
                 		<div style="display: inline-block;"><input type="button" value="목 록" style="width: 100%; font-weight: bold;" onclick="location.href='<%=contextPath%>/freeboard/list.fb'" /></div>
                 		&nbsp;
-	                	<div style="display: inline-block;"><input onclick="javascript:fnsubmit();" type="button" value="등 록" id="registration" style="width: 100%; font-weight: bold;"></div>
+	                	<div style="display: inline-block;"><input type="submit" value="등 록" id="registration" style="width: 100%; font-weight: bold;"></div>
                		</div>
                	
   				</div>

@@ -164,27 +164,29 @@ public class BoardController extends HttpServlet{
 			String nickname = "seeeop2";
 			
 //			//업로드 작업 중ㅇ...
-//			String directory = request.getSession().getServletContext().getRealPath("/")+"Upload";
-//			System.out.println(directory);
-//			int maxSize = 1024 * 1024 * 100;
-//			String encoding = "utf-8";
+			String directory = request.getSession().getServletContext().getRealPath("/")+"upload";
+			System.out.println(directory);
+			int maxSize = 1024 * 1024 * 100;
+			String encoding = "utf-8";
 //			
-//			MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
-//			
-//			String fileName = multipartRequest.getOriginalFileName("file");
-//			String fileRealName = multipartRequest.getFilesystemName("file");
+			MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
+			System.out.println("오니?");
+			String title = multipartRequest.getParameter("title");
+			String content = multipartRequest.getParameter("editor1");
+			String fileName = multipartRequest.getOriginalFileName("fileName");
+			String fileRealName = multipartRequest.getFilesystemName("file");
 //			//여기까지
 			
-			int articleNO = 0;//글번호 폴더를 생성하기 위해 글번호를 받아 저장할 변수 
-			
-			//폴더에 업로드 후 업로드한 파일 정보들을 받아옵니다.  
-			Map<String, String> articleMap = upload(request, response);
-			
-			String	title = articleMap.get("title"); //작성자 
-			String	content = articleMap.get("editor1");//글을 작성하는 회원 아이디
-			String fileName = articleMap.get("fileName");//글을 작성할때 업로드하기위해
-														 //첨부한 파일명 
-			
+//			int articleNO = 0;//글번호 폴더를 생성하기 위해 글번호를 받아 저장할 변수 
+//			
+//			//폴더에 업로드 후 업로드한 파일 정보들을 받아옵니다.  
+//			Map<String, String> articleMap = upload(request, response);
+//			
+//			String	title = articleMap.get("title"); //작성자 
+//			String	content = articleMap.get("editor1");//글을 작성하는 회원 아이디
+//			String fileName = articleMap.get("fileName");//글을 작성할때 업로드하기위해
+//														 //첨부한 파일명 
+//			
 			
 			
 ////			
