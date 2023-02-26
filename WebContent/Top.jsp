@@ -279,6 +279,17 @@ body{
 
 }
 
+#login_box > li >a {
+	
+	color : black;
+	font-size : 15px;
+	position : relative;
+	top : 0;
+	left : 0;
+	right : 0;
+
+}
+
 	
 /* 	1) "메뉴"에 대한 CSS 설정 */
 .list_gnb {
@@ -459,35 +470,6 @@ body{
 }
 
 /* header 영역 고정 완료 */
-
-/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
-.btn:hover {
-  background: #ffebcd;
-  text-decoration: none;
-  border-radius: 20px;
-}
-.btn:focus {
-  outline: none;
-}
-
-.btn {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size : 15px;
-	text-transform: uppercase;
-	font-weight : 700;
-	padding: 7px 21px;
-	margin-bottom : 4px;
-	letter-spacing: .75px;
-	border-radius : 3px;
-	border : transparent;
-	transition : all 0.3s;
-	position : relative;
-	display: inline-block;
-	background : #fff;
-}
-
-
-
 
 
 /*  날씨 구현 관련 CSS 설정  */
@@ -673,6 +655,33 @@ body{
 	
 	}
 
+	/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
+.btn:hover {
+  background: #ffebcd;
+  text-decoration: none;
+  border-radius: 20px;
+}
+.btn:focus {
+  outline: none;
+}
+
+.btn {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size : 15px;
+	text-transform: uppercase;
+	font-weight : 700;
+	padding: 7px 21px;
+	margin-bottom : 4px;
+	letter-spacing: .75px;
+	border-radius : 3px;
+	border : transparent;
+	transition : all 0.3s;
+	position : relative;
+	display: inline-block;
+	background : #fff;
+	color : black;
+}
+
 </style>
 
 
@@ -715,7 +724,6 @@ body{
     <script src="<%=request.getContextPath()%>/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/js/menumaker.js" type="text/javascript"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.sticky.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/sticky-header.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/slider.js"></script>
 </head>    
@@ -906,6 +914,12 @@ function showYourLocation(position) {  // 성공했을때 실행
             
         return rs;
     }
+    
+    var options = {
+    		  enableHighAccuracy: true,
+    		  timeout: 5000,
+    		  maximumAge: 0
+    		};
     
     
 	// 전역변수로 url에 들어갈 실시간 날짜 받아오기

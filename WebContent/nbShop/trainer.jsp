@@ -12,31 +12,6 @@
 
 /*  # CSS 사용을 위한 임포트  */
 
- .btn:hover {
-  background: #ffebcd;
-  text-decoration: none;
-  border-radius: 20px;
-}
- .btn:focus {
-  outline: none;
-}
-
- .btn {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size : 15px;
-	text-transform: uppercase;
-	font-weight : 700;
-	padding: 7px 21px;
-	margin-bottom : 4px;
-	letter-spacing: .75px;
-	border-radius : 3px;
-	border : transparent;
-	transition : all 0.3s;
-	position : relative;
-	display: inline-block;
-	background : #fff;
-}
-
 
 .post-slide{
     margin: 0 15px;
@@ -234,6 +209,7 @@
 	
 	
 	text-align : center;
+	font-weight : normal;
 	margin : 0 auto;
 	height : 40px;
 	width : 90%;
@@ -244,14 +220,18 @@
 	background : #9e9e9e29;
 	font-size : 20px;
 	border-radius : 15px;
+	transition : all 0.5s;
+	border : 0px;
 }
 
 #tr_select > div > a > input:hover {
 
 	background : #ffebcd;
-
-
+	border-radius : 20px;
 }
+
+
+
 
 #tr_select > div > a {
 
@@ -268,28 +248,29 @@
 	display: block;
 }
 
+/* 로그인에 대한 CSS 설정 */
 
-.btn:hover > button {background : #ffebcd; }
+#nb_login {
+	position : fixed;
+	top : 0;
+	left : 0;
+	right : 0;
+	height: 100px;
+	width : 100%;
+}
 
-   #tr_submit > button {
-   
-background : #cccccc21; 
-border-radius : 20px;
-margin : 0 10px;
-font-size : 22px;
-touch-action : manipulation;
-   
-   }
-   
-   #tr_submit > button:hover {
-   
-background : #ffebcd;
-border-radius : 20px;
-font-size : 22px;
-   transition : 0.5s;
-   }
+#nb_box{
 
-}@charset "utf-8";
+	margin : 0 auto 0 auto;
+	text-align: center;
+	height : 100%;
+	width :  1200px;	
+	position: relative;
+	top : 0;
+
+}
+
+@charset "utf-8";
 /* CSS Document */
 
 
@@ -400,31 +381,31 @@ font-size : 22px;
 		<div id="tr_select">
 			<div id= "tr_name1">강형욱<br>특급 훈련사님
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=강형욱&tr_price=300000&center=/nbShop/calendar.jsp">
-				<input class ="btn" type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+				<input class ="btn2" type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
 				<input type="hidden" name="tr_price" value="300000" readonly ="readonly" />
 			</a>	
 			</div>
 			<div id= "tr_name2">이순신<br>훈련사님<br>
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=이순신&tr_price=100000&center=/nbShop/calendar.jsp">
-				<input class ="btn"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
 				<input type="hidden" name="tr_price" value="100000"  readonly ="readonly" />
 			</a>
 			</div>
 			<div id= "tr_name3">세종대왕<br>훈련사님<br>
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=세종대왕&tr_price=100000&center=/nbShop/calendar.jsp">
-				<input class ="btn"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
 				<input type="hidden" name="tr_price" value="100000"  readonly ="readonly" />
 			</a>
 			</div>
 			<div id= "tr_name4">이경규<br>훈련사님<br>
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=이경규&tr_price=100000&center=/nbShop/calendar.jsp">
-				<input class ="btn"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
 				<input type="hidden" name="tr_price" value="100000"  readonly ="readonly" />
 			</a>
 			</div>	
 			<div id= "tr_name5">박봄<br>대표 훈련사님
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=박봄&tr_price=200000&center=/nbShop/calendar.jsp">
-				<input class ="btn"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
 				<input type="hidden" name="tr_price" value="200000" readonly ="readonly" />
 			</a>
 			</div>
