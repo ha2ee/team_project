@@ -511,6 +511,7 @@ body{
 	font-size : 20px;
 	background : #ffebcd;
 	border-radius : 5px;
+	color : #9e9e9e;
 	}
 	
 	#topTitle{
