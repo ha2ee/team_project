@@ -6,6 +6,8 @@ import java.sql.Date;
 //입력한 회원정보를 DB에 INSERT추가 하기 전 임시로 저장할 변수가 있는 VO클래스
 public class MemberVo {
 	
+
+	//일반회원 테이블 
 	private String mem_id;           
 	private String mem_name; 
 	private String mem_nick;
@@ -14,14 +16,11 @@ public class MemberVo {
 	private String mem_hp;          
 	private String mem_birth;      
 	private String mem_gender;      
-	private String mem_address1;    
-	private String mem_address2;  
-	private String mem_address3;    
-	private String mem_address4;      
-	private String mem_address5;    
 	private Date mem_joindate;         
 	private String mem_pet;
 	
+	
+	//트레이너 테이블
 	private String tr_id;           
 	private String tr_name; 
 	private String tr_nick;
@@ -30,22 +29,27 @@ public class MemberVo {
 	private String tr_hp;          
 	private String tr_birth;      
 	private String tr_gender;      
-	private String tr_address1;    
-	private String tr_address2;  
-	private String tr_address3;    
-	private String tr_address4;      
-	private String tr_address5;    
-	private int tr_num;    
 	private Date tr_joindate;         
 	
+
+	//일반회원 주소 테이블
+	private String mem_address1;
+	private String mem_address2;
+	private String mem_address3;
+	private String mem_address4;
+	private String mem_address5;
 	
-	
-	
+	//트레이너 주소 테이블
+	private String tr_address1;
+	private String tr_address2;
+	private String tr_address3;
+	private String tr_address4;
+	private String tr_address5;
 	
 	
 	public MemberVo(String mem_id, String mem_name, String mem_nick, String mem_pw, String mem_email, String mem_hp,
-			String mem_birth, String mem_gender, String mem_address1, String mem_address2, String mem_address3,
-			String mem_address4, String mem_address5, Date mem_joindate, String mem_pet) {
+			String mem_birth, String mem_gender, Date mem_joindate, String mem_pet, String mem_address1,
+			String mem_address2, String mem_address3, String mem_address4, String mem_address5) {
 		super();
 		this.mem_id = mem_id;
 		this.mem_name = mem_name;
@@ -55,18 +59,58 @@ public class MemberVo {
 		this.mem_hp = mem_hp;
 		this.mem_birth = mem_birth;
 		this.mem_gender = mem_gender;
+		this.mem_joindate = mem_joindate;
+		this.mem_pet = mem_pet;
 		this.mem_address1 = mem_address1;
 		this.mem_address2 = mem_address2;
 		this.mem_address3 = mem_address3;
 		this.mem_address4 = mem_address4;
 		this.mem_address5 = mem_address5;
-		this.mem_joindate = mem_joindate;
+	}
+	
+	public MemberVo(String mem_id, String mem_name, String mem_nick, String mem_pw, String mem_email, String mem_hp,
+			String mem_birth, String mem_gender, String mem_pet, String mem_address1,
+			String mem_address2, String mem_address3, String mem_address4, String mem_address5) {
+		super();
+		this.mem_id = mem_id;
+		this.mem_name = mem_name;
+		this.mem_nick = mem_nick;
+		this.mem_pw = mem_pw;
+		this.mem_email = mem_email;
+		this.mem_hp = mem_hp;
+		this.mem_birth = mem_birth;
+		this.mem_gender = mem_gender;
 		this.mem_pet = mem_pet;
+		this.mem_address1 = mem_address1;
+		this.mem_address2 = mem_address2;
+		this.mem_address3 = mem_address3;
+		this.mem_address4 = mem_address4;
+		this.mem_address5 = mem_address5;
 	}
 
 	public MemberVo(String tr_id, String tr_name, String tr_nick, String tr_pw, String tr_email, String tr_hp,
-			String tr_birth, String tr_gender, String tr_address1, String tr_address2, String tr_address3,
-			String tr_address4, String tr_address5, int tr_num, Date tr_joindate) {
+			String tr_birth, String tr_gender, Date tr_joindate, String tr_address1, String tr_address2,
+			String tr_address3, String tr_address4, String tr_address5) {
+		super();
+		this.tr_id = tr_id;
+		this.tr_name = tr_name;
+		this.tr_nick = tr_nick;
+		this.tr_pw = tr_pw;
+		this.tr_email = tr_email;
+		this.tr_hp = tr_hp;
+		this.tr_birth = tr_birth;
+		this.tr_gender = tr_gender;
+		this.tr_joindate = tr_joindate;
+		this.tr_address1 = tr_address1;
+		this.tr_address2 = tr_address2;
+		this.tr_address3 = tr_address3;
+		this.tr_address4 = tr_address4;
+		this.tr_address5 = tr_address5;
+	}
+	
+	public MemberVo(String tr_id, String tr_name, String tr_nick, String tr_pw, String tr_email, String tr_hp,
+			String tr_birth, String tr_gender, String tr_address1, String tr_address2,
+			String tr_address3, String tr_address4, String tr_address5) {
 		super();
 		this.tr_id = tr_id;
 		this.tr_name = tr_name;
@@ -81,28 +125,6 @@ public class MemberVo {
 		this.tr_address3 = tr_address3;
 		this.tr_address4 = tr_address4;
 		this.tr_address5 = tr_address5;
-		this.tr_num = tr_num;
-		this.tr_joindate = tr_joindate;
-	}
-
-	public MemberVo(String mem_id, String mem_name, String mem_nick, String mem_pw, String mem_email, String mem_hp,
-			String mem_birth, String mem_gender, String mem_address1, String mem_address2, String mem_address3,
-			String mem_address4, String mem_address5, String mem_pet) {
-		super();
-		this.mem_id = mem_id;
-		this.mem_name = mem_name;
-		this.mem_nick = mem_nick;
-		this.mem_pw = mem_pw;
-		this.mem_email = mem_email;
-		this.mem_hp = mem_hp;
-		this.mem_birth = mem_birth;
-		this.mem_gender = mem_gender;
-		this.mem_address1 = mem_address1;
-		this.mem_address2 = mem_address2;
-		this.mem_address3 = mem_address3;
-		this.mem_address4 = mem_address4;
-		this.mem_address5 = mem_address5;
-		this.mem_pet = mem_pet;
 	}
 
 	public String getMem_id() {
@@ -167,46 +189,6 @@ public class MemberVo {
 
 	public void setMem_gender(String mem_gender) {
 		this.mem_gender = mem_gender;
-	}
-
-	public String getMem_address1() {
-		return mem_address1;
-	}
-
-	public void setMem_address1(String mem_address1) {
-		this.mem_address1 = mem_address1;
-	}
-
-	public String getMem_address2() {
-		return mem_address2;
-	}
-
-	public void setMem_address2(String mem_address2) {
-		this.mem_address2 = mem_address2;
-	}
-
-	public String getMem_address3() {
-		return mem_address3;
-	}
-
-	public void setMem_address3(String mem_address3) {
-		this.mem_address3 = mem_address3;
-	}
-
-	public String getMem_address4() {
-		return mem_address4;
-	}
-
-	public void setMem_address4(String mem_address4) {
-		this.mem_address4 = mem_address4;
-	}
-
-	public String getMem_address5() {
-		return mem_address5;
-	}
-
-	public void setMem_address5(String mem_address5) {
-		this.mem_address5 = mem_address5;
 	}
 
 	public Date getMem_joindate() {
@@ -289,6 +271,54 @@ public class MemberVo {
 		this.tr_gender = tr_gender;
 	}
 
+	public Date getTr_joindate() {
+		return tr_joindate;
+	}
+
+	public void setTr_joindate(Date tr_joindate) {
+		this.tr_joindate = tr_joindate;
+	}
+
+	public String getMem_address1() {
+		return mem_address1;
+	}
+
+	public void setMem_address1(String mem_address1) {
+		this.mem_address1 = mem_address1;
+	}
+
+	public String getMem_address2() {
+		return mem_address2;
+	}
+
+	public void setMem_address2(String mem_address2) {
+		this.mem_address2 = mem_address2;
+	}
+
+	public String getMem_address3() {
+		return mem_address3;
+	}
+
+	public void setMem_address3(String mem_address3) {
+		this.mem_address3 = mem_address3;
+	}
+
+	public String getMem_address4() {
+		return mem_address4;
+	}
+
+	public void setMem_address4(String mem_address4) {
+		this.mem_address4 = mem_address4;
+	}
+
+	public String getMem_address5() {
+		return mem_address5;
+	}
+
+	public void setMem_address5(String mem_address5) {
+		this.mem_address5 = mem_address5;
+	}
+
 	public String getTr_address1() {
 		return tr_address1;
 	}
@@ -328,26 +358,11 @@ public class MemberVo {
 	public void setTr_address5(String tr_address5) {
 		this.tr_address5 = tr_address5;
 	}
-
-	public int getTr_num() {
-		return tr_num;
-	}
-
-	public void setTr_num(int tr_num) {
-		this.tr_num = tr_num;
-	}
-
-	public Date getTr_joindate() {
-		return tr_joindate;
-	}
-
-	public void setTr_joindate(Date tr_joindate) {
-		this.tr_joindate = tr_joindate;
-	}
 	
 	
 	
 	
+}	
 	
 	
-}
+	

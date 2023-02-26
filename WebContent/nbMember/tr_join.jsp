@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
- <%
+<%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
 %>
@@ -36,19 +36,24 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<!-- <link rel="stylesheet" -->
-<!-- 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" -->
-<!-- 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" -->
-<!-- 	crossorigin="anonymous"> -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
 
 <title>회원가입</title>
 
 <style type="text/css">
 
 
-	input{
+	#pass,#nickname,#checkpass,#name,
+	#hp,.birth,#email,#sample4_postcode,
+	#sample4_find,#sample4_detailAddress,
+	#sample4_extraAddress,#sample4_jibunAddress,
+	#sample4_roadAddress
+	{
 	  width: 400px;
-	  height: 32px;
+	  height: 40px;
 	  font-size: 15px;
 	  border: 0;
 	  border-radius: 15px;
@@ -57,9 +62,21 @@
 	  background-color: rgb(233, 233, 233);
 	}
 	
+	#id{
+	  width: 300px;
+	  height: 32px;
+	  font-size: 15px;
+	  border: 0;
+	  border-radius: 15px;
+	  outline: none;
+	  padding-left: 10px;
+	  background-color: rgb(233, 233, 233);
+	  float : left;
+	}
 	
-	#checkBnt{
-	  width: 100px;
+	
+	#checkBtn{
+	  width: 90px;
 	  height: 32px;
 	  font-size: 12px;
 	  border: 0;
@@ -67,10 +84,10 @@
 	  outline: none;
 	  padding-left: 8px;
 	  background-color: rgb(233, 233, 233);
-	  margin-left: 15px;	
+/* 	  margin-left: 15px;	 */
 	}
 	
-	#jbtn{
+/* 	#jbtn{
 	  width: 135px;
 	  height: 40px;
 	  font-size: 28px;
@@ -79,10 +96,10 @@
 	  outline: none;
  	  padding-left: 5px; 
 	  background-color: rgb(233, 233, 233);
-	}
+	} */
 	
 	
-	#gender{
+	.gender,.pet{
 	  width: 100px;
 	  height: 32px;
 	  font-size: 12px;
@@ -92,19 +109,9 @@
 	  padding-left: 10px;
 	  background-color: rgb(233, 233, 233);
 	  margin-left: 15px;	
+	  float : left;
 	}
- 	#pet{
-	  width: 100px;
-	  height: 32px;
-	  font-size: 12px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	  margin-left: 15px;	
-	}
-	
+  	
 	.join{
 		display: flex;     
 
@@ -115,7 +122,7 @@
 	}
 	
 
-	.filebox label {
+	/* #Photo{
 	  display: inline-block;
 	  padding: .5em .75em;
 	  color: black;
@@ -127,9 +134,9 @@
 	  border: 1px solid #ebebeb;
 	  border-bottom-color: #e2e2e2;
 	  border-radius: .25em;
-	}
+	} */
 
-	.filebox input[type="file"] {  /* 파일 필드 숨기기 */
+	#ex_file	{  /* 파일 필드 숨기기 */
 	  position: absolute;
 	  width: 1px;
 	  height: 1px;
@@ -140,126 +147,174 @@
 	  border: 0;
 	}
 
+ 	#preview{
+    width: auto;
+    max-width: 60%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    line-height: normal;
+    vertical-align: middle;
+}
 
+	.heigthD{
+		height: 100px;
+	
+	}
+		
 </style>
 </head>
 <body>
-<form action="<%=contextPath%>/nb_member/joinPro.me">	
+<form action="<%=contextPath%>/nb_member/tr_joinPro.me" class="form">	
 	<div>
-<!-- 		<div class="row justify-content-lefts"> -->
-<!-- 			<h2>이용약관</h2> -->
-<!-- 		</div> -->
-<!-- 		<div class="accordion" id="accordionExample"> -->
-<!-- 			<div class="card"> -->
-<!-- 				<div class="card-header" id="headingOne"> -->
-<!-- 					<h2 class="mb-0"> -->
-<!-- 						<button class="btn btn-link btn-block text-left" type="button" -->
-<!-- 							data-toggle="collapse" data-target="#collapseOne" -->
-<!-- 							aria-expanded="true" aria-controls="collapseOne"> -->
-<!-- 							약관동의 내용1 -->
-<!-- 						</button> -->
-<!-- 					</h2> -->
-<!-- 				</div> -->
-
-<!-- 				<div id="collapseOne" class="collapse" aria-labelledby="headingOne" -->
-<!-- 					data-parent="#accordionExample"> -->
-<!-- 					<div class="card-body">Anim pariatur cliche reprehenderit, -->
-<!-- 						enim eiusmod high life accusamus terry richardson ad squid. 3 wolf -->
-<!-- 						moon officia aute, non cupidatat skateboard dolor brunch. Food -->
-<!-- 						truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, -->
-<!-- 						sunt aliqua put a bird on it squid single-origin coffee nulla -->
-<!-- 						assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer -->
-<!-- 						labore wes anderson cred nesciunt sapiente ea proident. Ad vegan -->
-<!-- 						excepteur butcher vice lomo. Leggings occaecat craft beer -->
-<!-- 						farm-to-table, raw denim aesthetic synth nesciunt you probably -->
-<!-- 						haven't heard of them accusamus labore sustainable VHS.</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="card"> -->
-<!-- 				<div class="card-header" id="headingTwo"> -->
-<!-- 					<h2 class="mb-0"> -->
-<!-- 						<button class="btn btn-link btn-block text-left collapsed" -->
-<!-- 							type="button" data-toggle="collapse" data-target="#collapseTwo" -->
-<!-- 							aria-expanded="false" aria-controls="collapseTwo"> -->
-<!-- 							약관동의 내용2 -->
-<!-- 						</button> -->
-<!-- 					</h2> -->
-<!-- 				</div> -->
-<!-- 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" -->
-<!-- 					data-parent="#accordionExample"> -->
-<!-- 					<div class="card-body">Anim pariatur cliche reprehenderit, -->
-<!-- 						enim eiusmod high life accusamus terry richardson ad squid. 3 wolf -->
-<!-- 						moon officia aute, non cupidatat skateboard dolor brunch. Food -->
-<!-- 						truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, -->
-<!-- 						sunt aliqua put a bird on it squid single-origin coffee nulla -->
-<!-- 						assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer -->
-<!-- 						labore wes anderson cred nesciunt sapiente ea proident. Ad vegan -->
-<!-- 						excepteur butcher vice lomo. Leggings occaecat craft beer -->
-<!-- 						farm-to-table, raw denim aesthetic synth nesciunt you probably -->
-<!-- 						haven't heard of them accusamus labore sustainable VHS.</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="card"> -->
-<!-- 				<div class="card-header" id="headingThree"> -->
-<!-- 					<h2 class="mb-0"> -->
-<!-- 						<button class="btn btn-link btn-block text-left collapsed" -->
-<!-- 							type="button" data-toggle="collapse" data-target="#collapseThree" -->
-<!-- 							aria-expanded="false" aria-controls="collapseThree"> -->
-<!-- 							약관동의 내용3 -->
-<!-- 						</button> -->
-<!-- 					</h2> -->
-<!-- 				</div> -->
-<!-- 				<div id="collapseThree" class="collapse" -->
-<!-- 					aria-labelledby="headingThree" data-parent="#accordionExample"> -->
-<!-- 					<div class="card-body">Anim pariatur cliche reprehenderit, -->
-<!-- 						enim eiusmod high life accusamus terry richardson ad squid. 3 wolf -->
-<!-- 						moon officia aute, non cupidatat skateboard dolor brunch. Food -->
-<!-- 						truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, -->
-<!-- 						sunt aliqua put a bird on it squid single-origin coffee nulla -->
-<!-- 						assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer -->
-<!-- 						labore wes anderson cred nesciunt sapiente ea proident. Ad vegan -->
-<!-- 						excepteur butcher vice lomo. Leggings occaecat craft beer -->
-<!-- 						farm-to-table, raw denim aesthetic synth nesciunt you probably -->
-<!-- 						haven't heard of them accusamus labore sustainable VHS.</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 		<div class="row justify-content-center text-center"> -->
-<!-- 			<div class="col-4"> -->
-<!-- 				<input type="checkbox" name="agree" id="agree"> 위의 약관의 내용에 동의합니다. -->
-<!-- 				<p id="agreeInput"></p> -->
-<!-- 			</div> -->
-
-<!-- 		</div>		 -->
 		<div align="center" ><!-- class="row justify-content-left" -->
-			<h1>회원가입 </h1>
+			<h1>트레이너 회원가입 </h1>
 			<div style="height: 50px;"></div>
 		</div>
-		<div>
-			<div class="join">
-				<div>
-					<label><strong>&nbsp;아이디</strong></label><br><br> 
-					<input type="text" 
-						   id="id" 
-						   name="id"
-						   class="form-control"
-						   placeholder="가입할 아이디를 적어주세요."
-						   style="width: 280px;">
-					<button id="checkBnt" type="button" >중복체크</button>					
-				    <p id="idInput"></p> 
+		
+	
+		<div class="accordion" id="accordionExample"
+			style="width: 850px;
+			margin-left: auto;
+			margin-right: auto;">
+			
+			<div class="row justify-content-lefts" align="center"
+				style=" margin-left: 10px;">
+				<h2>이용약관</h2>
+			</div>
+			
+			<div class="card">
+				<div class="card-header" id="headingOne">
+					<h2 class="mb-0">
+						<button class="btn btn-link btn-block text-left" type="button"
+							data-toggle="collapse" data-target="#collapseOne"
+							aria-expanded="true" aria-controls="collapseOne">
+							이용약관 동의 (필수)
+						</button>
+					</h2>
 				</div>
-				<div style="margin-left: 40px;">
+
+				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+					data-parent="#accordionExample">
+					<div class="card-body"> 제1조 [목적]
+											제2조 [정의 및 용어의 정의]
+											제3조 [신원정보 등의 제공, 약관의 게시와 개정 등]
+											제4조 [회원가입 및 승낙 거절]
+											제5조 [미성년자 이용계약에 관한 특칙]
+											제6조 [회원정보의 변경 및 탈퇴]
+											제7조 [회원에 대한 통지]
+											제8조 [요금의 산정 및 납입]
+											제9조 [요금의 지급 방법]
+											제10조 [유료콘텐츠의 공급]
+											제11조 [적립금의 사용, 소멸, 반환, 환급 규정]
+											제12조 [수강권(쿠폰)의 사용, 소멸, 반환, 환급 규정]
+											제13조 [유료콘텐츠 이용계약의 환급 규정, 연장, 양도(명의변경)규정]
+											제14조 [콘텐츠 과오납 요금의 환급]
+											제15조 [콘텐츠의 중단]
+											제16조 [회원의 아이디 및 비밀번호에 대한 의무]
+											제17조 [이용자의 의무]
+											제18조 [이용자의 청약철회와 계약해제·해지]
+											제19조 [이용자의 청약철회와 계약해제·해지의 효과]
+											제20조 [회사의 계약해제·해지 및 이용제한]
+											제21조 [회사의 계약해제·해지의 효과]
+											제22조 [저작권의 귀속 및 이용제한]
+											제23조 [부정이용 금지 및 차단]
+											제24조 [유료콘텐츠 중지 및 제한 등]
+											제25조 [유료콘텐츠 면책조항]
+											제26조 [분쟁해결]
+											제27조 [재판권 및 준거법]
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingTwo">
+					<h2 class="mb-0">
+						<button class="btn btn-link btn-block text-left collapsed"
+							type="button" data-toggle="collapse" data-target="#collapseTwo"
+							aria-expanded="false" aria-controls="collapseTwo">
+							개인정보취급방침 동의(필수)
+						</button>
+					</h2>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionExample">
+					<div class="card-body">
+						1. 수집하는 개인정보의 항목 및 수집방법
+						2. 개인정보의 수집 및 이용목적
+						3. 개인정보의 처리위탁
+						4. 개인정보의 제3자 제공 및 이용
+						5. 개인정보의 보유 및 이용 기간
+						6. 개인정보 파기절차 및 방법
+						7. 비회원 개인정보보호
+						8. 정보주체의 권리, 의무 및 행사방법
+						9. 개인정보 자동수집 장치의 설치/ 운영 및 거부 사항
+						10. 개인정보의 기술적/ 관리적 보호 대책
+						11. 개인정보관리책임자 및 담당자의 연락처
+						12. 개인정보 관련 의견수렴 및 불만처리
+						13. 영상정보처리기기 설치·운영
+						14. 고지의 의무
+						15. 개인정보 처리방침의 변경
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingThree">
+					<h2 class="mb-0">
+						<button class="btn btn-link btn-block text-left collapsed"
+							type="button" data-toggle="collapse" data-target="#collapseThree"
+							aria-expanded="false" aria-controls="collapseThree">
+							미성년자 이용계약의 특칙 (필수)
+						</button>
+					</h2>
+				</div>
+				<div id="collapseThree" class="collapse"
+					aria-labelledby="headingThree" data-parent="#accordionExample">
+					<div class="card-body"> 1. 만 20세 미만의 이용자는 회사 웹사이트에서 전자적 표시 형태로 제공되는 개인정보취급방침을 충분히 숙지한 후, 반드시 보호자[법정대리인]의 동의를 얻어 회원가입을 신청하여야 하는 등, 본인의 개인정보를 제공함에 있어 신중을 기해야 합니다.
+											2. "회사"는 만 20세 미만의 미성년이용자가 유료콘텐츠를 이용하고자 할 시, 부모 등 법정대리인의 동의를 얻지 못할 경우 계약을 거부할 수 있습니다.
+											3. 만 20세 미만의 미성년이용자가 유료콘텐츠를 이용하고자 하는 경우에 부모 등 법정 대리인의 동의를 얻거나, 계약체결 후 추인을 얻지 않으면 미성년자 본인 또는 법정대리인이 그 계약을 취소할 수 있습니다.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center text-center">
+			<div class="col-4">
+				<input type="checkbox" name="agree" id="agree"> 위의 약관의 내용에 동의합니다.
+				<p id="agreeInput"></p>
+			</div>
+
+		</div>		
+		<div>
+			<div class="join" >
+				<div class="heigthD" style="width: 400px;" >
+					<div>
+						<label><strong>&nbsp;아이디</strong></label><br><br> 
+						<input type="text" 
+							   id="id" 
+							   name="id"
+							   class="form-control"
+							   placeholder="가입할 아이디를 적어주세요."
+							   style="width: 280px;">
+						<button id="checkBtn" type="button">중복체크</button>					
+				    </div>
+					<br>
+					<div style="height: 15px;" >
+				    	<p id="idInput" style="margin-top:-5px;"></p> 
+					</div>
+				</div>
+					
+				<div class="heigthD" style="margin-left: 40px;">
 					<label><strong>&nbsp;비밀번호</strong></label><br><br> 
 					<input type="password" 
 						   id="pass" 
 						   name="pass"
 						   class="form-control"
 						   placeholder="영어,숫자,특수문자를 호함하여 8~20자로 작성하여주세요."> 
-					<p id="passInput"></p>
+					<p id="passInput" style="margin-top:-5px;"></p>
 				</div>						
 			</div>
 			<div class="join">
-				<div>
+				<div class="heigthD">
 					<label><strong>&nbsp;닉네임</strong></label><br><br> 
 					<input type="text" 
 						   id="nickname" 
@@ -268,7 +323,7 @@
 						   placeholder="사용할 닉네임을 적어주세요".">
 				    <p id="nickInput"></p> 
 				</div>
-				<div style="margin-left: 40px;">
+				<div class="heigthD" style="margin-left: 40px;">
 					<label><strong>&nbsp;비밀번호 확인</strong></label><br><br> 
 					<input type="password" 
 						   id="checkpass" 
@@ -279,7 +334,7 @@
 				</div>						
 			</div>
 			<div class="join">
-				<div>
+				<div class="heigthD">
 					<label><strong>&nbsp;이름</strong></label><br><br> 
 					<input type="text" 
 						   id="name" 
@@ -288,7 +343,7 @@
 						   placeholder="가입할 이름을 적어주세요."> 
 					<p id="nameInput"></p>
 				</div>
-				<div style="margin-left: 40px;">	
+				<div class="heigthD" style="margin-left: 40px;">	
 					<label><strong>&nbsp;핸드폰번호</strong></label><br><br>
 					<input type="text" 
 						   id="hp" 
@@ -298,8 +353,8 @@
 					<p id="hpInput"></p>
 				</div>
 			</div>
-			<div class="join">
-				<div id="selbox">
+			<div  class="join">
+				<div class="heigthD" id="selbox">
 					<label><strong>&nbsp;생년월일</strong></label><br><br>
 						<input type="text" 
 						   id="birth" 
@@ -308,7 +363,7 @@
 						   placeholder="ex)20010917"> 
 					<p id="birthInput"></p>
 				</div>					
-				<div style="margin-left: 40px;">
+				<div class="heigthD" style="margin-left: 40px;">
 					<label><strong>&nbsp;Email</strong></label><br><br>
 						<input type="email" 
 							   id="email" 
@@ -319,34 +374,43 @@
 				</div>
 			</div>
 			<div class="join">
-				<div >
+				<div class="heigthD" >
 					<%-- name속성값 address1 부터 ~~ address5 까지 입력되어 있는 주소를 모두 합쳐서 DB에 address열에  INSERT 하자. --%>
 					<label><strong>&nbsp;주소</strong></label><br><br>	
 					<input type="text" id="sample4_postcode" name="address1" class="form-control" placeholder="우편번호" readonly><br><br>	
 
 				</div>	
-				<div style="margin-left: 30px; width: 100px; height: 100px; float:left;">
-					<label><strong>&nbsp;&nbsp;성별</strong></label><br><br>
-						<select name="gender" id="gender" style="width:90px;height:38px;">
-							<option>선택</option>
-							<option>남자</option>
-							<option>여자</option>
-						</select>
-					<p id="genderInput"></p>
-				</div>
-				<div style="width:300px; height: 100px; margin-left: 20px;">
-					<label><strong>&nbsp;&nbsp;애완견을 키우나요?</strong></label><br><br>
-						<select name="pet" id="pet" style="width:100px;height:38px;">
-							<option>선택</option>
-							<option>네</option>
-							<option>아니요</option>
-						</select>
-					<p id="genderInput"></p>
-				</div>
+				<div class="join">
+					<div style="margin-left: 30px; width: 120px; height: 90px;">
+						<label><strong>&nbsp;&nbsp;성별</strong></label><br>
+							<select class="gender" name="gender" id="gender" style="width:90px;height:38px;">
+								<option>선택</option>
+								<option>남자</option>
+								<option>여자</option>
+							</select>
+						
+					</div>
+ 				<div style="margin-left: 30px; width: 260px; height: 90px;">	
+<!-- 						<label> -->
+<!-- 							<strong style="margin-right: 133px;"> -->
+<!-- 								&nbsp;&nbsp;애완견을 키우나요? -->
+<!-- 							</strong> -->
+<!-- 						</label> -->
+						<br>
+<!-- 							<select class="pet" name="pet" id="pet" style="width:100px;height:38px;"> -->
+<!-- 								<option>선택</option> -->
+<!-- 								<option>네</option> -->
+<!-- 								<option>아니요</option> -->
+<!-- 							</select> -->
+							<p id="genderInput" style="font-size: 13px;"></p>
+<!-- 							<p id="petInput" style="font-size: 13px;"></p> -->
+							
+					</div>
+				</div>			
 			</div>
-			<div class="join" style="margin-right: 60px; ">
+			<div class="join" style="margin-right: 30px; ">
 				<div>
-					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="background-color:#BDBDBD"><br><br>					<!-- class="form-control" --> 
+					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="background-color:#BDBDBD" id="sample4_find"><br><br>					<!-- class="form-control" --> 
 					<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소"readonly><br><br>		
 					<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3" readonly><br><br>		
 					<span id="guide" style="color:#999; display:none;"></span>
@@ -354,22 +418,25 @@
 					<input type="text" id="sample4_extraAddress" placeholder="참고항목"  name="address5" readonly>
 				    <p id="addressInput"></p> 
 				</div>	
-				<div style="margin-left: 50px;"> 
-				    <img  id="preview" src="<%=contextPath%>/images/profile.png"" width=200 height=220/>
+				<div style="width: 400px;" > 
+				    <img  id="preview" src="<%=contextPath%>/images/profile.png" width=200 height=220 style="margin-right: 70px;"/>
 				</div>
 				
 				
-				<div class="filebox" style="margin-left: 40px;margin-top: 180px;" >
-		 			<label for="ex_file">사진 등록</label>
+				<div class="filebox" style="margin-left: -50px;margin-top: 200px;" >
+		 			<label id="Photo"for="ex_file" class="btn btn-outline-warning">사진 등록</label>
 				    <input type="file" id="ex_file" name="imageFileName"  onchange="readURL(this);"> 
 				</div>
 			</div>
+			<br>
+			<br>
 			<div align="center" style="margin-left: 50%;">
-				<div id="jbtn">
+				<div>
 					<a href="#"
 					   onclick="check(); return false;" 
 					   type="button" 
-					   style="text-decoration: none; color: black;"
+					   style="text-decoration: none;"
+					   class="btn btn-outline-warning";
 					>회원가입</a>
 				</div>	
 			</div>
@@ -499,8 +566,7 @@
 	<%--회원가입 유효성 체크  --%>
 	<script src="<%=request.getContextPath()%>/js/join.js"></script>
 
-	
-	
+
 </body>
 </html>
 

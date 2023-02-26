@@ -3,6 +3,7 @@ package DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -34,7 +35,7 @@ public class MemberDAO {
 		if(rs != null)try {rs.close();} catch (Exception e) {e.printStackTrace();}
 	}
 	
-	//아이디 중복 체크
+	//일반회원 중복 체크
 	public boolean memCkeck(String id) {
 		
 		boolean memResult = false;
@@ -78,7 +79,7 @@ public class MemberDAO {
 	}
 	
 
-	
+	//회원아이디 중복체크
 	public boolean trCheck(String id) {
 		
 		boolean trResult = false;
@@ -123,8 +124,9 @@ public class MemberDAO {
 	}
 	
 	//---------------------------------------------------
-		
-	public void insertMember(MemberVo vo) {
+	
+	//일반회원 회원가입
+	public void insertMember(MemberVo mem_vo) {
 		
 		
 		try {
@@ -133,21 +135,20 @@ public class MemberDAO {
 			con = ds.getConnection();
 			//매개변수로 전달 받는 MemberVo객체의 각변수에 저장된 값들을 얻어
 			//insert문장 완성하기
-			String sql = "INSERT INTO MEMBER(id, pass, name, reg_date, age, gender, address, email, tel, hp) "
-					+" VALUES (?, ?, ?, sysdate, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO YS_MEMBER(Mem_id, Mem_name, Mem_nick, Mem_pw, Mem_email, Mem_hp, Mem_birth, Mem_gender, Mem_joindate, Mem_pet) "
+					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?, sysdate, ?)";
 			pstmt = con.prepareStatement(sql);
-//			pstmt.setString(1, vo.getId());
-//			pstmt.setString(2, vo.getPass());
-//			pstmt.setString(3, vo.getName());
-//			pstmt.setInt(4, vo.getAge());
-//			pstmt.setString(5, vo.getGender());
-//			pstmt.setString(6, vo.getAddress());
-//			pstmt.setString(7, vo.getEmail());
-//			pstmt.setString(8, vo.getTel());
-//			pstmt.setString(9, vo.getHp());
+			pstmt.setString(1, mem_vo.getMem_id() );
+			pstmt.setString(2, mem_vo.getMem_name() );
+			pstmt.setString(3, mem_vo.getMem_nick() );
+			pstmt.setString(4, mem_vo.getMem_pw() );
+			pstmt.setString(5, mem_vo.getMem_email() );
+			pstmt.setString(6, mem_vo.getMem_hp() );
+			pstmt.setString(7, mem_vo.getMem_birth() );
+			pstmt.setString(8, mem_vo.getMem_gender() );
+			pstmt.setString(9, mem_vo.getMem_pet() );
 			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
 			pstmt.executeUpdate();
-			
 			
 		}catch (Exception e) {
 			System.out.println("insertMember메소드 내부에서 SQL실행 오류" + e);
@@ -156,7 +157,362 @@ public class MemberDAO {
 		}
 		
 	}
+	
+	//일반회원 주소 insert
+	public void insertMemAddress(MemberVo mem_vo) {
+		
+		try {
+			//커넥션 풀에 만들어져 있는 DB와 미리 연결을 맺은 Connection객체 빌려오기
+			//요약 DB연결
+			con = ds.getConnection();
+			//매개변수로 전달 받는 MemberVo객체의 각변수에 저장된 값들을 얻어
+			//insert문장 완성하기
+			String sql = "INSERT INTO ADDRESS_MEM(Memberid, address1, address2, address3, address4, address5) "
+					+" VALUES (?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mem_vo.getMem_id());
+			pstmt.setString(2, mem_vo.getMem_address1());
+			pstmt.setString(3, mem_vo.getMem_address2());
+			pstmt.setString(4, mem_vo.getMem_address3());
+			pstmt.setString(5, mem_vo.getMem_address4());
+			pstmt.setString(6, mem_vo.getMem_address5());
 
+			
+			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
+			pstmt.executeUpdate();
+			
+			
+		}catch (Exception e) {
+			System.out.println("insertMemAddress메소드 내부에서 SQL실행 오류" + e);
+		}finally {
+			closeResource();
+		}
+		
+	}
+	//---------------------------------------------------
+	
+	//트레이너 회원가입
+	public void insertTrMember(MemberVo tr_vo) {
+		
+		
+		try {
+			//커넥션 풀에 만들어져 있는 DB와 미리 연결을 맺은 Connection객체 빌려오기
+			//요약 DB연결
+			con = ds.getConnection();
+			//매개변수로 전달 받는 MemberVo객체의 각변수에 저장된 값들을 얻어
+			//insert문장 완성하기
+			String sql = "INSERT INTO MEMBER_TRAINER(TR_id, TR_name, TR_nick, TR_pw, TR_email, TR_hp, TR_birth, TR_gender, TR_joindate) "
+					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, tr_vo.getTr_id() );
+			pstmt.setString(2, tr_vo.getTr_name()  );
+			pstmt.setString(3, tr_vo.getTr_nick() );
+			pstmt.setString(4, tr_vo.getTr_pw() );
+			pstmt.setString(5, tr_vo.getTr_email() );
+			pstmt.setString(6, tr_vo.getTr_hp() );
+			pstmt.setString(7, tr_vo.getTr_birth() );
+			pstmt.setString(8, tr_vo.getTr_gender() );
+			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			System.out.println("insertTrMember메소드 내부에서 SQL실행 오류" + e);
+		}finally {
+			closeResource();
+		}
+		
+	}
+	
+	//트레이너 회원 주소 insert
+	public void insertTrMemAddress(MemberVo tr_vo) {
+		
+		try {
+			//커넥션 풀에 만들어져 있는 DB와 미리 연결을 맺은 Connection객체 빌려오기
+			//요약 DB연결
+			con = ds.getConnection();
+			//매개변수로 전달 받는 MemberVo객체의 각변수에 저장된 값들을 얻어
+			//insert문장 완성하기
+			String sql = "INSERT INTO ADDRESS_TR(TR_ID	, address1, address2, address3, address4, address5) "
+					+" VALUES (?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, tr_vo.getTr_id());
+			pstmt.setString(2, tr_vo.getTr_address1());
+			pstmt.setString(3, tr_vo.getTr_address2());
+			pstmt.setString(4, tr_vo.getTr_address3());
+			pstmt.setString(5, tr_vo.getTr_address4());
+			pstmt.setString(6, tr_vo.getTr_address5());
+			
+			
+			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
+			pstmt.executeUpdate();
+			
+			
+		}catch (Exception e) {
+			System.out.println("insertTrMemAddress메소드 내부에서 SQL실행 오류" + e);
+		}finally {
+			closeResource();
+		}
+		
+	}
+	
+	//일반회원 정보 삭제
+	public boolean memDelete(String deleteId) {
+		
+		boolean mem_result = false; //
+		
+		try {
+			//1. 커넥션풀(DataSource)에서 Connection객체 얻기
+			con = ds.getConnection();
+			
+			//2. DELETE 문 만들기 
+			//-> 매개변수로 전달 받는  id에 해당되는 회원 삭제 시키는 DELETE문 
+			String query = "DELETE FROM YS_MEMBER WHERE MEM_ID=?";
+			//문법    DELETE FROM 삭제할테이블명 WHERE 조건열=조건값;
+			
+			//3. DELETE SQL문을 실행할  PreparedStatement객체 얻기
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, deleteId);
+
+			if(rs.next()) {
+				mem_result = true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		
+		} finally {
+			//5. 자원해제 
+			try {
+				if(con != null) con.close();
+				if(pstmt != null) pstmt.close();
+				if(rs != null) rs.close();
+			} catch (Exception e) {
+				System.out.println("memDelete메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+		}
+		
+		return mem_result;
+	
+	}
+	
+	//트레이너 정보 삭제
+	public boolean trDelete(String deleteId) {
+		
+		boolean tr_result = false; //
+		
+		try {
+			//1. 커넥션풀(DataSource)에서 Connection객체 얻기
+			con = ds.getConnection();
+			
+			//2. DELETE 문 만들기 
+			//-> 매개변수로 전달 받는  id에 해당되는 회원 삭제 시키는 DELETE문 
+			String query = "DELETE FROM MEMBER_TRAINER WHERE TR_ID=?";
+			//문법    DELETE FROM 삭제할테이블명 WHERE 조건열=조건값;
+			
+			//3. DELETE SQL문을 실행할  PreparedStatement객체 얻기
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, deleteId);
+
+			if(rs.next()) {
+				tr_result = true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		
+		} finally {
+			//5. 자원해제 
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("trDelete메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+		}
+		
+		return tr_result;
+	
+	}
+	
+	//일반회원 정보 수정
+	public int memUpdate(String up_id,String up_pw,String up_nick,String up_name,String up_hp,String up_birth,String up_email,String up_gender) {
+		
+		int mem_UpResult = 0; //
+		
+		try {
+			con = ds.getConnection();
+			
+			String query = "update YS_MEMBER set MEM_NAME='" + up_name + "',"
+						                     + " MEM_NICK='" + up_nick + "'"
+						                     + " MEM_PW='" + up_pw + "'"
+						                     + " MEM_EMAIL='" + up_email + "'"
+						                     + " MEM_HP='" + up_hp + "'"
+						                     + " MEM_BIRTH='" + up_birth + "'"
+						                     + " MEM_GENDER='" + up_gender + "'"
+				  						     + " where MEM_ID ='"+ up_id +"'";
+			
+			
+			pstmt = con.prepareStatement(query);
+			
+			mem_UpResult = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+		
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("memUpdate메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+		}
+		
+		return mem_UpResult;
+		
+	}
+	
+	//트레이너 정보 수정
+	public int trUpdate(String up_id,String up_pw,String up_nick,String up_name,String up_hp,String up_birth,String up_email,String up_gender) {
+		
+		int tr_UpResult = 0; //
+		
+		try {
+			con = ds.getConnection();
+			
+			String query = "update MEMBER_TRAINER set TR_NAME='" + up_name + "',"
+												  + " TR_NICK='" + up_nick + "'"
+												  + " TR_PW='" + up_pw + "'"
+												  + " TR_EMAIL='" + up_email + "'"
+												  + " TR_HP='" + up_hp + "'"
+												  + " TR_BIRTH='" + up_birth + "'"
+												  + " TR_GENDER='" + up_gender + "'"
+            					   				  + " where TR_ID ='"+ up_id +"'";
+
+			
+			pstmt = con.prepareStatement(query);
+			
+			tr_UpResult = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("memUpdate메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+		}
+		
+		return tr_UpResult;
+		
+	}
+	
+	//일반회원  주소 정보 수정
+	public int memAddUpdate(String up_id, String up_address1,String up_address2,String up_address3,String up_address4,String up_address5) {
+		
+		int memAdd_UpResult = 0; //
+		
+		try {
+			con = ds.getConnection();
+			
+			String query = "update YS_MEMBER set MEMBERID='" + up_id + "',"
+										 	 + " address1='" + up_address1 + "',"
+										 	 + " address2='" + up_address2 + "'"
+										 	 + " address3='" + up_address3 + "'"
+										 	 + " address4='" + up_address4 + "'"
+										 	 + " address5='" + up_address5 + "'"
+										 	 + " where MEMBERID ='"+ up_id +"'";
+			
+			pstmt = con.prepareStatement(query);
+			
+			memAdd_UpResult = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("memAddUpdate메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+		}
+		
+		return memAdd_UpResult;
+		
+	}
+	
+	//트레이너회원  주소 정보 수정
+	public int trAddUpdate(String up_id, String up_address1,String up_address2,String up_address3,String up_address4,String up_address5) {
+		
+		int trAdd_UpResult = 0; //
+		
+		try {
+			con = ds.getConnection();
+			
+			String query = "update YS_MEMBER set TR_ID='" + up_id + "',"
+										 + " address1='" + up_address1 + "',"
+										 + " address2='" + up_address2 + "'"
+										 + " address3='" + up_address3 + "'"
+										 + " address4='" + up_address4 + "'"
+										 + " address5='" + up_address5 + "'"
+										 + " where MEMBERID ='"+ up_id +"'";
+			
+			pstmt = con.prepareStatement(query);
+			
+			trAdd_UpResult = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("trAddUpdate메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+		}
+		
+		return trAdd_UpResult;
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public int userCheck(String login_id, String login_pass) {
 		
 		int check = -1;

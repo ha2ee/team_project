@@ -1,75 +1,4 @@
 
-
-//====================================================================================================
-
-    $("#checkBtn").click(function() {
-    		
-    	var id = $("#id");
-    	var idValue = id.val();
-    	
-    	var idReg = RegExp(/^[A-Za-z0-9_\-]{3,20}$/);
-    	var resultId = idReg.test(idValue);
-    	
-		if(!resultId){
-			$("#idInput").text("한글,특수문자 없이 3~20글자사이로 작성해 주세요!").css("color","red");
-			id.focus();
-			
-			return false;
-		}else{
-			$.ajax( 
-    				{
-    					type:"post", // 전송요청 방식 설정 ! get 또는 post 둘중 하나를 작성
-    					async:true, // 비동기 통신으로 서버페이지를 요청 하는 설정!  false를 작성하면 동기화 통신
-    					url:"http://localhost:8090/TeamProject/nb_member/joinIdCheck.me", //요청할 주소
-    					data:{ id : $("#id").val() },//서버페이지로 요청할 데이터 설정!
-    					dataType:"text", //서버페이지로 부터 응답 받을 데이터 종류 설정!
-    									 //종류는 json 또는 xml 또는 text 중 하나 설정!
-    					//전송요청과 응답통신에 성공했을때
-    					//success속성에 적힌 function(data,textStatus){}이 자동으로 호출된다.
-    					// data매개변수로는 서버페이지가 전달한 응답 데이터가 넘어옵니다.
-    					// 아이디 중복? 미중복? 둘중 하나의 조건값이 넘어 옵니다.
-    					success : function(data,textStatus){
-    						
-    						console.log(data);
-    						
-    						//서버페이지에서 전송된 아이디 중복? 인지 아닌지 판단하여
-    						//현재 josin.jsp화면에 보여주는 처리 구문 작성
-    						if(data == 'usable'){ //아이디가 DB에 없으면?(중복아님)
-    							
-    							$("#idInput").text("사용할수 있는 ID입니다.").css("color","green");
-    							$("#id").attr('readonly', true); 
-		
-    						}else{//아이디가 DB에 있으면? (입력한 아이디가  DB에 저장되어 있다는 의미)
-    							
-    							$("#idInput").text("사용할수 없는 ID입니다.").css("color","red");
-    							
-    						}
-    					},//success 닫기
-    					error:function(data,textStatus){
-    						console.log(textStatus);
-
-    						alert("통신에러가 발생했습니다.");
-    					}
-    					
-    					
-    				}// json  {  } 닫기
-    	
-    			  ); // $.ajax메소드 호출 부분 끝부분  
-		}
-	});
-	
-    //====================================================================================================
-	
-    $("#agree").click(function(){
-	    	
-		if( !($("#agree").is(":checked")) ){ 
-			
-			$("#agreeInput").text("약관에 동의해 주세요!").css("color","red");
-		}else{
-			$("#agreeInput").text("");
-    	}
-   	});
-    	
 	//====================================================================================================
 	    
 	$("#nickname").focusout(function() {
@@ -227,8 +156,11 @@
 	//====================================================================================================
 	
 	
-	function check(event) {
-				
+	function change(event) {
+		
+		
+		
+		
 		//약관동의 <input>요소를 선택해서 가져와 
     	var checkbox = $("#agree");
     	//약관동의 체크했는지 검사
@@ -419,11 +351,35 @@
 	    	}else{
     			$("#emailInput").text("");
     		}
-	
 	    	
-   	    	alert("회원가입이 완료 되었습니다.");
-   	    	
-   	    	
-   	    	$("form").submit();
+	    	
+	    //=====================================================================================================
+			
+	    	if(confirm("정보를 수정하시겠습니까?")){
+				
+				$("form").submit();
+				
+			}else {
+				
+				location.href="#";
+				
+			}
+	    	
+	    	
 	}
+			
+	
+	
+		function del(){
+	    	
+	    	if(confirm("정말 회원탈퇴 하시겠습니까?")){
+	    		
+	    		location.href="<%=contextPath%>/nb_member/delete.me";
+	    		
+	    	}else {
+	    		
+	    		location.href="#";
+	    			
+	    	}
+		}
 		
