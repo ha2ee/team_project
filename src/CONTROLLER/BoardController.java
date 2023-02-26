@@ -5,8 +5,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.io.File;
 
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.*;
+import com.oreilly.servlet.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -154,18 +154,21 @@ public class BoardController extends HttpServlet{
 			
 			String title = request.getParameter("title");
 			String content = request.getParameter("editor1");
-
 			
-			
-			
-			
-			
-			
-			
-			
+//			//업로드 작업 중ㅇ...
+//			String directory = request.getSession().getServletContext().getRealPath("/")+"Upload";
+//			System.out.println(directory);
+//			int maxSize = 1024 * 1024 * 100;
+//			String encoding = "utf-8";
+//			
+//			MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
+//			
+//			String fileName = multipartRequest.getOriginalFileName("file");
+//			String fileRealName = multipartRequest.getFilesystemName("file");
+//			//여기까지
 			
 			String fileName = request.getParameter("fileName");
-			
+//			
 			if(fileName == null || fileName.length() == 0) {
 				fileName = "파일없음";
 			}
@@ -183,6 +186,7 @@ public class BoardController extends HttpServlet{
 				out.println("</script>");
 			}
 	         nextPage = "/freeboard/list.fb";
+	         
 	         break;
 			
 //		// 게시판에서 제목을 클릭해서 내용을 보려고 할때

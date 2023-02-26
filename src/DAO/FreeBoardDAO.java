@@ -41,11 +41,12 @@ public class FreeBoardDAO {
 		FreeBoardVo vo;
 		try {
 			con = ds.getConnection();
-
 			String sql = "SELECT * FROM FREE_BOARD ORDER BY B_IDX DESC";
 			
 			pstmt = con.prepareStatement(sql);
+
 			rs = pstmt.executeQuery();
+
 			while(rs.next() ) {
 				vo = new FreeBoardVo(
 								rs.getInt("b_idx"), 
@@ -60,6 +61,7 @@ public class FreeBoardDAO {
 								rs.getString("b_file"),
 								rs.getInt("b_like")
 									);
+
 				list.add(vo);
 			}
 			
@@ -98,9 +100,10 @@ public class FreeBoardDAO {
 
 	public int insertBoard(FreeBoardVo vo) {
 		int result = 0 ;
+		System.out.println(vo.getB_id() +"/"+ vo.getB_nickname() +"/"+ vo.getB_title() +"/"+ vo.getB_content() +"/"+ vo.getB_file()  );
 		try {
 			con = ds.getConnection();
-
+			
 			String sql = "INSERT INTO FREE_BOARD VALUES(FREEBOARD_SEQ.NEXTVAL,?,?,?,?,0,0,SYSDATE,0,?,0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getB_id());
@@ -161,7 +164,6 @@ public class FreeBoardDAO {
 		
 		return vo;
 	}
-	
 	
 	
 	

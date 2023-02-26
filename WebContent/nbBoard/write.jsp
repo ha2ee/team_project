@@ -29,7 +29,7 @@ String contextPath = request.getContextPath();
   
   	<div style="width: 1200px; margin: 0 auto; margin-bottom: 20px">
   		<div>
-	        <form action="<%=contextPath%>/freeboard/writePro.fb" method="post" enctype="mulipart/form-data">
+	        <form action="<%=contextPath%>/freeboard/writePro.fb" method="post">
 		      <h1> 게시글 작성 </h1> <br>
 	          <input type="text" name="title" style="width: 100%; box-sizing: border-box; font-size: 20px" placeholder="제목을 입력해주세요"> 
 	                  											<%-- box-sizing: border-box를 style에 넣어줘야 너비 끝부분 처리가 완벽 --%>

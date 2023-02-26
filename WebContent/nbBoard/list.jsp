@@ -190,6 +190,8 @@ function fnSearch(){
     	<input type="hidden" name="b_idx">
     </form>
     
+    
+    
    	
  
  <script type="text/javascript">
