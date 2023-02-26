@@ -880,6 +880,16 @@ String tr_price = request.getParameter("tr_price");
     		
     	})
     	
+    	$("#submitbtn").on("click", function(){
+    		
+    		if($("#selectDate1").val() == ""){
+    			
+    			alert("최소 1회의 수강을 선택하셔야합니다");
+    			
+    			return false;
+    		}
+    	})
+    	
     })
     
 
@@ -997,7 +1007,7 @@ String tr_price = request.getParameter("tr_price");
 		<div id = "btnBox2">
       		<div id = "Totalsubmit">
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp" >이전 페이지로</a> 
-         	<button type="submit" style="font-weight : 400; padding : 6px 12px; margin : 0 10px; font-size : 22px; border-radius: 20px; border:0px; background : #8f8f8; ">예약 신청</button>
+         	<button id="submitbtn" type="submit" style="font-weight : 400; padding : 6px 12px; margin : 0 10px; font-size : 22px; border-radius: 20px; border:0px; background : #8f8f8; ">예약 신청</button>
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/Main" >홈으로</a>
         	</div>
         </div>
