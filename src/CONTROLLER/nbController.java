@@ -51,13 +51,13 @@ public class nbController extends HttpServlet{
 		String action = request.getPathInfo();
 		System.out.println("2단계 요청 주소: "+action);
 		
-		// 1) 	 /Main 				<- "메인화면" 요청
-		// 2) 	 /intro.do         		<- "늘 봄이란?"  -> "  회 사 소 개  " 요청 
-		// 3) 	 /ci.do					<- "늘 봄이란?"  -> "  C           I " 요청
-		// 4)	 /navi.do				<- "늘 봄이란?" ->  "  오 시 는 길  " 요청
-		// 5)	 /edu.do           	<- "수강신청"   ->  " 수강 신청가기"  회원 요청
-		// 6)    /calendar.do     	<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼"을 눌렀을때
-		// 7-1) /edureservation.do			<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼" -> "회원 예약 "버튼"을 눌렀을때
+		// 1) 	 /Main 					<- "메인화면" 요청
+		// 2) 	 /intro.do         		<- "늘 봄이란?"  -> "  회 사 소 개  " 		요청 
+		// 3) 	 /ci.do					<- "늘 봄이란?"  -> "  C           I " 		요청
+		// 4)	 /navi.do				<- "늘 봄이란?" ->  "  오 시 는 길  " 		요청
+		// 5)	 /edu.do          	 	<- "수강신청"   ->  " 수강 신청가기"   	요청
+		// 6)    /calendar.do    	 	<- "수강신청"   ->  " 수강 신청가기" -> "일정 확인하기" 버튼을 눌렀을때
+		// 7-1) /edureservation.do	<- "수강신청"   ->  " 수강 신청가기" -> "일정 확인하기" 버튼 -> "예약 신청"을 눌렀을때
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		// 8) /pet.shop        <-  " 늘 봄샵 "   -> "   샵 으로 이동   " 요청
 		
@@ -153,6 +153,7 @@ public class nbController extends HttpServlet{
 			
 			// 중앙 화면 바인딩 하기
 			System.out.println("요청한 center : "+ center);
+			System.out.println("예약 일정확인 페이지로 이동!");
 			
 			nextPage = "/nbMain.jsp";
 			
@@ -170,6 +171,7 @@ public class nbController extends HttpServlet{
 			
 			//edu_reservation.jsp로 이동!
 			System.out.println("edu_reservation.jsp로 폼액션 넘기기");
+			System.out.println("예약 신청 페이지로 이동!");
 			
 			
 			nextPage = "/nbMain.jsp";

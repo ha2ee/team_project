@@ -64,7 +64,7 @@ public class nbMemberController extends HttpServlet{
 		// /login.me <- 로그인 요청을 위해 아이디와 비밀번호를 입력하는 화면 요청!
 		// /loginPro.me <- 로그인을 요청!
 		// /logout.me <- 로그아웃 요청!
-		// /eduOrder.me <- 수강신청 시 "회원" 또는 "비회원"권한으로 예약할때   -- 진행중 --
+		// /eduOrder.me <- 예약신청페이지에서 "예약 확정" 버튼을 눌렀을 때
 		// /mypage.me <- 마이페이지 요청!
 		// /cart.me <- 장바구니 요청!
 		
@@ -222,6 +222,7 @@ public class nbMemberController extends HttpServlet{
 				MemberVo vo = new MemberVo(user_id, user_pass, user_name,
 											user_age, user_gender, user_address,
 											user_email, user_tel, user_hp);
+				
 				memberdao.insertMember(vo);
 				
 				nextPage="/CarMain.jsp";

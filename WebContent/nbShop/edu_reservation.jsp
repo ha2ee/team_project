@@ -19,7 +19,8 @@
 
 	<!-- 	주문예약 들어갈 항목 -->
 	
-	<form action="<%=contextPath%>/nbMember/joinPro.me" class="form">	
+<!-- 	내용을 입력하고 예약확정 버튼을 눌렀을 때 /nbMemberCotroller/eduOrder.me 호출 -->
+	<form action="<%=contextPath%>/nbMember/eduOrder.me" class="form">	
 	<div style="height: 100px;"></div>
 	<div class="container">
 		<div class="row justify-content-lefts">
