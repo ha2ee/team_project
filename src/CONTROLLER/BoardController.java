@@ -171,6 +171,37 @@ public class BoardController extends HttpServlet{
 	         nextPage = "/freeboard/list.fb";
 	         break;
 			
+//		// 게시판에서 제목을 클릭해서 내용을 보려고 할때
+		case "/read.fb":	
+//			
+//			
+//			//요청한 값 얻기
+//			String b_idx = request.getParameter("b_idx");
+//			nowPage = request.getParameter("nowPage");
+//			nowBlock = request.getParameter("nowBlock");
+//			
+//			// 요청한 값 출력해보기
+//			System.out.println(b_idx);
+//			System.out.println(nowPage);
+//			System.out.println(nowBlock);
+//			
+//			//글 번호 (b_idx)를 이용해 수정 또는 삭제를 위해 DB로 부터 조회하기
+//			vo = boarddao.boardRead(b_idx);
+//			
+//			// 중앙화면에 read.jsp로 전달하기 위해 setAttribute로 담음
+//			// 페이지번호, 페이지블럭번호, 글번호 3가지
+//			request.setAttribute("nowPage", nowPage);
+//			request.setAttribute("nowBlock", nowBlock);
+//			request.setAttribute("b_idx", b_idx);
+//			
+//			// 글번호로 조회한 정보도 받아와서 설정
+//			request.setAttribute("vo", vo);
+//			
+//			// 중앙화면에 요청할 주소를 read.jsp로 설정
+			request.setAttribute("center", "nbBoard/read.jsp");
+
+			nextPage = "/CarMain.jsp";
+			break;
 //			
 //			//요청한 값을 BoardVo객체의 각 변수에 저장
 //			vo = new FreeBoardVo();
@@ -215,39 +246,6 @@ public class BoardController extends HttpServlet{
 //			nextPage = "/CarMain.jsp";
 //			break;	
 //		
-//		// 게시판에서 제목을 클릭해서 내용을 보려고 할때
-//		case "/read.bo":	
-//			
-//			
-//			//요청한 값 얻기
-//			String b_idx = request.getParameter("b_idx");
-//			nowPage = request.getParameter("nowPage");
-//			nowBlock = request.getParameter("nowBlock");
-//			
-//			// 요청한 값 출력해보기
-//			System.out.println(b_idx);
-//			System.out.println(nowPage);
-//			System.out.println(nowBlock);
-//			
-//			//글 번호 (b_idx)를 이용해 수정 또는 삭제를 위해 DB로 부터 조회하기
-//			vo = boarddao.boardRead(b_idx);
-//			
-//			// 중앙화면에 read.jsp로 전달하기 위해 setAttribute로 담음
-//			// 페이지번호, 페이지블럭번호, 글번호 3가지
-//			request.setAttribute("nowPage", nowPage);
-//			request.setAttribute("nowBlock", nowBlock);
-//			request.setAttribute("b_idx", b_idx);
-//			
-//			// 글번호로 조회한 정보도 받아와서 설정
-//			request.setAttribute("vo", vo);
-//			
-//			// 중앙화면에 요청할 주소를 read.jsp로 설정
-//			request.setAttribute("center", "board/read.jsp");
-//
-//			
-//			nextPage = "/CarMain.jsp";
-//			
-//			break;
 //			
 //			// 글을 수정하기 위해 입력한 비밀번호가 DB에 저장 되어있는지 요청
 //			case "/password.bo":

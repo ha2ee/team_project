@@ -26,9 +26,11 @@ html > body {
 /*스타일 시작*/
 .Contents-Box {
 	
-  height: 900px;
+/*   height: 900px; */
   color: #010101;
   padding: 100px 20px;
+  margin : 5% 5% 0 5%;
+  
 /*   width: 80%; */
 }
 /*제목, 삭제버튼*/

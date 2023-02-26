@@ -91,7 +91,7 @@ function fnSearch(){
       <div class="List-Box">
         <ul>
           <li>
-            <span>목록</span>
+            <span>글번호</span>
           </li>
           <li>
             <span>닉네임</span>
@@ -106,7 +106,7 @@ function fnSearch(){
             <span>조회수</span>
           </li>
           <li>
-            <span>좋아요</span>
+            <span>추천</span>
           </li>
         </ul>
         <!--1-->
@@ -117,8 +117,7 @@ function fnSearch(){
         		FreeBoardVo vo =(FreeBoardVo) list.get(i);
         		
         %>
-        		
-                <a href="#" class="List-1 flex">
+			<a href="<%=contextPath%>/freeboard/read.fb" class="List-1 flex">
                 <div style="width: 5%">
                   <span><%=vo.getB_idx()%></span>	
                 </div>
@@ -128,6 +127,7 @@ function fnSearch(){
                 <div style="width: 50%">
                   <span><%=vo.getB_title() %></span>
                 </div>
+                <!--타이틀 옆에 댓글 수 나오도록 작업 -->
                 <div style="width: 15%">
                   <span><%=vo.getB_date() %></span>
                 </div>
@@ -137,7 +137,7 @@ function fnSearch(){
                 <div style="width: 7.5%">
                   <span><%=vo.getB_like() %></span>
                 </div>
-              </a>
+			</a>
         <%       
         	}
         %>
