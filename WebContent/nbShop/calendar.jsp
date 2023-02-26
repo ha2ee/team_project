@@ -440,7 +440,7 @@ String tr_price = request.getParameter("tr_price");
     		
     } 
     
-    #Totalsubmit > button {
+    #Totalsubmit > #submitbtn {
     
    	background : #cccccc21; 
 	border-radius : 20px;
@@ -450,7 +450,7 @@ String tr_price = request.getParameter("tr_price");
     
     }
     
-    #Totalsubmit > button:hover {
+    #Totalsubmit > #submitbtn:hover {
     
 	background : #ffebcd;
 	border-radius : 20px;
@@ -494,8 +494,8 @@ String tr_price = request.getParameter("tr_price");
     var clickyear = today.getFullYear();
 	var clickdate = 0;
 
-
-
+	var regdate = moment(date).format('YYYY-MM-DD');
+	console.log(regdate);
 
     
     /**
@@ -882,6 +882,8 @@ String tr_price = request.getParameter("tr_price");
     	
     	$("#submitbtn").on("click", function(){
     		
+    		$("#tr_mem_reg_date").attr("value", regdate);
+    		
     		if($("#selectDate1").val() == ""){
     			
     			alert("최소 1회의 수강을 선택하셔야합니다");
@@ -896,7 +898,10 @@ String tr_price = request.getParameter("tr_price");
 </script>
 </head>
 <body>
-<form action ="<%=request.getContextPath()%>/nb/edureservation.do">
+<form method ="post" action ="<%=request.getContextPath()%>/nb/edureservation.do">
+
+<!-- 예약한 날짜 넘기기 -->
+<input type="hidden" name ="tr_mem_reg_date" id="tr_mem_reg_date" />
 
 <!-- 캘린더 넣기 -->
 <div id = "calandtotalWrapper">
@@ -1007,7 +1012,7 @@ String tr_price = request.getParameter("tr_price");
 		<div id = "btnBox2">
       		<div id = "Totalsubmit">
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp" >이전 페이지로</a> 
-         	<button id="submitbtn" type="submit" style="font-weight : 400; padding : 6px 12px; margin : 0 10px; font-size : 22px; border-radius: 20px; border:0px; background : #8f8f8; ">예약 신청</button>
+         	<button id="submitbtn" type="submit" style="font-weight : 400; padding : 6px 12px; margin : 0 10px; font-size : 22px; border-radius: 20px; border:0px; ">예약 신청</button>
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/Main" >홈으로</a>
         	</div>
         </div>

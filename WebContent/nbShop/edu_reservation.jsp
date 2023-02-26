@@ -1,9 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	// 예약일 가져와서 변수에 저장
+	String tr_date1 = request.getParameter("date1");
+	String tr_date2 = request.getParameter("date2");
+	String tr_date3 = request.getParameter("date3");
+	String tr_date4 = request.getParameter("date4");
+	String tr_date5 = request.getParameter("date5");
+	String tr_date6 = request.getParameter("date6");
+	String tr_date7 = request.getParameter("date7");
+	
+	// 총 수강 횟수 가져와서 변수에 저장
+	int totalcnt = Integer.parseInt(request.getParameter("totalcnt"));
+	
+	// 총 수강 금액 가져와서 변수에 저장
+	int tr_totalprice = Integer.parseInt(request.getParameter("totalprice"));
+	
+	// 선택 된 트레이너 가져와서 변수에 저장
+	String tr_mem_name = request.getParameter("tr_name");
+	
+	// 예약 작성일 가져와서 변수에 저장
+	String tr_mem_reg_date = request.getParameter("tr_mem_reg_date");
+
+
+%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
-
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 
 /*  예약 신청화면 CSS 설정 */
@@ -27,12 +54,12 @@
 /*  1) 예약자 CSS 설정 */
 #reservationBox {
 	
-	border : 1px solid red;
+	border : 1px solid floralwhite;
 	
 	position : relative;
 	text-align :center;
 	width : 100%;
-	height : 1100px;
+	height : 1000px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -43,7 +70,7 @@
 
 #reservationBox > #reservationFormWrapper{
 
-	border : 1px solid blue;
+	border : 1px solid floralwhite;
 	
 	position :relative;
 	text-align :center;
@@ -58,7 +85,7 @@
 
 #mem_box {
 
- 	border : 1px solid red; 
+ 	border : 1px solid floralwhite; 
 	
 	position :relative;
 	text-align :center;
@@ -326,7 +353,7 @@
 /*  2) 예약자 반려견 설정 */
 #reservationBox > #reservationPetFormWrapper{
 
-	border : 1px solid blue;
+	border : 1px solid floralwhite;
 	
 	position :relative;
 	text-align :center;
@@ -341,7 +368,7 @@
 
 #pet_box {
 
-	border : 1px solid blue;
+	border : 1px solid floralwhite;
 	
 	position :relative;
 	text-align :center;
@@ -483,6 +510,7 @@
 	right : 0;
 	top : 70px;
 	border-radius : 15px;
+	color : royalblue;
 	
 
 }
@@ -539,7 +567,7 @@
 	left : 319px;
 	right : 0;
 	top : 50px;
-	font-size : 15px;
+	font-size : 17px;
 	font-weight : bold;
 	color:gray;
 
@@ -623,7 +651,7 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-	height : 350px;
+	height : 315px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -633,7 +661,7 @@
 
 #reservation_result_box {
 
-	border : 1px solid green;
+	border : 1px solid floralwhite;
 	
 	position :relative;
 	text-align :center;
@@ -665,11 +693,367 @@
 
 }
 
+/* 결과화면 CSS 설정 */
+
+#tr_img_box {
+
+	border : 1px solid floralwhite;
+	
+	position :relative;
+	text-align :center;
+	width : 250px;
+	height : 240px;
+	margin : 0 auto;
+	left : -474px;
+	right : 0;
+	top : 0;
+
+}
+
+#tr_img_name {
+
+	border : 1px solid floralwhite;
+	
+	display : block;
+	position :relative;
+	text-align :center;
+	width : 100%;
+	height : 35px;
+	margin : 0 auto;
+	left : 0;
+	right : 0;
+	top : 0;
+	font-size : 18px;
+	background : #ffebcd7a;
+	border-radius: 5px;
+	color : #ff572285;
+	padding : 5px;
+	font-weight : bold;
+	text-decoration: none;
+
+
+}
+
+#tr_img {
+
+	border : 1px solid floralwhite;
+	
+	vertical-align : middle;
+	position :relative;
+	text-align :center;
+	width : 200px;
+	height : 200px;
+	margin : 0 auto;
+	left : 0;
+	right : 0;
+	top : 4px;
+	padding : 10px;
+	border-radius: 100px;
+
+}
+
+
+#tr_info_box {
+
+	border : 1px solid floralwhite;
+	
+	position :relative;
+	text-align :center;
+	width : 160px;
+	height : 240px;
+	margin : 0 auto;
+	left : -263px;
+	right : 0;
+	top : -240px;
+
+}
+
+#tr_info_box > a {
+
+	border : 1px solid floralwhite;
+	
+	display : block;
+	position :relative;
+	text-align :center;
+	width : 158px;
+	height : 35px;
+	margin : 45px auto;
+	left : 0;
+	right : 0;
+	top : -45px;
+	font-size : 18px;
+	background : #ffebcd7a;
+	border-radius: 5px;
+	color : #ff572285;
+	padding : 5px;
+	font-weight : bold;
+	text-decoration: none;
+
+}
+
+#tr_info_box > a > input {
+
+	border : 1px solid floralwhite;
+	
+	position :relative;
+	text-align :center;
+	width : 100%;
+	height : 30px;
+	margin : 40px auto;
+	left : 0;
+	right : 0;
+	top : -29px;
+	border-radius : 15px;
+	
+
+}
+
+
+
+
+#tr_date_box {
+
+    border: 1px solid floralwhite;
+    
+    position: relative;
+    text-align: center;
+    width: 160px;
+    height: 240px;
+    margin: 0 auto;
+    left: -96px;
+    right: 0;
+    top: -480px;
+}
+
+#tr_date_box > a {
+
+	border : 1px solid floralwhite;
+	
+	display : block;
+	position :relative;
+	text-align :center;
+	width : 158px;
+	height : 35px;
+	margin : 0px auto;
+	left : 0;
+	right : 0;
+	top : 0;
+	font-size : 18px;
+	background : #ffebcd7a;
+	border-radius: 5px;
+	color : #ff572285;
+	padding : 5px;
+	font-weight : bold;
+	text-decoration: none;
+
+}
+
+#tr_date_box > input {
+
+	border : 1px solid floralwhite;
+	
+	position :relative;
+	text-align :center;
+	width : 140px;
+	height : 25px;
+	margin : 2px auto;
+	left : 1px;
+	right : 0;
+	top : 0;
+	border-radius : 15px;
+	color : steelblue;
+	
+
+}
+
+
+ #edu_img_box {
+ 
+	border : 1px solid floralwhite;
+	
+	position :relative;
+	text-align :center;
+	width : 250px;
+	height : 240px;
+	margin : 0 auto;
+	left : 115px;
+	right : 0;
+	top : -720px;
+
+}
+
+#edu_img_name {
+
+	border : 1px solid floralwhite;
+	
+	display : block;
+	position :relative;
+	text-align :center;
+	width : 100%;
+	height : 35px;
+	margin : 0 auto;
+	left : 0;
+	right : 0;
+	top : 0;
+	font-size : 18px;
+	background : #ffebcd7a;
+	border-radius: 5px;
+	color : #ff572285;
+	padding : 5px;
+	font-weight : bold;
+	text-decoration: none;
+
+
+}
+
+#edu_img {
+
+	border : 1px solid floralwhite;
+	
+	vertical-align : middle;
+	position :relative;
+	text-align :center;
+	width : 200px;
+	height : 200px;
+	margin : 0 auto;
+	left : 0;
+	right : 0;
+	top : 4px;
+	padding : 10px;
+	border-radius: 100px;
+
+}
+
+
+#tr_result_box {
+
+    border: 1px solid floralwhite;
+    
+    position: relative;
+    text-align: center;
+    width: 330px;
+    height: 240px;
+    margin: 0 auto;
+    left: 411px;
+    right: 0;
+    top: -960px;
+}
+
+#tr_result_box > #tr_totalcnt_box {
+
+    border: 1px solid floralwhite;
+    
+    position: relative;
+    text-align: center;
+    width: 160px;
+    height: 240px;
+    margin: 0 auto;
+    left: -84px;
+    right: 0;
+    top: 0;
+
+}
+
+#tr_totalcnt_box > a {
+
+	border : 1px solid floralwhite;
+	
+	display : block;
+	position :relative;
+	text-align :center;
+	width : 158px;
+	height : 35px;
+	margin : 0px auto;
+	left : 0;
+	right : 0;
+	top : 0;
+	font-size : 18px;
+	background : #ffebcd7a;
+	border-radius: 5px;
+	color : #ff572285;
+	padding : 5px;
+	font-weight : bold;
+	text-decoration: none;
+
+}
+
+#tr_totalcnt_box > a > input {
+
+	border: 1px solid floralwhite;
+	
+    position: relative;
+    text-align: center;
+    width: 80%;
+    height: 40px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 70px;
+    border-radius: 15px;
+    color: royalblue;
+
+}
+
+
+#tr_result_box > #tr_totalprice_box {
+
+    border: 1px solid floralwhite;
+    
+    position: relative;
+    text-align: center;
+    width: 160px;
+    height: 240px;
+    margin: 0 auto;
+    left: 86px;
+    right: 0;
+    top: -240px;
+
+}
+
+#tr_totalprice_box > a {
+
+	border : 1px solid floralwhite;
+	
+	display : block;
+	position :relative;
+	text-align :center;
+	width : 158px;
+	height : 35px;
+	margin : 0px auto;
+	left : 0;
+	right : 0;
+	top : 0;
+	font-size : 18px;
+	background : #ffebcd7a;
+	border-radius: 5px;
+	color : #ff572285;
+	padding : 5px;
+	font-weight : bold;
+	text-decoration: none;
+
+}
+
+#tr_totalprice_box > a > input {
+
+	border: 1px solid floralwhite;
+	
+    position: relative;
+    text-align: center;
+    width: 80%;
+    height: 40px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 70px;
+    border-radius: 15px;
+    color: royalblue;
+
+}
 
 /*  4) 버튼 CSS 설정 */
 #reservationBox > #reservationBtnWrapper{
 
-	border : 1px solid black;
+	border : 1px solid floralwhite;
 	
 	position :relative;
 	text-align :center;
@@ -682,13 +1066,91 @@
 
 }
 
+#nb_backbtn {
 
+    /* border: 1px solid red; */
+    
+    position: relative;
+    text-align: center;
+    width: 220px;
+    height: 50px;
+    margin: 0 auto;
+    left: -50px;
+    right: 0;
+    top: 20px;
+    background : #cccccc21;
+    border-radius: 10px;
+    transition: all 0.5s;
+    color: black;
+    font-size : 22px;
 
+}
 
+#nb_backbtn:hover {
 
+	background : #ffebcd;
+	border-radius: 20px;
+	transition : all 0.5s;
+
+}
+
+#nb_submitbtn {
+
+    /* border: 1px solid red; */
+    
+    position: relative;
+    text-align: center;
+    width: 130px;
+    height: 50px;
+    margin: 0 auto;
+    left: -30px;
+    right: 0;
+    top: 20px;
+    background : #cccccc21;
+    border-radius: 10px;
+    transition: all 0.5s;
+    color: black;
+    font-size : 22px;
+	
+}
+
+#nb_submitbtn:hover {
+
+	background : #ffebcd;
+	border-radius: 20px;
+	transition : all 0.5s;
+
+}
+
+#nb_shopbtn {
+
+    /* border: 1px solid red; */
+    
+    position: relative;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    margin: 0 auto;
+    left: -10px;
+    right: 0;
+    top: 20px;
+    background : #cccccc21;
+    border-radius: 10px;
+    transition: all 0.5s;
+    color: black;
+    font-size : 22px;
+
+}
+
+#nb_shopbtn:hover {
+
+	background : #ffebcd;
+	border-radius: 20px;
+	transition : all 0.5s;
+
+}
 
 </style>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <meta charset="UTF-8">
 <title>intro.jsp</title>
 </head>
@@ -706,12 +1168,12 @@
 	<!-- 	주문예약 들어갈 항목 -->
 	
 <!-- 	내용을 입력하고 예약확정 버튼을 눌렀을 때 /nbMemberCotroller/eduOrder.me 호출 -->
-	<form action="<%=contextPath%>/nbMember/eduOrder.me" class="form">	
+	<form method = "post" action="<%=contextPath%>/nbMember/eduOrder.me" id="form">	
 	<div id = "reservationBox" >
 		<div id = "reservationFormWrapper">
 			<div id = "mem_box">
 				<div id = "mem_title">
-					<h3 id="h3title">- 예약 회원 정보 -</h3>
+					<h3 id="h3title">- 회원 예약 정보 -</h3>
 				</div>
 				<div id = "member_check">
 					<a id ="membercheck" class = btn href="#">내정보 수정하기</a>
@@ -739,22 +1201,22 @@
 		<div id = "reservationPetFormWrapper">
 			<div id = "pet_box">
 				<div id = "mem_title">
-					<h3 id="h3title">- 회원 반려견 정보 -</h3>
+					<h3 id="h3title">- 반려견 예약 정보 -</h3>
 				</div>
 				<div id = "pet_img_box">
 					<a id="pet_img_name" type= "text">반려견 사진<img src="<%=request.getContextPath()%>/nbShop/img/bori.png" id = "pet_img" name = "pet_img"  /></a>
 				</div>
 				<div id = "pet_info_box">
-					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" placeholder="반려견이름" readonly />
+					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" placeholder="반려견이름"  />
 						<label id ="pet_input">강아지이름을 입력해주세요!</label>
 					</a>
-					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" placeholder="반려견종" readonly />
+					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" placeholder="반려견종"  />
 						<label id ="pet_input">품종 또는 믹스 등등</label>
 					</a>
-					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text" placeholder="반려견나이" readonly />
+					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text" placeholder="반려견나이"  />
 						<label id ="pet_input">숫자로 입력해주세요 !</label>
 					</a>
-					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" placeholder="반려견몸무게" readonly />
+					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" placeholder="반려견몸무게"  />
 						<label id ="pet_input">숫자로 입력해주세요 !</label>
 					</a>
 					<a type= "text">반려견 성별</a>
@@ -784,47 +1246,68 @@
 				<div id = "mem_title">
 					<h3 id="h3title">- 최종 예약 확인 -</h3>
 				</div>
-				<a><input id ="tr_mem_name" name = "tr_mem_name" type="text" placeholder="담당트레이너이름" readonly /></a>
-				<a><input id ="tr_mem_hp" name = "tr_mem_hp" type="text" placeholder="담당트레이너전화번호" readonly /></a>
-				<a><input id ="tr_reg_date" name = "tr_reg_date" type="text" placeholder="수강신청일자" readonly /></a>
-				<a><input id ="tr_date1" name = "tr_date1" type="text" placeholder="첫번째예약일" readonly /></a>
-				<a><input id ="tr_date2" name = "tr_date2" type="text" placeholder="두번째예약일" readonly /></a>
-				<a><input id ="tr_date3" name = "tr_date3" type="text" placeholder="세번째예약일" readonly /></a>
-				<a><input id ="tr_date4" name = "tr_date4" type="text" placeholder="네번째예약일" readonly /></a>
-				<a><input id ="tr_date5" name = "tr_date5" type="text" placeholder="다섯번째예약일" readonly /></a>
-				<a><input id ="tr_date6" name = "tr_date6" type="text" placeholder="여섯번째예약일" readonly /></a>
-				<a><input id ="tr_date7" name = "tr_date7" type="text" placeholder="일곱번째예약일" readonly /></a>
-				<a><input id ="edu_pet_name" name ="edu_pet_name" type="text" placeholder="예약요청한반려견" readonly /></a>
-				<a><input id = "edu_pet_img" name = "edu_pet_img" type="text" placeholder="예약요청한반려견사진" readonly /></a>
-				<a><input id = "totalcnt" name ="totalcnt" type="text" placeholder="수강 횟수" readonly /></a>
-				<a><input id = "tr_totalprice" name ="tr_price" type ="text" placeholder="총 수강 금액" readonly /></a>
+				<div id = "tr_img_box">
+					<a id="tr_img_name" type= "text">트레이너 사진<img src="<%=request.getContextPath()%>/nbShop/img/trainer5.png" id = "tr_img" name = "tr_img"  /></a>
+				</div>
+				
+				<div id = "tr_info_box">
+					<a id="tr_mem_name">담당 훈련사<input style="color : royalblue; " id ="tr_mem_name" name = "tr_mem_name" type="text" placeholder="훈련사이름" value="<%=tr_mem_name%>" readonly /></a>
+					<a id="tr_mem_hp">전화번호<input id ="tr_mem_hp" name = "tr_mem_hp" type="text" placeholder="전화번호" readonly /></a>
+					<a id="tr_mem_reg_date">예약신청일<input style="color : royalblue; " id ="tr_reg_date" name = "tr_reg_date" type="text" placeholder="수강신청일자" value="<%=tr_mem_reg_date%>" readonly /></a>
+				</div>
+				<div id = "tr_date_box">
+					<a id= "tr_date_title">수강예약일</a>
+					<input id ="tr_date1" name = "tr_date1" type="text" placeholder="첫번째 예약일" value="<%=tr_date1%>" readonly />
+					<input id ="tr_date2" name = "tr_date2" type="text" placeholder="두번째 예약일" value="<%=tr_date2%>" readonly />
+					<input id ="tr_date3" name = "tr_date3" type="text" placeholder="세번째 예약일" value="<%=tr_date3%>"  readonly />
+					<input id ="tr_date4" name = "tr_date4" type="text" placeholder="네번째 예약일" value="<%=tr_date4%>"  readonly />
+					<input id ="tr_date5" name = "tr_date5" type="text" placeholder="다섯번째 예약일" value="<%=tr_date5%>"  readonly />
+					<input id ="tr_date6" name = "tr_date6" type="text" placeholder="여섯번째 예약일" value="<%=tr_date6%>"  readonly />
+					<input id ="tr_date7" name = "tr_date7" type="text" placeholder="일곱번째 예약일" value="<%=tr_date7%>"  readonly />
+				</div>
+				<div id = "edu_img_box">
+					<a id="edu_img_name" type= "text">예약한 반려견이름<img src="<%=request.getContextPath()%>/nbShop/img/bori.png" id = "edu_img"  /></a>
+				</div>
+				<div id =  "tr_result_box">
+					<div id = "tr_totalcnt_box">
+						<a>수강 횟수<input id = "totalcnt" name ="totalcnt" type="text" placeholder="수강 횟수" value = "<%=totalcnt%>" readonly /></a>
+					</div>
+					<div id = "tr_totalprice_box">
+						<a>총 수강 금액<input id = "tr_totalprice" name ="tr_price" type ="text" placeholder="총 수강 금액" value = "<%=tr_totalprice%>" readonly /></a>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div id ="reservationBtnWrapper">
 			<div>
-				<a id ="back" class = btn href="#">일정 다시선택하기 </a>
-				<a type="submit" class = "btn">예약 확정</a>
-				<a class= "btn">늘봄 샵으로</a>
+				<a id ="nb_backbtn" class = btn href="#">일정 다시선택하기 </a>
+				<a id = "nb_submitbtn" type="submit" class = "btn"  onclick="document.getElementById('form').submit();" >예약 확정</a>
+				<a id = "nb_shopbtn" class= "btn" href="<%=request.getContextPath()%>/nb/pet.shop?center=/nbShop/pet.jsp">늘봄 샵으로</a>
 			</div>
 		</div>
 	</div>
-</form>
 	 <br>
 	 <br>
 <script>
+
+var don = 0;
 	
 	// jquery 호출 옵션 
 	$(document).ready(function(){
-		
+        
 		// id 값이 back인 버튼을 클릭했을 때
-		$("#back").on("click", function(){
+		$("#nb_backbtn").on("click", function(){
 			
 			 // 이전 페이지로 이동하게 한다.
 			 history.back();
-		})
+			 
+		});
+		
 
-	})
-	
+
+	});
+
 </script>
+</form>
 </body>
 </html>
