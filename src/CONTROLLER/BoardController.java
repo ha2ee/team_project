@@ -3,6 +3,9 @@ package CONTROLLER;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.io.File;
 
 import com.oreilly.servlet.multipart.*;
@@ -15,6 +18,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import DAO.BoardDAO;
 import DAO.FreeBoardDAO;
@@ -36,6 +43,10 @@ public class BoardController extends HttpServlet{
 	//MemberVo객체를 저장할 참조변수 선언
 //	MemberVo membervo;
 	
+	private static String ARTICLE_REPO = "/Users/inseop/Desktop/팀프로젝트/upload";
+	List items;
+	FileItem fileItem;
+ 	
 	@Override
 	public void init() throws ServletException {
 		boarddao = new FreeBoardDAO();
@@ -152,9 +163,6 @@ public class BoardController extends HttpServlet{
 			String id = "inseop";
 			String nickname = "seeeop2";
 			
-			String title = request.getParameter("title");
-			String content = request.getParameter("editor1");
-			
 //			//업로드 작업 중ㅇ...
 //			String directory = request.getSession().getServletContext().getRealPath("/")+"Upload";
 //			System.out.println(directory);
@@ -167,11 +175,22 @@ public class BoardController extends HttpServlet{
 //			String fileRealName = multipartRequest.getFilesystemName("file");
 //			//여기까지
 			
-			String fileName = request.getParameter("fileName");
-//			
-			if(fileName == null || fileName.length() == 0) {
-				fileName = "파일없음";
-			}
+			int articleNO = 0;//글번호 폴더를 생성하기 위해 글번호를 받아 저장할 변수 
+			
+			//폴더에 업로드 후 업로드한 파일 정보들을 받아옵니다.  
+			Map<String, String> articleMap = upload(request, response);
+			
+			String	title = articleMap.get("title"); //작성자 
+			String	content = articleMap.get("editor1");//글을 작성하는 회원 아이디
+			String fileName = articleMap.get("fileName");//글을 작성할때 업로드하기위해
+														 //첨부한 파일명 
+			
+			
+			
+////			
+//			if(fileName == null || fileName.length() == 0) {
+//				fileName = "파일없음";
+//			}
 
 			vo= new FreeBoardVo(id, nickname, title, content, fileName);
 			int result = boarddao.insertBoard(vo);
@@ -390,6 +409,105 @@ public class BoardController extends HttpServlet{
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);
 	}
+	//파일을 웹애플리케이션 서버의 하드디스크 공간에 업로드 하는 기능의 메소드 
+	private Map<String, String> upload(HttpServletRequest request, 
+									   HttpServletResponse response) 
+									   throws ServletException, IOException{
+		
+		//가변 길이 메모리 
+		Map<String, String> articleMap = new HashMap<String, String>();
+		
+		//한글처리 
+		request.setCharacterEncoding("UTF-8");
+		
+		//인코딩 방식 UTF-8 문자열을 변수에 저장
+		String encoding = "UTF-8";
+		
+		//업로드할 파일 폴더경와 연결된 File객체 생성
+		File currentDirPath = new File(ARTICLE_REPO);
+		
+		//업로드할 파일 데이터를 임시로 저장할 객체 메모리 생성
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		//임시 메모리의 최대 사이즈를 1메가 바이트로 설정
+		factory.setSizeThreshold(1024*1024*1);
+		//임시 메모리에 파일업로드시~ 지정한 1메가 바이트크기를 넘길경우
+		//실제 업로드될 파일 폴더 경로를 설정
+		factory.setRepository(currentDirPath);
+		
+		/*
+		  참고. DiskFileitemFactory클래스는 
+		           업로드 파일의 크기가 지정한 임시메모리의 크기를 넘기기전까지는
+		           업도르 한 파일 데이터를 임시메모리에 저장하고
+		           지정한 임시메모리 크기를 넘길 경우 최종 업로드할 폴더에 업로드 시킨다.    
+		 */
+		
+		//파일 업로드할 메모리를 생성자쪽으로 전달받아 저장하여 생성되는
+		//파일업로드 기능을 처리할 객체 생성
+		ServletFileUpload upload = new ServletFileUpload(factory);
 	
+		try {
+			
+			//uploadForm.jsp에서 업로드요청할 파일의 정보,
+			//입력한 문자열 정보들이 저장된 request객체 메모리를
+			//ServletFileUpload객체의 parseRequest메소드 호출시 
+			//매개변수로 전달 하면 
+			//request객체메모리에 저장된 요청하는 아이템들을
+			//파싱(추출)해서 DiskFileItem객체에 각각 저장한 후 
+			//DiskFileItem객체들을  ArrayList배열에 추가합니다.
+			//그 후 ArrayList배열 자체를 반환 받습니다. 
+			 items  = upload.parseRequest(request);
+			 
+			 //ArrayList가변 길이 배열의 크기만큼(DiskFileItem객체의 갯수만큼) 반복
+			 for(int i=0;  i<items.size(); i++) {
+				 
+				 //ArrayList가변 배열에서..DiskFileItem객체를 얻는다.
+				 fileItem = (FileItem)items.get(i);
+				 
+				 //DiskFileItem객체(요청한 아이템 하나의 정보)가  
+				 //파일 아이템이 아닐경우
+				 if(fileItem.isFormField()) {
+					System.out.println(fileItem.getFieldName() + "=" + fileItem.getString(encoding));
+					
+					articleMap.put(fileItem.getFieldName(), fileItem.getString(encoding));
+					
+					    //DiskFileItem객체(요청한 아이템 하나의 정보)가  
+				 }else {//파일일 경우 
+					 System.out.println("파라미터:" + fileItem.getFieldName());
+					 System.out.println("파일명:" + fileItem.getName());
+					 System.out.println("파일크기:" + fileItem.getSize() + "bytes");
+					 
+					 //업로드할 파일의 크기가 0보다 크다면?(업로드할 파일이 있다면?)
+					 if(fileItem.getSize() > 0) {
+						 
+						 //업로드할 파일명을 얻어  파일명의 뒷에서부터 \\문자열이 포함되어 있는지
+						 //index위치번호를 알려주는데 없으면 -1을 반환함
+						 int idx = fileItem.getName().lastIndexOf("\\");
+			
+						 System.out.println(idx);
+			
+						 if(idx == -1) {//업로드할 파일명에 \\문자열이 포함되어 있지 않으면?
+							 idx = fileItem.getName().lastIndexOf("/"); // -1 얻기
+							 System.out.println("안녕:" + idx);
+						 }
+						 
+						 //업로드할 파일명 얻기
+						 String fileName = fileItem.getName().substring(idx+1);
+						 //업로드할 파일 경로 + 파일명을 만들어서 그경로에 접근할 File객체 생성
+						 File uploadFile = new File(currentDirPath + "\\temp\\" + fileName);
+						 
+						 //해쉬맵에 업로드한 파일명 저장 
+						 articleMap.put(fileItem.getFieldName(), fileName);
+						 
+						 //실제 위 경로에 파일 업로드
+						 fileItem.write(uploadFile);
+					 }				 
+				 }		 
+			 }		
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+		}	
+		return articleMap;	
+	}//upload메소드 끝
 	
 }

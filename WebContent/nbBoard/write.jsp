@@ -29,7 +29,7 @@ String contextPath = request.getContextPath();
   
   	<div style="width: 1200px; margin: 0 auto; margin-bottom: 20px">
   		<div>
-	        <form action="<%=contextPath%>/freeboard/writePro.fb" method="post">
+	        <form action="<%=contextPath%>/freeboard/writePro.fb" method="post" enctype="multipart/form-data">
 		      <h1> 게시글 작성 </h1> <br>
 	          <input type="text" name="title" style="width: 100%; box-sizing: border-box; font-size: 20px" placeholder="제목을 입력해주세요"> 
 	                  											<%-- box-sizing: border-box를 style에 넣어줘야 너비 끝부분 처리가 완벽 --%>
@@ -41,16 +41,18 @@ String contextPath = request.getContextPath();
 	                CKEDITOR.replace( 'editor1',{
 	                	height : 500
 	                } );
+//	      			var str = CKEDITOR.instances.editor1.getData();
 	            </script>
 	             <br>
+	             <!-- <input type="hidden" name="content11" id="content11"> -->
 	            <div style="width: 1200px; display:flex; justify-content:space-between;  margin:0 auto;  " >
 	             
-               		<div><input type="file" name="fileName" id="fileName"></div>
+               		<div><input type="file" name="fileName"></div>
                	
                		<div>
                 		<div style="display: inline-block;"><input type="button" value="목 록" style="width: 100%; font-weight: bold;" onclick="location.href='<%=contextPath%>/freeboard/list.fb'" /></div>
                 		&nbsp;
-	                	<div style="display: inline-block;"><input type="submit" value="등 록" id="registration" style="width: 100%; font-weight: bold;" onclick="checkFile()"></div>
+	                	<div style="display: inline-block;"><input onclick="javascript:fnsubmit();" type="button" value="등 록" id="registration" style="width: 100%; font-weight: bold;"></div>
                		</div>
                	
   				</div>
@@ -108,7 +110,13 @@ String contextPath = request.getContextPath();
   	
   	</script>
  --%>  		
-  		
+	<script type="text/javascript">
+	function fnsubmit(){
+//		$("#content11").attr("value",str);
+		$("form").submit();
+	}
+	
+	</script>
   		
   		
   		
