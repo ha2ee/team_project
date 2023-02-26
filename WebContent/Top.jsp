@@ -1114,13 +1114,6 @@ $.ajax({
    	},
 });
 
-    
-    
-    
-    
-    
-    
-    
 }
 
 function showErrorMsg(error) { // 실패했을때 실행

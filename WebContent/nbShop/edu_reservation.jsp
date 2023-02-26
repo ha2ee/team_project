@@ -23,6 +23,7 @@
 	
 	// 예약 작성일 가져와서 변수에 저장
 	String tr_mem_reg_date = request.getParameter("tr_mem_reg_date");
+	String tr_reg_date = request.getParameter("reg_date");
 
 
 %>    
@@ -1253,7 +1254,8 @@
 				<div id = "tr_info_box">
 					<a id="tr_mem_name">담당 훈련사<input style="color : royalblue; " id ="tr_mem_name" name = "tr_mem_name" type="text" placeholder="훈련사이름" value="<%=tr_mem_name%>" readonly /></a>
 					<a id="tr_mem_hp">전화번호<input id ="tr_mem_hp" name = "tr_mem_hp" type="text" placeholder="전화번호" readonly /></a>
-					<a id="tr_mem_reg_date">예약신청일<input style="color : royalblue; " id ="tr_reg_date" name = "tr_reg_date" type="text" placeholder="수강신청일자" value="<%=tr_mem_reg_date%>" readonly /></a>
+					<a id="tr_mem_reg_date">예약신청일<input style="color : royalblue; " id ="tr_reg_date" name = "tr_reg_date" type="text" placeholder="수강신청일자" value="<%=tr_reg_date%>" readonly /></a>
+					<input type="hidden" id="tr_mem_reg_date" name=  "tr_mem_reg_date" value = "<%=tr_mem_reg_date%>" />
 				</div>
 				<div id = "tr_date_box">
 					<a id= "tr_date_title">수강예약일</a>

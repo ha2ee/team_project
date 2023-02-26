@@ -495,8 +495,10 @@ String tr_price = request.getParameter("tr_price");
 	var clickdate = 0;
 
 	var regdate = moment(date).format('YYYY-MM-DD');
+	var reg_date = moment(date).format('LL');
+	
 	console.log(regdate);
-
+	console.log(reg_date);
     
     /**
      * @brief   이전달 버튼 클릭
@@ -883,6 +885,7 @@ String tr_price = request.getParameter("tr_price");
     	$("#submitbtn").on("click", function(){
     		
     		$("#tr_mem_reg_date").attr("value", regdate);
+    		$("#reg_date").attr("value", reg_date);
     		
     		if($("#selectDate1").val() == ""){
     			
@@ -902,6 +905,7 @@ String tr_price = request.getParameter("tr_price");
 
 <!-- 예약한 날짜 넘기기 -->
 <input type="hidden" name ="tr_mem_reg_date" id="tr_mem_reg_date" />
+<input type="hidden" name ="reg_date" id="reg_date" />
 
 <!-- 캘린더 넣기 -->
 <div id = "calandtotalWrapper">
