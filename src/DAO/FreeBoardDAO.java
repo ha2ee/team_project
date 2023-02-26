@@ -120,6 +120,47 @@ public class FreeBoardDAO {
 		
 		return result;
 	}
+
+	public FreeBoardVo boardRead(int b_idx) {
+		FreeBoardVo vo = null;
+	
+		try {
+			con = ds.getConnection();
+
+			String sql = "SELECT * FROM FREE_BOARD WHERE B_IDX=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, b_idx);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+			vo = new FreeBoardVo();
+			
+			vo.setB_idx(rs.getInt("b_idx"));
+			vo.setB_id(rs.getString("b_id"));
+			vo.setB_nickname(rs.getString("b_nickname"));
+			vo.setB_title(rs.getString("b_title"));
+			vo.setB_content(rs.getString("b_content"));
+			vo.setB_group(rs.getInt("b_group"));
+			vo.setB_level(rs.getInt("b_level"));
+			vo.setB_date(rs.getDate("b_date"));
+			vo.setB_cnt(rs.getInt("b_cnt"));
+			vo.setB_file(rs.getString("b_file"));
+			vo.setB_like(rs.getInt("b_like"));
+			
+			System.out.println(vo.getB_idx());
+			}
+		
+			
+		} catch (Exception e) {
+			System.out.println("boardRead 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
+			e.printStackTrace();
+		} finally {
+			closeResource();
+		}
+		
+		
+		return vo;
+	}
 	
 	
 	

@@ -80,7 +80,7 @@ function fnSearch(){
       <!--제목-->
       <form class="Form-Box Title-And-Del" action="#">
         <div class="Title">
-          <span>공지사항</span>
+          <span>자 유 게 시 판</span>
         </div>
         <div class="Sel-And-Del-Btn" style="height: 30px">
         	<input type="text" >
@@ -117,7 +117,7 @@ function fnSearch(){
         		FreeBoardVo vo =(FreeBoardVo) list.get(i);
         		
         %>
-			<a href="<%=contextPath%>/freeboard/read.fb" class="List-1 flex">
+			<a href="javascript:fnRead('<%=vo.getB_idx()%>')" class="List-1 flex">
                 <div style="width: 5%">
                   <span><%=vo.getB_idx()%></span>	
                 </div>
@@ -184,9 +184,23 @@ function fnSearch(){
         </div>
       </form>
     </div>
+    
+    
+    <form name="frmRead">
+    	<input type="hidden" name="b_idx">
+    </form>
+    
    	
  
+ <script type="text/javascript">
  
+ 	function fnRead(val){
+ 		document.frmRead.action = "<%=contextPath%>/freeboard/read.fb";
+ 		document.frmRead.b_idx.value = val;
+ 		document.frmRead.submit();
+ 	}
+ 
+ </script>
  
 
 </body>

@@ -3,6 +3,10 @@ package CONTROLLER;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.io.File;
+
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.oreilly.servlet.MultipartRequest;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -150,6 +154,16 @@ public class BoardController extends HttpServlet{
 			
 			String title = request.getParameter("title");
 			String content = request.getParameter("editor1");
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			String fileName = request.getParameter("fileName");
 			
 			if(fileName == null || fileName.length() == 0) {
@@ -173,20 +187,20 @@ public class BoardController extends HttpServlet{
 			
 //		// 게시판에서 제목을 클릭해서 내용을 보려고 할때
 		case "/read.fb":	
-//			
+			System.out.println("여기까지 오니?");
 //			
 //			//요청한 값 얻기
-//			String b_idx = request.getParameter("b_idx");
+			int b_idx = Integer.parseInt( request.getParameter("b_idx") );
+			System.out.println(b_idx);
 //			nowPage = request.getParameter("nowPage");
 //			nowBlock = request.getParameter("nowBlock");
 //			
 //			// 요청한 값 출력해보기
-//			System.out.println(b_idx);
 //			System.out.println(nowPage);
 //			System.out.println(nowBlock);
 //			
 //			//글 번호 (b_idx)를 이용해 수정 또는 삭제를 위해 DB로 부터 조회하기
-//			vo = boarddao.boardRead(b_idx);
+			vo = boarddao.boardRead(b_idx);
 //			
 //			// 중앙화면에 read.jsp로 전달하기 위해 setAttribute로 담음
 //			// 페이지번호, 페이지블럭번호, 글번호 3가지
@@ -194,13 +208,10 @@ public class BoardController extends HttpServlet{
 //			request.setAttribute("nowBlock", nowBlock);
 //			request.setAttribute("b_idx", b_idx);
 //			
-//			// 글번호로 조회한 정보도 받아와서 설정
-//			request.setAttribute("vo", vo);
-//			
-//			// 중앙화면에 요청할 주소를 read.jsp로 설정
+			request.setAttribute("vo", vo);
 			request.setAttribute("center", "nbBoard/read.jsp");
 
-			nextPage = "/CarMain.jsp";
+	        nextPage = "/nbMain.jsp";
 			break;
 //			
 //			//요청한 값을 BoardVo객체의 각 변수에 저장
