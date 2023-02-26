@@ -246,7 +246,6 @@ public class nbMemberController extends HttpServlet{
 				
 				break;
 				
-				
 		
 				
 				
