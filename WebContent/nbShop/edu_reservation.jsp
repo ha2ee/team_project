@@ -1394,6 +1394,33 @@ input#file-upload-button {
 	$(document).ready(function(){
 		
 		
+		// 만약에 가져온 트레이너 이름이 강형욱이라면
+		if( $("#tr_mem_name > input").val() == "강형욱" ){
+			
+			// 사진을 바꿔준다.
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer1.png");
+			
+		// 다니엘 헤니라면	
+		}else if( $("#tr_mem_name > input").val() == "다니엘헤니" ){
+			
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer2.png");
+		
+		// 김효진이라면
+		}else if( $("#tr_mem_name > input").val() == "김효진" ){
+			
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer3.png");
+		
+		// 이경규라면
+		}else if( $("#tr_mem_name > input").val() == "이경규" ){
+				
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer4.png");
+		// 박봄이라면
+		}else{
+			
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer5.png");
+			
+		}
+		
 		
 		// 강아지 사진을 올리면,
 		$("#pet_img_name > input").on("mouseout" , function(){
@@ -1420,7 +1447,6 @@ input#file-upload-button {
 			$("#edu_img_name").text(pet_name).css("color", "#5cb85cc7");
 		})
 		
-
 		
 		// 최종금액에 콤마단위가 들어간 금액으로 설정
 		$("#tr_totalprice").attr("value", tr_totalprice2);
