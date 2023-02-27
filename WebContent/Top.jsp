@@ -636,7 +636,7 @@ body{
 			</ul>
 			<ul class="list_lnb_03">
 				<li><a href="<%=request.getContextPath()%>/nb/free.bo?center=/nbBoard/freeboard.jsp">자유 게시판</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/trainer.bo?center=/nbBoard/trainerboard.jsp">훈련사 상담</a></li>
+				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/review.bo?center=/nbBoard/review.jsp">수강 후기</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
 			</ul>
