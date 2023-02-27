@@ -304,7 +304,7 @@
                         
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer1.png" alt=""/><br>강형욱 훈련사<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer1.png" alt=""/><br>강형욱<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
@@ -318,35 +318,35 @@
                          <div class="post-slide">
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer2.png" alt=""/><br>훈련사2<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer2.png" alt=""/><br>다니엘<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
                                 <img src="<%=contextPath%>/nbShop/img/trainer2.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <br>훈련사 2 설명<br><br><br><br><br>
+                               <br>다니엘 헤니 훈련사는..?<br><br><br><br><br>
                             </p>
                         </div>
 
                          <div class="post-slide">
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer3.png" alt=""/><br>훈련사3<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer3.png" alt=""/><br>김효진<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
                                 <img src="<%=contextPath%>/nbShop/img/trainer3.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <Br>훈련사 3 설명<br><br><br><br><br>
+                               <Br>김효진 훈련사는..?<br><br><br><br><br>
                             </p>
                         </div>
 
                         <div class="post-slide">
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer4.png" alt=""/><br>이경규 훈련사<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer4.png" alt=""/><br>이경규<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
@@ -361,7 +361,7 @@
                          <div class="post-slide">
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer5.png" alt=""/><br>박봄 훈련사<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer5.png" alt=""/><br>박&nbsp;&nbsp;봄<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
@@ -384,13 +384,13 @@
 				<input type="hidden" name="tr_price" value="300000" readonly ="readonly" />
 			</a>	
 			</div>
-			<div id= "tr_name2">이순신<br>훈련사님<br>
+			<div id= "tr_name2">다니엘 헤니<br>훈련사님<br>
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=이순신&tr_price=100000&center=/nbShop/calendar.jsp">
 				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
 				<input type="hidden" name="tr_price" value="100000"  readonly ="readonly" />
 			</a>
 			</div>
-			<div id= "tr_name3">세종대왕<br>훈련사님<br>
+			<div id= "tr_name3">김효진<br>훈련사님<br>
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=세종대왕&tr_price=100000&center=/nbShop/calendar.jsp">
 				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
 				<input type="hidden" name="tr_price" value="100000"  readonly ="readonly" />
@@ -402,7 +402,7 @@
 				<input type="hidden" name="tr_price" value="100000"  readonly ="readonly" />
 			</a>
 			</div>	
-			<div id= "tr_name5">박봄<br>대표 훈련사님
+			<div id= "tr_name5">박&nbsp;봄<br>대표 훈련사님
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=박봄&tr_price=200000&center=/nbShop/calendar.jsp">
 				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
 				<input type="hidden" name="tr_price" value="200000" readonly ="readonly" />
