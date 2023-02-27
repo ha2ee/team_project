@@ -165,6 +165,9 @@ public class TrainerBoardController extends HttpServlet{
 				
 				nextPage = "/nbMain.jsp";
 	    	  
+	      } else if (action.equals("/read.bo")) {
+	    	  
+	    	  
 	      }
 			
 		
