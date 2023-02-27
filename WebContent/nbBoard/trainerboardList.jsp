@@ -106,7 +106,7 @@
 	클릭한 제목글이 속한 페이지번호 와 페이지 번호를 묶은 블럭번호 같이 전달
 	-->
 	<form name="frmRead">  
-		<input type="hidden" name="b_idx">
+		<input type="hidden" name="cb_idx">
 		<input type="hidden" name="nowPage" value="<%=nowPage%>">
 		<input type="hidden" name="nowBlock" value="<%=nowBlock%>">
 	</form>

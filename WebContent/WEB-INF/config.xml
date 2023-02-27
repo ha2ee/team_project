@@ -17,8 +17,11 @@
 	Configure the location of uploaded files. See the following article for more details:
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
-	<baseDir>C:\myJSP\workspace_jsp\TeamProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\TeamProject</baseDir>
-	<baseURL>/TeamProject/ckstorage</baseURL>
+<!-- 	<baseDir>C:\myJSP\TeamProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\TeamProject\ckstorage</baseDir> -->
+<!-- 	<baseDir>C:\Users\HP\git\neulbom\WebContent\ckstorage</baseDir> -->
+	<baseDir></baseDir>
+	<baseURL>http://localhost:8090/TeamProject/ckstorage</baseURL>
+	<!-- C:\myJSP\TeamProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\TeamProject\ckstorage\images 여기로 저장됨 -->
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
 	<!--

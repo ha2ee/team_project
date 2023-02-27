@@ -23,6 +23,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 
+import VO.BoardVo;
 import VO.FileBoardVo;
 import VO.TrainerBoardVo;
 
@@ -396,6 +397,64 @@ public class TrainerBoardDAO {
 			
 			
 			return total;
+		}
+
+		public TrainerBoardVo boardRead(HttpServletRequest request) {
+
+			String cb_idx = request.getParameter("cb_idx");
+			System.out.println("cb_idx값은?" + cb_idx);
+			
+			TrainerBoardVo vo = null;
+			String sql = null;
+			try {
+				con = ds.getConnection();
+				
+				sql = "UPDATE trainer_board SET cb_cnt = cb_cnt +1 where cb_idx = ?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(cb_idx));
+				pstmt.executeUpdate();
+				
+				
+				sql = "select * from trainer_board where cb_idx = ?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(cb_idx));
+				
+				rs = pstmt.executeQuery();
+				
+				//조회된 Result의 정보를 한행 단위로 꺼내서
+				//BoardVo객체에 한행의 정보를 저장합니다.
+				if(rs.next()) {
+					vo = new TrainerBoardVo(rs.getInt("cb_idx"),  //getIdx()
+										rs.getString("cb_id"), //getB_Idx()
+										rs.getString("cb_nickname"),
+										rs.getString("cb_title"), 
+										rs.getString("cb_content"), 
+										rs.getInt("cb_group"), 
+										rs.getInt("cb_level"), 
+										rs.getDate("cb_date"), 
+										rs.getInt("cb_cnt"),
+										rs.getString("cb_file")
+										);
+										
+					
+				}
+			}catch (Exception e) {
+				System.out.println("boardRead메소드에서 SQL오류 : ");
+				e.printStackTrace();
+			}finally {
+				//자원해제
+				closeResource();
+			}
+			
+			return vo;
+			 
+		}
+
+		public String serviceBoardReadView() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 		
 		

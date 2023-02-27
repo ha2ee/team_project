@@ -124,7 +124,7 @@ a:hover {
 </script>
 </head>
 <body>
-    <h1>페이징 처리된 게시판</h1>
+    <h1>페이징 처리중</h1>
     
     <table>
         <thead>

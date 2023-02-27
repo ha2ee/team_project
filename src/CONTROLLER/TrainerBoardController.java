@@ -88,7 +88,7 @@ public class TrainerBoardController extends HttpServlet{
 		//요청한 중앙화면 뷰 주소를 저장할 변수
 		String center = null;
 		//BoardVo객체를 저장할 참조변수 선언
-		BoardVo vo = null;
+		TrainerBoardVo vo = null;
 		ArrayList list = null;
 		int count = 0;
 		String key = null;
@@ -166,7 +166,22 @@ public class TrainerBoardController extends HttpServlet{
 				nextPage = "/nbMain.jsp";
 	    	  
 	      } else if (action.equals("/read.bo")) {
-	    	  
+	    	  vo = trainerboarddao.boardRead(request);
+				
+				
+				
+				//글제목을 눌러 글을 조회한 후 보여주는 중앙 화면  View 주소를 얻어옴
+				center = "nbBoard/trainerboardRead.jsp";
+				
+		
+				request.setAttribute("center", center);
+				request.setAttribute("vo", vo);
+				
+				request.setAttribute("nowPage", request.getParameter("nowPage")); //중앙화면 FileBoardread.jsp로 전달을 위해
+				request.setAttribute("nowBlock", request.getParameter("nowBlock"));
+				request.setAttribute("cb_idx", request.getParameter("cb_idx"));//글번호
+				
+				nextPage = "/nbMain.jsp";
 	    	  
 	      }
 			
