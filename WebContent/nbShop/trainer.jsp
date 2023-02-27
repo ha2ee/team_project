@@ -381,31 +381,26 @@
 			<div id= "tr_name1">강형욱<br>특급 훈련사님
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=강형욱&tr_price=300000&center=/nbShop/calendar.jsp">
 				<input class ="btn2" type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
-				<input type="hidden" name="tr_price" value="300000" readonly ="readonly" />
 			</a>	
 			</div>
 			<div id= "tr_name2">다니엘 헤니<br>훈련사님<br>
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=이순신&tr_price=100000&center=/nbShop/calendar.jsp">
 				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
-				<input type="hidden" name="tr_price" value="100000"  readonly ="readonly" />
 			</a>
 			</div>
 			<div id= "tr_name3">김효진<br>훈련사님<br>
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=세종대왕&tr_price=100000&center=/nbShop/calendar.jsp">
 				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
-				<input type="hidden" name="tr_price" value="100000"  readonly ="readonly" />
 			</a>
 			</div>
 			<div id= "tr_name4">이경규<br>훈련사님<br>
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=이경규&tr_price=100000&center=/nbShop/calendar.jsp">
 				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
-				<input type="hidden" name="tr_price" value="100000"  readonly ="readonly" />
 			</a>
 			</div>	
 			<div id= "tr_name5">박&nbsp;봄<br>대표 훈련사님
 			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=박봄&tr_price=200000&center=/nbShop/calendar.jsp">
 				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
-				<input type="hidden" name="tr_price" value="200000" readonly ="readonly" />
 			</a>
 			</div>
 		</div>
