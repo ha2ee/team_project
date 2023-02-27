@@ -304,14 +304,14 @@
                         
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer1.png" alt=""/><br>훈련사1<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer1.png" alt=""/><br>강형욱 훈련사<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
                                 <img src="<%=contextPath%>/nbShop/img/trainer1.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <br>훈련사 1 설명<br><br><br><br><br>
+                               <br>강형욱 훈련사는..?<br><br><br><br><br>
                             </p>
                         </div>
 
