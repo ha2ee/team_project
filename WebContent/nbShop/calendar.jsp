@@ -910,6 +910,52 @@ String tr_price = request.getParameter("tr_price");
    	    	$("#tr_totalprice > input").attr("value", "");
    	    	resultcnt = 0;
    	    	totalresult = 0;
+   	    	
+    		// 당월 마지막 날짜에서 현재날짜를 뺀 값이 0이면
+    		if (diffday == 0){
+    			
+    			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#4").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#5").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#6").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    		
+    		// 1이면
+    		}else if(diffday == 1){
+    			
+    			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#4").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#5").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			
+   			// 2이면
+    		}else if (diffday == 2){
+    			
+    			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#4").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    		
+   			// 3이면
+    		}else if (diffday == 3){
+    			
+    			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+			
+   			// 4이면
+			}else if (diffday == 4){
+			
+				$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+				$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+			
+			// 5이면
+			}else if (diffday == 5){
+			
+				$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+			}
     		
     	})
     	
@@ -932,8 +978,18 @@ String tr_price = request.getParameter("tr_price");
     	// 다음 버튼을 눌렀을 때,
     	$("#next").on("click", function (){
    			
-    		// 당월 마지막 날짜에서 현재날짜를 뺀 값이 1이면
-    		if(diffday == 1){
+    		// 당월 마지막 날짜에서 현재날짜를 뺀 값이 0이면
+    		if (diffday == 0){
+    			
+    			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#4").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#5").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#6").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+
+    		// 1이면
+    		}else if(diffday == 1){
     			
     			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
     			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
