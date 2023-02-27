@@ -456,7 +456,7 @@
 	position :relative;
 	text-align :center;
 	width : 250px;
-	height : 255px;
+	height : 275px;
 	margin : 0 auto;
 	left : -474px;
 	right : 0;
@@ -488,7 +488,7 @@
 
 }
 
-#pet_img {
+#pet_img_box > img {
 
 	border : 1px solid #fff5f373;
 	
@@ -506,6 +506,36 @@
 
 }
 
+#pet_img {
+
+    border: 1px solid #fff5f373;
+    
+    width: 75px;
+    height: 25px;
+    position: relative;
+    left: 2px;
+    top: 210px;
+    right: 0;
+    margin: 0 auto;
+    font-size : 13px;
+    text-align : center;
+
+}
+
+input#file-upload-button {
+
+    border: 1px solid red;
+   
+    width: 230px;
+    height: 35px;
+    position: relative;
+    left: 0;
+    top: 180px;
+    right: 0;
+    margin: 0 auto;
+
+}
+
 #pet_box > #pet_info_box {
 
 	border : 1px solid #fff5f373;
@@ -513,11 +543,11 @@
 	position :relative;
 	text-align :center;
 	width : 820px;
-	height : 255px;
+	height : 275px;
 	margin : 0 auto;
 	left : 65px;
 	right : 0;
-	top : -255px;
+	top : -275px;
 
 }
 
@@ -571,11 +601,11 @@
 	position :relative;
 	text-align :center;
 	width : 133px;
-	height : 255px;
+	height : 275px;
 	margin : 0 auto;
 	left : 533px;
 	right : 0;
-	top : -510px;
+	top : -550px;
 
 }
 
@@ -699,7 +729,7 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-	height : 362px;
+	height : 325px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -914,6 +944,22 @@
 
 }
 
+ #edu_name_box {
+ 
+	border : 1px solid #fff5f373;
+	
+	position :relative;
+	text-align :center;
+	width : 250px;
+	height : 38px;
+	margin : 0 auto;
+	left : 115px;
+	right : 0;
+	top : -720px;
+
+}
+
+
 
  #edu_img_box {
  
@@ -922,7 +968,7 @@
 	position :relative;
 	text-align :center;
 	width : 250px;
-	height : 240px;
+	height : 202px;
 	margin : 0 auto;
 	left : 115px;
 	right : 0;
@@ -961,12 +1007,12 @@
 	vertical-align : middle;
 	position :relative;
 	text-align :center;
-	width : 200px;
-	height : 200px;
+	width : 180px;
+	height : 180px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
-	top : 4px;
+	top : 11px;
 	padding : 10px;
 	border-radius: 100px;
 
@@ -1254,7 +1300,7 @@
 					<a id ="petcheck" class = btn href="#">반려견 정보 가져오기</a>
 				</div>
 				<div id = "pet_img_box">
-					<a id="pet_img_name" type= "text">반려견 사진<img src="<%=request.getContextPath()%>/nbShop/img/bori.png" id = "pet_img" name = "pet_img"  /></a>
+					<a id="pet_img_name" type= "text">반려견 사진<input type="file" id="pet_img" name="pet_img" accept="image/*" onchange="setThumbnail(event);"/></a>
 				</div>
 				<div id = "pet_info_box">
 					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" placeholder="반려견이름"  />
@@ -1316,8 +1362,11 @@
 					<input id ="tr_date6" name = "tr_date6" type="text" placeholder="여섯번째 예약일" value="<%=tr_date6%>"  readonly />
 					<input id ="tr_date7" name = "tr_date7" type="text" placeholder="일곱번째 예약일" value="<%=tr_date7%>"  readonly />
 				</div>
-				<div id = "edu_img_box">
-					<a id="edu_img_name" type= "text">예약한 반려견이름<img src="<%=request.getContextPath()%>/nbShop/img/bori.png" id = "edu_img"  /></a>
+				<div id = "edu_name_box">
+					<a id="edu_img_name" type= "text">예약한 반려견이름</a>
+				</div>
+				<div id = "edu_img_box">	
+					<img  src="#" id = "edu_img"  />
 				</div>
 				<div id =  "tr_result_box">
 					<div id = "tr_totalcnt_box">
@@ -1344,14 +1393,32 @@
 	// jquery 호출 옵션 
 	$(document).ready(function(){
 		
-// 		// 강아지 이름을 입력하면,
-// 		$("#pet_name").on("focusout" , function(){
+		
+		
+		// 강아지 사진을 올리면,
+		$("#pet_img_name > input").on("mouseout" , function(){
 			
-// 			// 예약 반려견으로 바꿔준다.
-// 			$("#edu_img_box > a").text("예약 반려견 : "+$("#pet_name").val()).css("color", "#5cb85cc7");
+			// 강아지 사진의 출처를 저장한 뒤,
+			var src = $("#pet_img_box > img").attr("src");
+			
+			// 예약 반려견으로 바꿔준다.
+			$("#edu_img").attr("src", src);
 			
 
-// 		})
+		})
+		
+		// 강아지 이름을 입력하면,
+		$("#pet_name").keyup(function(){
+			
+			// 강아지 이름을 저장한 뒤,
+			var pet_name = $("#pet_name").val();
+			
+			console.log(pet_name);
+			
+			// 예약 반려견명으로 바꿔준다.
+			
+			$("#edu_img_name").text(pet_name).css("color", "#5cb85cc7");
+		})
 		
 
 		
@@ -1373,6 +1440,20 @@
 	
 	// 정규표현식으로 3자리숫자당 콤마로 구분한다.
 	var tr_totalprice2 = original.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	
+	
+	// 강아지 사진 업로드 시 썸네일 형식의 미리보기 만들기
+	function setThumbnail(event) {
+	  var reader = new FileReader();
+
+	  reader.onload = function(event) {
+	    var img = document.createElement("img");
+	    img.setAttribute("src", event.target.result);
+	    document.querySelector("#pet_img_box").appendChild(img);
+	  };
+
+	  reader.readAsDataURL(event.target.files[0]);
+	}
 
 </script>
 </form>
