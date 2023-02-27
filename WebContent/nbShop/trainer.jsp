@@ -346,14 +346,14 @@
                         <div class="post-slide">
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer4.png" alt=""/><br>훈련사4<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer4.png" alt=""/><br>이경규 훈련사<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
                                 <img src="<%=contextPath%>/nbShop/img/trainer4.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <br>훈련사 4 설명<br><br><br><br><br>
+                               <br>이경규 훈련사는..?<br><br><br><br><br>
                             </p>
                         </div>
    
@@ -361,14 +361,14 @@
                          <div class="post-slide">
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer5.png" alt=""/><br>훈련사5<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer5.png" alt=""/><br>박봄 훈련사<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
                                 <img src="<%=contextPath%>/nbShop/img/trainer5.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <br>훈련사 5 설명<br><br><br><br><br>
+                               <br>박봄 훈련사는..?<br><br><br><br><br>
                             </p>
                         </div>
                     </div>
