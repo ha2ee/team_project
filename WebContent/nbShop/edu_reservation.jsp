@@ -55,7 +55,7 @@
 /*  1) 예약자 CSS 설정 */
 #reservationBox {
 	
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position : relative;
 	text-align :center;
@@ -71,7 +71,7 @@
 
 #reservationBox > #reservationFormWrapper{
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -86,7 +86,7 @@
 
 #mem_box {
 
- 	border : 1px solid floralwhite; 
+ 	border : 1px solid #fff5f373; 
 	
 	position :relative;
 	text-align :center;
@@ -354,7 +354,7 @@
 /*  2) 예약자 반려견 설정 */
 #reservationBox > #reservationPetFormWrapper{
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -369,7 +369,7 @@
 
 #pet_box {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -404,7 +404,7 @@
 
 #pet_box > #pet_img_box {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -419,7 +419,7 @@
 
 #pet_img_name {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	display : block;
 	position :relative;
@@ -443,7 +443,7 @@
 
 #pet_img {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	vertical-align : middle;
 	position :relative;
@@ -461,7 +461,7 @@
 
 #pet_box > #pet_info_box {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -476,7 +476,7 @@
 
 #pet_box > #pet_info_box > a {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	display : block;
 	position :relative;
@@ -500,7 +500,7 @@
 
 #pet_box > #pet_info_box > a > input {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -518,7 +518,7 @@
 
 #pet_box > #pet_op_box {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	display : block;
 	position :relative;
@@ -534,7 +534,7 @@
 
 #pet_box > #pet_op_box > a {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	display : block;
 	position :relative;
@@ -627,7 +627,7 @@
 
 #pet_input {
 
-    border: 1px solid floralwhite;
+    border: 1px solid #fff5f373;
     position: relative;
     text-align: center;
     width: 100%;
@@ -647,7 +647,7 @@
 
 #reservationBox > #reservationResultWrapper{
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -662,7 +662,7 @@
 
 #reservation_result_box {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -698,7 +698,7 @@
 
 #tr_img_box {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -713,7 +713,7 @@
 
 #tr_img_name {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	display : block;
 	position :relative;
@@ -737,7 +737,7 @@
 
 #tr_img {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	vertical-align : middle;
 	position :relative;
@@ -756,7 +756,7 @@
 
 #tr_info_box {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -771,7 +771,7 @@
 
 #tr_info_box > a {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	display : block;
 	position :relative;
@@ -794,7 +794,7 @@
 
 #tr_info_box > a > input {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -814,7 +814,7 @@
 
 #tr_date_box {
 
-    border: 1px solid floralwhite;
+    border: 1px solid #fff5f373;
     
     position: relative;
     text-align: center;
@@ -828,7 +828,7 @@
 
 #tr_date_box > a {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	display : block;
 	position :relative;
@@ -851,7 +851,7 @@
 
 #tr_date_box > input {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -870,7 +870,7 @@
 
  #edu_img_box {
  
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -885,7 +885,7 @@
 
 #edu_img_name {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	display : block;
 	position :relative;
@@ -909,7 +909,7 @@
 
 #edu_img {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	vertical-align : middle;
 	position :relative;
@@ -928,7 +928,7 @@
 
 #tr_result_box {
 
-    border: 1px solid floralwhite;
+    border: 1px solid #fff5f373;
     
     position: relative;
     text-align: center;
@@ -942,7 +942,7 @@
 
 #tr_result_box > #tr_totalcnt_box {
 
-    border: 1px solid floralwhite;
+    border: 1px solid #fff5f373;
     
     position: relative;
     text-align: center;
@@ -957,7 +957,7 @@
 
 #tr_totalcnt_box > a {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	display : block;
 	position :relative;
@@ -980,7 +980,7 @@
 
 #tr_totalcnt_box > a > input {
 
-	border: 1px solid floralwhite;
+	border: 1px solid #fff5f373;
 	
     position: relative;
     text-align: center;
@@ -998,7 +998,7 @@
 
 #tr_result_box > #tr_totalprice_box {
 
-    border: 1px solid floralwhite;
+    border: 1px solid #fff5f373;
     
     position: relative;
     text-align: center;
@@ -1013,7 +1013,7 @@
 
 #tr_totalprice_box > a {
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	display : block;
 	position :relative;
@@ -1036,7 +1036,7 @@
 
 #tr_totalprice_box > a > input {
 
-	border: 1px solid floralwhite;
+	border: 1px solid #fff5f373;
 	
     position: relative;
     text-align: center;
@@ -1054,7 +1054,7 @@
 /*  4) 버튼 CSS 설정 */
 #reservationBox > #reservationBtnWrapper{
 
-	border : 1px solid floralwhite;
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
