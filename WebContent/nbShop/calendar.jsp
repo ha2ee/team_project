@@ -68,7 +68,7 @@ String tr_price = request.getParameter("tr_price");
   	height: 100%;
   	width : 100%;
   	border-radius: 20px;
-  	background : #ffebcd;
+  	background : #fff5f3;
     }
     
     div#tr_name {
@@ -89,7 +89,7 @@ String tr_price = request.getParameter("tr_price");
     text-align: center;
     margin : 0 auto;
     border : 0px;
-    background : #ffebcd;
+    background : #fff5f3;
     width: 150px;
     font-weight : bold;
     
@@ -182,7 +182,7 @@ String tr_price = request.getParameter("tr_price");
     
     
     #Btnbox > a:hover {
- 	background : #ffebcd;
+ 	background : #fff5f3;
  	
     }
     
@@ -217,7 +217,7 @@ String tr_price = request.getParameter("tr_price");
     height:100%;
     line-height: 30px;
     text-align: center;
-    background : #ffebcd;
+    background : #fff5f3;
     color : black;
     position : relative;
     border-radius: 20px;
@@ -330,7 +330,7 @@ String tr_price = request.getParameter("tr_price");
 	}
 	
 	#selectReset > a:hover{
-	background : #ffebcd;
+	background : #fff5f3;
 	
 	}
 	
@@ -433,7 +433,7 @@ String tr_price = request.getParameter("tr_price");
     
     div#Totalsubmit > a:hover{
 	
-	background : #ffebcd;
+	background : #fff5f3;
 	border-radius : 20px;
 	font-size : 22px;
 
@@ -452,7 +452,7 @@ String tr_price = request.getParameter("tr_price");
     
     #Totalsubmit > #submitbtn:hover {
     
-	background : #ffebcd;
+	background : #fff5f3;
 	border-radius : 20px;
 	font-size : 22px;
     transition : 0.5s;
@@ -473,7 +473,7 @@ String tr_price = request.getParameter("tr_price");
     .scriptCalendar > thead > tr:first-child > td { font-weight:bold; }
     .scriptCalendar > thead > tr:last-child > td { background-color:#f8f8f8; }
     .scriptCalendar > tbody > tr > td { width:50px;height:50px; border:1px solid white; border-radius : 5px;}
-    .btn:hover > button {background : #ffebcd; }
+    .btn:hover > button {background : #fff5f3; }
 
 </style>
 <script type="text/javascript">
@@ -632,7 +632,7 @@ String tr_price = request.getParameter("tr_price");
                     }
                     // @details 현재일인 경우
                     else if(date.getDate() == day) {
-                        column.style.backgroundColor = "#ffebcd";
+                        column.style.backgroundColor = "#fff5f3";
                     }
 
                 // @details 현재월보다 이전인경우

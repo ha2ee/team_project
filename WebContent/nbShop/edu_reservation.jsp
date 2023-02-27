@@ -46,10 +46,10 @@
     right: 0;
     top: 10px;
     margin: 0 auto;
-    color: #ff5722;
+    color: #ff191966;
     padding: 10px;
     border-radius: 20px;
-    background: antiquewhite;
+    background: #f2dede6b;
 }
 
 /*  1) 예약자 CSS 설정 */
@@ -96,13 +96,13 @@
 	left : 0;
 	right : 0;
 	top : 0;
-	background : floralwhite;
+	background : #fff5f373;
 
 }
 
 #mem_box > #mem_title {
 
- 	border : 1px solid #ffebcd7a; 
+ 	border : 1px solid #fff5f3; 
 	
 	position :relative;
 	text-align :center;
@@ -113,7 +113,7 @@
 	right : 0;
 	top : 0;
 	color : #ff5722;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
 
 }
@@ -159,7 +159,7 @@
 
 #mem_box > #member_check > #membercheck:hover {
 
-	background : #ffebcd;
+	background : #fff5f3;
 	border-radius: 15px;
 	transition : all 0.5s;
 	
@@ -179,7 +179,7 @@
 	top : 5px;
 	float : left;
 	border-radius: 5px;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	
 
 }
@@ -202,9 +202,9 @@
 	font-size : 15px;
 	font-weight : bold;
 	text-decoration: none;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
-	color : #ff5722b8;
+	color : #ff572282;
 
 }
 
@@ -240,7 +240,7 @@
 	right : 0;
 	top : 1px;
 	font-weight : bold;
-	color : #ff5722b8;
+	color : #ff572282;
 
 }
 
@@ -267,7 +267,7 @@
 
 #memAddress > #address_check > #addresscheck:hover {
 
-	background : #ffebcd;
+	background : #fff5f3;
 	border-radius: 15px;
 	transition : all 0.5s;
 	
@@ -306,7 +306,7 @@
 	top : 2px;
 	float : left;
 	border-radius: 5px;
-	background : #ffebcd7a;
+	background : #fff5f3;
 
 
 }
@@ -328,7 +328,7 @@
 	font-size : 15px;
 	font-weight : bold;
 	text-decoration: none;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	
 
 }
@@ -380,13 +380,13 @@
 	right : 0;
 	top : 0;
 	float : left;
-	background : floralwhite;
+	background : #fff5f373;
 
 }
 
 #pet_box > #mem_title {
 
- 	border : 1px solid #ffebcd7a; 
+ 	border : 1px solid #fff5f3; 
 	
 	position :relative;
 	text-align :center;
@@ -397,7 +397,7 @@
 	right : 0;
 	top : 0;
 	color : #ff5722;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
 
 }
@@ -431,9 +431,9 @@
 	right : 0;
 	top : 0;
 	font-size : 18px;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
-	color : #ff572285;
+	color : #ff572282;
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
@@ -489,9 +489,9 @@
 	top : 0;
 	float : left;
 	font-size : 18px;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
-	color : #ff572285;
+	color : #ff572282;
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
@@ -546,9 +546,9 @@
 	right : 0;
 	top : 0;
 	font-size : 18px;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
-	color : #ff572285;
+	color : #ff572282;
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
@@ -672,13 +672,13 @@
 	left : 0;
 	right : 0;
 	top : 0;
-	background : floralwhite;
+	background : #fff5f373;
 
 }
 
 #reservation_result_box > #mem_title {
 
- 	border : 1px solid #ffebcd7a; 
+ 	border : 1px solid #fff5f3; 
 	
 	position :relative;
 	text-align :center;
@@ -689,7 +689,7 @@
 	right : 0;
 	top : 0;
 	color : #ff5722;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
 
 }
@@ -725,9 +725,9 @@
 	right : 0;
 	top : 0;
 	font-size : 18px;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
-	color : #ff572285;
+	color : #ff572282;
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
@@ -783,9 +783,9 @@
 	right : 0;
 	top : -45px;
 	font-size : 18px;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
-	color : #ff572285;
+	color : #ff572282;
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
@@ -840,9 +840,9 @@
 	right : 0;
 	top : 0;
 	font-size : 18px;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
-	color : #ff572285;
+	color : #ff572282;
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
@@ -897,9 +897,9 @@
 	right : 0;
 	top : 0;
 	font-size : 18px;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
-	color : #ff572285;
+	color : #ff572282;
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
@@ -969,9 +969,9 @@
 	right : 0;
 	top : 0;
 	font-size : 18px;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
-	color : #ff572285;
+	color : #ff572282;
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
@@ -1025,9 +1025,9 @@
 	right : 0;
 	top : 0;
 	font-size : 18px;
-	background : #ffebcd7a;
+	background : #fff5f3;
 	border-radius: 5px;
-	color : #ff572285;
+	color : #ff572282;
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
@@ -1089,7 +1089,7 @@
 
 #nb_backbtn:hover {
 
-	background : #ffebcd;
+	background : #fff5f3;
 	border-radius: 20px;
 	transition : all 0.5s;
 
@@ -1117,7 +1117,7 @@
 
 #nb_submitbtn:hover {
 
-	background : #ffebcd;
+	background : #fff5f3;
 	border-radius: 20px;
 	transition : all 0.5s;
 
@@ -1145,7 +1145,7 @@
 
 #nb_shopbtn:hover {
 
-	background : #ffebcd;
+	background : #fff5f3;
 	border-radius: 20px;
 	transition : all 0.5s;
 

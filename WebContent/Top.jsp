@@ -335,7 +335,7 @@ body{
  .list_gnb>li>a:hover { 
 /*  	border-bottom: 3px solid #ffebcd;  */
 	border : silver;
- 	background-color: #ffebcd;
+ 	background-color: #fff5f3;
  	border-radius: 30px;
  } 
 
@@ -393,7 +393,7 @@ body{
 }
 #mega_wrapper > ul >li:hover{
 	border-radius :20px;
-	background-color : #ffebcd;
+	background-color : #fff5f3;
 	text-align : center;
 }
 
@@ -454,7 +454,7 @@ body{
 
  .nb_top > .login1 > ul > li > a:hover {
 	border-radius : 20px;
-	background-color : #ffebcd;
+	background-color : #fff5f3;
 }
 
 .inner p {
@@ -501,7 +501,7 @@ body{
 	width : 250px;
 	height : 30px;
 	font-size : 20px;
-	background : #ffebcd;
+	background : #fff5f3;
 	border-radius : 5px;
 	color : #9e9e9e;
 	}
@@ -650,7 +650,7 @@ body{
 
 	/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
 .btn:hover {
-  background: #ffebcd;
+  background: #fff5f3;
   text-decoration: none;
   border-radius: 20px;
 }
@@ -835,7 +835,7 @@ body{
 <!-- 날씨 관련 스크립트 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
-<script>
+<script type="text/javascript">
 
 navigator.geolocation.getCurrentPosition(showYourLocation, showErrorMsg); 
 
@@ -908,12 +908,6 @@ function showYourLocation(position) {  // 성공했을때 실행
         return rs;
     }
     
-    var options = {
-    		  enableHighAccuracy: true,
-    		  timeout: 5000,
-    		  maximumAge: 0
-    		};
-    
     
 	// 전역변수로 url에 들어갈 실시간 날짜 받아오기
 	var Wdate = new Date();
@@ -921,6 +915,17 @@ function showYourLocation(position) {  // 성공했을때 실행
 	var initTime = moment(Wdate).format('HH')-1;	
 	var koDate = moment(Wdate).format('M월 DD일');
 	var KoTime = moment(Wdate).format('HH시');
+	
+	
+	// 만약에 initTime 값이 10보다 작을경우
+	if( initTime < 10){
+		
+		// 2번째 자리수에 0을 붙인다.
+		initTime = "0"+initTime;
+	}
+	
+	console.log(initDate);
+	console.log(initTime);
 
 // 3) ajax를 활용해서 현재날씨 데이터 만들기
 // 가져올 값 : 1)해당날짜의 시간 2)온도 3)바람세기
@@ -928,6 +933,9 @@ $.ajax({
 	url: "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=SswoUAmXtjH%2FEZIxjrzCxbjXuV0AhAdO5rXvMxXfxqis8wmCcKFciA72WHxnWC1Uyosdebw1T1HP5qH9bEyu7w%3D%3D&pageNo=1&numOfRows=1000&dataType=JSON&base_date="+initDate+"&base_time="+initTime+"00&nx="+todayx+"&ny="+todayy, 
 	success: function(result){
 	
+
+	console.log(result);	
+		
 	// 온도 , 바람, 비	등의 정보를 API 에서 받아오기
 	// 11 ~ 15  도 : 산책하기 딱 좋은 날씨!
 	//  6 ~ 10  도 : 괜찮지만, 만약을 대비해 조심히 산책!
