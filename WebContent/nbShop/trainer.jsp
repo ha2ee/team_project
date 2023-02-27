@@ -384,12 +384,12 @@
 			</a>	
 			</div>
 			<div id= "tr_name2">다니엘 헤니<br>훈련사님<br>
-			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=이순신&tr_price=100000&center=/nbShop/calendar.jsp">
+			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=다니엘헤니&tr_price=100000&center=/nbShop/calendar.jsp">
 				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
 			</a>
 			</div>
 			<div id= "tr_name3">김효진<br>훈련사님<br>
-			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=세종대왕&tr_price=100000&center=/nbShop/calendar.jsp">
+			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=김효진&tr_price=100000&center=/nbShop/calendar.jsp">
 				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
 			</a>
 			</div>
