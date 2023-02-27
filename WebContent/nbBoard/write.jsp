@@ -6,6 +6,7 @@ String contextPath = request.getContextPath();
 %>
 
 
+
 <%--
 	String id = (String)session.getAttribute("id");
 	if(id == null){//로그인 하지 않았을경우
