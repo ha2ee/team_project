@@ -924,17 +924,11 @@ function showYourLocation(position) {  // 성공했을때 실행
 		initTime = "0"+initTime;
 	}
 	
-	console.log(initDate);
-	console.log(initTime);
-
 // 3) ajax를 활용해서 현재날씨 데이터 만들기
 // 가져올 값 : 1)해당날짜의 시간 2)온도 3)바람세기
 $.ajax({
 	url: "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=SswoUAmXtjH%2FEZIxjrzCxbjXuV0AhAdO5rXvMxXfxqis8wmCcKFciA72WHxnWC1Uyosdebw1T1HP5qH9bEyu7w%3D%3D&pageNo=1&numOfRows=1000&dataType=JSON&base_date="+initDate+"&base_time="+initTime+"00&nx="+todayx+"&ny="+todayy, 
 	success: function(result){
-	
-
-	console.log(result);	
 		
 	// 온도 , 바람, 비	등의 정보를 API 에서 받아오기
 	// 11 ~ 15  도 : 산책하기 딱 좋은 날씨!
@@ -960,12 +954,12 @@ $.ajax({
 	var rain = result.response.body.items.item[0].obsrValue;
 	
 	// console에 출력해보기
-	console.log(initDate);
-	console.log(initTime);	
-	console.log(result);
-	console.log(temp);
-	console.log(wind);
-	console.log(rain);
+// 	console.log(initDate);
+// 	console.log(initTime);	
+// 	console.log(result);
+// 	console.log(temp);
+// 	console.log(wind);
+// 	console.log(rain);
 	
 	// 홈페이지를 이동할때마다 변경된 값을 저장시키기
 	$("#resultDate").text(koDate);

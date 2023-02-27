@@ -10,6 +10,9 @@ String tr_price = request.getParameter("tr_price");
 <% request.setCharacterEncoding("UTF-8"); %>
 <html>
 <head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
 <title>일정 예약 페이지</title>
 <style type="text/css">
 
@@ -382,7 +385,7 @@ String tr_price = request.getParameter("tr_price");
     position : relative;
     border : 0px;    
     font-weight : bold;
-    color : indianred;
+    color : #9e9e9e;
     }
     
     div#btnBox2{
@@ -497,6 +500,9 @@ String tr_price = request.getParameter("tr_price");
 	var regdate = moment(date).format('YYYY-MM-DD');
 	var reg_date = moment(date).format('LL');
 	
+    var doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+	
 	console.log(regdate);
 	console.log(reg_date);
     
@@ -539,8 +545,8 @@ String tr_price = request.getParameter("tr_price");
      */
     function buildCalendar() {
 
-        var doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-        var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+         doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+         lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
 
         var tbCalendar = document.querySelector(".scriptCalendar > tbody");
 
@@ -580,7 +586,8 @@ String tr_price = request.getParameter("tr_price");
                 // @param 평일 날짜 데이터 삽입
 
                 column.innerText = autoLeftPad(day, 2);
-                
+                column.setAttribute('id', day);
+                column.align = "center";
 
 
                 // @param 일요일인 경우
@@ -634,7 +641,6 @@ String tr_price = request.getParameter("tr_price");
                     else if(date.getDate() == day) {
                         column.style.backgroundColor = "#fff5f3";
                     }
-
                 // @details 현재월보다 이전인경우
                 } else if(today.getMonth() < date.getMonth()) {
                     if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
@@ -717,14 +723,16 @@ String tr_price = request.getParameter("tr_price");
         	   resultcnt++;
         	   resultprice = <%=tr_price%>;
         	   totalresult = resultcnt * resultprice;
+        	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         	   
 	   	        // 첫번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDate1").attr("value", clickdate);
 	   	        $("#dow1").attr("value", todayLabel);
 	   	        $("#Num1").attr("value", "1");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
-	   	        $("#tr_price > input").attr("value", resultprice);
-	   	        $("#tr_totalprice > input").attr("value", totalresult);
+	   	        $("#tr_price > input").attr("value", tr_price2);
+	   	        $("#tr_totalprice > input").attr("value", totalresult2);
+	   	        $("#totalprice").attr("value", totalresult);
 	   	        $(".choiceDay").css("cursor", "text");
 	   	        $(".choiceDay").css("pointer-events" , "none");
 	   	        $(".choiceDay").css("background", "#00ff9575");
@@ -736,14 +744,16 @@ String tr_price = request.getParameter("tr_price");
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
+        	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	   	        
         	   // 두번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDate2").attr("value", clickdate);
 	           	$("#dow2").attr("value", todayLabel);
 	           	$("#Num2").attr("value", "2");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
-	   	    	$("#tr_price > input").attr("value", resultprice);
-	   	    	$("#tr_totalprice > input").attr("value", totalresult);
+	   	    	$("#tr_price > input").attr("value", tr_price2);
+	   	    	$("#tr_totalprice > input").attr("value", totalresult2);
+	   	        $("#totalprice").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
    	       		$(".choiceDay").css("background", "#00ff9575");
@@ -755,14 +765,16 @@ String tr_price = request.getParameter("tr_price");
 	   	        
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
+        	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         	   
         	   // 세번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDate3").attr("value", clickdate);
 	           	$("#dow3").attr("value", todayLabel);
 	           	$("#Num3").attr("value", "3");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
-	   	    	$("#tr_price > input").attr("value", resultprice);
-	   	    	$("#tr_totalprice > input").attr("value", totalresult);
+	   	    	$("#tr_price > input").attr("value", tr_price2);
+	   	    	$("#tr_totalprice > input").attr("value", totalresult2);
+	   	        $("#totalprice").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
 	   	        $(".choiceDay").css("background", "#00ff9575");
@@ -774,14 +786,16 @@ String tr_price = request.getParameter("tr_price");
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
+        	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	   	        
         	   // 네번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDate4").attr("value", clickdate);
 	           	$("#dow4").attr("value", todayLabel);
 	           	$("#Num4").attr("value", "4");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
-	   	    	$("#tr_price > input").attr("value", resultprice);
-	   	    	$("#tr_totalprice > input").attr("value", totalresult);
+	   	    	$("#tr_price > input").attr("value", tr_price2);
+	   	    	$("#tr_totalprice > input").attr("value", totalresult2);
+	   	        $("#totalprice").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
 	   	        $(".choiceDay").css("background", "#00ff9575");
@@ -793,14 +807,16 @@ String tr_price = request.getParameter("tr_price");
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
+        	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	   	        
         	   // 다섯번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDate5").attr("value", clickdate);
 	           	$("#dow5").attr("value", todayLabel);
 	           	$("#Num5").attr("value", "5");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
-	   	    	$("#tr_price > input").attr("value", resultprice);
-	   	    	$("#tr_totalprice > input").attr("value", totalresult);
+	   	    	$("#tr_price > input").attr("value", tr_price2);
+	   	    	$("#tr_totalprice > input").attr("value", totalresult2);
+	   	        $("#totalprice").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
 	   	        $(".choiceDay").css("background", "#00ff9575");
@@ -812,14 +828,16 @@ String tr_price = request.getParameter("tr_price");
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
+        	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	        
 	 	  		 // 여섯번째 예약 날짜에 입력 시킨다.
 	        	$("#selectDate6").attr("value", clickdate);
 	        	$("#dow6").attr("value", todayLabel);
 	        	$("#Num6").attr("value", "6");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
-	   	    	$("#tr_price > input").attr("value", resultprice);
-	   	    	$("#tr_totalprice > input").attr("value", totalresult);
+	   	    	$("#tr_price > input").attr("value", tr_price2);
+	   	    	$("#tr_totalprice > input").attr("value", totalresult2);
+	   	        $("#totalprice").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
 	   	        $(".choiceDay").css("background", "#00ff9575");
@@ -831,14 +849,16 @@ String tr_price = request.getParameter("tr_price");
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
+        	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         
 	  		 	// 여섯번째 예약 날짜에 입력 시킨다.
 	   			$("#selectDate7").attr("value", clickdate);
 	   			$("#dow7").attr("value", todayLabel);
 	   			$("#Num7").attr("value", "7");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
-	   	    	$("#tr_price > input").attr("value", resultprice);
-	   	    	$("#tr_totalprice > input").attr("value", totalresult);
+	   	    	$("#tr_price > input").attr("value", tr_price2);
+	   	    	$("#tr_totalprice > input").attr("value", totalresult2);
+	   	        $("#totalprice").attr("value", totalresult);
 	           	$(".choiceDay").css("cursor" , "text");
 	           	$(".choiceDay").css("pointer-events" , "none");
 	   	        $(".choiceDay").css("background", "#00ff9575");
@@ -861,12 +881,23 @@ String tr_price = request.getParameter("tr_price");
      * @param   num     앞에 0을 붙일 숫자 값
      * @param   digit   글자의 자릿수를 지정 ( 2자릿수인 경우 00, 3자릿수인 경우 000 … )
      */
+
     function autoLeftPad(num, digit) {
         if(String(num).length < digit) {
             num = new Array(digit - String(num).length + 1).join("0") + num;
         }
         return num;
     }
+    
+    
+    
+	var dlastday  = moment(lastDate).format('YYYYMMDD');
+	var d_day = moment(today).format('YYYYMMDD');
+	var diffday = dlastday-d_day;
+	
+	console.log("당월마지막날짜 : "+dlastday);
+	console.log("현재날짜 : "+d_day);
+	console.log("당월-현재날짜 : "+diffday);
     
     
     $(document).ready(function(){
@@ -895,7 +926,57 @@ String tr_price = request.getParameter("tr_price");
     		}
     	})
     	
+    	
+    	
+    	// 
+    	// 다음 버튼을 눌렀을 때,
+    	$("#next").on("click", function (){
+   			
+    		// 당월 마지막 날짜에서 현재날짜를 뺀 값이 1이면
+    		if(diffday == 1){
+    			
+    			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#4").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#5").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+   			// 2이면
+    		}else if (diffday == 2){
+    			
+    			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#4").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    		
+   			// 3이면
+    		}else if (diffday == 3){
+    			
+    			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+			
+   			// 4이면
+			}else if (diffday == 4){
+			
+				$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+				$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+			
+			// 5이면
+			}else if (diffday == 5){
+			
+				$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+			}
+    		
+    	})
+    	
     })
+    
+    	// 리퀘스트로 받아온 금액을
+	var original = <%=tr_price%>;
+	
+	// 정규표현식으로 3자리숫자당 콤마로 구분한다.
+	var tr_price2 = original.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	var totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     
 
 </script>
@@ -903,9 +984,11 @@ String tr_price = request.getParameter("tr_price");
 <body>
 <form method ="post" action ="<%=request.getContextPath()%>/nb/edureservation.do">
 
-<!-- 예약한 날짜 넘기기 -->
+<!-- 예약한 날짜와 트레이너금액, 총금액 원본 넘기기 -->
 <input type="hidden" name ="tr_mem_reg_date" id="tr_mem_reg_date" />
 <input type="hidden" name ="reg_date" id="reg_date" />
+<input type="hidden" name ="tr_price" id="tr_price" />
+<input type="hidden" name ="totalprice" id="totalprice" />
 
 <!-- 캘린더 넣기 -->
 <div id = "calandtotalWrapper">
@@ -1006,8 +1089,8 @@ String tr_price = request.getParameter("tr_price");
     <div id="resultBox">
         <div id="totalvalue">
             <div id = "totalcnt">수강 횟수 : <input name="totalcnt" style="text-align: right;" type="text"  readonly="readonly">&nbsp;&nbsp;회</div>
-            <div id = "tr_price">회당 금액 : <input name="tr_price" style="text-align: right;" type="text"  readonly="readonly" >&nbsp;&nbsp;원</div>
-            <div id = "tr_totalprice">총 예약금액 : <input name="totalprice" style="text-align: right;" type="text"  readonly="readonly">&nbsp;&nbsp;원</div>
+            <div id = "tr_price">회당 금액 : <input style="text-align: right;" type="text"  readonly="readonly" >&nbsp;&nbsp;원</div>
+            <div id = "tr_totalprice">총 예약금액 : <input style="text-align: right;" type="text"  readonly="readonly">&nbsp;&nbsp;원</div>
         </div>
 	  </div>
 	</div>

@@ -13,16 +13,17 @@
 	String tr_date7 = request.getParameter("date7");
 	
 	// 총 수강 횟수 가져와서 변수에 저장
-	int totalcnt = Integer.parseInt(request.getParameter("totalcnt"));
+	String totalcnt = request.getParameter("totalcnt");
 	
 	// 총 수강 금액 가져와서 변수에 저장
-	int tr_totalprice = Integer.parseInt(request.getParameter("totalprice"));
+	String tr_totalprice = request.getParameter("totalprice");
 	
 	// 선택 된 트레이너 가져와서 변수에 저장
 	String tr_mem_name = request.getParameter("tr_name");
 	
 	// 예약 작성일 가져와서 변수에 저장
 	String tr_mem_reg_date = request.getParameter("tr_mem_reg_date");
+	// 한글버젼으로 된 예약일을 가져와서 변수에 저장
 	String tr_reg_date = request.getParameter("reg_date");
 
 
@@ -60,7 +61,7 @@
 	position : relative;
 	text-align :center;
 	width : 100%;
-	height : 1000px;
+	height : 1100px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -255,7 +256,7 @@
 	margin : 0 auto;
 	left : 971px;
 	right : 0;
-	top : 2px;
+	top : 1px;
 	background : aliceblue;
 	border-radius: 10px;
 	transition : all 0.5s;
@@ -359,11 +360,11 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-	height : 310px;
+	height : 362px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
-	top : 0;
+	top : -2px;
 
 }
 
@@ -374,7 +375,7 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-	height : 315px;
+	height : 363px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -402,6 +403,52 @@
 
 }
 
+#pet_box > #pet_check{
+
+/* 	border : 1px solid red; */
+	
+	position :relative;
+	text-align :center;
+	width : 1197px;
+	height : 35px;
+	margin : 0 auto;
+	left : 0;
+	right : 0;
+	top : 0;
+	border-radius: 5px;
+
+}
+
+#pet_box > #pet_check > #petcheck {
+
+/* 	border : 1px solid red; */
+	
+	position :relative;
+	text-align :center;
+	width : 160px;
+	height : 30px;
+	margin : 0 auto;
+	left : 505px;
+	right : 0;
+	top : 2px;
+	background : aliceblue;
+	border-radius: 10px;
+	transition : all 0.5s;
+	font-weight : bold;
+	color : #ff5722;
+	
+
+}
+
+#pet_box > #pet_check > #petcheck:hover {
+
+	background : #fff5f3;
+	border-radius: 15px;
+	transition : all 0.5s;
+	
+}
+
+
 #pet_box > #pet_img_box {
 
 	border : 1px solid #fff5f373;
@@ -409,7 +456,7 @@
 	position :relative;
 	text-align :center;
 	width : 250px;
-	height : 240px;
+	height : 255px;
 	margin : 0 auto;
 	left : -474px;
 	right : 0;
@@ -466,11 +513,11 @@
 	position :relative;
 	text-align :center;
 	width : 820px;
-	height : 240px;
+	height : 255px;
 	margin : 0 auto;
 	left : 65px;
 	right : 0;
-	top : -240px;
+	top : -255px;
 
 }
 
@@ -524,11 +571,11 @@
 	position :relative;
 	text-align :center;
 	width : 133px;
-	height : 240px;
+	height : 255px;
 	margin : 0 auto;
 	left : 533px;
 	right : 0;
-	top : -480px;
+	top : -510px;
 
 }
 
@@ -652,7 +699,7 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-	height : 315px;
+	height : 362px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -1177,7 +1224,7 @@
 					<h3 id="h3title">- 회원 예약 정보 -</h3>
 				</div>
 				<div id = "member_check">
-					<a id ="membercheck" class = btn href="#">내정보 수정하기</a>
+					<a id ="membercheck" class = btn href="#">내 정보 수정하기</a>
 				</div>
 				<div id = "memData">
 					<a type="text">아이디<input id = "mem_id" name = "mem_id" type="text" placeholder="회원아이디" readonly /></a>
@@ -1203,6 +1250,9 @@
 			<div id = "pet_box">
 				<div id = "mem_title">
 					<h3 id="h3title">- 반려견 예약 정보 -</h3>
+				</div>
+				<div id = "pet_check">
+					<a id ="petcheck" class = btn href="#">반려견 정보 가져오기</a>
 				</div>
 				<div id = "pet_img_box">
 					<a id="pet_img_name" type= "text">반려견 사진<img src="<%=request.getContextPath()%>/nbShop/img/bori.png" id = "pet_img" name = "pet_img"  /></a>
@@ -1275,7 +1325,7 @@
 						<a>수강 횟수<input id = "totalcnt" name ="totalcnt" type="text" placeholder="수강 횟수" value = "<%=totalcnt%>" readonly /></a>
 					</div>
 					<div id = "tr_totalprice_box">
-						<a>총 수강 금액<input id = "tr_totalprice" name ="tr_price" type ="text" placeholder="총 수강 금액" value = "<%=tr_totalprice%>" readonly /></a>
+						<a>총 수강 금액<input id = "tr_totalprice" name ="tr_price" type ="text" placeholder="총 수강 금액"  readonly /></a>
 					</div>
 				</div>
 			</div>
@@ -1294,6 +1344,9 @@
 	
 	// jquery 호출 옵션 
 	$(document).ready(function(){
+		
+		// 최종금액에 콤마단위가 들어간 금액으로 설정
+		$("#tr_totalprice").attr("value", tr_totalprice2);
         
 		// id 값이 back인 버튼을 클릭했을 때
 		$("#nb_backbtn").on("click", function(){
@@ -1304,6 +1357,12 @@
 		});
 
 	});
+	
+	// 리퀘스트로 받아온 금액을
+	var original = <%=tr_totalprice%>;
+	
+	// 정규표현식으로 3자리숫자당 콤마로 구분한다.
+	var tr_totalprice2 = original.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 </script>
 </form>
