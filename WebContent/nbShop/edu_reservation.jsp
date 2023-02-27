@@ -139,7 +139,7 @@
 
 #mem_box > #member_check > #membercheck {
 
-/* 	border : 1px solid red; */
+ 	border : 1px dashed #ff811959; 
 	
 	position :relative;
 	text-align :center;
@@ -230,7 +230,7 @@
 
 #memAddress > #address_check{
 
-/* 	border : 1px solid red; */
+/*  	border : 1px dashed #ff811959; */
 	
 	position :relative;
 	text-align :left;
@@ -247,7 +247,7 @@
 
 #memAddress > #address_check > #addresscheck {
 
-/* 	border : 1px solid red; */
+ 	border : 1px dashed #ff811959;
 	
 	position :relative;
 	text-align :center;
@@ -318,7 +318,7 @@
 	
 	position :relative;
 	text-align :center;
-	width : 19%;
+	width : 288px;
 	height : 35px;
 	margin : 0 5px;
 	left : 0;
@@ -360,11 +360,11 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-	height : 362px;
+	height : 382px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
-	top : -2px;
+	top : 0px;
 
 }
 
@@ -375,7 +375,7 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-	height : 363px;
+	height : 383px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -405,7 +405,7 @@
 
 #pet_box > #pet_check{
 
-/* 	border : 1px solid red; */
+/*  	border : 1px dashed #ff811959; */
 	
 	position :relative;
 	text-align :center;
@@ -421,7 +421,7 @@
 
 #pet_box > #pet_check > #petcheck {
 
-/* 	border : 1px solid red; */
+ 	border : 1px dashed #ff811959;
 	
 	position :relative;
 	text-align :center;
@@ -558,7 +558,7 @@
 	right : 0;
 	top : 70px;
 	border-radius : 15px;
-	color : royalblue;
+	color : #5cb85cc7;
 	
 
 }
@@ -703,7 +703,7 @@
 	margin : 0 auto;
 	left : 0;
 	right : 0;
-	top : 0;
+	top : 0px;
 
 }
 
@@ -909,7 +909,7 @@
 	right : 0;
 	top : 0;
 	border-radius : 15px;
-	color : steelblue;
+	color : #5cb85cc7;
 	
 
 }
@@ -1038,7 +1038,7 @@
     right: 0;
     top: 70px;
     border-radius: 15px;
-    color: royalblue;
+    color: #5cb85cc7;
 
 }
 
@@ -1094,7 +1094,7 @@
     right: 0;
     top: 70px;
     border-radius: 15px;
-    color: royalblue;
+    color: #5cb85cc7;
 
 }
 
@@ -1241,7 +1241,6 @@
 						<a type="text"><input id = "mem_address2" name = "mem_address2" type ="text" placeholder= "도로명주소" readonly /></a>
 						<a type="text"><input id = "mem_address3" name = "mem_address3" type ="text" placeholder= "지번주소" readonly /></a>
 						<a type="text"><input id = "mem_address4" name = "mem_address4" type ="text" placeholder= "상세주소" readonly /></a>
-						<a type="text"><input id = "mem_address5" name = "mem_address5" type ="text" placeholder= "참고항목" readonly /></a>
 					</div>	
 				</div>
 			</div>
@@ -1302,9 +1301,9 @@
 				</div>
 				
 				<div id = "tr_info_box">
-					<a id="tr_mem_name">담당 훈련사<input style="color : royalblue; " id ="tr_mem_name" name = "tr_mem_name" type="text" placeholder="훈련사이름" value="<%=tr_mem_name%>" readonly /></a>
+					<a id="tr_mem_name">담당 훈련사<input style="color : #5cb85cc7; " id ="tr_mem_name" name = "tr_mem_name" type="text" placeholder="훈련사이름" value="<%=tr_mem_name%>" readonly /></a>
 					<a id="tr_mem_hp">전화번호<input id ="tr_mem_hp" name = "tr_mem_hp" type="text" placeholder="전화번호" readonly /></a>
-					<a id="tr_mem_reg_date">예약신청일<input style="color : royalblue; " id ="tr_reg_date" name = "tr_reg_date" type="text" placeholder="수강신청일자" value="<%=tr_reg_date%>" readonly /></a>
+					<a id="tr_mem_reg_date">예약신청일<input style="color : #5cb85cc7; " id ="tr_reg_date" name = "tr_reg_date" type="text" placeholder="수강신청일자" value="<%=tr_reg_date%>" readonly /></a>
 					<input type="hidden" id="tr_mem_reg_date" name=  "tr_mem_reg_date" value = "<%=tr_mem_reg_date%>" />
 				</div>
 				<div id = "tr_date_box">
@@ -1344,6 +1343,17 @@
 	
 	// jquery 호출 옵션 
 	$(document).ready(function(){
+		
+// 		// 강아지 이름을 입력하면,
+// 		$("#pet_name").on("focusout" , function(){
+			
+// 			// 예약 반려견으로 바꿔준다.
+// 			$("#edu_img_box > a").text("예약 반려견 : "+$("#pet_name").val()).css("color", "#5cb85cc7");
+			
+
+// 		})
+		
+
 		
 		// 최종금액에 콤마단위가 들어간 금액으로 설정
 		$("#tr_totalprice").attr("value", tr_totalprice2);
