@@ -164,7 +164,7 @@ public class BoardController extends HttpServlet{
 			String nickname = "seeeop2";
 			
 //			//업로드 작업 중ㅇ...
-			String directory = request.getSession().getServletContext().getRealPath("/")+"upload";
+			String directory ="C:\\Users\\hutos\\OneDrive\\Desktop\\upload";
 			System.out.println(directory);
 			int maxSize = 1024 * 1024 * 100;
 			String encoding = "utf-8";
@@ -265,22 +265,25 @@ public class BoardController extends HttpServlet{
 //		
 		//게시판 모든 글 조회 요청
 		// 게시판에서 찾고자 하는 내용을 쓰고 검색했을때
-//		case "/searchlist.bo":
-//			
+		case "/searchlist.fb":
+			
 //			//요청한 값 얻기 (검색을 위해 선택한 option의 값 하나, 입력한 검색어)
-//			key = request.getParameter("key");
-//			word = request.getParameter("word");
-//			
+			String key = request.getParameter("key");
+			String word = request.getParameter("word");
+			System.out.println(key);
+			System.out.println(word);
+			
+			
 //			//요청한 값을 이용해 응답할 값 마련(글 조회)
-//			list = boarddao.boardList(key,word);
-//			count = boarddao.getTotalRecord(key, word);
+			list = boarddao.boardList(key,word);
+			count = boarddao.getTotalRecordserch(key, word); 
 //			
-//			request.setAttribute("center", "board/list.jsp");
-//			request.setAttribute("list", list);
-//			request.setAttribute("count", count);
+			request.setAttribute("center", "nbBoard/list.jsp");
+			request.setAttribute("list", list);
+			request.setAttribute("count", count);
 //			
-//			nextPage = "/CarMain.jsp";
-//			break;	
+			 nextPage = "/nbMain.jsp";
+			break;
 //		
 //			
 //			// 글을 수정하기 위해 입력한 비밀번호가 DB에 저장 되어있는지 요청

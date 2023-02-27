@@ -9,7 +9,7 @@ public class BoardVo {
 	private int b_idx;
 	private String b_id,b_nickname,b_title,b_content;
 	private int b_group,b_level;
-	private Date b_date, b_update_date;
+	private Date b_date;
 	private int b_cnt;
 	private String b_file;
 	private int b_like;
@@ -17,7 +17,7 @@ public class BoardVo {
 	public BoardVo() {}
 
 	public BoardVo(int b_idx, String b_id, String b_nickname, String b_title, String b_content, int b_group,
-			int b_level, Date b_date, Date b_update_date, int b_cnt, String b_file, int b_like) {
+			int b_level, Date b_date,  int b_cnt, String b_file, int b_like) {
 		
 		this.b_idx = b_idx;
 		this.b_id = b_id;
@@ -27,7 +27,6 @@ public class BoardVo {
 		this.b_group = b_group;
 		this.b_level = b_level;
 		this.b_date = b_date;
-		this.b_update_date = b_update_date;
 		this.b_cnt = b_cnt;
 		this.b_file = b_file;
 		this.b_like = b_like;
@@ -112,13 +111,7 @@ public class BoardVo {
 		this.b_date = b_date;
 	}
 
-	public Date getB_update_date() {
-		return b_update_date;
-	}
 
-	public void setB_update_date(Date b_update_date) {
-		this.b_update_date = b_update_date;
-	}
 
 	public int getB_cnt() {
 		return b_cnt;
