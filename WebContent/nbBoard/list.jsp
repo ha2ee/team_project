@@ -1,3 +1,4 @@
+<%@page import="VO.test0000"%>
 <%@page import="VO.FreeBoardVo"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,11 +6,25 @@
 <%
    request.setCharacterEncoding("utf-8");
    String contextPath = request.getContextPath();
+   System.out.println(contextPath);
+
    ArrayList list = (ArrayList)request.getAttribute("list");
-/*    
-   int count = Integer.getInteger( request.getParameter("count") );
-   System.out.print(count);
- */%>    
+   System.out.println(list);
+   System.out.println("여기까지 합격");
+   test0000 testvo = (test0000) request.getAttribute("testvo");
+   int count = testvo.getCount();
+   
+/*    int count = Integer.parseInt(request.getParameter("count"));
+   System.out.print("count값 : " + count);
+//   int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+	 int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+//   System.out.print(pageSize);
+   int currentPage = Integer.parseInt( request.getParameter("currentPage") );
+   System.out.print(currentPage);
+//   String count = request.getParameter("count");
+   
+   System.out.print("잘 오지...?");
+ */ %>    
 
 <!DOCTYPE html>
 <html>
@@ -63,6 +78,8 @@
    %>
 
  --%>
+
+
 
 
     <!--요소 시작-->
@@ -194,6 +211,59 @@
     <form name="frmRead">
        <input type="hidden" name="b_idx">
     </form>
+   
+   
+   <% 
+ 	int pageSize = 5;
+
+ 	String pageNum = request.getParameter("pageNum");
+	if(pageNum == null){
+		pageNum = "1";
+	}
+	int currentPage = Integer.parseInt(pageNum);	
+	int startRow = (currentPage - 1) * pageSize + 1;
+
+	%>
+   
+   
+   <div id= "page_control">
+   		<%
+   		
+   		if(count != 0){
+   			int pageCount = count / pageSize + (count % pageSize==0?0:1);
+   			int pageBlock = 5;
+   			
+    		int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
+   			
+   			int endPage = startPage + pageBlock-1;
+   			if(endPage > pageCount){
+   				endPage = pageCount; 
+   				
+   			}
+   		
+   		%>
+   		
+   		<%
+   			if(startPage > pageBlock){ 
+   		%>
+   			<a href="<%=contextPath%>/freeboard/list.fb?pageNum = <%=startPage-pageBlock%>&startRow=<%=startRow%>&pageSize=<%=pageSize%>">Prev</a>
+   		<%}%>
+   		
+   		<%
+   			for(int i = startPage; i <= endPage;i++){
+   		%>
+   			<a href="<%=contextPath%>/freeboard/list.fb?pageNum=<%=i%>&startRow=<%=startRow%>&pageSize=<%=pageSize%>"><%=i%></a>
+   		<%}%>
+   		<%
+   			if(endPage < pageCount){
+   				System.out.println(startPage);
+   		%>
+   			<a href="<%=contextPath%>/freeboard/list.fb?pageNum =<%=startPage+pageBlock%>&startRow=<%=startRow%>&pageSize=<%=pageSize%>">Next</a>
+   		<%}%>
+   		<%}%>
+   		
+   
+   </div>
    
    
    
