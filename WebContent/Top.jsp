@@ -968,9 +968,64 @@ $.ajax({
 	$("#resultWind").text(wind+" m/s");
 	
 		// 온도와 바람에 따라서 변경 노출 될 이미지와 문구 설정
+		if(temp >= 26){
+			
+			// 온도는 11도 이상이지만 비가올 경우
+			if(rain > 0){
+				
+				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+				$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
+				$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+			
+			// 오후 6시 이후일 경우,
+			}else if(rain == 0 && initTime >= 18){
+				
+				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+				$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
+				$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
+				
+				
+				
+			// 온도가 11도 이상이고 비가 오지 않을경우,	
+			}else{
+			
+			$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+			$("#weatherzone").attr("value", "무더운 날씨네요").css("font-weight","bold");
+			$("#weatherzone2").attr("value", "더위 조심하세요!!").css("color", "#009688").css("font-weight","bold");
+			
+			}
+		
+		}else if(temp >= 12 && temp < 25){
+				
+				// 온도는 11도 이상이지만 비가올 경우
+				if(rain > 0){
+					
+					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
+					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+				
+				// 오후 6시 이후일 경우,
+				}else if(rain == 0 && initTime >= 18){
+					
+					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+					$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
+					$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
+					
+					
+					
+				// 온도가 11도 이상이고 비가 오지 않을경우,	
+				}else{
+				
+				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+				$("#weatherzone").attr("value", "따뜻한 날씨네요").css("font-weight","bold");
+				$("#weatherzone2").attr("value", "수분 챙기세요!!").css("color", "#009688").css("font-weight","bold");
+				
+				}
+		
+		
 		
 		// #1) 11도 보다 온도가 높거나 같고, 16도 미만 일 경우
-		if(temp >= 11 && temp < 16){
+		}else if(temp >= 11 && temp < 16){
 			
 				// 온도는 11도 이상이지만 비가올 경우
 				if(rain > 0){

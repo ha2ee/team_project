@@ -2,6 +2,7 @@ package CONTROLLER;
 
 import java.io.IOException;
 
+
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import DAO.MemberDAO;
 import VO.MemberVo;
 
-@WebServlet("/nbOrder/*")
+@WebServlet("/nbMember/*")
 public class nbMemberController extends HttpServlet{
 	
 	//MemberDAO객체를 저장할 참조변수 선언
@@ -201,32 +202,7 @@ public class nbMemberController extends HttpServlet{
 				nextPage = "/CarMain.jsp";
 				break;
 				
-			// /eduOrder.me <- 수강신청 시 "회원" 또는 "비회원"권한으로 예약할때
-			case "/eduOrder.me":
-				
-				
-				// 회원 & 비회원 권한으로 예약할때 1) 인적사항)
-				String sorder_code = request.getParameter("code");
-				int sorder_qty = Integer.parseInt(request.getParameter("qty"));
-				String sorder_id = request.getParameter("id");
-				String sorder_name = request.getParameter("name");
-				String sorder_hp = request.getParameter("hp");
-				String sorder_date = request.getParameter("nowdate");
-				String sorder_address1 = request.getParameter("address1");
-				String sorder_address2 = request.getParameter("address2");
-				String sorder_address3 = request.getParameter("address3");
-				String sorder_address4 = request.getParameter("address4");
-				String sorder_address5 = request.getParameter("address5");
-				
-				MemberVo vo = new MemberVo(user_id, user_pass, user_name,
-											user_age, user_gender, user_address,
-											user_email, user_tel, user_hp);
-				
-				memberdao.insertMember(vo);
-				
-				nextPage="/CarMain.jsp";
-				
-				break;	
+
 				
 				
 				
