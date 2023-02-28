@@ -1,6 +1,7 @@
 package DAO;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -221,7 +222,7 @@ public class OrderDAO {
 		System.out.println("String tr_name : "+tr_name);
 		
 		// 1) 트레이너를 조회할 멤버VO 초기화 시키기
-		 trMemberVo trmembervo = null;
+		trMemberVo trmembervo = null;
 		
 		try {
 			
@@ -230,7 +231,7 @@ public class OrderDAO {
 	        
 	        // 2) SELECT문		
 	        // sql 변수값에 가져온 이름으로  트레이너의 전화번호, 이미지를 조회한다. 
-	 		String sql = "select TR_HP, TR_IMG from MEMBER_TRAINER where TR_NAME=?";
+	 		String sql = "select TR_NAME, TR_HP, TR_IMG from MEMBER_TRAINER where TR_NAME=?";
 			
 	        
 	        // 3) pstmt에 sql 문 저장 하기
@@ -247,9 +248,11 @@ public class OrderDAO {
 		            
         		// 7) trMembervo에 저장한다.
 	            trmembervo = new trMemberVo();
+	            trmembervo.setTr_name(rs.getString("tr_name"));
 	            trmembervo.setTr_hp(rs.getString("tr_hp"));
 	            trmembervo.setTr_img(rs.getString("tr_img"));
 	            
+	            System.out.println("tr_name : "+trmembervo.getTr_name());
 	            System.out.println("tr_hp :"+trmembervo.getTr_hp());
 	            System.out.println("tr_img :"+trmembervo.getTr_img());
 	           

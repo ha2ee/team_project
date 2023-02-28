@@ -621,25 +621,37 @@ String tr_price = request.getParameter("tr_price");
                     if(date.getDate() > day && Math.sign(day) == 1) {
                         column.style.backgroundColor = "#ffffff";
                         column.style.color = "E5E5E5";
-                    }
+                  
 
-                    // @details 현재일보다 이후이면서 현재월에 포함되는 일인경우
-                    else if(date.getDate() < day && lastDate.getDate() >= day) {
-                        column.style.color = "#E5E5E5";                
+                    // @details 7일뒤보다 이후이면서 현재월에 포함되는 일인경우
+               		}else if((date.getDate()+6) < day && lastDate.getDate() >= day) {
+	
+	                        column.style.backgroundColor = "#f8f8f8";
+	                        column.style.color = "";
+	                        column.style.cursor = "pointer";
+	                        column.onclick = function(){ calendarChoiceDay(this); }    
+
                    
                     // 현재일 +6일 뒤 부터 선택 가능하게 만듬
-                    }else if((date.getDate()+6) < day ) {
+//                     }else if((date.getDate()+6) < day ) {
 
-                        column.style.backgroundColor = "#f8f8f8";
-                        column.style.color = "";
-                        column.style.cursor = "pointer";
-                        column.onclick = function(){ calendarChoiceDay(this); }    
+// //                         column.style.backgroundColor = "#f8f8f8";
+// //                         column.style.color = "";
+// //                         column.style.cursor = "pointer";
+// //                         column.onclick = function(){ calendarChoiceDay(this); }    
                     	
                     	
-                    }
+                    
                     // @details 현재일인 경우
-                    else if(date.getDate() == day) {
+                	}else if(date.getDate() == day) {
+                		
                         column.style.backgroundColor = "#fff5f3";
+                    
+                    // 현재일부터 7일이전 까지 라면
+                    }else{
+                    	
+                    	 column.style.color = "E5E5E5";
+                    	
                     }
                 // @details 현재월보다 이전인경우
                 } else if(today.getMonth() < date.getMonth()) {
@@ -890,8 +902,8 @@ String tr_price = request.getParameter("tr_price");
     }
     
     
-    
-	var dlastday  = moment(lastDate).format('YYYYMMDD');
+    var lastDate2 = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+	var dlastday  = moment(lastDate2).format('YYYYMMDD');
 	var d_day = moment(today).format('YYYYMMDD');
 	var diffday = dlastday-d_day;
 	
