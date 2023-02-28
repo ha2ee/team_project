@@ -34,6 +34,9 @@
 	String tr_hp = trmembervo.getTr_hp();
 	// 이미지 변수에 저장
 	String tr_img = trmembervo.getTr_img();
+	
+	out.print(tr_hp);
+	out.print(tr_img);
 
 	
 %>    

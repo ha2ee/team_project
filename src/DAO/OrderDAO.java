@@ -249,6 +249,9 @@ public class OrderDAO {
 	            trmembervo = new trMemberVo();
 	            trmembervo.setTr_hp(rs.getString("tr_hp"));
 	            trmembervo.setTr_img(rs.getString("tr_img"));
+	            
+	            System.out.println("tr_hp :"+trmembervo.getTr_hp());
+	            System.out.println("tr_img :"+trmembervo.getTr_img());
 	           
 	         }
 	        
