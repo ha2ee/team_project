@@ -59,9 +59,9 @@ public class BoardDAO {
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getB_id());
-			pstmt.setString(2, vo.getB_pw());
-			pstmt.setString(3, vo.getB_name());
-			pstmt.setString(4, vo.getB_email());
+//			pstmt.setString(2, vo.getB_pw());
+//			pstmt.setString(3, vo.getB_name());
+//			pstmt.setString(4, vo.getB_email());
 			pstmt.setString(5, vo.getB_title());
 			pstmt.setString(6, vo.getB_content());
 			
