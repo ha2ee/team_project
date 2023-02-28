@@ -1,0 +1,171 @@
+    .tbwContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+
+h2 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .tbwContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+        
+        #tbwTable {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        #tbwTable td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            vertical-align: middle;
+        }
+        
+        #tbwTable td:first-child {
+            font-weight: bold;
+            width: 80px;
+        }
+        
+        #tbwTitle {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        
+        #tbwTable input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        
+        
+    /*트레이너 게시판 리스트 css*/
+        
+    /* 글 목록 테이블 스타일 */
+	#board {
+	  margin: 20px auto;
+	  width: 800px;
+	  font-size: 14px;
+	}
+	
+	#bList {
+	  border-collapse: collapse;
+	  width: 100%;
+	}
+	
+	#bList th, #bList td {
+	  border: 1px solid lightgray;
+	  padding: 10px;
+	  text-align: center;
+	}
+	
+	#bList th {
+	  background-color: #eee;
+	}
+	
+	#bList td:first-child {
+	  width: 10%;
+	}
+	
+	#bList td:nth-child(2) {
+	  text-align: center;
+	}
+	
+	#bList td:nth-child(2) a {
+	  color: #333;
+	  font-weight: bold;
+	  text-decoration: none;
+	}
+	
+	#bList td:nth-child(2) a:hover {
+	  color: #f44336;
+	}
+	
+	#bList td:nth-child(3), #bList td:nth-child(4), #bList td:nth-child(5) {
+	  width: 20%;
+	}
+	
+	#bList td:nth-child(5) {
+	  font-weight: bold;
+	}
+	
+	/* 페이지 넘버링 부분 스타일 */
+	#pageForm {
+	  margin: 20px auto;
+	  text-align: center;
+	  font-size: 14px;
+	}
+	
+	#pageForm a {
+	  color: #333;
+	  text-decoration: none;
+	  padding: 5px 10px;
+	  border: 1px solid lightgray;
+	}
+	
+	#pageForm a:hover {
+	  background-color: #f44336;
+	  color: white;
+	}
+	
+	#pageForm a:first-child, #pageForm a:last-child {
+	  background-color: #f5f5f5;
+	}
+	
+	#pageForm a:first-child:hover, #pageForm a:last-child:hover {
+	  background-color: #ddd;
+	}
+	
+	#pageForm span {
+	  display: inline-block;
+	  color: #f44336;
+	  padding: 5px 10px;
+	}
+	
+	/* 검색 부분 스타일 */
+	#searchForm {
+	  margin: 20px auto;
+	  text-align: center;
+	  font-size: 14px;
+	}
+	
+	#searchForm form {
+	  display: inline-block;
+	}
+	
+	#searchForm select, #searchForm input[type="text"] {
+	  font-size: 14px;
+	  padding: 5px;
+	  margin-right: 10px;
+	}
+	
+	#searchForm input[type="submit"] {
+	  background-color: #f44336;
+	  color: white;
+	  border: none;
+	  padding: 5px 10px;
+	  font-size: 14px;
+	  cursor: pointer;
+	}
+	
+	#searchForm input[type="submit"]:hover {
+	  background-color: #e53935;
+	}
+	        
+       

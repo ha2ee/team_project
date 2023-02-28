@@ -1,6 +1,7 @@
 package CONTROLLER;
 
 import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,7 +27,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 
-import DAO.FileBoardDAO;
 import DAO.MemberDAO;
 import VO.BoardVo;
 import VO.FileBoardVo;
@@ -37,8 +37,6 @@ import VO.MemberVo;
 @WebServlet("/nb_board/*")
 public class nbBoardController extends HttpServlet{
 	
-	//BoardDAO객체를 저장할 참조변수 선언
-	FileBoardDAO fileboarddao;
 	
 	//MemberDAO객체를 저장할 참조변수 선언
 	MemberDAO memberdao;
@@ -52,9 +50,7 @@ public class nbBoardController extends HttpServlet{
 	
 	@Override
 	public void init() throws ServletException {
-		fileboarddao = new FileBoardDAO();
 		memberdao = new MemberDAO();
-		membervo = new MemberVo();
 		
 		
 	}

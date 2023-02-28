@@ -1,0 +1,125 @@
+.myPageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
+}
+
+/*전체 Container*/
+.myPageContainer {
+	display : flex;
+	flex-direction : column;
+	justify-content : space-between;
+	flex-wrap : wrap;
+	position: relative;
+/* 	border: 1px solid black; */
+	width : 1200px;
+	height : 750px;
+}
+
+/*위,아래로 div박스 크게 2개 나누고*/
+.myPageTop {
+	width : 100%;
+	height : 500px;
+	position : relative;
+	justify-content : space-between;
+	display : flex;
+}
+.myPageBottom {
+	width : 100%;
+	height : 200px;
+	position : relative;
+	justify-content : space-between;
+	display : flex;
+}
+
+.myPageLeft {
+	width : 49%;
+/* 	border: 1px solid black; */
+	display : flex;
+	flex-direction: column-reverse;
+	justify-content: center;
+	align-items: center;
+}        
+
+.myPageRight {
+	width: 49%;
+	display:flex;
+	flex-direction: column;
+	justify-content: space-between;
+/* 	border: 1px solid black; */
+}        
+
+#myPageLeftTop {
+	position : relative;
+	width : 500px;
+	heigth : 200px;
+	font-size: 24px;
+	text-align: center;
+
+}
+
+.mptr div{
+	width : 100%;
+	height : 30%;
+/* 	border: 1px solid black; */
+	background-color: #EAEAEA;
+	display : flex;
+	align-items : center;
+	justify-content : center;
+	font-size: 26px;
+	font : bold;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.mypageImg {
+	width : 100px;
+}
+
+.mpbr div, .mpbl div{
+	width : 100%;
+	height : 100%;
+/* 	border: 1px solid black; */
+	background-color: #EAEAEA;
+	margin : auto;
+	display : flex;
+	align-items : center;
+	justify-content : center;
+	font-size: 26px;
+	font : bold;
+	cursor: pointer;
+	overflow: hidden;
+	
+}
+
+
+
+
+
+/*왼쪽상단 버튼 CSS*/
+.mypageButton {
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#768d87;
+	border-radius:42px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+.mypageButton:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
+.mypageButton:active {
+	position:relative;
+	top:1px;
+}
+/*왼쪽상단 버튼 CSS*/        
