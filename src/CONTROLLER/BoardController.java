@@ -28,6 +28,7 @@ import DAO.FreeBoardDAO;
 import DAO.MemberDAO;
 import VO.FreeBoardVo;
 import VO.MemberVo;
+import VO.test0000;
 
 
 //게시판 관련 기능 요청이 들어오면 호출되는 사장님(컨트롤러)
@@ -91,8 +92,8 @@ public class BoardController extends HttpServlet{
 		String center = null;
 		//BoardVo객체를 저장할 참조변수 선언
 		FreeBoardVo vo = null;
+		test0000 testvo = null;
 		ArrayList list = null;
-//		int count = 0;
 //		String key = null;
 //		String word = null;
 //		String memberid = null;
@@ -121,16 +122,26 @@ public class BoardController extends HttpServlet{
 //			request.setAttribute("id", loginid);
 //			request.setAttribute("nowPage", nowPage);
 //			request.setAttribute("nowBlock", nowBlock);
-	    	  
-	    	  
-
-	    	  list = boarddao.boardListAll();
+	    		String pageNum = request.getParameter("pageNum");
+	    		int startRow = Integer.parseInt(request.getParameter("startRow"));
+	    		int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+	    		
+	    		
+	    	  list = boarddao.boardListAll(startRow,pageSize);
 	    	  int count = boarddao.getTotalRecord();
-        	  request.setAttribute("center", "nbBoard/list.jsp");
+	    	  testvo = new test0000();
+	    	  testvo.setCount(count);
+	    	  
         	  request.setAttribute("list", list);
-        	  request.setAttribute("count", count);
+//        	  request.setAttribute("pageNum", pageNum);
+ 	    	  request.setAttribute("testvo", testvo);
+//        	  request.setAttribute("pageSize", pageSize);
+//        	  request.setAttribute("count", count);
+//        	  request.setAttribute("currentPage", currentPage);
+
 
 	    	  
+        	  request.setAttribute("center", "nbBoard/list.jsp");
 	    	  nextPage = "/nbMain.jsp";
 	    	  break;
 	    	  
@@ -164,7 +175,7 @@ public class BoardController extends HttpServlet{
 			String nickname = "seeeop2";
 			
 //			//업로드 작업 중ㅇ...
-			String directory ="C:\\Users\\hutos\\OneDrive\\Desktop\\upload";
+			String directory ="/Users/inseop/Desktop/팀프로젝트/upload";
 			System.out.println(directory);
 			int maxSize = 1024 * 1024 * 100;
 			String encoding = "utf-8";

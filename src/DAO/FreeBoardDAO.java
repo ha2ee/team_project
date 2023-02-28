@@ -37,14 +37,20 @@ public class FreeBoardDAO {
 	}
 //------------------------------------------------------------------------------------------- 기본적으로 필요한 부분
 
-	public ArrayList boardListAll() {
-		ArrayList list = new ArrayList();
+	public ArrayList boardListAll(int startRow, int pageSize) {
+		ArrayList list = new ArrayList();//6         //5
 		FreeBoardVo vo;
+		if(startRow>pageSize) {
+			pageSize = startRow + pageSize;
+		}
+		
 		try {
 			con = ds.getConnection();
-			String sql = "SELECT * FROM FREE_BOARD ORDER BY B_IDX DESC";
-			
+			String sql = "SELECT * FROM ( SELECT ROWNUM RM, B_IDX, B_ID,B_NICKNAME,B_TITLE,B_CONTENT,B_GROUP,B_LEVEL,B_DATE,B_CNT,B_FILE,B_LIKE FROM (SELECT * FROM FREE_BOARD ORDER BY B_IDX DESC)) WHERE RM BETWEEN ? AND ?";
+//			String sql = "SELECT * FROM FREE_BOARD";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
 
 			rs = pstmt.executeQuery();
 
@@ -64,6 +70,7 @@ public class FreeBoardDAO {
 									);
 
 				list.add(vo);
+				System.out.println("list담았다!");
 			}
 			
 		} catch (Exception e) {
