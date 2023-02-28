@@ -212,6 +212,13 @@ public class OrderDAO {
 	      return membervo;
 	   }
 
+	// 조회된 이름값으로 MEMBER_TRAINER DB에 저장 된 트레이너를 조회하고
+	// 다시 리턴 해준다.
+	public void checkTrainer() {
+		
+		
+	}
+
 		
 		
 		

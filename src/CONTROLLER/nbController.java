@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DAO.OrderDAO;
 import DAO.ProjectDAO;
+import VO.nbOrderVo;
+import VO.nbTrOrderVo;
 
 
 
@@ -22,8 +25,16 @@ import DAO.ProjectDAO;
 public class nbController extends HttpServlet{
 	
 	
+	// 오더 메소드를 만들 오더dao 호출
+	OrderDAO orderdao;
+	
+	// 조회 또는 저장 시킬 오더vo, tr오더vo 호출
+	nbOrderVo nbordervo;
+	nbTrOrderVo nbtrordervo; 
+	
 	@Override
 	public void init() throws ServletException {
+		orderdao = new OrderDAO();
 
 	}
 	
@@ -162,6 +173,16 @@ public class nbController extends HttpServlet{
 		}else if(action.equals("/edureservation.do")) {
 			
 			System.out.println("edureservation.do 메소드 호출!");
+			
+			// 1)조회를 할 이름 값을 가져온다.
+			String tr_name = request.getParameter("tr_name");
+			System.out.println(tr_name);
+			
+			// 2)조회할 이름을 저장 시킨다.
+			request.setAttribute("tr_name", tr_name);
+			
+			// 3)오더다오를 통해 값을 조회 한다.
+			orderdao.checkTrainer();
 			
 			// 중앙 화면 요청한 주소 얻기
 			String center = request.getParameter("center");
