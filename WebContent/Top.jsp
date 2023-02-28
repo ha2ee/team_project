@@ -648,9 +648,9 @@ body{
 		<div id = "nb_login">
 				<div id = "nb_box">
 					<ul id = "login_box">	                    			
-		               <li><a href="<%=request.getContextPath()%>/nb/login.member?center=/nbMember/login.jsp" class="btn">로그인</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb/mypage.member?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb/join.member?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nb_member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nb_member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
 		               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
 					</ul>
 				</div>	
@@ -722,8 +722,8 @@ body{
 				<li><a href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강신청 가기</a></li>
 			</ul>
 			<ul class="list_lnb_03">
-				<li><a href="<%=request.getContextPath()%>/nb/free.bo?center=/nbBoard/freeboard.jsp">자유 게시판</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/trainer.bo?center=/nbBoard/trainerboard.jsp">훈련사 상담</a></li>
+				<li><a href="<%=request.getContextPath()%>/freeboard/list.fb?pageNum=1&startRow=1&pageSize=5">자유 게시판</a></li>
+				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/review.bo?center=/nbBoard/review.jsp">수강 후기</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
 			</ul>
