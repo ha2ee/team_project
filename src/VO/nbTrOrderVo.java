@@ -8,10 +8,10 @@ public class nbTrOrderVo {
 	// tr_order 내에 있는 컬럼 값들을 해당 타입에 맞게 변수화 설정
 	
 	
-	private int tr_num, pet_age, pet_weight, pet_op;
+	private int tr_num, pet_age, pet_weight;
 	
 	private String tr_mem_name, tr_mem_id, tr_mem_hp, pet_name, pet_type, pet_gender,
-					 pet_img;
+					 pet_img, pet_op;
 	
 	Date tr_reg_date, tr_date1, tr_date2, tr_date3, tr_date4,
 		   tr_date5, tr_date6, tr_date7;
@@ -30,7 +30,7 @@ public class nbTrOrderVo {
 		return pet_weight;
 	}
 
-	public int getPet_op() {
+	public String getPet_op() {
 		return pet_op;
 	}
 
@@ -106,7 +106,7 @@ public class nbTrOrderVo {
 		this.pet_weight = pet_weight;
 	}
 
-	public void setPet_op(int pet_op) {
+	public void setPet_op(String pet_op) {
 		this.pet_op = pet_op;
 	}
 
@@ -174,7 +174,7 @@ public class nbTrOrderVo {
 	
 	// 기본 생성자 설정
 
-	public nbTrOrderVo(int tr_num, int pet_age, int pet_weight, int pet_op, String tr_mem_name, String tr_mem_id,
+	public nbTrOrderVo(int tr_num, int pet_age, int pet_weight, String pet_op, String tr_mem_name, String tr_mem_id,
 			String tr_mem_hp, String pet_name, String pet_type, String pet_gender, String pet_img, Date tr_reg_date,
 			Date tr_date1, Date tr_date2, Date tr_date3, Date tr_date4, Date tr_date5, Date tr_date6, Date tr_date7) {
 		super();
