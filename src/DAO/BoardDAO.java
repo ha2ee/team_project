@@ -140,17 +140,17 @@ public class BoardDAO {
 			//조회된 Result의 정보를 한행 단위로 꺼내서
 			//BoardVo객체에 한행씩 저장 후 BoardVo객체들을 ArrayList배열에 하나씩 추가해서 저장
 			while(rs.next()) {
-				BoardVo vo = new BoardVo(rs.getInt("b_idx"),
-										rs.getString("b_id"),
-										rs.getString("b_pw"),
-										rs.getString("b_name"), 
-										rs.getString("b_email"), 
-										rs.getString("b_title"), 
-										rs.getString("b_content"), 
-										rs.getInt("b_group"), 
-										rs.getInt("b_level"), 
-										rs.getDate("b_date"), 
-										rs.getInt("b_cnt"));
+				BoardVo vo = new BoardVo(rs.getInt("b_idx"), 
+						rs.getString("b_id"), 
+						rs.getString("b_nickname"), 
+						rs.getString("b_title"), 
+						rs.getString("b_content"),
+						rs.getInt("b_group"), 
+						rs.getInt("b_level"),
+						rs.getDate("b_date"),
+						rs.getInt("b_cnt"),
+						rs.getString("b_file"),
+						rs.getInt("b_like"));
 				list.add(vo);
 			}
 			
@@ -185,7 +185,7 @@ public class BoardDAO {
 						+ " or b_content like '%"+word+"%' order by b_group asc";
 			}else{//검색 기준값 작성자를 선택했다면?
 				
-				sql = "select * from board where b_name like '%"+word+"%' order by b_group asc";
+				sql = "select * from board where b_nickname like '%"+word+"%' order by b_group asc";
 			}
 			
 			
@@ -209,15 +209,15 @@ public class BoardDAO {
 			while(rs.next()) {
 				BoardVo vo = new BoardVo(rs.getInt("b_idx"),
 										rs.getString("b_id"),
-										rs.getString("b_pw"),
-										rs.getString("b_name"), 
-										rs.getString("b_email"), 
+										rs.getString("b_nickname"),
 										rs.getString("b_title"), 
 										rs.getString("b_content"), 
 										rs.getInt("b_group"), 
 										rs.getInt("b_level"), 
 										rs.getDate("b_date"), 
-										rs.getInt("b_cnt"));
+										rs.getInt("b_cnt"), 
+										rs.getString("b_file"), 
+										rs.getInt("b_like"));
 				list.add(vo);
 			}
 			
@@ -253,17 +253,17 @@ public class BoardDAO {
 			//조회된 Result의 정보를 한행 단위로 꺼내서
 			//BoardVo객체에 한행을 저장
 			if(rs.next()) {
-				vo = new BoardVo(rs.getInt("b_idx"),
-										rs.getString("b_id"),
-										rs.getString("b_pw"),
-										rs.getString("b_name"), 
-										rs.getString("b_email"), 
-										rs.getString("b_title"), 
-										rs.getString("b_content"), 
-										rs.getInt("b_group"), 
-										rs.getInt("b_level"), 
-										rs.getDate("b_date"), 
-										rs.getInt("b_cnt"));
+				vo = new BoardVo(rs.getInt("b_idx"), 
+						rs.getString("b_id"), 
+						rs.getString("b_nickname"), 
+						rs.getString("b_title"), 
+						rs.getString("b_content"),
+						rs.getInt("b_group"), 
+						rs.getInt("b_level"),
+						rs.getDate("b_date"),
+						rs.getInt("b_cnt"),
+						rs.getString("b_file"),
+						rs.getInt("b_like"));
 			}
 			
 		} catch (Exception e) {
