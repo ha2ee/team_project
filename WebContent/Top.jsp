@@ -968,9 +968,11 @@ $.ajax({
 	$("#resultWind").text(wind+" m/s");
 	
 		// 온도와 바람에 따라서 변경 노출 될 이미지와 문구 설정
-		if(temp >= 26){
+		
+		// #1 온도가 25도 이상일 경우
+		if(temp >= 25){
 			
-			// 온도는 11도 이상이지만 비가올 경우
+			// 온도가 25도 이상이지만 비가올 경우
 			if(rain > 0){
 				
 				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
@@ -986,7 +988,7 @@ $.ajax({
 				
 				
 				
-			// 온도가 11도 이상이고 비가 오지 않을경우,	
+			// 온도가 26도 이상이고 비가 오지 않을경우,	
 			}else{
 			
 			$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
@@ -994,10 +996,11 @@ $.ajax({
 			$("#weatherzone2").attr("value", "더위 조심하세요!!").css("color", "#009688").css("font-weight","bold");
 			
 			}
-		
-		}else if(temp >= 12 && temp < 25){
+			
+		// #2 온도가 16도 이상 25도 미만일 경우
+		}else if(temp >= 16 && temp < 25){
 				
-				// 온도는 11도 이상이지만 비가올 경우
+				// 온도는 16도 이상 25도 미만이지만 비가올 경우
 				if(rain > 0){
 					
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
@@ -1013,7 +1016,7 @@ $.ajax({
 					
 					
 					
-				// 온도가 11도 이상이고 비가 오지 않을경우,	
+				// 온도는 16도 이상 25도 미만이지만 비가 오지 않을경우,	
 				}else{
 				
 				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
@@ -1024,7 +1027,7 @@ $.ajax({
 		
 		
 		
-		// #1) 11도 보다 온도가 높거나 같고, 16도 미만 일 경우
+		// #3) 11도 보다 온도가 높거나 같고, 16도 미만 일 경우
 		}else if(temp >= 11 && temp < 16){
 			
 				// 온도는 11도 이상이지만 비가올 경우
@@ -1052,7 +1055,7 @@ $.ajax({
 				
 				}
 			
-		// #2) 온도가 6도 보다는 높지만, 11도 보다는 낮을때	
+		// #4) 온도가 6도 보다는 높지만, 11도 보다는 낮을때	
 		}else if(temp >= 6 && temp < 11){
 			
 				// 온도는 6도 이상 11도 미만이지만 비가올 경우
@@ -1081,7 +1084,7 @@ $.ajax({
 				$("#weatherzone2").attr("value", "조심히 산책하세요!").css("color", "#8bc34a").css("font-weight","bold");
 				
 				}
-		// #3) 온도가 -1도 이상 6도 미만일때
+		// #5) 온도가 -1도 이상 6도 미만일때
 		}else if(temp >= -1 && temp < 6){
 				
 				// 온도는 -1도 이상 6도 미만이지만 비가올 경우
@@ -1108,10 +1111,10 @@ $.ajax({
 				}
 
 			
-		// #4) 온도가 -2도보다 이하고 -4도 초과 일때	
+		// #6) 온도는 -2도보다 낮거나 같고 -4도 미만일 때
 		}else if (temp <= -2 && temp > -4){
 			
-				// 온도는 -2도 이하 -4도 초과이지만 비가올 경우
+				// 온도는 -2도보다 낮거나 같고 -4도 미만일 때, 비가올 경우
 				if(rain > 0){
 					
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
@@ -1127,7 +1130,7 @@ $.ajax({
 						
 					
 					
-				// 온도가 -2도 이하 -4도 초고에 비가 안 올 경우
+				// 온도는 -2도보다 낮거나 같고 -4도 미만일 때, 비가 안 올 경우
 				}else{
 				
 				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
@@ -1136,10 +1139,10 @@ $.ajax({
 				
 				}
 			
-		// #5) 온도가 -5도 이하일 경우	
-		}else if(temp <= -5){
+		// #7) 온도가 -4도와 같거나 높을경우	
+		}else if(temp >= -4){
 			
-			// 온도는 -5도 이하에 비가올 경우
+			// 온도가 -4도와 같거나 높고 비가올 경우
 			if(rain > 0){
 				
 				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
@@ -1154,7 +1157,7 @@ $.ajax({
 				$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
 
 			
-			// 온도가 -5도 이하에 비가 안 올 경우
+			// 온도가 -4도와 같거나 높고 비가 안 올 경우
 			}else{
 			
 			$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
