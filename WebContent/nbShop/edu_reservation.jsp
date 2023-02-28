@@ -1,3 +1,4 @@
+<%@page import="VO.trMemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -25,8 +26,16 @@
 	String tr_mem_reg_date = request.getParameter("tr_mem_reg_date");
 	// 한글버젼으로 된 예약일을 가져와서 변수에 저장
 	String tr_reg_date = request.getParameter("reg_date");
+	
+	// trmembervo에 저장한 tr_hp와, tr_img를 가져와 변수에 저장 시킨다.
+	trMemberVo trmembervo = (trMemberVo)request.getAttribute("trmembervo");
+	
+	String tr_hp = trmembervo.getTr_hp();
+	String tr_img = trmembervo.getTr_img();
 
-
+	out.print(tr_hp);
+	out.print(tr_img);
+	
 %>    
     
 <!DOCTYPE html>

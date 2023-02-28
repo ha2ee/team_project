@@ -9,6 +9,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import VO.MemberVo;
+import VO.trMemberVo;
 
 public class OrderDAO {
 
@@ -214,9 +215,57 @@ public class OrderDAO {
 
 	// 조회된 이름값으로 MEMBER_TRAINER DB에 저장 된 트레이너를 조회하고
 	// 다시 리턴 해준다.
-	public void checkTrainer() {
+	public trMemberVo checkTrainer(String tr_name) {
 		
+		System.out.println("OrderDAO -> checkTrainer 호출!");
+		System.out.println("String tr_name : "+tr_name);
 		
+		// 1) 트레이너를 조회할 멤버VO 초기화 시키기
+		 trMemberVo trmembervo = null;
+		
+		try {
+			
+	        // 1) DB접속
+	        con = ds.getConnection();
+	        
+	        // 2) SELECT문		
+	        // sql 변수값에 가져온 이름으로  트레이너의 전화번호, 이미지를 조회한다. 
+	 		String sql = "select TR_HP, TR_IMG from MEMBER_TRAINER where TR_NAME=?";
+			
+	        
+	        // 3) pstmt에 sql 문 저장 하기
+	        pstmt = con.prepareStatement(sql);
+	        
+	        // 4) sql에서 ?로 된 구문에 tr_name 넣기
+	        pstmt.setString(1, tr_name);
+	        
+	        // 5) resultset에 저장시키고 조회 해온다.
+	        rs = pstmt.executeQuery();
+	        
+	        // 6) 조회해온 행이 있으면?
+	        if(rs.next()) {
+		            
+        		// 7) trMembervo에 저장한다.
+	            trmembervo = new trMemberVo();
+	            trmembervo.setTr_hp(rs.getString("tr_hp"));
+	            trmembervo.setTr_img(rs.getString("tr_img"));
+	           
+	         }
+	        
+			
+			
+		} catch (Exception e) {
+		         System.out.println("OrderDAO -> ClickTrainer 메소드 내부에서 오류!");
+		         e.printStackTrace();
+			
+		} finally {
+			
+			 closeResource();
+			
+		}
+		
+		// 8) trMembervo로 리턴해준다.
+		return trmembervo;
 	}
 
 		

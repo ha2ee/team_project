@@ -18,6 +18,7 @@ import DAO.OrderDAO;
 import DAO.ProjectDAO;
 import VO.nbOrderVo;
 import VO.nbTrOrderVo;
+import VO.trMemberVo;
 
 
 
@@ -27,6 +28,9 @@ public class nbController extends HttpServlet{
 	
 	// 오더 메소드를 만들 오더dao 호출
 	OrderDAO orderdao;
+	
+	// 트레이너 정보를 조회할 trMemberVo를 호출
+	trMemberVo trmembervo;
 	
 	// 조회 또는 저장 시킬 오더vo, tr오더vo 호출
 	nbOrderVo nbordervo;
@@ -181,8 +185,10 @@ public class nbController extends HttpServlet{
 			// 2)조회할 이름을 저장 시킨다.
 			request.setAttribute("tr_name", tr_name);
 			
-			// 3)오더다오를 통해 값을 조회 한다.
-			orderdao.checkTrainer();
+			// 3)트레이너 이름을 매개변수로 해서 오더다오를 통해 값을 조회 한다.
+			trmembervo = orderdao.checkTrainer(tr_name);
+			
+			request.setAttribute("trmembervo", trmembervo);
 			
 			// 중앙 화면 요청한 주소 얻기
 			String center = request.getParameter("center");
