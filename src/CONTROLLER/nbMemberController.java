@@ -262,10 +262,10 @@ public class nbMemberController extends HttpServlet{
 			case "/login.me":
 				
 				//중앙화면 주소 바인딩
-				request.setAttribute("center", "members/login.jsp");
+				request.setAttribute("center", "nbMember/login.jsp");
 				
 				//전체 메인화면 주소 저장
-				nextPage="/CarMain.jsp";
+				nextPage="/nbMain.jsp";
 				break;
 			
 			
