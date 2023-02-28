@@ -1,6 +1,7 @@
 package CONTROLLER;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import DAO.MemberDAO;
 import VO.MemberVo;
 
-@WebServlet("/nbMember/*")
+@WebServlet("/nbOrder/*")
 public class nbMemberController extends HttpServlet{
 	
 	//MemberDAO객체를 저장할 참조변수 선언
@@ -58,13 +59,11 @@ public class nbMemberController extends HttpServlet{
 		System.out.println("요청한  주소 : "+action);
 		
 		
-		// /join.me <- 회원가입시 입력하는 화면 요청!
 		// /joinIdCheck.me <- 아이디 중복 확인 요청 !
 		// /joinPro.me <- 회원가입 요청 주소!
 		// /login.me <- 로그인 요청을 위해 아이디와 비밀번호를 입력하는 화면 요청!
 		// /loginPro.me <- 로그인을 요청!
 		// /logout.me <- 로그아웃 요청!
-		// /eduOrder.me <- 예약신청페이지에서 "예약 확정" 버튼을 눌렀을 때
 		// /mypage.me <- 마이페이지 요청!
 		// /cart.me <- 장바구니 요청!
 		

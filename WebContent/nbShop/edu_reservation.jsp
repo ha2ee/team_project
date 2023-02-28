@@ -1276,7 +1276,7 @@ input#file-upload-button {
 	<!-- 	주문예약 들어갈 항목 -->
 	
 <!-- 	내용을 입력하고 예약확정 버튼을 눌렀을 때 /nbMemberCotroller/eduOrder.me 호출 -->
-	<form method = "post" action="<%=contextPath%>/nbMember/eduOrder.me" id="form">	
+	<form method = "post" action="<%=contextPath%>/nbOrder/eduOrder.od" id="form">	
 	<div id = "reservationBox" >
 		<div id = "reservationFormWrapper">
 			<div id = "mem_box">

@@ -8,10 +8,10 @@ public class nbOrderVo {
 	// edu_order 내에 있는 컬럼 값들을 해당 타입에 맞게 변수화 설정
 	
 	
-	private int edu_num, edu_price, edu_pet_age, edu_pet_weight, edu_pet_op;
+	private int edu_num, edu_price, edu_pet_age, edu_pet_weight;
 	
 	private String edu_tr_img, edu_tr_name, edu_pet_img, edu_tr_hp, edu_pet_name,
-				     edu_pet_type, edu_pet_gender;
+				     edu_pet_type, edu_pet_gender, edu_pet_op;
 	
 	Date edu_reg_date, edu_date1, edu_date2, edu_date3, edu_date4,
 		   edu_date5, edu_date6, edu_date7;
@@ -34,7 +34,7 @@ public class nbOrderVo {
 		return edu_pet_weight;
 	}
 
-	public int getEdu_pet_op() {
+	public String getEdu_pet_op() {
 		return edu_pet_op;
 	}
 
@@ -114,7 +114,7 @@ public class nbOrderVo {
 		this.edu_pet_weight = edu_pet_weight;
 	}
 
-	public void setEdu_pet_op(int edu_pet_op) {
+	public void setEdu_pet_op(String edu_pet_op) {
 		this.edu_pet_op = edu_pet_op;
 	}
 
@@ -180,7 +180,7 @@ public class nbOrderVo {
 	
 	// 기본 생성자 설정
 
-	public nbOrderVo(int edu_num, int edu_price, int edu_pet_age, int edu_pet_weight, int edu_pet_op, String edu_tr_img,
+	public nbOrderVo(int edu_num, int edu_price, int edu_pet_age, int edu_pet_weight, String edu_pet_op, String edu_tr_img,
 			String edu_tr_name, String edu_pet_img, String edu_tr_hp, String edu_pet_name, String edu_pet_type,
 			String edu_pet_gender, Date edu_reg_date, Date edu_date1, Date edu_date2, Date edu_date3, Date edu_date4,
 			Date edu_date5, Date edu_date6, Date edu_date7) {
