@@ -360,7 +360,7 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-	height : 382px;
+    height: 415px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -375,7 +375,7 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-	height : 383px;
+	height: 413px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -451,40 +451,54 @@
 
 #pet_box > #pet_img_box {
 
-	border : 1px solid #fff5f373;
-	
-	position :relative;
-	text-align :center;
-	width : 250px;
-	height : 275px;
-	margin : 0 auto;
-	left : -474px;
-	right : 0;
-	top : 0;
+border: 1px solid #fff5f373;
+
+position: relative;
+    text-align: center;
+    width: 250px;
+	height: 270px;
+    margin: 0 auto;
+    left: -474px;
+    right: 0;
+    top: 0;
+
+}
+
+#pet_box > #pet_name_box {
+ 
+    border: 1px solid #fff5f373;
+    
+    position: relative;
+    text-align: center;
+    width: 250px;
+    height: 35px;
+    margin: 0 auto;
+    left: -474px;
+    right: 0;
+    top: 1px;
+    border-radius: 10px;
 
 }
 
 #pet_img_name {
 
-	border : 1px solid #fff5f373;
-	
-	display : block;
-	position :relative;
-	text-align :center;
-	width : 100%;
-	height : 35px;
-	margin : 0 auto;
-	left : 0;
-	right : 0;
-	top : 0;
-	font-size : 18px;
-	background : #fff5f3;
-	border-radius: 5px;
-	color : #ff572282;
-	padding : 5px;
-	font-weight : bold;
-	text-decoration: none;
-
+    border: 1px solid #fff5f373;
+    display: block;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 33px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    font-size: 18px;
+    background: #fff5f3;
+    border-radius: 5px;
+    color: #ff572282;
+    padding: 5px;
+    font-weight: bold;
+    text-decoration: none;
 
 }
 
@@ -514,7 +528,7 @@
     height: 25px;
     position: relative;
     left: 2px;
-    top: 210px;
+	top: 230px;
     right: 0;
     margin: 0 auto;
     font-size : 13px;
@@ -540,14 +554,14 @@ input#file-upload-button {
 
 	border : 1px solid #fff5f373;
 	
-	position :relative;
-	text-align :center;
-	width : 820px;
-	height : 275px;
-	margin : 0 auto;
-	left : 65px;
-	right : 0;
-	top : -275px;
+	position: relative;
+    text-align: center;
+    width: 820px;
+    height: 305px;
+    margin: 0 auto;
+    left: 65px;
+    right: 0;
+    top: -304px;
 
 }
 
@@ -597,15 +611,15 @@ input#file-upload-button {
 
 	border : 1px solid #fff5f373;
 	
-	display : block;
-	position :relative;
-	text-align :center;
-	width : 133px;
-	height : 275px;
-	margin : 0 auto;
-	left : 533px;
-	right : 0;
-	top : -550px;
+	display: block;
+    position: relative;
+    text-align: center;
+    width: 133px;
+    height: 305px;
+    margin: 0 auto;
+    left: 533px;
+    right: 0;
+    top: -609px;
 
 }
 
@@ -1299,8 +1313,11 @@ input#file-upload-button {
 				<div id = "pet_check">
 					<a id ="petcheck" class = btn href="#">반려견 정보 가져오기</a>
 				</div>
-				<div id = "pet_img_box">
-					<a id="pet_img_name" type= "text">반려견 사진<input type="file" id="pet_img" name="pet_img" accept="image/*" onchange="setThumbnail(event);"/></a>
+				<div id = "pet_name_box">
+					<a id="pet_img_name" type= "text">반려견 사진</a>
+				</div>
+				<div id= "pet_img_box" >
+						<input type="file" id="pet_img" name="pet_img" accept="image/*" onchange="setThumbnail(event);"/>
 				</div>
 				<div id = "pet_info_box">
 					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" placeholder="반려견이름"  />
@@ -1423,10 +1440,11 @@ input#file-upload-button {
 		
 		
 		// 강아지 사진을 올리면,
-		$("#pet_img_name > input").on("mouseout" , function(){
+		$("#pet_img_box > input").on("mouseout" , function(){
 			
 			// 강아지 사진의 출처를 저장한 뒤,
 			var src = $("#pet_img_box > img").attr("src");
+			console.log(src);
 			
 			// 예약 반려견으로 바꿔준다.
 			$("#edu_img").attr("src", src);
