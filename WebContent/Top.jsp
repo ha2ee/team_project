@@ -23,14 +23,14 @@ $(document).ready(function(){
 
 //	함수로 캐러셀 동작 시키기
 $(document).ready(function() {
-	    $("#news-slider1").owlCarousel({
-	        items:3,
-	        itemsDesktop:[1199,3],
-	        itemsDesktopSmall:[1000,2],
-	        itemsMobile : [650,1],
-	        navigationText:false,
-	        autoPlay:true
-	    });
+	    $("#news-slider1").owlCarousel({
+	        items:3,
+	        itemsDesktop:[1199,3],
+	        itemsDesktopSmall:[1000,2],
+	        itemsMobile : [650,1],
+	        navigationText:false,
+	        autoPlay:true
+	    });
 		});
 
 
@@ -635,7 +635,7 @@ body{
 				<li><a href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강신청 가기</a></li>
 			</ul>
 			<ul class="list_lnb_03">
-				<li><a href="<%=request.getContextPath()%>/nb/free.bo?center=/nbBoard/freeboard.jsp">자유 게시판</a></li>
+				<li><a href="<%=request.getContextPath()%>/freeboard/list.fb?pageNum=1&startRow=1&pageSize=5">자유 게시판</a></li>
 				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/review.bo?center=/nbBoard/review.jsp">수강 후기</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
