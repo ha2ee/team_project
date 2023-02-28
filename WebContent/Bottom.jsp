@@ -42,6 +42,7 @@
                                 <li> <i class="fa fa-map-marker"></i>경남 양산시 중부동 686-7 양산역프라자 2층</li>
                                 <li><i class="fa fa-phone"></i>055-383-0000</li>
                                 <li><i class="fa fa-envelope"></i>admin@nb.co.kr</li>
+                            </ul>
                         </div>
                         <a style="border-radius: 20px; background:black;"href="#" class="btn btn-primary btn-sm">1:1 상담하기<br></a></div>
                 </div>

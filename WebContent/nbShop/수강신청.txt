@@ -1,0 +1,21 @@
+준비물			페이지 : 6페이지				DB :  5개 						
+				calendar.jsp					member_trainer			1 . trainer : 트레이너 소개에서 DB에서 받아오기, 						
+				trainer.jsp						ys_member				2-1) . calendar 에서 회원예약 버튼을 클릭한다면, -> edu_reservation으로 이동시키기 위해, 로그인 여부 체크 후 이동 시킴							
+				edu_reservation.jsp			non_member				2-2) . calendar -에서 비회원 예약 버튼을 클릭한다면, ->  non_edu_reservation으로  이동 시키고 정산 내역과  필요한 개인정보를  입력 시켜 저장 시킴													
+				non_edu_reservation.jsp		trainer_order				3 . calendar에서 trainer_order에서 조회 된 예약일을 만족 시킬 때 가능여부 확인 시키고 edu 또는 non_edu로 이동 시킴											
+				non_edu_result.jsp			member_order			4-1) . caldendar - > edu_reservation 이동 후, ys_member에서 기본정보를 불러와서 미리 입력 시키고,  예약 된 날짜와 트레이너 정보를 추가로 저장시킴							
+				edu_result.jsp					non_mem_order			4-2) . 비회원 주문했을 경우에 non_member에다가 추가적으로 예약 된 날짜(trainer_order)와 트레이너 정보(member_trainer), 휴대전화 비번(non_member)을 저장 시킬 DB							
+
+
+
+수강신청 시뮬레이션
+												
+수강신청 버튼 클릭 - > trainer page - > 트레이너 소개 사항 확인 -> 예약 일정 확인 버튼 클릭 -> 캘린더에 원하는 예약날짜 지정 하고 우측에 리스트업												
+
+-> 예약한 날짜에 예약이 가능할 경우 밑에 버튼(비회원예약,회원예약,초기화)버튼으로 원하는 예약 페이지로 이동 
+
+-> 예약일정 및 금액 정산 내역 보여주기 밑에 버튼(예약하기,일정수정,늘봄샵이동) 
+
+-> 예약날짜 수정 하려면 이전페이지로 다시 보내기 or 예약 날짜 확정 되면 예약 확정 버튼 클릭으로 예약 신청하기 or 돌봄샵으로 이동 
+
+-> 얼러트 띄워서 예약완료 되었고 마이페이지에서 예약내역 확인 할 수 있다 띄움 .												
