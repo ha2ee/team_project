@@ -63,7 +63,7 @@
 		.post-header {
 		display:flex;
 		justify-content: space-between;
-		align-content: space-between;
+		align-items : flex-end;
 		border-bottom: 1px solid #ddd;
 		}
 		

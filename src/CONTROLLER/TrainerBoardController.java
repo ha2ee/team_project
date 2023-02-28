@@ -182,10 +182,13 @@ public class TrainerBoardController extends HttpServlet{
 		        
 		        // 전체 페이지 수
 		        int maxPage = (int)(listCount/10.0 + 0.9);
+		        System.out.println("maxPage"+maxPage);
 		        //시작 페이지 번호
 		        int startPage = (int)(spage/5.0 + 0.8) * 5 - 4;
+		        System.out.println("startPage"+startPage);
 		        //마지막 페이지 번호
 		        int endPage = startPage + 4;
+		        System.out.println("endPage"+endPage);
 		        if(endPage > maxPage)    endPage = maxPage;
 		        
 		        // 4개 페이지번호 저장
