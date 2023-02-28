@@ -72,70 +72,204 @@ public class nbMemberController extends HttpServlet{
 		String center = null;
 		
 		switch (action) {
-		 	//회원가입 화면 요청
-			case "/join.me":
-				// members/join.jsp 중앙화면뷰 주소 얻기
-				center = request.getParameter("center");
-				// members/join.jsp 중앙화면뷰 주소 바인딩
-				request.setAttribute("center", center);
-				nextPage = "/CarMain.jsp";
+		 	//일반회원가입 화면 요청
+			case "/mem_join.me":
+				request.setAttribute("center", "nbMember/mem_join.jsp");
+
+				nextPage = "/nbMain.jsp";
+				
 				break;
+			
+			//트레이너 회원가입 화면 요청
+			case "/tr_join.me":
+				request.setAttribute("center", "nbMember/tr_join.jsp");
+				
+				nextPage = "/nbMain.jsp";
+				
+				break;
+			
+			//회원가입 유형선택 화면 요청
+			case "/joinCategory.me":
+				
+				//중앙화면 주소 바인딩
+				request.setAttribute("center", "nbMember/joinCategory.jsp");
+				
+				//전체 메인화면 주소 저장
+				nextPage = "/nbMain.jsp";
+				
+				break;	
+			
+				
 			//아이디 중복 체크 요청!
 			case "/joinIdCheck.me":
 				//입력한 아이디 얻기
 				String id = request.getParameter("id");
+//				System.out.println(id);
 				//입력한 아이디가 DB에 저장되어 있는지 중복 체크 작업
 				//true -> 중복 , false -> 중복아님 둘중 하나를 반환 받음
-				boolean result = memberdao.overlappedId(id);
+				boolean memResult = memberdao.memCkeck(id);
+				boolean trResult = memberdao.trCheck(id);
 				//아이디 중복결과를 다시 한번 확인 하여 조건값을
 				//join.jsp파일과 연결된 join.js파일에 작성해 놓은
 				//success:function의 data매개변수로 웹브라우저를 거쳐 보냅니다!
-				if (result == true) {
-					out.write("not_usable");
+				if (memResult == true || trResult == true) {
+					out.write("사용 가능");
 					return;
-				} else if (result == false) {
-					out.write("usable");
+				} else if (memResult == false && trResult == false) {
+					out.write("사용 불가");
 					return;
 				}
 				break;
 			
-			//회원가입 요청 주소를 받았을때!!
-			case "/joinPro.me":
 				
-				String user_id = request.getParameter("id");
-				String user_pass = request.getParameter("pass");
-				String user_name = request.getParameter("name");
-				int user_age = Integer.parseInt(request.getParameter("age"));
-				String user_gender = request.getParameter("gender");
+			//일반회원가입 요청 주소를 받았을때!!
+			case "/mem_joinPro.me":
 				
-				String address1 = request.getParameter("address1");
-				String address2 = request.getParameter("address2");
-				String address3 = request.getParameter("address3");
-				String address4 = request.getParameter("address4");
-				String address5 = request.getParameter("address5");
-				String user_address = address1+address2+address3+address4+address5;
+				String mem_id = request.getParameter("id");
+				String mem_name = request.getParameter("name");
+				String mem_nick= request.getParameter("nickname");
+				String mem_pw = request.getParameter("pass");
+				String mem_email = request.getParameter("email");
+				String mem_hp = request.getParameter("hp");
+				String mem_gender = request.getParameter("gender");
+				String mem_birth = request.getParameter("birth");
+				String mem_address1 = request.getParameter("address1");
+				String mem_address2 = request.getParameter("address2");
+				String mem_address3 = request.getParameter("address3");
+				String mem_address4 = request.getParameter("address4");
+				String mem_address5 = request.getParameter("address5");
+				String mem_pet = request.getParameter("pet");
 				
-				String user_email = request.getParameter("email");
-				String user_tel = request.getParameter("tel");
-				String user_hp = request.getParameter("hp");
+				MemberVo mem_vo = new MemberVo(mem_id, mem_name, mem_nick, mem_pw, mem_email, mem_hp, mem_birth, mem_gender, mem_pet, mem_address1, mem_address2, mem_address3, mem_address4, mem_address5);
+					   
+					memberdao.insertMember(mem_vo);
+					memberdao.insertMemAddress(mem_vo);
 				
-				MemberVo vo = new MemberVo(user_id, user_pass, user_name,
-											user_age, user_gender, user_address,
-											user_email, user_tel, user_hp);
-				memberdao.insertMember(vo);
+					
+				nextPage="/nbMain.jsp";
+				break;
 				
-				nextPage="/CarMain.jsp";
+				//트레이너 회원가입 요청 주소를 받았을때!!
+			case "/tr_joinPro.me":
+				
+				String tr_id = request.getParameter("id");
+				String tr_name = request.getParameter("name");
+				String tr_nick= request.getParameter("nickname");
+				String tr_pw = request.getParameter("pass");
+				String tr_email = request.getParameter("email");
+				String tr_hp = request.getParameter("hp");
+				String tr_gender = request.getParameter("gender");
+				String tr_birth = request.getParameter("birth");
+				String tr_address1 = request.getParameter("address1");
+				String tr_address2 = request.getParameter("address2");
+				String tr_address3 = request.getParameter("address3");
+				String tr_address4 = request.getParameter("address4");
+				String tr_address5 = request.getParameter("address5");
+				String tr_pet = request.getParameter("pet");
+				
+				MemberVo tr_vo = new MemberVo(tr_id, tr_name, tr_nick, tr_pw, tr_email, tr_hp, tr_birth, tr_gender, tr_address1, tr_address2, tr_address3, tr_address4, tr_address5);
+						
+				memberdao.insertTrMember(tr_vo);
+				memberdao.insertTrMemAddress(tr_vo);
+				
+				
+				nextPage="/nbMain.jsp";
 				break;
 			
-			//로그인 요청 화면
+				
+				
+			//회원정보 삭제 요청 
+			case "/delete.me":
+				
+				//삭제할 아이디 값을 얻어와 변수에 저장
+				String deleteId = request.getParameter("id");
+				
+				boolean mem_result = memberdao.memDelete(deleteId);
+				boolean tr_result = memberdao.trDelete(deleteId);
+				
+				if (mem_result == true || tr_result == true) {
+					out.write("삭제 성공");
+					return;
+				} else if (mem_result == false && tr_result == false) {
+					out.write("삭제 실패");
+					return;
+				}
+				break;
+				
+			//회원정보 요청 화면
+			case "/change.me":
+				
+				
+				//중앙화면 주소 바인딩
+				request.setAttribute("center", "nbMember/change.jsp");
+
+				//전체 메인화면 주소 저장
+				nextPage="/nbMain.jsp";
+
+				break;
+			
+				
+			//회원정보 수정 요청 
+			case "/updateInfor.me":
+				
+				String up_id = request.getParameter("id");
+				String up_pw = request.getParameter("pw");
+				String up_nick = request.getParameter("nick");
+				String up_name = request.getParameter("name");
+				String up_hp = request.getParameter("hp");
+				String up_birth = request.getParameter("birth");
+				String up_email = request.getParameter("email");
+				String up_gender = request.getParameter("gender");
+				String up_address1 = request.getParameter("address1");
+				String up_address2 = request.getParameter("address2");
+				String up_address3 = request.getParameter("address3");
+				String up_address4 = request.getParameter("address4");
+				String up_address5 = request.getParameter("address5");
+				
+				int up_MemResult = memberdao.memUpdate(up_id, up_pw, up_nick, up_name, up_hp, up_birth, up_email, up_gender);
+				int up_TrResult = memberdao.trUpdate(up_id, up_pw, up_nick, up_name, up_hp, up_birth, up_email, up_gender);
+				int up_MemAddResult = memberdao.memAddUpdate(up_id, up_address1,up_address2,up_address3,up_address4,up_address5);
+				int up_TrAddResult = memberdao.trAddUpdate(up_id, up_address1,up_address2,up_address3,up_address4,up_address5);
+
+				
+				if ((up_MemResult == 1 && up_MemAddResult == 1 ) || (up_TrResult == 1 && up_TrAddResult == 1 )) {
+					out.write("수정 성공");
+					return;
+				} else if ((up_MemResult == 0  ||  up_MemAddResult == 0 ) && (up_TrResult == 0 || up_TrAddResult == 0 )) {
+					out.write("수정 실패");
+					return;
+				}
+				
+				
+				//전체 메인화면 주소 저장
+				nextPage="/nbMain.jsp";
+				
+				break;
+				
+		
+				
+				
+				
+			
+			
+				
+				
+			
+				
+				
+				
+				//로그인 요청 화면
 			case "/login.me":
 				
 				//중앙화면 주소 바인딩
-				request.setAttribute("center", "members/login.jsp");
+				request.setAttribute("center", "nbMember/login.jsp");
 				
 				//전체 메인화면 주소 저장
-				nextPage="/CarMain.jsp";
+				nextPage="/nbMain.jsp";
 				break;
+			
+			
+		
 			
 			//아이디와 비밀번호를 작성하고 로그인버튼 눌렀을때 !
 			case "/loginPro.me":
