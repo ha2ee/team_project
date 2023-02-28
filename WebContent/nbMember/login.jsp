@@ -97,7 +97,7 @@
 			<input id="MemLoginHp" type="text" name="MemLoginHp" placeholder="전화번호" required="required" /> 
 			
 			<input id="memLoginPw" type="password" name="memLoginPw" placeholder="비밀번호" required="required" />
-			
+			 
 			
 			<a href="<%=contextPath%>/nb_member/loginPro.me" class="btn btn-primary btn-block btn-large">log in.</a>
 		</form>
