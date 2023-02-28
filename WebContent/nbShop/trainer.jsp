@@ -12,43 +12,6 @@
 
 /*  # CSS 사용을 위한 임포트  */
 
-.btn {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size : 15px;
-	text-transform: uppercase;
-	font-weight : 700;
-	padding: 7px 21px;
-	margin-bottom : 4px;
-	letter-spacing: .75px;
-	border-radius : 3px;
-	border : transparent;
-	transition : all 0.3s;
-	position : relative;
-	display: inline-block;
-	background : #fff;
-}
-
-#menu3 > #login1 > a {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size : 15px;
-	text-transform: uppercase;
-	font-weight : 700;
-	padding: 7px 21px;
-	margin-bottom : 4px;
-	letter-spacing: .75px;
-	border-radius : 3px;
-	border : transparent;
-	transition : all 0.3s;
-	position : relative;
-	display: inline-block;
-	background : #fff;
-}
-
-#menu3 > #login1 > a:hover {
-	border-radius : 20px;
-	background-color : #ffebcd;
-	color: black;
-}
 
 .post-slide{
     margin: 0 15px;
@@ -195,7 +158,120 @@
     padding: 15px;
 }
 
-}@charset "utf-8";
+#tr_selectbox {
+	margin : 0 auto;
+	height : 200px;
+	width : 100%;
+	position : relative;
+	left : 0;
+	right : 0;
+	top : 0;
+	
+
+}
+
+#tr_select {
+	margin : 0 auto;
+	height : 100%;
+	width : 1200px;
+	position : relative;
+	left : 0;
+	right : 0;
+	top : 0;
+
+}
+
+
+#tr_select > div {
+
+/*  	border : 1px solid green;  */
+
+	text-align : center;
+	font-weight : bold;
+	font-size : 20px;
+	float : left;
+	margin : 0 5px;
+	height : 80%;
+	width : 18%;
+	position : relative;
+	left : 35px;
+	right : 0;
+	top : 0;
+	border-radius: 10px;
+	border : 1px solid aliceblue;
+	padding: 15px;
+
+}
+
+#tr_select > div > a > input {
+	
+/*  	border : 1px solid red;  */
+	
+	
+	text-align : center;
+	font-weight : normal;
+	margin : 0 auto;
+	height : 40px;
+	width : 90%;
+	position : relative;
+	left : 0;
+	right : 0;
+	top : -1px;
+	background : #9e9e9e29;
+	font-size : 20px;
+	border-radius : 15px;
+	transition : all 0.5s;
+	border : 0px;
+	color : #00968861;
+}
+
+#tr_select > div > a > input:hover {
+
+	background : #fff5f3;
+	border-radius : 20px;
+}
+
+
+
+
+#tr_select > div > a {
+
+/*  	border : 1px solid blue;  */
+	
+	text-align : center;
+	margin : 0 auto;
+	height : 40px;
+	width : 90%;
+	position : relative;
+	left : 0;
+	right : 0;
+	top : 30px;
+	display: block;
+}
+
+/* 로그인에 대한 CSS 설정 */
+
+#nb_login {
+	position : fixed;
+	top : 0;
+	left : 0;
+	right : 0;
+	height: 100px;
+	width : 100%;
+}
+
+#nb_box{
+
+	margin : 0 auto 0 auto;
+	text-align: center;
+	height : 100%;
+	width :  1200px;	
+	position: relative;
+	top : 0;
+
+}
+
+@charset "utf-8";
 /* CSS Document */
 
 
@@ -208,8 +284,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
-<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
 <meta charset="utf-8">
 <script type="text/javascript"  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
@@ -217,12 +291,9 @@
 <title>edu.jsp</title>
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+
+
+	<!-- 	강사 소개  들어갈 항목 -->
 	<div class="container">
                 <h1 class="heading-title">늘 봄 훈련사 소개</h1>
             
@@ -233,56 +304,56 @@
                         
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer1.png" alt=""/><br>훈련사1<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer1.png" alt=""/><br>강형욱<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
                                 <img src="<%=contextPath%>/nbShop/img/trainer1.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <br>훈련사 1 설명<br>
+                               <br>강형욱 훈련사는..?<br><br><br><br><br>
                             </p>
                         </div>
 
                          <div class="post-slide">
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer2.png" alt=""/><br>훈련사2<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer2.png" alt=""/><br>다니엘<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
                                 <img src="<%=contextPath%>/nbShop/img/trainer2.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <br>훈련사 2 설명<br>
+                               <br>다니엘 헤니 훈련사는..?<br><br><br><br><br>
                             </p>
                         </div>
 
                          <div class="post-slide">
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer3.png" alt=""/><br>훈련사3<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer3.png" alt=""/><br>김효진<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
                                 <img src="<%=contextPath%>/nbShop/img/trainer3.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <Br>훈련사 3 설명<br>
+                               <Br>김효진 훈련사는..?<br><br><br><br><br>
                             </p>
                         </div>
 
                         <div class="post-slide">
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer4.png" alt=""/><br>훈련사4<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer4.png" alt=""/><br>이경규<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
                                 <img src="<%=contextPath%>/nbShop/img/trainer4.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <br>훈련사 4 설명<br>
+                               <br>이경규 훈련사는..?<br><br><br><br><br>
                             </p>
                         </div>
    
@@ -290,14 +361,14 @@
                          <div class="post-slide">
                             <div class="post-header">
                                 <ul class="post-bar">
-                                    <li><img src="<%=contextPath%>/nbShop/img/trainer5.png" alt=""/><br>훈련사5<br></li>
+                                    <li><img src="<%=contextPath%>/nbShop/img/trainer5.png" alt=""/><br>박&nbsp;&nbsp;봄<br></li>
                                 </ul>
                             </div>
                             <div class="pic">
                                 <img src="<%=contextPath%>/nbShop/img/trainer5.png" alt=""/>
                             </div>
                             <p class="post-description">
-                               <br>훈련사 5 설명<br>
+                               <br>박봄 훈련사는..?<br><br><br><br><br>
                             </p>
                         </div>
                     </div>
@@ -305,35 +376,40 @@
                </div>
 	</div>
 	
+	<div id="tr_selectbox">
+		<div id="tr_select">
+			<div id= "tr_name1">강형욱<br>특급 훈련사님
+			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=강형욱&tr_price=300000&center=/nbShop/calendar.jsp">
+				<input class ="btn2" type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+			</a>	
+			</div>
+			<div id= "tr_name2">다니엘 헤니<br>훈련사님<br>
+			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=다니엘헤니&tr_price=100000&center=/nbShop/calendar.jsp">
+				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+			</a>
+			</div>
+			<div id= "tr_name3">김효진<br>훈련사님<br>
+			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=김효진&tr_price=100000&center=/nbShop/calendar.jsp">
+				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+			</a>
+			</div>
+			<div id= "tr_name4">이경규<br>훈련사님<br>
+			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=이경규&tr_price=100000&center=/nbShop/calendar.jsp">
+				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+			</a>
+			</div>	
+			<div id= "tr_name5">박&nbsp;봄<br>대표 훈련사님
+			<a href ="<%=request.getContextPath()%>/nb/calendar.do?tr_name=박봄&tr_price=200000&center=/nbShop/calendar.jsp">
+				<input class ="btn2"  type="button" name="tr_name" value="일정 확인하기" readonly ="readonly" />
+			</a>
+			</div>
+		</div>
+		
+	</div>
+	<br><br>
 	
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<!-- 	강사 소개  들어갈 항목 -->
-	 강사 소개 화면. jsp <br>
-	 설명 : 썸네일 형식으로 강사 소개 <br>
-	 <br>
-	 하단부에 예약일정 확인하러 가기 버튼을 만들고<br>
-	 캘린더 화면으로 이동시킨다.<br>
-	 Step.1 <button>강습일정 확인</button>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
+	
+
 <script>
 
 // 	함수로 캐러셀 동작 시키기
@@ -346,7 +422,10 @@
 		        navigationText:false,
 		        autoPlay:true
 		    });
-			});
+		
+
+		
+	});
 </script>			  
 </body>
 </html>

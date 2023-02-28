@@ -26,11 +26,6 @@
     <!-- Style CSS -->
     <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
 
-<script>
-	// index.jsp를 호출했을때 포워딩해서 갈 주소
-	location.href="nb/Main";
-</script>
-    
 <title>인덱스 요청페이지</title>
 </head>
 <body>
@@ -45,6 +40,9 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/sticky-header.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/slider.js"></script>
+    
+<!--     인덱스 파일을 실행 했을때, 인덱스 화면으로 사용 될 main.js파일 -->
+    <script src="js/main.js"></script>
 
 </body>
 </html>
