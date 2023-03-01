@@ -30,11 +30,11 @@
 	// trmembervo에 저장한 tr_hp와, tr_img를 가져와 변수에 저장 시킨다.
 	trMemberVo trmembervo = (trMemberVo)request.getAttribute("trmembervo");
 	
-	// 휴대전화번호 변수에 저장
 	String tr_hp = trmembervo.getTr_hp();
-	// 이미지 변수에 저장
 	String tr_img = trmembervo.getTr_img();
 
+	out.print(tr_hp);
+	out.print(tr_img);
 	
 %>    
     
@@ -232,8 +232,6 @@
 	top : 1px;
 	font-weight : normal;
 	border-radius: 5px;
-	color : black;
-	font-weight : bold;
 	
 
 
@@ -265,7 +263,7 @@
 	width : 130px;
 	height : 30px;
 	margin : 0 auto;
-	left : 979px;
+	left : 971px;
 	right : 0;
 	top : 1px;
 	background : aliceblue;
@@ -371,7 +369,7 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-    height: 375px;
+    height: 415px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -386,7 +384,7 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-	height: 373px;
+	height: 413px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -513,7 +511,7 @@ position: relative;
 
 }
 
-#pet_img_box > #pet_img {
+#pet_img_box > img {
 
 	border : 1px solid #fff5f373;
 	
@@ -528,6 +526,22 @@ position: relative;
 	top : 4px;
 	padding : 10px;
 	border-radius: 100px;
+
+}
+
+#pet_img {
+
+    border: 1px solid #fff5f373;
+    
+    width: 75px;
+    height: 25px;
+    position: relative;
+    left: 2px;
+	top: 230px;
+    right: 0;
+    margin: 0 auto;
+    font-size : 13px;
+    text-align : center;
 
 }
 
@@ -595,7 +609,7 @@ input#file-upload-button {
 	margin : 0 auto;
 	left : 0;
 	right : 0;
-	top : 80px;
+	top : 70px;
 	border-radius : 15px;
 	color : #5cb85cc7;
 	
@@ -886,12 +900,11 @@ input#file-upload-button {
 	text-align :center;
 	width : 100%;
 	height : 30px;
-	margin : 10px auto;
+	margin : 40px auto;
 	left : 0;
 	right : 0;
-	top : 2px;
+	top : -29px;
 	border-radius : 15px;
-	color : #80c880;
 	
 
 }
@@ -1283,21 +1296,20 @@ input#file-upload-button {
 					<a id ="membercheck" class = btn href="#">내 정보 수정하기</a>
 				</div>
 				<div id = "memData">
-					<a type="text">아이디<input id = "mem_id" name = "mem_id" type="text"  readonly="readonly" /></a>
-					<a type="text">이름<input id = "mem_name" name = "mem_name" type="text"  readonly="readonly" /></a>
-					<a type="text">&nbsp;&nbsp;전화번호<input id = "mem_hp" name = "mem_hp" type="text"  readonly="readonly" /></a>
-					<a type="text">이메일<input id = "mem_email" name = "mem_email" type="text"  readonly="readonly" /></a>
+					<a type="text">아이디<input id = "mem_id" name = "mem_id" type="text" placeholder="회원아이디" readonly /></a>
+					<a type="text">이름<input id = "mem_name" name = "mem_name" type="text" placeholder="회원이름" readonly /></a>
+					<a type="text">&nbsp;&nbsp;전화번호<input id = "mem_hp" name = "mem_hp" type="text" placeholder= "회원전화번호" readonly /></a>
+					<a type="text">이메일<input id = "mem_email" name = "mem_email" type="text" placeholder= "회원이메일" readonly /></a>
 				</div>
 				<div id = "memAddress">
 					<div id = "address_check">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소<a style="display : none;" id ="addresscheck" class = btn href="#" onclick="Postcode()">우편번호 찾기</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소<a id ="addresscheck" class = btn href="#">우편번호 찾기</a>
 					</div>
 					<div id = "mem_address">
-						<a type="text"><input id = "mem_address1" name = "mem_address1" type ="text" placeholder= "우편번호" readonly="readonly" /></a>
-						<a type="text"><input id = "mem_address2" name = "mem_address2" type ="text" placeholder= "도로명주소" readonly="readonly" /></a>
-						<a type="text"><input id = "mem_address3" name = "mem_address3" type ="text" placeholder= "지번주소" readonly="readonly" /></a>
-						<a type="text"><input id = "mem_address4" name = "mem_address4" type ="text" placeholder= "상세주소" readonly="readonly" /></a>
-						<span id="guide" style="display:none"></span>
+						<a type="text"><input id = "mem_address1" name = "mem_address1" type ="text" placeholder= "우편번호" readonly /></a>
+						<a type="text"><input id = "mem_address2" name = "mem_address2" type ="text" placeholder= "도로명주소" readonly /></a>
+						<a type="text"><input id = "mem_address3" name = "mem_address3" type ="text" placeholder= "지번주소" readonly /></a>
+						<a type="text"><input id = "mem_address4" name = "mem_address4" type ="text" placeholder= "상세주소" readonly /></a>
 					</div>	
 				</div>
 			</div>
@@ -1314,16 +1326,20 @@ input#file-upload-button {
 					<a id="pet_img_name" type= "text">반려견 사진</a>
 				</div>
 				<div id= "pet_img_box" >
-						<img id="pet_img" name="pet_img"  src="<%=request.getContextPath()%>/nbShop/img/example.jpg" />
+						<input type="file" id="pet_img" name="pet_img" accept="image/*" onchange="setThumbnail(event);"/>
 				</div>
 				<div id = "pet_info_box">
 					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" placeholder="반려견이름"  />
+						<label id ="pet_input">강아지이름을 입력해주세요!</label>
 					</a>
 					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" placeholder="반려견종"  />
+						<label id ="pet_input">품종 또는 믹스 등등</label>
 					</a>
 					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text" placeholder="반려견나이"  />
+						<label id ="pet_input">숫자로 입력해주세요 !</label>
 					</a>
 					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" placeholder="반려견몸무게"  />
+						<label id ="pet_input">숫자로 입력해주세요 !</label>
 					</a>
 					<a type= "text">반려견 성별</a>
 					<div id="radio">					
@@ -1353,12 +1369,12 @@ input#file-upload-button {
 					<h3 id="h3title">- 최종 예약 확인 -</h3>
 				</div>
 				<div id = "tr_img_box">
-					<a id="tr_img_name" type= "text">트레이너 사진<img src="<%=request.getContextPath()%>/nbShop/img/<%=tr_img%>" id = "tr_img" name = "tr_img"  /></a>
+					<a id="tr_img_name" type= "text">트레이너 사진<img src="<%=request.getContextPath()%>/nbShop/img/trainer5.png" id = "tr_img" name = "tr_img"  /></a>
 				</div>
 				
 				<div id = "tr_info_box">
 					<a id="tr_mem_name">담당 훈련사<input style="color : #5cb85cc7; " id ="tr_mem_name" name = "tr_mem_name" type="text" placeholder="훈련사이름" value="<%=tr_mem_name%>" readonly /></a>
-					<a id="tr_mem_hp">전화번호<input id ="tr_mem_hp" name = "tr_mem_hp" type="text" placeholder="전화번호" value="<%=tr_hp%>" readonly /></a>
+					<a id="tr_mem_hp">전화번호<input id ="tr_mem_hp" name = "tr_mem_hp" type="text" placeholder="전화번호" readonly /></a>
 					<a id="tr_mem_reg_date">예약신청일<input style="color : #5cb85cc7; " id ="tr_reg_date" name = "tr_reg_date" type="text" placeholder="수강신청일자" value="<%=tr_reg_date%>" readonly /></a>
 					<input type="hidden" id="tr_mem_reg_date" name=  "tr_mem_reg_date" value = "<%=tr_mem_reg_date%>" />
 				</div>
@@ -1398,40 +1414,60 @@ input#file-upload-button {
 	</div>
 	 <br>
 	 <br>
-
-
 <script type="text/javascript">
 	
 	// jquery 호출 옵션 
 	$(document).ready(function(){
 		
-		// 내정보 수정하기를 눌렀을때
-		$("#membercheck").on("click", function(){
+		
+		// 만약에 가져온 트레이너 이름이 강형욱이라면
+		if( $("#tr_mem_name > input").val() == "강형욱" ){
 			
-			// 내정보 수정가능하게 바꾸고, 내 우편번호 찾기 버튼 나오게 하기
-			$("#mem_id").attr("value", "-").attr("readonly", false);
-			$("#mem_name").attr("value", "-").attr("readonly", false);
-			$("#mem_hp").attr("value", "-").attr("readonly", false);
-			$("#mem_email").attr("value", "-").attr("readonly", false);
-			$("#mem_id").attr("value", "-").attr("readonly", false);
-			$("#addresscheck").css("display", "initial");
-		})
+			// 사진을 바꿔준다.
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer1.png");
+			
+		// 다니엘 헤니라면	
+		}else if( $("#tr_mem_name > input").val() == "다니엘헤니" ){
+			
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer2.png");
+		
+		// 김효진이라면
+		}else if( $("#tr_mem_name > input").val() == "김효진" ){
+			
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer3.png");
+		
+		// 이경규라면
+		}else if( $("#tr_mem_name > input").val() == "이경규" ){
+				
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer4.png");
+		// 박봄이라면
+		}else{
+			
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer5.png");
+			
+		}
+		
+		
+		// 강아지 사진을 올리면,
+		$("#pet_img_box > input").on("mouseout" , function(){
 			
 			// 강아지 사진의 출처를 저장한 뒤,
-			var src = $("#pet_img").attr("src");
-			
+			var src = $("#pet_img_box > img").attr("src");
 			console.log(src);
 			
 			// 예약 반려견으로 바꿔준다.
 			$("#edu_img").attr("src", src);
 			
+
+		})
 		
 		// 강아지 이름을 입력하면,
 		$("#pet_name").keyup(function(){
 			
 			// 강아지 이름을 저장한 뒤,
 			var pet_name = $("#pet_name").val();
-
+			
+			console.log(pet_name);
 			
 			// 예약 반려견명으로 바꿔준다.
 			
@@ -1459,83 +1495,20 @@ input#file-upload-button {
 	var tr_totalprice2 = original.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	
 	
-// 	 강아지 사진 업로드 시 썸네일 형식의 미리보기 만들기
-// 	function setThumbnail(event) {
-// 	  var reader = new FileReader();
+	// 강아지 사진 업로드 시 썸네일 형식의 미리보기 만들기
+	function setThumbnail(event) {
+	  var reader = new FileReader();
 
-// 	  reader.onload = function(event) {
-// 	    var img = document.createElement("img");
-// 	    img.setAttribute("src", event.target.result);
-// 	    document.querySelector("#pet_img_box").appendChild(img);
-// 	  };
+	  reader.onload = function(event) {
+	    var img = document.createElement("img");
+	    img.setAttribute("src", event.target.result);
+	    document.querySelector("#pet_img_box").appendChild(img);
+	  };
 
-// 	  reader.readAsDataURL(event.target.files[0]);
-// 	}
-	
-	
+	  reader.readAsDataURL(event.target.files[0]);
+	}
 
 </script>
-<script
-src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-crossorigin="anonymous"></script>
-	<%-- 카카오 우편번호 API --%>	
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script>
-	    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-	    function Postcode() {
-	        new daum.Postcode({
-	            oncomplete: function(data) {
-	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-	
-	                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	                var roadAddr = data.roadAddress; // 도로명 주소 변수
-	                var extraRoadAddr = ''; // 참고 항목 변수
-	
-	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-	                    extraRoadAddr += data.bname;
-	                }
-	                // 건물명이 있고, 공동주택일 경우 추가한다.
-	                if(data.buildingName !== '' && data.apartment === 'Y'){
-	                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-	                }
-	                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-	                if(extraRoadAddr !== ''){
-	                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-	                }
-	
-	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById('mem_address1').value = data.zonecode;
-	                document.getElementById("mem_address2").value = roadAddr;
-	                document.getElementById("mem_address3").value = data.jibunAddress;
-	                
-	                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-	                if(roadAddr !== ''){
-	                    document.getElementById("mem_address4").value = extraRoadAddr;//위로옮김
-	                } 
-	
-	                var guideTextBox = document.getElementById("guide");
-	                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-	                if(data.autoRoadAddress) {
-	                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-	                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-	                    guideTextBox.style.display = 'block';
-	
-	                } else if(data.autoJibunAddress) {
-	                    var expJibunAddr = data.autoJibunAddress;
-	                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-	                    guideTextBox.style.display = 'block';
-	                } else {
-	                    guideTextBox.innerHTML = '';
-	                    guideTextBox.style.display = 'none';
-	                }
-	            }
-	        }).open();
-	    }
-	</script>	
 </form>
 </body>
 </html>

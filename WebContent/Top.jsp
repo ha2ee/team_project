@@ -648,17 +648,10 @@ body{
 		<div id = "nb_login">
 				<div id = "nb_box">
 					<ul id = "login_box">	                    			
-<<<<<<< HEAD
-		               <li><a href="<%=request.getContextPath()%>/nbMember/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nbMember/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nbMember/mem_join.me" class="btn">회원가입</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nbMember/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
-=======
 		               <li><a href="<%=request.getContextPath()%>/nb_member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
 		               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
 		               <li><a href="<%=request.getContextPath()%>/nb_member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
 		               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
->>>>>>> branch 'develop' of https://github.com/ha2ee/neulbom.git
 					</ul>
 				</div>	
 			</div>	

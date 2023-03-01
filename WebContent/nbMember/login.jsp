@@ -20,6 +20,7 @@
 	
 <style type="text/css">
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
  
  
 	.login {
@@ -28,6 +29,9 @@
 		width: 330px;
 		height: 350px;
 	}
+
+
+
 	#memLoginId,#memLoginPw
 	,#MemLoginHp
 	{
@@ -44,7 +48,9 @@
 	 	border-radius: 4px; 
 		box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px 
 	 		rgba(255, 255, 255, 0.2); 
+
 	} 
+
 	#loginType{
 		width: 330px;
 		height: 50px;
@@ -62,6 +68,8 @@
 		color: #333;
 	}
 	
+
+
 </style>
 <meta charset="UTF-8">
 <title>intro.jsp</title>
@@ -119,4 +127,11 @@
 		$("#memLogin").click();	
 		
 	});
+
+
+
+
+
 </script>
+
+

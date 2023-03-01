@@ -3,7 +3,6 @@ import java.io.IOException;
 
 
 
-
 import java.io.PrintWriter;
 import java.util.Vector;
 
@@ -16,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.OrderDAO;
+import DAO.ProjectDAO;
 import VO.nbOrderVo;
 import VO.nbTrOrderVo;
 import VO.trMemberVo;
@@ -28,6 +28,9 @@ public class nbController extends HttpServlet{
 	
 	// 오더 메소드를 만들 오더dao 호출
 	OrderDAO orderdao;
+	
+	// 트레이너 정보를 조회할 trMemberVo를 호출
+	trMemberVo trmembervo;
 	
 	// 조회 또는 저장 시킬 오더vo, tr오더vo 호출
 	nbOrderVo nbordervo;
@@ -63,20 +66,16 @@ public class nbController extends HttpServlet{
 		String action = request.getPathInfo();
 		System.out.println("2단계 요청 주소: "+action);
 		
+		// 1) 	 /Main 					<- "메인화면" 요청
+		// 2) 	 /intro.do         		<- "늘 봄이란?"  -> "  회 사 소 개  " 		요청 
+		// 3) 	 /ci.do					<- "늘 봄이란?"  -> "  C           I " 		요청
+		// 4)	 /navi.do				<- "늘 봄이란?" ->  "  오 시 는 길  " 		요청
+		// 5)	 /edu.do          	 	<- "수강신청"   ->  " 수강 신청가기"   	요청
+		// 6)    /calendar.do    	 	<- "수강신청"   ->  " 수강 신청가기" -> "일정 확인하기" 버튼을 눌렀을때
+		// 7-1) /edureservation.do	<- "수강신청"   ->  " 수강 신청가기" -> "일정 확인하기" 버튼 -> "예약 신청"을 눌렀을때
+		/////////////////////////////////////////////////////////////////////////////////////////////////
+		// 8) /pet.shop        <-  " 늘 봄샵 "   -> "   샵 으로 이동   " 요청
 		
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		// nbController INFO /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		// # 1) /Main 							<- "메인화면" 																				요청
-		// # 2) /intro.do         				<- "늘 봄이란?"  -> "  회 사 소 개  " 														요청 
-		// # 3) /ci.do							<- "늘 봄이란?"  -> "  C           I " 														요청
-		// # 4)	/navi.do						<- "늘 봄이란?" ->  "  오 시 는 길  " 														요청
-		// # 5)	/edu.do          	 			<- "수강신청"   ->  " 수강 신청가기"   													요청
-		// # 6) /calendar.do    	 			<- "수강신청"   ->  " 수강 신청가기" -> "일정 확인하기" 				   버튼을 눌렀을때
-		// 7-1)	/edureservation.do			<- "수강신청"   ->  " 수강 신청가기" -> "일정 확인하기" 버튼 -> "예약 신청" 을 눌렀을때
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		// 8) /pet.shop       					<- " 늘 봄샵 "   -> "   샵 으로 이동   " 													요청
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		
 		// nextPage 변수 생성 및 초기화
@@ -187,9 +186,12 @@ public class nbController extends HttpServlet{
 			request.setAttribute("tr_name", tr_name);
 			
 			// 3)트레이너 이름을 매개변수로 해서 오더다오를 통해 값을 조회 한다.
-			trMemberVo trmembervo = orderdao.checkTrainer(tr_name);
+			trmembervo = orderdao.checkTrainer(tr_name);
 			
 			request.setAttribute("trmembervo", trmembervo);
+			
+			// 중앙 화면 요청한 주소 얻기
+			String center = request.getParameter("center");
 			
 			//request에 "center" 값을 edu_reservation.jsp로 저장
 			request.setAttribute("center", "nbShop/edu_reservation.jsp");
@@ -217,6 +219,23 @@ public class nbController extends HttpServlet{
 			request.setAttribute("center", center);
 			
 			nextPage = "/nbMain.jsp";
+			
+		}else if(action.equals("/mypage.me")) {
+			System.out.println("mypage.do 호출!");
+			
+			String center = request.getParameter("center");
+			
+			request.setAttribute("center", center);
+			
+			nextPage = "/nbMain.jsp";
+			
+		} else if (action.equals("/trainer.bo")) {
+			System.out.println("trainer.bo 훈련사 상담 게시판 호출!");
+			String center = request.getParameter("center");
+			request.setAttribute("center", center);
+			
+			nextPage = "/nbMain.jsp";
+			
 			
 		}
 		

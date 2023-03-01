@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>준비중입니다.</title>
+<title>�غ����Դϴ�</title>
 	<style>
 		body {
 			background-color: #f7f7f7;
@@ -46,9 +46,9 @@
 </head>
 <body>
 	<div class="container">
-		<h1>준비중입니다.</h1>
-		<p>죄송합니다. 현재 이페이지는 준비중입니다. 조금만 기다려주세요</p>
-		<a href="http://localhost:8090/TeamProject/nbMain.jsp" class="btn">메인 페이지로 이동하기</a>
+		<h1>�غ����Դϴ�</h1>
+		<p>�˼��մϴ�. ���� �� �������� �غ����Դϴ�. ���ݸ� ��ٷ��ּ���!</p>
+		<a href="http://localhost:8090/TeamProject/nbMain.jsp" class="btn">���� �������� �̵��ϱ�</a>
 	</div>
 </body>
 </html>
