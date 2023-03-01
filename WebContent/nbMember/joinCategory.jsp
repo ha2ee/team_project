@@ -87,7 +87,7 @@
  			<h2> 회원가입 유형선택</h2>
  		</div>
 		<div class="join_top">
-			<strong id="guide">일반회원과 트레이너 회원중 원하는 유형을 선택해주세요</strong>
+			<strong id="guide">일반회원과 훈련사 회원중 원하는 유형을 선택해주세요</strong>
 		</div>
 	
 	

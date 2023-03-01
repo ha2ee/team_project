@@ -169,7 +169,7 @@
 <form action="<%=contextPath%>/nb_member/tr_joinPro.me" class="form">	
 	<div>
 		<div align="center" ><!-- class="row justify-content-left" -->
-			<h1>트레이너 회원가입 </h1>
+			<h1>훈련사 회원가입 </h1>
 			<div style="height: 50px;"></div>
 		</div>
 		

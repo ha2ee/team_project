@@ -6,12 +6,12 @@
 <script>
 //메인 메뉴에 마우스가 올려지면 토글하는 함수 생성
 $(document).ready(function(){
-	$(".list_gnb").on("mouseover", function(){
+	$("#list_gnb").on("mouseover", function(){
 		$("#mega-menu").stop().slideDown("fast");
 	})
 	
 	$("#mega_wrapper").on("mouseleave", function(){
-		$("#mega-menu").stop().slideUp("slow");
+		$("#mega-menu").stop().slideUp("fast");
 	})
 	
 });
@@ -224,7 +224,7 @@ body{
 }
 	
 /* 	1) "메뉴"에 대한 CSS 설정 */
-.list_gnb {
+#list_gnb {
 /* 	border : 1px solid red; */
 	position : relative;
 	margin : 0 auto 0 auto;
@@ -237,7 +237,7 @@ body{
 	right : 0;
 }
 /*  1-1) 메뉴의 정렬에 대한 CSS 설정 */
-.list_gnb>li{
+#list_gnb > li {
 	position : relative;
 	top : 0;
 	left : 0;
@@ -248,7 +248,7 @@ body{
 }
 /* 1-2) 메뉴 버튼이 활성화 되었을때, CSS 디자인 */
 /* 1-3) 버튼 하나하나에 대한 CSS 디자인 */
-.list_gnb>li>a {
+#list_gnb > li > a {
 	
 	top : 65px;
 	position : relative;
@@ -264,7 +264,7 @@ body{
 	margin : 15px;
 }
 /* 1-4) 버튼 하나하나가 활성화 되었을 CSS 디자인 */
- .list_gnb>li>a:hover { 
+ #list_gnb > li > a:hover { 
 /*  	border-bottom: 3px solid #ffebcd;  */
 	border : silver;
  	background-color: #fff5f3;
@@ -661,7 +661,7 @@ body{
 	<div id="menu2" align="center" >
 	  <div id = "nav_box">
 		<nav id="main_menu">
-			<ul class="list_gnb">
+			<ul id="list_gnb">
 				<li style="font-family: 'Nanum Gothic', sans-serif;">
 				<!-- 			 1-1)	홈 버튼 -->
 				<a id ="homebtn" href="<%=request.getContextPath()%>/nb/Main" title="">

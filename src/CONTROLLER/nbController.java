@@ -193,10 +193,7 @@ public class nbController extends HttpServlet{
 			// 3)트레이너 이름을 매개변수로 해서 오더다오를 통해 값을 조회 한다.
 			trmembervo = orderdao.checkTrainer(tr_name);
 			
-			request.setAttribute("trmembervo", trmembervo);
-			
-			// 중앙 화면 요청한 주소 얻기
-			String center = request.getParameter("center");
+			request.setAttribute("trmembervo", trmembervo);	
 			
 			//request에 "center" 값을 edu_reservation.jsp로 저장
 			request.setAttribute("center", "nbShop/edu_reservation.jsp");
@@ -236,8 +233,11 @@ public class nbController extends HttpServlet{
 			nextPage = "/nbMain.jsp";
 			
 		} else if (action.equals("/trainer.bo")) {
+			
 			System.out.println("trainer.bo 훈련사 상담 게시판 호출!");
+			
 			String center = request.getParameter("center");
+			
 			request.setAttribute("center", center);
 			
 			nextPage = "/nbMain.jsp";
