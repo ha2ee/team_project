@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-?
+장바구니 화면입니다.
 </body>
 </html>

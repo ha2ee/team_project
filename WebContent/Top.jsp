@@ -5,9 +5,7 @@
 <head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-
 //메인 메뉴에 마우스가 올려지면 토글하는 함수 생성
-
 $(document).ready(function(){
 	$(".list_gnb").on("mouseover", function(){
 		$("#mega-menu").stop().slideDown("fast");
@@ -17,31 +15,19 @@ $(document).ready(function(){
 		$("#mega-menu").stop().slideUp("slow");
 	})
 	
-
-
 });
-
-
 </script>
 <style>
 /*  나눔 고딕 글꼴 임포트 */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 /* 나눔 고딕 CSS 설정 */
-
 * {
 	font-family: 'Nanum Gothic', sans-serif;
 }
-
-
-
 /* 중앙정렬을 위한 테이블 CSS 설정 */
-
-
 /*  header 영역이 항상 TOP쪽에 표시될 수 있도록 CSS 추가  */
-
   
 .nb_top {
-
   position : fixed;
   width : 100%;
   height : 100px;
@@ -51,30 +37,21 @@ $(document).ready(function(){
   text-align: center;
   z-index: 3;
 }
-
-
-
 /* 커스텀 로고 영역 */
-
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,900);
-
 body{
 	padding-top : 250px;
 }
-
 #center{
 	z-index: 2;
 }
-
 #header, #middle, #footer {
 	width : 100%;
 	margin : 0 auto 0 auto;
 	text-align: center;
 }
-
 #header {
-
 	position : fixed;
 	left : 0;
 	right : 0;
@@ -84,7 +61,6 @@ body{
 	z-index: 3;
 	
 }
-
 #middle {
 	position : relative;
 	display: contents;
@@ -92,7 +68,6 @@ body{
 	z-index: 2;
 	
 }
-
 #footer {
 	top : 500px;
 	height: 500px;
@@ -102,11 +77,8 @@ body{
 	height : auto;
 	z-index: 1;
 }
-
 /* Slider */
 #textSlider.row {
-
-
 	position: fixed;
 	left : 0;
 	right : 0;
@@ -115,7 +87,6 @@ body{
 	height:100px;
 	margin : 0 auto 0 auto;
 }
-
 #textSlider div {
 	
 	left : 0px;
@@ -126,15 +97,11 @@ body{
 	text-transform: uppercase;
 	margin : 0 auto 0 auto;
 }
-
-
 .scroller {
    height: 100px;
    overflow: hidden;
 }
-
 /* scroller 안에 .inner 클래스 안에 p 태그 지정 해서 line-height: 1.0줌 */
-
 .scroller .inner p{
 		
 		padding-top : 7px; 
@@ -145,7 +112,6 @@ body{
 		top : -5px;
 		height : 100px;
 }
-
 .scroller .inner { 
 	
 	font-size : 65pt;
@@ -154,22 +120,18 @@ body{
 @keyframes scroll {
    0%  	{margin-top: 0px;}
    15% 	{margin-top: 0px;}
-
    25%  {margin-top: -70pt;}
    40%  {margin-top: -70pt;}
    
    50%  {margin-top: -140pt;}
    65%  {margin-top: -140pt;}
-
    75%  {margin-top: -210pt;}
    90%  {margin-top: -210pt;}
    
    100% {margin-top: 0px;}
 }
-
 /* 로고 에 대한 CSS 설정 */
 #menu1 {
-
 	
 	left : 0;
 	right : 0;
@@ -180,11 +142,8 @@ body{
 	text-align : center;
 	background-color: white;
 }
-
-
 /*  @ 네브바 + 날씨 API CSS 설정 */
 #menu2 {
-
 /*   border : 1px solid red; */
 	
 	position : fixed;
@@ -197,22 +156,17 @@ body{
 	left : 0;
 	right : 0;
 }
-
 /* 네브 박스 CSS  설정 */
 	
 #nav_box {
-
 	height : 100%;
 	width : 100%;
 	position : relative;
 	margin : 0 auto 0 auto;
 	z-index : 5;
-
 }
 /* @ 네브바에 대한 CSS 설정 */
 #main_menu {
-
-
 /* 	border : 1px solid black; */
 	
 	left: 0;
@@ -222,9 +176,7 @@ body{
 	height: 150px;
 	width : 1200px;
 }
-
 /* 로그인에 대한 CSS 설정 */
-
 #nb_login {
 	position : fixed;
 	top : 0;
@@ -233,19 +185,14 @@ body{
 	height: 100px;
 	width : 100%;
 }
-
 #nb_box{
-
 	margin : 0 auto 0 auto;
 	text-align: center;
 	height : 100%;
 	width :  1200px;	
 	position: relative;
 	top : 0;
-
 }
-
-
 #login_box {
 		
 		margin : 0 auto 0 auto;
@@ -257,9 +204,7 @@ body{
 		right : 0;
 		text-align: center;
 		
-
 }
-
 #login_box > li {
 	
 	float : left;
@@ -268,9 +213,7 @@ body{
 	margin : 0 auto 0 auto;
 	padding : 10px;
 	left : 20px;
-
 }
-
 #login_box > li >a {
 	
 	color : black;
@@ -279,15 +222,11 @@ body{
 	top : 0;
 	left : 0;
 	right : 0;
-
 }
-
 	
 /* 	1) "메뉴"에 대한 CSS 설정 */
 .list_gnb {
-
 /* 	border : 1px solid red; */
-
 	position : relative;
 	margin : 0 auto 0 auto;
 	padding : 0;
@@ -298,10 +237,8 @@ body{
 	left : -125px;
 	right : 0;
 }
-
 /*  1-1) 메뉴의 정렬에 대한 CSS 설정 */
 .list_gnb>li{
-
 	position : relative;
 	top : 0;
 	left : 0;
@@ -310,10 +247,7 @@ body{
 	height : 150px;
 	width:1200px;
 }
-
 /* 1-2) 메뉴 버튼이 활성화 되었을때, CSS 디자인 */
-
-
 /* 1-3) 버튼 하나하나에 대한 CSS 디자인 */
 .list_gnb>li>a {
 	
@@ -330,7 +264,6 @@ body{
 	left : -130px;
 	margin : 15px;
 }
-
 /* 1-4) 버튼 하나하나가 활성화 되었을 CSS 디자인 */
  .list_gnb>li>a:hover { 
 /*  	border-bottom: 3px solid #ffebcd;  */
@@ -338,13 +271,11 @@ body{
  	background-color: #fff5f3;
  	border-radius: 30px;
  } 
-
 /* 1-5) 나열된 메뉴가 활성화 되었을 때 메가메뉴를 어떻게 컨트롤 할건지에 대한 CSS 디자인 */
 /* .list_gnb > li:hover #mega-menu { */
 /* 	opacity: 1; */
 	
 /* } */
-
 /* 드롭  된 큰 메뉴에 대한 스타일 조정 */
 #mega-menu {
 	
@@ -359,10 +290,7 @@ body{
 	border-radius: 3px;
 	display : none;
 	
-
-
 }
-
 #mega_wrapper{
 	
 /* 	border : 1px solid red; */
@@ -375,9 +303,7 @@ body{
 	height : 100%;
 	margin : 0 auto 0 auto;
 	
-
 }
-
 /* 드롭  된 각 메뉴에 대한 스타일 조정 */
 #mega_wrapper > ul {
 	text-align : center;
@@ -385,7 +311,6 @@ body{
 	font-size : 16px;
 	float : left;
 }
-
 /* 드롭 된 메뉴 전체의 스타일 조정 */
 #mega_wrapper > ul >li{
 	padding : 8px;
@@ -396,7 +321,6 @@ body{
 	background-color : #fff5f3;
 	text-align : center;
 }
-
 /* 드롭 된 메뉴의 간격 조정 */
 .list_lnb_01 {
  	margin-left : 140px;  
@@ -414,7 +338,6 @@ body{
  	margin-left : 65px; 
  		width: 130px;
 }
-
 /* 드롭 된 메뉴의 스타일 조정 */
 #mega_wrapper > ul >li > a{
 	font-size : 17px;
@@ -423,10 +346,7 @@ body{
 	color : black;
 	text-decoration: none;
 }
-
 /* 드롭다운 버튼 구현을 위한 style 임포트 끝*/
-
-
  .nb_top > .login1 > ul{
 	left: 940;
 	position :  relative;
@@ -435,7 +355,6 @@ body{
 	left :  940px;
 	list-style: none;
 }
-
  .nb_top >  .login1 > ul > li > a {
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size : 15px;
@@ -451,19 +370,14 @@ body{
 	display: inline-block;
 	background : #fff;
 }
-
  .nb_top > .login1 > ul > li > a:hover {
 	border-radius : 20px;
 	background-color : #fff5f3;
 }
-
 .inner p {
   background-color :white;
 }
-
 /* header 영역 고정 완료 */
-
-
 /*  날씨 구현 관련 CSS 설정  */
 	#weatherWrapper {
 	position : relative;
@@ -474,7 +388,6 @@ body{
 	width : 100%;
 	height : 150px;
 	}
-
 	#weatherbox{
 	
 /* 	border : 1px solid green; */
@@ -609,7 +522,6 @@ body{
 	width : 70px;
 	height : 96%;
 	border-radius: 5px;
-
 	}
 	
 /* 	날씨에 대한 결과값 계산 후 출력할 곳 */
@@ -647,7 +559,6 @@ body{
 	border: 1px dotted white;
 	
 	}
-
 	/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
 .btn:hover {
   background: #fff5f3;
@@ -657,7 +568,6 @@ body{
 .btn:focus {
   outline: none;
 }
-
 .btn {
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size : 15px;
@@ -674,7 +584,6 @@ body{
 	background : #fff;
 	color : black;
 }
-
 </style>
 
 
@@ -739,10 +648,10 @@ body{
 		<div id = "nb_login">
 				<div id = "nb_box">
 					<ul id = "login_box">	                    			
-		               <li><a href="<%=request.getContextPath()%>/nbMember/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nbMember/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nbMember/mem_join.me" class="btn">회원가입</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nbMember/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nb_member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nb_member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
 					</ul>
 				</div>	
 			</div>	
@@ -813,8 +722,8 @@ body{
 				<li><a href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강신청 가기</a></li>
 			</ul>
 			<ul class="list_lnb_03">
-				<li><a href="<%=request.getContextPath()%>/nb/free.bo?center=/nbBoard/freeboard.jsp">자유 게시판</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/trainer.bo?center=/nbBoard/trainerboard.jsp">훈련사 상담</a></li>
+				<li><a href="<%=request.getContextPath()%>/freeboard/list.fb?pageNum=1&startRow=1&pageSize=5">자유 게시판</a></li>
+				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/review.bo?center=/nbBoard/review.jsp">수강 후기</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
 			</ul>
@@ -836,9 +745,7 @@ body{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
 <script type="text/javascript">
-
 navigator.geolocation.getCurrentPosition(showYourLocation, showErrorMsg); 
-
 function showYourLocation(position) {  // 성공했을때 실행
     var userLat = position.coords.latitude;
     var userLng = position.coords.longitude;
@@ -861,7 +768,6 @@ function showYourLocation(position) {  // 성공했을때 실행
     //
     // LCC DFS 좌표변환 ( code : "toXY"(위경도->좌표, v1:위도, v2:경도), "toLL"(좌표->위경도,v1:x, v2:y) )
     //
-
    // 함수를 실행시키고 리턴 받아온 값들을 출력한다.
    var rs = dfs_xy_conv(userLat, userLng);
     
@@ -870,7 +776,6 @@ function showYourLocation(position) {  // 성공했을때 실행
    // 받아온 값들을 변수에 저장한다.
    var todayx = rs.x;
    var todayy = rs.y;
-
     function dfs_xy_conv(v1, v2) {
         var DEGRAD = Math.PI / 180.0;
         var RADDEG = 180.0 / Math.PI;
@@ -879,7 +784,6 @@ function showYourLocation(position) {  // 성공했을때 실행
         var slat_2 = SLAT2 * DEGRAD;
         var olon_1 = OLON * DEGRAD;
         var olat_1 = OLAT * DEGRAD;
-
         var sn = Math.tan(Math.PI * 0.25 + slat_2 * 0.5) / Math.tan(Math.PI * 0.25 + slat_1 * 0.5);
         sn = Math.log(Math.cos(slat_1) / Math.cos(slat_2)) / Math.log(sn);
         var sf = Math.tan(Math.PI * 0.25 + slat_1 * 0.5);
@@ -943,7 +847,6 @@ $.ajax({
 	// 4~ 8      : 바람이 약간 강하다.
 	// 9~14미만 : 바람이 강하다.
 	// 14 이상  : 바람이 매우 강하다.
-
 	var wind = result.response.body.items.item[7].obsrValue;
 	
 	// 0 : 없음, 
@@ -1109,7 +1012,6 @@ $.ajax({
 				$("#weatherzone").attr("value", "방한용품을 권장하고").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "많은 주의가 필요합니다!").css("color", "#ff5722").css("font-weight","bold");
 				}
-
 			
 		// #6) 온도는 -2도보다 낮거나 같고 -4도 미만일 때
 		}else if (temp <= -2 && temp > -4){
@@ -1155,7 +1057,6 @@ $.ajax({
 				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
 				$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
-
 			
 			// 온도가 -4도와 같거나 높고 비가 안 올 경우
 			}else{
@@ -1170,26 +1071,20 @@ $.ajax({
 			
 		}
 	
-
    	},
 });
-
 }
-
 function showErrorMsg(error) { // 실패했을때 실행
     switch(error.code) {
         case error.PERMISSION_DENIED:
         loc.innerHTML = "이 문장은 사용자가 Geolocation API의 사용 요청을 거부했을 때 나타납니다!"
         break;
-
         case error.POSITION_UNAVAILABLE:
         loc.innerHTML = "이 문장은 가져온 위치 정보를 사용할 수 없을 때 나타납니다!"
         break;
-
         case error.TIMEOUT:
         loc.innerHTML = "이 문장은 위치 정보를 가져오기 위한 요청이 허용 시간을 초과했을 때 나타납니다!"
         break;
-
         case error.UNKNOWN_ERROR:
         loc.innerHTML = "이 문장은 알 수 없는 오류가 발생했을 때 나타납니다!"
         break;

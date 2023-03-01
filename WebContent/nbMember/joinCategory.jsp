@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
- <%
+ 	 <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
 %>
@@ -30,6 +30,7 @@
 
 
 	<style type="text/css">
+
 		.join_total{
 			width: 1200px;
 			margin-left: auto;
@@ -112,4 +113,6 @@
 	
 	</div>
 </body>
+
+
 </html>

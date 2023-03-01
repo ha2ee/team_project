@@ -201,7 +201,6 @@ public class MemberDAO {
 				pstmt.setString(3, mem_vo.getMem_address2());
 				pstmt.setString(4, mem_vo.getMem_address3());
 				pstmt.setString(5, mem_vo.getMem_address4());
-				pstmt.setString(6, mem_vo.getMem_address5());
 
 				
 				//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
@@ -387,7 +386,6 @@ public class MemberDAO {
 				pstmt.setString(3, tr_vo.getTr_address2());
 				pstmt.setString(4, tr_vo.getTr_address3());
 				pstmt.setString(5, tr_vo.getTr_address4());
-				pstmt.setString(6, tr_vo.getTr_address5());
 				
 				
 				//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!

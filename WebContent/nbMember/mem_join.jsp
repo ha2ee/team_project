@@ -10,6 +10,7 @@
 <%
 // https://nameybs.tistory.com/37?category=810277
 // 체크박스 체크한  <input>항목 얻고  체크한 값 얻어 사용
+
 %>    
    
     
@@ -43,6 +44,8 @@
 <title>회원가입</title>
 
 <style type="text/css">
+
+
 	#pass,#nickname,#checkpass,#name,
 	#hp,.birth,#email,#sample4_postcode,
 	#sample4_find,#sample4_detailAddress,
@@ -111,11 +114,14 @@
   	
 	.join{
 		display: flex;     
+
 		align-items: center;   
+
 		justify-content: center;   
 	
 	}
 	
+
 	/* #Photo{
 	  display: inline-block;
 	  padding: .5em .75em;
@@ -129,6 +135,7 @@
 	  border-bottom-color: #e2e2e2;
 	  border-radius: .25em;
 	} */
+
 	#ex_file	{  /* 파일 필드 숨기기 */
 	  position: absolute;
 	  width: 1px;
@@ -139,6 +146,7 @@
 	  clip:rect(0,0,0,0);
 	  border: 0;
 	}
+
  	#preview{
     width: auto;
     max-width: 60%;
@@ -149,6 +157,7 @@
     line-height: normal;
     vertical-align: middle;
 }
+
 	.heigthD{
 		height: 100px;
 	
@@ -369,6 +378,7 @@
 					<%-- name속성값 address1 부터 ~~ address5 까지 입력되어 있는 주소를 모두 합쳐서 DB에 address열에  INSERT 하자. --%>
 					<label><strong>&nbsp;주소</strong></label><br><br>	
 					<input type="text" id="sample4_postcode" name="address1" class="form-control" placeholder="우편번호" readonly><br><br>	
+
 				</div>	
 				<div class="join">
 					<div style="margin-left: 30px; width: 120px; height: 90px;">
@@ -559,3 +569,5 @@
 
 </body>
 </html>
+
+

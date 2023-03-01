@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
     
 <% 
-	request.setCharacterEncoding("UTF-8");
-	String center = request.getParameter("center");
-
-
 	// ProjectMain.jsp를 사용하기 위해 WEB-INF/lib에 라이브러리 추가함
 %>    
     
@@ -16,7 +12,7 @@
 	request내장객체 영역으로 부터 중앙 화면 공간의 View주소를 얻어와 변수에 저장 해야 합니다.
  --%>
 <%-- <c:set var="center" value="${param.center}"/> --%>
-<c:set var="center" value="${request.center}"/>
+<c:set var="center" value="${requestScope.center}"/>
 <c:out value="${center}" />
  
 <%-- 처음으로 CarMain.jsp 메인화면을 요청 했을때... 중앙화면은 Center.jsp로 보이게 설정하자 --%>
