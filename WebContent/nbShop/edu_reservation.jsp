@@ -46,11 +46,11 @@
 	// 주소1 저장
 	String mem_address1 = nbpetmemvo.getMem_address1();
 	// 주소2 저장
-	String mem_address2 = nbpetmemvo.getMem_address1();
+	String mem_address2 = nbpetmemvo.getMem_address2();
 	// 주소3 저장
-	String mem_address3 = nbpetmemvo.getMem_address1();
+	String mem_address3 = nbpetmemvo.getMem_address3();
 	// 주소4 저장
-	String mem_address4 = nbpetmemvo.getMem_address1();
+	String mem_address4 = nbpetmemvo.getMem_address4();
 	
 	// 4) 회원 반려견 데이터
 	// 반려견 사진 저장
@@ -66,7 +66,7 @@
 	// 반려견 성별 저장
 	String pet_gender = nbpetmemvo.getP_gender();
 	// 반려견 중성화 여부 저장
-	String pet_op		 = nbpetmemvo.getP_op();
+	String pet_op = nbpetmemvo.getP_op();
 	
 
 
@@ -107,7 +107,7 @@
 					<h3 id="h3title">- 회원 예약 정보 -</h3>
 				</div>
 				<div id = "member_check">
-					<a id ="membercheck" class = btn href="">내 정보 수정하기</a>
+					<a id ="membercheck" class = btn href="#">내 정보 수정하기</a>
 				</div>
 				<div id = "memData">
 					<a type="text">아이디<input id = "mem_id" name = "mem_id" type="text"  readonly="readonly" value="<%=mem_id%>"/></a>
@@ -117,7 +117,7 @@
 				</div>
 				<div id = "memAddress">
 					<div id = "address_check">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소<a style="display : none;" id ="addresscheck" class = btn href="" onclick="Postcode()">우편번호 찾기</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소<a style="display : none;" id ="addresscheck" class = btn href="#" onclick="Postcode()">우편번호 찾기</a>
 					</div>
 					<div id = "mem_address">
 						<a type="text"><input id = "mem_address1" name = "mem_address1" type ="text" placeholder= "우편번호" value="<%=mem_address1%>" readonly="readonly" /></a>
@@ -144,13 +144,13 @@
 						<img id="pet_img" name="pet_img"  src="<%=request.getContextPath()%>/nbShop/img/<%=pet_img%>" />
 				</div>
 				<div id = "pet_info_box">
-					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" value="<%=pet_name%>"placeholder="반려견이름"  />
+					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" value="<%=pet_name%>"placeholder="반려견이름"  readonly />
 					</a>
-					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" value="<%=pet_type%>" placeholder="반려견종"  />
+					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" value="<%=pet_type%>" placeholder="반려견종"  readonly />
 					</a>
-					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text"  value="<%=pet_age%>" placeholder="반려견나이"  />
+					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text"  value="<%=pet_age%>" placeholder="반려견나이"  readonly />
 					</a>
-					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" value="<%=pet_weight%>" placeholder="반려견몸무게"  />
+					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" value="<%=pet_weight%>" placeholder="반려견몸무게"  readonly />
 					</a>
 					<a type= "text">반려견 성별</a>
 					<div id="radio">					
@@ -200,10 +200,10 @@
 					<input id ="tr_date7" name = "tr_date7" type="text" placeholder="일곱번째 예약일" value="<%=tr_date7%>"  readonly />
 				</div>
 				<div id = "edu_name_box">
-					<a id="edu_img_name" type= "text">예약한 반려견이름</a>
+					<a type= "text">반려견 이름<input id = "edu_name" name = "edu_name" type="text" value="<%=pet_name%>"placeholder="예약한 반려견 이름"  readonly /></a>
 				</div>
 				<div id = "edu_img_box">	
-					<img  src="" id = "edu_img"  />
+					<img  src="<%=request.getContextPath()%>/nbShop/img/<%=pet_img%>" id = "edu_img"  />
 				</div>
 				<div id =  "tr_result_box">
 					<div id = "tr_totalcnt_box">
@@ -232,40 +232,53 @@
 	// jquery 호출 옵션 
 	$(document).ready(function(){
 		
+		
+		// 만약 성별이 남자일 경우,
+		<%
+		if(pet_gender.equals("남")){
+		%>
+			$("#pet_gender1").attr("checked", "checked");
+		// 여자일 경우,
+		<%
+		}else{
+		%>
+		$("#pet_gender2").attr("checked", "checked");
+		<%
+		}
+		%>
+		
+		// 만약 중성화 여부가 예 일 경우,
+		<%
+		if(pet_op.equals("예")){
+		%>
+			$("#pet_op1").attr("checked", "checked");
+		// 아니오 일 경우,
+		<%
+		}else if(pet_op.equals("아니오")){
+		%>
+		$("#pet_op2").attr("checked", "checked");
+		<%
+		// 모름 일 경우,
+		}else{
+		%>
+		$("#pet_op3").attr("checked", "checked");
+		<%
+		}
+		%>
+		
+		
+		
 		// 내정보 수정하기를 눌렀을때
 		$("#membercheck").on("click", function(){
 			
 			// 내정보 수정가능하게 바꾸고, 내 우편번호 찾기 버튼 나오게 하기
-			$("#mem_id").attr("value", "-").attr("readonly", false);
-			$("#mem_name").attr("value", "-").attr("readonly", false);
-			$("#mem_hp").attr("value", "-").attr("readonly", false);
-			$("#mem_email").attr("value", "-").attr("readonly", false);
-			$("#mem_id").attr("value", "-").attr("readonly", false);
+			$("#mem_name").attr("value", "").attr("readonly", false);
+			$("#mem_hp").attr("value", "").attr("readonly", false);
+			$("#mem_email").attr("value", "").attr("readonly", false);
 			$("#addresscheck").css("display", "initial");
 		})
 			
-			// 강아지 사진의 출처를 저장한 뒤,
-			var src = $("#pet_img").attr("src");
-			
-			console.log(src);
-			
-			// 예약 반려견으로 바꿔준다.
-			$("#edu_img").attr("src", src);
-			
-		
-		// 강아지 이름을 입력하면,
-		$("#pet_name").keyup(function(){
-			
-			// 강아지 이름을 저장한 뒤,
-			var pet_name = $("#pet_name").val();
 
-			
-			// 예약 반려견명으로 바꿔준다.
-			
-			$("#edu_img_name").text(pet_name).css("color", "#5cb85cc7");
-		})
-		
-		
 		// 최종금액에 콤마단위가 들어간 금액으로 설정
 		$("#tr_totalprice").attr("value", tr_totalprice2);
         

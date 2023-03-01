@@ -313,9 +313,8 @@
 	top : 4px;
 	font-weight : normal;
 	border-radius: 5px;
-	color : #ff572282;
-	font-weight : bold;
-	font-size: 17px;
+	color : black;
+	font-size: 15px;
 
 
 }
@@ -923,6 +922,47 @@ input#file-upload-button {
 	left : 115px;
 	right : 0;
 	top : -720px;
+
+}
+
+ #edu_name_box > a {
+ 
+	border : 1px solid #fff5f373;
+	
+	display : block;
+	position :relative;
+	text-align :center;
+	width : 123px;
+	height : 35px;
+	margin : 0 auto;
+    left: 0px;
+    right: 0;
+    top: 1px;
+	float : left;
+	font-size : 18px;
+	background : #fff5f3;
+	border-radius: 5px;
+	color : #ff572282;
+	padding : 5px;
+	font-weight : bold;
+	text-decoration: none;
+
+ }
+ 
+ #edu_name_box > a > input {
+ 
+	border : 1px solid #fff5f373;
+	
+	position: relative;
+    text-align: center;
+    width: 123px;
+    height: 35px;
+    margin: 0 auto;
+    left: 121px;
+    right: 0;
+    top: -32px;
+    color : #4caf50cf;
+    border-radius: 10px;
 
 }
 
