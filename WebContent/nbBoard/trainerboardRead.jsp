@@ -88,12 +88,12 @@
 	<c:if test="${not empty vo.cb_file}">
 	<div align="center">다운로드:
 	<%-- 다운로드할 폴더번호 경로와 다운로드 할 파일명 전달 --%>
-	<a href="<%=contextPath%>/tb/Download.bo?path=<%=cb_idx%>&fileName=<%=file%>">&nbsp;&nbsp;<%=file%></a>
+	<a href="<%=contextPath%>/tb/download.bo?cbidx=<%=cb_idx%>&fileName=<%=file%>">&nbsp;&nbsp;<%=file%></a>
 	</div>
     </c:if>
     	
     <div style="text-align: center;">
-        <a href="list.bo">목록으로</a>
+        <a href="list.bo?page=${pageNum}">목록으로</a>
     </div>
 </body>
 </html>

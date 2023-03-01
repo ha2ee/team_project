@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import DAO.MemberDAO;
 import VO.MemberVo;
 
-@WebServlet("/nbMember/*")
+@WebServlet("/nb_Member/*")
 public class nbMemberController extends HttpServlet{
 	
 	//MemberDAO객체를 저장할 참조변수 선언

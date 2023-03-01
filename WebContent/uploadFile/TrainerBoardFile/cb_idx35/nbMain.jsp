@@ -1,5 +1,83 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
+    
+    
+    
+
+
+
+
+
+
+
+ 
+
+ 
+
+	
+
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+
+/*  나눔 고딕 글꼴 임포트 */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+/* 나눔 고딕 CSS 설정 */
+
+* {
+	font-family : 'Nanum Gothic', sans-serif;
+}
+
+body{
+	padding-top : 250px;
+}
+
+#header, #middle, #footer {
+	width : 1200px;
+	margin : 0 auto 0 auto;
+	text-align: center;
+}
+
+#header {
+
+	position : fixed;
+	left : 0;
+	right : 0;
+	top : 0;
+	height : 250px;
+	background-color : white;
+	z-index: 3;
+	
+}
+
+#middle {
+	position : relative;
+	display: contents;
+	text-align : center;
+	z-index: 2;
+	
+}
+
+#footer {
+	top : 500px;
+	height: 500px;
+	display : contents;
+	text-align: center;
+	position : relative;
+	height : auto;
+	z-index: 1;
+}
+
+
+
+</style>
+<title>ProjectMain.jsp</title>
+</head>
+<body>
+
+			<div id = "header">
+			<header>
+				
 <!DOCTYPE html>
 <html>
 <head>
@@ -595,16 +673,16 @@ body{
     <meta name="description" content="Digital marketing courses website template that can help you boost your business courses website and its completely free.">
     <meta name="keywords" content="seo,free website template, free responsive website template, seo marketing, search engine optimization, web analytics">
     <!-- Bootstrap -->
-    <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/TeamProject/css/bootstrap.min.css" rel="stylesheet">
     <!-- Style CSS -->
-    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+    <link href="/TeamProject/css/style.css" rel="stylesheet">
     <!-- 구글 폰트 -->
 <!--     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"> -->
 <!--     FontAwesome CSS -->
-<%--     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/fontello.css"> --%>
-<%--     <link href="<%=request.getContextPath()%>/css/font-awesome.min.css" rel="stylesheet"> --%>
-    <link href="<%=request.getContextPath()%>/css/owl.carousel.min.css" rel="stylesheet">
-    <link href="<%=request.getContextPath()%>/css/owl.theme.default.css" rel="stylesheet">
+
+
+    <link href="/TeamProject/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="/TeamProject/css/owl.theme.default.css" rel="stylesheet">
 
 <!--          			# 부트스트랩 플러그인  관련 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -621,13 +699,13 @@ body{
 <!--          			# 플러그인  관련 -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="<%=request.getContextPath()%>/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/TeamProject/js/jquery.min.js" type="text/javascript"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<%=request.getContextPath()%>/js/menumaker.js" type="text/javascript"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.sticky.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/slider.js"></script>
+    <script src="/TeamProject/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/TeamProject/js/menumaker.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/TeamProject/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="/TeamProject/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/TeamProject/js/slider.js"></script>
 </head>    
 <body>    
  <div class="nb_top" >
@@ -648,10 +726,10 @@ body{
 		<div id = "nb_login">
 				<div id = "nb_box">
 					<ul id = "login_box">	                    			
-		               <li><a href="<%=request.getContextPath()%>/nb_member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb_member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
+		               <li><a href="/TeamProject/nb_member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
+		               <li><a href="/TeamProject/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+		               <li><a href="/TeamProject/nb_member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
+		               <li><a href="/TeamProject/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
 					</ul>
 				</div>	
 			</div>	
@@ -665,15 +743,15 @@ body{
 			<ul class="list_gnb">
 				<li style="font-family: 'Nanum Gothic', sans-serif;">
 				<!-- 			 1-1)	홈 버튼 -->
-				<a id ="homebtn" href="<%=request.getContextPath()%>/nb/Main" title="">
+				<a id ="homebtn" href="/TeamProject/nb/Main" title="">
 				<svg id="nb_homebtn" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-houses" viewBox="0 0 16 16">
  				<path d="M5.793 1a1 1 0 0 1 1.414 0l.647.646a.5.5 0 1 1-.708.708L6.5 1.707 2 6.207V12.5a.5.5 0 0 0 .5.5.5.5 0 0 1 0 1A1.5 1.5 0 0 1 1 12.5V7.207l-.146.147a.5.5 0 0 1-.708-.708L5.793 1Zm3 1a1 1 0 0 1 1.414 0L12 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l1.854 1.853a.5.5 0 0 1-.708.708L15 8.207V13.5a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4 13.5V8.207l-.146.147a.5.5 0 1 1-.708-.708L8.793 2Zm.707.707L5 7.207V13.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5V7.207l-4.5-4.5Z"/>
 				</svg></a>
 				<!-- 			 1-2)	메뉴 버튼 -->
-				<a href="<%=request.getContextPath()%>/nb/Intro.do?center=/nbCompany/intro.jsp"> 늘 봄이란?</a>
-				<a href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp"> 수강 신청 </a>
-				<a href="<%=request.getContextPath()%>/nb/free.bo?center=/nbBoard/freeboard.jsp"> 소통 하기</a>
-				<a href="<%=request.getContextPath()%>/nb/pet.shop?center=/nbShop/pet.jsp"> 늘 봄샵</a>
+				<a href="/TeamProject/nb/Intro.do?center=/nbCompany/intro.jsp"> 늘 봄이란?</a>
+				<a href="/TeamProject/nb/edu.do?center=/nbShop/trainer.jsp"> 수강 신청 </a>
+				<a href="/TeamProject/nb/free.bo?center=/nbBoard/freeboard.jsp"> 소통 하기</a>
+				<a href="/TeamProject/nb/pet.shop?center=/nbShop/pet.jsp"> 늘 봄샵</a>
 
 
 
@@ -701,7 +779,7 @@ body{
 		</div>
 		<div id="weatherFooter">
 			<div id="weatherResult">
-				<img src="" />
+				<img src="#" />
 				<input id="weatherzone" type="text" value="날씨정보가 안나올경우" />
 				<input id="weatherzone2" type="text" value="위치서비스 동의필요!" />
 			</div>
@@ -714,21 +792,21 @@ body{
 	<div id="mega-menu">
 		<div id = mega_wrapper>
 			<ul class="list_lnb_01">
-				<li><a href="<%=request.getContextPath()%>/nb/Intro.do?center=/nbCompany/intro.jsp">회사 소개</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/ci.do?center=/nbCompany/ci.jsp"> C I</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/navi.do?center=/nbCompany/navi.jsp">오시는 길</a></li>
+				<li><a href="/TeamProject/nb/Intro.do?center=/nbCompany/intro.jsp">회사 소개</a></li>
+				<li><a href="/TeamProject/nb/ci.do?center=/nbCompany/ci.jsp"> C I</a></li>
+				<li><a href="/TeamProject/nb/navi.do?center=/nbCompany/navi.jsp">오시는 길</a></li>
 			</ul>
 			<ul class="list_lnb_02">
-				<li><a href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강신청 가기</a></li>
+				<li><a href="/TeamProject/nb/edu.do?center=/nbShop/trainer.jsp">수강신청 가기</a></li>
 			</ul>
 			<ul class="list_lnb_03">
-				<li><a href="<%=request.getContextPath()%>/freeboard/list.fb?pageNum=1&startRow=1&pageSize=5">자유 게시판</a></li>
-				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/review.bo?center=/nbBoard/review.jsp">수강 후기</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
+				<li><a href="/TeamProject/freeboard/list.fb?pageNum=1&startRow=1&pageSize=5">자유 게시판</a></li>
+				<li><a href="/TeamProject/tb/list.bo">훈련사 상담</a></li>
+				<li><a href="/TeamProject/nb/review.bo?center=/nbBoard/review.jsp">수강 후기</a></li>
+				<li><a href="/TeamProject/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
 			</ul>
 			<ul class="list_lnb_04">
-				<li><a href="<%=request.getContextPath()%>/nb/pet.shop?center=/nbShop/pet.jsp"> 샵으로 이동 </a></li>
+				<li><a href="/TeamProject/nb/pet.shop?center=/nbShop/pet.jsp"> 샵으로 이동 </a></li>
 		 </ul>
 		 </div>
 	</div>	
@@ -878,14 +956,14 @@ $.ajax({
 			// 온도가 25도 이상이지만 비가올 경우
 			if(rain > 0){
 				
-				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+				$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/rainy.png");
 				$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 			
 			// 오후 6시 이후일 경우,
 			}else if(rain == 0 && initTime >= 18){
 				
-				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+				$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/night.png");
 				$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
 				
@@ -894,7 +972,7 @@ $.ajax({
 			// 온도가 26도 이상이고 비가 오지 않을경우,	
 			}else{
 			
-			$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+			$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/sunny.gif");
 			$("#weatherzone").attr("value", "무더운 날씨네요").css("font-weight","bold");
 			$("#weatherzone2").attr("value", "더위 조심하세요!!").css("color", "#009688").css("font-weight","bold");
 			
@@ -906,14 +984,14 @@ $.ajax({
 				// 온도는 16도 이상 25도 미만이지만 비가올 경우
 				if(rain > 0){
 					
-					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+					$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 				
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
 					
-					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+					$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/night.png");
 					$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
 					
@@ -922,7 +1000,7 @@ $.ajax({
 				// 온도는 16도 이상 25도 미만이지만 비가 오지 않을경우,	
 				}else{
 				
-				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+				$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/sunny.gif");
 				$("#weatherzone").attr("value", "따뜻한 날씨네요").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "수분 챙기세요!!").css("color", "#009688").css("font-weight","bold");
 				
@@ -936,14 +1014,14 @@ $.ajax({
 				// 온도는 11도 이상이지만 비가올 경우
 				if(rain > 0){
 					
-					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+					$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 				
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
 					
-					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+					$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/night.png");
 					$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
 					
@@ -952,7 +1030,7 @@ $.ajax({
 				// 온도가 11도 이상이고 비가 오지 않을경우,	
 				}else{
 				
-				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+				$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/sunny.gif");
 				$("#weatherzone").attr("value", "산책하기").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "딱 좋은 날씨!").css("color", "#009688").css("font-weight","bold");
 				
@@ -966,14 +1044,14 @@ $.ajax({
 					
 					
 					
-					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+					$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 				
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
 					
-					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+					$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/night.png");
 					$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
 						
@@ -982,7 +1060,7 @@ $.ajax({
 				// 온도가 6도 이상 11도 미만에 비가 안 올 경우
 				}else{
 				
-				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+				$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/sunny.gif");
 				$("#weatherzone").attr("value", "산책하기 괜찮지만").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "조심히 산책하세요!").css("color", "#8bc34a").css("font-weight","bold");
 				
@@ -993,14 +1071,14 @@ $.ajax({
 				// 온도는 -1도 이상 6도 미만이지만 비가올 경우
 				if(rain > 0){
 					
-					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+					$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 				
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
 					
-					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+					$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/night.png");
 					$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
 						
@@ -1008,7 +1086,7 @@ $.ajax({
 				// 온도가 -1도 이상 6도 미만에 비가 안 올 경우
 				}else{
 				
-				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+				$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/sunny.gif");
 				$("#weatherzone").attr("value", "방한용품을 권장하고").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "많은 주의가 필요합니다!").css("color", "#ff5722").css("font-weight","bold");
 				}
@@ -1019,14 +1097,14 @@ $.ajax({
 				// 온도는 -2도보다 낮거나 같고 -4도 미만일 때, 비가올 경우
 				if(rain > 0){
 					
-					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+					$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 				
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
 					
-					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+					$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/night.png");
 					$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
 						
@@ -1035,7 +1113,7 @@ $.ajax({
 				// 온도는 -2도보다 낮거나 같고 -4도 미만일 때, 비가 안 올 경우
 				}else{
 				
-				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+				$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/sunny.gif");
 				$("#weatherzone").attr("value", "산책하기엔 쌀쌀해요").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "방한대책 필수에요!!").css("color", "#ff5722").css("font-weight","bold");
 				
@@ -1047,21 +1125,21 @@ $.ajax({
 			// 온도가 -4도와 같거나 높고 비가올 경우
 			if(rain > 0){
 				
-				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
+				$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/rainy.png");
 				$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 			
 			// 오후 6시 이후일 경우,
 			}else if(rain == 0 && initTime >= 18){
 				
-				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
+				$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/night.png");
 				$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
 			
 			// 온도가 -4도와 같거나 높고 비가 안 올 경우
 			}else{
 			
-			$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/sunny.gif");
+			$("#weatherResult > img").attr("src", "/TeamProject/nbShop/img/sunny.gif");
 			$("#weatherzone").attr("value", "실내 놀이를").css("font-weight","bold");
 			$("#weatherzone2").attr("value", "적극 권장합니다!!").css("color", "#ff5722").css("font-weight","bold");
 			
@@ -1097,5 +1175,190 @@ function showErrorMsg(error) { // 실패했을때 실행
 <div id = "center1">
 
 </div>
+</body>
+</html>
+			</header>	
+			</div>
+			<div id = "middle">
+				
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+	* {
+	  margin: 0;
+	  padding: 0;
+	}
+	
+	li {
+	  list-style: none;
+	}
+	
+	.slideContainer {
+	  width: 100%;
+	  position: relative;
+	}
+	
+	/* -아래 pageBt abosolute로 위치를 잡기 위하여 부모에 position: relative 필요 */
+	.slideWrap {
+	  width: calc(100%*6);
+	  overflow: hidden;
+	  margin-left: calc(-100%*1);
+	  position: relative;
+	  z-index: 1;
+	  height: 480px; 
+	}
+	
+	/* 총600장을 나열하기위하여 calc(100%*6) 또는 600%, 맨처음 1번째 이미지 가기위하여 margin-left: calc(-100%*0) */
+	.slide {
+	  float: left;
+	}
+	
+	.slide img {
+		width: 100%;
+		height: 480px;
+		}
+	
+	.pageBtWrap {
+	  z-index: 2;
+	  position: absolute;
+	  left: 0;
+	  bottom: 7%;
+	  width: 100%;
+	  text-align: center;
+	}
+	
+	.pageBtWrap li {
+	  display: inline;
+	}
+	
+	/* 부모요소를 text-align: center, li를 inline요소로 바꿔 중간 정렬, float: left 사용할 필요없음 */
+	.pageBtWrap li .pageBt {
+	  display: inline-block;
+	  width: 12px;
+	  height: 12px;
+	  border-radius: 50%;
+	  margin-left: 10px;
+	  background-color: #fff;
+	}
+	
+	.pageBtWrap li .pageBt.addPageBt {
+	  background-color: #ff0;
+	}
+	</style>
+<title>Center.jsp</title>
+</head>
+<body>
+
+
+<!-- 3) Center 영역 -->
+    <!-- slider-start -->
+    
+ <div class="slideContainer">
+  <ul class="slideWrap">
+    <li class="slide slide4"><img src="/TeamProject/images/slider1.jpg"></li>
+    <li class="slide slide1"><img src="/TeamProject/images/slider2.jpg"></li>
+    <li class="slide slide2"><img src="/TeamProject/images/slider3.jpg"></li>
+    <li class="slide slide3"><img src="/TeamProject/images/slider4.jpg"></li>
+    <li class="slide slide4"><img src="/TeamProject/images/slider1.jpg"></li>
+    <li class="slide slide1"><img src="/TeamProject/images/slider2.jpg"></li>
+  </ul>
+  <ul class="pageBtWrap">
+    <li><a href="#" class="pageBt addPageBt"></a></li>
+    <li><a href="#" class="pageBt"></a></li>
+    <li><a href="#" class="pageBt"></a></li>
+    <li><a href="#" class="pageBt"></a></li>
+  </ul>
+</div>
+
+
+    <!-- slider-close -->
+
+	
+</body>
+</html>
+			</div>
+			<div id = "footer">
+				<footer>
+				
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bottom.jsp</title>
+</head>
+<body>
+
+
+<!--          			# Footer 관련 -->
+
+    <!-- footer start -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- footer-useful links-start -->
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="footer-widget">
+                        <h3 class="footer-title" style="color:black;">( 바로 가기 )</h3>
+                        <ul>
+                            <li><a href="/TeamProject/nb/Main">Home </a></li>
+                            <li><a href="/TeamProject/nb/Intro.do?center=/nbCompany/intro.jsp">회사 소개 </a></li>
+                            <li><a href="/TeamProject/nb/edu.do?center=/nbShop/trainer.jsp">수강 신청 </a></li>
+                            <li><a href="/TeamProject/nb/free.bo?center=/nbBoard/freeboard.jsp">자유 게시판 </a></li>
+                            <li><a href="/TeamProject/nb/trainer.bo?center=/nbBoard/trainerboard.jsp">훈련사 상담 </a></li>
+                            <li> <a href="/TeamProject/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
+                            <li> <a href="/TeamProject/nb/navi.do?center=/nbCompany/navi.jsp">오시는 길</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- footer-useful links-close -->
+                <!-- footer-contactinfo-start -->
+                <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="footer-widget">
+                        <h4 class="footer-title" style="color:black;"><br>( 늘 봄 고객지원 )<br></h4>
+                        <div class="">
+                            <ul>
+                                <li> <i class="fa fa-map-marker"></i>경남 양산시 중부동 686-7 양산역프라자 2층</li>
+                                <li><i class="fa fa-phone"></i>055-383-0000</li>
+                                <li><i class="fa fa-envelope"></i>admin@nb.co.kr</li>
+                            </ul>
+                        </div>
+                        <a style="border-radius: 20px; background:black;"href="#" class="btn btn-primary btn-sm">1:1 상담하기<br></a></div>
+                </div>
+                <!-- footer-contactinfo-close -->
+                <!-- footer-about-start -->
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 ">
+                    <div class="footer-widget">
+                        <h4 class="footer-title" style="color:black;"><br>( 참고 )</h4>
+                        <p>본 홈페이지는 1920x1080 해상도에 최적화 되어 있습니다. </p>
+                    </div>
+                </div>
+                <!-- footer-about-close -->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="footer-line"></div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                    <p>Copyright 2021. <i class="fa fa-love"></i><a href="/TeamProject/nb/Main">nb All rights reserved</a>
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="footer-social">
+                        <a href="#"><span><i class="fa fa-facebook"></i></span></a>
+                        <a href="#"><span><i class="fa fa-google-plus"></i></span> </a>
+                        <a href="#"><span class="active"><i class="fa fa-twitter"></i> </span></a>
+                        <a href="#"><span><i class="fa fa-instagram"></i></span> </a>
+                        <a href="#"><span><i class=" fa fa-pinterest"></i> </span></a>
+                        <a href="#"><span><i class="fa fa-linkedin"></i></span></a> </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer-address-close -->
+    </div>
+    <!-- footer close -->
+</body>
+</html>
+				</footer>
+			</div>
 </body>
 </html>

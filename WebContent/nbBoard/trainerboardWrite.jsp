@@ -1,9 +1,9 @@
-<%@page import="VO.TrainerVo"%>
+<%@page import="VO.trMemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	String contextPath = request.getContextPath();
-	TrainerVo tvo = (TrainerVo)request.getAttribute("trainervo");
+	trMemberVo tvo = (trMemberVo)request.getAttribute("trainervo");
 	
 //	String id = (String)session.getAttribute("id");
 //	if(id == null){

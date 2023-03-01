@@ -93,7 +93,7 @@
             <tr>
                 <td>${board.cb_idx}</td>
                 <td>
-                    <a href="read.bo?cb_idx=${board.cb_idx}&pageNum=${pageNum}">
+                    <a href="read.bo?cb_idx=${board.cb_idx}&pageNum=${spage}">
                     ${board.cb_title}
                     </a>
                 </td>

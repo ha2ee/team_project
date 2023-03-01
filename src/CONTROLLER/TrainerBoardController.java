@@ -21,7 +21,7 @@ import DAO.TrainerDAO;
 import VO.BoardVo;
 import VO.MemberVo;
 import VO.TrainerBoardVo;
-import VO.TrainerVo;
+import VO.trMemberVo;
 
 
 //게시판 관련 기능 요청이 들어오면 호출되는 사장님(컨트롤러)
@@ -35,13 +35,13 @@ public class TrainerBoardController extends HttpServlet{
 	TrainerDAO trainerdao;
 	
 	//TrainerVo객체를 저장할 참조변수 선언
-	TrainerVo trainervo;
+	trMemberVo trmembervo;
 	
 	@Override
 	public void init() throws ServletException {
 		trainerboarddao = new TrainerBoardDAO();
 		trainerdao = new TrainerDAO();
-		trainervo = new TrainerVo();
+		trmembervo = new trMemberVo();
 		
 		
 	}
@@ -91,7 +91,7 @@ public class TrainerBoardController extends HttpServlet{
 	      if (action.equals("/write.bo")) {
 	    	  
 	    	  //새글 입력시 작성자에 닉네임 넣어주려고 가져오는 메소드
-				TrainerVo trainervo = trainerdao.trainerOne("admin");
+	    	  trMemberVo trainervo = trainerdao.trainerOne("admin");
 				
 				//새글을 입력하는 중앙 View화면 주소 요청!
 				center = "/nbBoard/trainerboardWrite.jsp";
@@ -99,8 +99,6 @@ public class TrainerBoardController extends HttpServlet{
 				request.setAttribute("center", center);
 				request.setAttribute("trainervo", trainervo);
 				
-//				request.setAttribute("nowPage", request.getParameter("nowPage"));
-//				request.setAttribute("nowBlock", request.getParameter("nowBlock"));
 				
 				nextPage = "/nbMain.jsp";
 	         
@@ -126,19 +124,6 @@ public class TrainerBoardController extends HttpServlet{
 	    	  
 	      } else if (action.equals("/list.bo")) {
 	    	  
-//				//요청한 값을 이용해 응답할 값 마련(글 조회)
-//				list = trainerboarddao.boardListAll();
-//				
-//				//모든글의 갯수 조회
-//				count = trainerboarddao.getTotalRecord();
-//				System.out.println("list.bo의 count수 :"+count);
-//
-//				center = "nbBoard/trainerboardList.jsp";
-//				
-//				request.setAttribute("center", center);
-//				request.setAttribute("list", list);
-//				request.setAttribute("count", count);
-//				
 //				//-------------------------------------------------------
 //				
 //				//로그인시 기능 주석처리중
@@ -147,12 +132,6 @@ public class TrainerBoardController extends HttpServlet{
 ////				
 ////				request.setAttribute("id", loginid);
 //				
-//				//list.jsp페이지의 페이징 처리 부분에서
-//				//이전 또는 다음 또는 각 페이지 번호를 클릭했을때.. 요청받는 값 얻기
-//				request.setAttribute("nowPage", request.getParameter("nowPage"));
-//				request.setAttribute("nowBlock", request.getParameter("nowBlock"));
-//				
-//				nextPage = "/nbMain.jsp";
 				//----------------------------------------------------------------------
 				
 				 // 현재 페이지 번호 만들기
@@ -215,12 +194,21 @@ public class TrainerBoardController extends HttpServlet{
 				request.setAttribute("center", center);
 				request.setAttribute("vo", vo);
 				
-				request.setAttribute("nowPage", request.getParameter("nowPage")); 
-				request.setAttribute("nowBlock", request.getParameter("nowBlock"));
+				request.setAttribute("pageNum", request.getParameter("pageNum")); 
 				request.setAttribute("cb_idx", request.getParameter("cb_idx"));
 				
 				nextPage = "/nbMain.jsp";
 	    	  
+	      } else if (action.equals("/download.bo")) {
+	    	  
+	    	  String fileName = request.getParameter("fileName");
+	    	  String cbidx = request.getParameter("cbidx");
+	    	  String folder = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+cbidx;
+	    	  String filePath = folder + "/" + fileName;
+	    	  
+	    	  trainerboarddao.downLoad(response,filePath,fileName);
+	    	  
+				return;
 	      }
 			
 		

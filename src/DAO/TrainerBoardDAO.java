@@ -1,7 +1,10 @@
 package DAO;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +17,7 @@ import java.util.Map;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -26,7 +30,7 @@ import org.apache.commons.io.FileUtils;
 import VO.BoardVo;
 import VO.FileBoardVo;
 import VO.TrainerBoardVo;
-import VO.TrainerVo;
+import VO.trMemberVo;
 
 public class TrainerBoardDAO {
 
@@ -498,7 +502,7 @@ public class TrainerBoardDAO {
 			
 			if(file != null && file.length() != 0) {
 				File srcFile = new File("C:\\file_repo\\temp\\"+file);
-				File destDir = new File("C:\\file_repo\\"+articleNO);
+				File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+articleNO);
 				
 				//DB에 추가한 글에 대한 글번호를 조회해서 가져왔기 때문에 글 번호 폴더 생성
 				destDir.mkdirs();
@@ -699,10 +703,98 @@ public class TrainerBoardDAO {
 			 
 		}
 
-		public String serviceBoardReadView() {
+		public void downLoad(HttpServletResponse response, String filePath, String fileName) {
 			
-			return null;
+			
+			try {
+				File file = new File(filePath);
+				byte b[] = new byte[(int) file.length()];
+				
+				//page의 ContentType등을 동적으로 바꾸기 위해 초기화 시킨다
+				response.reset();
+				response.setContentType("apllication/octet-stream"); //파일 확장자를 모를때 사용 8비트로 된 데이터
+				
+				//한글 인코딩
+				String encoding = new String(fileName.getBytes("utf-8"));
+				
+				response.setHeader("Content-Disposition", "attachment;filename="+encoding);
+				response.setHeader("content-Length", String.valueOf(file.length()));
+				
+				if (file.isFile()) { //파일이 있을 경우
+					 FileInputStream fileInputStream = new FileInputStream(file);
+					 ServletOutputStream servletOutputStream = response.getOutputStream();
+					 
+					 //파일을 읽어서 클라이언트쪽으로 저장한다
+					 int readNum = 0;
+					 while ( (readNum = fileInputStream.read(b)) != -1) {
+		                    servletOutputStream.write(b, 0, readNum); //  b배열 안에 있는 시작 off(index) 부터 len 만큼 출력한다.
+		                }
+		                servletOutputStream.close();
+		                fileInputStream.close();
+				}
+			} catch (Exception e) {
+				System.out.println("download메소드에서 오류 발생");
+				e.printStackTrace();
+				
+			} finally {
+				closeResource();
+			}
+			
 		}
+			
+			
+			
+//			OutputStream outputStream = null;
+//			FileInputStream fileInputStream = null;
+//			
+//			//파일 다운로드 로직 구현 ---------------------------------------------	
+//			//다운로드할 폴더번호 경로와 다운로드할 파일명 얻기
+//			String idx = request.getParameter("path");
+//			String name = request.getParameter("fileName");
+//			
+//			//다운로드할 파일이 저장되어 있는 경로를 만들어서 변수에 저장
+//			String filePath = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx" + idx;
+//			
+//			File f = new File(filePath + "\\" + name);
+//			
+//			try {
+//			outputStream = response.getOutputStream();
+//			
+//			//다운로드할 파일과 연결된 입력스트림 통로 얻기
+//			//1바이트 단위씩 읽어들일 통로
+//			fileInputStream = new FileInputStream(f);
+//			
+//			/*응답 헤더를 통한 캐시제어*/
+//			response.setHeader("Cache-Control", "no-cache");
+//			response.addHeader("Cache-Control", "no-store");
+//			//웹브라우저에서 다운로드할 파일명 클릭시..
+//			//
+//			response.setHeader("Content-Disposition", "attachment; fileName=\""+URLEncoder.encode(name,"utf-8")+"\";");
+//			
+//			//입출력 작업
+//			//파일 전체 내용을 배열크기 단위로 읽어서 웹브라우저로 내보내기 ( 다운로드 시키기 )
+//			byte[] buffer = new byte[1024 * 8];
+//			
+//			while (true) {
+//				
+//				int cnt = fileInputStream.read(buffer);
+//				if (cnt == -1)
+//					break;
+//				outputStream.write(buffer, 0, cnt);
+//				
+//				fileInputStream.close();
+//				outputStream.close();
+//			} 
+//			} catch (IOException e) {
+//				System.out.println("download 메소드 내부 오류 :");
+//				e.printStackTrace();
+//				
+//			} finally {
+//				closeResource();
+//			}
+//			
+//		}
+
 		
 		
 		
