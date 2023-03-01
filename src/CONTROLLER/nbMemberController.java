@@ -205,13 +205,8 @@ public class nbMemberController extends HttpServlet{
 				System.out.println("nbMemberController -> /joinCategory.me 요청!");
 				
 				
-				center = request.getParameter("center");
-				
-				
-				System.out.println("호출한 center 값 :"+center);
-				
 				//중앙화면 주소 바인딩
-				request.setAttribute("center", center);
+				request.setAttribute("center", "nbMember/joinCategory.jsp");
 				
 				
 				//전체 메인화면 주소 저장
@@ -304,10 +299,8 @@ public class nbMemberController extends HttpServlet{
 				
 				System.out.println("nbMemberController -> /login.me 요청!");
 				
-				center = request.getParameter("center");
-				
 				//중앙화면 주소 바인딩
-				request.setAttribute("center", center);
+				request.setAttribute("center", "nbMember/login.jsp");
 				
 				//전체 메인화면 주소 저장
 				nextPage="/nbMain.jsp";
