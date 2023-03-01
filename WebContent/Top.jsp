@@ -648,10 +648,10 @@ body{
 		<div id = "nb_login">
 				<div id = "nb_box">
 					<ul id = "login_box">	                    			
-		               <li><a href="<%=request.getContextPath()%>/nb_member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb_member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nbMember/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nbMember/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nbMember/joinCategory.me?center=/nbMember/joinCategory.jsp" class="btn">회원가입</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nbMember/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
 					</ul>
 				</div>	
 			</div>	
@@ -909,14 +909,13 @@ $.ajax({
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
-				
+					
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
 					
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
 					$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
-					
 					
 					
 				// 온도는 16도 이상 25도 미만이지만 비가 오지 않을경우,	
@@ -939,6 +938,13 @@ $.ajax({
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+					
+				// 온도가 11도 이상 16도 미만이지만 눈이 올 경우	
+				}else if(rain== 3){
+					
+					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/snowy.png");
+					$("#weatherzone").attr("value", "눈이와요 *** ").css("font-weight","bold");
+					$("#weatherzone2").attr("value", "하얀 눈이 내립니다!").css("color", "#2196f3").css("font-weight","bold");	
 				
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
@@ -964,12 +970,17 @@ $.ajax({
 				// 온도는 6도 이상 11도 미만이지만 비가올 경우
 				if(rain > 0){
 					
-					
-					
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
-				
+
+				// 온도가 6도 이상 11도 미만이지만 눈이 올 경우	
+				}else if(rain== 3){
+					
+					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/snowy.png");
+					$("#weatherzone").attr("value", "눈이와요 *** ").css("font-weight","bold");
+					$("#weatherzone2").attr("value", "하얀 눈이 내립니다!").css("color", "#2196f3").css("font-weight","bold");	
+					
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
 					
@@ -997,6 +1008,13 @@ $.ajax({
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 				
+				// 온도가 -1도 이상 6도 미만이지만 눈이 올 경우	
+				}else if(rain== 3){
+					
+					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/snowy.png");
+					$("#weatherzone").attr("value", "눈이와요 *** ").css("font-weight","bold");
+					$("#weatherzone2").attr("value", "하얀 눈이 내립니다!").css("color", "#2196f3").css("font-weight","bold");	
+							
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
 					
@@ -1013,7 +1031,7 @@ $.ajax({
 				$("#weatherzone2").attr("value", "많은 주의가 필요합니다!").css("color", "#ff5722").css("font-weight","bold");
 				}
 			
-		// #6) 온도는 -2도보다 낮거나 같고 -4도 미만일 때
+				// #6) 온도는 -2도보다 낮거나 같고 -4도 미만일 때
 		}else if (temp <= -2 && temp > -4){
 			
 				// 온도는 -2도보다 낮거나 같고 -4도 미만일 때, 비가올 경우
@@ -1022,6 +1040,13 @@ $.ajax({
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+					
+				// 온도가 -2도 이상 -4도 미만이지만 눈이 올 경우	
+				}else if(rain== 3){
+					
+					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/snowy.png");
+					$("#weatherzone").attr("value", "눈이와요 *** ").css("font-weight","bold");
+					$("#weatherzone2").attr("value", "하얀 눈이 내립니다!").css("color", "#2196f3").css("font-weight","bold");	
 				
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
@@ -1050,6 +1075,13 @@ $.ajax({
 				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
 				$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+				
+			// 온도가 -4도 이하이고 눈이 올 경우	
+			}else if(rain== 3){
+				
+				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/snowy.png");
+				$("#weatherzone").attr("value", "눈이와요 *** ").css("font-weight","bold");
+				$("#weatherzone2").attr("value", "하얀 눈이 내립니다!").css("color", "#2196f3").css("font-weight","bold");	
 			
 			// 오후 6시 이후일 경우,
 			}else if(rain == 0 && initTime >= 18){

@@ -4,9 +4,9 @@ import java.io.IOException;
 
 
 
+
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.Date;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -304,8 +304,10 @@ public class nbMemberController extends HttpServlet{
 				
 				System.out.println("nbMemberController -> /login.me 요청!");
 				
+				center = request.getParameter("center");
+				
 				//중앙화면 주소 바인딩
-				request.setAttribute("center", "nbMember/login.jsp");
+				request.setAttribute("center", center);
 				
 				//전체 메인화면 주소 저장
 				nextPage="/nbMain.jsp";
