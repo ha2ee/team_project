@@ -9,38 +9,4 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <!-- CKFINDER START -->
-<servlet>
-  <servlet-name>ConnectorServlet</servlet-name>
-  <servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
-  <init-param>
-      <param-name>XMLConfig</param-name>
-      <param-value>/WEB-INF/config.xml</param-value>
-  </init-param>
-  <init-param>
-      <param-name>debug</param-name>
-      <param-value>false</param-value>
-  </init-param>
-  <load-on-startup>1</load-on-startup>
-</servlet>
-  
-<servlet-mapping>
-  <servlet-name>ConnectorServlet</servlet-name>
-  <url-pattern>/ckfinder/core/connector/java/connector.java</url-pattern>
-</servlet-mapping>  
-<!-- CKFINDER END -->
-  
-  <error-page>
-  	<error-code>404</error-code>
-  	<location>/errorPage.jsp</location>
-  </error-page>
-    <error-page>
-  	<error-code>500</error-code>
-  	<location>/errorPage.jsp</location>
-  </error-page>
-  <error-page>
-  	<exception-type>java.lang.exception</exception-type>
-  	<location>/errorPage.jsp</location>
-  </error-page>
-  
 </web-app>
