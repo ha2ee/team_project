@@ -6,7 +6,7 @@ import java.sql.Date;
 //입력한 회원정보를 DB에 INSERT추가 하기 전 임시로 저장할 변수가 있는 VO클래스
 public class trMemberVo {
 	
-	private String tr_id, tr_pw, tr_email, tr_hp, tr_birth, tr_gender, tr_address1, tr_address2, tr_address3, tr_address4, tr_img, tr_name;
+	private String tr_id, tr_pw, tr_email, tr_hp, tr_birth, tr_gender, tr_address1, tr_address2, tr_address3, tr_address4, tr_img, tr_name, tr_nick;
 	private Date tr_joindate;
 	private int tr_number;
 
@@ -16,11 +16,12 @@ public class trMemberVo {
 	}
 	
 	// 2) 트레이너 DB 전부 가져오는 생성자
-	public trMemberVo(String tr_id, String tr_pw, String tr_email, String tr_hp, String tr_birth, String tr_gender,
+	public trMemberVo(String tr_id, String tr_nick, String tr_pw, String tr_email, String tr_hp, String tr_birth, String tr_gender,
 			String tr_address1, String tr_address2, String tr_address3, String tr_address4, String tr_img,
 			String tr_name, Date tr_joindate, int tr_number) {
 		super();
 		this.tr_id = tr_id;
+		this.tr_nick = tr_nick;
 		this.tr_pw = tr_pw;
 		this.tr_email = tr_email;
 		this.tr_hp = tr_hp;
@@ -40,11 +41,12 @@ public class trMemberVo {
 	
 
 	// 3) 날짜 빼고 DB 전부 가져오는 생성자
-	public trMemberVo(String tr_id, String tr_pw, String tr_email, String tr_hp, String tr_birth, String tr_gender,
+	public trMemberVo(String tr_id, String tr_nick, String tr_pw, String tr_email, String tr_hp, String tr_birth, String tr_gender,
 			String tr_address1, String tr_address2, String tr_address3, String tr_address4, String tr_img,
 			String tr_name, int tr_number) {
 		super();
 		this.tr_id = tr_id;
+		this.tr_nick = tr_nick;
 		this.tr_pw = tr_pw;
 		this.tr_email = tr_email;
 		this.tr_hp = tr_hp;
@@ -62,6 +64,10 @@ public class trMemberVo {
 	// 4) Getter & Setter
 	public String getTr_id() {
 		return tr_id;
+	}
+	
+	public String getTr_nick() {
+		return tr_nick;
 	}
 
 	public String getTr_pw() {
@@ -118,6 +124,10 @@ public class trMemberVo {
 
 	public void setTr_id(String tr_id) {
 		this.tr_id = tr_id;
+	}
+	
+	public void setTr_nick(String tr_nick) {
+		this.tr_nick = tr_nick;
 	}
 
 	public void setTr_pw(String tr_pw) {
