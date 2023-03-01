@@ -124,7 +124,7 @@ public class nbMemberController extends HttpServlet{
 					if (memResult == true || trResult == true) {
 						out.write("사용 가능");
 						return;
-					} else if (memResult == false && trResult == false) {
+					}else if(memResult == false && trResult == false) {
 						out.write("사용 불가");
 						return;
 					}
@@ -147,10 +147,9 @@ public class nbMemberController extends HttpServlet{
 					String mem_address2 = request.getParameter("address2");
 					String mem_address3 = request.getParameter("address3");
 					String mem_address4 = request.getParameter("address4");
-					String mem_address5 = request.getParameter("address5");
 					String mem_pet = request.getParameter("pet");
 					
-					MemberVo mem_vo = new MemberVo(mem_id, mem_name, mem_nick, mem_pw, mem_email, mem_hp, mem_birth, mem_gender, mem_pet, mem_address1, mem_address2, mem_address3, mem_address4, mem_address5);
+					MemberVo mem_vo = new MemberVo(mem_id, mem_name, mem_nick, mem_pw, mem_email, mem_hp, mem_birth, mem_gender, mem_pet, mem_address1, mem_address2, mem_address3, mem_address4);
 						   
 						memberdao.insertMember(mem_vo);
 						memberdao.insertMemAddress(mem_vo);
@@ -187,10 +186,9 @@ public class nbMemberController extends HttpServlet{
 					String tr_address2 = request.getParameter("address2");
 					String tr_address3 = request.getParameter("address3");
 					String tr_address4 = request.getParameter("address4");
-					String tr_address5 = request.getParameter("address5");
 					String tr_pet = request.getParameter("pet");
 					
-					MemberVo tr_vo = new MemberVo(tr_id, tr_name, tr_nick, tr_pw, tr_email, tr_hp, tr_birth, tr_gender, tr_address1, tr_address2, tr_address3, tr_address4, tr_address5);
+					MemberVo tr_vo = new MemberVo(tr_id, tr_name, tr_nick, tr_pw, tr_email, tr_hp, tr_birth, tr_gender, tr_address1, tr_address2, tr_address3, tr_address4);
 							
 					memberdao.insertTrMember(tr_vo);
 					memberdao.insertTrMemAddress(tr_vo);
@@ -206,8 +204,15 @@ public class nbMemberController extends HttpServlet{
 				
 				System.out.println("nbMemberController -> /joinCategory.me 요청!");
 				
+				
+				center = request.getParameter("center");
+				
+				
+				System.out.println("호출한 center 값 :"+center);
+				
 				//중앙화면 주소 바인딩
-				request.setAttribute("center", "nbMember/joinCategory.jsp");
+				request.setAttribute("center", center);
+				
 				
 				//전체 메인화면 주소 저장
 				nextPage = "/nbMain.jsp";
@@ -245,7 +250,7 @@ public class nbMemberController extends HttpServlet{
 					if (mem_result == true || tr_result == true) {
 						out.write("삭제 성공");
 						return;
-					} else if (mem_result == false && tr_result == false) {
+					}else if(mem_result == false && tr_result == false) {
 						out.write("삭제 실패");
 						return;
 					}
@@ -282,7 +287,7 @@ public class nbMemberController extends HttpServlet{
 					if ((up_MemResult == 1 && up_MemAddResult == 1 ) || (up_TrResult == 1 && up_TrAddResult == 1 )) {
 						out.write("수정 성공");
 						return;
-					} else if ((up_MemResult == 0  ||  up_MemAddResult == 0 ) && (up_TrResult == 0 || up_TrAddResult == 0 )) {
+					}else if((up_MemResult == 0  ||  up_MemAddResult == 0 ) && (up_TrResult == 0 || up_TrAddResult == 0 )) {
 						out.write("수정 실패");
 						return;
 					}
