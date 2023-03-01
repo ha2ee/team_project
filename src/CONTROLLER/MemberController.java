@@ -119,8 +119,11 @@ public class MemberController extends HttpServlet{
 			
 			System.out.println("nbMemberController -> /loginPro.me 요청!");
 			
-			String login_id = request.getParameter("id");
-			String login_pass = request.getParameter("pass");
+			String login_id = request.getParameter("memLoginId");
+			String login_pass = request.getParameter("memLoginPw");
+			
+			System.out.println("입력한 id : "+login_id);
+			System.out.println("입력한 pw : "+login_pass);
 			
 			//요청한 값을 이용해 클라이언트의 웹브라우저로 응답할 값을 마련
 			//요약 : DB작업 등의 비즈니스로직처리
@@ -134,6 +137,7 @@ public class MemberController extends HttpServlet{
 				out.println("window.alert('비밀번호 틀림');");
 				out.println("history.go(-1);");
 				out.println("</script>");
+				
 				return;
 				
 			}else if(check == -1){//아이디 틀림
@@ -141,6 +145,7 @@ public class MemberController extends HttpServlet{
 				out.println("window.alert('아이디 틀림');");
 				out.println("history.go(-1);");
 				out.println("</script>");
+				
 				return;
 				
 			}
@@ -152,7 +157,7 @@ public class MemberController extends HttpServlet{
 			HttpSession session = request.getSession();
 			//session메모리에 입력한 아이디 바인딩 (저장)
 			session.setAttribute("id", login_id);
-			
+	
 			//메인화면 view 주소
 			nextPage = "/nbMain.jsp";
 			
@@ -166,7 +171,7 @@ public class MemberController extends HttpServlet{
 			session_.invalidate(); //세션에 저장된 아이디 제거
 			
 			//메인화면 view 주소
-			nextPage = "/CarMain.jsp";
+			nextPage = "/nbMain.jsp";
 			
 			
 

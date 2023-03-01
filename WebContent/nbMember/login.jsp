@@ -3,6 +3,7 @@
 <%
 request.setCharacterEncoding("utf-8");
 String contextPath = request.getContextPath();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -46,6 +47,7 @@ String contextPath = request.getContextPath();
 	 	border-radius: 4px; 
 		box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px 
 	 		rgba(255, 255, 255, 0.2); 
+	 	display : none;
 
 	} 
 
@@ -70,28 +72,43 @@ String contextPath = request.getContextPath();
 
 </style>
 <script>
+
+
+$(document).ready(function(){
 	
+	
+	// 회원 로그인을 눌렀을때
 	$("#memLogin").click(function() {
 		
-		$("#memLoginId").show();
-		$("#MemLoginHp").hide();
+		
+		// 전화번호와 비번 입력창이 사라지고
+		$("#MemLoginHp").css("display", "none");
+		$("#memLoginPw").css("display", "none");
+		
+		// 아이디와 비번 입력창이 보이게 한다.
+		$("#memLoginId").css("display", "block");
+		$("#memLoginPw").css("display", "block");
+		
 		
 	});
 	
+	// 비회원 로그인을 눌렀을때
 	$("#noMemLogin").click(function() {
 		
-		$("#MemLoginHp").show();
-		$("#memLoginId").hide();
+		// 아이디 입력창이 사라지고
+		$("#memLoginId").css("display", "none");
+		$("#memLoginPw").css("display", "none");
 		
+		// 전화번호와 비번 입력창이 보이게 한다.
+		$("#MemLoginHp").css("display", "block");
+		$("#memLoginPw").css("display", "block");
 		
-	});
-	
-	$(function(){
-		
-		$("#memLogin").click();	
 		
 	});
 
+	
+	
+});
 
 
 
@@ -105,7 +122,8 @@ String contextPath = request.getContextPath();
 </head>
 <body>
 	
-	<h1>Login</h1>
+	<h1>로그인</h1>
+	<br><br><br><br><br>
 	<div id="loginType">
 		<button id="memLogin">
 			<p id="p1">회원 로그인</p>
@@ -118,7 +136,7 @@ String contextPath = request.getContextPath();
 	
 	<div class="login">
 		
-		<form method="post">
+		<form id="loginsubmit" method="post" action="<%=contextPath%>/member/loginPro.me">
 			<input id="memLoginId" type="text" name="memLoginId" placeholder="아이디" required="required" /> 
 			
 			<input id="MemLoginHp" type="text" name="MemLoginHp" placeholder="전화번호" required="required" /> 
@@ -126,7 +144,7 @@ String contextPath = request.getContextPath();
 			<input id="memLoginPw" type="password" name="memLoginPw" placeholder="비밀번호" required="required" />
 			
 			
-			<a href="<%=contextPath%>/nbMember/loginPro.me" class="btn btn-primary btn-block btn-large">log in.</a>
+			<a id="login_btn" href="#" type="button" class="btn btn-primary btn-block btn-large" onclick="document.getElementById('loginsubmit').submit();">log in</a>
 		</form>
 	</div>
 </body>

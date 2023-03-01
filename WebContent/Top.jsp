@@ -1,11 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+
+//Session내장객체 메모리 영역에 session값 얻기
+String id = (String)session.getAttribute("id");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <script>
 //메인 메뉴에 마우스가 올려지면 토글하는 함수 생성
 $(document).ready(function(){
+	
+<%
+	if (id != null){
+%>
+	
+	
+	$("#loginbtn").text("로그아웃").attr("href", "<%=request.getContextPath()%>/member/logout.me");
+	$("#regbtn").css("display", "none");
+<%
+}
+%>
+	
+	
 	$("#list_gnb").on("mouseover", function(){
 		$("#mega-menu").stop().slideDown("fast");
 	})
@@ -13,6 +32,10 @@ $(document).ready(function(){
 	$("#mega_wrapper").on("mouseleave", function(){
 		$("#mega-menu").stop().slideUp("fast");
 	})
+
+		
+
+	
 	
 });
 </script>
@@ -277,13 +300,15 @@ body{
 /* } */
 /* 드롭  된 큰 메뉴에 대한 스타일 조정 */
 #mega-menu {
+
+/* 	border : 1px solid red; */
 	
  	font-weight : 900;
 	width : 100%;
 	height : 170px;
 	background: white;
 	position : relative;
-	top : 250px;
+	top : 249px;
 	left : 0;
 	right : 0;
 	border-radius: 3px;
@@ -292,7 +317,7 @@ body{
 }
 #mega_wrapper{
 	
-/* 	border : 1px solid red; */
+/*  	border : 1px solid red;  */
 	
 	left: 0;
 	right : 0;
@@ -647,9 +672,9 @@ body{
 		<div id = "nb_login">
 				<div id = "nb_box">
 					<ul id = "login_box">	                    			
-		               <li><a href="<%=request.getContextPath()%>/member/login.me" class="btn">로그인</a></li>
+		               <li><a id="loginbtn" href="<%=request.getContextPath()%>/member/login.me" class="btn">로그인</a></li>
 		               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-		               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me" class="btn">회원가입</a></li>
+		               <li><a id="regbtn" href="<%=request.getContextPath()%>/member/joinCategory.me" class="btn">회원가입</a></li>
 		               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
 					</ul>
 				</div>	
@@ -700,7 +725,7 @@ body{
 		</div>
 		<div id="weatherFooter">
 			<div id="weatherResult">
-				<img src="#" />
+				<img src="" />
 				<input id="weatherzone" type="text" value="날씨정보가 안나올경우" />
 				<input id="weatherzone2" type="text" value="위치서비스 동의필요!" />
 			</div>

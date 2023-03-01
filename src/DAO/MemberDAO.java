@@ -38,20 +38,21 @@ public class MemberDAO {
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// MemberDAO INFO /////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// #1) 		/memCheck()			 		메소드			<- 일반회원		 중복 체크
-	// #2)      /trCheck()										<- 회원 아이디 	 중복 체크
+	// #1) 		memCheck()			 		메소드			<- 일반회원		 중복 체크
+	// #2)      trCheck()										<- 회원 아이디 	 중복 체크
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// #3)      /insertMember()								<- 일반회원      	 회원 가입
-	// #3-1)   /insertMemberAddress()											 주소 입력
-	// #3-2)   /memDelete()							 		 					 정보 삭제
-	// #3-3)   /memUpdate()								 		 				 정보 수정
-	// #3-4)	memAddUpdate()									 				 주소 수정
+	// #3)      insertMember()								<- 일반회원      	 회원 가입
+	// #3-1)    insertMemberAddress()											 주소 입력
+	// #3-2)    memDelete()							 		 					 정보 삭제
+	// #3-3)  	 memUpdate()								 		 				 정보 수정
+	// #3-4)	 memAddUpdate()									 				 주소 수정
+	// #3-5)     userCheck()														 정보 조회
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// #4)     /insertTrMember()		 						<- 훈련사			 회원 가입
-	// #4-1)   /insertTrMemberAddress()											 주소 입력
-	// #4-2)   /trDelete()															 정보 삭제
-	// #4-3)   /trUpdate()															 정보 수정
-	// #4-4)   /trAddUpdate()														 주소 수정
+	// #4)      insertTrMember()		 						<- 훈련사			 회원 가입
+	// #4-1)    insertTrMemberAddress()											 주소 입력
+	// #4-2)    trDelete()															 정보 삭제
+	// #4-3)    trUpdate()															 정보 수정
+	// #4-4)    trAddUpdate()														 주소 수정
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
@@ -133,7 +134,7 @@ public class MemberDAO {
 //			String value = rs.getString("result");
 			
 //			System.out.println(value);
-			System.out.println("트레이너멤버 :"+trResult);
+			System.out.println("훈련사 멤버 :"+trResult);
 //			true면 중복 , false면 중복아님
 			
 		} catch (Exception e) {
@@ -332,12 +333,62 @@ public class MemberDAO {
 				return memAdd_UpResult;
 				
 			}
+			
+			
+	// #3-5)  유저 DB 정보 조회 메소드
+	public int userCheck(String login_id, String login_pass) {
+		
+		System.out.println("MemberDAO -> userCheck() 메소드 호출!");
 		
 		
+		// check 변수를 설정하고 기본값 -1로 설정
+		int check = -1;
 		
-	//---------------------------------------------------트레이너
+		try {
+			
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+			String sql = "select * from ys_member where mem_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, login_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {//입력한 아이디로 조회한 행이 있으면? (아이디가 있으면?)
+				
+				//입력한 비밀번호와 조회된 비밀번호와 비교해서 있으면 ?(비밀번호가 있으면?)
+				if(login_pass.equals(rs.getString("mem_pw"))) {
+					
+					check = 1;
+					
+				}else {//아이디는 맞고 , 비밀번호 틀림
+					
+					check = 0;
+				}
+			}else {//아이디가 틀림
+				check = -1;
+			}
+			
+		} catch (Exception e) {
+			
+			System.out.println("userCheck 메소드 내부에서 오류!");
+			e.printStackTrace();
+			
+		}finally {
+			
+			closeResource();
+		}
+		
+		System.out.println("check : "+check);
+		
+		return check;
 
-	// #4) 트레이너 회원가입
+	}
+		
+		
+	//---------------------------------------------------훈련사
+
+	// #4) 훈련사 회원가입
 	public void insertTrMember(MemberVo tr_vo) {
 		
 		
@@ -369,7 +420,7 @@ public class MemberDAO {
 		
 	}
 		
-		// #4-1) 트레이너 회원 주소 insert
+		// #4-1) 훈련사 회원 주소 insert
 		public void insertTrMemAddress(MemberVo tr_vo) {
 			
 			try {
@@ -403,7 +454,7 @@ public class MemberDAO {
 		
 		
 		
-		// #4-2) 트레이너 정보 삭제
+		// #4-2) 훈련사 정보 삭제
 		public boolean trDelete(String deleteId) {
 			
 			boolean tr_result = false; //
@@ -444,7 +495,7 @@ public class MemberDAO {
 		
 		
 		
-		// #4-3) 트레이너 정보 수정
+		// #4-3) 훈련사 정보 수정
 		public int trUpdate(String up_id,String up_pw,String up_nick,String up_name,String up_hp,String up_birth,String up_email,String up_gender) {
 			
 			int tr_UpResult = 0; //
@@ -485,7 +536,7 @@ public class MemberDAO {
 		
 		
 		
-		//	#4-4) 트레이너회원  주소 정보 수정
+		//	#4-4) 훈련사회원  주소 정보 수정
 		public int trAddUpdate(String up_id, String up_address1,String up_address2,String up_address3,String up_address4,String up_address5) {
 			
 			int trAdd_UpResult = 0; //
@@ -522,10 +573,6 @@ public class MemberDAO {
 			
 		}
 
-		public int userCheck(String login_id, String login_pass) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
 		
 		
 		
