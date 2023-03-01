@@ -23,6 +23,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 날씨 관련 스크립트 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 
 /*  나눔 고딕 글꼴 임포트 */

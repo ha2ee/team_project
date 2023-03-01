@@ -320,7 +320,7 @@
 						   id="nickname" 
 						   name="nickname"
 						   class="form-control"
-						   placeholder="사용할 닉네임을 적어주세요".">
+						   placeholder="사용할 닉네임을 적어주세요">
 				    <p id="nickInput"></p> 
 				</div>
 				<div class="heigthD" style="margin-left: 40px;">
@@ -432,12 +432,7 @@
 			<br>
 			<div align="center" style="margin-left: 50%;">
 				<div>
-					<a href="#"
-					   onclick="check(); return false;" 
-					   type="button" 
-					   style="text-decoration: none;"
-					   class="btn btn-outline-warning";
-					>회원가입</a>
+					<a href="#"  onclick="check(); return false;" type="button" style="text-decoration: none;" class="btn btn-outline-warning">회원가입</a>
 				</div>	
 			</div>
 			<br /> <br /> <br />

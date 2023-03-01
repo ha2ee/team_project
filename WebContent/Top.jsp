@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 //메인 메뉴에 마우스가 올려지면 토글하는 함수 생성
 $(document).ready(function(){
@@ -648,9 +647,9 @@ body{
 		<div id = "nb_login">
 				<div id = "nb_box">
 					<ul id = "login_box">	                    			
-		               <li><a href="<%=request.getContextPath()%>/nb/login.member?center=/nbMember/login.jsp" class="btn">로그인</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb/mypage.member?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb/join.member?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
+		               <li><a href="<%=request.getContextPath()%>/member/login.me" class="btn">로그인</a></li>
+		               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+		               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me" class="btn">회원가입</a></li>
 		               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
 					</ul>
 				</div>	
@@ -744,6 +743,7 @@ body{
 <!-- 날씨 관련 스크립트 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 navigator.geolocation.getCurrentPosition(showYourLocation, showErrorMsg); 
 function showYourLocation(position) {  // 성공했을때 실행

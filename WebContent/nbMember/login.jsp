@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("utf-8");
+String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
-
 
 
 <!-- Bootstrap CSS -->
@@ -11,12 +14,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-	
-	
-	<%
-		request.setCharacterEncoding("utf-8");
-		String contextPath = request.getContextPath();
-	%>
+
 	
 <style type="text/css">
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
@@ -71,41 +69,7 @@
 
 
 </style>
-<meta charset="UTF-8">
-<title>intro.jsp</title>
-<style type="text/css">
-</style>
-</head>
-<body>
-	
-	<h1>Login</h1>
-	<div id="loginType">
-		<button id="memLogin">
-			<p id="p1">회원 로그인</p>
-		</button>		
-		<button id="noMemLogin">
-			<p id="p2">비회원 로그인</p>
-		</button>		
-			
-	</div>
-	
-	<div class="login">
-		
-		<form method="post">
-			<input id="memLoginId" type="text" name="memLoginId" placeholder="아이디" required="required" /> 
-			
-			<input id="MemLoginHp" type="text" name="MemLoginHp" placeholder="전화번호" required="required" /> 
-			
-			<input id="memLoginPw" type="password" name="memLoginPw" placeholder="비밀번호" required="required" />
-			
-			
-			<a href="<%=contextPath%>/nb_member/loginPro.me" class="btn btn-primary btn-block btn-large">log in.</a>
-		</form>
-	</div>
-</body>
-</html>
-
-<script type="text/javascript">
+<script>
 	
 	$("#memLogin").click(function() {
 		
@@ -134,4 +98,36 @@
 
 </script>
 
-
+<meta charset="UTF-8">
+<title>intro.jsp</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+	
+	<h1>Login</h1>
+	<div id="loginType">
+		<button id="memLogin">
+			<p id="p1">회원 로그인</p>
+		</button>		
+		<button id="noMemLogin">
+			<p id="p2">비회원 로그인</p>
+		</button>		
+			
+	</div>
+	
+	<div class="login">
+		
+		<form method="post">
+			<input id="memLoginId" type="text" name="memLoginId" placeholder="아이디" required="required" /> 
+			
+			<input id="MemLoginHp" type="text" name="MemLoginHp" placeholder="전화번호" required="required" /> 
+			
+			<input id="memLoginPw" type="password" name="memLoginPw" placeholder="비밀번호" required="required" />
+			
+			
+			<a href="<%=contextPath%>/nbMember/loginPro.me" class="btn btn-primary btn-block btn-large">log in.</a>
+		</form>
+	</div>
+</body>
+</html>

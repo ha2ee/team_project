@@ -94,14 +94,14 @@
 <!--개인회원 -->
 		<div class="join_mid">
 			
-			<a type="button" id="join_mid_L" class="btn btn-outline-info" href="mem_join.me">
+			<a type="button" id="join_mid_L" class="btn btn-outline-info" href="memJoin.me">
 				<p style="margin-top: 60px;">일반회원</p>
 			</a>	
 	
 <!-- 트레이너 회원 -->
 		
-			<a type="button" id="join_mid_R" class="btn btn-outline-info" href="tr_join.me">
-				<p style="margin-top: 60px;">트레이너회원</p>
+			<a type="button" id="join_mid_R" class="btn btn-outline-info" href="trJoin.me">
+				<p style="margin-top: 60px;">훈련사 회원</p>
 			</a>
 			
 
@@ -113,6 +113,4 @@
 	
 	</div>
 </body>
-
-
 </html>
