@@ -7,6 +7,8 @@ String tr_name = request.getParameter("tr_name");
 String tr_price = request.getParameter("tr_price");
 //Session내장객체 메모리 영역에 session값 얻기
 String id = (String)session.getAttribute("id");
+
+
 %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <html>
@@ -593,6 +595,7 @@ String id = (String)session.getAttribute("id");
 <form method ="post" action ="<%=request.getContextPath()%>/nb/edureservation.do">
 
 <!-- 예약한 날짜와 트레이너금액, 총금액 원본 넘기기 -->
+<input type="hidden" name = "id" id= "id" value="<%=id%>">
 <input type="hidden" name ="tr_mem_reg_date" id="tr_mem_reg_date" />
 <input type="hidden" name ="reg_date" id="reg_date" />
 <input type="hidden" name ="tr_price" id="tr_price" />

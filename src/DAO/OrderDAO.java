@@ -10,6 +10,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import VO.MemberVo;
+import VO.nbPetMemVo;
 import VO.trMemberVo;
 
 public class OrderDAO {
@@ -39,9 +40,10 @@ public class OrderDAO {
 	
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// OrderDAO INFO /////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// OrderDAO INFO ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// #1) 		/checkTrainer()			 		메소드		<- 훈련사		 	정보 조회
+	// #1) 		checkTrainer()			 		메소드		<- 훈련사		 	정보 조회
+	// #2)      petuserCheck()                메소드     <- 유저+PET      정보 조회 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	
@@ -86,10 +88,6 @@ public class OrderDAO {
 	            trmembervo.setTr_name(rs.getString("tr_name"));
 	            trmembervo.setTr_hp(rs.getString("tr_hp"));
 	            trmembervo.setTr_img(rs.getString("tr_img"));
-	            
-	            System.out.println("tr_name : "+trmembervo.getTr_name());
-	            System.out.println("tr_hp :"+trmembervo.getTr_hp());
-	            System.out.println("tr_img :"+trmembervo.getTr_img());
 	           
 	         }
 	        
@@ -107,6 +105,70 @@ public class OrderDAO {
 		
 		// 8) trMembervo로 리턴해준다.
 		return trmembervo;
+	}
+	
+	// #2) 수강신청 시 유저 DB+PET 정보 조회 메소드
+	public nbPetMemVo petuserCheck(String login_id) {
+	nbPetMemVo nbpetmemvo = null;
+		
+		System.out.println("OrderDAO -> petuserCheck() 메소드 호출!");
+					
+		
+		try {
+			
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+			String sql = "select * from ys_member NATURAL JOIN pet where mem_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, login_id);
+			rs = pstmt.executeQuery();
+			
+			//입력한 아이디로 조회한 행이 있으면?
+			if(rs.next()) {
+			
+			// 하나씩 가져와서 vo에 담는다.
+			nbpetmemvo	= new nbPetMemVo();
+			// 1) 회원 정보에 대한 부분
+			nbpetmemvo.setMem_id(rs.getString("mem_id"));
+			nbpetmemvo.setMem_name(rs.getString("mem_name"));
+			nbpetmemvo.setMem_email(rs.getString("mem_email"));
+			nbpetmemvo.setMem_hp(rs.getString("mem_hp"));
+			nbpetmemvo.setMem_address1(rs.getString("mem_address1"));
+			nbpetmemvo.setMem_address2(rs.getString("mem_address2"));
+			nbpetmemvo.setMem_address3(rs.getString("mem_address3"));
+			nbpetmemvo.setMem_address4(rs.getString("mem_address4"));
+			
+			// 2) 회원이 등록한 펫 정보에 대한 부분
+			nbpetmemvo.setP_name(rs.getString("p_name"));
+			nbpetmemvo.setP_age(rs.getInt("p_age"));
+			nbpetmemvo.setP_gender(rs.getString("p_gender"));
+			nbpetmemvo.setP_type(rs.getString("p_type"));
+			nbpetmemvo.setP_op(rs.getString("p_op"));
+			nbpetmemvo.setP_weight(rs.getInt("p_weight"));
+			nbpetmemvo.setP_img(rs.getString("p_img"));
+			
+			
+			
+				
+				
+			}
+			
+			
+			
+		} catch (Exception e) {
+			
+			System.out.println("MemberDAO -> petuserCheck 메소드 내부에서 오류!");
+			e.printStackTrace();
+			
+		}finally {
+			
+			closeResource();
+		}
+		
+		
+		return nbpetmemvo;
+
 	}
 
 		

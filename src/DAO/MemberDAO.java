@@ -10,6 +10,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import VO.MemberVo;
+import VO.nbPetMemVo;
 
 public class MemberDAO {
 
@@ -335,56 +336,57 @@ public class MemberDAO {
 			}
 			
 			
-	// #3-5)  유저 DB 정보 조회 메소드
-	public int userCheck(String login_id, String login_pass) {
-		
-		System.out.println("MemberDAO -> userCheck() 메소드 호출!");
-		
-		
-		// check 변수를 설정하고 기본값 -1로 설정
-		int check = -1;
-		
-		try {
-			
-			//DB접속
-			con = ds.getConnection();
-			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
-			String sql = "select * from ys_member where mem_id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, login_id);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {//입력한 아이디로 조회한 행이 있으면? (아이디가 있으면?)
+			// #3-5)  유저 DB 정보 조회 메소드
+			public int userCheck(String login_id, String login_pass) {
 				
-				//입력한 비밀번호와 조회된 비밀번호와 비교해서 있으면 ?(비밀번호가 있으면?)
-				if(login_pass.equals(rs.getString("mem_pw"))) {
+				System.out.println("MemberDAO -> userCheck() 메소드 호출!");
+				
+				
+				// check 변수를 설정하고 기본값 -1로 설정
+				int check = -1;
+				
+				try {
 					
-					check = 1;
+					//DB접속
+					con = ds.getConnection();
+					//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+					String sql = "select * from ys_member where mem_id=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, login_id);
+					rs = pstmt.executeQuery();
 					
-				}else {//아이디는 맞고 , 비밀번호 틀림
+					if(rs.next()) {//입력한 아이디로 조회한 행이 있으면? (아이디가 있으면?)
+						
+						//입력한 비밀번호와 조회된 비밀번호와 비교해서 있으면 ?(비밀번호가 있으면?)
+						if(login_pass.equals(rs.getString("mem_pw"))) {
+							
+							check = 1;
+							
+						}else {//아이디는 맞고 , 비밀번호 틀림
+							
+							check = 0;
+						}
+					}else {//아이디가 틀림
+						check = -1;
+					}
 					
-					check = 0;
+				} catch (Exception e) {
+					
+					System.out.println("userCheck 메소드 내부에서 오류!");
+					e.printStackTrace();
+					
+				}finally {
+					
+					closeResource();
 				}
-			}else {//아이디가 틀림
-				check = -1;
+				
+				System.out.println("check : "+check);
+				
+				return check;
+
 			}
 			
-		} catch (Exception e) {
-			
-			System.out.println("userCheck 메소드 내부에서 오류!");
-			e.printStackTrace();
-			
-		}finally {
-			
-			closeResource();
-		}
-		
-		System.out.println("check : "+check);
-		
-		return check;
 
-	}
-		
 		
 	//---------------------------------------------------훈련사
 

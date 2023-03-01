@@ -1,9 +1,10 @@
+<%@page import="VO.nbPetMemVo"%>
 <%@page import="VO.trMemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-
+	// 1) 수강 데이터
 	// 예약일 가져와서 변수에 저장
 	String tr_date1 = request.getParameter("date1");
 	String tr_date2 = request.getParameter("date2");
@@ -12,28 +13,62 @@
 	String tr_date5 = request.getParameter("date5");
 	String tr_date6 = request.getParameter("date6");
 	String tr_date7 = request.getParameter("date7");
-	
 	// 총 수강 횟수 가져와서 변수에 저장
 	String totalcnt = request.getParameter("totalcnt");
-	
 	// 총 수강 금액 가져와서 변수에 저장
 	String tr_totalprice = request.getParameter("totalprice");
-	
 	// 선택 된 트레이너 가져와서 변수에 저장
 	String tr_mem_name = request.getParameter("tr_name");
-	
 	// 예약 작성일 가져와서 변수에 저장
 	String tr_mem_reg_date = request.getParameter("tr_mem_reg_date");
 	// 한글버젼으로 된 예약일을 가져와서 변수에 저장
 	String tr_reg_date = request.getParameter("reg_date");
 	
+	// 2) 트레이너 데이터
 	// trmembervo에 저장한 tr_hp와, tr_img를 가져와 변수에 저장 시킨다.
 	trMemberVo trmembervo = (trMemberVo)request.getAttribute("trmembervo");
-	
 	// 휴대전화번호 변수에 저장
 	String tr_hp = trmembervo.getTr_hp();
 	// 이미지 변수에 저장
 	String tr_img = trmembervo.getTr_img();
+	
+	// 3) 회원 데이터
+	// nbpetMemVo에 저장한 값들을 가져와 변수에 저장 시킨다.
+	nbPetMemVo nbpetmemvo = (nbPetMemVo)request.getAttribute("nbpetmemvo");
+	// 아이디 저장
+	String mem_id = nbpetmemvo.getMem_id();
+	// 이름 저장
+	String mem_name = nbpetmemvo.getMem_name();
+	// 전화번호 저장
+	String mem_hp = nbpetmemvo.getMem_hp();
+	// 이메일 저장
+	String mem_email = nbpetmemvo.getMem_email();
+	// 주소1 저장
+	String mem_address1 = nbpetmemvo.getMem_address1();
+	// 주소2 저장
+	String mem_address2 = nbpetmemvo.getMem_address1();
+	// 주소3 저장
+	String mem_address3 = nbpetmemvo.getMem_address1();
+	// 주소4 저장
+	String mem_address4 = nbpetmemvo.getMem_address1();
+	
+	// 4) 회원 반려견 데이터
+	// 반려견 사진 저장
+	String pet_img 	 = nbpetmemvo.getP_img();
+	// 반려견 이름 저장
+	String pet_name 	 = nbpetmemvo.getP_name();
+	// 반려견 견종 저장
+	String pet_type 	 = nbpetmemvo.getP_type();
+	// 반려견 나이 저장
+	int	pet_age	  	 = nbpetmemvo.getP_age();
+	// 반려견 몸무게 저장
+	int pet_weight 	 =  nbpetmemvo.getP_weight();
+	// 반려견 성별 저장
+	String pet_gender = nbpetmemvo.getP_gender();
+	// 반려견 중성화 여부 저장
+	String pet_op		 = nbpetmemvo.getP_op();
+	
+
 
 	
 %>    
@@ -75,20 +110,20 @@
 					<a id ="membercheck" class = btn href="">내 정보 수정하기</a>
 				</div>
 				<div id = "memData">
-					<a type="text">아이디<input id = "mem_id" name = "mem_id" type="text"  readonly="readonly" /></a>
-					<a type="text">이름<input id = "mem_name" name = "mem_name" type="text"  readonly="readonly" /></a>
-					<a type="text">&nbsp;&nbsp;전화번호<input id = "mem_hp" name = "mem_hp" type="text"  readonly="readonly" /></a>
-					<a type="text">이메일<input id = "mem_email" name = "mem_email" type="text"  readonly="readonly" /></a>
+					<a type="text">아이디<input id = "mem_id" name = "mem_id" type="text"  readonly="readonly" value="<%=mem_id%>"/></a>
+					<a type="text">이름<input id = "mem_name" name = "mem_name" type="text"  readonly="readonly" value="<%=mem_name%>" /></a>
+					<a type="text">&nbsp;&nbsp;전화번호<input id = "mem_hp" name = "mem_hp" type="text"  value="<%=mem_hp%>" readonly="readonly" /></a>
+					<a type="text">이메일<input id = "mem_email" name = "mem_email" type="text"  value="<%=mem_email%>" readonly="readonly" /></a>
 				</div>
 				<div id = "memAddress">
 					<div id = "address_check">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소<a style="display : none;" id ="addresscheck" class = btn href="" onclick="Postcode()">우편번호 찾기</a>
 					</div>
 					<div id = "mem_address">
-						<a type="text"><input id = "mem_address1" name = "mem_address1" type ="text" placeholder= "우편번호" readonly="readonly" /></a>
-						<a type="text"><input id = "mem_address2" name = "mem_address2" type ="text" placeholder= "도로명주소" readonly="readonly" /></a>
-						<a type="text"><input id = "mem_address3" name = "mem_address3" type ="text" placeholder= "지번주소" readonly="readonly" /></a>
-						<a type="text"><input id = "mem_address4" name = "mem_address4" type ="text" placeholder= "상세주소" readonly="readonly" /></a>
+						<a type="text"><input id = "mem_address1" name = "mem_address1" type ="text" placeholder= "우편번호" value="<%=mem_address1%>" readonly="readonly" /></a>
+						<a type="text"><input id = "mem_address2" name = "mem_address2" type ="text" placeholder= "도로명주소" value="<%=mem_address2%>" readonly="readonly" /></a>
+						<a type="text"><input id = "mem_address3" name = "mem_address3" type ="text" placeholder= "지번주소" value="<%=mem_address3%>" readonly="readonly" /></a>
+						<a type="text"><input id = "mem_address4" name = "mem_address4" type ="text" placeholder= "상세주소" value="<%=mem_address4%>" readonly="readonly" /></a>
 						<span id="guide" style="display:none"></span>
 					</div>	
 				</div>
@@ -106,35 +141,35 @@
 					<a id="pet_img_name" type= "text">반려견 사진</a>
 				</div>
 				<div id= "pet_img_box" >
-						<img id="pet_img" name="pet_img"  src="<%=request.getContextPath()%>/nbShop/img/example.jpg" />
+						<img id="pet_img" name="pet_img"  src="<%=request.getContextPath()%>/nbShop/img/<%=pet_img%>" />
 				</div>
 				<div id = "pet_info_box">
-					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" placeholder="반려견이름"  />
+					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" value="<%=pet_name%>"placeholder="반려견이름"  />
 					</a>
-					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" placeholder="반려견종"  />
+					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" value="<%=pet_type%>" placeholder="반려견종"  />
 					</a>
-					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text" placeholder="반려견나이"  />
+					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text"  value="<%=pet_age%>" placeholder="반려견나이"  />
 					</a>
-					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" placeholder="반려견몸무게"  />
+					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" value="<%=pet_weight%>" placeholder="반려견몸무게"  />
 					</a>
 					<a type= "text">반려견 성별</a>
 					<div id="radio">					
-						<input type="radio" name="pet_gender" value="남" />남
+						<input id="pet_gender1" type="radio" name="pet_gender" value="남" />남
 					</div>
 					<div id="radio" >
-						<input type="radio" name="pet_gender" value="여" />여
+						<input id="pet_gender2" type="radio" name="pet_gender" value="여" />여
 					</div>
 				</div>
 				<div id ="pet_op_box">
 					<a type= "text">중성화 여부</a>
 					<div id="radio2">					
-						<input type="radio" name="pet_op" value="예" />예
+						<input id="pet_op1" type="radio" name="pet_op" value="예" />예
 					</div>
 					<div id="radio2" >
-						<input type="radio" name="pet_op" value="아니오" />아니오
+						<input id="pet_op2" type="radio" name="pet_op" value="아니오" />아니오
 					</div>
 					<div id="radio2" >	
-						<input type="radio" name="pet_op" value="모름"/>모름
+						<input id="pet_op3" type="radio" name="pet_op" value="모름"/>모름
 					</div>
 				</div>
 			</div>	

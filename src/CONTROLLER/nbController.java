@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import DAO.OrderDAO;
 import VO.nbOrderVo;
+import VO.nbPetMemVo;
 import VO.nbTrOrderVo;
 import VO.trMemberVo;
 
@@ -31,6 +32,10 @@ public class nbController extends HttpServlet{
 	
 	// 트레이너 정보를 조회할 trMemberVo를 호출
 	trMemberVo trmembervo;
+	
+	// 회원+펫 정보를 조회할 nbPetMemVo를 호출
+	nbPetMemVo nbpetmemvo;
+	
 	
 	// 조회 또는 저장 시킬 오더vo, tr오더vo 호출
 	nbOrderVo nbordervo;
@@ -187,13 +192,25 @@ public class nbController extends HttpServlet{
 			String tr_name = request.getParameter("tr_name");
 			System.out.println(tr_name);
 			
+			HttpSession session = request.getSession();
+			String login_id = (String)session.getAttribute("id");
+			System.out.println(login_id);
+			
 			// 2)조회할 이름을 저장 시킨다.
 			request.setAttribute("tr_name", tr_name);
+			
+			// 2-1)조회할 ID를 저장 시킨다.
+			request.setAttribute("id", login_id);
 			
 			// 3)트레이너 이름을 매개변수로 해서 오더다오를 통해 값을 조회 한다.
 			trmembervo = orderdao.checkTrainer(tr_name);
 			
+			// 4)가입한 회원 아이디를 매개변수로 해서 오더다오를 통해 값을 조회 한다.
+			nbpetmemvo = orderdao.petuserCheck(login_id);
+			
+			// 5) 각각 setAttribute에 담기
 			request.setAttribute("trmembervo", trmembervo);	
+			request.setAttribute("nbpetmemvo", nbpetmemvo);
 			
 			//request에 "center" 값을 edu_reservation.jsp로 저장
 			request.setAttribute("center", "nbShop/edu_reservation.jsp");

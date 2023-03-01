@@ -295,7 +295,7 @@
 	font-weight : bold;
 	text-decoration: none;
 	background : #fff5f3;
-	
+
 
 }
 
@@ -313,6 +313,9 @@
 	top : 4px;
 	font-weight : normal;
 	border-radius: 5px;
+	color : #ff572282;
+	font-weight : bold;
+	font-size: 17px;
 
 
 }
