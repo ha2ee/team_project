@@ -325,25 +325,55 @@ public class TrainerBoardDAO {
 	}
 	
     // 게시글 수정
-    public int updateBoard(String idx) throws SQLException {
-    	TrainerBoardVo board = null;
+    public void updateBoard(HttpServletRequest request, HttpServletResponse response, String cb_idx) throws Exception {
         int cnt = 0;
         PreparedStatement pstmt = null;
-
+        con = ds.getConnection();
         try {
-            String sql = "UPDATE TRAINER_BOARD SET cb_title=?, cb_content=?, cb_file=? WHERE cb_idx=?";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, board.getCb_title());
-            pstmt.setString(2, board.getCb_content());
-            pstmt.setString(3, board.getCb_file());
-            pstmt.setInt(4, board.getCb_idx());
+        TrainerBoardDAO dao = new TrainerBoardDAO();
+		Map<String, String> articleMap = upload(request, response);
+		
+		String writer = articleMap.get("nickname"); //작성자(닉네임)
+		String title = articleMap.get("title"); //제목
+		String content = articleMap.get("content"); //내용
+		String id = articleMap.get("id"); //글 작성자 아이디
+		String file = articleMap.get("file"); //글을 작성할때 업로드 하기 위해 첨부한 파일명
+		
+		TrainerBoardVo  vo = new TrainerBoardVo();
+		vo.setCb_nickname(writer);
+		vo.setCb_title(title);
+		vo.setCb_content(content);
+		vo.setCb_id(id);
+		vo.setCb_file(file);
+		
+//		int articleNO = getNewArticleNO();
+		
+		if(file != null && file.length() != 0) {
+			File srcFile = new File("C:\\file_repo\\temp\\"+file);
+//			File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+articleNO);
+			File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx\\update"+cb_idx);
+			
+			destDir.mkdirs();
+			
+			FileUtils.moveFileToDirectory(srcFile, destDir, true);
+		
+		}//파일 재 업로드
 
-            cnt = pstmt.executeUpdate();
+		//수정하기
+            String sql = "UPDATE TRAINER_BOARD SET cb_nickname =?, cb_title=?, cb_content=?, cb_file=? WHERE cb_idx=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, writer);
+            pstmt.setString(2, title);
+            pstmt.setString(3, content);
+            pstmt.setString(4, file);
+            pstmt.setString(5, cb_idx);
+
+            pstmt.executeUpdate();
         } finally {
         	closeResource();
         }
 
-        return cnt;
+//        return cb_idx;
     }
     
     
@@ -491,7 +521,8 @@ public class TrainerBoardDAO {
 			
 			if(file != null && file.length() != 0) {
 				File srcFile = new File("C:\\file_repo\\temp\\"+file);
-				File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+articleNO);
+//				File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+articleNO);
+				File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+articleNO);
 				
 				//DB에 추가한 글에 대한 글번호를 조회해서 가져왔기 때문에 글 번호 폴더 생성
 				destDir.mkdirs();
@@ -663,6 +694,41 @@ public class TrainerBoardDAO {
 				closeResource();
 			}
 			
+		}
+
+		public TrainerBoardVo getReadPage(String cb_idx) {
+			String sql = "";
+			TrainerBoardVo vo = null;
+			
+			try {
+				con = ds.getConnection();
+				
+				sql = "select * from trainer_board where cb_idx = ?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(cb_idx));
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					
+					vo = new TrainerBoardVo(rs.getInt("cb_idx"),  
+							rs.getString("cb_id"), 
+							rs.getString("cb_nickname"),
+							rs.getString("cb_title"), 
+							rs.getString("cb_content"), 
+							rs.getInt("cb_group"), 
+							rs.getInt("cb_level"), 
+							rs.getDate("cb_date"), 
+							rs.getInt("cb_cnt"),
+							rs.getString("cb_file")
+							);
+				}
+				
+			} catch (Exception e) {
+				
+			} finally {
+				closeResource();
+			}
+			return vo;
 		}
 			
 		

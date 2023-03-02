@@ -24,10 +24,6 @@
 	System.out.println("-----@@@@" + cb_idx);
 	
 	
-	
-	String nowPage = (String)request.getAttribute("nowPage");
-	String nowBlock = (String)request.getAttribute("nowBlock");
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -95,7 +91,7 @@
     	
     <div style="text-align: center;">
         <a href="list.bo?page=${pageNum}">목록으로</a>
-        <a href="update.bo?cb_idx=${cb_idx}">수정하기</a>
+        <a href="tbUpdate.bo?cb_idx=${cb_idx}">수정하기</a>
     </div>
 </body>
 </html>

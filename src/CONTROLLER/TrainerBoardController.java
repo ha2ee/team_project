@@ -203,6 +203,7 @@ public class TrainerBoardController extends HttpServlet{
 	    	  
 	    	  String fileName = request.getParameter("fileName");
 	    	  String cbidx = request.getParameter("cbidx");
+//	    	  String folder = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+cbidx;
 	    	  String folder = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+cbidx;
 	    	  String filePath = folder + "/" + fileName;
 	    	  
@@ -211,9 +212,29 @@ public class TrainerBoardController extends HttpServlet{
 				return;
 	      } else if (action.equals("/tbUpdate.bo")) {
 	    	  String cb_idx = request.getParameter("cb_idx");
-//	    	  trainerboarddao.updateBoard(board);
+	    	  TrainerBoardVo tvo = trainerboarddao.getReadPage(cb_idx);
+	    	  request.setAttribute("tvo", tvo);
+	    	  request.setAttribute("center", "/nbBoard/trainerboardupdateWrite.jsp");
+
+	    	  
+	    	  nextPage ="/nbMain.jsp";
 	    	  
 	    	  
+	      } else if (action.equals("/tbUpdatePro.bo")) {
+	    	  
+	    	  String cb_idx = (String) request.getAttribute("cb_idx");
+	    	 
+	    	  
+				
+					try {
+						trainerboarddao.updateBoard(request,response,cb_idx);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					request.setAttribute("center", "TeamProject/tb/list.bo");
+					  nextPage ="/nbMain.jsp";
 	      }
 			
 		
