@@ -240,6 +240,7 @@ body{
 	text-decoration: none;
 	left : -130px;
 	margin : 15px;
+	transition : 0.3s;
 }
 /* 1-4) 버튼 하나하나가 활성화 되었을 CSS 디자인 */
  #list_gnb > li > a:hover { 
@@ -247,6 +248,7 @@ body{
 	border : silver;
  	background-color: #fff5f3;
  	border-radius: 30px;
+ 	transition : 0.3s;
  } 
 /* 1-5) 나열된 메뉴가 활성화 되었을 때 메가메뉴를 어떻게 컨트롤 할건지에 대한 CSS 디자인 */
 /* .list_gnb > li:hover #mega-menu { */
@@ -294,11 +296,13 @@ body{
 #mega_wrapper > ul >li{
 	padding : 8px;
 	text-align : center;
+	transition : 0.3s;
 }
 #mega_wrapper > ul >li:hover{
 	border-radius :20px;
 	background-color : #fff5f3;
 	text-align : center;
+	transition : 0.3s;
 }
 /* 드롭 된 메뉴의 간격 조정 */
 .list_lnb_01 {
@@ -344,7 +348,7 @@ body{
 	letter-spacing: .75px;
 	border-radius : 3px;
 	border : transparent;
-	transition : all 0.3s;
+	transition : 0.3s;
 	position : relative;
 	display: inline-block;
 	background : #fff;
@@ -352,6 +356,7 @@ body{
  .nb_top > .login1 > ul > li > a:hover {
 	border-radius : 20px;
 	background-color : #fff5f3;
+	transition : 0.3s;
 }
 .inner p {
   background-color :white;
@@ -543,9 +548,11 @@ body{
   background: #fff5f3;
   text-decoration: none;
   border-radius: 20px;
+  transition : 0.3s;
 }
 .btn:focus {
   outline: none;
+  transition : 0.3s;
 }
 .btn {
 	font-family: 'Nanum Gothic', sans-serif;
@@ -557,9 +564,9 @@ body{
 	letter-spacing: .75px;
 	border-radius : 3px;
 	border : transparent;
-	transition : all 0.3s;
 	position : relative;
 	display: inline-block;
 	background : #fff;
 	color : black;
+	transition : 0.3s;
 }

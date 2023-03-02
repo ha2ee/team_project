@@ -40,7 +40,7 @@ $(document).ready(function(){
 		%>
 	})
 
-	
+	// MEGA-MENU 롤다운 설정
 	$("#list_gnb").on("mouseover", function(){
 		$("#mega-menu").stop().slideDown("fast");
 	})
@@ -49,8 +49,12 @@ $(document).ready(function(){
 		$("#mega-menu").stop().slideUp("fast");
 	})
 
-		
-
+	// quick-menu 설정	
+	  var currentPosition = parseInt($("#quickmenu").css("top"));
+	  $(window).scroll(function() {
+	    var position = $(window).scrollTop(); 
+	    $("#quickmenu").stop().animate({"top":position+currentPosition+"px"},1000);
+	  });
 	
 	
 });
@@ -68,9 +72,14 @@ $(document).ready(function(){
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="Digital marketing courses website template that can help you boost your business courses website and its completely free.">
     <meta name="keywords" content="seo,free website template, free responsive website template, seo marketing, search engine optimization, web analytics">
-
+	
+<!-- 	Fontawesome 셋팅 -->
+	<script src="https://kit.fontawesome.com/4536cebc99.js" crossorigin="anonymous"></script>
 <!--  	 Top CSS 셋팅 -->
  	<link href="<%=request.getContextPath()%>/css/Top.css" rel="stylesheet">
+   
+<!--  	 quickmenu CSS 셋팅 -->
+ 	<link href="<%=request.getContextPath()%>/css/quickmenu.css" rel="stylesheet">
    
     <!-- Bootstrap -->
     <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
@@ -210,8 +219,19 @@ $(document).ready(function(){
 		 </ul>
 		 </div>
 	</div>	
-         
+
  </div>
+ 
+ 	<!-- 	퀵 메뉴 설정 -->
+	<div id="quickmenubox">
+		<div id="quickmenu">
+			<ul>
+				<li><a href="">늘봄 샵</a></li>
+				<li><a href="">늘봄 후기</a></li>
+				<li><a href="#"><br><i style="font-size: 55px;"id="chaticon" class="fa-solid fa-paw"></i><br>1:1 채팅문의</a></li>
+			</ul>
+		</div>
+	</div>
 
 
 
@@ -224,6 +244,9 @@ $(document).ready(function(){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+
+
+
 navigator.geolocation.getCurrentPosition(showYourLocation, showErrorMsg); 
 function showYourLocation(position) {  // 성공했을때 실행
     var userLat = position.coords.latitude;
