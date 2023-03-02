@@ -209,6 +209,11 @@ public class TrainerBoardController extends HttpServlet{
 	    	  trainerboarddao.downLoad(response,filePath,fileName);
 	    	  
 				return;
+	      } else if (action.equals("/tbUpdate.bo")) {
+	    	  String cb_idx = request.getParameter("cb_idx");
+//	    	  trainerboarddao.updateBoard(board);
+	    	  
+	    	  
 	      }
 			
 		

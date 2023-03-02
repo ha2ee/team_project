@@ -89,11 +89,13 @@
 	<div align="center">다운로드:
 	<%-- 다운로드할 폴더번호 경로와 다운로드 할 파일명 전달 --%>
 	<a href="<%=contextPath%>/tb/download.bo?cbidx=<%=cb_idx%>&fileName=<%=file%>">&nbsp;&nbsp;<%=file%></a>
+<%-- 	<a href="/uploadFile/TrainerBoardFile/cbidx<%=cb_idx%>/<%=file%>" download>&nbsp;&nbsp;<%=file%></a> --%>
 	</div>
     </c:if>
     	
     <div style="text-align: center;">
         <a href="list.bo?page=${pageNum}">목록으로</a>
+        <a href="update.bo?cb_idx=${cb_idx}">수정하기</a>
     </div>
 </body>
 </html>

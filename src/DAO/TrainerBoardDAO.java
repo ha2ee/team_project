@@ -75,8 +75,8 @@ public class TrainerBoardDAO {
             // 글목록 전체를 보여줄 때
             if(opt == null)
             {
-                // BOARD_RE_REF(그룹번호)의 내림차순 정렬 후 동일한 그룹번호일 때는
-                // BOARD_RE_SEQ(답변글 순서)의 오름차순으로 정렬 한 후에
+                // cb_group(그룹번호)의 내림차순 정렬 후 동일한 그룹번호일 때는
+                // cb_level(답변글 순서)의 오름차순으로 정렬 한 후에
                 // 10개의 글을 한 화면에 보여주는(start번째 부터 start+9까지) 쿼리
                 // desc : 내림차순, asc : 오름차순 ( 생략 가능 )
                 
@@ -259,12 +259,6 @@ public class TrainerBoardDAO {
         return result;
     } // end getBoardListCount
  
-    
-	 
-	    
-	
-	
-	
 	//TRAINER_BOARD테이블에 저장된 최신 글 번호 조회 후 반환 하는 메소드
 	public int getNewArticleNO() {
 		
@@ -330,12 +324,9 @@ public class TrainerBoardDAO {
 		return articleNO; //insert한 글번호를 반환 함. 이유 : 글번호 폴더를 만들어서 파일을 그안에 업로드 하기 위함
 	}
 	
-	
-	
-	
-
     // 게시글 수정
-    public int updateBoard(TrainerBoardVo board) throws SQLException {
+    public int updateBoard(String idx) throws SQLException {
+    	TrainerBoardVo board = null;
         int cnt = 0;
         PreparedStatement pstmt = null;
 
@@ -470,8 +461,6 @@ public class TrainerBoardDAO {
 		return articleMap;
 		}
 	
-	
-	//"/writePro.bo"  
 		public int InsertBoard(HttpServletRequest request, 
 									  HttpServletResponse response) throws Exception {
 			TrainerBoardDAO dao = new TrainerBoardDAO();
@@ -502,7 +491,7 @@ public class TrainerBoardDAO {
 			
 			if(file != null && file.length() != 0) {
 				File srcFile = new File("C:\\file_repo\\temp\\"+file);
-				File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+articleNO);
+				File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+articleNO);
 				
 				//DB에 추가한 글에 대한 글번호를 조회해서 가져왔기 때문에 글 번호 폴더 생성
 				destDir.mkdirs();
@@ -558,72 +547,6 @@ public class TrainerBoardDAO {
 			return list;
 		}
 		
-		
-		//현재 게시판 DB에 있는 글들을 조회 하는 메소드
-		//조건 : 선택한 검색기준값과 입력한 검색어 단어를 이용해 글들을 조회!
-		//삭제예정
-/*		public ArrayList SearchboardList(String key,String word) {
-			
-			String sql = null;
-			
-			ArrayList list = new ArrayList();
-			
-			if(!word.equals("")) {//검색어를 입력했다면 ?
-				
-				if(key.equals("titleContent")) {//검색 기준값 제목+내용을 선택했다면 ?
-					
-					sql = "select * from trainer_board "
-							+ " where cb_title like '%"+word+"%' "
-							+ " or cb_content like '%"+word+"%' order by cb_group asc";
-				}else{//검색 기준값 작성자를 선택했다면?
-					
-					sql = "select * from trainer_board where cb_name like '%"+word+"%' order by cb_group asc";
-				}
-				
-				
-			}else {//검색어를 입력하지 않았다면?
-				//모든 글 조회
-				//조건 -> b_idx열의 글번호 데이터들을 기준으로 해서 내림 차순으로 정렬 후 조회!
-				sql = "select * from trainer_board order by cb_group asc";
-				
-				//참고. 정렬 조회 -> order by 정렬기준열 desc(내림차순) 또는 asc(오름차순)
-			}
-			
-			try {
-				con = ds.getConnection();
-				
-				pstmt = con.prepareStatement(sql);
-				
-				rs = pstmt.executeQuery();
-				
-				//조회된 Result의 정보를 한행 단위로 꺼내서
-				//BoardVo객체에 한행씩 저장 후 BoardVo객체들을 ArrayList배열에 하나씩 추가해서 저장
-				while(rs.next()) {
-					TrainerBoardVo vo = new TrainerBoardVo(rs.getInt("cb_idx"),
-							rs.getString("cb_id"),
-							rs.getString("cb_nickname"),
-							rs.getString("cb_title"), 
-							rs.getString("cb_content"), 
-							rs.getInt("cb_group"), 
-							rs.getInt("cb_level"), 
-							rs.getDate("cb_date"), 
-							rs.getInt("cb_cnt"),
-							rs.getString("cb_file")
-							);
-					
-					list.add(vo);
-				}
-				
-			} catch (Exception e) {
-				System.out.println("boardList 메소드 내부에서 오류!");
-				e.printStackTrace();
-			} finally {
-				closeResource();
-			}
-			
-			return list;
-		}
-		*/
 		
 		public int getTotalRecord() {
 			//조회된 글의 글수 저장
@@ -742,61 +665,6 @@ public class TrainerBoardDAO {
 			
 		}
 			
-			
-			
-//			OutputStream outputStream = null;
-//			FileInputStream fileInputStream = null;
-//			
-//			//파일 다운로드 로직 구현 ---------------------------------------------	
-//			//다운로드할 폴더번호 경로와 다운로드할 파일명 얻기
-//			String idx = request.getParameter("path");
-//			String name = request.getParameter("fileName");
-//			
-//			//다운로드할 파일이 저장되어 있는 경로를 만들어서 변수에 저장
-//			String filePath = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx" + idx;
-//			
-//			File f = new File(filePath + "\\" + name);
-//			
-//			try {
-//			outputStream = response.getOutputStream();
-//			
-//			//다운로드할 파일과 연결된 입력스트림 통로 얻기
-//			//1바이트 단위씩 읽어들일 통로
-//			fileInputStream = new FileInputStream(f);
-//			
-//			/*응답 헤더를 통한 캐시제어*/
-//			response.setHeader("Cache-Control", "no-cache");
-//			response.addHeader("Cache-Control", "no-store");
-//			//웹브라우저에서 다운로드할 파일명 클릭시..
-//			//
-//			response.setHeader("Content-Disposition", "attachment; fileName=\""+URLEncoder.encode(name,"utf-8")+"\";");
-//			
-//			//입출력 작업
-//			//파일 전체 내용을 배열크기 단위로 읽어서 웹브라우저로 내보내기 ( 다운로드 시키기 )
-//			byte[] buffer = new byte[1024 * 8];
-//			
-//			while (true) {
-//				
-//				int cnt = fileInputStream.read(buffer);
-//				if (cnt == -1)
-//					break;
-//				outputStream.write(buffer, 0, cnt);
-//				
-//				fileInputStream.close();
-//				outputStream.close();
-//			} 
-//			} catch (IOException e) {
-//				System.out.println("download 메소드 내부 오류 :");
-//				e.printStackTrace();
-//				
-//			} finally {
-//				closeResource();
-//			}
-//			
-//		}
-
-		
-		
 		
 }
 
