@@ -48,6 +48,12 @@ $(document).ready(function(){
 	$("#mega_wrapper").on("mouseleave", function(){
 		$("#mega-menu").stop().slideUp("fast");
 	})
+	
+	$("#hamburger > a").on("click", function(){
+		$("#mega-menu").stop().slideDown("fast");
+	})
+
+	
 
 	// quick-menu 설정	
 	  var currentPosition = parseInt($("#quickmenu").css("top"));
