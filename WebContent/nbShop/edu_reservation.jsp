@@ -51,6 +51,9 @@
 	String mem_address3 = nbpetmemvo.getMem_address3();
 	// 주소4 저장
 	String mem_address4 = nbpetmemvo.getMem_address4();
+	// 주소5 저장
+	String mem_address5 = nbpetmemvo.getMem_address5();
+
 	
 	// 4) 회원 반려견 데이터
 	// 반려견 사진 저장
@@ -78,7 +81,11 @@
 <head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
-
+  #mem_address > a > input#mem_address5::placeholder {
+  color : #ccc;
+  font-weight: bold;
+  
+  }
 </style>
 <meta charset="UTF-8">
 <!--  	 edu_reservation.css CSS 셋팅 -->
@@ -123,8 +130,8 @@
 						<a type="text"><input id = "mem_address1" name = "mem_address1" type ="text" placeholder= "우편번호" value="<%=mem_address1%>" readonly="readonly" /></a>
 						<a type="text"><input id = "mem_address2" name = "mem_address2" type ="text" placeholder= "도로명주소" value="<%=mem_address2%>" readonly="readonly" /></a>
 						<a type="text"><input id = "mem_address3" name = "mem_address3" type ="text" placeholder= "지번주소" value="<%=mem_address3%>" readonly="readonly" /></a>
-						<a type="text"><input id = "mem_address4" name = "mem_address4" type ="text" placeholder= "상세주소" value="<%=mem_address4%>" readonly="readonly" /></a>
-						<span id="guide" style="display:none"></span>
+						<a type="text"><input id = "mem_address4" name = "mem_address4" type ="text" placeholder= "참고주소" value="<%=mem_address4%>" readonly="readonly" /></a>
+						<a type="text"><input id = "mem_address5" name = "mem_address5" type ="text" placeholder= '"상세주소 입력바람"' value="<%=mem_address5%>"  readonly="readonly" /></a>
 					</div>	
 				</div>
 			</div>
@@ -275,6 +282,7 @@
 			$("#mem_name").attr("value", "").attr("readonly", false);
 			$("#mem_hp").attr("value", "").attr("readonly", false);
 			$("#mem_email").attr("value", "").attr("readonly", false);
+			$("#mem_address5").attr("value", "").attr("readonly", false);
 			$("#addresscheck").css("display", "initial");
 		})
 			
@@ -351,27 +359,9 @@ crossorigin="anonymous"></script>
 	                document.getElementById('mem_address1').value = data.zonecode;
 	                document.getElementById("mem_address2").value = roadAddr;
 	                document.getElementById("mem_address3").value = data.jibunAddress;
-	                
-	                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-	                if(roadAddr !== ''){
-	                    document.getElementById("mem_address4").value = extraRoadAddr;//위로옮김
-	                } 
+	                document.getElementById("mem_address4").value = extraRoadAddr;
+
 	
-	                var guideTextBox = document.getElementById("guide");
-	                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-	                if(data.autoRoadAddress) {
-	                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-	                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-	                    guideTextBox.style.display = 'block';
-	
-	                } else if(data.autoJibunAddress) {
-	                    var expJibunAddr = data.autoJibunAddress;
-	                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-	                    guideTextBox.style.display = 'block';
-	                } else {
-	                    guideTextBox.innerHTML = '';
-	                    guideTextBox.style.display = 'none';
-	                }
 	            }
 	        }).open();
 	    }

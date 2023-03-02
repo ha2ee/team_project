@@ -19,7 +19,7 @@ $(document).ready(function(){
 			if (id != null){
 		%>	
 			$("#loginbtn").text("로그아웃").attr("href", "<%=request.getContextPath()%>/member/logout.me");
-			$("#regbtn").css("display", "none");
+			$("#regbtn_li").css("display", "none");
 			
 		
 		<%
@@ -137,7 +137,7 @@ $(document).ready(function(){
 					<ul id = "login_box">	                    			
 		               <li><a id="loginbtn" href="<%=request.getContextPath()%>/member/login.me" class="btn">로그인</a></li>
 		               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-		               <li><a id="regbtn" href="<%=request.getContextPath()%>/member/joinCategory.me" class="btn">회원가입</a></li>
+		               <li id="regbtn_li" ><a id="regbtn" href="<%=request.getContextPath()%>/member/joinCategory.me" class="btn">회원가입</a></li>
 		               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
 					</ul>
 				</div>	
@@ -221,6 +221,11 @@ $(document).ready(function(){
 	</div>	
 
  </div>
+ 
+ 	<div id= "hamburger">
+ 		<a href="#"><i id="hamburgerbtn" class="fa-solid fa-bars"></i></a>
+ 	</div>
+ 
  
  	<!-- 	퀵 메뉴 설정 -->
 	<div id="quickmenubox">

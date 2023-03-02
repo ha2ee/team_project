@@ -138,6 +138,7 @@ public class OrderDAO {
 			nbpetmemvo.setMem_address2(rs.getString("mem_address2"));
 			nbpetmemvo.setMem_address3(rs.getString("mem_address3"));
 			nbpetmemvo.setMem_address4(rs.getString("mem_address4"));
+			nbpetmemvo.setMem_address5(rs.getString("mem_address5"));
 			
 			// 2) 회원이 등록한 펫 정보에 대한 부분
 			nbpetmemvo.setP_name(rs.getString("p_name"));

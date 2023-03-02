@@ -8,7 +8,7 @@ public class nbPetMemVo {
 	private int p_age, p_weight;
 	
 	private String mem_id, mem_name, mem_nick, mem_pw, mem_email, mem_hp, mem_birth, mem_gender,
-					mem_pet, mem_address1, mem_address2, mem_address3, mem_address4, 
+					mem_pet, mem_address1, mem_address2, mem_address3, mem_address4, mem_address5,
 					p_name, p_gender, p_type, p_op, p_img;
 	
 	Date mem_joindate;
@@ -136,6 +136,14 @@ public class nbPetMemVo {
 	public void setMem_address4(String mem_address4) {
 		this.mem_address4 = mem_address4;
 	}
+	
+	public String getMem_address5() {
+		return mem_address5;
+	}
+
+	public void setMem_address5(String mem_address5) {
+		this.mem_address5 = mem_address5;
+	}
 
 	public String getP_name() {
 		return p_name;
@@ -189,7 +197,7 @@ public class nbPetMemVo {
 	// 모든 값을 조회하는 생성자 설정
 	public nbPetMemVo(int p_age, int p_weight, String mem_id, String mem_name, String mem_nick, String mem_pw,
 			String mem_email, String mem_hp, String mem_birth, String mem_gender, String mem_pet, String mem_address1,
-			String mem_address2, String mem_address3, String mem_address4, String p_name, String p_gender,
+			String mem_address2, String mem_address3, String mem_address4, String mem_address5, String p_name, String p_gender,
 			String p_type, String p_op, String p_img, Date mem_joindate) {
 		super();
 		this.p_age = p_age;
@@ -207,6 +215,7 @@ public class nbPetMemVo {
 		this.mem_address2 = mem_address2;
 		this.mem_address3 = mem_address3;
 		this.mem_address4 = mem_address4;
+		this.mem_address5 = mem_address5;
 		this.p_name = p_name;
 		this.p_gender = p_gender;
 		this.p_type = p_type;
