@@ -36,7 +36,7 @@
         <table id="tbwTable">
             <tr>
                 <td>작성자</td>
-                <td><input type="text" name="nickname" value="<%=tvo.getTr_nick()%>" /></td>
+<%--                 <td><input type="text" name="nickname" value="<%=tvo.getTr_nick()%>" /></td> --%>
             </tr>
             <tr>
                 <td>제목</td>

@@ -76,9 +76,10 @@ public class nbController extends HttpServlet{
 		// 4)	 /navi.do					<- "늘 봄이란?"		->  	"오시는길" 								  											  요청
 		// 5)	 /edu.do          	 		<- "수강신청"   		->  	"수강 신청가기"   						  											  요청
 		// 6)    /calendar.do    	 		<- "수강신청"   		-> 		" 수강 신청가기" 		-> 		"일정 확인하기" 버튼을 							 눌렀을때
-		// 7-1) /edureservation.do		<- "수강신청"   		->  	" 수강 신청가기" 		->		"일정 확인하기" 버튼 	->		 "예약 신청"을 눌렀을때
+		// 7)	 /edureservation.do		<- "수강신청"   		->  	" 수강 신청가기" 		->		"일정 확인하기" 버튼 	->		 "예약 신청"을 눌렀을때
+		// 8) 	 /popup1.do				<- "예약정보"         ->    									"반려견 정보 추가하기" 		 			 버튼을 눌렀을때
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		// 8) 	/pet.shop       			<-  " 늘 봄샵 "   	-> 		" 샵 으로 이동  " 																	  요청
+		// 9) 	/pet.shop       			<-  " 늘 봄샵 "   	-> 		" 샵 으로 이동  " 																	  요청
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		// nextPage 변수 생성 및 초기화
@@ -176,7 +177,7 @@ public class nbController extends HttpServlet{
 			nextPage = "/nbMain.jsp";
 			
 			
-		// 7-1) /edureservation.do			<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼" -> "회원 예약 "버튼"을 눌렀을때
+		// 7) /edureservation.do			<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼" -> "회원 예약 "버튼"을 눌렀을때
 		}else if(action.equals("/edureservation.do")) {
 			
 			
@@ -218,8 +219,21 @@ public class nbController extends HttpServlet{
 			
 			nextPage = "/nbMain.jsp";
 			
+		// 8) 	 /popup1.do	<- "예약정보"  ->  "반려견 정보 추가하기"	 버튼을 눌렀을때
+		}else if(action.equals("/popup1.do")){
 			
-		// 8)	 /pet.shop 	<- "늘 봄샵"   ->  "샵으로 이동 버튼" 을 눌렀을때
+			System.out.println("popup1.do 메소드 호출!");
+			
+			
+			String center = request.getParameter("center");
+			
+			request.setAttribute("center", center);
+			
+			System.out.println("popup1.jsp로 팝업창 띄우기");
+			
+			nextPage = "/nbMain.jsp";
+			
+		// 9)	 /pet.shop 	<- "늘 봄샵"   ->  "샵으로 이동 버튼" 을 눌렀을때
 		}else if(action.equals("/pet.shop")) {
 			
 			System.out.println("pet.shop 메소드 호출!");

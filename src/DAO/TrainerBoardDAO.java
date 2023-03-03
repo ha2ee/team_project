@@ -1,6 +1,7 @@
 package DAO;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +25,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 
 import VO.BoardVo;
-import VO.FileBoardVo;
 import VO.TrainerBoardVo;
 import VO.TrainerVo;
 

@@ -1,5 +1,4 @@
 
-<%@page import="VO.test0000"%>
 <%@page import="VO.FreeBoardVo"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,8 +11,7 @@
    ArrayList list = (ArrayList)request.getAttribute("list");
    System.out.println(list);
    System.out.println("여기까지 합격");
-   test0000 testvo = (test0000) request.getAttribute("testvo");
-   int count = testvo.getCount();
+//    int count = testvo.getCount();
    
 /*    int count = Integer.parseInt(request.getParameter("count"));
    System.out.print("count값 : " + count);
@@ -230,17 +228,17 @@
    <div id= "page_control">
    		<%
    		
-   		if(count != 0){
-   			int pageCount = count / pageSize + (count % pageSize==0?0:1);
+//    		if(count != 0){
+//    			int pageCount = count / pageSize + (count % pageSize==0?0:1);
    			int pageBlock = 5;
    			
     		int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
    			
    			int endPage = startPage + pageBlock-1;
-   			if(endPage > pageCount){
-   				endPage = pageCount; 
+//    			if(endPage > pageCount){
+//    				endPage = pageCount; 
    				
-   			}
+//    			}
    		
    		%>
    		
@@ -256,12 +254,12 @@
    			<a href="<%=contextPath%>/freeboard/list.fb?pageNum=<%=i%>&startRow=<%=startRow%>&pageSize=<%=pageSize%>"><%=i%></a>
    		<%}%>
    		<%
-   			if(endPage < pageCount){
+//    			if(endPage < pageCount){
    				System.out.println(startPage);
    		%>
-   			<a href="<%=contextPath%>/freeboard/list.fb?pageNum =<%=startPage+pageBlock%>&startRow=<%=startRow%>&pageSize=<%=pageSize%>">Next</a>
-   		<%}%>
-   		<%}%>
+<%--    			<a href="<%=contextPath%>/freeboard/list.fb?pageNum =<%=startPage+pageBlock%>&startRow=<%=startRow%>&pageSize=<%=pageSize%>">Next</a> --%>
+<%--    		<%}%> --%>
+<%--    		<%}%> --%>
    		
    
    </div>

@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.OrderDAO;
+import VO.MemberVo;
+import VO.PetVo;
+import VO.TrainerVo;
 import VO.eduOrderVo;
 
 @WebServlet("/nbOrder/*")
@@ -24,7 +27,13 @@ public class nbOrderController extends HttpServlet{
 	//OrderDAO객체를 저장할 참조변수 선언
 	OrderDAO orderdao;
 	
-	//
+	//트레이너 정보를 조회할 TrainerVo를 호출
+	TrainerVo trainervo;
+	
+	// 회원 , 펫 정보를 조회할 각 vo를 호출
+	MemberVo membervo;
+	PetVo petvo;
+	
 	@Override
 	public void init() throws ServletException {
 		orderdao = new OrderDAO();
@@ -65,7 +74,8 @@ public class nbOrderController extends HttpServlet{
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// nbOrderController INFO ////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		// #1) 		/eduOrder.od			 		<- 수강신청		 					최종 결제 요청
+		// #1)      /petUpdate.od					<- 수강신청 페이지      				   펫 정보 조회
+		// #2) 		/eduOrder.od			 		<- 수강신청 페이지					 최종 결제 요청
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		
@@ -77,8 +87,46 @@ public class nbOrderController extends HttpServlet{
 		String center = null;
 		
 		switch (action) {
+		
+		
+			// #1) 수강신청 페이지에서 펫 정보 입력 버튼을 눌린 후, 완료 버튼을 눌렀을 때,
+			case "/petUpdate.od":
+				
+			System.out.println("nbOrderController -> petUpdate.od 호출 !");	
+
+			// 1) 조회할 아이디 값을 가져온다.
+			HttpSession session = request.getSession();
+			String login_id = (String)session.getAttribute("id");
+			
+			// 2) 조회할 아이디를 저장 시킨다.
+			request.setAttribute("id", login_id);
+			
+			
+			// 3)가입한 회원 아이디를 매개변수로 해서 오더다오를 통해 값을 조회 한다.
+			petvo = orderdao.checkPet(login_id);
+			
+			// 5) 펫vo를 setAttribute에 담기
+
+			request.setAttribute("petvo", petvo);
+
+			
+			//request에 "center" 값을 edu_reservation.jsp로 저장
+			request.setAttribute("center", "nbShop/edu_reservation.jsp");
+				
+			PrintWriter pw = response.getWriter();
+			
+			System.out.println("edu_reservation.jsp로 다시 폼액션 넘기기");
+			System.out.println("예약 신청 페이지로 다시 이동!");
+
+			
+			nextPage = "/nbMain.jsp";
+			
+			
+				break;
+		
+		
 		 	
-			// #1) 수강신청 최종 결제 요청
+			// #2) 수강신청 최종 결제 요청
 			case "/eduOrder.od":
 				
 			System.out.println("nbOrderController -> eduOrder.od 호출 !");	
@@ -155,8 +203,8 @@ public class nbOrderController extends HttpServlet{
 			// 3) OrderDAO 객체의 insertEduOrder메소드 호출 시 저장한 값들을 전달한다.
 			orderdao.insertEduOrder(eduordervo);
 			
-			PrintWriter pw = response.getWriter();
-			pw.print("<script>"+"alert('예약되었습니다.');"+"</script>");
+			PrintWriter pw1 = response.getWriter();
+			pw1.print("<script>"+"alert('예약되었습니다.');"+"</script>");
 
 			
 			nextPage = "/nbMain.jsp";

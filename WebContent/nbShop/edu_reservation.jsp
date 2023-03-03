@@ -19,10 +19,8 @@
 	String tr_totalprice = request.getParameter("totalprice");
 	// 선택 된 트레이너 가져와서 변수에 저장
 	String tr_mem_name = request.getParameter("tr_name");
-	// 예약 작성일 가져와서 변수에 저장
-	String tr_mem_reg_date = request.getParameter("tr_mem_reg_date");
-	// 한글버젼으로 된 예약일을 가져와서 변수에 저장
-	String tr_reg_date = request.getParameter("reg_date");
+	// 선택 된 트레이너의 금액을 가져와서 변수에 저장
+	String tr_price = request.getParameter("tr_price");
 	
 	// 2) 트레이너 데이터
 	// TrainerVo에 저장한 tr_hp와, tr_img를 가져와 변수에 저장 시킨다.
@@ -53,7 +51,7 @@
 	String mem_address4 = membervo.getMem_address4();
 	// 주소5 저장
 	String mem_address5 = membervo.getMem_address5();
-
+	
 	
 // 	// 4) 회원 반려견 데이터
 // 	// PetVo에 저장한 값들을 가져와 변수에 저장 시킨다.
@@ -73,10 +71,7 @@
 // 	String pet_gender = petvo.getP_gender();
 // 	// 반려견 중성화 여부 저장
 // 	String pet_op = petvo.getP_op();
-	
 
-
-	
 %>    
     
 <!DOCTYPE html>
@@ -87,6 +82,13 @@
   #mem_address > a > input#mem_address5::placeholder {
   color : #ccc;
   font-weight: bold;
+  
+  }
+  
+   #pet_info_box > a > input::placeholder {
+  color : #ccc;
+  font-weight: bold;
+  font-size : 12px;
   
   }
 </style>
@@ -147,8 +149,8 @@
 					<h3 id="h3title">- 반려견 예약 정보 -</h3>
 				</div>
 				<div id = "pet_check">
-					<a id ="petcheck1" class = btn href="<%=request.getContextPath()%>/nb/nbShop/popup1.jsp">반려견 정보 추가하기</a>
-					<a id ="petcheck2" class = btn href="">반려견 정보 가져오기</a>
+					<a id ="petcheck1" class = btn >반려견 정보 추가하기</a>
+					<a id ="petcheck2" class = btn href="<%=request.getContextPath()%>/nbOrder/petUpdate.od">반려견 정보 가져오기</a>
 				</div>
 				<div id = "pet_name_box">
 					<a id="pet_img_name" type= "text">반려견 사진</a>
@@ -157,13 +159,13 @@
 						<img id="pet_img"  src="<%=request.getContextPath()%>/images/example.png" />
 				</div>
 				<div id = "pet_info_box">
-					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" value="" placeholder="반려견이름" readonly />
+					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" value="" placeholder="이름을 입력해주세요"  />
 					</a>
-					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" value="" placeholder="반려견종"  readonly />
+					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" value="" placeholder="ex) 푸들..믹스..웰시코기 등등"   />
 					</a>
-					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text"  value="" placeholder="반려견나이"  readonly />
+					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text"  value="" placeholder="숫자로 입력해주세요"   />
 					</a>
-					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" value="" placeholder="반려견몸무게" readonly  />
+					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" value="" placeholder="숫자로 입력해주세요"   />
 					</a>
 					<a type= "text">반려견 성별</a>
 					<div id="radio">					
@@ -199,8 +201,7 @@
 				<div id = "tr_info_box">
 					<a id="tr_mem_name">담당 훈련사<input style="color : #5cb85cc7; " id ="tr_mem_name" name = "tr_name" type="text" placeholder="훈련사이름" value="<%=tr_mem_name%>" readonly /></a>
 					<a id="tr_mem_hp">전화번호<input id ="tr_mem_hp" name = "tr_hp" type="text" placeholder="전화번호" value=" <%=tr_hp%>" readonly /></a>
-					<a id="tr_mem_reg_date">예약신청일<input style="color : #5cb85cc7; " id ="tr_reg_date" name = "tr_mem_reg_date" type="text" placeholder="수강신청일자" value="<%=tr_reg_date%>" readonly /></a>
-					<input type="hidden" id="tr_mem_reg_date" name=  "tr_reg_date" value = "<%=tr_mem_reg_date%>" />
+					<a id="tr_mem_reg_date">예약신청일<input style="color : #5cb85cc7; " id ="tr_reg_date" name = "tr_mem_reg_date" type="text" placeholder="수강신청일자" value="" readonly /></a>
 				</div>
 				<div id = "tr_date_box">
 					<a id= "tr_date_title">수강예약일</a>
@@ -245,9 +246,37 @@
 	// jquery 호출 옵션 
 	$(document).ready(function(){
 		
+		
+		// 반려견 정보 추가하기 메소드 
+		
+		// 1)처음 페이지에 왔을 때 펫 정보 입력문구를 보이지 않게 한다.
+		$("#pet_img_name").css("display", "none");
+		$("#pet_img_box").css("display", "none");
+		$("#pet_info_box").css("display", "none");
+		$("#pet_op_box").css("display", "none");
 
 		
 		
+		// 2) 반려견 정보 추가하기 버튼을 눌렸을 때 입력문구가 나오게 한다.
+		
+		$("#petcheck1").on("click", function(){
+			
+			
+			alert("빠짐 없이 입력 해주세요~!")
+			$("#pet_img_name").css("display", "block");
+			$("#pet_img_box").css("display", "block");
+			$("#pet_info_box").css("display", "block");
+			$("#pet_op_box").css("display", "block");
+
+		
+		})
+		
+		var date = new Date();
+		var reg_date = moment(date).format('LL');
+		
+		$("#tr_reg_date").attr("value" , reg_date);
+		
+
 		
 		// 내정보 수정하기를 눌렀을때
 		$("#membercheck").on("click", function(){
@@ -279,7 +308,7 @@
 			
 			// 예약 반려견명으로 바꿔준다.
 			
-			$("#edu_img_name").text(pet_name).css("color", "#5cb85cc7");
+			$("#edu_img_name").attr("value", pet_name).css("color", "#5cb85cc7");
 		})
 		
 		
@@ -307,6 +336,7 @@
 			 history.back();
 			 
 		});
+
 
 	});
 	

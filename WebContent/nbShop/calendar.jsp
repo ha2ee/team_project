@@ -595,11 +595,11 @@ String id = (String)session.getAttribute("id");
 <form method ="post" action ="<%=request.getContextPath()%>/nb/edureservation.do">
 
 <!-- 예약한 날짜와 트레이너금액, 총금액 원본 넘기기 -->
-<input type="hidden" name = "id" id= "id" value="<%=id%>">
-<input type="hidden" name ="tr_mem_reg_date" id="tr_mem_reg_date" />
-<input type="hidden" name ="reg_date" id="reg_date" />
-<input type="hidden" name ="tr_price" id="tr_price" />
-<input type="hidden" name ="totalprice" id="totalprice" />
+<input type="hidden" name = "id" id= "id" value="<%=id%>" readonly>
+<input type="hidden" name ="tr_mem_reg_date" id="tr_mem_reg_date" readonly />
+<input type="hidden" name ="reg_date" id="reg_date" readonly />
+<input type="hidden" name ="tr_price" id="tr_price" value="<%=tr_price%>" readonly />
+<input type="hidden" name ="totalprice" id="totalprice" readonly />
 
 <!-- 캘린더 넣기 -->
 <div id = "calandtotalWrapper">

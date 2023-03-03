@@ -165,8 +165,8 @@ public class OrderDAO {
 	
 	// #3) 수강신청 시 펫 정보 조회 메소드
 	public PetVo checkPet(String login_id) {
-		
 		PetVo petvo = null;
+		
 		System.out.println("OrderDAO -> checkPet() 메소드 호출!");
 					
 		
@@ -193,7 +193,13 @@ public class OrderDAO {
 				petvo.setP_op(rs.getString("p_op"));
 				petvo.setP_weight(rs.getInt("p_weight"));
 				petvo.setP_img(rs.getString("p_img"));
+				petvo.setP_mem_id(rs.getString("p_mem_id"));
+			
+			}else {
+				
+				System.out.println("저장 된 데이터가 없습니다.");
 			}
+			
 			
 			
 			
