@@ -66,7 +66,7 @@ public class TrainerDAO {
 				trainervo = new TrainerVo();
 				trainervo.setTr_id(rs.getString("tr_id"));
 				trainervo.setTr_name(rs.getString("tr_name"));
-				trainervo.setTr_nick(rs.getString("tr_nick"));
+//				trainervo.setTr_nick(rs.getString("tr_nick"));
 				trainervo.setTr_pw(rs.getString("tr_pw"));
 				trainervo.setTr_email(rs.getString("tr_email"));
 //				trainervo.setTr_hp(rs.getString("tr_hp"));

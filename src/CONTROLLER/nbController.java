@@ -1,6 +1,7 @@
 package CONTROLLER;
 import java.io.IOException;
 
+
 import java.io.PrintWriter;
 import java.util.Vector;
 
@@ -17,8 +18,6 @@ import VO.MemberVo;
 import VO.PetVo;
 import VO.TrainerVo;
 import VO.eduOrderVo;
-import VO.nbTrOrderVo;
-
 
 
 @WebServlet("/nb/*")
@@ -38,7 +37,6 @@ public class nbController extends HttpServlet{
 	
 	// 조회 또는 저장 시킬 오더vo, tr오더vo 호출
 	eduOrderVo nbordervo;
-	nbTrOrderVo nbtrordervo; 
 	
 	@Override
 	public void init() throws ServletException {

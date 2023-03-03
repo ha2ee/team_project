@@ -2,6 +2,7 @@ package CONTROLLER;
 
 import java.io.IOException;
 
+
 import java.io.PrintWriter;
 import java.util.Vector;
 import java.io.UnsupportedEncodingException;
@@ -20,8 +21,6 @@ import DAO.OrderDAO;
 import VO.MemberVo;
 import VO.TrainerVo;
 import VO.eduOrderVo;
-import VO.nbTrOrderVo;
-
 
 
 
@@ -40,7 +39,6 @@ public class MemberController extends HttpServlet{
 	
 	// 조회 또는 저장 시킬 오더vo, tr오더vo 호출
 	eduOrderVo nbordervo;
-	nbTrOrderVo nbtrordervo; 
 	
 	@Override
 	public void init() throws ServletException {

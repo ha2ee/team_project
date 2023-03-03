@@ -1,6 +1,7 @@
 package DAO;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +11,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import VO.MemberVo;
-import VO.nbPetMemVo;
 
 public class MemberDAO {
 
@@ -403,14 +403,14 @@ public class MemberDAO {
 			String sql = "INSERT INTO MEMBER_TRAINER(TR_id, TR_name, TR_nick, TR_pw, TR_email, TR_hp, TR_birth, TR_gender, TR_joindate) "
 					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, tr_vo.getTr_id() );
-			pstmt.setString(2, tr_vo.getTr_name()  );
-			pstmt.setString(3, tr_vo.getTr_nick() );
-			pstmt.setString(4, tr_vo.getTr_pw() );
-			pstmt.setString(5, tr_vo.getTr_email() );
-			pstmt.setString(6, tr_vo.getTr_hp() );
-			pstmt.setString(7, tr_vo.getTr_birth() );
-			pstmt.setString(8, tr_vo.getTr_gender() );
+//			pstmt.setString(1, tr_vo.getTr_id() );
+//			pstmt.setString(2, tr_vo.getTr_name()  );
+//			pstmt.setString(3, tr_vo.getTr_nick() );
+//			pstmt.setString(4, tr_vo.getTr_pw() );
+//			pstmt.setString(5, tr_vo.getTr_email() );
+//			pstmt.setString(6, tr_vo.getTr_hp() );
+//			pstmt.setString(7, tr_vo.getTr_birth() );
+//			pstmt.setString(8, tr_vo.getTr_gender() );
 			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
 			pstmt.executeUpdate();
 			
@@ -434,11 +434,11 @@ public class MemberDAO {
 				String sql = "INSERT INTO ADDRESS_TR(TR_ID	, address1, address2, address3, address4, address5) "
 						+" VALUES (?, ?, ?, ?, ?, ?)";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, tr_vo.getTr_id());
-				pstmt.setString(2, tr_vo.getTr_address1());
-				pstmt.setString(3, tr_vo.getTr_address2());
-				pstmt.setString(4, tr_vo.getTr_address3());
-				pstmt.setString(5, tr_vo.getTr_address4());
+//				pstmt.setString(1, tr_vo.getTr_id());
+//				pstmt.setString(2, tr_vo.getTr_address1());
+//				pstmt.setString(3, tr_vo.getTr_address2());
+//				pstmt.setString(4, tr_vo.getTr_address3());
+//				pstmt.setString(5, tr_vo.getTr_address4());
 				
 				
 				//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!

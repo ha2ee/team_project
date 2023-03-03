@@ -27,6 +27,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script  src="<%=request.getContextPath()%>/js/nbMain.js"></script>
 <style type="text/css">
 
 /*  나눔 고딕 글꼴 임포트 */
@@ -36,48 +37,6 @@
 * {
 	font-family : 'Nanum Gothic', sans-serif;
 }
-
-body{
-	padding-top : 250px;
-}
-
-#header, #middle, #footer {
-	width : 1200px;
-	margin : 0 auto 0 auto;
-	text-align: center;
-}
-
-#header {
-
-	position : fixed;
-	left : 0;
-	right : 0;
-	top : 0;
-	height : 250px;
-	background-color : white;
-	z-index: 3;
-	
-}
-
-#middle {
-	position : relative;
-	display: contents;
-	text-align : center;
-	z-index: 2;
-	
-}
-
-#footer {
-	top : 500px;
-	height: 500px;
-	display : contents;
-	text-align: center;
-	position : relative;
-	height : auto;
-	z-index: 1;
-}
-
-
 
 </style>
 <title>ProjectMain.jsp</title>

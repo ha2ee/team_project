@@ -1,6 +1,7 @@
 package CONTROLLER;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +29,6 @@ import DAO.FreeBoardDAO;
 import DAO.MemberDAO;
 import VO.FreeBoardVo;
 import VO.MemberVo;
-import VO.test0000;
 
 
 //게시판 관련 기능 요청이 들어오면 호출되는 사장님(컨트롤러)
@@ -92,7 +92,6 @@ public class BoardController extends HttpServlet{
 		String center = null;
 		//BoardVo객체를 저장할 참조변수 선언
 		FreeBoardVo vo = null;
-		test0000 testvo = null;
 		ArrayList list = null;
 //		String key = null;
 //		String word = null;
@@ -129,12 +128,12 @@ public class BoardController extends HttpServlet{
 	    		
 	    	  list = boarddao.boardListAll(startRow,pageSize);
 	    	  int count = boarddao.getTotalRecord();
-	    	  testvo = new test0000();
-	    	  testvo.setCount(count);
+//	    	  testvo = new test0000();
+//	    	  testvo.setCount(count);
 	    	  
         	  request.setAttribute("list", list);
 //        	  request.setAttribute("pageNum", pageNum);
- 	    	  request.setAttribute("testvo", testvo);
+// 	    	  request.setAttribute("testvo", testvo);
 //        	  request.setAttribute("pageSize", pageSize);
 //        	  request.setAttribute("count", count);
 //        	  request.setAttribute("currentPage", currentPage);
