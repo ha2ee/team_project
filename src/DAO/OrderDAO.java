@@ -3,6 +3,7 @@ package DAO;
 import java.sql.Connection;
 
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -11,8 +12,8 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import VO.MemberVo;
+import VO.PetVo;
 import VO.TrainerVo;
-import VO.nbPetMemVo;
 
 public class OrderDAO {
 
@@ -108,11 +109,11 @@ public class OrderDAO {
 		return trainervo;
 	}
 	
-	// #2) 수강신청 시 유저 DB+PET 정보 조회 메소드
-	public nbPetMemVo petuserCheck(String login_id) {
-	nbPetMemVo nbpetmemvo = null;
+	// #2) 수강신청 시 멤버 정보 조회 메소드
+	public MemberVo checkMember(String login_id) {
 		
-		System.out.println("OrderDAO -> petuserCheck() 메소드 호출!");
+		MemberVo membervo = null;
+		System.out.println("OrderDAO -> checkMember() 메소드 호출!");
 					
 		
 		try {
@@ -120,7 +121,7 @@ public class OrderDAO {
 			//DB접속
 			con = ds.getConnection();
 			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
-			String sql = "select * from ys_member NATURAL JOIN pet where mem_id=?";
+			String sql = "select * from ys_member where mem_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, login_id);
 			rs = pstmt.executeQuery();
@@ -129,38 +130,25 @@ public class OrderDAO {
 			if(rs.next()) {
 			
 			// 하나씩 가져와서 vo에 담는다.
-			TrainerVo trainervo = new TrainerVo();
+			membervo = new MemberVo();
 			// 1) 회원 정보에 대한 부분
-			trainervo.setMem_id(rs.getString("tr_id"));
-			trainervo.setMem_name(rs.getString("mem_name"));
-			trainervo.setMem_email(rs.getString("mem_email"));
-			trainervo.setMem_hp(rs.getString("mem_hp"));
-			trainervo.setMem_address1(rs.getString("mem_address1"));
-			trainervo.setMem_address2(rs.getString("mem_address2"));
-			trainervo.setMem_address3(rs.getString("mem_address3"));
-			trainervo.setMem_address4(rs.getString("mem_address4"));
-			trainervo.setMem_address5(rs.getString("mem_address5"));
-			
-			// 2) 회원이 등록한 펫 정보에 대한 부분
-			trainervo.setP_name(rs.getString("p_name"));
-			trainervo.setP_age(rs.getInt("p_age"));
-			trainervo.setP_gender(rs.getString("p_gender"));
-			trainervo.setP_type(rs.getString("p_type"));
-			trainervo.setP_op(rs.getString("p_op"));
-			trainervo.setP_weight(rs.getInt("p_weight"));
-			trainervo.setP_img(rs.getString("p_img"));
-			
-			
-			
-				
-				
+			membervo.setMem_id(rs.getString("mem_id"));
+			membervo.setMem_name(rs.getString("mem_name"));
+			membervo.setMem_email(rs.getString("mem_email"));
+			membervo.setMem_hp(rs.getString("mem_hp"));
+			membervo.setMem_address1(rs.getString("mem_address1"));
+			membervo.setMem_address2(rs.getString("mem_address2"));
+			membervo.setMem_address3(rs.getString("mem_address3"));
+			membervo.setMem_address4(rs.getString("mem_address4"));
+			membervo.setMem_address5(rs.getString("mem_address5"));
+
 			}
 			
 			
 			
 		} catch (Exception e) {
 			
-			System.out.println("MemberDAO -> petuserCheck 메소드 내부에서 오류!");
+			System.out.println("MemberDAO -> checkMember 메소드 내부에서 오류!");
 			e.printStackTrace();
 			
 		}finally {
@@ -168,15 +156,56 @@ public class OrderDAO {
 			closeResource();
 		}
 		
+		return membervo;
 		
-		return nbpetmemvo;
-
 	}
-
+	
+	// #2-1) 수강신청 시 펫 정보 조회 메소드
+	public PetVo checkPet(String login_id) {
 		
+		PetVo petvo = null;
+		System.out.println("OrderDAO -> checkPet() 메소드 호출!");
+					
 		
+		try {
+			
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+			String sql = "select * from pet where p_mem_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, login_id);
+			rs = pstmt.executeQuery();
+			
+			//입력한 아이디로 조회한 행이 있으면?
+			if(rs.next()) {
+			
+			// 하나씩 가져와서 vo에 담는다.
+			// 회원이 등록한 펫 정보에 대한 부분
+				petvo = new PetVo();
+				petvo.setP_name(rs.getString("p_name"));
+				petvo.setP_age(rs.getInt("p_age"));
+				petvo.setP_gender(rs.getString("p_gender"));
+				petvo.setP_type(rs.getString("p_type"));
+				petvo.setP_op(rs.getString("p_op"));
+				petvo.setP_weight(rs.getInt("p_weight"));
+				petvo.setP_img(rs.getString("p_img"));
+			}
+			
+			
+			
+		} catch (Exception e) {
+			
+			System.out.println("MemberDAO -> checkPet 메소드 내부에서 오류!");
+			e.printStackTrace();
+			
+		}finally {
+			
+			closeResource();
+		}
 		
+		return petvo;
 		
-		
+	}
 		
 }

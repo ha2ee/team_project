@@ -8,9 +8,10 @@ public class MemberVo {
 	
 
 	//일반회원 테이블 
-	private String mem_id;           
-	private String mem_nick;
+	private String mem_id;       
 	private String mem_name; 
+	private String mem_nick;
+	private String mem_img;
 	private String mem_pw;        
 	private String mem_email;      
 	private String mem_hp;          
@@ -31,12 +32,13 @@ public class MemberVo {
 	
 	
 	//모든 생성자
-	public MemberVo(String mem_id, String mem_name, String mem_nick, String mem_pw, String mem_email, String mem_hp,
+	public MemberVo(String mem_id, String mem_name, String mem_nick, String mem_img, String mem_pw, String mem_email, String mem_hp,
 			String mem_birth, String mem_gender, Date mem_joindate, String mem_pet, String mem_address1,
 			String mem_address2, String mem_address3, String mem_address4, String mem_address5) {
 		this.mem_id = mem_id;
 		this.mem_name = mem_name;
 		this.mem_nick = mem_nick;
+		this.mem_img =  mem_img;
 		this.mem_pw = mem_pw;
 		this.mem_email = mem_email;
 		this.mem_hp = mem_hp;
@@ -52,12 +54,13 @@ public class MemberVo {
 	}
 	
 	//날짜 뺀 생성자
-	public MemberVo(String mem_id, String mem_name, String mem_nick, String mem_pw, String mem_email, String mem_hp,
+	public MemberVo(String mem_id, String mem_name, String mem_nick, String mem_img, String mem_pw, String mem_email, String mem_hp,
 			String mem_birth, String mem_gender, String mem_pet, String mem_address1,
 			String mem_address2, String mem_address3, String mem_address4, String mem_address5) {
 		this.mem_id = mem_id;
 		this.mem_name = mem_name;
 		this.mem_nick = mem_nick;
+		this.mem_img =  mem_img;
 		this.mem_pw = mem_pw;
 		this.mem_email = mem_email;
 		this.mem_hp = mem_hp;
@@ -94,6 +97,15 @@ public class MemberVo {
 
 	public void setMem_nick(String mem_nick) {
 		this.mem_nick = mem_nick;
+	}
+	
+	
+	public String get_Mem_img() {
+		return mem_img;
+	}
+	
+	public void setMem_img(String mem_img) {
+		this.mem_img = mem_img;
 	}
 
 	public String getMem_pw() {

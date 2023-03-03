@@ -1,6 +1,7 @@
 package CONTROLLER;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.util.Vector;
 import java.io.UnsupportedEncodingException;
@@ -17,9 +18,9 @@ import javax.servlet.http.HttpSession;
 import DAO.MemberDAO;
 import DAO.OrderDAO;
 import VO.MemberVo;
-import VO.nbOrderVo;
+import VO.TrainerVo;
+import VO.eduOrderVo;
 import VO.nbTrOrderVo;
-import VO.trMemberVo;
 
 
 
@@ -35,10 +36,10 @@ public class MemberController extends HttpServlet{
 	MemberDAO memberdao;
 	
 	// 트레이너 정보를 조회할 trMemberVo를 호출
-	trMemberVo trmembervo;
+	TrainerVo trainervo;
 	
 	// 조회 또는 저장 시킬 오더vo, tr오더vo 호출
-	nbOrderVo nbordervo;
+	eduOrderVo nbordervo;
 	nbTrOrderVo nbtrordervo; 
 	
 	@Override
@@ -216,10 +217,10 @@ public class MemberController extends HttpServlet{
 			String mem_address4 = request.getParameter("address4");
 			String mem_pet = request.getParameter("pet");
 			
-			MemberVo mem_vo = new MemberVo(mem_id, mem_name, mem_nick, mem_pw, mem_email, mem_hp, mem_birth, mem_gender, mem_pet, mem_address1, mem_address2, mem_address3, mem_address4);
+//			MemberVo mem_vo = new MemberVo(mem_id, mem_name, mem_nick, mem_pw, mem_email, mem_hp, mem_birth, mem_gender, mem_pet, mem_address1, mem_address2, mem_address3, mem_address4);
 				   
-				memberdao.insertMember(mem_vo);
-				memberdao.insertMemAddress(mem_vo);
+//				memberdao.insertMember(mem_vo);
+//				memberdao.insertMemAddress(mem_vo);
 			
 			//전체 메인화면 주소 저장
 			nextPage="/nbMain.jsp";
@@ -256,10 +257,10 @@ public class MemberController extends HttpServlet{
 			String tr_address4 = request.getParameter("address4");
 			String tr_pet = request.getParameter("pet");
 			
-			MemberVo tr_vo = new MemberVo(tr_id, tr_name, tr_nick, tr_pw, tr_email, tr_hp, tr_birth, tr_gender, tr_address1, tr_address2, tr_address3, tr_address4);
-					
-			memberdao.insertTrMember(tr_vo);
-			memberdao.insertTrMemAddress(tr_vo);
+//			MemberVo tr_vo = new MemberVo(tr_id, tr_name, tr_nick, tr_pw, tr_email, tr_hp, tr_birth, tr_gender, tr_address1, tr_address2, tr_address3, tr_address4);
+//					
+//			memberdao.insertTrMember(tr_vo);
+//			memberdao.insertTrMemAddress(tr_vo);
 			
 			
 			nextPage="/nbMain.jsp";

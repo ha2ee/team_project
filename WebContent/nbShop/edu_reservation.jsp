@@ -1,5 +1,6 @@
-<%@page import="VO.nbPetMemVo"%>
-<%@page import="VO.trMemberVo"%>
+<%@page import="VO.TrainerVo"%>
+<%@page import="VO.MemberVo"%>
+<%@page import="VO.PetVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -25,51 +26,54 @@
 	String tr_reg_date = request.getParameter("reg_date");
 	
 	// 2) 트레이너 데이터
-	// trmembervo에 저장한 tr_hp와, tr_img를 가져와 변수에 저장 시킨다.
-	trMemberVo trmembervo = (trMemberVo)request.getAttribute("trmembervo");
+	// TrainerVo에 저장한 tr_hp와, tr_img를 가져와 변수에 저장 시킨다.
+	TrainerVo trainervo = (TrainerVo)request.getAttribute("trainervo");
 	// 휴대전화번호 변수에 저장
-	String tr_hp = trmembervo.getTr_hp();
+	String tr_hp = trainervo.getTr_hp();
 	// 이미지 변수에 저장
-	String tr_img = trmembervo.getTr_img();
+	String tr_img = trainervo.getTr_img();
 	
 	// 3) 회원 데이터
-	// nbpetMemVo에 저장한 값들을 가져와 변수에 저장 시킨다.
-	nbPetMemVo nbpetmemvo = (nbPetMemVo)request.getAttribute("nbpetmemvo");
+	// MemberVo에 저장한 값들을 가져와 변수에 저장 시킨다.
+	MemberVo membervo = (MemberVo)request.getAttribute("membervo");
 	// 아이디 저장
-	String mem_id = nbpetmemvo.getMem_id();
+	String mem_id = membervo.getMem_id();
 	// 이름 저장
-	String mem_name = nbpetmemvo.getMem_name();
+	String mem_name = membervo.getMem_name();
 	// 전화번호 저장
-	String mem_hp = nbpetmemvo.getMem_hp();
+	String mem_hp = membervo.getMem_hp();
 	// 이메일 저장
-	String mem_email = nbpetmemvo.getMem_email();
+	String mem_email = membervo.getMem_email();
 	// 주소1 저장
-	String mem_address1 = nbpetmemvo.getMem_address1();
+	String mem_address1 = membervo.getMem_address1();
 	// 주소2 저장
-	String mem_address2 = nbpetmemvo.getMem_address2();
+	String mem_address2 = membervo.getMem_address2();
 	// 주소3 저장
-	String mem_address3 = nbpetmemvo.getMem_address3();
+	String mem_address3 = membervo.getMem_address3();
 	// 주소4 저장
-	String mem_address4 = nbpetmemvo.getMem_address4();
+	String mem_address4 = membervo.getMem_address4();
 	// 주소5 저장
-	String mem_address5 = nbpetmemvo.getMem_address5();
+	String mem_address5 = membervo.getMem_address5();
 
 	
 	// 4) 회원 반려견 데이터
+	// PetVo에 저장한 값들을 가져와 변수에 저장 시킨다.
+	PetVo petvo = (PetVo)request.getAttribute("petvo");	
+
 	// 반려견 사진 저장
-	String pet_img 	 = nbpetmemvo.getP_img();
+	String pet_img 	 = petvo.getP_img();
 	// 반려견 이름 저장
-	String pet_name 	 = nbpetmemvo.getP_name();
+	String pet_name 	 = petvo.getP_name();
 	// 반려견 견종 저장
-	String pet_type 	 = nbpetmemvo.getP_type();
+	String pet_type 	 = petvo.getP_type();
 	// 반려견 나이 저장
-	int	pet_age	  	 = nbpetmemvo.getP_age();
+	int	pet_age	  	 = petvo.getP_age();
 	// 반려견 몸무게 저장
-	int pet_weight 	 =  nbpetmemvo.getP_weight();
+	int pet_weight 	 =  petvo.getP_weight();
 	// 반려견 성별 저장
-	String pet_gender = nbpetmemvo.getP_gender();
+	String pet_gender = petvo.getP_gender();
 	// 반려견 중성화 여부 저장
-	String pet_op = nbpetmemvo.getP_op();
+	String pet_op = petvo.getP_op();
 	
 
 

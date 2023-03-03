@@ -1,9 +1,6 @@
 package CONTROLLER;
 import java.io.IOException;
 
-
-
-
 import java.io.PrintWriter;
 import java.util.Vector;
 
@@ -16,10 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.OrderDAO;
-import VO.nbOrderVo;
-import VO.nbPetMemVo;
+import VO.MemberVo;
+import VO.PetVo;
+import VO.TrainerVo;
+import VO.eduOrderVo;
 import VO.nbTrOrderVo;
-import VO.trMemberVo;
 
 
 
@@ -31,14 +29,15 @@ public class nbController extends HttpServlet{
 	OrderDAO orderdao;
 	
 	// 트레이너 정보를 조회할 trMemberVo를 호출
-	trMemberVo trmembervo;
+	TrainerVo trainervo;
 	
-	// 회원+펫 정보를 조회할 nbPetMemVo를 호출
-	nbPetMemVo nbpetmemvo;
+	// 회원,펫 정보를 조회할 각 vo를 호출
+	MemberVo membervo;
+	PetVo petvo;
 	
 	
 	// 조회 또는 저장 시킬 오더vo, tr오더vo 호출
-	nbOrderVo nbordervo;
+	eduOrderVo nbordervo;
 	nbTrOrderVo nbtrordervo; 
 	
 	@Override
@@ -186,6 +185,7 @@ public class nbController extends HttpServlet{
 		// 7-1) /edureservation.do			<- "수강신청"   ->  " 수강 신청가기" -> "예약 일정 확인 버튼" -> "회원 예약 "버튼"을 눌렀을때
 		}else if(action.equals("/edureservation.do")) {
 			
+			
 			System.out.println("edureservation.do 메소드 호출!");
 			
 			// 1)조회를 할 이름 값을 가져온다.
@@ -203,14 +203,16 @@ public class nbController extends HttpServlet{
 			request.setAttribute("id", login_id);
 			
 			// 3)트레이너 이름을 매개변수로 해서 오더다오를 통해 값을 조회 한다.
-			trmembervo = orderdao.checkTrainer(tr_name);
+			trainervo = orderdao.checkTrainer(tr_name);
 			
 			// 4)가입한 회원 아이디를 매개변수로 해서 오더다오를 통해 값을 조회 한다.
-			nbpetmemvo = orderdao.petuserCheck(login_id);
+			membervo = orderdao.checkMember(login_id);
+			petvo = orderdao.checkPet(login_id);
 			
 			// 5) 각각 setAttribute에 담기
-			request.setAttribute("trmembervo", trmembervo);	
-			request.setAttribute("nbpetmemvo", nbpetmemvo);
+			request.setAttribute("trainervo", trainervo);	
+			request.setAttribute("membervo", membervo);
+			request.setAttribute("petvo", petvo);
 			
 			//request에 "center" 값을 edu_reservation.jsp로 저장
 			request.setAttribute("center", "nbShop/edu_reservation.jsp");

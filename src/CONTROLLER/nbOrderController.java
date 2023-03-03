@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.OrderDAO;
-import VO.nbOrderVo;
+import VO.eduOrderVo;
 
 @WebServlet("/nbOrder/*")
 public class nbOrderController extends HttpServlet{
