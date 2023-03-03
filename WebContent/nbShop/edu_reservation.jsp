@@ -111,6 +111,8 @@
 	
 <!-- 	내용을 입력하고 예약확정 버튼을 눌렀을 때 /nbMemberCotroller/eduOrder.me 호출 -->
 	<form method = "post" action="<%=contextPath%>/nbOrder/eduOrder.od" id="form">	
+	<input type="hidden" name="pet_img" value="<%=pet_img%>" />
+	<input type="hidden" name="tr_img"	value="<%=tr_img %>" />
 	<div id = "reservationBox" >
 		<div id = "reservationFormWrapper">
 			<div id = "mem_box">
@@ -123,7 +125,7 @@
 				<div id = "memData">
 					<a type="text">아이디<input id = "mem_id" name = "edu_id" type="text"  readonly="readonly" value="<%=mem_id%>"/></a>
 					<a type="text">이름<input id = "mem_name" name = "edu_name" type="text"  readonly="readonly" value="<%=mem_name%>" /></a>
-					<a type="text">&nbsp;&nbsp;전화번호<input id = "edu_hp" name = "mem_hp" type="text"  value="<%=mem_hp%>" readonly="readonly" /></a>
+					<a type="text">&nbsp;&nbsp;전화번호<input id = "mem_hp" name = "edu_hp" type="text"  value="<%=mem_hp%>" readonly="readonly" /></a>
 					<a type="text">이메일<input id = "mem_email" name = "edu_email" type="text"  value="<%=mem_email%>" readonly="readonly" /></a>
 				</div>
 				<div id = "memAddress">
@@ -131,7 +133,7 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소<a style="display : none;" id ="addresscheck" class = btn  onclick="Postcode()">우편번호 찾기</a>
 					</div>
 					<div id = "mem_address">
-						<a type="text"><input id = "mem_address1" name = "edu_adrress1" type ="text" placeholder= "우편번호" value="<%=mem_address1%>" readonly="readonly" /></a>
+						<a type="text"><input id = "mem_address1" name = "edu_address1" type ="text" placeholder= "우편번호" value="<%=mem_address1%>" readonly="readonly" /></a>
 						<a type="text"><input id = "mem_address2" name = "edu_address2" type ="text" placeholder= "도로명주소" value="<%=mem_address2%>" readonly="readonly" /></a>
 						<a type="text"><input id = "mem_address3" name = "edu_address3" type ="text" placeholder= "지번주소" value="<%=mem_address3%>" readonly="readonly" /></a>
 						<a type="text"><input id = "mem_address4" name = "edu_address4" type ="text" placeholder= "참고주소" value="<%=mem_address4%>" readonly="readonly" /></a>
@@ -152,7 +154,7 @@
 					<a id="pet_img_name" type= "text">반려견 사진</a>
 				</div>
 				<div id= "pet_img_box" >
-						<img id="pet_img" name="pet_img"  src="<%=request.getContextPath()%>/nbShop/img/<%=pet_img%>" />
+						<img id="pet_img"  src="<%=request.getContextPath()%>/nbShop/img/<%=pet_img%>" />
 				</div>
 				<div id = "pet_info_box">
 					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" value="<%=pet_name%>"placeholder="반려견이름"  readonly />
@@ -191,7 +193,7 @@
 					<h3 id="h3title">- 최종 예약 확인 -</h3>
 				</div>
 				<div id = "tr_img_box">
-					<a id="tr_img_name" type= "text">트레이너 사진<img src="<%=request.getContextPath()%>/nbShop/img/<%=tr_img%>" id = "tr_img" name = "tr_img"  /></a>
+					<a id="tr_img_name" type= "text">트레이너 사진<img src="<%=request.getContextPath()%>/nbShop/img/<%=tr_img%>" id = "tr_img" /></a>
 				</div>
 				
 				<div id = "tr_info_box">
@@ -214,7 +216,7 @@
 					<a type= "text">반려견 이름<input id = "edu_name" name = "edu_name" type="text" value="<%=pet_name%>"placeholder="예약한 반려견 이름"  readonly /></a>
 				</div>
 				<div id = "edu_img_box">	
-					<img  src="<%=request.getContextPath()%>/nbShop/img/<%=pet_img%>" id = "edu_img"  />
+					<img  src="<%=request.getContextPath()%>/nbShop/img/<%=pet_img%>" id = "edu_img" name="pet_img"  />
 				</div>
 				<div id =  "tr_result_box">
 					<div id = "tr_totalcnt_box">

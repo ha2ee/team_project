@@ -27,16 +27,12 @@ public class nbController extends HttpServlet{
 	// 오더 메소드를 만들 오더dao 호출
 	OrderDAO orderdao;
 	
-	// 트레이너 정보를 조회할 trMemberVo를 호출
+	// 트레이너 정보를 조회할 TrainerVo를 호출
 	TrainerVo trainervo;
 	
 	// 회원,펫 정보를 조회할 각 vo를 호출
 	MemberVo membervo;
 	PetVo petvo;
-	
-	
-	// 조회 또는 저장 시킬 오더vo, tr오더vo 호출
-	eduOrderVo nbordervo;
 	
 	@Override
 	public void init() throws ServletException {

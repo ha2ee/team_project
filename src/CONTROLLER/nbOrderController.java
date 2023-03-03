@@ -117,7 +117,8 @@ public class nbOrderController extends HttpServlet{
 			
 			// 2) 변수를 eduordervo로 저장시킨다.
 			eduOrderVo eduordervo = new eduOrderVo();
-	
+			
+			// *1) 회원 정보
 			eduordervo.setEdu_id(edu_id);
 			eduordervo.setEdu_name(edu_name);
 			eduordervo.setEdu_hp(edu_hp);
@@ -127,7 +128,7 @@ public class nbOrderController extends HttpServlet{
 			eduordervo.setEdu_address3(edu_address3);
 			eduordervo.setEdu_address4(edu_address4);
 			eduordervo.setEdu_address5(edu_address5);
-			
+			// *2) 펫 정보
 			eduordervo.setPet_img(pet_img);
 			eduordervo.setPet_name(pet_name);
 			eduordervo.setPet_type(pet_type);
@@ -135,9 +136,11 @@ public class nbOrderController extends HttpServlet{
 			eduordervo.setPet_weight(pet_weight);
 			eduordervo.setPet_gender(pet_gender);
 			eduordervo.setPet_op(pet_op);
+			// *3) 훈련사 정보
 			eduordervo.setTr_img(tr_img);
 			eduordervo.setTr_name(tr_name);
 			eduordervo.setTr_hp(tr_hp);
+			// *4) 예약 정보
 			eduordervo.setDate1(date1);
 			eduordervo.setDate2(date2);
 			eduordervo.setDate3(date3);
@@ -155,12 +158,6 @@ public class nbOrderController extends HttpServlet{
 			PrintWriter pw = response.getWriter();
 			pw.print("<script>"+"alert('예약되었습니다.');"+"</script>");
 
-				
-			// 중앙 뷰 화면 얻기
-			center = request.getParameter("center");
-			
-			// members/join.jsp 중앙화면뷰 주소 바인딩
-			request.setAttribute("center", "nb/Main");
 			
 			nextPage = "/nbMain.jsp";
 			
