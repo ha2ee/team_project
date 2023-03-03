@@ -2,50 +2,31 @@ package VO;
 
 import java.sql.Date;
 
-//트레이너 vo
-public class TrainerVo {
-	
-	private String tr_id;           
-	private String tr_name; 
-	private String tr_nick;
-	private String tr_pw;        
-	private String tr_email;      
-	private String tr_hp;          
-	private String tr_birth;      
-	private String tr_gender;      
-	private String tr_address1;    
-	private String tr_address2;  
-	private String tr_address3;    
-	private String tr_address4;      
-	private String tr_address5;    
-	private Date tr_joindate;         
-	
-//기본생성자
-	public TrainerVo() {
-		// TODO Auto-generated constructor stub
-	}
-	
-//주소를 제외한 생성자
-	public TrainerVo(String tr_id, String tr_name, String tr_nick, String tr_pw, String tr_email, String tr_hp,
-			String tr_birth, String tr_gender) {
-		super();
-		this.tr_id = tr_id;
-		this.tr_name = tr_name;
-		this.tr_nick = tr_nick;
-		this.tr_pw = tr_pw;
-		this.tr_email = tr_email;
-		this.tr_hp = tr_hp;
-		this.tr_birth = tr_birth;
-		this.tr_gender = tr_gender;
-	}
+//회원 한사람의 정보를 DB로 부터 조회해서 저장할 변수가 있는 VO클래스
+//입력한 회원정보를 DB에 INSERT추가 하기 전 임시로 저장할 변수가 있는 VO클래스
+public class trMemberVo {
 
-//모두 포함한 생성자
-	public TrainerVo(String tr_id, String tr_name, String tr_nick, String tr_pw, String tr_email, String tr_hp,
-			String tr_birth, String tr_gender, String tr_address1, String tr_address2, String tr_address3,
-			String tr_address4, String tr_address5, Date tr_joindate) {
+
+
+
+	private String tr_id, tr_name, tr_img, tr_nick, tr_pw, tr_email, tr_hp, tr_birth, tr_gender, tr_address1, tr_address2, tr_address3, tr_address4, tr_address5; 
+	private int tr_num;
+	private Date tr_joindate;
+	
+
+	// 1) 기본 생성자
+	public trMemberVo() {
+		
+	}
+	
+	// 2) 트레이너 DB 전부 가져오는 생성자
+	public trMemberVo(String tr_id, String tr_name, String tr_img, String tr_nick, String tr_pw, String tr_email,
+			String tr_hp, String tr_birth, String tr_gender, String tr_address1, String tr_address2, String tr_address3,
+			String tr_address4, String tr_address5, int tr_num, Date tr_joindate) {
 		super();
 		this.tr_id = tr_id;
 		this.tr_name = tr_name;
+		this.tr_img = tr_img;
 		this.tr_nick = tr_nick;
 		this.tr_pw = tr_pw;
 		this.tr_email = tr_email;
@@ -57,17 +38,18 @@ public class TrainerVo {
 		this.tr_address3 = tr_address3;
 		this.tr_address4 = tr_address4;
 		this.tr_address5 = tr_address5;
+		this.tr_num = tr_num;
 		this.tr_joindate = tr_joindate;
 	}
-	
-	
-//가입일 제외 생성자
-	public TrainerVo(String tr_id, String tr_name, String tr_nick, String tr_pw, String tr_email, String tr_hp,
-			String tr_birth, String tr_gender, String tr_address1, String tr_address2, String tr_address3,
-			String tr_address4, String tr_address5) {
+
+	// 3) 날짜 빼고 DB 전부 가져오는 생성자
+	public trMemberVo(String tr_id, String tr_name, String tr_img, String tr_nick, String tr_pw, String tr_email,
+			String tr_hp, String tr_birth, String tr_gender, String tr_address1, String tr_address2, String tr_address3,
+			String tr_address4, String tr_address5, int tr_num) {
 		super();
 		this.tr_id = tr_id;
 		this.tr_name = tr_name;
+		this.tr_img = tr_img;
 		this.tr_nick = tr_nick;
 		this.tr_pw = tr_pw;
 		this.tr_email = tr_email;
@@ -79,12 +61,10 @@ public class TrainerVo {
 		this.tr_address3 = tr_address3;
 		this.tr_address4 = tr_address4;
 		this.tr_address5 = tr_address5;
+		this.tr_num = tr_num;
 	}
 
-
-
-
-
+	// 4) Getter & Setter
 	public String getTr_id() {
 		return tr_id;
 	}
@@ -99,6 +79,14 @@ public class TrainerVo {
 
 	public void setTr_name(String tr_name) {
 		this.tr_name = tr_name;
+	}
+
+	public String getTr_img() {
+		return tr_img;
+	}
+
+	public void setTr_img(String tr_img) {
+		this.tr_img = tr_img;
 	}
 
 	public String getTr_nick() {
@@ -189,6 +177,14 @@ public class TrainerVo {
 		this.tr_address5 = tr_address5;
 	}
 
+	public int getTr_num() {
+		return tr_num;
+	}
+
+	public void setTr_num(int tr_num) {
+		this.tr_num = tr_num;
+	}
+
 	public Date getTr_joindate() {
 		return tr_joindate;
 	}
@@ -196,6 +192,8 @@ public class TrainerVo {
 	public void setTr_joindate(Date tr_joindate) {
 		this.tr_joindate = tr_joindate;
 	}
+	
+
 	
 	
 	
