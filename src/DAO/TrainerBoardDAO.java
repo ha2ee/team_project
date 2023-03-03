@@ -350,8 +350,8 @@ public class TrainerBoardDAO {
 		
 		if(file != null && file.length() != 0) {
 			File srcFile = new File("C:\\file_repo\\temp\\"+file);
-//			File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+articleNO);
-			File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx\\update"+cb_idx);
+			File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+cb_idx);
+//			File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx\\update"+cb_idx);
 			
 			destDir.mkdirs();
 			
@@ -521,8 +521,8 @@ public class TrainerBoardDAO {
 			
 			if(file != null && file.length() != 0) {
 				File srcFile = new File("C:\\file_repo\\temp\\"+file);
-//				File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+articleNO);
-				File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+articleNO);
+				File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+articleNO);
+//				File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+articleNO);
 				
 				//DB에 추가한 글에 대한 글번호를 조회해서 가져왔기 때문에 글 번호 폴더 생성
 				destDir.mkdirs();

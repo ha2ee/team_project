@@ -48,7 +48,7 @@
             </tr>
             <tr>
                 <td>파일</td>
-                <td><input type="file" name="file" />글을 수정하는 경우 파일은 다시 첨부하여야 합니다.</td>
+                <td><input type="file" name="file" />현재 첨부되어있는 파일 :<%=tvo.getCb_file() %></td>
             </tr>
         </table>
         <br>

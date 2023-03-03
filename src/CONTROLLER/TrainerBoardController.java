@@ -203,8 +203,8 @@ public class TrainerBoardController extends HttpServlet{
 	    	  
 	    	  String fileName = request.getParameter("fileName");
 	    	  String cbidx = request.getParameter("cbidx");
+	    	  String folder = "C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+cbidx;
 //	    	  String folder = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+cbidx;
-	    	  String folder = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+cbidx;
 	    	  String filePath = folder + "/" + fileName;
 	    	  
 	    	  trainerboarddao.downLoad(response,filePath,fileName);
@@ -223,7 +223,7 @@ public class TrainerBoardController extends HttpServlet{
 	      } else if (action.equals("/tbUpdatePro.bo")) {
 	    	  
 	    	  String cb_idx = (String) request.getAttribute("cb_idx");
-	    	 
+	    	  center = request.getParameter("center");
 	    	  
 				
 					try {
@@ -233,7 +233,7 @@ public class TrainerBoardController extends HttpServlet{
 						e.printStackTrace();
 					}
 					
-					request.setAttribute("center", "TeamProject/tb/list.bo");
+					request.setAttribute("center", center);
 					  nextPage ="/nbMain.jsp";
 	      }
 			

@@ -91,7 +91,7 @@
     	
     <div style="text-align: center;">
         <a href="list.bo?page=${pageNum}">목록으로</a>
-        <a href="tbUpdate.bo?cb_idx=${cb_idx}">수정하기</a>
+        <a href="tbUpdate.bo?cb_idx=${cb_idx}&center=/tb/list.bo">수정하기</a>
     </div>
 </body>
 </html>
