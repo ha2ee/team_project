@@ -1,6 +1,5 @@
 <%@page import="VO.TrainerVo"%>
 <%@page import="VO.MemberVo"%>
-<%@page import="VO.PetVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -56,24 +55,24 @@
 	String mem_address5 = membervo.getMem_address5();
 
 	
-	// 4) 회원 반려견 데이터
-	// PetVo에 저장한 값들을 가져와 변수에 저장 시킨다.
-	PetVo petvo = (PetVo)request.getAttribute("petvo");	
+// 	// 4) 회원 반려견 데이터
+// 	// PetVo에 저장한 값들을 가져와 변수에 저장 시킨다.
+// 	PetVo petvo = (PetVo)request.getAttribute("petvo");	
 
-	// 반려견 사진 저장
-	String pet_img 	 = petvo.getP_img();
-	// 반려견 이름 저장
-	String pet_name 	 = petvo.getP_name();
-	// 반려견 견종 저장
-	String pet_type 	 = petvo.getP_type();
-	// 반려견 나이 저장
-	int	pet_age	  	 = petvo.getP_age();
-	// 반려견 몸무게 저장
-	int pet_weight 	 =  petvo.getP_weight();
-	// 반려견 성별 저장
-	String pet_gender = petvo.getP_gender();
-	// 반려견 중성화 여부 저장
-	String pet_op = petvo.getP_op();
+// 	// 반려견 사진 저장
+// 	String pet_img 	 = petvo.getP_img();
+// 	// 반려견 이름 저장
+// 	String pet_name 	 = petvo.getP_name();
+// 	// 반려견 견종 저장
+// 	String pet_type 	 = petvo.getP_type();
+// 	// 반려견 나이 저장
+// 	int	pet_age	  	 = petvo.getP_age();
+// 	// 반려견 몸무게 저장
+// 	int pet_weight 	 =  petvo.getP_weight();
+// 	// 반려견 성별 저장
+// 	String pet_gender = petvo.getP_gender();
+// 	// 반려견 중성화 여부 저장
+// 	String pet_op = petvo.getP_op();
 	
 
 
@@ -111,7 +110,7 @@
 	
 <!-- 	내용을 입력하고 예약확정 버튼을 눌렀을 때 /nbMemberCotroller/eduOrder.me 호출 -->
 	<form method = "post" action="<%=contextPath%>/nbOrder/eduOrder.od" id="form">	
-	<input type="hidden" name="pet_img" value="<%=pet_img%>" />
+	<input type="hidden" name="pet_img"  />
 	<input type="hidden" name="tr_img"	value="<%=tr_img %>" />
 	<div id = "reservationBox" >
 		<div id = "reservationFormWrapper">
@@ -120,7 +119,7 @@
 					<h3 id="h3title">- 회원 예약 정보 -</h3>
 				</div>
 				<div id = "member_check">
-					<a id ="membercheck" class = btn href="#">내 정보 수정하기</a>
+					<a id ="membercheck" class = btn href="#">예약 정보 수정하기</a>
 				</div>
 				<div id = "memData">
 					<a type="text">아이디<input id = "mem_id" name = "edu_id" type="text"  readonly="readonly" value="<%=mem_id%>"/></a>
@@ -148,22 +147,23 @@
 					<h3 id="h3title">- 반려견 예약 정보 -</h3>
 				</div>
 				<div id = "pet_check">
-					<a id ="petcheck" class = btn href="">반려견 정보 가져오기</a>
+					<a id ="petcheck1" class = btn href="<%=request.getContextPath()%>/nb/nbShop/popup1.jsp">반려견 정보 추가하기</a>
+					<a id ="petcheck2" class = btn href="">반려견 정보 가져오기</a>
 				</div>
 				<div id = "pet_name_box">
 					<a id="pet_img_name" type= "text">반려견 사진</a>
 				</div>
 				<div id= "pet_img_box" >
-						<img id="pet_img"  src="<%=request.getContextPath()%>/nbShop/img/<%=pet_img%>" />
+						<img id="pet_img"  src="<%=request.getContextPath()%>/images/example.png" />
 				</div>
 				<div id = "pet_info_box">
-					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" value="<%=pet_name%>"placeholder="반려견이름"  readonly />
+					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" value="" placeholder="반려견이름" readonly />
 					</a>
-					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" value="<%=pet_type%>" placeholder="반려견종"  readonly />
+					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" value="" placeholder="반려견종"  readonly />
 					</a>
-					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text"  value="<%=pet_age%>" placeholder="반려견나이"  readonly />
+					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text"  value="" placeholder="반려견나이"  readonly />
 					</a>
-					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" value="<%=pet_weight%>" placeholder="반려견몸무게"  readonly />
+					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" value="" placeholder="반려견몸무게" readonly  />
 					</a>
 					<a type= "text">반려견 성별</a>
 					<div id="radio">					
@@ -213,10 +213,10 @@
 					<input id ="tr_date7" name = "date7" type="text" placeholder="일곱번째 예약일" value="<%=tr_date7%>"  readonly />
 				</div>
 				<div id = "edu_name_box">
-					<a type= "text">반려견 이름<input id = "edu_name" name = "edu_name" type="text" value="<%=pet_name%>"placeholder="예약한 반려견 이름"  readonly /></a>
+					<a type= "text">반려견 이름<input id = "edu_img_name" name = "edu_name" type="text" value="" placeholder="이름"  readonly /></a>
 				</div>
 				<div id = "edu_img_box">	
-					<img  src="<%=request.getContextPath()%>/nbShop/img/<%=pet_img%>" id = "edu_img" name="pet_img"  />
+					<img  src="<%=request.getContextPath()%>/images/example.png" id = "edu_img" name="pet_img"  />
 				</div>
 				<div id =  "tr_result_box">
 					<div id = "tr_totalcnt_box">
@@ -245,39 +245,7 @@
 	// jquery 호출 옵션 
 	$(document).ready(function(){
 		
-		
-		// 만약 성별이 남자일 경우,
-		<%
-		if(pet_gender.equals("남")){
-		%>
-			$("#pet_gender1").attr("checked", "checked");
-		// 여자일 경우,
-		<%
-		}else{
-		%>
-		$("#pet_gender2").attr("checked", "checked");
-		<%
-		}
-		%>
-		
-		// 만약 중성화 여부가 예 일 경우,
-		<%
-		if(pet_op.equals("예")){
-		%>
-			$("#pet_op1").attr("checked", "checked");
-		// 아니오 일 경우,
-		<%
-		}else if(pet_op.equals("아니오")){
-		%>
-		$("#pet_op2").attr("checked", "checked");
-		<%
-		// 모름 일 경우,
-		}else{
-		%>
-		$("#pet_op3").attr("checked", "checked");
-		<%
-		}
-		%>
+
 		
 		
 		
@@ -291,6 +259,42 @@
 			$("#mem_address5").attr("value", "").attr("readonly", false);
 			$("#addresscheck").css("display", "initial");
 		})
+		
+		
+			// 강아지 사진의 출처를 저장한 뒤,
+			var src = $("#pet_img").attr("src");
+			
+			console.log(src);
+			
+			// 예약 반려견으로 바꿔준다.
+			$("#edu_img").attr("src", src);
+			
+		
+		// 강아지 이름을 입력하면,
+		$("#pet_name").keyup(function(){
+			
+			// 강아지 이름을 저장한 뒤,
+			var pet_name = $("#pet_name").val();
+
+			
+			// 예약 반려견명으로 바꿔준다.
+			
+			$("#edu_img_name").text(pet_name).css("color", "#5cb85cc7");
+		})
+		
+		
+		// 최종금액에 콤마단위가 들어간 금액으로 설정
+		$("#tr_totalprice").attr("value", tr_totalprice2);
+        
+		// id 값이 back인 버튼을 클릭했을 때
+		$("#nb_backbtn").on("click", function(){
+			
+			 // 이전 페이지로 이동하게 한다.
+			 history.back();
+			 
+		});
+
+		
 			
 
 		// 최종금액에 콤마단위가 들어간 금액으로 설정
@@ -313,7 +317,7 @@
 	var tr_totalprice2 = original.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	
 	
-// 	 강아지 사진 업로드 시 썸네일 형식의 미리보기 만들기
+	// 강아지 사진 업로드 시 썸네일 형식의 미리보기 만들기
 // 	function setThumbnail(event) {
 // 	  var reader = new FileReader();
 

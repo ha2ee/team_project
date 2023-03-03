@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--     인덱스 파일을 실행 했을때, 인덱스 화면으로 사용 될 main.js파일 -->
+    <script src="js/main.js"></script>
 
 <style>
 
@@ -28,8 +30,6 @@
     <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
 
 <title>인덱스 요청페이지</title>
-<!--     인덱스 파일을 실행 했을때, 인덱스 화면으로 사용 될 main.js파일 -->
-    <script src="js/main.js"></script>
 </head>
 <body>
 <!--          			# 부트스트랩 플러그인  관련 -->

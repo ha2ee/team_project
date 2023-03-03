@@ -27,7 +27,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script  src="<%=request.getContextPath()%>/js/nbMain.js"></script>
+<!-- nbMain CSS -->
+<link href="<%=request.getContextPath()%>/css/nbMain.css" rel="stylesheet">
 <style type="text/css">
 
 /*  나눔 고딕 글꼴 임포트 */

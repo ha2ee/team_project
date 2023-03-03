@@ -106,10 +106,10 @@
 	
 	position :relative;
 	text-align :center;
-	width : 130px;
+	width : 150px;
 	height : 30px;
 	margin : 0 auto;
-	left : 500px;
+	left : 490px;
 	right : 0;
 	top : 6px;
 	background : aliceblue;
@@ -387,16 +387,37 @@
 
 }
 
-#pet_box > #pet_check > #petcheck {
+
+#pet_check > a {
+	
+ 	border : 1px dashed #ff811959;
+	
+	position :relative;
+	text-align :center;
+	height : 30px;
+	margin : 0 10px;
+	left : 390px;
+	right : 0;
+	top : 2px;
+	background : aliceblue;
+	border-radius: 10px;
+	transition : all 0.5s;
+	font-weight : bold;
+	color : #ff5722;
+	
+	
+}
+
+#petcheck1 {
 
  	border : 1px dashed #ff811959;
 	
 	position :relative;
 	text-align :center;
-	width : 160px;
+	width : 170px;
 	height : 30px;
 	margin : 0 auto;
-	left : 505px;
+	left : 350px;
 	right : 0;
 	top : 2px;
 	background : aliceblue;
@@ -408,7 +429,36 @@
 
 }
 
-#pet_box > #pet_check > #petcheck:hover {
+#petcheck2 {
+
+ 	border : 1px dashed #ff811959;
+	
+	position :relative;
+	text-align :center;
+	width : 170px;
+	height : 30px;
+	margin : 0 auto;
+	left : 350px;
+	right : 0;
+	top : 2px;
+	background : aliceblue;
+	border-radius: 10px;
+	transition : all 0.5s;
+	font-weight : bold;
+	color : #ff5722;
+	
+
+}
+
+#pet_box > #pet_check > #petcheck1:hover {
+
+	background : #fff5f3;
+	border-radius: 15px;
+	transition : all 0.5s;
+	
+}
+
+#pet_box > #pet_check > #petcheck2:hover {
 
 	background : #fff5f3;
 	border-radius: 15px;
@@ -424,7 +474,7 @@ border: 1px solid #fff5f373;
 position: relative;
     text-align: center;
     width: 250px;
-	height: 270px;
+	height: 230px;
     margin: 0 auto;
     left: -474px;
     right: 0;
@@ -509,11 +559,11 @@ input#file-upload-button {
 	position: relative;
     text-align: center;
     width: 820px;
-    height: 305px;
+    height: 265px;
     margin: 0 auto;
     left: 65px;
     right: 0;
-    top: -304px;
+    top: -264px;
 
 }
 
@@ -567,11 +617,11 @@ input#file-upload-button {
     position: relative;
     text-align: center;
     width: 133px;
-    height: 305px;
+    height: 265px;
     margin: 0 auto;
     left: 533px;
     right: 0;
-    top: -609px;
+    top: -529px;
 
 }
 
