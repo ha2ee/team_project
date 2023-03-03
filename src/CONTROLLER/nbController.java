@@ -16,9 +16,9 @@ import javax.servlet.http.HttpSession;
 
 import DAO.OrderDAO;
 import DAO.ProjectDAO;
+import VO.TrainerVo;
 import VO.nbOrderVo;
 import VO.nbTrOrderVo;
-import VO.trMemberVo;
 
 
 
@@ -30,7 +30,7 @@ public class nbController extends HttpServlet{
 	OrderDAO orderdao;
 	
 	// 트레이너 정보를 조회할 trMemberVo를 호출
-	trMemberVo trmembervo;
+	TrainerVo trmembervo;
 	
 	// 조회 또는 저장 시킬 오더vo, tr오더vo 호출
 	nbOrderVo nbordervo;
