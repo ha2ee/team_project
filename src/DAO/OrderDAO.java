@@ -2,6 +2,7 @@ package DAO;
 
 import java.sql.Connection;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -10,8 +11,8 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import VO.MemberVo;
+import VO.TrainerVo;
 import VO.nbPetMemVo;
-import VO.trMemberVo;
 
 public class OrderDAO {
 
@@ -53,13 +54,13 @@ public class OrderDAO {
 
 	// 조회된 이름값으로 MEMBER_TRAINER DB에 저장 된 트레이너를 조회하고
 	// 다시 리턴 해준다.
-	public trMemberVo checkTrainer(String tr_name) {
+	public TrainerVo checkTrainer(String tr_name) {
 		
 		System.out.println("OrderDAO -> checkTrainer 호출!");
 		System.out.println("String tr_name : "+tr_name);
 		
 		// 1) 트레이너를 조회할 멤버VO 초기화 시키기
-		trMemberVo trmembervo = null;
+		TrainerVo trainervo = null;
 		
 		try {
 			
@@ -83,11 +84,11 @@ public class OrderDAO {
 	        // 6) 조회해온 행이 있으면?
 	        if(rs.next()) {
 		            
-        		// 7) trMembervo에 저장한다.
-	            trmembervo = new trMemberVo();
-	            trmembervo.setTr_name(rs.getString("tr_name"));
-	            trmembervo.setTr_hp(rs.getString("tr_hp"));
-	            trmembervo.setTr_img(rs.getString("tr_img"));
+        		// 7) trainervo에 저장한다.
+	        	trainervo = new TrainerVo();
+	        	trainervo.setTr_name(rs.getString("tr_name"));
+	        	trainervo.setTr_hp(rs.getString("tr_hp"));
+	        	trainervo.setTr_img(rs.getString("tr_img"));
 	           
 	         }
 	        
@@ -104,7 +105,7 @@ public class OrderDAO {
 		}
 		
 		// 8) trMembervo로 리턴해준다.
-		return trmembervo;
+		return trainervo;
 	}
 	
 	// #2) 수강신청 시 유저 DB+PET 정보 조회 메소드
@@ -128,26 +129,26 @@ public class OrderDAO {
 			if(rs.next()) {
 			
 			// 하나씩 가져와서 vo에 담는다.
-			nbpetmemvo	= new nbPetMemVo();
+			TrainerVo trainervo = new TrainerVo();
 			// 1) 회원 정보에 대한 부분
-			nbpetmemvo.setMem_id(rs.getString("mem_id"));
-			nbpetmemvo.setMem_name(rs.getString("mem_name"));
-			nbpetmemvo.setMem_email(rs.getString("mem_email"));
-			nbpetmemvo.setMem_hp(rs.getString("mem_hp"));
-			nbpetmemvo.setMem_address1(rs.getString("mem_address1"));
-			nbpetmemvo.setMem_address2(rs.getString("mem_address2"));
-			nbpetmemvo.setMem_address3(rs.getString("mem_address3"));
-			nbpetmemvo.setMem_address4(rs.getString("mem_address4"));
-			nbpetmemvo.setMem_address5(rs.getString("mem_address5"));
+			trainervo.setMem_id(rs.getString("tr_id"));
+			trainervo.setMem_name(rs.getString("mem_name"));
+			trainervo.setMem_email(rs.getString("mem_email"));
+			trainervo.setMem_hp(rs.getString("mem_hp"));
+			trainervo.setMem_address1(rs.getString("mem_address1"));
+			trainervo.setMem_address2(rs.getString("mem_address2"));
+			trainervo.setMem_address3(rs.getString("mem_address3"));
+			trainervo.setMem_address4(rs.getString("mem_address4"));
+			trainervo.setMem_address5(rs.getString("mem_address5"));
 			
 			// 2) 회원이 등록한 펫 정보에 대한 부분
-			nbpetmemvo.setP_name(rs.getString("p_name"));
-			nbpetmemvo.setP_age(rs.getInt("p_age"));
-			nbpetmemvo.setP_gender(rs.getString("p_gender"));
-			nbpetmemvo.setP_type(rs.getString("p_type"));
-			nbpetmemvo.setP_op(rs.getString("p_op"));
-			nbpetmemvo.setP_weight(rs.getInt("p_weight"));
-			nbpetmemvo.setP_img(rs.getString("p_img"));
+			trainervo.setP_name(rs.getString("p_name"));
+			trainervo.setP_age(rs.getInt("p_age"));
+			trainervo.setP_gender(rs.getString("p_gender"));
+			trainervo.setP_type(rs.getString("p_type"));
+			trainervo.setP_op(rs.getString("p_op"));
+			trainervo.setP_weight(rs.getInt("p_weight"));
+			trainervo.setP_img(rs.getString("p_img"));
 			
 			
 			

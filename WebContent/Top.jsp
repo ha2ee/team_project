@@ -15,22 +15,15 @@ $(document).ready(function(){
 	
 
 	// 로그인 된 정보가 있다면 로그인 버튼을 로그아웃으로 바꿔줌
-		<%
-			if (id != null){
-		%>	
-			$("#loginbtn").text("로그아웃").attr("href", "<%=request.getContextPath()%>/member/logout.me");
-			$("#regbtn_li").css("display", "none");
+
 			
-		
-		<%
-		}
-		%>
+
 		
 	$(".edu_btn").on("click", function(){
 		
 		<%
 			if(id == null){
-		%>
+		%> 
 				alert("회원만 로그인 후 수강신청 가능합니다!");
 				location.replace("<%=request.getContextPath()%>/member/login.me");
 				return false;
@@ -140,11 +133,29 @@ $(document).ready(function(){
 		<!--                  1) 로그인 & 로그아웃 & 마이페이지 & 장바구니 버튼 -->
 		<div id = "nb_login">
 				<div id = "nb_box">
-					<ul id = "login_box">	                    			
-		               <li><a id="loginbtn" href="<%=request.getContextPath()%>/member/login.me" class="btn">로그인</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-		               <li id="regbtn_li" ><a id="regbtn" href="<%=request.getContextPath()%>/member/joinCategory.me" class="btn">회원가입</a></li>
-		               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
+					<ul id = "login_box">	
+					                    			
+ <%
+					//session에 값이 저장되어 있지 않으면?
+					if(id == null){
+				%>	
+
+				   <li><a href="<%=request.getContextPath()%>/member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
+	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
+	               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
+
+				<%
+					}else{//로그인 O
+				%>
+				   <li><a href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
+	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
+	               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
+
+				<%
+					}
+				%>
 					</ul>
 				</div>	
 			</div>	

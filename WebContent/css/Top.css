@@ -582,7 +582,8 @@ body{
 	body{
 	padding-top : 200px;
 	
-
+	}
+	
 	.nb_top {
 	
 /* 	border : 1px solid red; */
@@ -592,6 +593,7 @@ body{
     margin: 0 auto;
     left: 0;
     top: 0;
+    
 	}
 	
 	#menu1 {
