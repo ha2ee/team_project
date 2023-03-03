@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import VO.MemberVo;
 import VO.PetVo;
 import VO.TrainerVo;
+import VO.eduOrderVo;
 
 public class OrderDAO {
 
@@ -45,7 +46,9 @@ public class OrderDAO {
 	// OrderDAO INFO ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// #1) 		checkTrainer()			 		메소드		<- 훈련사		 	정보 조회
-	// #2)      petuserCheck()                메소드     <- 유저+PET      정보 조회 
+	// #2)      checkMember()                메소드     <- 멤버		    정보 조회
+	// #3)		checkPet()						메소드		<- 펫				정보 조회
+	// #4)      insertEduOrder()				메소드		<- 수강신청		정보 등록
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	
@@ -148,7 +151,7 @@ public class OrderDAO {
 			
 		} catch (Exception e) {
 			
-			System.out.println("MemberDAO -> checkMember 메소드 내부에서 오류!");
+			System.out.println("OrderDAO -> checkMember 메소드 내부에서 오류!");
 			e.printStackTrace();
 			
 		}finally {
@@ -160,7 +163,7 @@ public class OrderDAO {
 		
 	}
 	
-	// #2-1) 수강신청 시 펫 정보 조회 메소드
+	// #3) 수강신청 시 펫 정보 조회 메소드
 	public PetVo checkPet(String login_id) {
 		
 		PetVo petvo = null;
@@ -196,7 +199,7 @@ public class OrderDAO {
 			
 		} catch (Exception e) {
 			
-			System.out.println("MemberDAO -> checkPet 메소드 내부에서 오류!");
+			System.out.println("OrderDAO -> checkPet 메소드 내부에서 오류!");
 			e.printStackTrace();
 			
 		}finally {
@@ -207,5 +210,81 @@ public class OrderDAO {
 		return petvo;
 		
 	}
+	
+	// #4) 수강신청 정보 등록 메소드
+	public void insertEduOrder(eduOrderVo eduordervo) {
+		
+		System.out.println("OrderDAO -> InsertEduOrder 메소드 호출!");
+		
+		try {
+			
+			//커넥션 풀 연결
+			con = ds.getConnection();
+			
+			// 매개변수로 전달받은 eduOrderVo의 각 변수에 저장되어 전달받은 값들을
+			// sql 문을 이용해 insert 하기
+			String sql = "insert into edu_order(edu_id, edu_name, edu_hp, edu_email, "
+						+ "edu_address1, edu_address2, edu_address3, edu_address4, edu_address5, "
+						+ "pet_img, pet_name, pet_type, pet_age, pet_weight, pet_gender, pet_op, "
+						+ "tr_img, tr_name, tr_hp, "
+						+ "date1, date2, date3, date4, date5, date6, date7, "
+						+ "edu_cnt, edu_totalprice) "
+						+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			
+			// sql문을 pstmt 객체에 저장
+			pstmt = con.prepareStatement(sql);
+			
+			// 1) 회원 정보 부분
+			pstmt.setString(1, eduordervo.getEdu_id());
+			pstmt.setString(2, eduordervo.getEdu_name());
+			pstmt.setString(3, eduordervo.getEdu_hp());
+			pstmt.setString(4, eduordervo.getEdu_email());
+			pstmt.setString(5, eduordervo.getEdu_address1());
+			pstmt.setString(6, eduordervo.getEdu_address2());
+			pstmt.setString(7, eduordervo.getEdu_address3());
+			pstmt.setString(8, eduordervo.getEdu_address4());
+			pstmt.setString(9, eduordervo.getEdu_address5());
+			// 2) 펫 정보 부분
+			pstmt.setString(10, eduordervo.getPet_img());
+			pstmt.setString(11, eduordervo.getPet_name());
+			pstmt.setString(12, eduordervo.getPet_type());
+			pstmt.setInt(13, eduordervo.getPet_age());
+			pstmt.setInt(14, eduordervo.getPet_weight());
+			pstmt.setString(15, eduordervo.getPet_gender());
+			pstmt.setString(16, eduordervo.getPet_op());
+			// 3) tr 정보 부분
+			pstmt.setString(17, eduordervo.getTr_img());
+			pstmt.setString(18, eduordervo.getTr_name());
+			pstmt.setString(19, eduordervo.getTr_hp());
+			// 4) tr 예약일 부분
+			pstmt.setString(20, eduordervo.getDate1());
+			pstmt.setString(21, eduordervo.getDate2());
+			pstmt.setString(22, eduordervo.getDate3());
+			pstmt.setString(23, eduordervo.getDate4());
+			pstmt.setString(24, eduordervo.getDate5());
+			pstmt.setString(25, eduordervo.getDate6());
+			pstmt.setString(26, eduordervo.getDate7());
+			pstmt.setInt(27, eduordervo.getEdu_cnt());
+			pstmt.setString(28, eduordervo.getEdu_totalprice());
+			
+			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
+			pstmt.executeUpdate();
+					
+			
+			
+			
+		} catch(Exception e) {
+			
+			System.out.println("insertEduOrder 메소드 내부에서 SQL 실행 오류 "+ e);
+			
+		} finally {
+			
+			closeResource();
+			
+		}
+	
+		
+	}
 		
 }
+

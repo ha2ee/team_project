@@ -121,21 +121,21 @@
 					<a id ="membercheck" class = btn href="#">내 정보 수정하기</a>
 				</div>
 				<div id = "memData">
-					<a type="text">아이디<input id = "mem_id" name = "mem_id" type="text"  readonly="readonly" value="<%=mem_id%>"/></a>
-					<a type="text">이름<input id = "mem_name" name = "mem_name" type="text"  readonly="readonly" value="<%=mem_name%>" /></a>
-					<a type="text">&nbsp;&nbsp;전화번호<input id = "mem_hp" name = "mem_hp" type="text"  value="<%=mem_hp%>" readonly="readonly" /></a>
-					<a type="text">이메일<input id = "mem_email" name = "mem_email" type="text"  value="<%=mem_email%>" readonly="readonly" /></a>
+					<a type="text">아이디<input id = "mem_id" name = "edu_id" type="text"  readonly="readonly" value="<%=mem_id%>"/></a>
+					<a type="text">이름<input id = "mem_name" name = "edu_name" type="text"  readonly="readonly" value="<%=mem_name%>" /></a>
+					<a type="text">&nbsp;&nbsp;전화번호<input id = "edu_hp" name = "mem_hp" type="text"  value="<%=mem_hp%>" readonly="readonly" /></a>
+					<a type="text">이메일<input id = "mem_email" name = "edu_email" type="text"  value="<%=mem_email%>" readonly="readonly" /></a>
 				</div>
 				<div id = "memAddress">
 					<div id = "address_check">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소<a style="display : none;" id ="addresscheck" class = btn href="#" onclick="Postcode()">우편번호 찾기</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소<a style="display : none;" id ="addresscheck" class = btn  onclick="Postcode()">우편번호 찾기</a>
 					</div>
 					<div id = "mem_address">
-						<a type="text"><input id = "mem_address1" name = "mem_address1" type ="text" placeholder= "우편번호" value="<%=mem_address1%>" readonly="readonly" /></a>
-						<a type="text"><input id = "mem_address2" name = "mem_address2" type ="text" placeholder= "도로명주소" value="<%=mem_address2%>" readonly="readonly" /></a>
-						<a type="text"><input id = "mem_address3" name = "mem_address3" type ="text" placeholder= "지번주소" value="<%=mem_address3%>" readonly="readonly" /></a>
-						<a type="text"><input id = "mem_address4" name = "mem_address4" type ="text" placeholder= "참고주소" value="<%=mem_address4%>" readonly="readonly" /></a>
-						<a type="text"><input id = "mem_address5" name = "mem_address5" type ="text" placeholder= '"상세주소 입력바람"' value="<%=mem_address5%>"  readonly="readonly" /></a>
+						<a type="text"><input id = "mem_address1" name = "edu_adrress1" type ="text" placeholder= "우편번호" value="<%=mem_address1%>" readonly="readonly" /></a>
+						<a type="text"><input id = "mem_address2" name = "edu_address2" type ="text" placeholder= "도로명주소" value="<%=mem_address2%>" readonly="readonly" /></a>
+						<a type="text"><input id = "mem_address3" name = "edu_address3" type ="text" placeholder= "지번주소" value="<%=mem_address3%>" readonly="readonly" /></a>
+						<a type="text"><input id = "mem_address4" name = "edu_address4" type ="text" placeholder= "참고주소" value="<%=mem_address4%>" readonly="readonly" /></a>
+						<a type="text"><input id = "mem_address5" name = "edu_address5" type ="text" placeholder= '"상세주소 입력바람"' value="<%=mem_address5%>"  readonly="readonly" /></a>
 					</div>	
 				</div>
 			</div>
@@ -195,20 +195,20 @@
 				</div>
 				
 				<div id = "tr_info_box">
-					<a id="tr_mem_name">담당 훈련사<input style="color : #5cb85cc7; " id ="tr_mem_name" name = "tr_mem_name" type="text" placeholder="훈련사이름" value="<%=tr_mem_name%>" readonly /></a>
-					<a id="tr_mem_hp">전화번호<input id ="tr_mem_hp" name = "tr_mem_hp" type="text" placeholder="전화번호" value=" <%=tr_hp%>" readonly /></a>
-					<a id="tr_mem_reg_date">예약신청일<input style="color : #5cb85cc7; " id ="tr_reg_date" name = "tr_reg_date" type="text" placeholder="수강신청일자" value="<%=tr_reg_date%>" readonly /></a>
-					<input type="hidden" id="tr_mem_reg_date" name=  "tr_mem_reg_date" value = "<%=tr_mem_reg_date%>" />
+					<a id="tr_mem_name">담당 훈련사<input style="color : #5cb85cc7; " id ="tr_mem_name" name = "tr_name" type="text" placeholder="훈련사이름" value="<%=tr_mem_name%>" readonly /></a>
+					<a id="tr_mem_hp">전화번호<input id ="tr_mem_hp" name = "tr_hp" type="text" placeholder="전화번호" value=" <%=tr_hp%>" readonly /></a>
+					<a id="tr_mem_reg_date">예약신청일<input style="color : #5cb85cc7; " id ="tr_reg_date" name = "tr_mem_reg_date" type="text" placeholder="수강신청일자" value="<%=tr_reg_date%>" readonly /></a>
+					<input type="hidden" id="tr_mem_reg_date" name=  "tr_reg_date" value = "<%=tr_mem_reg_date%>" />
 				</div>
 				<div id = "tr_date_box">
 					<a id= "tr_date_title">수강예약일</a>
-					<input id ="tr_date1" name = "tr_date1" type="text" placeholder="첫번째 예약일" value="<%=tr_date1%>" readonly />
-					<input id ="tr_date2" name = "tr_date2" type="text" placeholder="두번째 예약일" value="<%=tr_date2%>" readonly />
-					<input id ="tr_date3" name = "tr_date3" type="text" placeholder="세번째 예약일" value="<%=tr_date3%>"  readonly />
-					<input id ="tr_date4" name = "tr_date4" type="text" placeholder="네번째 예약일" value="<%=tr_date4%>"  readonly />
-					<input id ="tr_date5" name = "tr_date5" type="text" placeholder="다섯번째 예약일" value="<%=tr_date5%>"  readonly />
-					<input id ="tr_date6" name = "tr_date6" type="text" placeholder="여섯번째 예약일" value="<%=tr_date6%>"  readonly />
-					<input id ="tr_date7" name = "tr_date7" type="text" placeholder="일곱번째 예약일" value="<%=tr_date7%>"  readonly />
+					<input id ="tr_date1" name = "date1" type="text" placeholder="첫번째 예약일" value="<%=tr_date1%>" readonly />
+					<input id ="tr_date2" name = "date2" type="text" placeholder="두번째 예약일" value="<%=tr_date2%>" readonly />
+					<input id ="tr_date3" name = "date3" type="text" placeholder="세번째 예약일" value="<%=tr_date3%>"  readonly />
+					<input id ="tr_date4" name = "date4" type="text" placeholder="네번째 예약일" value="<%=tr_date4%>"  readonly />
+					<input id ="tr_date5" name = "date5" type="text" placeholder="다섯번째 예약일" value="<%=tr_date5%>"  readonly />
+					<input id ="tr_date6" name = "date6" type="text" placeholder="여섯번째 예약일" value="<%=tr_date6%>"  readonly />
+					<input id ="tr_date7" name = "date7" type="text" placeholder="일곱번째 예약일" value="<%=tr_date7%>"  readonly />
 				</div>
 				<div id = "edu_name_box">
 					<a type= "text">반려견 이름<input id = "edu_name" name = "edu_name" type="text" value="<%=pet_name%>"placeholder="예약한 반려견 이름"  readonly /></a>
@@ -218,10 +218,10 @@
 				</div>
 				<div id =  "tr_result_box">
 					<div id = "tr_totalcnt_box">
-						<a>수강 횟수<input id = "totalcnt" name ="totalcnt" type="text" placeholder="수강 횟수" value = "<%=totalcnt%>" readonly /></a>
+						<a>수강 횟수<input id = "totalcnt" name ="edu_cnt" type="text" placeholder="수강 횟수" value = "<%=totalcnt%>" readonly /></a>
 					</div>
 					<div id = "tr_totalprice_box">
-						<a>총 수강 금액<input id = "tr_totalprice" name ="tr_price" type ="text" placeholder="총 수강 금액"  readonly /></a>
+						<a>총 수강 금액<input id = "tr_totalprice" name ="edu_totalprice" type ="text" placeholder="총 수강 금액"  readonly /></a>
 					</div>
 				</div>
 			</div>
@@ -333,43 +333,8 @@ integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7
 crossorigin="anonymous"></script>
 	<%-- 카카오 우편번호 API --%>	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script>
-	    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-	    function Postcode() {
-	        new daum.Postcode({
-	            oncomplete: function(data) {
-	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-	
-	                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	                var roadAddr = data.roadAddress; // 도로명 주소 변수
-	                var extraRoadAddr = ''; // 참고 항목 변수
-	
-	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-	                    extraRoadAddr += data.bname;
-	                }
-	                // 건물명이 있고, 공동주택일 경우 추가한다.
-	                if(data.buildingName !== '' && data.apartment === 'Y'){
-	                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-	                }
-	                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-	                if(extraRoadAddr !== ''){
-	                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-	                }
-	
-	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById('mem_address1').value = data.zonecode;
-	                document.getElementById("mem_address2").value = roadAddr;
-	                document.getElementById("mem_address3").value = data.jibunAddress;
-	                document.getElementById("mem_address4").value = extraRoadAddr;
+	<script src="<%=request.getContextPath()%>/js/edu.js"></script>
 
-	
-	            }
-	        }).open();
-	    }
-	</script>	
 </form>
 </body>
 </html>
