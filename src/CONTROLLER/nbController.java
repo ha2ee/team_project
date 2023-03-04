@@ -23,6 +23,9 @@ import VO.eduOrderVo;
 @WebServlet("/nb/*")
 public class nbController extends HttpServlet{
 	
+	// 훈련사의 예약일을 조회할 eduordervo를 호출
+	eduOrderVo eduordervo;
+	
 	
 	// 오더 메소드를 만들 오더dao 호출
 	OrderDAO orderdao;
@@ -167,6 +170,16 @@ public class nbController extends HttpServlet{
 			// 중앙 화면 요청한 주소 얻기
 			String center = request.getParameter("center");
 			
+			// 1) 조회할 훈련사의 이름 값을 가져온다.
+			String tr_name = request.getParameter("tr_name");
+			
+			// 2) 조회할 이름을 저장 시킨다.
+			request.setAttribute("tr_name", tr_name);
+			
+			// 3) 훈련사 이름을 매개변수로 해서 오더다오를 통해 선택된 훈련사의
+			//    예약 된 일자를 조회해서 캘린더에서 선택하지 못하도록 한다.
+			eduordervo = orderdao.checkDate(tr_name);
+				
 			//request에 calendar.jsp로 저장
 			request.setAttribute("center", center);
 			

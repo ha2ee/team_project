@@ -45,11 +45,11 @@ public class OrderDAO {
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// OrderDAO INFO ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// #1) 		checkTrainer()			 		메소드		<- 훈련사		 	정보 조회
-	// #2)      checkMember()                메소드     <- 멤버		    정보 조회
+	// #1) 		checkTrainer()			 		메소드		<- 훈련사		 		정보 조회
+	// #2)      checkMember()                메소드     <- 멤버		  	  	정보 조회
 	// #3)		checkPet()						메소드		<- 반려견				정보 조회
-	// #3-1)   updatePet()					메소드     <- 반려견 정보 조회	<- 		 정보 가져옴
-	// #4)      insertEduOrder()				메소드		<- 수강신청		정보 등록
+	// #4)      checkDate()					메소드     <- 예약일정에서 이미 예약된 일정을 조회
+	// #5)      insertEduOrder()				메소드		<- 수강신청			정보 등록
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	
@@ -165,33 +165,39 @@ public class OrderDAO {
 	}
 	
 	// #3) 수강신청 시 반려견 정보 조회 메소드
-	public boolean checkPet(String login_id) {
+	public PetVo checkPet(String login_id) {
+		
+		//petvo 객체를 생성해준다.
+		PetVo petvo = new PetVo();
 		
 		System.out.println("OrderDAO -> checkPet() 메소드 호출!");
 		
-		// 1)result 변수의 값을 초기화 시킨다.
-		boolean result = false;
-					
-		
+
 		try {
 			
 			//DB접속
 			con = ds.getConnection();
 			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
-			// sql = id 값으로 저장 된 반려견 정보를 조회한다, 있으면 true , 없으면 false 을 리턴한다.
-			String sql = "select decode(count(*), 1, 'true' ,'false') as result from pet where p_mem_id=?";
+			// sql = id 값으로 저장 된 반려견 정보를 조회한다
+			String sql = "select * from pet where p_mem_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, login_id);
 			rs = pstmt.executeQuery();
 			
-			// 조회된 제목줄에 커서가 있다가 조회된 줄로 내려가 위치함
-			rs.next();
-
-			// value 변수를 선언하고. result로 받아온 값을 저장 시킨다.
-			String value = rs.getString("result");
-
-			// 미리 만들어 놓은 boolean 변수에 형변환 해서 저장시킨 후 리턴한다.
-			result = Boolean.parseBoolean(value);
+			// 만약에 값들이 존재 한다면?
+			if(rs.next()) {
+				
+				//petvo에 담는다.
+				petvo.setP_name(rs.getString("p_name"));
+				petvo.setP_age(Integer.parseInt(rs.getString("p_age")));
+				petvo.setP_gender(rs.getString("p_gender"));
+				petvo.setP_type(rs.getString("p_type"));
+				petvo.setP_op(rs.getString("p_op"));
+				petvo.setP_weight(Integer.parseInt(rs.getString("p_weight")));
+				petvo.setP_img(rs.getString("p_img"));
+				
+				
+			}
 			
 			
 			
@@ -206,11 +212,66 @@ public class OrderDAO {
 			closeResource();
 		}
 		
-		return result;
+		return petvo;
 		
 	}
 	
-	// #4) 수강신청 정보 등록 메소드
+	// #4) 이미 예약된 일정을 필터링 해서 반환해주는 메소드
+	public eduOrderVo checkDate(String tr_name) {
+		
+		System.out.println("OrderDAO -> checkDate 메소드 호출!");
+		
+		// 객체를 생성해준다.
+		eduOrderVo eduordervo = new eduOrderVo();
+
+		try {
+			
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 tr_name으로 받는 입력한 이름에 해당되는 행을 조회 SELECT문
+			// sql = tr_name 값으로 선택 된 훈련사의 예약 된 일정들을 조회해 온다.
+			String sql = "select * from pet where p_mem_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, login_id);
+			rs = pstmt.executeQuery();
+			
+			// 만약에 값들이 존재 한다면?
+			if(rs.next()) {
+				
+				//petvo에 담는다.
+				petvo.setP_name(rs.getString("p_name"));
+				petvo.setP_age(Integer.parseInt(rs.getString("p_age")));
+				petvo.setP_gender(rs.getString("p_gender"));
+				petvo.setP_type(rs.getString("p_type"));
+				petvo.setP_op(rs.getString("p_op"));
+				petvo.setP_weight(Integer.parseInt(rs.getString("p_weight")));
+				petvo.setP_img(rs.getString("p_img"));
+				
+				
+			}
+			
+			
+			
+			
+		} catch (Exception e) {
+			
+			System.out.println("OrderDAO -> checkPet 메소드 내부에서 오류!");
+			e.printStackTrace();
+			
+		}finally {
+			
+			closeResource();
+		}
+		
+		return petvo;
+		
+	}
+	
+	
+	
+	
+	
+	// #5) 수강신청 정보 등록 메소드
 	public void insertEduOrder(eduOrderVo eduordervo) {
 		
 		System.out.println("OrderDAO -> InsertEduOrder 메소드 호출!");
@@ -285,54 +346,6 @@ public class OrderDAO {
 		
 	}
 
-	public PetVo updatePet(String login_id) {
-		
-		PetVo petvo = null;
-		System.out.println("OrderDAO -> updatePet() 메소드 호출!");
-					
-		
-		try {
-			
-			//DB접속
-			con = ds.getConnection();
-			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
-			String sql = "select * from pet where p_mem_id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, login_id);
-			rs = pstmt.executeQuery();
-			
-			//입력한 아이디로 조회한 행이 있으면?
-			if(rs.next()) {
-			
-			// 하나씩 가져와서 vo에 담는다.
-			petvo = new PetVo();
-			
-			// 1) 반려견 정보에 대한 부분 가져온다.
-			petvo.setP_img(rs.getString("p_img"));
-			petvo.setP_name(rs.getString("p_name"));
-			petvo.setP_type(rs.getString("p_type"));
-			petvo.setP_age(Integer.parseInt(rs.getString("p_age")));
-			petvo.setP_weight(Integer.parseInt(rs.getString("p_weight")));
-			petvo.setP_gender(rs.getString("p_gender"));
-			petvo.setP_op(rs.getString("p_op"));
-			
-			}
-			
-			
-			
-		} catch (Exception e) {
-			
-			System.out.println("OrderDAO -> checkMember 메소드 내부에서 오류!");
-			e.printStackTrace();
-			
-		}finally {
-			
-			closeResource();
-		}
-		
-		return petvo;
-		
-	}
 		
 }
 

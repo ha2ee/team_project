@@ -4,6 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	//Session내장객체 메모리 영역에 session값 얻기
+	String id_ = (String)session.getAttribute("id");
 	request.setCharacterEncoding("UTF-8");
 	// 1) 수강 데이터
 	// 예약일 가져와서 변수에 저장
@@ -149,7 +151,8 @@
 				</div>
 				<div id = "pet_check">
 					<a id ="petcheck1" class = btn >반려견 정보 추가하기</a>
-					<a id ="petcheck2" class = btn >반려견 정보 가져오기</a>
+					<a id ="petcheck2" class = btn onclick="openChild()">반려견 정보 가져오기</a>
+					<input type="hidden" id="pInput" value="<%=id_%>"/>
 				</div>
 				<div id = "pet_name_box">
 					<a id="pet_img_name" type= "text">반려견 사진</a>
@@ -241,6 +244,23 @@
 
 
 <script type="text/javascript">
+
+// 팝업창 띄우기
+
+var openWindow;
+
+function openChild() {
+	
+	alert("팝업창이 열립니다");
+	
+	window.name = "parentForm";
+	
+	var popupX = (window.screen.width/2)-(750/2);
+	var popupY = (window.screen.height/2)-(500/2);
+	
+	openWindow = window.open("<%=request.getContextPath()%>/nbOrder/petUpdate.od", "childForm", "height=500, width=750, left="+popupX+", top="+popupY+", screenX="+popupX+", screenY="+popupY+" resizable=no, scrollbars=no");
+	
+}
 	
 	// jquery 호출 옵션 
 	$(document).ready(function(){
@@ -274,23 +294,17 @@
 		// 3) 반려견 정보 가져오기 버튼을 눌렸을 때 팝업창이 나오게 한다.
 		
 		var openwindow;
-		
+	
 		
 		$("#petcheck2").on("click", function(){
 			
-			alert("팝업창이 열립니다.")
+			$("#pet_img_name").css("display", "block");
+			$("#pet_img_box").css("display", "block");
+			$("#pet_info_box").css("display", "block");
+			$("#pet_op_box").css("display", "block");
 			
-			// 부모창의 이름을 parentForm으로 지정
-			window.name ="parentForm";
-			
-			// 자식창의 이름을 설정하고 연다
-			openwindow = window.open("<%=request.getContextPath()%>/nbShop/popup1.jsp", "childForm", "width=750px, height=500px, resizable=no, scrollbars=no");
-			
-			
-			
-			
+			openWindow.document.getElementById("cInput").value = document.getElementById("pInput").value;
 
-		
 		})
 		
 		
