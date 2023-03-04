@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
+
+	
+
 	// 1) 수강 데이터
 	// 예약일 가져와서 변수에 저장
 	String tr_date1 = request.getParameter("date1");
@@ -29,13 +32,12 @@
 %>
 <!DOCTYPE html>
 <head>
+<!--     CSS popup1.css 추가 -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/popup.css">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>펫 정보 입력하기</title>
-    
-<!--     CSS popup1.css 추가 -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/popup.css">
+<title>반려견 정보 조회창</title>
 </head>
 <body class="dimmed">
 <form method = "post" action ="<%=request.getContextPath()%>/nbOrder/petUpdate.od" >
@@ -55,32 +57,27 @@
 		
 	
     <div class="pop1">
-        <div class="pop1title">펫 정보 입력창</div>
+        <div class="pop1title">반려견 정보 조회창</div>
         <div class="pop1content">
 			<div id = "pet_box">
 				<div id = "pet_name_box">
 					<a id="pet_img_name" type= "text">반려견 사진</a>
 				</div>
 				<div id= "pet_img_box" >
-						<img id="pet_img"  src="<%=request.getContextPath()%>/images/example.png" />
-				</div>
-				<div id= "pet_img_file_box">
-					이미지 파일 선택
+						<a type= "text">반려견 사진<img id = "pet_img" name = "pet_img" src="<%=request.getContextPath()%>/images/example.png" /></a>
 				</div>
 				<div id = "pet_info_box">
-					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" value="" placeholder="반려견이름" />
-					</a>
-					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" value="" placeholder="반려견종"  />
-					<label style="color : #9e9e9ead;">ex) 푸들,믹스 등등..</label></a>
-					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text"  value="" placeholder="반려견나이"  />
-					<label style="color : #9e9e9ead;">숫자만 입력</label></a>
-					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" value="" placeholder="반려견몸무게"  />
-					<label style="color : #9e9e9ead;">숫자만 입력</label></a>
+					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" value="" /></a>
+					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" value="" /></a>
+					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text"  value=""  /></a>
+					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" value=""  /></a>
+					<a type= "text">반려견 성별<input id="pet_gender" name= "pet_gender" type="text" value="" /></a>
+					<a type= "text">반려견 중성화여부<input id="pet_gender" name= "pet_gender" type="text" value="" /></a>
 				</div>
 			</div>
         </div>
         <div class="pop1cmd">
-            <input id="submitbtn" type="submit" name="btnclose" class="popbtn" value="펫 정보 입력 완료">
+            <input id="submitbtn" type="submit" name="btnclose" class="popbtn" value="반려견 선택 완료">
         </div>
     </div>
 </form>

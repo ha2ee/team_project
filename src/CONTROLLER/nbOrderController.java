@@ -74,7 +74,7 @@ public class nbOrderController extends HttpServlet{
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// nbOrderController INFO ////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		// #1)      /petUpdate.od					<- 수강신청 페이지      				   펫 정보 조회
+		// #1)      /petUpdate.od					<- 수강신청 페이지      			   반려견 정보 조회
 		// #2) 		/eduOrder.od			 		<- 수강신청 페이지					 최종 결제 요청
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
@@ -89,8 +89,11 @@ public class nbOrderController extends HttpServlet{
 		switch (action) {
 		
 		
-			// #1) 수강신청 페이지에서 펫 정보 입력 버튼을 눌린 후, 완료 버튼을 눌렀을 때,
+			// #1) 수강신청 페이지에서 반려견 정보 가져오기 버튼을 눌렀을 때,
 			case "/petUpdate.od":
+				
+			//petvo를 초기화 한다.
+			PetVo petvo;
 				
 			System.out.println("nbOrderController -> petUpdate.od 호출 !");	
 
@@ -101,25 +104,47 @@ public class nbOrderController extends HttpServlet{
 			// 2) 조회할 아이디를 저장 시킨다.
 			request.setAttribute("id", login_id);
 			
+			// 2-1) petVo를 통해서 DB에 값이 있으면 가져오고 없으면 다른값을 반환시킨다.
+			boolean result = orderdao.checkPet(login_id);
 			
-			// 3)가입한 회원 아이디를 매개변수로 해서 오더다오를 통해 값을 조회 한다.
-			petvo = orderdao.checkPet(login_id);
 			
-			// 5) 펫vo를 setAttribute에 담기
-
-			request.setAttribute("petvo", petvo);
-
+			// 3) 조회한 반려견 정보 처리하기
 			
-			//request에 "center" 값을 edu_reservation.jsp로 저장
-			request.setAttribute("center", "nbShop/edu_reservation.jsp");
+			// 만약에 result 값이 true라면?
+			// 반려견 정보 가져오기 메소드로 반려견 정보를 리턴한다.
+			if (result == true) {
 				
-			PrintWriter pw = response.getWriter();
-			
-			System.out.println("edu_reservation.jsp로 다시 폼액션 넘기기");
-			System.out.println("예약 신청 페이지로 다시 이동!");
-
-			
-			nextPage = "/nbMain.jsp";
+				// 반려견 정보를 다시 조회하는 메소드
+				petvo = orderdao.updatePet(login_id);
+				
+				// 가져온 반려견 정보를 변수에 담는다.
+				String pet_img = petvo.getP_img();
+				String pet_name = petvo.getP_img();
+				String pet_type = petvo.getP_img();
+				String pet_age = petvo.getP_img();
+				String pet_weight = petvo.getP_img();
+				String pet_gender = petvo.getP_img();
+				String pet_op = petvo.getP_img();
+				
+				// 반려견 정보를 다시 edu_reservation으로 보내준다.
+				request.setAttribute("pet_img", pet_img);
+				request.setAttribute("pet_name", pet_name);
+				request.setAttribute("pet_type", pet_type);
+				request.setAttribute("pet_age", pet_age);
+				request.setAttribute("pet_weight", pet_weight);
+				request.setAttribute("pet_gender", pet_gender);
+				request.setAttribute("pet_op", pet_op);
+				
+				out.write("있음");
+				return;
+			// 반려견 정보가 없을 경우 없음을 반환 한다.
+			}else if(result == false){
+				
+				
+				out.write("없음");
+				return ;
+				
+			}
 			
 			
 				break;

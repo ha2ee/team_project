@@ -197,17 +197,15 @@ public class nbController extends HttpServlet{
 			// 2-1)조회할 ID를 저장 시킨다.
 			request.setAttribute("id", login_id);
 			
-			// 3)트레이너 이름을 매개변수로 해서 오더다오를 통해 값을 조회 한다.
+			// 3-1)트레이너 이름을 매개변수로 해서 오더다오를 통해 선택된 트레이너 값을 조회 한다.
 			trainervo = orderdao.checkTrainer(tr_name);
 			
-			// 4)가입한 회원 아이디를 매개변수로 해서 오더다오를 통해 값을 조회 한다.
+			// 3-2)가입한 회원 아이디를 매개변수로 해서 오더다오를 통해 개인정보 값을 조회 한다.
 			membervo = orderdao.checkMember(login_id);
-			petvo = orderdao.checkPet(login_id);
 			
 			// 5) 각각 setAttribute에 담기
 			request.setAttribute("trainervo", trainervo);	
 			request.setAttribute("membervo", membervo);
-			request.setAttribute("petvo", petvo);
 			
 			//request에 "center" 값을 edu_reservation.jsp로 저장
 			request.setAttribute("center", "nbShop/edu_reservation.jsp");

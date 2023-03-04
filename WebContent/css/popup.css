@@ -32,13 +32,13 @@ footer {
 .pop1 {
     z-index: 1;
     position: absolute;
-    top: 67%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%,-50%);
     min-width: 300px;
     max-width: 700px;
     min-height : 300px;
-    max-height : 550px;
+    max-height : 450px;
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 2px 55px -25px rgb(0 0 0 / 100%);
@@ -63,13 +63,19 @@ footer {
     height: 100%;
 }
 .pop1cmd {
-    bottom: 0;
+	
+	
+	top: 0;
+    width: 100%;
+    position: relative;
+    bottom: 70px;
     min-height: 40px;
     padding: 15px 15px;
     box-sizing: border-box;
     border-radius: 0 0 15px 15px;
-    min-height: 40px;
+    min-height: 50px;
     text-align: right;
+    height: 100px;
 }
 .popbtn {
 	
@@ -80,7 +86,7 @@ footer {
     margin: 0 auto;
     left: -230px;
     right: 0;
-    top: 0px;
+    top: -55px;
     background: #cccccc21;
     border-radius: 10px;
     transition: all 0.5s;
@@ -101,7 +107,7 @@ footer {
 
 #pet_box {
 	
-/* 	border : 1px solid #ffb6c161; */
+	border : 1px solid #ffb6c161;
 	
 	position: relative;
 	width: 660px;
@@ -119,10 +125,10 @@ footer {
 	border : 1px solid #ffb6c161;
 	
 	position: relative;
-    width: 200px;
+    width: 100px;
     height: 30px;
 	top: 0;
-	left : -230px;
+	left : -280px;
 	right : 0;
 	margin : 0 auto;
 	font-size : 17px;
@@ -135,7 +141,7 @@ footer {
 
 #pet_name_box > a {
 	
-/* 	border : 1px solid green; */
+	border : 1px solid green;
 	
 	display : inline-block;
 	position: relative;
@@ -152,25 +158,25 @@ footer {
 
 #pet_img_box {
 	
-/* 	border : 1px solid green; */
+	border : 1px solid green;
 	
 	position: relative;
-	width: 200px;
-	height : 270px;
+	width: 100px;
+	height : 100px;
 	top: 0;
-	left : -230px;
+	left : -280px;
 	right : 0;
 	margin : 0 auto;
 	
 }
 
-#pet_img_box > #pet_img {
+#pet_img_box > a > #pet_img {
 	
-/* 	border : 1px solid green; */
+	border : 1px solid green;
 	
 	position: relative;
-	width: 200px;
-	height : 200px;
+	width: 100px;
+	height : 100px;
 	top: 1px;
 	left : 0;
 	right : 0;
@@ -181,25 +187,9 @@ footer {
 	
 }
 
-#pet_img_file_box {
-	
-/* 	border : 1px solid red; */
-
-	position: relative;
-	width: 200px;
-	height : 65px;
-	top: -67px;
-	left : -230px;
-	right : 0;
-	margin : 0 auto;
-    border-radius: 10px;
-	
-}
-
-
 #pet_info_box {
 	
-/* 	border : 1px solid green; */
+	border : 1px solid green;
 	
 	position: relative;
 	width: 470px;
@@ -237,7 +227,7 @@ footer {
 
 #pet_info_box > a > input {
 	
-/* 	border : 1px solid green; */
+	border : 1px solid green;
 	
 	position: relative;
 	width: 113px;
@@ -256,7 +246,7 @@ footer {
 
 #pet_info_box > a > label {
 	
-/* 	border : 1px solid green; */
+	border : 1px solid green;
 	
 	position: relative;
 	width: 113px;

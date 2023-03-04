@@ -1,3 +1,4 @@
+<%@page import="VO.PetVo"%>
 <%@page import="VO.TrainerVo"%>
 <%@page import="VO.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -53,24 +54,22 @@
 	String mem_address5 = membervo.getMem_address5();
 	
 	
-// 	// 4) 회원 반려견 데이터
-// 	// PetVo에 저장한 값들을 가져와 변수에 저장 시킨다.
-// 	PetVo petvo = (PetVo)request.getAttribute("petvo");	
-
-// 	// 반려견 사진 저장
-// 	String pet_img 	 = petvo.getP_img();
-// 	// 반려견 이름 저장
-// 	String pet_name 	 = petvo.getP_name();
-// 	// 반려견 견종 저장
-// 	String pet_type 	 = petvo.getP_type();
-// 	// 반려견 나이 저장
-// 	int	pet_age	  	 = petvo.getP_age();
-// 	// 반려견 몸무게 저장
-// 	int pet_weight 	 =  petvo.getP_weight();
-// 	// 반려견 성별 저장
-// 	String pet_gender = petvo.getP_gender();
-// 	// 반려견 중성화 여부 저장
-// 	String pet_op = petvo.getP_op();
+	// 4) 회원 반려견 데이터 <초기값 설정>
+	PetVo petvo;
+	// 반려견 사진 저장
+	String pet_img;
+	// 반려견 이름 저장
+	String pet_name;
+	// 반려견 견종 저장
+	String pet_type;
+	// 반려견 나이 저장
+	int	pet_age;
+	// 반려견 몸무게 저장
+	int pet_weight;
+	// 반려견 성별 저장
+	String pet_gender;
+	// 반려견 중성화 여부 저장
+	String pet_op;
 
 %>    
     
@@ -150,7 +149,7 @@
 				</div>
 				<div id = "pet_check">
 					<a id ="petcheck1" class = btn >반려견 정보 추가하기</a>
-					<a id ="petcheck2" class = btn href="<%=request.getContextPath()%>/nbOrder/petUpdate.od">반려견 정보 가져오기</a>
+					<a id ="petcheck2" class = btn >반려견 정보 가져오기</a>
 				</div>
 				<div id = "pet_name_box">
 					<a id="pet_img_name" type= "text">반려견 사진</a>
@@ -247,8 +246,9 @@
 	$(document).ready(function(){
 		
 		
-		// 반려견 정보 추가하기 메소드 
 		
+		
+		// 반려견 정보 추가하기 메소드 
 		// 1)처음 페이지에 왔을 때 펫 정보 입력문구를 보이지 않게 한다.
 		$("#pet_img_name").css("display", "none");
 		$("#pet_img_box").css("display", "none");
@@ -270,6 +270,29 @@
 
 		
 		})
+	
+		// 3) 반려견 정보 가져오기 버튼을 눌렸을 때 팝업창이 나오게 한다.
+		
+		var openwindow;
+		
+		
+		$("#petcheck2").on("click", function(){
+			
+			alert("팝업창이 열립니다.")
+			
+			// 부모창의 이름을 parentForm으로 지정
+			window.name ="parentForm";
+			
+			// 자식창의 이름을 설정하고 연다
+			openwindow = window.open("<%=request.getContextPath()%>/nbShop/popup1.jsp", "childForm", "width=750px, height=500px, resizable=no, scrollbars=no");
+			
+			
+			
+			
+
+		
+		})
+		
 		
 		var date = new Date();
 		var reg_date = moment(date).format('LL');
@@ -310,7 +333,7 @@
 			
 			$("#edu_img_name").attr("value", pet_name).css("color", "#5cb85cc7");
 		})
-		
+
 		
 		// 최종금액에 콤마단위가 들어간 금액으로 설정
 		$("#tr_totalprice").attr("value", tr_totalprice2);
@@ -345,7 +368,7 @@
 	
 	// 정규표현식으로 3자리숫자당 콤마로 구분한다.
 	var tr_totalprice2 = original.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	
+
 	
 	// 강아지 사진 업로드 시 썸네일 형식의 미리보기 만들기
 // 	function setThumbnail(event) {
