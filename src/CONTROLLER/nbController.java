@@ -186,7 +186,7 @@ public class nbController extends HttpServlet{
 			request.setAttribute("tr_name", tr_name);
 			
 			// 3)트레이너 이름을 매개변수로 해서 오더다오를 통해 값을 조회 한다.
-			trmembervo = orderdao.checkTrainer(tr_name);
+			//trmembervo = orderdao.checkTrainer(tr_name);
 			
 			request.setAttribute("trmembervo", trmembervo);
 			
