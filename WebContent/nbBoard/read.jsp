@@ -147,12 +147,29 @@ width="60px" height="60px">
 
 
 
-    <div style="border: 1px solid black; height: 100px; margin-bottom: 2%">
+    <div style="border: 1px solid black; height: 500px; margin-bottom: 2%">
       댓글 들어온다.
     </div>
 
-    <div style="border: 1px solid black; height: 300px; margin-bottom: 2%">
-      게시글 목록 보여주고 싶은데
+    <div style="border: 1px solid black; height: 1000px; margin-bottom: 2%">
+<%--       <jsp:include page="list.jsp">
+        <jsp:param value="0" name="nowBlock"/>
+        <jsp:param value="0" name="nowPage"/>
+        <jsp:param value="${list}" name="list"/>
+        <jsp:param value="${count}" name="count"/>
+         
+        
+      </jsp:include>
+ --%>      
+        <jsp:include page="list.jsp">
+        <jsp:param value="0" name="nowBlock"/>
+        <jsp:param value="0" name="nowPage"/>
+        <jsp:param value="${list}" name="list"/>
+        <jsp:param value="${count}" name="count"/>
+         
+        
+      </jsp:include>
+      
     </div>
 
 

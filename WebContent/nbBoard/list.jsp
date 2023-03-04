@@ -8,7 +8,7 @@
 	
 //	ArrayList list = (ArrayList)request.getAttribute("list");
 	
-%>    
+%>
 
 <!DOCTYPE html>
 <html>
@@ -142,22 +142,22 @@ function fnSearch(){
       <!--목록-->
        <div class="List-Box">
         <ul>
-          <li>
+          <li style="width: 10%">
             <span>글번호</span>
           </li>
-          <li>
+          <li style="width: 15%">
             <span>닉네임</span>
           </li>
-          <li>
+          <li style="width: 40%">
              <span>제목</span>
           </li>
-          <li>
+          <li style="width: 15%">
             <span>작성일</span>
           </li>
-          <li>
+          <li style="width: 10%">
             <span>조회수</span>
           </li>
-          <li>
+          <li style="width: 10%">
             <span>추천</span>
           </li>
         </ul>
@@ -174,17 +174,24 @@ function fnSearch(){
         %>
         		
          <a href="javascript:fnRead('<%=vo.getB_idx()%>')" class="List-1 flex">
-                <div>
+                <div style="width: 10%">
                   <span><%=vo.getB_idx()%></span>	
                 </div>
-                <div>
+                <div style="width: 15%">
                   <span><%=vo.getB_nickname() %></span>
                 </div>
-                <div>
+                <div style="width: 40%">
                   <span><%=vo.getB_title() %></span>
                 </div>
-                <div>
+              <!--타이틀 옆에 댓글 수 나오도록 작업 -->
+                <div style="width: 15%">
                   <span><%=vo.getB_date() %></span>
+                </div>
+                <div style="width: 10%"">
+                  <span><%=vo.getB_cnt() %></span>
+                </div>
+                <div style="width: 10%"">
+                  <span><%=vo.getB_like() %></span>
                 </div>
               </a>
         <%       

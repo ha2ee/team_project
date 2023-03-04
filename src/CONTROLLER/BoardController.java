@@ -76,6 +76,7 @@ public class BoardController extends HttpServlet {
     // String key = null;
     // String word = null;
     // String memberid = null;
+    int count = 0;
 
     PrintWriter out = response.getWriter();
 
@@ -93,10 +94,10 @@ public class BoardController extends HttpServlet {
         request.setAttribute("nowBlock", nowBlock);
 
         list = boarddao.boardListAll();
-        int count = boarddao.getTotalRecord();
-        request.setAttribute("center", "nbBoard/list.jsp");
+        count = boarddao.getTotalRecord();
         request.setAttribute("count", count);
         request.setAttribute("list", list);
+        request.setAttribute("center", "nbBoard/list.jsp");
 
         nextPage = "/nbMain.jsp";
         break;
@@ -120,6 +121,11 @@ public class BoardController extends HttpServlet {
         int b_idx = Integer.parseInt(request.getParameter("b_idx"));
         // //글 번호 (b_idx)를 이용해 수정 또는 삭제를 위해 DB로 부터 조회하기
         vo = boarddao.boardRead(b_idx);
+        list = boarddao.boardListAll();
+        count = boarddao.getTotalRecord();
+
+        request.setAttribute("count", count);
+        request.setAttribute("list", list);
         request.setAttribute("vo", vo);
         request.setAttribute("center", "nbBoard/read.jsp");
 
