@@ -120,8 +120,14 @@ public class FreeBoardDAO {
 
     try {
       con = ds.getConnection();
-
-      String sql = "SELECT * FROM FREE_BOARD WHERE B_IDX=?";
+      //조회수 부터 +1 한다.
+      String sql = "UPDATE FREE_BOARD SET B_CNT = B_CNT + 1 WHERE B_IDX=?";
+      pstmt = con.prepareStatement(sql);
+      pstmt.setInt(1, b_idx);
+      pstmt.executeUpdate();
+      
+      //업데이트 된 조회수를 포함한 글을 읽어온다
+      sql = "SELECT * FROM FREE_BOARD WHERE B_IDX=?";
       pstmt = con.prepareStatement(sql);
       pstmt.setInt(1, b_idx);
       rs = pstmt.executeQuery();
@@ -139,8 +145,9 @@ public class FreeBoardDAO {
         vo.setB_file(rs.getString("b_file"));
         vo.setB_like(rs.getInt("b_like"));
 
-        System.out.println(vo.getB_idx());
       }
+      
+      
 
 
     } catch (Exception e) {
