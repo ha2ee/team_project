@@ -205,6 +205,10 @@ public class MemberVo {
 	public void setMem_address5(String mem_address5) {
 		this.mem_address5 = mem_address5;
 	}
+
+	public void setSting(String string) {
+		
+	}
 	
 	
 	

@@ -1,3 +1,5 @@
+<%@page import="VO.MemberVo"%>
+<%@page import="VO.TrainerVo"%>
 <%@page import="java.sql.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,11 +10,47 @@
 %>
    
 <%
-// https://nameybs.tistory.com/37?category=810277
-// 체크박스 체크한  <input>항목 얻고  체크한 값 얻어 사용
+	MemberVo mem_vo = (MemberVo)request.getAttribute("mem_vo");
+	
+	String mem_nick = mem_vo.getMem_nick();
+	String mem_name = mem_vo.getMem_name();
+	String mem_hp = mem_vo.getMem_hp();
+	String mem_birth = mem_vo.getMem_birth();
+	String mem_email = mem_vo.getMem_email();
+	String mem_gender = mem_vo.getMem_gender();
+	String mem_address1 = mem_vo.getMem_address1();
+	String mem_address2 = mem_vo.getMem_address2();
+	String mem_address3 = mem_vo.getMem_address3();
+	String mem_address4 = mem_vo.getMem_address4();
+	String mem_address5 = mem_vo.getMem_address5();
+	String mem_img = mem_vo.getMem_img();
+	
+	TrainerVo tr_vo = (TrainerVo)request.getAttribute("tr_vo");
+	
+	String tr_name = tr_vo.getTr_name();
+	String tr_hp = tr_vo.getTr_hp();
+	String tr_birth = tr_vo.getTr_birth();
+	String tr_email = tr_vo.getTr_email();
+	String tr_address1 = tr_vo.getTr_address1();
+	String tr_address2 = tr_vo.getTr_address2();
+	String tr_address3 = tr_vo.getTr_address3();
+	String tr_address4 = tr_vo.getTr_address4();
+	String tr_address5 = tr_vo.getTr_address5();
+	String tr_gender = tr_vo.getTr_email();
+	String tr_img = tr_vo.getTr_img();
+	
+	String id = (String)session.getAttribute("id");
+	
+	if(id == null){//로그인 하지 않았을 경우 
+%>		
+		<script>
+			alert("로그인이 필요합니다."); 
+			history.back();
+		</script>
+<%	
+	}
+%> 
 
-%>    
-   
     
 <%-- 문서에 작성되는 언어 타입을 HTML로 하여 이파일은 HTML이 적힌 파일 이다 라고 웹브라우저에 알려주는 코드
 	 요약 : 문서 코드 타입.
@@ -44,9 +82,7 @@
 <title>회원가입</title>
 
 <style type="text/css">
-
-
-	#pass,#nickname,#checkpass,#name,
+	#id,#pass,#nickname,#checkpass,#name,
 	#hp,.birth,#email,#sample4_postcode,
 	#sample4_find,#sample4_detailAddress,
 	#sample4_extraAddress,#sample4_jibunAddress,
@@ -62,18 +98,6 @@
 	  background-color: rgb(233, 233, 233);
 	}
 	
-	#id{
-	  width: 300px;
-	  height: 32px;
-	  font-size: 15px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	  float : left;
-	}
-	
 	
 	#checkBtn{
 	  width: 90px;
@@ -84,20 +108,8 @@
 	  outline: none;
 	  padding-left: 8px;
 	  background-color: rgb(233, 233, 233);
-/* 	  margin-left: 15px;	 */
 	}
-	
-/* 	#jbtn{
-	  width: 135px;
-	  height: 40px;
-	  font-size: 28px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
- 	  padding-left: 5px; 
-	  background-color: rgb(233, 233, 233);
-	} */
-	
+
 	
 	.gender,.pet{
 	  width: 100px;
@@ -114,28 +126,11 @@
   	
 	.join{
 		display: flex;     
-
 		align-items: center;   
-
 		justify-content: center;   
 	
 	}
 	
-
-	/* #Photo{
-	  display: inline-block;
-	  padding: .5em .75em;
-	  color: black;
-	  font-size: inherit;
-	  line-height: normal;
-	  vertical-align: middle;
-	  background-color: #BDBDBD;
-	  cursor: pointer;
-	  border: 1px solid #ebebeb;
-	  border-bottom-color: #e2e2e2;
-	  border-radius: .25em;
-	} */
-
 	#ex_file	{  /* 파일 필드 숨기기 */
 	  position: absolute;
 	  width: 1px;
@@ -146,18 +141,16 @@
 	  clip:rect(0,0,0,0);
 	  border: 0;
 	}
-
  	#preview{
-    width: auto;
     max-width: 60%;
-    height: auto;
     margin: 0;
     padding: 0;
     border: none;
     line-height: normal;
     vertical-align: middle;
+	width : 300px; 
+	height :240px;
 }
-
 	.heigthD{
 		height: 100px;
 	
@@ -183,6 +176,7 @@
 							   class="form-control"
 							   placeholder="가입할 아이디를 적어주세요."
 							   style="width: 400px;"
+							   value="<%=id%>"
 							   readonly	>
 				    </div>
 					<br>
@@ -192,7 +186,7 @@
 				</div>
 					
 				<div class="heigthD" style="margin-left: 40px;">
-					<label><strong>&nbsp;비밀번호</strong></label><br><br> 
+					<label><strong>&nbsp;새로운 비밀번호</strong></label><br><br> 
 					<input type="password" 
 						   id="pass" 
 						   name="pass"
@@ -201,6 +195,8 @@
 					<p id="passInput" style="margin-top:-5px;"></p>
 				</div>						
 			</div>
+			
+			
 			<div class="join">
 				<div class="heigthD">
 					<label><strong>&nbsp;닉네임</strong></label><br><br> 
@@ -208,6 +204,7 @@
 						   id="nickname" 
 						   name="nickname"
 						   class="form-control"
+						   value="<%=mem_nick %>"
 						   placeholder="사용할 닉네임을 적어주세요".">
 				    <p id="nickInput"></p> 
 				</div>
@@ -228,7 +225,9 @@
 						   id="name" 
 						   name="name"
 						   class="form-control"
-						   placeholder="가입할 이름을 적어주세요."> 
+						   placeholder="가입할 이름을 적어주세요."
+						   value="<%=mem_name + tr_name %>"
+						   readonly> 
 					<p id="nameInput"></p>
 				</div>
 				<div class="heigthD" style="margin-left: 40px;">	
@@ -237,6 +236,7 @@
 						   id="hp" 
 						   name="hp"
 						   class="form-control"
+						   value="<%=mem_hp + tr_hp %>"						  
 						   placeholder="핸드폰번호를 '-'없이 적어주세요."> 
 					<p id="hpInput"></p>
 				</div>
@@ -244,20 +244,23 @@
 			<div  class="join">
 				<div class="heigthD" id="selbox">
 					<label><strong>&nbsp;생년월일</strong></label><br><br>
-						<input type="text" 
+					<input type="text" 
 						   id="birth" 
 						   name="birth"
 						   class="birth"
-						   placeholder="ex)20010917"> 
+						   placeholder="ex)20010917"
+						   value="<%=mem_birth + tr_birth%>"						  
+						   readonly> 
 					<p id="birthInput"></p>
 				</div>					
 				<div class="heigthD" style="margin-left: 40px;">
 					<label><strong>&nbsp;Email</strong></label><br><br>
-						<input type="email" 
-							   id="email" 
-							   name="email"
-							   class="form-control"
-							   placeholder="이메일을 적어주세요."> 
+					<input type="email" 
+						   id="email" 
+						   name="email"
+						   class="form-control"
+						   value="<%=mem_email + tr_email %>"						 
+						   placeholder="이메일을 적어주세요."> 
 					<p id="emailInput"></p>
 				</div>
 			</div>
@@ -266,19 +269,18 @@
 					<%-- name속성값 address1 부터 ~~ address5 까지 입력되어 있는 주소를 모두 합쳐서 DB에 address열에  INSERT 하자. --%>
 					<label><strong>&nbsp;주소</strong></label><br><br>	
 					<input type="text" id="sample4_postcode" name="address1" class="form-control" placeholder="우편번호" readonly><br><br>	
-
 				</div>	
 				<div class="join">
 					<div style="margin-left: 30px; width: 120px; height: 90px;">
 						<label><strong>&nbsp;&nbsp;성별</strong></label><br>
-							<select class="gender" name="gender" id="gender" style="width:90px;height:38px;">
+							<select class="gender" name="gender" id="gender" style="width:90px;height:38px;" value="<%=mem_address1 + tr_address1 %>"disabled>
 								<option>선택</option>
 								<option>남자</option>
 								<option>여자</option>
 							</select>
 						
 					</div>
- 				<div style="margin-left: 30px; width: 260px; height: 90px;">	
+ 					<div style="margin-left: 30px; width: 260px; height: 90px;">	
 <!-- 						<label> -->
 <!-- 							<strong style="margin-right: 133px;"> -->
 <!-- 								&nbsp;&nbsp;애완견을 키우나요? -->
@@ -296,25 +298,31 @@
 					</div>
 				</div>			
 			</div>
-			<div class="join" style="margin-right: 30px; ">
+			<div class="join" style="margin-right: -65px; ">
 				<div>
 					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="background-color:#BDBDBD" id="sample4_find"><br><br>					<!-- class="form-control" --> 
-					<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소"readonly><br><br>		
-					<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3" readonly><br><br>		
+					<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소" value="<%=mem_address2 + tr_address2%>"readonly><br><br>		
+					<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3"  value="<%=mem_address3 + tr_address3%>"readonly><br><br>		
 					<span id="guide" style="color:#999; display:none;"></span>
-					<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address4" ><br><br>		
-					<input type="text" id="sample4_extraAddress" placeholder="참고항목"  name="address5" readonly>
+					<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address4" value="<%=mem_address4 + tr_address4%>"><br><br>		
+					<input type="text" id="sample4_extraAddress" placeholder="참고항목"  name="address5" value="<%=mem_address5 + tr_address5%>"readonly>
 				    <p id="addressInput"></p> 
 				</div>	
-				<div style="width: 400px;" > 
+				<div>  <!--  -->
+					    <img  id="preview" src="<%=contextPath%>/images/profile.png" class="profile">
+					</div>
+					<div>
+				     	<input type="file"  name="imageFileName"  onchange="readURL(this);" style="margin-top: 220px;"/>
+					</div>
+				
+				
+				<%-- <div style="width: 400px;" > 
 				    <img  id="preview" src="<%=contextPath%>/images/profile.png" width=200 height=220 style="margin-right: 70px;"/>
 				</div>
-				
-				
 				<div class="filebox" style="margin-left: -50px;margin-top: 200px;" >
 		 			<label id="Photo"for="ex_file" class="btn btn-outline-warning">사진 등록</label>
 				    <input type="file" id="ex_file" name="imageFileName"  onchange="readURL(this);"> 
-				</div>
+				</div> --%>
 			</div>
 			<br>
 			<br>
@@ -464,5 +472,3 @@
 
 </body>
 </html>
-
-

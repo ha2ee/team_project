@@ -185,6 +185,11 @@ public class TrainerVo {
 		this.tr_address5 = tr_address5;
 	}
 
+	public void setSting(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 	
