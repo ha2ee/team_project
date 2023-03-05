@@ -230,22 +230,15 @@ public class OrderDAO {
 			con = ds.getConnection();
 			//매개변수 tr_name으로 받는 입력한 이름에 해당되는 행을 조회 SELECT문
 			// sql = tr_name 값으로 선택 된 훈련사의 예약 된 일정들을 조회해 온다.
-			String sql = "select * from pet where p_mem_id=?";
+			String sql = "select * from pet where tr_name=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, login_id);
+			pstmt.setString(1, tr_name);
 			rs = pstmt.executeQuery();
 			
 			// 만약에 값들이 존재 한다면?
 			if(rs.next()) {
 				
-				//petvo에 담는다.
-				petvo.setP_name(rs.getString("p_name"));
-				petvo.setP_age(Integer.parseInt(rs.getString("p_age")));
-				petvo.setP_gender(rs.getString("p_gender"));
-				petvo.setP_type(rs.getString("p_type"));
-				petvo.setP_op(rs.getString("p_op"));
-				petvo.setP_weight(Integer.parseInt(rs.getString("p_weight")));
-				petvo.setP_img(rs.getString("p_img"));
+
 				
 				
 			}
@@ -262,8 +255,8 @@ public class OrderDAO {
 			
 			closeResource();
 		}
+		return eduordervo;
 		
-		return petvo;
 		
 	}
 	
