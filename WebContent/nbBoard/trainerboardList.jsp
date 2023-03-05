@@ -58,7 +58,7 @@
     		
     		
     		document.frmRead.action = "<%=contextPath%>/tb/read.bo";
-    		document.frmRead.cb_idx.value = val;
+    		document.frmRead.tb_idx.value = val;
     		document.frmRead.submit();
     	}
     </script>
@@ -91,17 +91,17 @@
             </tr>
         <c:forEach var="board" items="${requestScope.list}">
             <tr>
-                <td>${board.cb_idx}</td>
+                <td>${board.tb_idx}</td>
                 <td>
-                    <a href="read.bo?cb_idx=${board.cb_idx}&pageNum=${spage}">
-                    ${board.cb_title}
+                    <a href="read.bo?tb_idx=${board.tb_idx}&pageNum=${spage}">
+                    ${board.tb_title}
                     </a>
                 </td>
                 <td>
-                    ${board.cb_nickname}
+                    ${board.tb_name}
                 </td>
-                <td>${board.cb_date}</td>
-                <td>${board.cb_cnt}</td>
+                <td>${board.tb_date}</td>
+                <td>${board.tb_cnt}</td>
             </tr>
         </c:forEach>
         </table>

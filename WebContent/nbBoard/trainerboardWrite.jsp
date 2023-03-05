@@ -1,9 +1,9 @@
-<%@page import="VO.trMemberVo"%>
+<%@page import="VO.TrainerVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	String contextPath = request.getContextPath();
-	trMemberVo tvo = (trMemberVo)request.getAttribute("trainervo");
+	TrainerVo tvo = (TrainerVo)request.getAttribute("trainervo");
 	
 //	String id = (String)session.getAttribute("id");
 //	if(id == null){
@@ -35,7 +35,7 @@
         <table id="tbwTable">
             <tr>
                 <td>작성자</td>
-                <td><input type="text" name="nickname" value="<%=tvo.getTr_nick()%>" /></td>
+                <td><input type="text" name="name" value="<%=tvo.getTr_name()%>" /></td>
             </tr>
             <tr>
                 <td>제목</td>

@@ -21,7 +21,7 @@ import DAO.TrainerDAO;
 import VO.BoardVo;
 import VO.MemberVo;
 import VO.TrainerBoardVo;
-import VO.trMemberVo;
+import VO.TrainerVo;
 
 
 //게시판 관련 기능 요청이 들어오면 호출되는 사장님(컨트롤러)
@@ -35,13 +35,13 @@ public class TrainerBoardController extends HttpServlet{
 	TrainerDAO trainerdao;
 	
 	//TrainerVo객체를 저장할 참조변수 선언
-	trMemberVo trmembervo;
+	TrainerVo trainerVo;
 	
 	@Override
 	public void init() throws ServletException {
 		trainerboarddao = new TrainerBoardDAO();
 		trainerdao = new TrainerDAO();
-		trmembervo = new trMemberVo();
+		trainerVo = new TrainerVo();
 		
 		
 	}
@@ -91,7 +91,7 @@ public class TrainerBoardController extends HttpServlet{
 	      if (action.equals("/write.bo")) {
 	    	  
 	    	  //새글 입력시 작성자에 닉네임 넣어주려고 가져오는 메소드
-	    	  trMemberVo trainervo = trainerdao.trainerOne("admin");
+	    	  TrainerVo trainervo = trainerdao.trainerOne("admin");
 				
 				//새글을 입력하는 중앙 View화면 주소 요청!
 				center = "/nbBoard/trainerboardWrite.jsp";
@@ -195,24 +195,24 @@ public class TrainerBoardController extends HttpServlet{
 				request.setAttribute("vo", vo);
 				
 				request.setAttribute("pageNum", request.getParameter("pageNum")); 
-				request.setAttribute("cb_idx", request.getParameter("cb_idx"));
+				request.setAttribute("tb_idx", request.getParameter("tb_idx"));
 				
 				nextPage = "/nbMain.jsp";
 	    	  
 	      } else if (action.equals("/download.bo")) {
 	    	  
 	    	  String fileName = request.getParameter("fileName");
-	    	  String cbidx = request.getParameter("cbidx");
-	    	  String folder = "C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+cbidx;
-//	    	  String folder = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\cb_idx"+cbidx;
+	    	  String tbidx = request.getParameter("tbidx");
+//	    	  String folder = "C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tbidx;
+	    	  String folder = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tbidx;
 	    	  String filePath = folder + "/" + fileName;
 	    	  
 	    	  trainerboarddao.downLoad(response,filePath,fileName);
 	    	  
 				return;
 	      } else if (action.equals("/tbUpdate.bo")) {
-	    	  String cb_idx = request.getParameter("cb_idx");
-	    	  TrainerBoardVo tvo = trainerboarddao.getReadPage(cb_idx);
+	    	  String tb_idx = request.getParameter("tb_idx");
+	    	  TrainerBoardVo tvo = trainerboarddao.getReadPage(tb_idx);
 	    	  request.setAttribute("tvo", tvo);
 	    	  request.setAttribute("center", "/nbBoard/trainerboardupdateWrite.jsp");
 
@@ -222,19 +222,35 @@ public class TrainerBoardController extends HttpServlet{
 	    	  
 	      } else if (action.equals("/tbUpdatePro.bo")) {
 	    	  
-	    	  String cb_idx = (String) request.getAttribute("cb_idx");
-	    	  center = request.getParameter("center");
+	    	  System.out.println("tbUpdatePro.bo호출");
+	    	  String tb_idx = (String) request.getParameter("tb_idx");
 	    	  
-				
 					try {
-						trainerboarddao.updateBoard(request,response,cb_idx);
+						trainerboarddao.updateBoard(request,response,tb_idx);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					
-					request.setAttribute("center", center);
-					  nextPage ="/nbMain.jsp";
+					out = response.getWriter();
+					out.print("<script>");
+					out.print(" alert( '글 수정 성공!' );");
+					out.print(" location.href='http://localhost:8090/TeamProject/tb/list.bo'");
+					out.print("</script>");
+					return;
+	      
+	      } else if (action.equals("/tbDelete.bo")) {
+	    	 
+	    	  String result = "";
+	    	  try {
+					result = trainerboarddao.deleteBoard(request);
+					out = response.getWriter();
+					out.write(result); //Ajax 글삭제에 성공하면 "삭제성공" 반환 , 실패하면 "삭제실패" 반환
+					return;
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 	      }
 			
 		

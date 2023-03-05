@@ -15,7 +15,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import VO.MemberVo;
-import VO.trMemberVo;
+import VO.TrainerVo;
 
 public class TrainerDAO {
 
@@ -41,8 +41,8 @@ public class TrainerDAO {
 		if(rs != null)try {rs.close();} catch (Exception e) {e.printStackTrace();}
 	}
 	
-	public trMemberVo trainerOne(String trid) {
-		trMemberVo trainervo = null;
+	public TrainerVo trainerOne(String trid) {
+		TrainerVo trainervo = null;
 		
 		try {
 	
@@ -61,21 +61,21 @@ public class TrainerDAO {
 	
 			if (rs.next()) {
 				
-				trainervo = new trMemberVo();
+				trainervo = new TrainerVo();
 				trainervo.setTr_id(rs.getString("tr_id"));
 				trainervo.setTr_name(rs.getString("tr_name"));
-				trainervo.setTr_nick(rs.getString("tr_nick"));
+//				trainervo.setTr_pw(rs.getString("tr_img"));
 				trainervo.setTr_pw(rs.getString("tr_pw"));
 				trainervo.setTr_email(rs.getString("tr_email"));
 				trainervo.setTr_hp(rs.getString("tr_hp"));
 				trainervo.setTr_birth(rs.getString("tr_birth"));
 				trainervo.setTr_gender(rs.getString("tr_gender"));
+//				trainervo.setTr_joindate(rs.getDate("tr_joindate"));
 				trainervo.setTr_address1(rs.getString("tr_address1"));
 				trainervo.setTr_address2(rs.getString("tr_address2"));
 				trainervo.setTr_address3(rs.getString("tr_address3"));
 				trainervo.setTr_address4(rs.getString("tr_address4"));
-				trainervo.setTr_num(rs.getInt("tr_num"));
-//				trainervo.setTr_joindate(rs.getDate("tr_joindate"));
+				trainervo.setTr_address4(rs.getString("tr_address5"));
 				
 			}
 			
