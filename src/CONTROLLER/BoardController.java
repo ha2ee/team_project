@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import DAO.BoardDAO;
 import DAO.FreeBoardDAO;
 import DAO.MemberDAO;
@@ -102,7 +102,7 @@ public class BoardController extends HttpServlet {
         nextPage = "/nbMain.jsp";
         break;
 //========================글 목록을 가져올 /list.fb ================================
-//========================글을 작성하는 /write.fb ================================
+//========================글을 작성하는 페이지/write.fb ===============================
       case "/write.fb":
 
         // String unknown = request.getParameter("gildong");
@@ -114,7 +114,52 @@ public class BoardController extends HttpServlet {
         request.setAttribute("center", "nbBoard/write.jsp");
         nextPage = "/nbMain.jsp";
         break;
-//========================글을 작성하는 /write.fb ================================
+//========================글을 작성하는 페이지/write.fb ===============================
+//========================글을  작성하는 작업/writePro.fb =============================
+      case "/writePro.fb":
+//      //요청한 값 얻기
+      
+//      //세션값으로 아이디 + 닉네임을 구할 것입니다.
+      String id = "inseop";
+      String nickname = "seeeop2";
+      
+//      //업로드 작업 중ㅇ...
+      String directory ="C:\\Users\\205\\Desktop\\COMEON";
+      System.out.println(directory);
+      int maxSize = 1024 * 1024 * 100;
+      String encoding = "utf-8";
+//      
+      MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
+      System.out.println("오니?");
+      String title = multipartRequest.getParameter("title");
+      String content = multipartRequest.getParameter("editor1");
+      String fileName = multipartRequest.getOriginalFileName("fileName");
+      String fileRealName = multipartRequest.getFilesystemName("file");
+//      //여기까지
+      
+
+      vo= new FreeBoardVo();
+      vo.setB_id(id);
+      vo.setB_nickname(nickname);
+      vo.setB_title(title);
+      vo.setB_content(content);
+      vo.setB_file(fileName);
+      vo.setB_REALFILE(fileRealName);
+      int result = boarddao.insertBoard(vo);
+      
+      if(result ==1) {
+        out.println("<script>");
+        out.println("alert('작성 성공!')");
+        out.println("</script>");
+      } else {
+        out.println("<script>");
+        out.println("alert('작성 실패!')");
+        out.println("</script>");
+      }
+           nextPage = "/freeboard/list.fb";
+           
+           break;
+//========================글을  작성하는 작업/writePro.fb =============================
 //====================게시글 한 줄 클릭시 글을 읽는 /read.fb =========================
       case "/read.fb":
         // //요청한 값 얻기
@@ -160,11 +205,11 @@ public class BoardController extends HttpServlet {
         int b_idx2 = Integer.parseInt(request.getParameter("b_idx"));
         String id3 = request.getParameter("id2");
 
-        int result = boarddao.checkLike(id3, b_idx2);
+        int result1 = boarddao.checkLike(id3, b_idx2);
         // int result2 = boarddao.getOnlyLikeCount(b_idx2); //FREE_BOARD에서 좋아요 다시 조회 //안먹히네
         // int result2 = boarddao.getOnlyLikeCount(b_idx2);
         
-        if (result == 1) {// 1이면 이미 테이블에 있다 == 이미 좋아요를 눌렀다.
+        if (result1 == 1) {// 1이면 이미 테이블에 있다 == 이미 좋아요를 눌렀다.
           System.out.println("이미 있네요...삭제할게요~ ㅋㅋ");
           boarddao.deleteLike(id3, b_idx2);
           int result3 = boarddao.getOnlyLikeCount(b_idx2);

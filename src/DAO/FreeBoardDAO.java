@@ -63,20 +63,9 @@ public class FreeBoardDAO {
       pstmt = con.prepareStatement(sql);
       rs = pstmt.executeQuery();
       while (rs.next()) {
-        // vo.setB_idx(rs.getInt("b_idx"));
-        // vo.setB_id(rs.getString("b_id"));
-        // vo.setB_nickname(rs.getString("b_nickname"));
-        // vo.setB_title(rs.getString("b_title"));
-        // vo.setB_content(rs.getString("b_content"));
-        // vo.setB_group(rs.getInt("b_group"));
-        // vo.setB_level(rs.getInt("b_level"));
-        // vo.setB_date(rs.getDate("b_date"));
-        // vo.setB_cnt(rs.getInt("b_cnt"));
-        // vo.setB_file(rs.getString("b_file"));
-        // vo.setB_like(rs.getInt("b_like"));
         vo = new FreeBoardVo(rs.getInt("b_idx"), rs.getString("b_id"), rs.getString("b_nickname"),
-            rs.getString("b_title"), rs.getString("b_content"), 0, 0, rs.getDate("b_date"),
-            rs.getInt("b_cnt"), rs.getString("b_file"), rs.getInt("b_like"));
+            rs.getString("b_title"), rs.getString("b_content"), rs.getDate("b_date"),
+            rs.getInt("b_cnt"), rs.getString("b_file"),rs.getString("b_realfile") ,rs.getInt("b_like"));
         list.add(vo);
       }
 
@@ -200,11 +189,10 @@ public class FreeBoardDAO {
                               rs.getString("b_nickname"), 
                               rs.getString("b_title"), 
                               rs.getString("b_content"), 
-                              0, 
-                              0,
                               rs.getDate("b_date"), 
                               rs.getInt("b_cnt"), 
                               rs.getString("b_file"), 
+                              rs.getString("b_realfile"),
                               rs.getInt("b_like")
                                          );
         list.add(vo);
@@ -269,7 +257,7 @@ public class FreeBoardDAO {
     try {
       con = ds.getConnection();
 
-      String sql = "SELECT * FROM LIKE_TABLE WHERE FREE_BOARD_B_ID= ? AND FREEBOARD_B_IDX = ? ";
+      String sql = "SELECT * FROM LIKE_TABLE WHERE FREEBOARD_B_ID= ? AND FREEBOARD_B_IDX = ? ";
       pstmt = con.prepareStatement(sql);
       pstmt.setString(1, sessionId);
       pstmt.setInt(2, b_idx);
@@ -375,5 +363,32 @@ public class FreeBoardDAO {
       closeResource();
     }
   }//deleteLike 끝
-
+//====================좋아요 버튼 눌렀을 시, like_board에서 행 삭제 ====================
+//====================write.jsp에서 글을 작성한 뒤, 테이블에 담는다. ====================
+  public int insertBoard(FreeBoardVo vo) {
+    int result = 0 ;
+    try {
+      con = ds.getConnection();
+      
+      String sql = "INSERT INTO FREE_BOARD VALUES(FREEBOARD_SEQ.NEXTVAL,?,?,?,?,SYSDATE,0,?,0,?)";
+      pstmt = con.prepareStatement(sql);
+      pstmt.setString(1, vo.getB_id());
+      pstmt.setString(2, vo.getB_nickname());
+      pstmt.setString(3, vo.getB_title());
+      pstmt.setString(4, vo.getB_content());
+      pstmt.setString(5, vo.getB_file());
+      pstmt.setString(6, vo.getB_REALFILE());
+      result = pstmt.executeUpdate();
+      System.out.println(result);
+      
+    } catch (Exception e) {
+      System.out.println("insertBoard 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
+      e.printStackTrace();
+    } finally {
+      closeResource();
+    }
+    
+    return result;
+  }
+//====================write.jsp에서 글을 작성한 뒤, 테이블에 담는다. ====================
 }
