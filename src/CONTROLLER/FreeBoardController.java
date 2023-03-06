@@ -123,7 +123,7 @@ public class FreeBoardController extends HttpServlet {
       String nickname = "seeeop2";
       
 //      //업로드 작업 중ㅇ...
-      String directory ="C:\\Users\\hutos\\OneDrive\\Desktop\\upload";
+      String directory ="/Users/inseop/Desktop/팀프로젝트/upload";
       System.out.println(directory);
       int maxSize = 1024 * 1024 * 100;
       String encoding = "utf-8";

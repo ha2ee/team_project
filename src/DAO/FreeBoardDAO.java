@@ -163,7 +163,7 @@ public class FreeBoardDAO {
 
         sql = "select * from free_board " + " where b_title like '%" + word + "%' "
             + " or b_content like '%" + word + "%' order by b_idx asc";
-      } else {// 검색 기준값 작성자를 선택했다면?
+      } else if(key.equals("nickname")) {// 검색 기준값 작성자를 선택했다면?
 
         sql = "select * from free_board where b_nickname like '%" + word + "%' order by b_idx asc";
       }
@@ -226,7 +226,7 @@ public class FreeBoardDAO {
       }else {//"name" 검색기준값 작성자를 선택했다면?
       
         sql = "select count(*) as cnt from free_board "
-          + " where b_name like '%"+ word + "%'";       
+          + " where b_nickname like '%"+ word + "%'";       
       }
       
     }else {//검색어 입력 안했아면?
