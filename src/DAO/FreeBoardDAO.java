@@ -221,28 +221,46 @@ public class FreeBoardDAO {
   }
 //============================특정 글 검색=========================================
 //=================특정 글 검색 후 목록에 나타낼 게시글 수==============================
-  public int getTotalRecordserch(String key, String word) {
-    int count = 0;
+  public int getTotalRecord(String key, String word) {
+    String sql = null;
+    
+    //조회된 글의 글수 저장
+    int total = 0;
+    
+    if(!word.equals("")) {//검색어를 입력했다면?
+      
+      if(key.equals("titleContent")) {//검색기준값  제목+내용을 선택했다면? 
+      
+        sql = "select count(*) as cnt from free_board "
+          + " where b_title like '%"+ word + "%' or"
+              + " b_content like '%"+ word+"%'";
+      
+      }else {//"name" 검색기준값 작성자를 선택했다면?
+      
+        sql = "select count(*) as cnt from free_board "
+          + " where b_name like '%"+ word + "%'";       
+      }
+      
+    }else {//검색어 입력 안했아면?
+      
+      sql = "select count(*) as cnt from free_board";
+    }
+      
     try {
       con = ds.getConnection();
-
-      String sql = "SELECT COUNT(*) FROM FREE_BOARD";
-
       pstmt = con.prepareStatement(sql);
       rs = pstmt.executeQuery();
-
-      if (rs.next()) {
-        count = rs.getInt(1);
-      }
-
-    } catch (Exception e) {
-      System.out.println("getTotalRecord 메소드에서 에러가 발생하였습니다. 이유는 ? --> " + e);
+      rs.next();
+      total = rs.getInt("cnt");
+       
+    }catch (Exception e) {
+      System.out.println("getTotalRecord메소드에서 오류");
       e.printStackTrace();
-    } finally {
+    }finally {
       closeResource();
     }
-
-    return count;
+  
+    return total;
   }
 //=================특정 글 검색 후 목록에 나타낼 게시글 수==============================
 //========================좋아요 수 몇개인지 확인=====================================
@@ -251,7 +269,7 @@ public class FreeBoardDAO {
     try {
       con = ds.getConnection();
 
-      String sql = "SELECT * FROM LIKE_TABLE WHERE FREEBOARD_B_ID= ? AND FREEBOARD_B_IDX = ? ";
+      String sql = "SELECT * FROM LIKE_TABLE WHERE FREE_BOARD_B_ID= ? AND FREEBOARD_B_IDX = ? ";
       pstmt = con.prepareStatement(sql);
       pstmt.setString(1, sessionId);
       pstmt.setInt(2, b_idx);

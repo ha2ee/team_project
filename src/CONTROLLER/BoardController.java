@@ -143,7 +143,7 @@ public class BoardController extends HttpServlet {
 
         // //요청한 값을 이용해 응답할 값 마련(글 조회)
         list = boarddao.boardList(key, word);
-        count = boarddao.getTotalRecordserch(key, word);
+        count = boarddao.getTotalRecord(key, word);
         System.out.println("list : " + list);
         System.out.println("count : " + count);
         
