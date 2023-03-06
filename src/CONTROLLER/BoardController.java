@@ -144,7 +144,7 @@ public class BoardController extends HttpServlet {
       vo.setB_title(title);
       vo.setB_content(content);
       vo.setB_file(fileName);
-      vo.setB_REALFILE(fileRealName);
+      vo.setB_realfile(fileRealName);
       int result = boarddao.insertBoard(vo);
       
       if(result ==1) {

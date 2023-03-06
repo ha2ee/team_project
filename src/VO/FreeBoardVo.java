@@ -10,13 +10,13 @@ public class FreeBoardVo {
 	private String b_id,b_nickname,b_title,b_content;
 	private Date b_date;
 	private int b_cnt;
-	private String b_file,b_REALFILE;
+	private String b_file,b_realfile;
 	private int b_like;
 	
 	public FreeBoardVo() {}
 
   public FreeBoardVo(int b_idx, String b_id, String b_nickname, String b_title, String b_content,
-      Date b_date, int b_cnt, String b_file, String b_REALFILE, int b_like) {
+      Date b_date, int b_cnt, String b_file, String b_realfile, int b_like) {
     super();
     this.b_idx = b_idx;
     this.b_id = b_id;
@@ -26,7 +26,7 @@ public class FreeBoardVo {
     this.b_date = b_date;
     this.b_cnt = b_cnt;
     this.b_file = b_file;
-    this.b_REALFILE = b_REALFILE;
+    this.b_realfile = b_realfile;
     this.b_like = b_like;
   }
 
@@ -94,12 +94,12 @@ public class FreeBoardVo {
     this.b_file = b_file;
   }
 
-  public String getB_REALFILE() {
-    return b_REALFILE;
+  public String getB_realfile() {
+    return b_realfile;
   }
 
-  public void setB_REALFILE(String b_REALFILE) {
-    this.b_REALFILE = b_REALFILE;
+  public void setB_realfile(String b_realfile) {
+    this.b_realfile = b_realfile;
   }
 
   public int getB_like() {
