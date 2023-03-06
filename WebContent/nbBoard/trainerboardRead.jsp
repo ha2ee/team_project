@@ -143,7 +143,7 @@ div.filedownload {
 				<c:set value="${fn:split(imageUrl, '/')}" var="imageNameTemp" />
 				<c:set var="imageName" value="${imageNameTemp[fn:length(imageNameTemp)-1]}"/>
 				<a href="${imageUrls}" download="${imageName}"  class="download" >${imageName}</a>&nbsp;&nbsp;
-			</c:forEach>
+			</c:forEach> 
 		</c:if>
 		<%--CKEDITOR로 입력한 이미지 다운로드 링크생성 끝 --%>
 	</div>
