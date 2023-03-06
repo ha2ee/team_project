@@ -127,12 +127,12 @@ div.filedownload {
 	<c:choose>
 		<c:when test="${vo.tb_level==0}">
 			<c:if test="${not empty vo.tb_file}">
-			<a href="<%=contextPath%>/tb/download.bo?tbidx=<%=tb_idx%>&fileName=<%=file%>" class="download">&nbsp;&nbsp;<%=file%></a>&nbsp;&nbsp;
+			<a href="<%=contextPath%>/tb/download.bo?tbidx=<%=tb_idx%>&fileName=<%=file%>" class="download"><%=file%></a>&nbsp;&nbsp;
 			</c:if>
 		</c:when>
 		<c:when test="${vo.tb_level>0}"> 
 			<c:if test="${not empty vo.tb_file}">
-			<a href="<%=contextPath%>/uploadFile/TrainerBoardFile/reply_tb_idx${vo.tb_idx}/<%=file%>" download class="download">&nbsp;&nbsp;<%=file%></a>&nbsp;&nbsp;
+			<a href="<%=contextPath%>/uploadFile/TrainerBoardFile/reply_tb_idx${vo.tb_idx}/<%=file%>" download class="download"><%=file%></a>&nbsp;&nbsp;
 			</c:if>
 		</c:when>
 	</c:choose>
