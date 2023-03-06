@@ -45,6 +45,19 @@
 		.board-table td:nth-child(2) a:hover {
 		  color: #f44336;
 		}
+		
+		#newContent {
+		  float : right;
+		  position : relative;
+		  top : 10px;
+		  background-color: #f44336;
+		  color: white;
+		  border: none;
+		  padding: 10px;
+		  font-size: 16px;
+		  font-weight: bold;
+		  cursor: pointer;
+		}
    
     </style>
     
@@ -75,8 +88,7 @@
             <input type="button" value="글쓰기" onclick="writeForm()">
         </c:if>    
     </div> --%>
-<%--      <input type ="button" id="newContent" onclick="location.href='<%=contextPath%>/tb/write.bo?nowPage=<%=nowPage%>&nowBlock=<%=nowBlock%>'"value = "글쓰기"> --%>
-     <input type ="button" id="newContent" onclick="location.href='<%=contextPath%>/tb/write.bo'"value = "글쓰기">
+     
     
     <!-- 게시글 목록 부분 -->
     <br>
@@ -111,6 +123,7 @@
             </tr>
         </c:forEach>
         </table>
+        <input type ="button" id="newContent" onclick="location.href='<%=contextPath%>/tb/write.bo'"value = "글쓰기">
     </div>
     
     <!-- 페이지 넘버 부분 -->

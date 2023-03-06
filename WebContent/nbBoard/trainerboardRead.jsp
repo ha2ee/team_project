@@ -42,10 +42,14 @@
 		border-top: 1px solid #ddd;
 		border-bottom: 1px solid #ddd;
 		width:1200px;
+		padding: 20px;
+
 		}
 		
 		.post {
 		border-bottom: 1px solid #ddd;
+		background-color: #fffff;
+		
 		}
 		
 		.post-title {
@@ -58,16 +62,46 @@
 		}
 		
 		.post-body {
+		text-align : left;
 		  line-height: 1.5;
+		  
 		}
 		
-		.post-header {
-		display:flex;
-		justify-content: space-between;
-		align-items : flex-end;
-		border-bottom: 1px solid #ddd;
-		}
+.post-header {
+	display:flex;
+	justify-content: space-between;
+	align-items : flex-end;
+	border-bottom: 1px solid #ddd;
+	background-color: #fafafa;
+}
 		
+.post-buttons {
+	position: relative;
+	text-align: right;
+	padding-top: 40px;
+	padding-bottom: 20px;
+}
+.post-buttons input[type="button"] {
+	display: inline-block;
+	margin-left: 10px;
+	padding: 8px 20px;
+	border-radius: 20px;
+	border : none;
+	color : white;
+	background-color: #EDAF8C;
+}
+
+a.download {
+  color: #000000;
+}
+
+div.filedownload {
+	position : relative;
+	top : 20px;
+	border: 1px solid #ddd;
+	padding: 20px;
+	font-size: 16px;
+}
 		
     </style>
 </head>
@@ -85,18 +119,20 @@
 	          <p><%out.print(content);%></p>
 	        </div>
 	      </div>
-	</div>
-	<div align="center">다운로드:
+	
+	<c:if test="${not empty vo.tb_file || not empty imageUrls}">
+	<div align="left" class="filedownload">첨부파일<br>
+
 	<%-- 다운로드할 폴더번호 경로와 다운로드 할 파일명 전달 --%>
 	<c:choose>
 		<c:when test="${vo.tb_level==0}">
 			<c:if test="${not empty vo.tb_file}">
-			<a href="<%=contextPath%>/tb/download.bo?tbidx=<%=tb_idx%>&fileName=<%=file%>">&nbsp;&nbsp;<%=file%></a>&nbsp;&nbsp;
+			<a href="<%=contextPath%>/tb/download.bo?tbidx=<%=tb_idx%>&fileName=<%=file%>" class="download">&nbsp;&nbsp;<%=file%></a>&nbsp;&nbsp;
 			</c:if>
 		</c:when>
 		<c:when test="${vo.tb_level>0}"> 
 			<c:if test="${not empty vo.tb_file}">
-			<a href="<%=contextPath%>/uploadFile/TrainerBoardFile/reply_tb_idx${vo.tb_idx}/<%=file%>" download="${vo.tb_idx}">&nbsp;&nbsp;<%=file%></a>&nbsp;&nbsp;
+			<a href="<%=contextPath%>/uploadFile/TrainerBoardFile/reply_tb_idx${vo.tb_idx}/<%=file%>" download class="download">&nbsp;&nbsp;<%=file%></a>&nbsp;&nbsp;
 			</c:if>
 		</c:when>
 	</c:choose>
@@ -106,13 +142,14 @@
 				<c:set var="imageUrl" value="${imageUrls}"/>
 				<c:set value="${fn:split(imageUrl, '/')}" var="imageNameTemp" />
 				<c:set var="imageName" value="${imageNameTemp[fn:length(imageNameTemp)-1]}"/>
-				<a href="${imageUrls}" download="${imageName}">${imageName}</a>&nbsp;&nbsp;
+				<a href="${imageUrls}" download="${imageName}"  class="download" >${imageName}</a>&nbsp;&nbsp;
 			</c:forEach>
 		</c:if>
 		<%--CKEDITOR로 입력한 이미지 다운로드 링크생성 끝 --%>
 	</div>
+  	</c:if>
     	
-    <div style="text-align: center;">
+    <div class="post-buttons">
 		<input type="button" value="목록으로" onclick="location.href='list.bo?page=${pageNum}'" id="list" />
         <!-- 수정,삭제는 세션아이디와 조회한 글의 작성자아이디가 동일할때만 노출시키기 필요 -->
         <input type="button" value="수정하기" onclick="location.href='tbUpdate.bo?tb_idx=${tb_idx}'" />
@@ -120,7 +157,7 @@
         <!-- 답글달기는 세션아이디가 MEMBER_TRAINER에 포함되어있는 경우에만 나타나도록 조건필요 -->
         <input type="button" value="답글달기" onclick="location.href='tbReply.bo?tb_idx=${tb_idx}&center=/nbBoard/trainerboardReply.jsp'" id="reply"/>        
     </div>
-    
+    </div>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>    
 <script type="text/javascript">
 //삭제하기를 눌렀을때 ajax로 삭제 처리하기
