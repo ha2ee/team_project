@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import DAO.BoardDAO;
 import DAO.FreeBoardDAO;
 import DAO.MemberDAO;
 import VO.FreeBoardVo;
@@ -23,7 +22,7 @@ import VO.MemberVo;
 
 // 게시판 관련 기능 요청이 들어오면 호출되는 사장님(컨트롤러)
 @WebServlet("/freeboard/*")
-public class BoardController extends HttpServlet {
+public class FreeBoardController extends HttpServlet {
 
   // FreeBoardDAO객체를 저장할 참조변수 선언
   FreeBoardDAO boarddao;
@@ -124,7 +123,7 @@ public class BoardController extends HttpServlet {
       String nickname = "seeeop2";
       
 //      //업로드 작업 중ㅇ...
-      String directory ="C:\\Users\\205\\Desktop\\COMEON";
+      String directory ="C:\\Users\\hutos\\OneDrive\\Desktop\\upload";
       System.out.println(directory);
       int maxSize = 1024 * 1024 * 100;
       String encoding = "utf-8";
