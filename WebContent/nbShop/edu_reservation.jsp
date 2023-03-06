@@ -152,7 +152,7 @@
 				<div id = "pet_check">
 					<a id ="petcheck1" class = btn >반려견 정보 추가하기</a>
 					<a id ="petcheck2" class = btn onclick="openChild()">반려견 정보 가져오기</a>
-					<input type="hidden" id="pInput" value="<%=id_%>"/>
+					<input type="hidden" id="pInput" name="id" value="<%=id_%>"/>
 				</div>
 				<div id = "pet_name_box">
 					<a id="pet_img_name" type= "text">반려견 사진</a>
@@ -303,8 +303,6 @@ function openChild() {
 			$("#pet_info_box").css("display", "block");
 			$("#pet_op_box").css("display", "block");
 			
-			openWindow.document.getElementById("cInput").value = document.getElementById("pInput").value;
-
 		})
 		
 		

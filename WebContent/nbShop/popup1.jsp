@@ -128,7 +128,6 @@
 <form method = "post" action ="" >
 	
 <!-- 	edu_reservation에서 가져온 값들을 다시 넘겨 주기 -->
-	<input type="hidden" name = "id" id="cInput">
 	<input type="hidden" name ="date1" value="<%=tr_date1 %>" />
 	<input type="hidden" name ="date2" value="<%=tr_date2 %>" />
 	<input type="hidden" name ="date3" value="<%=tr_date3 %>" />

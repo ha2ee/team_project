@@ -2,6 +2,7 @@ package CONTROLLER;
 
 import java.io.IOException;
 
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,8 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.io.File;
 
-import com.oreilly.servlet.multipart.*;
-import com.oreilly.servlet.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -179,12 +178,12 @@ public class BoardController extends HttpServlet{
 			int maxSize = 1024 * 1024 * 100;
 			String encoding = "utf-8";
 //			
-			MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
+//			MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
 			System.out.println("오니?");
-			String title = multipartRequest.getParameter("title");
-			String content = multipartRequest.getParameter("editor1");
-			String fileName = multipartRequest.getOriginalFileName("fileName");
-			String fileRealName = multipartRequest.getFilesystemName("file");
+//			String title = multipartRequest.getParameter("title");
+//			String content = multipartRequest.getParameter("editor1");
+//			String fileName = multipartRequest.getOriginalFileName("fileName");
+//			String fileRealName = multipartRequest.getFilesystemName("file");
 //			//여기까지
 			
 //			int articleNO = 0;//글번호 폴더를 생성하기 위해 글번호를 받아 저장할 변수 
@@ -204,21 +203,21 @@ public class BoardController extends HttpServlet{
 //				fileName = "파일없음";
 //			}
 
-			vo= new FreeBoardVo(id, nickname, title, content, fileName);
-			int result = boarddao.insertBoard(vo);
+//			vo= new FreeBoardVo(id, nickname, title, content, fileName);
+//			int result = boarddao.insertBoard(vo);
 //			
-			if(result ==1) {
-				out.println("<script>");
-				out.println("alert('작성 성공!')");
-				out.println("</script>");
-			} else {
-				out.println("<script>");
-				out.println("alert('작성 실패!')");
-				out.println("</script>");
-			}
-	         nextPage = "/freeboard/list.fb";
-	         
-	         break;
+//			if(result ==1) {
+//				out.println("<script>");
+//				out.println("alert('작성 성공!')");
+//				out.println("</script>");
+//			} else {
+//				out.println("<script>");
+//				out.println("alert('작성 실패!')");
+//				out.println("</script>");
+//			}
+//	         nextPage = "/freeboard/list.fb";
+//	         
+//	         break;
 			
 //		// 게시판에서 제목을 클릭해서 내용을 보려고 할때
 		case "/read.fb":	
