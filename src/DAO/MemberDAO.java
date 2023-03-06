@@ -359,26 +359,23 @@ public class MemberDAO {
 	}
 	
 	//일반회원 정보 수정
-	public int memUpdate(String up_id,String up_pw,String up_nick,String up_name,String up_hp,String up_birth,String up_email,String up_gender,String up_address1,String up_address2,String up_address3,String up_address4,String up_address5) {
+	public int memUpdate(String up_id, String up_pw,String up_nick,String up_hp,String up_email,String up_img,String up_address1,String up_address2,String up_address3,String up_address4,String up_address5) {
 		
 		int mem_UpResult = 0; //
-		
+
 		try {
 			con = ds.getConnection();
 			
-			String query = "update YS_MEMBER set MEM_NAME='" + up_name + "',"
-						                     + " MEM_NICK='" + up_nick + "'"
-						                     + " MEM_PW='" + up_pw + "'"
-						                     + " MEM_EMAIL='" + up_email + "'"
-						                     + " MEM_HP='" + up_hp + "'"
-						                     + " MEM_BIRTH='" + up_birth + "'"
-						                     + " MEM_GENDER='" + up_gender + "'"
-				  						     + " address1='" + up_address1 + "'"
-										 	 + " address2='" + up_address2 + "'"
-										 	 + " address3='" + up_address3 + "'"
-										 	 + " address4='" + up_address4 + "'"
-										 	 + " address5='" + up_address5 + "'"
-						                     + " where MEM_ID ='"+ up_id +"'";
+			String query = "update YS_MEMBER set MEM_NICK='" + up_nick + "',"
+						                     + " MEM_PW='" + up_pw + "',"
+						                     + " MEM_EMAIL='" + up_email + "',"
+						                     + " MEM_HP='" + up_hp + "',"
+				  						     + " MEM_ADDRESS1='" + up_address1 + "',"
+										 	 + " MEM_ADDRESS2='" + up_address2 + "',"
+										 	 + " MEM_ADDRESS3='" + up_address3 + "',"
+										 	 + " MEM_ADDRESS4='" + up_address4 + "',"
+										 	 + " MEM_ADDRESS5='" + up_address5 + "'"
+						                     + " WHERE MEM_ID ='"+ up_id +"'";
 			
 			
 			pstmt = con.prepareStatement(query);
@@ -403,26 +400,22 @@ public class MemberDAO {
 	}
 	
 	//트레이너 정보 수정
-	public int trUpdate(String up_id,String up_pw,String up_nick,String up_name,String up_hp,String up_birth,String up_email,String up_gender,String up_address1,String up_address2,String up_address3,String up_address4,String up_address5) {
+	public int trUpdate(String up_id ,String up_pw, String up_hp, String up_email, String up_img, String up_address1, String up_address2, String up_address3, String up_address4, String up_address5) {
 		
 		int tr_UpResult = 0; //
 		
 		try {
 			con = ds.getConnection();
 			
-			String query = "update MEMBER_TRAINER set TR_NAME='" + up_name + "',"
-												  + " TR_NICK='" + up_nick + "'"
-												  + " TR_PW='" + up_pw + "'"
-												  + " TR_EMAIL='" + up_email + "'"
-												  + " TR_HP='" + up_hp + "'"
-												  + " TR_BIRTH='" + up_birth + "'"
-												  + " TR_GENDER='" + up_gender + "'"
-            					   				  + " address1='" + up_address1 + "'"
-            					   				  + " address2='" + up_address2 + "'"
-            					   				  + " address3='" + up_address3 + "'"
-            					   				  + " address4='" + up_address4 + "'"
-            					   				  + " address5='" + up_address5 + "'"
-												  + " where TR_ID ='"+ up_id +"'";
+			String query = "update MEMBER_TRAINER set TR_PW='" + up_pw + "',"
+												  + " TR_EMAIL='" + up_email + "',"
+												  + " TR_HP='" + up_hp + "',"
+            					   				  + " TR_ADDRESS1='" + up_address1 + "',"
+            					   				  + " TR_ADDRESS2='" + up_address2 + "',"
+            					   				  + " TR_ADDRESS3='" + up_address3 + "',"
+            					   				  + " TR_ADDRESS4='" + up_address4 + "',"
+            					   				  + " TR_ADDRESS5='" + up_address5 + "'"
+												  + " WHERE TR_ID ='"+ up_id +"'";
 
 			
 			pstmt = con.prepareStatement(query);
@@ -676,7 +669,7 @@ public class MemberDAO {
 	   }
 
 		
-	public MemberVo memRead(String mem_id) {
+	public MemberVo memRead(String memberid) {
 			
 			String sql = "select * from YS_MEMBER where mem_id=?";
 			
@@ -685,26 +678,45 @@ public class MemberDAO {
 					con = ds.getConnection();
 								
 					pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, mem_id);
+					pstmt.setString(1, memberid);
 					
 					rs = pstmt.executeQuery();
-					System.out.println(rs.getString("mem_name"));
 					if(rs.next()) {				
-								mem_vo = new MemberVo();
-										 mem_vo.setSting(rs.getString("mem_name"));
-										 mem_vo.setSting(rs.getString("mem_nick"));
-										 mem_vo.setSting(rs.getString("mem_img"));
-										 mem_vo.setSting(rs.getString("mem_email"));
-										 mem_vo.setSting(rs.getString("mem_hp"));
-										 mem_vo.setSting(rs.getString("mem_birth"));
-										 mem_vo.setSting(rs.getString("mem_gender"));
-										 mem_vo.setSting(rs.getString("mem_address1"));
-										 mem_vo.setSting(rs.getString("mem_address2"));
-										 mem_vo.setSting(rs.getString("mem_address3"));
-										 mem_vo.setSting(rs.getString("mem_address4"));
-										 mem_vo.setSting(rs.getString("mem_address5"));
-								
-					}					
+
+							mem_vo = new MemberVo();
+										 mem_vo.setMem_name(rs.getString("mem_name"));
+										 mem_vo.setMem_nick(rs.getString("mem_nick"));
+										 mem_vo.setMem_img(rs.getString("mem_img"));
+										 mem_vo.setMem_email(rs.getString("mem_email"));
+										 mem_vo.setMem_hp(rs.getString("mem_hp"));
+										 mem_vo.setMem_birth(rs.getString("mem_birth"));
+										 mem_vo.setMem_gender(rs.getString("mem_gender"));
+										 mem_vo.setMem_pet(rs.getString("mem_pet"));
+										 mem_vo.setMem_address1(rs.getString("mem_address1"));
+										 mem_vo.setMem_address2(rs.getString("mem_address2"));
+										 mem_vo.setMem_address3(rs.getString("mem_address3"));
+										 mem_vo.setMem_address4(rs.getString("mem_address4"));
+										 mem_vo.setMem_address5(rs.getString("mem_address5"));
+										
+					}else {
+							mem_vo = new MemberVo();
+										 mem_vo.setMem_name("");
+										 mem_vo.setMem_nick("");
+										 mem_vo.setMem_img("");
+										 mem_vo.setMem_email("");
+										 mem_vo.setMem_hp("");
+										 mem_vo.setMem_birth("");
+										 mem_vo.setMem_gender("");
+										 mem_vo.setMem_pet("");
+										 mem_vo.setMem_address1("");
+										 mem_vo.setMem_address2("");
+										 mem_vo.setMem_address3("");
+										 mem_vo.setMem_address4("");
+										 mem_vo.setMem_address5("");
+						
+						
+					}
+					
 			}catch(Exception e) {
 				
 				System.out.println("memRead메소드 내부에서 SQL오류");
@@ -718,7 +730,62 @@ public class MemberDAO {
 	
 
 			
+	public TrainerVo trRead(String memberid) {
+
+		String sql = "select * from MEMBER_TRAINER where tr_id=?";
+		
+		TrainerVo tr_vo = null;
+		try {
+			con = ds.getConnection();
 			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberid);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {				
+				tr_vo = new TrainerVo();
+				tr_vo.setTr_name(rs.getString("tr_name"));
+				tr_vo.setTr_img(rs.getString("tr_img"));
+				tr_vo.setTr_email(rs.getString("tr_email"));
+				tr_vo.setTr_hp(rs.getString("tr_hp"));
+				tr_vo.setTr_birth(rs.getString("tr_birth"));
+				tr_vo.setTr_gender(rs.getString("tr_gender"));
+				tr_vo.setTr_address1(rs.getString("tr_address1"));
+				tr_vo.setTr_address2(rs.getString("tr_address2"));
+				tr_vo.setTr_address3(rs.getString("tr_address3"));
+				tr_vo.setTr_address4(rs.getString("tr_address4"));
+				tr_vo.setTr_address5(rs.getString("tr_address5"));
+				
+				
+			}else {
+				
+				tr_vo = new TrainerVo();
+				tr_vo.setTr_name(""); 
+				tr_vo.setTr_img("");
+				tr_vo.setTr_email("");
+				tr_vo.setTr_hp("");
+				tr_vo.setTr_birth("");
+				tr_vo.setTr_gender("");
+				tr_vo.setTr_address1("");
+				tr_vo.setTr_address2("");
+				tr_vo.setTr_address3("");
+				tr_vo.setTr_address4("");
+				tr_vo.setTr_address5("");
+				
+				
+			}
+				
+		}catch(Exception e) {
+			
+			System.out.println("trRead메소드 내부에서 SQL오류");
+			e.printStackTrace();	
+			
+		}finally {
+			closeResource();
+		}
+		return tr_vo;
+	}		
 		
 		
 		

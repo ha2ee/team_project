@@ -21,6 +21,7 @@ import VO.MemberVo;
 import VO.TrainerVo;
 import VO.nbOrderVo;
 import VO.nbTrOrderVo;
+import VO.trMemberVo;
 
 @WebServlet("/member/*")
 public class MemberController extends HttpServlet {
@@ -290,20 +291,23 @@ public class MemberController extends HttpServlet {
 		} else if (action.equals("/change.me")) {
 			
 			HttpSession session = request.getSession();
-			String memberid		= (String)session.getAttribute("id");
+			String memberid	= (String)session.getAttribute("id");
 			
 			System.out.println("MemberController -> change.me 호출!");
-			
 			MemberVo mem_vo = memberdao.memRead(memberid);
-			TrainerVo tr_vo = trainerdao.trRead(memberid);
+
+			TrainerVo tr_vo = memberdao.trRead(memberid);
 			
 			// 중앙화면 주소 바인딩
 			request.setAttribute("center", "nbMember/change.jsp");
 			request.setAttribute("mem_vo", mem_vo);
-			
+			request.setAttribute("tr_vo", tr_vo);
 			// 전체 메인화면 주소 저장
 			nextPage = "/nbMain.jsp";
-
+			
+		
+			
+			
 			// # 4-1) "회원 정보 삭제" 요청 했을 때,
 		} else if (action.equals("/delete.me")) {
 
@@ -329,32 +333,28 @@ public class MemberController extends HttpServlet {
 		} else if (action.equals("/updateInfo.me")) {
 
 			System.out.println("nbMemberController -> /updateInfo.me 요청!");
-
+			
 			String up_id = request.getParameter("id");
 			String up_pw = request.getParameter("pw");
 			String up_nick = request.getParameter("nick");
-			String up_name = request.getParameter("name");
 			String up_hp = request.getParameter("hp");
-			String up_birth = request.getParameter("birth");
 			String up_email = request.getParameter("email");
-			String up_gender = request.getParameter("gender");
+			String up_img = request.getParameter("img");
 			String up_address1 = request.getParameter("address1");
 			String up_address2 = request.getParameter("address2");
 			String up_address3 = request.getParameter("address3");
 			String up_address4 = request.getParameter("address4");
 			String up_address5 = request.getParameter("address5");
 
-			int up_MemResult = memberdao.memUpdate(up_id, up_pw, up_nick, up_name, up_hp, up_birth, up_email, up_gender, up_address1, up_address2, up_address3, up_address4, up_address5);
-		
-			int up_TrResult = memberdao.trUpdate(up_id, up_pw, up_nick, up_name, up_hp, up_birth, up_email, up_gender, up_address1, up_address2, up_address3, up_address4, up_address5);
+			int up_MemResult = memberdao.memUpdate(up_id, up_pw, up_nick, up_hp, up_email, up_img, up_address1, up_address2, up_address3, up_address4, up_address5);
+			System.out.println("일반회원 :" + up_MemResult);
+			int up_TrResult = memberdao.trUpdate(up_id ,up_pw, up_hp, up_email, up_img, up_address1, up_address2, up_address3, up_address4, up_address5);
+			System.out.println("트레이너 :" + up_TrResult);
 			
-/*			int up_MemAddResult = memberdao.memAddUpdate(up_id, up_address1, up_address2, up_address3, up_address4,
-					up_address5);
-			int up_TrAddResult = memberdao.trAddUpdate(up_id, up_address1, up_address2, up_address3, up_address4,
-					up_address5);
-*/
+
 			if (up_MemResult == 1 || up_TrResult ==1 ) {
 				out.write("수정 성공");
+				
 				return;
 
 			} else if (up_MemResult == 0 || up_TrResult == 0) {
@@ -365,6 +365,7 @@ public class MemberController extends HttpServlet {
 			// 전체 메인화면 주소 저장
 			nextPage = "/nbMain.jsp";
 
+			
 		} else if (action.equals("/joinIdCheck.me")) {
 				//입력한 아이디 얻기
 				String id = request.getParameter("id");

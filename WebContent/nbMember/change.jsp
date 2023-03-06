@@ -13,6 +13,7 @@
 	MemberVo mem_vo = (MemberVo)request.getAttribute("mem_vo");
 	
 	String mem_nick = mem_vo.getMem_nick();
+	String mem_pw = mem_vo.getMem_pw();
 	String mem_name = mem_vo.getMem_name();
 	String mem_hp = mem_vo.getMem_hp();
 	String mem_birth = mem_vo.getMem_birth();
@@ -27,6 +28,7 @@
 	
 	TrainerVo tr_vo = (TrainerVo)request.getAttribute("tr_vo");
 	
+	String tr_pw = tr_vo.getTr_pw();
 	String tr_name = tr_vo.getTr_name();
 	String tr_hp = tr_vo.getTr_hp();
 	String tr_birth = tr_vo.getTr_birth();
@@ -159,7 +161,7 @@
 </style>
 </head>
 <body>
-<form action="<%=contextPath%>/nb_member/changeInfor.me" class="form">	
+<form action="<%=contextPath%>/member/updateInfo.me" class="form" >	
 	<div>
 		<div align="center" ><!-- class="row justify-content-left" -->
 			<h1>회원정보 관리 </h1>
@@ -186,12 +188,13 @@
 				</div>
 					
 				<div class="heigthD" style="margin-left: 40px;">
-					<label><strong>&nbsp;새로운 비밀번호</strong></label><br><br> 
+					<label><strong>&nbsp;비밀번호</strong></label><br><br> 
 					<input type="password" 
 						   id="pass" 
 						   name="pass"
 						   class="form-control"
-						   placeholder="영어,숫자,특수문자를 호함하여 8~20자로 작성하여주세요."> 
+						   placeholder="영어,숫자,특수문자를 호함하여 8~20자로 작성하여주세요." 
+						   value="<%=mem_pw + tr_pw %>">
 					<p id="passInput" style="margin-top:-5px;"></p>
 				</div>						
 			</div>
@@ -214,6 +217,7 @@
 						   id="checkpass" 
 						   name="checkpass"
 						   class="form-control"
+						   value="<%=mem_pw + tr_pw %>"
 						   placeholder="비밀번호를  재입력 하세요."> 
 					<p id="checkpassInput"></p>
 				</div>						
@@ -268,16 +272,14 @@
 				<div class="heigthD" >
 					<%-- name속성값 address1 부터 ~~ address5 까지 입력되어 있는 주소를 모두 합쳐서 DB에 address열에  INSERT 하자. --%>
 					<label><strong>&nbsp;주소</strong></label><br><br>	
-					<input type="text" id="sample4_postcode" name="address1" class="form-control" placeholder="우편번호" readonly><br><br>	
+					<input type="text" id="sample4_postcode" name="address1" class="form-control" placeholder="우편번호" value="<%=mem_address1 + tr_address1%>" readonly><br><br>	
 				</div>	
 				<div class="join">
 					<div style="margin-left: 30px; width: 120px; height: 90px;">
 						<label><strong>&nbsp;&nbsp;성별</strong></label><br>
-							<select class="gender" name="gender" id="gender" style="width:90px;height:38px;" value="<%=mem_address1 + tr_address1 %>"disabled>
-								<option>선택</option>
-								<option>남자</option>
-								<option>여자</option>
-							</select>
+							<input class="gender" name="gender" id="gender" style="width:90px;height:38px;"  value="<%=mem_gender + tr_gender%>" readonly >
+							
+							</input>
 						
 					</div>
  					<div style="margin-left: 30px; width: 260px; height: 90px;">	
@@ -301,11 +303,11 @@
 			<div class="join" style="margin-right: -65px; ">
 				<div>
 					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="background-color:#BDBDBD" id="sample4_find"><br><br>					<!-- class="form-control" --> 
-					<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소" value="<%=mem_address2 + tr_address2%>"readonly><br><br>		
-					<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3"  value="<%=mem_address3 + tr_address3%>"readonly><br><br>		
+					<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소" value="<%=mem_address2 + tr_address2%>" readonly><br><br>		
+					<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3"  value="<%=mem_address3 + tr_address3%>" readonly><br><br>		
 					<span id="guide" style="color:#999; display:none;"></span>
 					<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address4" value="<%=mem_address4 + tr_address4%>"><br><br>		
-					<input type="text" id="sample4_extraAddress" placeholder="참고항목"  name="address5" value="<%=mem_address5 + tr_address5%>"readonly>
+					<input type="text" id="sample4_extraAddress" placeholder="참고항목"  name="address5" value="<%=mem_address5 + tr_address5%>" readonly>
 				    <p id="addressInput"></p> 
 				</div>	
 				<div>  <!--  -->
@@ -328,15 +330,12 @@
 			<br>
 			<div align="center" style="margin-left: 50%;">
 				<div>
-					<a href="#"
-					   onclick="change(); return false" 
+					<a onclick="change()" 
 					   type="button" 
-					   style="text-decoration: none;"
 					   class="btn btn-outline-warning";
 					>정보수정</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="#"
-					   onclick="del()"
+					<a onclick="del()"
 					   type="button" 
 					   style="text-decoration: none;"
 					   class="btn btn-outline-warning";

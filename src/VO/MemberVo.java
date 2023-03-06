@@ -206,14 +206,6 @@ public class MemberVo {
 		this.mem_address5 = mem_address5;
 	}
 
-	public void setSting(String string) {
-		
-	}
-	
-	
-	
-
-
 
 }	
 	

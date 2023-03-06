@@ -14,8 +14,8 @@ import javax.sql.DataSource;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import VO.MemberVo;
 import VO.TrainerVo;
+
 
 public class TrainerDAO {
 
@@ -88,48 +88,6 @@ public class TrainerDAO {
 		}
 
 	
-	public TrainerVo trRead(String tr_id) {
-		
-		String sql = "select * from MEMBER_TRAINER where tr_id=?";
-		
-		TrainerVo tr_vo = null;
-		try {
-			con = ds.getConnection();
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, tr_id);
-			
-			rs = pstmt.executeQuery();
-
-			
-			if(rs.next()) {				
-				tr_vo = new TrainerVo();
-				tr_vo.setSting(rs.getString("tr_name"));
-				tr_vo.setSting(rs.getString("tr_img"));
-				tr_vo.setSting(rs.getString("tr_email"));
-				tr_vo.setSting(rs.getString("tr_hp"));
-				tr_vo.setSting(rs.getString("tr_birth"));
-				tr_vo.setSting(rs.getString("tr_gender"));
-				tr_vo.setSting(rs.getString("tr_pet"));
-				tr_vo.setSting(rs.getString("tr_address1"));
-				tr_vo.setSting(rs.getString("tr_address2"));
-				tr_vo.setSting(rs.getString("tr_address3"));
-				tr_vo.setSting(rs.getString("tr_address4"));
-				tr_vo.setSting(rs.getString("tr_address5"));
-				
-			}					
-		}catch(Exception e) {
-			
-			System.out.println("trRead메소드 내부에서 SQL오류");
-			e.printStackTrace();	
-			
-		}finally {
-			closeResource();
-		}
-		return tr_vo;
-	}
-
-
 	
 	
 		
