@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,6 +8,10 @@ String tr_name = request.getParameter("tr_name");
 String tr_price = request.getParameter("tr_price");
 //Session내장객체 메모리 영역에 session값 얻기
 String id = (String)session.getAttribute("id");
+
+// 배열형태의 rsDate를 컨틀롤러에서 받아와서 변수에 저장
+
+ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
 
 
 %>
@@ -44,7 +49,7 @@ String id = (String)session.getAttribute("id");
 	
     var doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
     var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-	
+   
 	console.log(regdate);
 	console.log(reg_date);
     

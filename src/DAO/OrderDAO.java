@@ -6,6 +6,7 @@ import java.sql.Connection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -217,12 +218,12 @@ public class OrderDAO {
 	}
 	
 	// #4) 이미 예약된 일정을 필터링 해서 반환해주는 메소드
-	public eduOrderVo checkDate(String tr_name) {
+	public ArrayList<String> checkDate(String tr_name) {
+		
+		ArrayList<String> rsDate = new ArrayList<>();
 		
 		System.out.println("OrderDAO -> checkDate 메소드 호출!");
 		
-		// 객체를 생성해준다.
-		eduOrderVo eduordervo = new eduOrderVo();
 
 		try {
 			
@@ -230,19 +231,39 @@ public class OrderDAO {
 			con = ds.getConnection();
 			//매개변수 tr_name으로 받는 입력한 이름에 해당되는 행을 조회 SELECT문
 			// sql = tr_name 값으로 선택 된 훈련사의 예약 된 일정들을 조회해 온다.
-			String sql = "select * from pet where tr_name=?";
+			String sql = "select date1 from edu_order where tr_name=? " + 
+					"union " + 
+					"select date2 from edu_order where tr_name=? " + 
+					"union " + 
+					"select date3 from edu_order where tr_name=? " + 
+					"union " + 
+					"select date4 from edu_order where tr_name=? " + 
+					"union " + 
+					"select date5 from edu_order where tr_name=? " + 
+					"union " + 
+					"select date6 from edu_order where tr_name=? " + 
+					"union " + 
+					"select date7 from edu_order where tr_name=?";
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, tr_name);
+			pstmt.setString(2, tr_name);
+			pstmt.setString(3, tr_name);
+			pstmt.setString(4, tr_name);
+			pstmt.setString(5, tr_name);
+			pstmt.setString(6, tr_name);
+			pstmt.setString(7, tr_name);
 			rs = pstmt.executeQuery();
 			
 			// 만약에 값들이 존재 한다면?
-			if(rs.next()) {
-				
-
-				
-				
-			}
+			while(rs.next()) {
 			
+				//Array 배열에 저장시킨다.
+				rsDate.add(rs.getString("date1"));
+
+			}
+				
+			System.out.println(rsDate);
 			
 			
 			
@@ -255,7 +276,7 @@ public class OrderDAO {
 			
 			closeResource();
 		}
-		return eduordervo;
+		return rsDate;
 		
 		
 	}
