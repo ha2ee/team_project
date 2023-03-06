@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -83,7 +85,8 @@ public class TrainerBoardDAO {
                 sql.append("(select rownum rnum, Tb_idx, Tb_ID, Tb_name");
                 sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
                 sql.append(" FROM ");
-                sql.append("(select * from Trainer_board order by TB_LEVEL desc, TB_GROUP asc)) ");
+                sql.append("(select * from Trainer_board order by TB_GROUP)) ");
+//              sql.append("(select * from Trainer_board order by TB_LEVEL desc, TB_GROUP asc)) ");
                 sql.append("where rnum>=? and rnum<=?");
                 
                 
@@ -102,7 +105,8 @@ public class TrainerBoardDAO {
                 sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
                 sql.append(" FROM ");
                 sql.append("(select * from Trainer_board where Tb_title like ? ");
-                sql.append("order BY TB_LEVEL desc, TB_GROUP asc)) ");
+                sql.append("order BY TB_GROUP)) ");
+//              sql.append("order BY TB_LEVEL desc, TB_GROUP asc)) ");
                 sql.append("where rnum>=? and rnum<=?");
                 
                 pstmt = con.prepareStatement(sql.toString());
@@ -120,7 +124,8 @@ public class TrainerBoardDAO {
                 sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
                 sql.append(" FROM ");
                 sql.append("(select * from Trainer_board where Tb_content like ? ");
-                sql.append("order BY TB_LEVEL desc, TB_GROUP asc)) ");
+                sql.append("order BY TB_GROUP asc)) ");
+//              sql.append("order BY TB_LEVEL desc, TB_GROUP asc)) ");
                 sql.append("where rnum>=? and rnum<=?");
                 
                 pstmt = con.prepareStatement(sql.toString());
@@ -138,7 +143,8 @@ public class TrainerBoardDAO {
                 sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
                 sql.append(" FROM ");
                 sql.append("(select * from Trainer_board where Tb_title like ? OR Tb_content like ? ");
-                sql.append("order BY TB_LEVEL desc, TB_GROUP asc)) ");
+                sql.append("order BY TB_GROUP asc)) ");
+//              sql.append("order BY TB_LEVEL desc, TB_GROUP asc)) ");
                 sql.append("where rnum>=? and rnum<=?");
                 
                 pstmt = con.prepareStatement(sql.toString());
@@ -157,7 +163,8 @@ public class TrainerBoardDAO {
                 sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
                 sql.append(" FROM ");
                 sql.append("(select * from Trainer_board where Tb_name like ? ");
-                sql.append("order BY TB_LEVEL desc, TB_GROUP asc)) ");
+                sql.append("order BY TB_GROUP asc)) ");
+//              sql.append("order BY TB_LEVEL desc, TB_GROUP asc)) ");
                 sql.append("where rnum>=? and rnum<=?");
             	
                 pstmt = con.prepareStatement(sql.toString());
@@ -351,8 +358,9 @@ public class TrainerBoardDAO {
 		if (vo.getTb_file() != null) {
 		if(file != null && file.length() != 0) {
 			File srcFile = new File("C:\\file_repo\\temp\\"+file);
+			File destDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\tb_idx")+tb_idx);
 //			File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tb_idx);
-			File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tb_idx); //+"\\tb_idxUpdate"+tb_idx
+//			File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tb_idx); //+"\\tb_idxUpdate"+tb_idx
 			destDir.mkdirs();
 			FileUtils.moveFileToDirectory(srcFile, destDir, true);
 		}//파일 재 업로드
@@ -505,10 +513,8 @@ public class TrainerBoardDAO {
 			
 			//작성한 글 정보(업로드할 파일정보 포함)를 HashMap에서 꺼내오기
 			String writer = articleMap.get("name"); //작성자(닉네임)
-//			String email = articleMap.get("email"); //이메일
 			String title = articleMap.get("title"); //제목
 			String content = articleMap.get("content"); //내용
-//			String pass = articleMap.get("pass"); //글 비밀번호
 			String id = articleMap.get("id"); //글 작성자 아이디
 			String file = articleMap.get("file"); //글을 작성할때 업로드 하기 위해 첨부한 파일명
 			
@@ -527,8 +533,9 @@ public class TrainerBoardDAO {
 			
 			if(file != null && file.length() != 0) {
 				File srcFile = new File("C:\\file_repo\\temp\\"+file);
+				File destDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\tb_idx")+articleNO);
 //				File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+articleNO);
-				File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+articleNO);
+//				File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+articleNO);
 				
 				//DB에 추가한 글에 대한 글번호를 조회해서 가져왔기 때문에 글 번호 폴더 생성
 				destDir.mkdirs();
@@ -739,8 +746,13 @@ public class TrainerBoardDAO {
 
 		public String deleteBoard(HttpServletRequest request) throws IOException {
 			String delete_idx = request.getParameter("tb_idx");
-			File deleteDir = new File("C:\\file_repo\\" + delete_idx);
-			
+			String delete_level = request.getParameter("tb_level");
+			File deleteDir;
+			if( Integer.parseInt(delete_level) > 0) {
+				deleteDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\reply_tb_idx") + delete_idx); 
+			} else {
+				deleteDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\tb_idx") + delete_idx); 
+			}
 			//글삭제에 성공하면 "삭제성공" 반환 받고, 실패하면 "삭제실패" 반환 받음 
 			String result = tbDBDelete(delete_idx);
 			
@@ -783,7 +795,111 @@ public class TrainerBoardDAO {
 			return result;
 		}	
 		
+
+	public List<String> contentLink(String tb_content) {
+		 tb_content
+	    .replaceAll("&", "&amp;")
+	    .replaceAll("<", "&lt;")
+	    .replaceAll(">", "&gt;")
+	    .replaceAll("\"", "&quot;")
+	    .replaceAll("'", "&#39;"); //크롬에선 문제x entity 변환필요한 브라우저에선 주석 해제 필요
+		Pattern pattern = Pattern.compile("src=\"(.*?)\""); //주어진 정규식을 갖는 패턴을 생성//src="http://localhost:8090/TeamProject/ckstorage/images/edu.png"
+		Matcher matcher = pattern.matcher(tb_content); //패턴에 매칭할 문자열을 입력해 Matcher를 생성(인자에 검사할 문자열)
+		List<String> imageUrls = new ArrayList<>(); //imageUrl을 저장할 배열 생성
+		
+		while (matcher.find()) { //패턴이 일치하는 다음 문자열을 찾는다. 다음 문자열이 있다면 true 
+			//src="http://localhost:8090/TeamProject/ckstorage/images/edu.png"
+			//src="http://localhost:8090/TeamProject/ckstorage/images/lessonlist.png"
+		 String imageUrl = matcher.group(1); //String group(int group) 매칭되는 문자열 중 group번째 그룹의 문자열 반환
+		//   System.out.println("matcher.group()값 : " +matcher.group()); // 패턴과 일치하는 모든 것, 그룹 0은 예약되어 있으며 항상 전체 일치 항목을 반환하는 반면 다른 모든 항목은 선택 사항이며 사용자가 정의
+		//   System.out.println("matcher.group(1)값 : " +matcher.group(1)); //그룹 1: 시작 단어 와 끝 단어 사이의 숫자 
+		 imageUrls.add(imageUrl);
+		}
+	
+		
+		return imageUrls;
+	}
+
+
+	//답변글 작성 메소드
+	public void insertReply(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String, String> rp_articleMap = upload(request,response);
+		
+		// 주글 (부모글) 글번호 + 작성한 답변글 내용 얻기
+		String super_tb_idx = rp_articleMap.get("super_tb_idx");//부모 글번호
+		String reply_id = rp_articleMap.get("id"); //답변글 작성자 아이디
+		String reply_name = rp_articleMap.get("name"); //답변글 작성자 이름
+		String reply_title = rp_articleMap.get("title"); //답변글 제목
+		String reply_content = rp_articleMap.get("content"); //답변글 내용
+		String reply_file = rp_articleMap.get("file"); //글을 작성할때 업로드 하기 위해 첨부한 파일명
+		System.out.println("insertReply내부에서 super_tb_idx 번호 : " + super_tb_idx);
+		
+		int rp_articleNO = replyInsertBoard(super_tb_idx,reply_id,reply_name,reply_title,reply_content,reply_file);
+		
+		if(reply_file != null && reply_file.length() != 0) {
+			
+			File srcFile = new File("C:\\file_repo\\temp\\"+reply_file);
+			File destDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\reply_tb_idx")+rp_articleNO); 
+			
+			destDir.mkdirs();
+			
+			FileUtils.moveFileToDirectory(srcFile, destDir, true);
+		
+		}
+	
+	}
+
+
+	//답변글 db등록
+	private int replyInsertBoard(String super_tb_idx, String reply_id, String reply_name, String reply_title,
+			String reply_content, String reply_file) {
+		System.out.println("replyInsertBoard 내부에서 super_tb_idx번호 : " + super_tb_idx);
+		int articleNO = getNewArticleNO(); 
+		String sql = null;
+		
+		try {
+			con = ds.getConnection();
+			
+			sql = "select tb_group, tb_level from trainer_board where tb_idx='"+super_tb_idx+"'";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			
+			String tb_group = rs.getString("tb_group");
+			String tb_level = rs.getString("tb_level");
+			
+			sql = "update Trainer_board set tb_group = tb_group + 1 where tb_group > ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, tb_group);
+			pstmt.executeUpdate();
+	
+			sql = "insert into trainer_board (tb_idx, tb_id, tb_name, "
+							+ " tb_title, tb_content, tb_group, "
+							+ "tb_level, tb_date, tb_cnt, tb_file) "
+							+ " values (?,?,?,?,?,?,?,sysdate,0,?)";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, articleNO);
+			pstmt.setString(2, reply_id);
+			pstmt.setString(3, reply_name);
+			pstmt.setString(4, reply_title);
+			pstmt.setString(5, reply_content);
+			pstmt.setInt(6, Integer.parseInt(tb_group)+1);
+			pstmt.setInt(7, Integer.parseInt(tb_level)+1);
+			pstmt.setString(8, reply_file);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("replyInsertBoard메소드 내부에서 오류 ");
+			e.printStackTrace();
+		} finally {
+			closeResource();
+		}
+		
+		return articleNO;
+	}
+	
+	
 }
-
-
 

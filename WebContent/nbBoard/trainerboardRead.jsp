@@ -86,56 +86,45 @@
 	        </div>
 	      </div>
 	</div>
-	<c:if test="${not empty vo.tb_file}">
 	<div align="center">다운로드:
 	<%-- 다운로드할 폴더번호 경로와 다운로드 할 파일명 전달 --%>
-	<a href="<%=contextPath%>/tb/download.bo?tbidx=<%=tb_idx%>&fileName=<%=file%>">&nbsp;&nbsp;<%=file%></a><br>
-<%
-// content
-//     .replaceAll("&", "&amp;")
-//     .replaceAll("<", "&lt;")
-//     .replaceAll(">", "&gt;")
-//     .replaceAll("\"", "&quot;")
-//     .replaceAll("'", "&#39;"); //크롬에선 문제x entity 변환필요한 브라우저에선 주석 해제 필요
-Pattern pattern = Pattern.compile("src=\"(.*?)\""); //주어진 정규식을 갖는 패턴을 생성//src="http://localhost:8090/TeamProject/ckstorage/images/edu.png"
-Matcher matcher = pattern.matcher(content); //패턴에 매칭할 문자열을 입력해 Matcher를 생성(인자에 검사할 문자열)
-List<String> imageUrls = new ArrayList<>(); //imageUrl을 저장할 배열 생성
-
-while (matcher.find()) { //패턴이 일치하는 다음 문자열을 찾는다. 다음 문자열이 있다면 true 
-	//src="http://localhost:8090/TeamProject/ckstorage/images/edu.png"
-	//src="http://localhost:8090/TeamProject/ckstorage/images/lessonlist.png"
-  String imageUrl = matcher.group(1); //String group(int group) 매칭되는 문자열 중 group번째 그룹의 문자열 반환
-  System.out.println("matcher.group()값 : " +matcher.group()); // 패턴과 일치하는 모든 것, 그룹 0은 예약되어 있으며 항상 전체 일치 항목을 반환하는 반면 다른 모든 항목은 선택 사항이며 사용자가 정의
-  System.out.println("matcher.group(1)값 : " +matcher.group(1)); //그룹 1: 시작 단어 와 끝 단어 사이의 숫자 
-  imageUrls.add(imageUrl);
-}
-
-for (int i = 0; i < imageUrls.size(); i++) {
-	  String imageUrl = imageUrls.get(i);
-	  String imageName = imageUrl.substring(imageUrl.lastIndexOf("/") + 1); //파일명만 얻는 subString /+1위치부터 마지막까지 자른다.
-	  %>
-	  <a href="<%= imageUrl %>" download="<%= imageName %>"><%= imageName %></a><br>
-	  <%
-	}
-	%>
+	<c:choose>
+		<c:when test="${vo.tb_level==0}">
+			<c:if test="${not empty vo.tb_file}">
+			<a href="<%=contextPath%>/tb/download.bo?tbidx=<%=tb_idx%>&fileName=<%=file%>">&nbsp;&nbsp;<%=file%></a>&nbsp;&nbsp;
+			</c:if>
+		</c:when>
+		<c:when test="${vo.tb_level>0}"> 
+			<c:if test="${not empty vo.tb_file}">
+			<a href="<%=contextPath%>/uploadFile/TrainerBoardFile/reply_tb_idx${vo.tb_idx}/<%=file%>" download="${vo.tb_idx}">&nbsp;&nbsp;<%=file%></a>&nbsp;&nbsp;
+			</c:if>
+		</c:when>
+	</c:choose>
+		<%--CKEDITOR로 입력한 이미지 다운로드 링크생성 --%>
+		<c:if test="${not empty imageUrls}">
+			<c:forEach var="imageUrls" items="${imageUrls}">
+				<c:set var="imageUrl" value="${imageUrls}"/>
+				<c:set value="${fn:split(imageUrl, '/')}" var="imageNameTemp" />
+				<c:set var="imageName" value="${imageNameTemp[fn:length(imageNameTemp)-1]}"/>
+				<a href="${imageUrls}" download="${imageName}">${imageName}</a>&nbsp;&nbsp;
+			</c:forEach>
+		</c:if>
+		<%--CKEDITOR로 입력한 이미지 다운로드 링크생성 끝 --%>
 	</div>
-    </c:if>
     	
     <div style="text-align: center;">
 		<input type="button" value="목록으로" onclick="location.href='list.bo?page=${pageNum}'" id="list" />
         <!-- 수정,삭제는 세션아이디와 조회한 글의 작성자아이디가 동일할때만 노출시키기 필요 -->
         <input type="button" value="수정하기" onclick="location.href='tbUpdate.bo?tb_idx=${tb_idx}'" />
-        <input type="button" value="삭제하기" onclick="javascript:tbDelete('<%=tb_idx%>');" id="delete"/>
+        <input type="button" value="삭제하기" onclick="javascript:tbDelete('<%=tb_idx%>','${vo.tb_level}');" id="delete"/>
+        <!-- 답글달기는 세션아이디가 MEMBER_TRAINER에 포함되어있는 경우에만 나타나도록 조건필요 -->
+        <input type="button" value="답글달기" onclick="location.href='tbReply.bo?tb_idx=${tb_idx}&center=/nbBoard/trainerboardReply.jsp'" id="reply"/>        
     </div>
-    
-    
-    
-    
     
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>    
 <script type="text/javascript">
 //삭제하기를 눌렀을때 ajax로 삭제 처리하기
-function tbDelete(tb_idx){
+function tbDelete(tb_idx,tb_level){
 			var result = window.confirm("정말로 글을 삭제하시겠습니까?");
 			
 			if(result == true){//확인 버튼 클릭
@@ -145,7 +134,7 @@ function tbDelete(tb_idx){
 					type : "post",
 					async : true,
 					url : "<%=contextPath%>/tb/tbDelete.bo",
-					data : {tb_idx : tb_idx},
+					data : {tb_idx : tb_idx, tb_level : tb_level},
 					dataType : "text",
 					success : function(data){
 						

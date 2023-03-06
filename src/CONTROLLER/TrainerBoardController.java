@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -82,6 +83,9 @@ public class TrainerBoardController extends HttpServlet{
 		String center = null;
 		//BoardVo객체를 저장할 참조변수 선언
 		TrainerBoardVo vo = null;
+		
+		TrainerVo trainervo = null;
+		
 		ArrayList list = null;
 		int count = 0;
 		String key = null;
@@ -91,7 +95,7 @@ public class TrainerBoardController extends HttpServlet{
 	      if (action.equals("/write.bo")) {
 	    	  
 	    	  //새글 입력시 작성자에 닉네임 넣어주려고 가져오는 메소드
-	    	  TrainerVo trainervo = trainerdao.trainerOne("admin");
+	    	  trainervo = trainerdao.trainerOne("admin");
 				
 				//새글을 입력하는 중앙 View화면 주소 요청!
 				center = "/nbBoard/trainerboardWrite.jsp";
@@ -187,6 +191,9 @@ public class TrainerBoardController extends HttpServlet{
 	    	  
 	      } else if (action.equals("/read.bo")) {
 	    	  vo = trainerboarddao.boardRead(request);
+	    	  System.out.println("서블릿context :" +request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile"));
+	    	  //content를 읽어들여서 다운로드 링크를 만들 수 있는 메소드
+	    	  List<String> imageUrls = trainerboarddao.contentLink(vo.getTb_content());
 				
 				//글제목을 눌러 글을 조회한 후 보여주는 중앙 화면  View 주소를 얻어옴
 				center = "nbBoard/trainerboardRead.jsp";
@@ -196,15 +203,16 @@ public class TrainerBoardController extends HttpServlet{
 				
 				request.setAttribute("pageNum", request.getParameter("pageNum")); 
 				request.setAttribute("tb_idx", request.getParameter("tb_idx"));
-				
+				request.setAttribute("imageUrls", imageUrls);
 				nextPage = "/nbMain.jsp";
 	    	  
 	      } else if (action.equals("/download.bo")) {
 	    	  
 	    	  String fileName = request.getParameter("fileName");
 	    	  String tbidx = request.getParameter("tbidx");
+	    	  String folder = request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\tb_idx")+tbidx;
 //	    	  String folder = "C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tbidx;
-	    	  String folder = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tbidx;
+//	    	  String folder = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tbidx;
 	    	  String filePath = folder + "/" + fileName;
 	    	  
 	    	  trainerboarddao.downLoad(response,filePath,fileName);
@@ -251,6 +259,33 @@ public class TrainerBoardController extends HttpServlet{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+	      } else if (action.equals("/tbReply.bo")) {
+	    	  
+	    	  trainervo = trainerdao.trainerOne("admin");//세션아이디 들어갈 영역
+	    	  center = request.getParameter("center");
+	    	  String super_tb_idx = request.getParameter("tb_idx");
+	    	  
+	    	  request.setAttribute("center", center);
+	    	  request.setAttribute("trainervo", trainervo);
+	    	  request.setAttribute("super_tb_idx", super_tb_idx);
+	    	  
+	    	  nextPage = "/nbMain.jsp";
+	    	  
+	      } else if (action.equals("/tbReplyPro.bo")) {
+	    	  
+	    	  try {
+				trainerboarddao.insertReply(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	  
+				out = response.getWriter();
+				out.print("<script>");
+				out.print(" alert( '답변추가 성공!' );");
+				out.print(" location.href='http://localhost:8090/TeamProject/tb/list.bo'");
+				out.print("</script>");
+				return;
 	      }
 			
 		

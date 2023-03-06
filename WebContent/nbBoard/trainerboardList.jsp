@@ -25,7 +25,7 @@
 		/* 게시판 목록 테이블의 th와 td 스타일 */
 		.board-table th, .board-table td {
 		  padding: 10px 20px; 
-		  text-align: center; 
+/* 		  text-align: center;  */
 		  border-bottom: 1px solid #ddd; 
 		}
 		
@@ -93,6 +93,12 @@
             <tr>
                 <td>${board.tb_idx}</td>
                 <td>
+                <c:if test="${board.tb_level > 0}">
+                	<c:forEach var="i" begin="0" end="${board.tb_level}" >
+                		&nbsp;
+                	</c:forEach>
+                	:RE
+                </c:if>
                     <a href="read.bo?tb_idx=${board.tb_idx}&pageNum=${spage}">
                     ${board.tb_title}
                     </a>
