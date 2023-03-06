@@ -65,7 +65,6 @@ String contextPath = request.getContextPath();
   	</div>
   		<br>
   		
-  		
 <%-- 제이쿼리가 안 먹힌다....................   		
   	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
   	<script type="text/javascript">
@@ -87,16 +86,8 @@ String contextPath = request.getContextPath();
 				 success:function(data){
 					 console.log(data);
 				 }
-  				
-  				
   			})
-  			
-  			
-  			
-  			
   		})
-  	
-  	
   	
   	</script>
  --%>  		

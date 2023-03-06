@@ -129,7 +129,6 @@ public class FreeBoardController extends HttpServlet {
       String encoding = "utf-8";
 //      
       MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
-      System.out.println("오니?");
       String title = multipartRequest.getParameter("title");
       String content = multipartRequest.getParameter("editor1");
       String fileName = multipartRequest.getOriginalFileName("fileName");
@@ -227,6 +226,16 @@ public class FreeBoardController extends HttpServlet {
 
         return;
 //=======================좋아요 버튼 클릭시 /like.fb ============================
+//=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
+      case "/modify.fb":
+        
+        
+        
+        request.setAttribute("center", "nbBoard/list.jsp");
+        
+        nextPage = "/nbMain.jsp";
+        break;
+      //=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
 
       default:
         break;

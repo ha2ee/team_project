@@ -63,9 +63,18 @@ public class FreeBoardDAO {
       pstmt = con.prepareStatement(sql);
       rs = pstmt.executeQuery();
       while (rs.next()) {
-        vo = new FreeBoardVo(rs.getInt("b_idx"), rs.getString("b_id"), rs.getString("b_nickname"),
-            rs.getString("b_title"), rs.getString("b_content"), rs.getDate("b_date"),
-            rs.getInt("b_cnt"), rs.getString("b_file"),rs.getString("b_realfile") ,rs.getInt("b_like"));
+        vo = new FreeBoardVo(
+                             rs.getInt("b_idx"),
+                             rs.getString("b_id"), 
+                             rs.getString("b_nickname"),
+                             rs.getString("b_title"), 
+                             rs.getString("b_content"), 
+                             rs.getDate("b_date"),
+                             rs.getInt("b_cnt"), 
+                             rs.getString("b_file"),
+                             rs.getString("b_realfile") ,
+                             rs.getInt("b_like")
+                             );
         list.add(vo);
       }
 
@@ -133,11 +142,7 @@ public class FreeBoardDAO {
         vo.setB_cnt(rs.getInt("b_cnt"));
         vo.setB_file(rs.getString("b_file"));
         vo.setB_like(rs.getInt("b_like"));
-
       }
-      
-      
-
 
     } catch (Exception e) {
       System.out.println("boardRead 메소드에서 에러가 발생하였습니다. 이유는 ? --> " + e);
@@ -145,8 +150,6 @@ public class FreeBoardDAO {
     } finally {
       closeResource();
     }
-
-
     return vo;
   }
 //======================특정 글 번호로 글 정보 조회===================================
@@ -154,7 +157,6 @@ public class FreeBoardDAO {
   public ArrayList boardList(String key, String word) {
 
     String sql = null;
-
     ArrayList list = new ArrayList();
 
     if (!word.equals("")) {// 검색어를 입력했다면 ?
@@ -197,7 +199,6 @@ public class FreeBoardDAO {
                                          );
         list.add(vo);
       }
-      System.out.println("음...." + list);
 
     } catch (Exception e) {
       System.out.println("boardList 메소드 내부에서 오류!");
@@ -303,7 +304,7 @@ public class FreeBoardDAO {
       }
 
     } catch (Exception e) {
-      System.out.println("checkLike 메소드에서 에러가 발생하였습니다. 이유는 ? --> " + e);
+      System.out.println("insertLikeBoard 메소드에서 에러가 발생하였습니다. 이유는 ? --> " + e);
       e.printStackTrace();
     } finally {
       closeResource();
@@ -330,7 +331,7 @@ public class FreeBoardDAO {
       result = rs.getInt(1);
 
     } catch (Exception e) {
-      System.out.println("checkLike 메소드에서 에러가 발생하였습니다. 이유는 ? --> " + e);
+      System.out.println("getOnlyLikeCount 메소드에서 에러가 발생하였습니다. 이유는 ? --> " + e);
       e.printStackTrace();
     } finally {
       closeResource();
@@ -379,7 +380,6 @@ public class FreeBoardDAO {
       pstmt.setString(5, vo.getB_file());
       pstmt.setString(6, vo.getB_realfile());
       result = pstmt.executeUpdate();
-      System.out.println(result);
       
     } catch (Exception e) {
       System.out.println("insertBoard 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);

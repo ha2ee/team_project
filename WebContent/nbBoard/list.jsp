@@ -77,7 +77,6 @@ function fnSearch(){
 	
 	//각 페이지 번호에 보여지는 글 목록의 가장위의 글에 대한 글번호 구하기
 	beginPerPage = nowPage * numPerPage;
-	System.out.print(beginPerPage);
 	/*
 		beginPerPage변수 설명
 		예를 들어 한페이지당 보여질 글의 개수가 6개라고 가정할때...

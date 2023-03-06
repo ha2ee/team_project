@@ -57,16 +57,27 @@
 
     <!-- 윗부분 끝 -->
     <div
-      style="border: 1px solid black; height: 300px; margin-bottom: 2%">
+      style="border: 1px solid red; height: 300px; margin-bottom: 1%">
       <!-- 콘텐츠 들어온다. -->
-
       <%=content%>
-
+    </div>
+    <div style="border: 1px solid red; height: 50px; margin-bottom: 1%">
+      <form id = "modifyWithDel">
+        <input type="hidden" name="" value="">
+        <!-- ---------------------------- -->
+        <input type="submit" value="수정">
+        <input type="button" value="삭제">
+      </form>
+    </div>
+    <script type="text/javascript">
+      function modify(){
+    	  $("input[name=]")
+      }
+    </script>
 
 
       <!-- 	if 첨부 파일 있으면 위에 첨부하고 없으면 내용만 삽입 -->
 
-    </div>
     <!-- 중간부분 끝 -->
 
     <%-- <%
