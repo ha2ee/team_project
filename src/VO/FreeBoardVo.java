@@ -62,6 +62,7 @@ public class FreeBoardVo {
     this.b_title = b_title;
   }
 
+  
   public String getB_content() {
     return b_content;
   }
