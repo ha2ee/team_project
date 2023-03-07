@@ -14,8 +14,8 @@ import javax.sql.DataSource;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import VO.MemberVo;
 import VO.TrainerVo;
+
 
 public class TrainerDAO {
 
@@ -92,9 +92,6 @@ public class TrainerDAO {
 		}
 
 	
-	
-
-
 	
 	
 		

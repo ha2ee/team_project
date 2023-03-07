@@ -163,33 +163,7 @@
 		
 		//약관동의 <input>요소를 선택해서 가져와 
     	var checkbox = $("#agree");
-    	//약관동의 체크했는지 검사
-    	//선택한 <input type="checkbox">체크박스에 체크가 되어 있지 않으면? 
-    	//true를 리턴 해서 조건에 만족 합니다. 
-    	if( !(checkbox.is(":checked")) ){ //== 같은 true값을 반환 한다. if(!$("#agree").prop("checked"))
-    		$("#agreeInput").text("약관에 동의해 주세요!").css("color","red");
-    		
-    		return false;
-
-    	}    
-		
-    	//====================================================================================================
     	
-    	
-    	var id = $("#id");
-    	var idValue = id.val();
-    	
-    	var idReg = RegExp(/^[A-Za-z0-9_\-]{3,20}$/);
-    	var resultId = idReg.test(idValue);
-    	
-		if(!resultId){
-			$("#idInput").text("한글,특수문자 없이 3~20글자사이로 작성해 주세요!").css("color","red");
-			id.focus();
-			
-			return false;
-		}else{
-//			$("#idInput").text("사용가능한 아이디 입니다").css("color","green");
-		}
     	
     	//====================================================================================================
 			
@@ -207,22 +181,6 @@
 			$("#nickInput").text("");
 		}
     	
-    	//====================================================================================================
-
-			
-		var name = $("#name");
-    	var nameValue = name.val();
-    	
-    	var nameReg = RegExp(/^[|가-힣\x20|]{2,4}$/);
-    	var resultName = nameReg.test(nameValue);
-
-		if(!resultName){
-			$("#nameInput").text("이름을 한글로 작성하여주세요.").css("color","red");
-			name.focus();
-			return false;
-		}else{
-			$("#nameInput").text("");
-		}
 	
     	//====================================================================================================
 
@@ -279,47 +237,8 @@
     		$("#checkpassInput").text("비밀번호가 일치합니다.").css("color","green");
     	}
 
-    	//====================================================================================================
 
-       	var birth = $("#birth");
-    	var birthValue = birth.val();
-    	
-    	var birthReg = RegExp(/^[0-9]{8}$/);
-    	var resultbirth = birthReg.test(birthValue);
-    	
-    	
-    	if(!resultbirth){
-			$("#birthInput").text("생년월일을 8자로 입력하여 주세요").css("color","red");
-			$("#birth").focus();
-			return false;
-
-	    	}else{
-    			$("#birthInput").text("");
-    		}
- 
-
-    	//====================================================================================================
-
-	    	if($("#gender").val() == "선택"){
-		    	$("#genderInput").text("성별을 선택해주세요!").css("color","red");
-		    	$("#gender").focus();
-    			return false;
-	    	
-	    	}else{
-    	    	$("#genderInput").text("");
-    		}
 	   
-	    	//====================================================================================================
-	    	
-	    	if($("#pet").val() == "선택"){
-	    		$("#petInput").text("애완견을 키우나요?").css("color","red");
-	    		$("#pet").focus();
-	    		return false;
-	    		
-	    	}else{
-	    		$("#petInput").text("");
-	    	}
-	    	
     	//====================================================================================================
 
 	    
@@ -372,9 +291,9 @@
 	
 		function del(){
 	    	
-	    	if(confirm("정말 회원탈퇴 하시겠습니까?")){
+	    	if(confirm("정말 회원탈퇴 하시겠습니까??")){
 	    		
-	    		location.href="<%=contextPath%>/nb_member/delete.me";
+	    		location.href="<%=contextPath%>/member/delete.me";
 	    		
 	    	}else {
 	    		
