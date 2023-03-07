@@ -123,7 +123,7 @@ public class FreeBoardController extends HttpServlet {
       String nickname = "seeeop2";
       
 //      //업로드 작업 중ㅇ...
-      String directory ="C:\\Users\\205\\Desktop\\COMEON";
+      String directory ="/Users/inseop/Desktop/팀프로젝트/upload";
       System.out.println(directory);
       int maxSize = 1024 * 1024 * 100;
       String encoding = "utf-8";
@@ -229,7 +229,6 @@ public class FreeBoardController extends HttpServlet {
 //=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
       case "/modify.fb":
         int b_idx1 = Integer.parseInt( request.getParameter("b_idx") );
-        System.out.println(b_idx1);
         FreeBoardVo vo1 = boarddao.modifyOne(b_idx1);
         
         request.setAttribute("vo", vo1);
@@ -244,7 +243,7 @@ public class FreeBoardController extends HttpServlet {
         String nickname1 = "seeeop2";
         
 //        //업로드 작업 중ㅇ...
-        String directory2 ="C:\\Users\\205\\Desktop\\COMEON";
+        String directory2 ="/Users/inseop/Desktop/팀프로젝트/upload";
         System.out.println(directory2);
         int maxSize1 = 1024 * 1024 * 100;
         String encoding1 = "utf-8";
@@ -254,20 +253,19 @@ public class FreeBoardController extends HttpServlet {
         String content1 = multipartRequest1.getParameter("editor1");
         String fileName1 = multipartRequest1.getOriginalFileName("fileName");
         String fileRealName1 = multipartRequest1.getFilesystemName("file");
+        int idx =  Integer.parseInt( multipartRequest1.getParameter("b_idx") );
 //        //여기까지
         
-        System.out.println(title1);
-        System.out.println(content1);
-        System.out.println(fileName1);
-        System.out.println(fileRealName1);
 
         vo= new FreeBoardVo();
+        vo.setB_idx(idx);
         vo.setB_id(id1);
         vo.setB_nickname(nickname1);
         vo.setB_title(title1);
         vo.setB_content(content1);
         vo.setB_file(fileName1);
         vo.setB_realfile(fileRealName1);
+        
         int result2 = boarddao.modifyOnePro(vo);
         
         if(result2 ==1) {
@@ -285,8 +283,8 @@ public class FreeBoardController extends HttpServlet {
 
 //=====================게시글 삭제 버튼 클릭시 /del.fb ==========================
       case "/del.fb":
-        int idx = Integer.parseInt( request.getParameter("b_idx")  );
-        int result3 = boarddao.deleteOne(idx);
+        int idx1 = Integer.parseInt( request.getParameter("b_idx")  );
+        int result3 = boarddao.deleteOne(idx1);
         
         if(result3 == 1) {
           out.println(1);

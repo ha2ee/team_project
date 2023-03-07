@@ -8,6 +8,7 @@
    String contextPath = request.getContextPath();
   FreeBoardVo vo = (FreeBoardVo) request.getAttribute("vo");
 
+  
   int idx = vo.getB_idx();
   String title = vo.getB_title();
   String content = vo.getB_content();

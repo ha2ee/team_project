@@ -38,6 +38,7 @@ String title = vo.getB_title();
 		      <h1> 게시글 작성 </h1> <br>
 	          <input type="text" name="title" style="width: 100%; box-sizing: border-box; font-size: 20px" placeholder="제목을 입력해주세요" value="<%=title%>"> 
 	            <textarea name="editor1" id="editor1" rows="10" cols="80">
+              <%=vo.getB_content()%>
 	            </textarea>
 	            <script>
 	                // Replace the <textarea id="editor1"> with a CKEditor 4
@@ -60,7 +61,7 @@ String title = vo.getB_title();
                		</div>
                	
   				</div>
-	            
+	            <input type="hidden" name="b_idx" value="<%=vo.getB_idx()%>">
 	        </form>
 
   		</div>
