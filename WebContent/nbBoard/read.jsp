@@ -63,8 +63,8 @@
       <%=content%>
     </div>
     <div style="border: 1px solid red; height: 50px; margin-bottom: 1%">
-      <form id = "modifyWithDel">
-        <input type="hidden" name="" value="">
+      <form action ="<%=contextPath%>/freeboard/modify.fb">
+        <input type="hidden" name="b_idx" value="<%=idx%>">
         <!-- ---------------------------- -->
         <input type="button" value="목록" onclick="javascript:fnGoList()">
         <input type="submit" value="수정">
@@ -93,9 +93,7 @@
       			  				  alert("삭제 실패!");
       			  				  history.go(-1);
       			  				}
-
     								}
-
     		});
       }
       function fnGoList(){

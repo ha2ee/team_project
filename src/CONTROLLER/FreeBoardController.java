@@ -154,9 +154,9 @@ public class FreeBoardController extends HttpServlet {
         out.println("alert('작성 실패!')");
         out.println("</script>");
       }
-           nextPage = "/freeboard/list.fb";
-           
-           break;
+       nextPage = "/freeboard/list.fb";
+       
+       break;
 //========================글을  작성하는 작업/writePro.fb =============================
 //====================게시글 한 줄 클릭시 글을 읽는 /read.fb =========================
       case "/read.fb":
@@ -226,22 +226,69 @@ public class FreeBoardController extends HttpServlet {
 
         return;
 //=======================좋아요 버튼 클릭시 /like.fb ============================
-      //=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
+//=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
       case "/modify.fb":
-
+        int b_idx1 = Integer.parseInt( request.getParameter("b_idx") );
+        System.out.println(b_idx1);
+        FreeBoardVo vo1 = boarddao.modifyOne(b_idx1);
         
-        
-        request.setAttribute("center", "nbBoard/list.jsp");
+        request.setAttribute("vo", vo1);
+        request.setAttribute("center", "nbBoard/writeModify.jsp");
         
         nextPage = "/nbMain.jsp";
         break;
 //=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
+//=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
+      case "/modifyPro.fb":
+        String id1 = "inseop";
+        String nickname1 = "seeeop2";
+        
+//        //업로드 작업 중ㅇ...
+        String directory2 ="C:\\Users\\205\\Desktop\\COMEON";
+        System.out.println(directory2);
+        int maxSize1 = 1024 * 1024 * 100;
+        String encoding1 = "utf-8";
+//        
+        MultipartRequest multipartRequest1 = new MultipartRequest(request, directory2,maxSize1,encoding1,new DefaultFileRenamePolicy());
+        String title1 = multipartRequest1.getParameter("title");
+        String content1 = multipartRequest1.getParameter("editor1");
+        String fileName1 = multipartRequest1.getOriginalFileName("fileName");
+        String fileRealName1 = multipartRequest1.getFilesystemName("file");
+//        //여기까지
+        
+        System.out.println(title1);
+        System.out.println(content1);
+        System.out.println(fileName1);
+        System.out.println(fileRealName1);
+
+        vo= new FreeBoardVo();
+        vo.setB_id(id1);
+        vo.setB_nickname(nickname1);
+        vo.setB_title(title1);
+        vo.setB_content(content1);
+        vo.setB_file(fileName1);
+        vo.setB_realfile(fileRealName1);
+        int result2 = boarddao.modifyOnePro(vo);
+        
+        if(result2 ==1) {
+          out.println("<script>");
+          out.println("alert('수정 성공!')");
+          out.println("</script>");
+        } else {
+          out.println("<script>");
+          out.println("alert('수정 실패!')");
+          out.println("</script>");
+        }
+         nextPage = "/freeboard/list.fb";
+         break;
+//=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
+
 //=====================게시글 삭제 버튼 클릭시 /del.fb ==========================
       case "/del.fb":
         int idx = Integer.parseInt( request.getParameter("b_idx")  );
-        int result2 = boarddao.deleteOne(idx);
+        int result3 = boarddao.deleteOne(idx);
         
-        if(result2 == 1) {
+        if(result3 == 1) {
           out.println(1);
         } else {
           out.println(0);
@@ -249,9 +296,6 @@ public class FreeBoardController extends HttpServlet {
         
 
         return;
-        
-        
-        
 //=====================게시글 삭제 버튼 클릭시 /del.fb ==========================
 
       default:

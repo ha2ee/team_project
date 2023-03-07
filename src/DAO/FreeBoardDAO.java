@@ -391,7 +391,7 @@ public class FreeBoardDAO {
     return result;
   }
 //====================write.jsp에서 글을 작성한 뒤, 테이블에 담는다. ====================
-
+//=========================read.jsp에서 글을 삭제한다.. ========================================
   public int deleteOne(int idx) {
     int result = 0;
     try {
@@ -410,4 +410,63 @@ public class FreeBoardDAO {
     }
     return result;
   }
+//=========================read.jsp에서 글을 삭제한다.. ========================================
+//================수정 버튼을 누르면 글에 대한 정보 불러온다. ===============================
+  public FreeBoardVo modifyOne(int b_idx1) {
+    FreeBoardVo vo = null;
+    try {
+      con = ds.getConnection();
+      
+      String sql = "SELECT * FROM FREE_BOARD WHERE B_IDX = ?";
+      pstmt = con.prepareStatement(sql);
+      pstmt.setInt(1, b_idx1);
+      rs = pstmt.executeQuery();
+      
+      if(rs.next()) {
+        vo = new FreeBoardVo();
+        vo.setB_content(rs.getString("b_content"));
+        vo.setB_nickname(rs.getString("b_nickname"));
+        vo.setB_title(rs.getString("b_title"));
+        vo.setB_file(rs.getString("b_file"));
+        vo.setB_idx(rs.getInt("b_idx"));
+      }
+      
+      
+    } catch (Exception e) {
+      System.out.println("modifyOne 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
+      e.printStackTrace();
+    } finally {
+      closeResource();
+    }
+    return vo;
+  }
+//================수정 버튼을 누르면 글에 대한 정보 불러온다. ===============================
+
+  public int modifyOnePro(FreeBoardVo vo) {
+    int result = 0;
+    try {
+      con = ds.getConnection();
+      
+      String sql = "UPDATE FREE_BOARD "
+                 + "SET B_TITLE = ?, B_CONTENT= ?, B_FILE = ? , B_REALFILE= ? "
+                 + "WHERE B_IDX = ?";
+      pstmt = con.prepareStatement(sql);
+      pstmt.setString(1, vo.getB_title());
+      pstmt.setString(2, vo.getB_content());
+      pstmt.setString(3, vo.getB_file());
+      pstmt.setString(4, vo.getB_realfile());
+      pstmt.setInt(5, vo.getB_idx());
+      
+      result = pstmt.executeUpdate();
+      System.out.println("흠..."+result);
+    } catch (Exception e) {
+      System.out.println("modifyOnePro 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
+      e.printStackTrace();
+    } finally {
+      closeResource();
+    }
+    return result;
+  }
+
+  
 }
