@@ -15,18 +15,15 @@
 	
 	//조회한 글정보 얻기
 	TrainerBoardVo vo = (TrainerBoardVo)request.getAttribute("vo");
-	String name = vo.getTb_name();//조회한 글을 작성한 사람 이름
-// 	String email = vo.getTb_email();//조회한 글을 작성한 사람의 이메일
-	String title = vo.getTb_title();//조회한 글제목
-	String content = vo.getTb_content(); //조회한 글 내용.replace("/r/n", "<br>")
+	String name = vo.getTb_name();
+	String title = vo.getTb_title();
+	String content = vo.getTb_content(); 
 	System.out.print(content);
-	String file = vo.getTb_file();//업로드한 실제파일명 (조회후 받아온 값)
-// 	int downCount = vo.getDowncount(); //업로드한 파일을 실제 다운로드한 횟수
+	String file = vo.getTb_file();
 	Date date = vo.getTb_date();
 	int cnt = vo.getTb_cnt();
 	
 	String tb_idx = (String)request.getAttribute("tb_idx");
-	System.out.println("-----@@@@" + tb_idx);
 	
 	
 %>

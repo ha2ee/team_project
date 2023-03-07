@@ -3,8 +3,6 @@ package DAO;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,8 +27,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 
-import VO.BoardVo;
-import VO.FileBoardVo;
 import VO.TrainerBoardVo;
 
 public class TrainerBoardDAO {
@@ -41,7 +37,6 @@ public class TrainerBoardDAO {
 	DataSource ds;
 	
 	public TrainerBoardDAO() {
-		// TODO Auto-generated constructor stub
 	
 		try {
 			Context ctx = new InitialContext();
@@ -68,7 +63,7 @@ public class TrainerBoardDAO {
         String opt = (String)listOpt.get("opt"); // 검색옵션(제목, 내용, 글쓴이 등..)
         String condition = (String)listOpt.get("condition"); // 검색내용
         int start = (Integer)listOpt.get("start"); // 현재 페이지번호
-        System.out.println("start번호"+start);
+        
         try {
             con = ds.getConnection();
             StringBuffer sql = new StringBuffer();
@@ -332,11 +327,10 @@ public class TrainerBoardDAO {
 	
     // 게시글 수정
     public void updateBoard(HttpServletRequest request, HttpServletResponse response, String tb_idx) throws Exception {
-        int cnt = 0;
-        PreparedStatement pstmt = null;
+        
+    	PreparedStatement pstmt = null;
         con = ds.getConnection();
         try {
-        TrainerBoardDAO dao = new TrainerBoardDAO();
 		Map<String, String> articleMap = upload(request, response);
 		
 		String writer = articleMap.get("name"); //작성자(이름)
@@ -360,7 +354,6 @@ public class TrainerBoardDAO {
 			File srcFile = new File("C:\\file_repo\\temp\\"+file);
 			File destDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\tb_idx")+tb_idx);
 //			File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tb_idx);
-//			File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tb_idx); //+"\\tb_idxUpdate"+tb_idx
 			destDir.mkdirs();
 			FileUtils.moveFileToDirectory(srcFile, destDir, true);
 		}//파일 재 업로드
@@ -451,7 +444,7 @@ public class TrainerBoardDAO {
 		//요청하는 아이템들을 파싱(추출)해서 DiskFileItem객체에 각각 저장한 후 
 		//DiskFileItem객체들을 ArrayList배열에 추가합니다.
 		//그 후 ArrayList배열 자체를 반환 받습니다.
-		List items = upload.parseRequest(request);
+		List<FileItem> items = upload.parseRequest(request); //제네릭타입 FileItem추가
 		
 		//ArrayList가변 길이 배열의 크기만큼(DiskFileItem객체의 갯수만큼) 반복
 		for(int i=0; i<items.size(); i++ ) {
@@ -475,7 +468,7 @@ public class TrainerBoardDAO {
 		//업로드할 파일명을 얻어 파일명의 뒤에서부터 \\문자열이 포함되어 있는지
 		//index위치번호를 알려주는데 없으면 -1을 반환함
 		int idx = fileItem.getName().lastIndexOf("\\");
-		System.out.println("upload메소드에서 idx 번호 :"+idx);
+		
 		if(idx == -1) {//업로드할 파일명에 \\문자열이 포함되어 있지 않으면?
 		
 		idx = fileItem.getName().lastIndexOf("/");
@@ -484,7 +477,7 @@ public class TrainerBoardDAO {
 		
 		//업로드할 파일명 얻기
 		String fileName = fileItem.getName().substring(idx+1);
-		System.out.println("upload 메소드 내부에서 fileName : " + fileName);
+
 		//업로드할 파일 경로 + 파일명을 만들어서 그경로에 접근할 File객체 생성
 		File uploadFile = new File(currentDirPath + "\\temp\\" + fileName);
 		
@@ -535,7 +528,6 @@ public class TrainerBoardDAO {
 				File srcFile = new File("C:\\file_repo\\temp\\"+file);
 				File destDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\tb_idx")+articleNO);
 //				File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+articleNO);
-//				File destDir = new File("C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+articleNO);
 				
 				//DB에 추가한 글에 대한 글번호를 조회해서 가져왔기 때문에 글 번호 폴더 생성
 				destDir.mkdirs();
@@ -548,11 +540,11 @@ public class TrainerBoardDAO {
 		}
 		
 		//게시판 모든 글 조회하는 메소드
-		public ArrayList boardListAll() {
+		public ArrayList<TrainerBoardVo> boardListAll() { //TrainerBoardVo 제네릭타입 추가
 			
 			String sql = null;
 			
-			ArrayList list = new ArrayList();
+			ArrayList<TrainerBoardVo> list = new ArrayList<>();
 			
 			
 			try {
@@ -562,8 +554,6 @@ public class TrainerBoardDAO {
 				
 				rs = pstmt.executeQuery();
 				
-				//조회된 Result의 정보를 한행 단위로 꺼내서
-				//BoardVo객체에 한행씩 저장 후 BoardVo객체들을 ArrayList배열에 하나씩 추가해서 저장
 				while(rs.next()) {
 					TrainerBoardVo vo = new TrainerBoardVo(rs.getInt("tb_idx"),
 											rs.getString("tb_id"),
@@ -620,7 +610,6 @@ public class TrainerBoardDAO {
 		public TrainerBoardVo boardRead(HttpServletRequest request) {
 
 			String tb_idx = request.getParameter("tb_idx");
-			System.out.println("tb_idx값은?" + tb_idx);
 			
 			TrainerBoardVo vo = null;
 			String sql = null;
@@ -641,8 +630,6 @@ public class TrainerBoardDAO {
 				
 				rs = pstmt.executeQuery();
 				
-				//조회된 Result의 정보를 한행 단위로 꺼내서
-				//BoardVo객체에 한행의 정보를 저장합니다.
 				if(rs.next()) {
 					vo = new TrainerBoardVo(rs.getInt("tb_idx"),  
 										rs.getString("tb_id"), 
@@ -662,7 +649,6 @@ public class TrainerBoardDAO {
 				System.out.println("boardRead메소드에서 SQL오류 : ");
 				e.printStackTrace();
 			}finally {
-				//자원해제
 				closeResource();
 			}
 			
@@ -832,7 +818,6 @@ public class TrainerBoardDAO {
 		String reply_title = rp_articleMap.get("title"); //답변글 제목
 		String reply_content = rp_articleMap.get("content"); //답변글 내용
 		String reply_file = rp_articleMap.get("file"); //글을 작성할때 업로드 하기 위해 첨부한 파일명
-		System.out.println("insertReply내부에서 super_tb_idx 번호 : " + super_tb_idx);
 		
 		int rp_articleNO = replyInsertBoard(super_tb_idx,reply_id,reply_name,reply_title,reply_content,reply_file);
 		
@@ -853,7 +838,7 @@ public class TrainerBoardDAO {
 	//답변글 db등록
 	private int replyInsertBoard(String super_tb_idx, String reply_id, String reply_name, String reply_title,
 			String reply_content, String reply_file) {
-		System.out.println("replyInsertBoard 내부에서 super_tb_idx번호 : " + super_tb_idx);
+
 		int articleNO = getNewArticleNO(); 
 		String sql = null;
 		
