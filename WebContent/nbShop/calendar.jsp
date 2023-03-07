@@ -1,3 +1,7 @@
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.stream.Stream"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -10,8 +14,13 @@ String tr_price = request.getParameter("tr_price");
 String id = (String)session.getAttribute("id");
 
 // 배열형태의 rsDate를 컨틀롤러에서 받아와서 변수에 저장
+List rsDate = (List)request.getAttribute("rsDate");
 
-ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
+// rsDate Type = ArrayList
+
+// 출력 해보기
+// out.print(list.toString());
+
 
 
 %>
@@ -49,9 +58,32 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
 	
     var doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
     var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-   
+    
 	console.log(regdate);
 	console.log(reg_date);
+	
+//     // 예약된 날짜를 resDate라는 배열에 String 형태로 담는다.
+<%--     var resDate = [<%=rsDate%>]; --%>
+//     console.log(resDate);
+    
+
+//     // 1) 당월
+//    	var resM = moment(date).format('MM');
+    
+//   	//  2) 다음월
+//    	var resNM = moment(date).add("1","M").format('MM');
+
+//     // 이번달과 다음달을 나눠서 배열에 저장시킨다.
+	
+// 	if(resDate.includes(resM)){
+		
+// 		alert(resM+"월의 값을 저장합니다.");
+		
+// 	}else if (resDate.includes(resNM)){
+		
+// 		alert(resNM+"월의 값을 저장합니다.");
+// 	}
+	
     
     /**
      * @brief   이전달 버튼 클릭
@@ -82,6 +114,7 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
     		
     	}
         this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+        console.log(this.today);
         buildCalendar();    // @param 명월 캘린더 출력 요청
 
     }
@@ -267,6 +300,9 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
         clickyear = today.getFullYear();
         clickday = $(".choiceDay").text();
         clickdate = clickyear+"-"+clickmonth+"-"+clickday;
+        clickdate2 = clickmonth+"월 "+clickday+"일";
+        
+        
         
         
         // @현재요일 구하기
@@ -274,10 +310,9 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
 		var clickdow = new Date(clickdate).getDay();
 		var todayLabel = week[clickdow];
         console.log(todayLabel);
-        
-           
+
            //첫번째 예약란이 빈공백이면,
-           if($("#selectDate1").val() == ""){
+           if($("#selectDay1").val() == ""){
         	   
         	   resultcnt++;
         	   resultprice = <%=tr_price%>;
@@ -285,6 +320,7 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         	   
 	   	        // 첫번째 예약 날짜에 입력 시킨다.
+	           	$("#selectDay1").attr("value", clickdate2);
 	           	$("#selectDate1").attr("value", clickdate);
 	   	        $("#dow1").attr("value", todayLabel);
 	   	        $("#Num1").attr("value", "1");
@@ -299,13 +335,14 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
 	   	     return false;
 	   	   
 	       //두번째 예약란이 공백일때
-           }else if($("#selectDate2").val() == ""){
+           }else if($("#selectDay2").val() == ""){
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	   	        
         	   // 두번째 예약 날짜에 입력 시킨다.
+	           	$("#selectDay2").attr("value", clickdate2);
 	           	$("#selectDate2").attr("value", clickdate);
 	           	$("#dow2").attr("value", todayLabel);
 	           	$("#Num2").attr("value", "2");
@@ -320,13 +357,14 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
    	       	return false;
    	       		
  	       //세번째 예약란이 공백일때
-           }else if($("#selectDate3").val() == ""){
+           }else if($("#selectDay3").val() == ""){
 	   	        
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         	   
         	   // 세번째 예약 날짜에 입력 시킨다.
+	           	$("#selectDay3").attr("value", clickdate2);
 	           	$("#selectDate3").attr("value", clickdate);
 	           	$("#dow3").attr("value", todayLabel);
 	           	$("#Num3").attr("value", "3");
@@ -341,13 +379,14 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
    	       return false;    
 	   	        
   	       //네번째 예약란이 공백일때
-           }else if($("#selectDate4").val() == ""){
+           }else if($("#selectDay4").val() == ""){
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	   	        
         	   // 네번째 예약 날짜에 입력 시킨다.
+	           	$("#selectDay4").attr("value", clickdate2);
 	           	$("#selectDate4").attr("value", clickdate);
 	           	$("#dow4").attr("value", todayLabel);
 	           	$("#Num4").attr("value", "4");
@@ -362,13 +401,14 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
    	     	return false;     
 	   	        
   	       //다섯번째 예약란이 공백일때
-           }else if($("#selectDate5").val() == ""){
+           }else if($("#selectDay5").val() == ""){
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	   	        
         	   // 다섯번째 예약 날짜에 입력 시킨다.
+	           	$("#selectDay5").attr("value", clickdate2);
 	           	$("#selectDate5").attr("value", clickdate);
 	           	$("#dow5").attr("value", todayLabel);
 	           	$("#Num5").attr("value", "5");
@@ -383,13 +423,14 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
    	    	 return false;
 	   	        
   	       //여섯번째 예약란이 공백일때
-           }else if($("#selectDate6").val() == ""){
+           }else if($("#selectDay6").val() == ""){
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	        
 	 	  		 // 여섯번째 예약 날짜에 입력 시킨다.
+	        	$("#selectDay6").attr("value", clickdate2);
 	        	$("#selectDate6").attr("value", clickdate);
 	        	$("#dow6").attr("value", todayLabel);
 	        	$("#Num6").attr("value", "6");
@@ -404,13 +445,14 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
    	    	 return false;     
 	   	        
   	       //일곱번째 예약란이 공백일때
-           }else if($("#selectDate7").val() == ""){
+           }else if($("#selectDay7").val() == ""){
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         
 	  		 	// 여섯번째 예약 날짜에 입력 시킨다.
+	   			$("#selectDay7").attr("value", clickdate2);
 	   			$("#selectDate7").attr("value", clickdate);
 	   			$("#dow7").attr("value", todayLabel);
 	   			$("#Num7").attr("value", "7");
@@ -605,6 +647,13 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
 <input type="hidden" name ="reg_date" id="reg_date" readonly />
 <input type="hidden" name ="tr_price" id="tr_price" value="<%=tr_price%>" readonly />
 <input type="hidden" name ="totalprice" id="totalprice" readonly />
+<input id="selectDate1" name="date1" type="hidden"  readonly="readonly"/>
+<input id="selectDate2" name="date2" type="hidden"  readonly="readonly"/>
+<input id="selectDate3" name="date3" type="hidden"  readonly="readonly"/>
+<input id="selectDate4" name="date4" type="hidden"  readonly="readonly"/>
+<input id="selectDate5" name="date5" type="hidden"  readonly="readonly"/>
+<input id="selectDate6" name="date6" type="hidden"  readonly="readonly"/>
+<input id="selectDate7" name="date7" type="hidden"  readonly="readonly"/>
 
 <!-- 캘린더 넣기 -->
 <div id = "calandtotalWrapper">
@@ -663,13 +712,13 @@ ArrayList rsDate = (ArrayList)request.getAttribute("rsDate");
         </div>
         	<div id="result">
         		<div id="selectDate">
-	        		<input id="selectDate1" name="date1" type="text"  readonly="readonly"/>
-	        		<input id="selectDate2" name="date2" type="text"  readonly="readonly"/>
-	        		<input id="selectDate3" name="date3" type="text"  readonly="readonly"/>
-	        		<input id="selectDate4" name="date4" type="text"  readonly="readonly"/>
-	        		<input id="selectDate5" name="date5" type="text"  readonly="readonly"/>
-	        		<input id="selectDate6" name="date6" type="text"  readonly="readonly"/>
-	        		<input id="selectDate7" name="date7" type="text"  readonly="readonly"/>
+	        		<input id="selectDay1"  type="text"  readonly="readonly"/>
+	        		<input id="selectDay2"  type="text"  readonly="readonly"/>
+	        		<input id="selectDay3"  type="text"  readonly="readonly"/>
+	        		<input id="selectDay4"  type="text"  readonly="readonly"/>
+	        		<input id="selectDay5"  type="text"  readonly="readonly"/>
+	        		<input id="selectDay6"  type="text"  readonly="readonly"/>
+	        		<input id="selectDay7"  type="text"  readonly="readonly"/>
         		</div>
         		<div id="selectDow">
 	        		<input id="dow1" type="text"  readonly="readonly"/>
