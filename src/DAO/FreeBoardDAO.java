@@ -391,4 +391,23 @@ public class FreeBoardDAO {
     return result;
   }
 //====================write.jsp에서 글을 작성한 뒤, 테이블에 담는다. ====================
+
+  public int deleteOne(int idx) {
+    int result = 0;
+    try {
+      con = ds.getConnection();
+      
+      String sql = "DELETE FROM FREE_BOARD WHERE B_IDX = ?";
+      pstmt = con.prepareStatement(sql);
+      pstmt.setInt(1, idx);
+      result = pstmt.executeUpdate();
+      
+    } catch (Exception e) {
+      System.out.println("deleteOne 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
+      e.printStackTrace();
+    } finally {
+      closeResource();
+    }
+    return result;
+  }
 }

@@ -123,7 +123,7 @@ public class FreeBoardController extends HttpServlet {
       String nickname = "seeeop2";
       
 //      //업로드 작업 중ㅇ...
-      String directory ="/Users/inseop/Desktop/팀프로젝트/upload";
+      String directory ="C:\\Users\\205\\Desktop\\COMEON";
       System.out.println(directory);
       int maxSize = 1024 * 1024 * 100;
       String encoding = "utf-8";
@@ -226,16 +226,33 @@ public class FreeBoardController extends HttpServlet {
 
         return;
 //=======================좋아요 버튼 클릭시 /like.fb ============================
-//=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
+      //=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
       case "/modify.fb":
-        
+
         
         
         request.setAttribute("center", "nbBoard/list.jsp");
         
         nextPage = "/nbMain.jsp";
         break;
-      //=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
+//=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
+//=====================게시글 삭제 버튼 클릭시 /del.fb ==========================
+      case "/del.fb":
+        int idx = Integer.parseInt( request.getParameter("b_idx")  );
+        int result2 = boarddao.deleteOne(idx);
+        
+        if(result2 == 1) {
+          out.println(1);
+        } else {
+          out.println(0);
+        }
+        
+
+        return;
+        
+        
+        
+//=====================게시글 삭제 버튼 클릭시 /del.fb ==========================
 
       default:
         break;

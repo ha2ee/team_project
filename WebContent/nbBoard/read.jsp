@@ -8,6 +8,7 @@
    String contextPath = request.getContextPath();
   FreeBoardVo vo = (FreeBoardVo) request.getAttribute("vo");
 
+  int idx = vo.getB_idx();
   String title = vo.getB_title();
   String content = vo.getB_content();
   String nickname = vo.getB_nickname();
@@ -65,13 +66,40 @@
       <form id = "modifyWithDel">
         <input type="hidden" name="" value="">
         <!-- ---------------------------- -->
+        <input type="button" value="목록" onclick="javascript:fnGoList()">
         <input type="submit" value="수정">
-        <input type="button" value="삭제">
+        <input type="button" value="삭제" onclick="javascript:fnDel(<%=idx%>)">
       </form>
     </div>
     <script type="text/javascript">
       function modify(){
     	  $("input[name=]")
+      }
+      
+      function fnDel(val){
+        $.ajax({
+    			url: "<%=contextPath%>/freeboard/del.fb",
+    			async : true,
+    			type : 'POST',
+    			data : {
+              			b_idx : b_idx
+    							},
+    			success : function(data) {
+      			  				if(data == 1){
+      			  				  alert("삭제 성공!");
+      			  				  location.href=
+      			  				    "<%=contextPath%>/freeboard/list.fb?nowPage=0&nowBlock=0";
+      			  				}else{
+      			  				  alert("삭제 실패!");
+      			  				  history.go(-1);
+      			  				}
+
+    								}
+
+    		});
+      }
+      function fnGoList(){
+        location.href="<%=contextPath%>/freeboard/list.fb?nowPage=0&nowBlock=0";
       }
     </script>
 
