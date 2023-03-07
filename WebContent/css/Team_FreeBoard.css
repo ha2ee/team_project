@@ -7,7 +7,6 @@
   font-style: normal;
 }
 html > body {
-  margin: 0;
   font-family: SeoulNamsanM, sans-serif;
 }
 /* 스크롤바 설정*/
@@ -26,9 +25,13 @@ html > body {
 }
 /*스타일 시작*/
 .Contents-Box {
-  height: calc(100% - 70px);
+	
+/*   height: 900px; */
   color: #010101;
-  padding: 0 20px;
+  padding: 100px 20px;
+  margin : 5% 5% 0 5%;
+  
+/*   width: 80%; */
 }
 /*제목, 삭제버튼*/
 .Contents-Box > .Title-And-Del {
@@ -42,7 +45,8 @@ html > body {
 }
 .Contents-Box > .Title-And-Del > .Title > span {
   margin-right: -5%;
-  font-size: 2rem;
+  font-size: 4rem;
+  padding-bottom: 1.5rem;
 }
 .Contents-Box > .Title-And-Del > .Sel-And-Del-Btn {
   width: 50%;
@@ -55,13 +59,14 @@ html > body {
   border: 1px solid #7d7d7d;
 /*   cursor: pointer;
  */  padding: 2px 0;
-  width: 30%;
+  width: 40%;
+  font-size: 2rem;
 }
 .Contents-Box > .Title-And-Del > .Sel-And-Del-Btn > input:nth-child(2) {
   background-color: #FFB287;
   padding: 3px 30px;
   color: #ffffff;
-  font-size: 0.75rem;
+  font-size: 2rem;
   font-weight: 100;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -70,34 +75,48 @@ html > body {
   background-color: #4F6884;
 }
 /*목록*/
+.List-Box{
+	width:100%;
+}
 .Contents-Box > .List-Box > ul {
   display: flex;
   height: calc(100% / 15);
   background-color: #f3f3f3;
   color: #7d7d7d;
-  font-size: 0.875rem;
+  font-size: 2.5rem;
 }
 .Contents-Box > .List-Box > ul > li {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+
+
+
 .Contents-Box > .List-Box > ul > li:first-child {
-  width: 13%;
+  width: 5%;
 }
 .Contents-Box > .List-Box > ul > li:nth-child(2) {
-  width: 10%;
+  width: 15%;
   justify-content: start;
   padding: 0 40px;
 }
 .Contents-Box > .List-Box > ul > li:nth-child(3) {
-  width: 60%;
+  width: 50%;
 }
+.Contents-Box > .List-Box > ul > li:nth-child(4) {
+  width: 15%;
+}
+.Contents-Box > .List-Box > ul > li:nth-child(5) {
+  width: 7.5%;
+}
+
 .Contents-Box > .List-Box > ul > li:last-child {
-  width: 17%;
+  width: 7.5%;
 }
 .Contents-Box > .List-Box > .List-1 {
-  height: calc(100% / 15);
+  height: auto;
   display: flex;
   border-bottom: 1px solid #eaeaea;
 }
@@ -106,7 +125,7 @@ html > body {
   justify-content: center;
   align-items: center;
   text-align: left;
-  font-size: 0.875rem;
+  font-size: 2rem;
 }
 .Contents-Box > .List-Box > .List-1 > div:first-child {
   width: 13%;
@@ -120,9 +139,9 @@ html > body {
 }
 .Contents-Box > .List-Box > .List-1 > div:nth-child(3) {
   width: 60%;
-  justify-content: start;
-  padding-left: 100px;
-  color: #696969;
+/*   justify-content: start; */
+/*   padding-left: 50px;
+ */  color: #696969;
 }
 .Contents-Box > .List-Box > .List-1 > div:last-child {
   width: 17%;
@@ -166,7 +185,7 @@ html > body {
   background-color: #FFB287;
   padding: 3px 30px;
   color: #ffffff;
-  font-size: 0.75rem;
+  font-size: 2rem;
   font-weight: 100;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -174,3 +193,4 @@ html > body {
 .Contents-Box > .List-Move-Number > .Up-Btn > input:hover {
   background-color: #4F6884;
 }
+

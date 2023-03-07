@@ -18,7 +18,7 @@ $(function() {
   autoplayFn();
 
   function autoplayFn() {
-    setId = setInterval(nextCountFn, 2500);
+    setId = setInterval(nextCountFn, 3500);
   };
 
   $(".pageBt").each(function(idx) {
