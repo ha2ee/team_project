@@ -96,7 +96,7 @@
       <!--제목-->
 <!--       <form class="Form-Box Title-And-Del" action="#"> -->
         <div class="Title">
-          <span>자 유 게 시 판</span>
+          <span><b>자 유 게 시 판</b></span>
         </div>
         
         <div style=" display: flex; justify-content: flex-end;">
@@ -223,13 +223,11 @@
           <input type="submit" value="글쓰기">
         </div>
       </form>
-    </div>
  
- 
+<div align="center" style="margin-right: 10%">
  <table>
  	<tr align="center"> 
 		<td  colspan="3" align="center">
-		Go To Page
 		<%   
 			if(totalRecord != 0){//DB에 글이 있다면?
 					
@@ -244,12 +242,13 @@
 		<%
 				for(int i=0; i<pagePerBlock; i++){
 		%>			
-					&nbsp;&nbsp;
+    
+					&nbsp;
 					<a href="<%=contextPath%>/freeboard/list.fb?nowBlock=<%=nowBlock%>&nowPage=<%=(nowBlock * pagePerBlock)+i%>">
 						<%=(nowBlock * pagePerBlock)+i+1 %>	
 						<%if((nowBlock * pagePerBlock)+i+1 == totalPage) break; %>
 					</a>
-					&nbsp;&nbsp;
+					&nbsp;
 		<%			
 				}
 		%>		
@@ -275,6 +274,7 @@
 		</td> 
 	</tr>
  </table>
+</div>
  
     <form name="frmRead">
        <input type="hidden" name="b_idx">
