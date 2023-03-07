@@ -281,12 +281,11 @@ public class MemberDAO {
 	//일반회원 정보 삭제
 	public boolean memDelete(String deleteId) {
 		
-		boolean mem_result = false; //
+		boolean mem_result = true; //
 		
 		try {
 			//1. 커넥션풀(DataSource)에서 Connection객체 얻기
 			con = ds.getConnection();
-			
 			//2. DELETE 문 만들기 
 			//-> 매개변수로 전달 받는  id에 해당되는 회원 삭제 시키는 DELETE문 
 			String query = "DELETE FROM YS_MEMBER WHERE MEM_ID=?";
@@ -295,20 +294,20 @@ public class MemberDAO {
 			//3. DELETE SQL문을 실행할  PreparedStatement객체 얻기
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, deleteId);
+			rs = pstmt.executeQuery();
 
 			if(rs.next()) {
-				mem_result = true;
+				System.out.println("삭제됨");
+				mem_result = false;
 			}
-			
+				System.out.println("안됨");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		
 		} finally {
 			//5. 자원해제 
 			try {
-				if(con != null) con.close();
-				if(pstmt != null) pstmt.close();
-				if(rs != null) rs.close();
+				closeResource();
 			} catch (Exception e) {
 				System.out.println("memDelete메소드 내부에서 SQL실행 오류" + e );
 				e.printStackTrace();
@@ -322,7 +321,7 @@ public class MemberDAO {
 	//트레이너 정보 삭제
 	public boolean trDelete(String deleteId) {
 		
-		boolean tr_result = false; //
+		boolean tr_result = true; //
 		
 		try {
 			//1. 커넥션풀(DataSource)에서 Connection객체 얻기
@@ -336,9 +335,10 @@ public class MemberDAO {
 			//3. DELETE SQL문을 실행할  PreparedStatement객체 얻기
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, deleteId);
+			rs = pstmt.executeQuery();
 
 			if(rs.next()) {
-				tr_result = true;
+				tr_result = false;
 			}
 			
 		} catch (SQLException e) {
@@ -685,6 +685,7 @@ public class MemberDAO {
 
 							mem_vo = new MemberVo();
 										 mem_vo.setMem_name(rs.getString("mem_name"));
+										 mem_vo.setMem_pw(rs.getString("mem_pw"));
 										 mem_vo.setMem_nick(rs.getString("mem_nick"));
 										 mem_vo.setMem_img(rs.getString("mem_img"));
 										 mem_vo.setMem_email(rs.getString("mem_email"));
@@ -697,10 +698,11 @@ public class MemberDAO {
 										 mem_vo.setMem_address3(rs.getString("mem_address3"));
 										 mem_vo.setMem_address4(rs.getString("mem_address4"));
 										 mem_vo.setMem_address5(rs.getString("mem_address5"));
-										
+	
 					}else {
 							mem_vo = new MemberVo();
 										 mem_vo.setMem_name("");
+										 mem_vo.setMem_pw("");
 										 mem_vo.setMem_nick("");
 										 mem_vo.setMem_img("");
 										 mem_vo.setMem_email("");
@@ -746,6 +748,7 @@ public class MemberDAO {
 			if(rs.next()) {				
 				tr_vo = new TrainerVo();
 				tr_vo.setTr_name(rs.getString("tr_name"));
+				tr_vo.setTr_pw(rs.getString("tr_pw"));
 				tr_vo.setTr_img(rs.getString("tr_img"));
 				tr_vo.setTr_email(rs.getString("tr_email"));
 				tr_vo.setTr_hp(rs.getString("tr_hp"));
@@ -757,11 +760,11 @@ public class MemberDAO {
 				tr_vo.setTr_address4(rs.getString("tr_address4"));
 				tr_vo.setTr_address5(rs.getString("tr_address5"));
 				
-				
 			}else {
 				
 				tr_vo = new TrainerVo();
 				tr_vo.setTr_name(""); 
+				tr_vo.setTr_pw("");
 				tr_vo.setTr_img("");
 				tr_vo.setTr_email("");
 				tr_vo.setTr_hp("");

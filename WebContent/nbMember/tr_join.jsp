@@ -10,7 +10,6 @@
 <%
 // https://nameybs.tistory.com/37?category=810277
 // 체크박스 체크한  <input>항목 얻고  체크한 값 얻어 사용
-
 %>    
    
     
@@ -44,8 +43,6 @@
 <title>회원가입</title>
 
 <style type="text/css">
-
-
 	#pass,#nickname,#checkpass,#name,
 	#hp,.birth,#email,#sample4_postcode,
 	#sample4_find,#sample4_detailAddress,
@@ -114,14 +111,11 @@
   	
 	.join{
 		display: flex;     
-
 		align-items: center;   
-
 		justify-content: center;   
 	
 	}
 	
-
 	/* #Photo{
 	  display: inline-block;
 	  padding: .5em .75em;
@@ -135,7 +129,6 @@
 	  border-bottom-color: #e2e2e2;
 	  border-radius: .25em;
 	} */
-
 	#ex_file	{  /* 파일 필드 숨기기 */
 	  position: absolute;
 	  width: 1px;
@@ -146,7 +139,6 @@
 	  clip:rect(0,0,0,0);
 	  border: 0;
 	}
-
  	#preview{
     max-width: 60%;
     margin: 0;
@@ -154,18 +146,16 @@
     border: none;
     line-height: normal;
     vertical-align: middle;
-	width : 300px; 
-	height :400px;
- 	margin-left : -215px; 
- 	margin-bottom: -27px; 
+	width : 150px; 
+	height :160px;
+ 	margin-left : -210px; 
+ 	margin-bottom: -20px; 
 }
-
 	.heigthD{
-		height: 100px;
+		height: 100px;	
 	
 	}
 	
-
 		
 </style>
 </head>
@@ -563,5 +553,3 @@
 
 </body>
 </html>
-
-
