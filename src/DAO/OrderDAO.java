@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -218,9 +221,9 @@ public class OrderDAO {
 	}
 	
 	// #4) 이미 예약된 일정을 필터링 해서 반환해주는 메소드
-	public ArrayList<String> checkDate(String tr_name) {
+	public List<String> checkDate(String tr_name) {
 		
-		ArrayList<String> rsDate = new ArrayList<>();
+		List<String> list = new ArrayList<String>();
 		
 		System.out.println("OrderDAO -> checkDate 메소드 호출!");
 		
@@ -259,11 +262,11 @@ public class OrderDAO {
 			while(rs.next()) {
 			
 				//Array 배열에 저장시킨다.
-				rsDate.add(rs.getString("date1"));
+				list.add(rs.getString("date1"));
 
 			}
 				
-			System.out.println(rsDate);
+			System.out.println(list);
 			
 			
 			
@@ -276,7 +279,7 @@ public class OrderDAO {
 			
 			closeResource();
 		}
-		return rsDate;
+		return list;
 		
 		
 	}

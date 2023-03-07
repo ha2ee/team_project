@@ -1,3 +1,4 @@
+<%@page import="java.util.stream.Collectors"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.stream.Stream"%>
@@ -7,29 +8,45 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+
+<% request.setCharacterEncoding("UTF-8"); %>
 <%
 String tr_name = request.getParameter("tr_name");
 String tr_price = request.getParameter("tr_price");
 //Session내장객체 메모리 영역에 session값 얻기
 String id = (String)session.getAttribute("id");
 
-// 배열형태의 rsDate를 컨틀롤러에서 받아와서 변수에 저장
-List rsDate = (List)request.getAttribute("rsDate");
+// list를 컨틀롤러에서 받아와서 변수에 저장
+List<String> list = (List<String>)request.getAttribute("list");
 
-// rsDate Type = ArrayList
 
+Date date = new Date();
+
+
+// 각월에 해당되는 List를 생성하고 필터 된 값을 저장시킨다.
+// 1) 해당월
+List<String> MonthlyDay = list.stream().filter(s -> s.contains("03-")).collect(Collectors.toList());
+
+// 2) 다음달
+List<String> NMonthlyDay = list.stream().filter(s -> s.contains("04-")).collect(Collectors.toList());
 // 출력 해보기
-// out.print(list.toString());
+out.print(MonthlyDay);
+out.print(NMonthlyDay);
+
+//리스트 생성
+
+
 
 
 
 %>
-<% request.setCharacterEncoding("UTF-8"); %>
 <html>
 <head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
+
 <title>일정 예약 페이지</title>
 <!--  	 calendar CSS 셋팅 -->
  	<link href="<%=request.getContextPath()%>/css/calendar.css" rel="stylesheet">
@@ -61,28 +78,7 @@ List rsDate = (List)request.getAttribute("rsDate");
     
 	console.log(regdate);
 	console.log(reg_date);
-	
-//     // 예약된 날짜를 resDate라는 배열에 String 형태로 담는다.
-<%--     var resDate = [<%=rsDate%>]; --%>
-//     console.log(resDate);
-    
 
-//     // 1) 당월
-//    	var resM = moment(date).format('MM');
-    
-//   	//  2) 다음월
-//    	var resNM = moment(date).add("1","M").format('MM');
-
-//     // 이번달과 다음달을 나눠서 배열에 저장시킨다.
-	
-// 	if(resDate.includes(resM)){
-		
-// 		alert(resM+"월의 값을 저장합니다.");
-		
-// 	}else if (resDate.includes(resNM)){
-		
-// 		alert(resNM+"월의 값을 저장합니다.");
-// 	}
 	
     
     /**

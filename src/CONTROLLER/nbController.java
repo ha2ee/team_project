@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -179,11 +180,11 @@ public class nbController extends HttpServlet{
 			
 			// 3) 훈련사 이름을 매개변수로 해서 오더다오를 통해 선택된 훈련사의
 			//    예약 된 일자를 조회해서 캘린더에서 선택하지 못하도록 한다.
-			ArrayList<String> rsDate = orderdao.checkDate(tr_name);
+			List<String> list = orderdao.checkDate(tr_name);
 				
 			//request에 calendar.jsp로 저장
 			request.setAttribute("center", center);
-			request.setAttribute("rsDate", rsDate);
+			request.setAttribute("list", list);
 			
 			// 중앙 화면 바인딩 하기
 			System.out.println("요청한 center : "+ center);
