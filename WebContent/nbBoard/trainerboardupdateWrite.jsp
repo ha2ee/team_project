@@ -1,3 +1,4 @@
+<%@page import="DAO.TrainerBoardDAO"%>
 <%@page import="VO.MemberVo"%>
 <%@page import="VO.TrainerVo"%>
 <%@page import="VO.TrainerBoardVo"%>
@@ -7,19 +8,17 @@
 	request.setCharacterEncoding("utf-8");
 	String contextPath = request.getContextPath();
 	TrainerBoardVo tbo = (TrainerBoardVo)request.getAttribute("tvo");
-	TrainerVo tvo = (TrainerVo)request.getAttribute("trainervo");
-	MemberVo vo = (MemberVo)request.getAttribute("membervo");
-	String id = (String)session.getAttribute("id");
-	if(id == null){
-%>		
-	<script>	
-		alert("login"); 
-		history.back(); 
- 	</script>
- 	 
- <% 
-	}%>
-	
+	MemberVo vo = null;
+	TrainerVo tvo = null;
+	TrainerBoardDAO trainerboarddao = new TrainerBoardDAO();
+    String id = (String) session.getAttribute("id");
+    if (id == null || id.equals("")) {
+        %>      
+        <script>    
+            alert("로그인을 해야 글을 작성 할 수 있습니다."); 
+            history.back(); 
+        </script>
+<%}%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +26,7 @@
     <title>글쓰기</title>
     <script type="text/javascript" src="<%=contextPath%>/ckeditor/ckeditor.js"></script>
     <link rel="stylesheet" href="<%=contextPath%>/nbBoard/TrainerBoard.css">
+
 </head>
 <body>
     <h2>글쓰기</h2>
@@ -39,14 +39,9 @@
         <table id="tbwTable">
             <tr>
                 <td>작성자</td>
-                     <td>
-                <c:if test="${not empty requestScope.trainervo}">
-                <input type="text" name="name" value="<%=tvo.getTr_name()%>" />
-                </c:if>
-                <c:if test="${not empty requestScope.membervo}">
-                <input type="text" name="name" value="<%=vo.getMem_name()%>" />
-                </c:if>
-                </td>
+                <td>
+					<input type="text" name="name" value="${not empty requestScope.trainervo ? requestScope.trainervo.tr_name : requestScope.membervo.mem_name}" />
+               	</td>
 				
             </tr>
             <tr>

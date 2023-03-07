@@ -57,7 +57,7 @@ public class TrainerBoardDAO {
 
 	//아이디가 어느테이블(ys_member, Member_Trainer)에 속하는지 확인
 	public boolean checkTable(String id) {
-		//조회된 글의 글수 저장
+
 		boolean result = false;
 		
 		try {
@@ -376,8 +376,6 @@ public class TrainerBoardDAO {
 		vo.setTb_content(content);
 		vo.setTb_id(id);
 		vo.setTb_file(file);
-		
-//		int articleNO = getNewArticleNO();
 		
 		//수정할때 파일이 null이 아니라면 재 업로드
 		if (vo.getTb_file() != null) {

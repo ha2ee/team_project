@@ -103,15 +103,12 @@ public class TrainerBoardController extends HttpServlet{
 		
 	      if (action.equals("/write.bo")) {
 	    	  
-	    	 
 	    	  System.out.println("write.bo에서 result값 확인" + result);
 	    	//새글 입력시 작성자에 닉네임 넣어주려고 가져오는 메소드
 	    	  if(result) {//ys_member테이블에 있다면? true를 받았으니
 	    		  membervo = memberdao.memberOne(memberid);
-	    		  System.out.println(membervo.getMem_name());
 	    	  } else {
 	    		  trainervo = trainerdao.trainerOne(memberid);
-	    		  System.out.println(trainervo.getTr_name());
 	    		 
 	    	  }
 				//새글을 입력하는 중앙 View화면 주소 요청!
@@ -120,6 +117,7 @@ public class TrainerBoardController extends HttpServlet{
 				request.setAttribute("center", center);
 				request.setAttribute("trainervo", trainervo);
 				request.setAttribute("membervo", membervo);
+				request.setAttribute("trainerboarddao", trainerboarddao);
 				
 				nextPage = "/nbMain.jsp";
 	         
@@ -217,6 +215,7 @@ public class TrainerBoardController extends HttpServlet{
 		
 				request.setAttribute("center", center);
 				request.setAttribute("vo", vo);
+				request.setAttribute("trainerboarddao", trainerboarddao);
 				
 				request.setAttribute("pageNum", request.getParameter("pageNum")); 
 				request.setAttribute("tb_idx", request.getParameter("tb_idx"));
@@ -252,6 +251,7 @@ public class TrainerBoardController extends HttpServlet{
 	    	  request.setAttribute("tvo", tvo);
 	    	  request.setAttribute("trainervo", trainervo);
 	    	  request.setAttribute("membervo", membervo);
+	    	  request.setAttribute("trainerboarddao", trainerboarddao);
 	    	  request.setAttribute("center", "/nbBoard/trainerboardupdateWrite.jsp");
 
 	    	  

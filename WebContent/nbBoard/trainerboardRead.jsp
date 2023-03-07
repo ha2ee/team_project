@@ -9,14 +9,12 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
-	TrainerBoardDAO trainerBoardDAO = new TrainerBoardDAO();
 	//조회한 글정보 얻기
 	TrainerBoardVo vo = (TrainerBoardVo)request.getAttribute("vo");
 	String writerId = vo.getTb_id();
 	String name = vo.getTb_name();
 	String title = vo.getTb_title();
 	String content = vo.getTb_content(); 
-	System.out.print(content);
 	String file = vo.getTb_file();
 	Date date = vo.getTb_date();
 	int cnt = vo.getTb_cnt();
@@ -147,15 +145,15 @@ div.filedownload {
 		<input type="button" value="목록으로" onclick="location.href='list.bo?page=${pageNum}'" id="list" />
        
         <!-- 수정,삭제는 세션아이디와 조회한 글의 작성자아이디가 동일할때만 노출시키기 필요 -->
-        <%if (id.equals(writerId)) { %>
-        <input type="button" value="수정하기" onclick="location.href='tbUpdate.bo?tb_idx=${tb_idx}'" />
-        <input type="button" value="삭제하기" onclick="javascript:tbDelete('<%=tb_idx%>','${vo.tb_level}');" id="delete"/>
-        <%} %>
+		<c:if test="${sessionScope.id eq vo.tb_id}">
+			<input type="button" value="수정하기" onclick="location.href='tbUpdate.bo?tb_idx=${tb_idx}'" />
+			<input type="button" value="삭제하기" onclick="javascript:tbDelete('<%=tb_idx%>','${vo.tb_level}');" id="delete"/>
+		</c:if>
        
         <!-- 답글달기는 세션아이디가 MEMBER_TRAINER에 포함되어있는 경우에만 나타나도록 조건필요 -->
-        <%if (!trainerBoardDAO.checkTable(id)){ %>
-        <input type="button" value="답글달기" onclick="location.href='tbReply.bo?tb_idx=${tb_idx}&center=/nbBoard/trainerboardReply.jsp'" id="reply"/>
-        <% }%>    
+		<c:if test="${not requestScope.trainerboarddao.checkTable(sessionScope.id) && not empty sessionScope.id}">
+			<input type="button" value="답글달기" onclick="location.href='tbReply.bo?tb_idx=${tb_idx}&center=/nbBoard/trainerboardReply.jsp'" id="reply"/>
+		</c:if>
     </div>
     </div>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>    
