@@ -5,16 +5,16 @@
 	String contextPath = request.getContextPath();
 	TrainerVo tvo = (TrainerVo)request.getAttribute("trainervo");
 	
-//	String id = (String)session.getAttribute("id");
-//	if(id == null){
+	String id = (String)session.getAttribute("id");
+	if(id == null){
 %>		
-<%--	<script>	
+<	<script>	
 		alert("login"); 
 		history.back(); 
  	</script>
- 	 --%>
+ 	 
  <% 
-	//}%>
+	}%>
 	
 <!DOCTYPE html>
 <html>
@@ -30,7 +30,7 @@
 
  <div class="tbwContainer">
     <form method="post" action="<%=contextPath%>/tb/tbReplyPro.bo" enctype="multipart/form-data">
-      <input type="hidden" name ="id" value="<%=tvo.getTr_id() %>"><!-- 세션아이디 영역(트레이너) -->
+      <input type="hidden" name ="id" value="<%=id %>"><!-- 세션아이디 영역(트레이너) -->
       <input type="hidden" name ="super_tb_idx" value="${super_tb_idx}"><!-- 부모글번호 -->
      
         <table id="tbwTable">

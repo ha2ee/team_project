@@ -1,20 +1,21 @@
+<%@page import="VO.MemberVo"%>
 <%@page import="VO.TrainerVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	request.setCharacterEncoding("utf-8");
 	String contextPath = request.getContextPath();
 	TrainerVo tvo = (TrainerVo)request.getAttribute("trainervo");
-	
-//	String id = (String)session.getAttribute("id");
-//	if(id == null){
+	MemberVo vo = (MemberVo)request.getAttribute("membervo");
+	String id = (String)session.getAttribute("id");
+	if(id == null){
 %>		
-<%--	<script>	
+	<script>	
 		alert("login"); 
 		history.back(); 
  	</script>
- 	 --%>
  <% 
-	//}%>
+	}%>
 	
 <!DOCTYPE html>
 <html>
@@ -30,12 +31,22 @@
 
  <div class="tbwContainer">
     <form method="post" action="<%=contextPath%>/tb/writePro.bo" enctype="multipart/form-data">
-      <input type="hidden" name ="id" value="<%=tvo.getTr_id() %>">
-     
+
+      <input type="hidden" name ="id" value="<%=id%>"> <!-- 세션아이디 넘기기 -->
+
         <table id="tbwTable">
             <tr>
                 <td>작성자</td>
-                <td><input type="text" name="name" value="<%=tvo.getTr_name()%>" /></td>
+                
+                <td>
+                <c:if test="${not empty requestScope.trainervo}">
+                <input type="text" name="name" value="<%=tvo.getTr_name()%>" />
+                </c:if>
+                <c:if test="${not empty requestScope.membervo}">
+                <input type="text" name="name" value="<%=vo.getMem_name()%>" />
+                </c:if>
+                </td>
+				
             </tr>
             <tr>
                 <td>제목</td>

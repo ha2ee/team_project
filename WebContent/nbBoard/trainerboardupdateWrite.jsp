@@ -1,20 +1,24 @@
+<%@page import="VO.MemberVo"%>
+<%@page import="VO.TrainerVo"%>
 <%@page import="VO.TrainerBoardVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	String contextPath = request.getContextPath();
-	TrainerBoardVo tvo = (TrainerBoardVo)request.getAttribute("tvo");
-// 	request.setAttribute("tb_idx", tvo.getTb_idx());
-//	String id = (String)session.getAttribute("id");
-//	if(id == null){
+	TrainerBoardVo tbo = (TrainerBoardVo)request.getAttribute("tvo");
+	TrainerVo tvo = (TrainerVo)request.getAttribute("trainervo");
+	MemberVo vo = (MemberVo)request.getAttribute("membervo");
+	String id = (String)session.getAttribute("id");
+	if(id == null){
 %>		
-<%--	<script>	
+	<script>	
 		alert("login"); 
 		history.back(); 
  	</script>
- 	 --%>
+ 	 
  <% 
-	//}%>
+	}%>
 	
 <!DOCTYPE html>
 <html>
@@ -29,23 +33,31 @@
 
 
  <div class="tbwContainer">
-    <form method="post" action="<%=contextPath%>/tb/tbUpdatePro.bo?tb_idx=<%=tvo.getTb_idx()%>" enctype="multipart/form-data">
-      <input type="hidden" name ="id" value="<%=tvo.getTb_id()%>"> <!-- 세션아이디 영역 -->
+    <form method="post" action="<%=contextPath%>/tb/tbUpdatePro.bo?tb_idx=<%=tbo.getTb_idx()%>" enctype="multipart/form-data">
+      <input type="hidden" name ="id" value="<%=tbo.getTb_id()%>"> <!-- 세션아이디 영역 -->
      
         <table id="tbwTable">
             <tr>
                 <td>작성자</td>
-                <td><input type="text" name="name" value="<%=tvo.getTb_name()%>" /></td>
+                     <td>
+                <c:if test="${not empty requestScope.trainervo}">
+                <input type="text" name="name" value="<%=tvo.getTr_name()%>" />
+                </c:if>
+                <c:if test="${not empty requestScope.membervo}">
+                <input type="text" name="name" value="<%=vo.getMem_name()%>" />
+                </c:if>
+                </td>
+				
             </tr>
             <tr>
                 <td>제목</td>
-                <td><input type="text" id="tbwTitle"name="title" value="<%=tvo.getTb_title() %>" /></td>
+                <td><input type="text" id="tbwTitle"name="title" value="<%=tbo.getTb_title() %>" /></td>
             </tr>
             <tr>
                 <td>내용</td>
-                <td><textarea name="content" id="content"><%=tvo.getTb_content() %></textarea></td>
+                <td><textarea name="content" id="content"><%=tbo.getTb_content() %></textarea></td>
             </tr>
-			<%if (tvo.getTb_file() == null) {//파일이 첨부되어 있지 않을때만 파일 첨부가 가능하게 만든다.  %>
+			<%if (tbo.getTb_file() == null) {//파일이 첨부되어 있지 않을때만 파일 첨부가 가능하게 만든다.  %>
             <tr>
                 <td>파일</td>
                 <td><input type="file" name="file" /></td>
@@ -53,7 +65,7 @@
             <%} else {%>
             <tr>
             	 <td>파일</td>
-                <td>파일이 첨부 되어 있습니다.(파일명 : <%=tvo.getTb_file()%>)</td>
+                <td>파일이 첨부 되어 있습니다.(파일명 : <%=tbo.getTb_file()%>)</td>
             </tr>
             <%} %>
         </table>

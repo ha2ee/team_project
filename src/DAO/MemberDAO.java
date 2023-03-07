@@ -603,7 +603,7 @@ public class MemberDAO {
 			//DB접속
 			con = ds.getConnection();
 			// email,name,id 값을 매개변수 id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
-			String sql = "select email, name, id from member where id=?";
+			String sql = "select mem_email, mem_name, mem_id from ys_member where mem_id=?";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -617,11 +617,11 @@ public class MemberDAO {
 			// 조회된 내용을 한개씩 나열해서, membervo에 저장시킴
 			if (rs.next()) {
 				
-				//membervo 객체 생성
-//				membervo = new MemberVo();
-//				membervo.setEmail(rs.getString("email"));
-//				membervo.setId(rs.getString("id"));
-//				membervo.setName(rs.getString("name"));
+//				membervo 객체 생성
+				membervo = new MemberVo();
+				membervo.setMem_email(rs.getString("mem_email"));
+				membervo.setMem_id(rs.getString("mem_id"));
+				membervo.setMem_name(rs.getString("mem_name"));
 				
 			}
 			

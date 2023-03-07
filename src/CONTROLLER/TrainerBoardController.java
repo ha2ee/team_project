@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DAO.MemberDAO;
 import DAO.TrainerBoardDAO;
 import DAO.TrainerDAO;
 import VO.MemberVo;
@@ -34,11 +35,15 @@ public class TrainerBoardController extends HttpServlet{
 	//TrainerVo객체를 저장할 참조변수 선언
 	TrainerVo trainerVo;
 	
+	//MemberDAO객체를 저장할 참조변수 선언
+	MemberDAO memberdao;
+	
 	@Override
 	public void init() throws ServletException {
 		trainerboarddao = new TrainerBoardDAO();
 		trainerdao = new TrainerDAO();
 		trainerVo = new TrainerVo();
+		memberdao = new MemberDAO();
 		
 		
 	}
@@ -81,24 +86,40 @@ public class TrainerBoardController extends HttpServlet{
 		TrainerBoardVo vo = null;
 		
 		TrainerVo trainervo = null;
-		
+		MemberVo membervo = null;
+
 		ArrayList list = null;
 		int count = 0;
 		String key = null;
 		String word = null;
 		String memberid = null;
 		
+		HttpSession session = request.getSession();
+		memberid = (String) session.getAttribute("id");
+
+		//현재 로그인 되어 있는 세션 아이디가 어느 테이블에 있는지 확인(ys_member, member_trainer) 
+		boolean result = trainerboarddao.checkTable(memberid);
+		
+		
 	      if (action.equals("/write.bo")) {
 	    	  
-	    	  //새글 입력시 작성자에 닉네임 넣어주려고 가져오는 메소드
-	    	  trainervo = trainerdao.trainerOne("admin");
-				
+	    	 
+	    	  System.out.println("write.bo에서 result값 확인" + result);
+	    	//새글 입력시 작성자에 닉네임 넣어주려고 가져오는 메소드
+	    	  if(result) {//ys_member테이블에 있다면? true를 받았으니
+	    		  membervo = memberdao.memberOne(memberid);
+	    		  System.out.println(membervo.getMem_name());
+	    	  } else {
+	    		  trainervo = trainerdao.trainerOne(memberid);
+	    		  System.out.println(trainervo.getTr_name());
+	    		 
+	    	  }
 				//새글을 입력하는 중앙 View화면 주소 요청!
 				center = "/nbBoard/trainerboardWrite.jsp";
 			
 				request.setAttribute("center", center);
 				request.setAttribute("trainervo", trainervo);
-				
+				request.setAttribute("membervo", membervo);
 				
 				nextPage = "/nbMain.jsp";
 	         
@@ -216,8 +237,21 @@ public class TrainerBoardController extends HttpServlet{
 				return;
 	      } else if (action.equals("/tbUpdate.bo")) {
 	    	  String tb_idx = request.getParameter("tb_idx");
+	    	  
+	    	  if(result) {//YS_MEMBER 테이블에서 조회해서 없으면 TRAINER에서 정보 조회
+	    		  membervo = memberdao.memberOne(memberid);
+	    		  System.out.println(membervo.getMem_name());
+		    	  } else {
+		    		  trainervo = trainerdao.trainerOne(memberid);
+		    		  System.out.println(trainervo.getTr_name());
+		    		 
+		    	  }
+	    	  
+	    	  
 	    	  TrainerBoardVo tvo = trainerboarddao.getReadPage(tb_idx);
 	    	  request.setAttribute("tvo", tvo);
+	    	  request.setAttribute("trainervo", trainervo);
+	    	  request.setAttribute("membervo", membervo);
 	    	  request.setAttribute("center", "/nbBoard/trainerboardupdateWrite.jsp");
 
 	    	  
@@ -245,11 +279,11 @@ public class TrainerBoardController extends HttpServlet{
 	      
 	      } else if (action.equals("/tbDelete.bo")) {
 	    	 
-	    	  String result = "";
+	    	  String delete_result = "";
 	    	  try {
-					result = trainerboarddao.deleteBoard(request);
+	    		  delete_result = trainerboarddao.deleteBoard(request);
 					out = response.getWriter();
-					out.write(result); //Ajax 글삭제에 성공하면 "삭제성공" 반환 , 실패하면 "삭제실패" 반환
+					out.write(delete_result); //Ajax 글삭제에 성공하면 "삭제성공" 반환 , 실패하면 "삭제실패" 반환
 					return;
 					
 				} catch (Exception e) {
@@ -257,7 +291,7 @@ public class TrainerBoardController extends HttpServlet{
 				}
 	      } else if (action.equals("/tbReply.bo")) {
 	    	  
-	    	  trainervo = trainerdao.trainerOne("admin");//세션아이디 들어갈 영역
+	    	  trainervo = trainerdao.trainerOne(memberid);//세션아이디 들어갈 영역
 	    	  center = request.getParameter("center");
 	    	  String super_tb_idx = request.getParameter("tb_idx");
 	    	  
