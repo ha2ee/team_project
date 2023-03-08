@@ -317,7 +317,7 @@ out.print(NMonthlyDay);
         	   
 	   	        // 첫번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDay1").attr("value", clickdate2);
-	           	$("#selectDate1").attr("value", clickdate);
+	           	$("#selectDate1").attr("value", clickmonth+"-"+clickday);
 	   	        $("#dow1").attr("value", todayLabel);
 	   	        $("#Num1").attr("value", "1");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -339,7 +339,7 @@ out.print(NMonthlyDay);
 	   	        
         	   // 두번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDay2").attr("value", clickdate2);
-	           	$("#selectDate2").attr("value", clickdate);
+	           	$("#selectDate2").attr("value", clickmonth+"-"+clickday);
 	           	$("#dow2").attr("value", todayLabel);
 	           	$("#Num2").attr("value", "2");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -361,7 +361,7 @@ out.print(NMonthlyDay);
         	   
         	   // 세번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDay3").attr("value", clickdate2);
-	           	$("#selectDate3").attr("value", clickdate);
+	           	$("#selectDate3").attr("value", clickmonth+"-"+clickday);
 	           	$("#dow3").attr("value", todayLabel);
 	           	$("#Num3").attr("value", "3");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -383,7 +383,7 @@ out.print(NMonthlyDay);
 	   	        
         	   // 네번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDay4").attr("value", clickdate2);
-	           	$("#selectDate4").attr("value", clickdate);
+	           	$("#selectDate4").attr("value", clickmonth+"-"+clickday);
 	           	$("#dow4").attr("value", todayLabel);
 	           	$("#Num4").attr("value", "4");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -405,7 +405,7 @@ out.print(NMonthlyDay);
 	   	        
         	   // 다섯번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDay5").attr("value", clickdate2);
-	           	$("#selectDate5").attr("value", clickdate);
+	           	$("#selectDate5").attr("value", clickmonth+"-"+clickday);
 	           	$("#dow5").attr("value", todayLabel);
 	           	$("#Num5").attr("value", "5");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -427,7 +427,7 @@ out.print(NMonthlyDay);
 	        
 	 	  		 // 여섯번째 예약 날짜에 입력 시킨다.
 	        	$("#selectDay6").attr("value", clickdate2);
-	        	$("#selectDate6").attr("value", clickdate);
+	        	$("#selectDate6").attr("value", clickmonth+"-"+clickday);
 	        	$("#dow6").attr("value", todayLabel);
 	        	$("#Num6").attr("value", "6");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -449,7 +449,7 @@ out.print(NMonthlyDay);
         
 	  		 	// 여섯번째 예약 날짜에 입력 시킨다.
 	   			$("#selectDay7").attr("value", clickdate2);
-	   			$("#selectDate7").attr("value", clickdate);
+	   			$("#selectDate7").attr("value", clickmonth+"-"+clickday);
 	   			$("#dow7").attr("value", todayLabel);
 	   			$("#Num7").attr("value", "7");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -708,13 +708,13 @@ out.print(NMonthlyDay);
         </div>
         	<div id="result">
         		<div id="selectDate">
-	        		<input id="selectDay1"  type="text"  readonly="readonly"/>
-	        		<input id="selectDay2"  type="text"  readonly="readonly"/>
-	        		<input id="selectDay3"  type="text"  readonly="readonly"/>
-	        		<input id="selectDay4"  type="text"  readonly="readonly"/>
-	        		<input id="selectDay5"  type="text"  readonly="readonly"/>
-	        		<input id="selectDay6"  type="text"  readonly="readonly"/>
-	        		<input id="selectDay7"  type="text"  readonly="readonly"/>
+	        		<input id="selectDay1"  type="text"  name= "selectDay1" readonly="readonly"/>
+	        		<input id="selectDay2"  type="text"  name= "selectDay2" readonly="readonly"/>
+	        		<input id="selectDay3"  type="text"  name= "selectDay3" readonly="readonly"/>
+	        		<input id="selectDay4"  type="text"  name= "selectDay4" readonly="readonly"/>
+	        		<input id="selectDay5"  type="text"  name= "selectDay5" readonly="readonly"/>
+	        		<input id="selectDay6"  type="text"  name= "selectDay6" readonly="readonly"/>
+	        		<input id="selectDay7"  type="text"  name= "selectDay7" readonly="readonly"/>
         		</div>
         		<div id="selectDow">
 	        		<input id="dow1" type="text"  readonly="readonly"/>

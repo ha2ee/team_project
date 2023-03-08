@@ -16,6 +16,15 @@
 	String tr_date5 = request.getParameter("date5");
 	String tr_date6 = request.getParameter("date6");
 	String tr_date7 = request.getParameter("date7");
+	// 1-1) 보여질 수강 데이터 변수에 저장
+	String res_date1 = request.getParameter("selectDay1");
+	String res_date2 = request.getParameter("selectDay2");
+	String res_date3 = request.getParameter("selectDay3");
+	String res_date4 = request.getParameter("selectDay4");
+	String res_date5 = request.getParameter("selectDay5");
+	String res_date6 = request.getParameter("selectDay6");
+	String res_date7 = request.getParameter("selectDay7");
+	
 	// 총 수강 횟수 가져와서 변수에 저장
 	String totalcnt = request.getParameter("totalcnt");
 	// 총 수강 금액 가져와서 변수에 저장
@@ -207,13 +216,21 @@
 				</div>
 				<div id = "tr_date_box">
 					<a id= "tr_date_title">수강예약일</a>
-					<input id ="tr_date1" name = "date1" type="text" placeholder="첫번째 예약일" value="<%=tr_date1%>" readonly />
-					<input id ="tr_date2" name = "date2" type="text" placeholder="두번째 예약일" value="<%=tr_date2%>" readonly />
-					<input id ="tr_date3" name = "date3" type="text" placeholder="세번째 예약일" value="<%=tr_date3%>"  readonly />
-					<input id ="tr_date4" name = "date4" type="text" placeholder="네번째 예약일" value="<%=tr_date4%>"  readonly />
-					<input id ="tr_date5" name = "date5" type="text" placeholder="다섯번째 예약일" value="<%=tr_date5%>"  readonly />
-					<input id ="tr_date6" name = "date6" type="text" placeholder="여섯번째 예약일" value="<%=tr_date6%>"  readonly />
-					<input id ="tr_date7" name = "date7" type="text" placeholder="일곱번째 예약일" value="<%=tr_date7%>"  readonly />
+					<input id ="tr_date1" type="text" placeholder="첫번째 예약일" value="<%=res_date1%>" readonly />
+					<input id ="tr_date2" type="text" placeholder="두번째 예약일" value="<%=res_date2%>" readonly />
+					<input id ="tr_date3" type="text" placeholder="세번째 예약일" value="<%=res_date3%>"  readonly />
+					<input id ="tr_date4" type="text" placeholder="네번째 예약일" value="<%=res_date4%>"  readonly />
+					<input id ="tr_date5" type="text" placeholder="다섯번째 예약일" value="<%=res_date5%>"  readonly />
+					<input id ="tr_date6" type="text" placeholder="여섯번째 예약일" value="<%=res_date6%>"  readonly />
+					<input id ="tr_date7" type="text" placeholder="일곱번째 예약일" value="<%=res_date7%>"  readonly />
+					<!-- 	보여질 수강 데이터 -->
+					<input  name = "date1" type="hidden" value="<%=tr_date1%>" readonly />
+					<input  name = "date2" type="hidden" value="<%=tr_date2%>" readonly />
+					<input  name = "date3" type="hidden" value="<%=tr_date3%>"  readonly />
+					<input  name = "date4" type="hidden" value="<%=tr_date4%>"  readonly />
+					<input  name = "date5" type="hidden" value="<%=tr_date5%>"  readonly />
+					<input  name = "date6" type="hidden" value="<%=tr_date6%>"  readonly />
+					<input  name = "date7" type="hidden" value="<%=tr_date7%>"  readonly />
 				</div>
 				<div id = "edu_name_box">
 					<a type= "text">반려견 이름<input id = "edu_img_name" name = "edu_name" type="text" value="" placeholder="이름"  readonly /></a>
