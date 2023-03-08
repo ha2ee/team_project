@@ -197,7 +197,6 @@ function tbDelete(tb_idx,tb_level){
 
 </script>    
     
-    
-    
+
 </body>
 </html>

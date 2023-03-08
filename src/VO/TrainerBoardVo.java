@@ -131,15 +131,5 @@ public class TrainerBoardVo {
 	}
 	
 	
-    
-    
-    
-    
-
-
-
-
-
-
 
 }

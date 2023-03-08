@@ -1,0 +1,39 @@
+body{
+	padding-top : 250px;
+}
+
+#header, #middle, #footer {
+	width : 1200px;
+	margin : 0 auto 0 auto;
+	text-align: center;
+}
+
+#header {
+
+	position : fixed;
+	left : 0;
+	right : 0;
+	top : 0;
+	height : 250px;
+	background-color : white;
+	z-index: 3;
+	
+}
+
+#middle {
+	position : relative;
+	display: contents;
+	text-align : center;
+	z-index: 2;
+	
+}
+
+#footer {
+	top : 500px;
+	height: 500px;
+	display : contents;
+	text-align: center;
+	position : relative;
+	height : auto;
+	z-index: 1;
+}
