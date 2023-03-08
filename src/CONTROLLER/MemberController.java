@@ -20,7 +20,6 @@ import DAO.TrainerDAO;
 import VO.MemberVo;
 import VO.TrainerVo;
 import VO.nbTrOrderVo;
-import VO.trMemberVo;
 
 @WebServlet("/member/*")
 public class MemberController extends HttpServlet {
