@@ -9,6 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import VO.CommentVO;
 import VO.FreeBoardVo;
 import VO.LikeVo;
 
@@ -391,4 +392,8 @@ public class FreeBoardDAO {
     return result;
   }
 //====================write.jsp에서 글을 작성한 뒤, 테이블에 담는다. ====================
+//====================댓글작성  
+ 
+//====================댓글작성  
+  
 }
