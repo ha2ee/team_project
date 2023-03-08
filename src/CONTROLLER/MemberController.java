@@ -19,7 +19,6 @@ import DAO.OrderDAO;
 import DAO.TrainerDAO;
 import VO.MemberVo;
 import VO.TrainerVo;
-import VO.nbTrOrderVo;
 
 @WebServlet("/member/*")
 public class MemberController extends HttpServlet {
@@ -39,8 +38,6 @@ public class MemberController extends HttpServlet {
 	// 트레이너 정보를 조회할 trMemberVo를 호출
 	TrainerVo trmembervo;
 	
-	// 조회 또는 저장 시킬 오더vo, tr오더vo 호출
-	nbTrOrderVo nbtrordervo;
 
 	@Override
 	public void init() throws ServletException {
