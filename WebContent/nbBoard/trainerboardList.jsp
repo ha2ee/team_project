@@ -63,12 +63,7 @@
     
     
     <script type="text/javascript">
-//         function writeForm(){
-//             location.href="BoardWriteForm.bo";
-//         }
-        
     	function fnRead(val){
-    		
     		
     		document.frmRead.action = "<%=contextPath%>/tb/read.bo";
     		document.frmRead.tb_idx.value = val;
@@ -81,15 +76,6 @@
  
 <div class="board-wrap">
  
-    <!-- 글목록 위 부분-->
-    <br>
-<%--     <div id="topForm">
-        <c:if test="${sessionScope.sessionID!=null}">
-            <input type="button" value="글쓰기" onclick="writeForm()">
-        </c:if>    
-    </div> --%>
-     
-    
     <!-- 게시글 목록 부분 -->
     <br>
     <div class="board-table">
@@ -123,7 +109,9 @@
             </tr>
         </c:forEach>
         </table>
+        <c:if test="${not empty sessionScope.id}">
         <input type ="button" id="newContent" onclick="location.href='<%=contextPath%>/tb/write.bo'"value = "글쓰기">
+        </c:if>
     </div>
     
     <!-- 페이지 넘버 부분 -->
