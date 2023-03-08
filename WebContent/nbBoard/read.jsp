@@ -32,7 +32,7 @@
 <script src="https://kit.fontawesome.com/d158a8723c.js"
   crossorigin="anonymous"></script>
   
-    <style>	
+  <style>	
 /* 	댓글 CSS */
 	
 	#tblAddCommnet, #tblListComment { width: 700px; margin: 15px auto; }
@@ -87,6 +87,7 @@
           조회수
           <%=cnt%>
         </div>
+        
       </div>
 
     </div>
@@ -186,7 +187,7 @@ width="60px" height="60px">
 
     <div style="border: 1px solid black; height: 500px; margin-bottom: 2%">
     	
-      댓글 들어온다.
+     
  <!-- 댓글시작------------------------------------ -->  
 <div>
 
@@ -206,20 +207,20 @@ width="60px" height="60px">
 				</td>
 				<td>
 					<input type="button" value="삭제하기" class="btn btn-default" 
-						onclick="location.href='/myapp/board/delcomment.do?seq=${ cdto.seq }&pseq=${ dto.seq }';"/>
+						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
 				</td>
 			</tr>
 		</c:forEach>	
 	</table>
 	
-	<form method="POST" action="/myapp/board/addcomment.do">
+	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
 		<table id="tblAddComment" class="table table-bordered">
 			<tr>
 				<td><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
 				<td><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
 			</tr>
 		</table>
-		<input type="hidden" name="pseq" value="${ dto.seq }" />
+		<input type="hidden" name="pseq" value="<%=b_idx%>" />
 	</form>
 	
 </div>

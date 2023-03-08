@@ -7,9 +7,8 @@
 	String contextPath = request.getContextPath();
 	
 //	ArrayList list = (ArrayList)request.getAttribute("list");
-	
 %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -181,9 +180,14 @@ function fnSearch(){
                   <span><%=vo.getB_nickname() %></span>
                 </div>
                 <div style="width: 40%">
-                  <span><%=vo.getB_title() %></span>
+                <!--  글 제목 옆에  댓글 수 표시되게 수정 --> 
+                  <span><%=vo.getB_title() %>
+	                <c:if test="${ dto.ccnt > 0 }">
+						<span class="badge">${ dto.ccnt }</span>
+					</c:if>
+				</span>
+				<!--  글 제목 옆에  댓글 수 표시되게 수정 --> 
                 </div>
-              <!--타이틀 옆에 댓글 수 나오도록 작업 -->
                 <div style="width: 15%">
                   <span><%=vo.getB_date() %></span>
                 </div>
