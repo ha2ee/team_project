@@ -6,16 +6,7 @@
 	TrainerVo tvo = (TrainerVo)request.getAttribute("trainervo");
 	
 	String id = (String)session.getAttribute("id");
-	if(id == null){
-%>		
-<	<script>	
-		alert("login"); 
-		history.back(); 
- 	</script>
- 	 
- <% 
-	}%>
-	
+%>	
 <!DOCTYPE html>
 <html>
 <head>
