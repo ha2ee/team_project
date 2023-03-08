@@ -20,33 +20,13 @@
 <!--폰트어썸-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="../css/Team_FreeBoard.css">
+<style type="text/css">
+  body{
+    font-size: 20px;
+  }
+</style>
 </head>
 <body>
-<!--
-function fnSearch(){
-		var word = document.getElementById("word").value;
-		if(word == null || word == ""){
-			alert("검색어를 입력하세요.");
-			document.getElementById("word").focus();
-			return false;
-		}
-		else{
-			document.frmSearch.submit();
-		}
-	}
-	
-	//글제목 하나를 클릭했을때 글 번호를 매개변수로 받아서 <form>로
-	//글번호에 해당되는 글의 정보를 DB로부터 조회 요청을 BoardController로 합니다.
-	function fnRead(val){
-		document.frmRead.action = "<%=contextPath%>/FileBoard/read.bo";
-		document.frmRead.b_idx.value = val;
-		document.frmRead.submit();
-	}
-
-
-
-  -->
-
 
 <% 
 	
@@ -116,27 +96,32 @@ function fnSearch(){
       <!--제목-->
 <!--       <form class="Form-Box Title-And-Del" action="#"> -->
         <div class="Title">
-          <span>자 유 게 시 판</span>
+          <span><b>자 유 게 시 판</b></span>
         </div>
-        <form action="<%=contextPath%>/freeboard/searchlist.fb" 
-							method="post" 
-							name="frmSearch" onsubmit="javascript:fnSearch();" >
-							
-	            	<td colspan="2">
-	            		<div align="right"> 
-		            		<select name="key">
-		              			<option value="titleContent">제목 + 내용</option>
-		              			<option value="nickname">작성자</option>
-		              		</select>
-		              	</div>
-	              	</td>
-		            <td width="26%">
-		            	<div align="center"> &nbsp;
-		            		<input type="text" name="word" id="word"/>
-		            		<input type="submit" id="go" value="검색하기">
-		            	</div>
-		            </td>
-	            </form>
+        
+        <div style=" display: flex; justify-content: flex-end;">
+          <div>
+          <form action="<%=contextPath%>/freeboard/searchlist.fb" method="post" 
+                name="frmSearch" onsubmit="javascript:fnSearch();" >
+            <table>
+              <td colspan="2">
+                <div align="right"> 
+                  <select name="key">
+                      <option value="titleContent">제목 + 내용</option>
+                      <option value="nickname">작성자</option>
+                    </select>
+                  </div>
+                </td>
+              <td width="26%">
+                <div align="center"> &nbsp;
+                  <input type="text" name="word" id="word"/>
+                  <input type="submit" id="go" value="검색하기">
+                </div>
+              </td>
+            </table>
+          </form>
+          </div>
+        </div>
 <!--       </form> -->
       <!--목록-->
        <div class="List-Box">
@@ -238,13 +223,11 @@ function fnSearch(){
           <input type="submit" value="글쓰기">
         </div>
       </form>
-    </div>
  
- 
+<div align="center" style="margin-right: 10%">
  <table>
  	<tr align="center"> 
 		<td  colspan="3" align="center">
-		Go To Page
 		<%   
 			if(totalRecord != 0){//DB에 글이 있다면?
 					
@@ -259,12 +242,13 @@ function fnSearch(){
 		<%
 				for(int i=0; i<pagePerBlock; i++){
 		%>			
-					&nbsp;&nbsp;
+    
+					&nbsp;
 					<a href="<%=contextPath%>/freeboard/list.fb?nowBlock=<%=nowBlock%>&nowPage=<%=(nowBlock * pagePerBlock)+i%>">
 						<%=(nowBlock * pagePerBlock)+i+1 %>	
 						<%if((nowBlock * pagePerBlock)+i+1 == totalPage) break; %>
 					</a>
-					&nbsp;&nbsp;
+					&nbsp;
 		<%			
 				}
 		%>		
@@ -290,6 +274,7 @@ function fnSearch(){
 		</td> 
 	</tr>
  </table>
+</div>
  
     <form name="frmRead">
        <input type="hidden" name="b_idx">
