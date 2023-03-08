@@ -3,6 +3,7 @@ package CONTROLLER;
 import java.io.IOException;
 
 
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +24,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import DAO.BoardDAO;
 import DAO.FreeBoardDAO;
 import DAO.MemberDAO;
 import VO.FreeBoardVo;
