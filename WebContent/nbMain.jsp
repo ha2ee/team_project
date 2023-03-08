@@ -21,7 +21,7 @@
 	<c:set var="center" value="Center.jsp"/>
 </c:if>
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <style type="text/css">
 
