@@ -55,6 +55,37 @@ public class TrainerBoardDAO {
 	}
     
 
+	//아이디가 어느테이블(ys_member, Member_Trainer)에 속하는지 확인
+	public boolean checkTable(String id) {
+
+		boolean result = false;
+		
+		try {
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement("select * from YS_MEMBER WHERE MEM_ID = ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = true;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("checkTable메소드 내부에서 오류!");
+			e.printStackTrace();
+		} finally {
+			closeResource();
+		}
+		
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 	   // 글목록 가져오기
     public ArrayList<TrainerBoardVo> getBoardList(HashMap<String, Object> listOpt)
     {
@@ -345,8 +376,6 @@ public class TrainerBoardDAO {
 		vo.setTb_content(content);
 		vo.setTb_id(id);
 		vo.setTb_file(file);
-		
-//		int articleNO = getNewArticleNO();
 		
 		//수정할때 파일이 null이 아니라면 재 업로드
 		if (vo.getTb_file() != null) {
