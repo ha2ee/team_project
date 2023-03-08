@@ -26,6 +26,8 @@
 	String mem_address5 = mem_vo.getMem_address5();
 	String mem_img = mem_vo.getMem_img();
 	
+	
+	
 	TrainerVo tr_vo = (TrainerVo)request.getAttribute("tr_vo");
 	
 	String tr_pw = tr_vo.getTr_pw();
@@ -38,7 +40,7 @@
 	String tr_address3 = tr_vo.getTr_address3();
 	String tr_address4 = tr_vo.getTr_address4();
 	String tr_address5 = tr_vo.getTr_address5();
-	String tr_gender = tr_vo.getTr_email();
+	String tr_gender = tr_vo.getTr_gender();
 	String tr_img = tr_vo.getTr_img();
 	
 	String id = (String)session.getAttribute("id");
@@ -51,9 +53,11 @@
 		</script>
 <%	
 	}
-%> 
-
+%>  
     
+
+
+
 <%-- 문서에 작성되는 언어 타입을 HTML로 하여 이파일은 HTML이 적힌 파일 이다 라고 웹브라우저에 알려주는 코드
 	 요약 : 문서 코드 타입.
  --%>    
@@ -161,7 +165,7 @@
 </style>
 </head>
 <body>
-<form action="<%=contextPath%>/member/updateInfo.me" class="form" >	
+<form action="<%=contextPath%>/member/updateInfo.me" class="form" method="post">	
 	<div>
 		<div align="center" ><!-- class="row justify-content-left" -->
 			<h1>회원정보 관리 </h1>
@@ -203,12 +207,33 @@
 			<div class="join">
 				<div class="heigthD">
 					<label><strong>&nbsp;닉네임</strong></label><br><br> 
+					
+				<%
+				if(tr_name == ""){
+				%> 
 					<input type="text" 
 						   id="nickname" 
 						   name="nickname"
-						   class="form-control"
-						   value="<%=mem_nick %>"
-						   placeholder="사용할 닉네임을 적어주세요".">
+						   class="nickname"
+						   value="<%=mem_nick + tr_name%>"
+						   placeholder="사용할 닉네임을 적어주세요" >
+ 				<%
+					}else{
+				%>
+				    <input type="text" 
+						   id="nickname" 
+						   name="nickname"
+						   class="nickname"
+						   value="<%=mem_nick + tr_name%>"
+						   placeholder="사용할 닉네임을 적어주세요"
+						   readonly >
+				<% 
+					}
+				%>   
+				    
+				    
+				    
+				    
 				    <p id="nickInput"></p> 
 				</div>
 				<div class="heigthD" style="margin-left: 40px;">
@@ -330,19 +355,18 @@
 			<br>
 			<div align="center" style="margin-left: 50%;">
 				<div>
-					<a onclick="change()" 
+					<a onclick="change();" 
 					   type="button" 
-					   class="btn btn-outline-warning";
+					   class="btn btn-outline-warning"
 					>정보수정</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a onclick="del()"
-					   type="button" 
-					   style="text-decoration: none;"
-					   class="btn btn-outline-warning";
-					>회원탈퇴</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+			
+					<button type="button"
+					 		class="btn btn-outline-warning"
+							id = "delBtn"
+					>회원탈퇴</button>
 				</div>
-			</div>
-			<br /> <br /> <br />
+			</div>		
 		</div>
 	</div>
 </form>
@@ -457,9 +481,10 @@
 	           }
 	     	
 	       }
-	   }
-	    
-	    
+	  			
+	  }
+			  
+	  
 	    </script>	
 
 

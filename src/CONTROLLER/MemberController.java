@@ -142,9 +142,7 @@ public class MemberController extends HttpServlet {
 				return;
 
 			}else if(memCheck == 1  || Trcheck == 1 ) {
-				out.println("<script>");
-				out.println("window.alert('로그인 되었습니다.');");
-				out.println("</script>");
+				
 				
 			}
 			
@@ -266,7 +264,6 @@ public class MemberController extends HttpServlet {
 			String tr_address3 = request.getParameter("address3");
 			String tr_address4 = request.getParameter("address4");
 			String tr_address5 = request.getParameter("address5");
-			
 					 TrainerVo tr_vo = new TrainerVo();
 					  tr_vo.setTr_id(tr_id);
 					  tr_vo.setTr_name(tr_name);
@@ -295,18 +292,16 @@ public class MemberController extends HttpServlet {
 			
 			System.out.println("MemberController -> change.me 호출!");
 			MemberVo mem_vo = memberdao.memRead(memberid);
-
+			
 			TrainerVo tr_vo = memberdao.trRead(memberid);
 			
 			// 중앙화면 주소 바인딩
 			request.setAttribute("center", "nbMember/change.jsp");
 			request.setAttribute("mem_vo", mem_vo);
 			request.setAttribute("tr_vo", tr_vo);
+			
 			// 전체 메인화면 주소 저장
 			nextPage = "/nbMain.jsp";
-			
-		
-			
 			
 			// # 4-1) "회원 정보 삭제" 요청 했을 때,
 		} else if (action.equals("/delete.me")) {
@@ -314,17 +309,28 @@ public class MemberController extends HttpServlet {
 			System.out.println("nbMemberController -> /delete.me 요청!");
 
 			// 삭제할 아이디 값을 얻어와 변수에 저장
-			String deleteId = request.getParameter("id");
-
+			HttpSession session = request.getSession();
+			String deleteId	= (String)session.getAttribute("id");
+			
 			boolean mem_result = memberdao.memDelete(deleteId);
 			boolean tr_result = memberdao.trDelete(deleteId);
-
-			if (mem_result == true || tr_result == true) {
-				out.write("삭제 성공");
+			
+			System.out.println("맴버 결과 : "+ mem_result);
+			System.out.println("회원 결과 : "+ tr_result);
+			if (mem_result == false || tr_result == false) {
+				
+				HttpSession session_ = request.getSession();
+				session_.invalidate(); // 세션에 저장된 아이디 제거
+				
+				out.println("<script>");
+				out.println("window.alert('회원탈퇴 되었습니다.');");
+				out.println("location.href='/TeamProject/nbMain.jsp'");
+				out.println("</script>");
+		
 				return;
 
-			} else if (mem_result == false && tr_result == false) {
-				out.write("삭제 실패");
+			} else if (mem_result == true && tr_result == true) {
+				
 				return;
 
 			}
@@ -335,8 +341,8 @@ public class MemberController extends HttpServlet {
 			System.out.println("nbMemberController -> /updateInfo.me 요청!");
 			
 			String up_id = request.getParameter("id");
-			String up_pw = request.getParameter("pw");
-			String up_nick = request.getParameter("nick");
+			String up_pw = request.getParameter("pass");
+			String up_nick = request.getParameter("nickname");
 			String up_hp = request.getParameter("hp");
 			String up_email = request.getParameter("email");
 			String up_img = request.getParameter("img");
@@ -347,25 +353,29 @@ public class MemberController extends HttpServlet {
 			String up_address5 = request.getParameter("address5");
 
 			int up_MemResult = memberdao.memUpdate(up_id, up_pw, up_nick, up_hp, up_email, up_img, up_address1, up_address2, up_address3, up_address4, up_address5);
-			System.out.println("일반회원 :" + up_MemResult);
+		
 			int up_TrResult = memberdao.trUpdate(up_id ,up_pw, up_hp, up_email, up_img, up_address1, up_address2, up_address3, up_address4, up_address5);
-			System.out.println("트레이너 :" + up_TrResult);
-			
 
-			if (up_MemResult == 1 || up_TrResult ==1 ) {
-				out.write("수정 성공");
+			if (up_MemResult == 0 && up_TrResult ==0 ) {
+				out.println("<script>");
+				out.println("window.alert('수정실패 하였습니다.');");
+				out.println("history.go(-1);");
+				out.println("</script>");
 				
 				return;
 
-			} else if (up_MemResult == 0 || up_TrResult == 0) {
-				out.write("수정 실패");
+			} else if (up_MemResult == 1 || up_TrResult == 1) {
+				out.println("<script>");
+				out.println("window.alert('정보를 수정하였습니다.');");
+				out.println("location.href='/TeamProject/member/change.me'");
+				out.println("</script>");				
+				
 				return;
-			}
+			}	
+				// 전체 메인화면 주소 저장
+				nextPage = "/nbMain.jsp";
 
-			// 전체 메인화면 주소 저장
-			nextPage = "/nbMain.jsp";
-
-			
+				
 		} else if (action.equals("/joinIdCheck.me")) {
 				//입력한 아이디 얻기
 				String id = request.getParameter("id");
