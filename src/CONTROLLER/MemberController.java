@@ -389,6 +389,26 @@ public class MemberController extends HttpServlet {
 					return;
 				}
 			
+		//펫 정보 등록 화면 요청
+		} else if (action.equals("/petJoin.me")) {
+
+			System.out.println("nbMemberController -> /petJoin.me 요청!");
+
+			request.setAttribute("center", "nbMember/petJoin.jsp");
+
+			// 메인화면 view 주소
+			nextPage = "/nbMain.jsp";
+		
+		
+			//펫 정보 요청화면
+		} else if (action.equals("/petInfo.me")) {
+			
+			System.out.println("nbMemberController -> /petInfo.me 요청!");
+			
+			request.setAttribute("center", "nbMember/petInfo.jsp");
+			
+			// 메인화면 view 주소
+			nextPage = "/nbMain.jsp";
 		}
 
 		// 포워딩 (디스패처 방식)
