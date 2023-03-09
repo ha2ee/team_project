@@ -1,5 +1,6 @@
 package CONTROLLER;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -126,7 +127,11 @@ public class FreeBoardController extends HttpServlet {
       String nickname = "seeeop2";
       
 //      //업로드 작업 중...
-      String directory ="/Users/inseop/Desktop/팀프로젝트/upload";
+      String directory = request.getServletContext().getRealPath("upload");
+      
+      File dir = new File(directory);
+      if (!dir.exists()) dir.mkdirs();
+      
       System.out.println(directory);
       int maxSize = 1024 * 1024 * 100;
       String encoding = "utf-8";
@@ -251,9 +256,11 @@ public class FreeBoardController extends HttpServlet {
         String nickname1 = "seeeop2";
         
 //        //업로드 작업 중ㅇ...
-        String directory2 ="/Users/inseop/Desktop/팀프로젝트/upload";
-        System.out.println(directory2);
-        int maxSize1 = 1024 * 1024 * 100;
+        String directory2 = request.getServletContext().getRealPath("upload");
+        
+        dir = new File(directory2);
+        if (!dir.exists()) dir.mkdirs();
+                int maxSize1 = 1024 * 1024 * 100;
         String encoding1 = "utf-8";
 //        
         MultipartRequest multipartRequest1 = new MultipartRequest(request, directory2,maxSize1,encoding1,new DefaultFileRenamePolicy());
