@@ -1,3 +1,7 @@
+<%@page import="DAO.FreeBoardDAO"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="javax.xml.stream.events.Comment"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Date"%>
 <%@page import="VO.FreeBoardVo"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -12,9 +16,14 @@
   String title = vo.getB_title();
   String content = vo.getB_content();
   String nickname = vo.getB_nickname();
+  int b_idx = vo.getB_idx();
   Date date = vo.getB_date();
   int like = vo.getB_like();
   int cnt = vo.getB_cnt();
+  
+  //댓글-----------------------------
+
+  //댓글-------------------------------------------------------
 %>
 <!DOCTYPE html>
 <html>
@@ -35,8 +44,33 @@
   body{
   font-size: 20px;
   }
-</style>
 
+/* 	댓글 CSS */
+	
+	#tblAddCommnet, #tblListComment { width: 700px; margin: 15px auto; }
+	
+	#tblAddComment { margin-top: 30px; }
+	#tblAddComment td:nth-child(1) { width: 600px; }
+	#tblAddComment td:nth-child(2) { width: 100px; }
+	
+	#tblListComment td:nth-child(1) { width: 600px; }
+	#tblListComment td:nth-child(2) { width: 100px; }
+	
+	#tblListComment td {
+		position: relative;
+		left: 0;
+		top: 0;
+	}
+	
+	#tblListComment td span {
+		position: absolute;
+		right: 10px;
+		bottom: 5px;
+		color: #AAA;
+		font-size: 11px;
+	}
+	/* 	댓글 CSS 끝*/
+</style>
 </head>
 <body>
   <div style="margin: 5% 5% 0 5%;"> <!-- 전체 width 바꾸기 위해서 존재하는 div -->
@@ -60,6 +94,7 @@
         <div style="float: right; margin: 3px;">
           조회수 <%=cnt%> l
         </div>
+        
       </div>
 
     </div>
@@ -157,10 +192,50 @@
 	});
 </script>
 
-    <div style="border: 1px solid black; height: 300px; margin-bottom: 2%">
-      댓글 들어온다.  <!-- 댓글 들어와야 합니다. -->
-    </div>
 
+
+
+
+    <div style="border: 1px solid black; height: 500px; margin-bottom: 2%">
+    	
+     
+ <!-- 댓글시작------------------------------------ -->  
+<div>
+
+	<table id="tblListComment" class="table table-bordered">
+		
+		<c:if test="${ clist.size() == 0 }">
+			<tr>
+				<td colspan="2">댓글이 없습니다.</td>
+			</tr>
+		</c:if>
+		
+		<c:forEach items="${ clist }" var="cdto">
+			<tr>
+				<td>
+					${ cdto.content }
+					<span>${ cdto.name }. ${ cdto.regdate }</span>
+				</td>
+				<td>
+					<input type="button" value="삭제하기" class="btn btn-default" 
+						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
+				</td>
+			</tr>
+		</c:forEach>	
+	</table>
+	
+	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
+		<table id="tblAddComment" class="table table-bordered">
+			<tr>
+				<td><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
+				<td><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
+			</tr>
+		</table>
+		<input type="hidden" name="pseq" value="<%=b_idx%>" />
+	</form>
+	
+</div>
+<!-- 댓글끝------------------------------------ -->    
     <div style="border: 1px solid black; height: 1000px; margin-bottom: 2%">
       <jsp:include page="list.jsp">
         <jsp:param value="0" name="nowBlock"/>
