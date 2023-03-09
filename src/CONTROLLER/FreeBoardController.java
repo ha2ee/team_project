@@ -31,16 +31,16 @@ public class FreeBoardController extends HttpServlet {
   // FreeBoardDAO객체를 저장할 참조변수 선언
   FreeBoardDAO boarddao;
 
-  // MemberDAO객체를 저장할 참조변수 선언
-  // MemberDAO memberdao;
+//   MemberDAO객체를 저장할 참조변수 선언
+   MemberDAO memberdao;
 
   // MemberVo객체를 저장할 참조변수 선언
-  // MemberVo membervo;
+//   MemberVo membervo;
 
   @Override
   public void init() throws ServletException {
     boarddao = new FreeBoardDAO();
-    // memberdao = new MemberDAO();
+     memberdao = new MemberDAO();
     // membervo = new MemberVo();
   }
 
@@ -123,8 +123,10 @@ public class FreeBoardController extends HttpServlet {
 //      //요청한 값 얻기
       
 //      //세션값으로 아이디 + 닉네임을 구할 것입니다.
-      String id = "inseop";
-      String nickname = "seeeop2";
+        HttpSession session = request.getSession();
+        String memberid   = (String)session.getAttribute("id");
+        String nickname = memberdao.getMemNickName(memberid);
+        
       
 //      //업로드 작업 중...
       String directory = request.getServletContext().getRealPath("upload");
@@ -145,7 +147,7 @@ public class FreeBoardController extends HttpServlet {
       
 
       vo= new FreeBoardVo();
-      vo.setB_id(id);
+      vo.setB_id(memberid);
       vo.setB_nickname(nickname);
       vo.setB_title(title);
       vo.setB_content(content);
@@ -252,8 +254,6 @@ public class FreeBoardController extends HttpServlet {
 //=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
 //=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
       case "/modifyPro.fb":
-        String id1 = "inseop";
-        String nickname1 = "seeeop2";
         
 //        //업로드 작업 중ㅇ...
         String directory2 = request.getServletContext().getRealPath("upload");
@@ -274,8 +274,6 @@ public class FreeBoardController extends HttpServlet {
 
         vo= new FreeBoardVo();
         vo.setB_idx(idx);
-        vo.setB_id(id1);
-        vo.setB_nickname(nickname1);
         vo.setB_title(title1);
         vo.setB_content(content1);
         vo.setB_file(fileName1);
