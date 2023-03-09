@@ -103,7 +103,7 @@
     <hr style="border: solid 1px grey;">
 
     <!-- 윗부분 끝 -->
-    <div style="border: 1px solid black; height: 500px; margin-bottom: 1%;">
+    <div style="border: 1px solid black; height: 10%; margin-bottom: 1%;">
       <%=content%>   <!-- 콘텐츠 들어온다. -->
     </div>
     <div style="float: right">
@@ -237,47 +237,47 @@
 
 
 
-    <div style="border: 1px solid black; height: 500px; margin-bottom: 2%">
+  <div style="border: 1px solid black;  margin-bottom: 2%">
     	
      
- <!-- 댓글시작------------------------------------ -->  
-<div>
-
-	<table id="tblListComment" class="table table-bordered">
-		
-		<c:if test="${ clist.size() == 0 }">
-			<tr>
-				<td colspan="2">댓글이 없습니다.</td>
-			</tr>
-		</c:if>
-		
-		<c:forEach items="${ clist }" var="cdto">
-			<tr>
-				<td>
-					${ cdto.content }
-					<span>${ cdto.name }. ${ cdto.regdate }</span>
-				</td>
-				<td>
-					<input type="button" value="삭제하기" class="btn btn-default" 
-						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
-				</td>
-			</tr>
-		</c:forEach>	
-	</table>
-	
-	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
-		<table id="tblAddComment" class="table table-bordered">
-			<tr>
-				<td><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
-				<td><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
-			</tr>
-		</table>
-		<input type="hidden" name="pseq" value="<%=b_idx%>" />
-	</form>
-	
-</div>
+  <!-- 댓글시작------------------------------------ -->  
+    <div style="">
+    
+    	<table id="tblListComment" class="table table-bordered">
+    		
+    		<c:if test="${ clist.size() == 0 }">
+    			<tr>
+    				<td colspan="2">댓글이 없습니다.</td>
+    			</tr>
+    		</c:if>
+    		
+    		<c:forEach items="${ clist }" var="cdto">
+    			<tr>
+    				<td>
+    					${ cdto.content }
+    					<span>${ cdto.name }. ${ cdto.regdate }</span>
+    				</td>
+    				<td>
+    					<input type="button" value="삭제하기" class="btn btn-default" 
+    						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
+    				</td>
+    			</tr>
+    		</c:forEach>	
+    	</table>
+    	
+    	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
+    		<table id="tblAddComment" class="table table-bordered">
+    			<tr>
+    				<td><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
+    				<td><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
+    			</tr>
+    		</table>
+    		<input type="hidden" name="pseq" value="<%=b_idx%>" />
+    	</form>
+    	
+    </div>
 <!-- 댓글끝------------------------------------ -->    
-    <div style="border: 1px solid black; height: 1000px; margin-bottom: 2%">
+    <div style="border: 1px solid black; margin-bottom: 2%">
       <jsp:include page="list.jsp">
         <jsp:param value="0" name="nowBlock"/>
         <jsp:param value="0" name="nowPage"/>
@@ -286,5 +286,6 @@
       </jsp:include>
     </div>
   </div>
+</div>
 </body>
 </html>
