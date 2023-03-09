@@ -1,6 +1,6 @@
 package VO;
 
-import java.util.Date;
+import java.sql.Date;
 
 //트레이너 vo
 public class TrainerVo {
@@ -23,7 +23,7 @@ public class TrainerVo {
 	
 //기본생성자
 	public TrainerVo() {
-		
+		// TODO Auto-generated constructor stub
 	}
 	
 //모두 포함한 생성자
@@ -183,6 +183,11 @@ public class TrainerVo {
 
 	public void setTr_address5(String tr_address5) {
 		this.tr_address5 = tr_address5;
+	}
+
+	public void setSting(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

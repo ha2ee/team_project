@@ -1,7 +1,7 @@
 package DAO;
 
 import java.io.File;
-
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,10 +11,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -24,9 +27,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 
-import VO.BoardVo;
 import VO.TrainerBoardVo;
-import VO.TrainerVo;
 
 public class TrainerBoardDAO {
 
@@ -36,7 +37,6 @@ public class TrainerBoardDAO {
 	DataSource ds;
 	
 	public TrainerBoardDAO() {
-		// TODO Auto-generated constructor stub
 	
 		try {
 			Context ctx = new InitialContext();
@@ -55,6 +55,37 @@ public class TrainerBoardDAO {
 	}
     
 
+	//아이디가 어느테이블(ys_member, Member_Trainer)에 속하는지 확인
+	public boolean checkTable(String id) {
+
+		boolean result = false;
+		
+		try {
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement("select * from YS_MEMBER WHERE MEM_ID = ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = true;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("checkTable메소드 내부에서 오류!");
+			e.printStackTrace();
+		} finally {
+			closeResource();
+		}
+		
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 	   // 글목록 가져오기
     public ArrayList<TrainerBoardVo> getBoardList(HashMap<String, Object> listOpt)
     {
@@ -63,7 +94,7 @@ public class TrainerBoardDAO {
         String opt = (String)listOpt.get("opt"); // 검색옵션(제목, 내용, 글쓴이 등..)
         String condition = (String)listOpt.get("condition"); // 검색내용
         int start = (Integer)listOpt.get("start"); // 현재 페이지번호
-        System.out.println("start번호"+start);
+        
         try {
             con = ds.getConnection();
             StringBuffer sql = new StringBuffer();
@@ -71,16 +102,17 @@ public class TrainerBoardDAO {
             // 글목록 전체를 보여줄 때
             if(opt == null)
             {
-                // BOARD_RE_REF(그룹번호)의 내림차순 정렬 후 동일한 그룹번호일 때는
-                // BOARD_RE_SEQ(답변글 순서)의 오름차순으로 정렬 한 후에
+                // tb_group(그룹번호)의 내림차순 정렬 후 동일한 그룹번호일 때는
+                // tb_level(답변글 순서)의 오름차순으로 정렬 한 후에
                 // 10개의 글을 한 화면에 보여주는(start번째 부터 start+9까지) 쿼리
                 // desc : 내림차순, asc : 오름차순 ( 생략 가능 )
                 
                 sql.append("select * from ");
-                sql.append("(select rownum rnum, cb_idx, cb_ID, cb_nickname");
-                sql.append(", CB_TITLE, CB_CONTENT, CB_GROUP, CB_LEVEL, CB_DATE, CB_CNT, CB_FILE");
+                sql.append("(select rownum rnum, Tb_idx, Tb_ID, Tb_name");
+                sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
                 sql.append(" FROM ");
-                sql.append("(select * from Trainer_board order by CB_LEVEL desc, CB_GROUP asc)) ");
+                sql.append("(select * from Trainer_board order by TB_GROUP)) ");
+//              sql.append("(select * from Trainer_board order by TB_LEVEL desc, TB_GROUP asc)) ");
                 sql.append("where rnum>=? and rnum<=?");
                 
                 
@@ -95,11 +127,12 @@ public class TrainerBoardDAO {
             {
                 
                 sql.append("select * from ");
-                sql.append("(select rownum rnum, cb_idx, cb_ID, cb_nickname");
-                sql.append(", CB_TITLE, CB_CONTENT, CB_GROUP, CB_LEVEL, CB_DATE, CB_CNT, CB_FILE");
+                sql.append("(select rownum rnum, Tb_idx, Tb_ID, Tb_name");
+                sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
                 sql.append(" FROM ");
-                sql.append("(select * from Trainer_board where cb_title like ? ");
-                sql.append("order BY CB_LEVEL desc, CB_GROUP asc)) ");
+                sql.append("(select * from Trainer_board where Tb_title like ? ");
+                sql.append("order BY TB_GROUP)) ");
+//              sql.append("order BY TB_LEVEL desc, TB_GROUP asc)) ");
                 sql.append("where rnum>=? and rnum<=?");
                 
                 pstmt = con.prepareStatement(sql.toString());
@@ -113,11 +146,12 @@ public class TrainerBoardDAO {
             {
                 
                 sql.append("select * from ");
-                sql.append("(select rownum rnum, cb_idx, cb_ID, cb_nickname");
-                sql.append(", CB_TITLE, CB_CONTENT, CB_GROUP, CB_LEVEL, CB_DATE, CB_CNT, CB_FILE");
+                sql.append("(select rownum rnum, Tb_idx, Tb_ID, Tb_name");
+                sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
                 sql.append(" FROM ");
-                sql.append("(select * from Trainer_board where cb_content like ? ");
-                sql.append("order BY CB_LEVEL desc, CB_GROUP asc)) ");
+                sql.append("(select * from Trainer_board where Tb_content like ? ");
+                sql.append("order BY TB_GROUP asc)) ");
+//              sql.append("order BY TB_LEVEL desc, TB_GROUP asc)) ");
                 sql.append("where rnum>=? and rnum<=?");
                 
                 pstmt = con.prepareStatement(sql.toString());
@@ -131,11 +165,12 @@ public class TrainerBoardDAO {
             {
                 
                 sql.append("select * from ");
-                sql.append("(select rownum rnum, cb_idx, cb_ID, cb_nickname");
-                sql.append(", CB_TITLE, CB_CONTENT, CB_GROUP, CB_LEVEL, CB_DATE, CB_CNT, CB_FILE");
+                sql.append("(select rownum rnum, Tb_idx, Tb_ID, Tb_name");
+                sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
                 sql.append(" FROM ");
-                sql.append("(select * from Trainer_board where cb_title like ? OR cb_content like ? ");
-                sql.append("order BY CB_LEVEL desc, CB_GROUP asc)) ");
+                sql.append("(select * from Trainer_board where Tb_title like ? OR Tb_content like ? ");
+                sql.append("order BY TB_GROUP asc)) ");
+//              sql.append("order BY TB_LEVEL desc, TB_GROUP asc)) ");
                 sql.append("where rnum>=? and rnum<=?");
                 
                 pstmt = con.prepareStatement(sql.toString());
@@ -150,11 +185,12 @@ public class TrainerBoardDAO {
             {
                 
                 sql.append("select * from ");
-                sql.append("(select rownum rnum, cb_idx, cb_ID, cb_nickname");
-                sql.append(", CB_TITLE, CB_CONTENT, CB_GROUP, CB_LEVEL, CB_DATE, CB_CNT, CB_FILE");
+                sql.append("(select rownum rnum, Tb_idx, Tb_ID, Tb_nickname");
+                sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
                 sql.append(" FROM ");
-                sql.append("(select * from Trainer_board where cb_nickname like ? ");
-                sql.append("order BY CB_LEVEL desc, CB_GROUP asc)) ");
+                sql.append("(select * from Trainer_board where Tb_name like ? ");
+                sql.append("order BY TB_GROUP asc)) ");
+//              sql.append("order BY TB_LEVEL desc, TB_GROUP asc)) ");
                 sql.append("where rnum>=? and rnum<=?");
             	
                 pstmt = con.prepareStatement(sql.toString());
@@ -168,16 +204,16 @@ public class TrainerBoardDAO {
             rs = pstmt.executeQuery();
             while(rs.next())
             {
-				TrainerBoardVo vo = new TrainerBoardVo(rs.getInt("cb_idx"),
-						rs.getString("cb_id"),
-						rs.getString("cb_nickname"),
-						rs.getString("cb_title"), 
-						rs.getString("cb_content"), 
-						rs.getInt("cb_group"), 
-						rs.getInt("cb_level"), 
-						rs.getDate("cb_date"), 
-						rs.getInt("cb_cnt"),
-						rs.getString("cb_file")
+				TrainerBoardVo vo = new TrainerBoardVo(rs.getInt("Tb_idx"),
+						rs.getString("Tb_id"),
+						rs.getString("Tb_name"),
+						rs.getString("Tb_title"), 
+						rs.getString("Tb_content"), 
+						rs.getInt("Tb_group"), 
+						rs.getInt("Tb_level"), 
+						rs.getDate("Tb_date"), 
+						rs.getInt("Tb_cnt"),
+						rs.getString("Tb_file")
 						);
 				list.add(vo);
             }
@@ -211,7 +247,7 @@ public class TrainerBoardDAO {
             }
             else if(opt.equals("0")) // 제목으로 검색한 글의 개수
             {
-                sql.append("select count(*) from Trainer_board where cb_title like ?");
+                sql.append("select count(*) from Trainer_board where Tb_title like ?");
                 pstmt = con.prepareStatement(sql.toString());
                 pstmt.setString(1, '%'+condition+'%');
                 
@@ -219,7 +255,7 @@ public class TrainerBoardDAO {
             }
             else if(opt.equals("1")) // 내용으로 검색한 글의 개수
             {
-                sql.append("select count(*) from Trainer_board where cb_content like ?");
+                sql.append("select count(*) from Trainer_board where Tb_content like ?");
                 pstmt = con.prepareStatement(sql.toString());
                 pstmt.setString(1, '%'+condition+'%');
                 
@@ -228,7 +264,7 @@ public class TrainerBoardDAO {
             else if(opt.equals("2")) // 제목+내용으로 검색한 글의 개수
             {
                 sql.append("select count(*) from Trainer_board ");
-                sql.append("where cb_title like ? or cb_content like ?");
+                sql.append("where Tb_title like ? or Tb_content like ?");
                 pstmt = con.prepareStatement(sql.toString());
                 pstmt.setString(1, '%'+condition+'%');
                 pstmt.setString(2, '%'+condition+'%');
@@ -237,7 +273,7 @@ public class TrainerBoardDAO {
             }
             else if(opt.equals("3")) // 글쓴이로 검색한 글의 개수
             {
-                sql.append("select count(*) from Trainer_board where cb_nickname like ?");
+                sql.append("select count(*) from Trainer_board where Tb_name like ?");
                 pstmt = con.prepareStatement(sql.toString());
                 pstmt.setString(1, '%'+condition+'%');
                 
@@ -255,19 +291,13 @@ public class TrainerBoardDAO {
         return result;
     } // end getBoardListCount
  
-    
-	 
-	    
-	
-	
-	
 	//TRAINER_BOARD테이블에 저장된 최신 글 번호 조회 후 반환 하는 메소드
 	public int getNewArticleNO() {
 		
 		try {
 			con = ds.getConnection();
 			
-			String sql = "select max(cb_idx) from trainer_board";
+			String sql = "select max(Tb_idx) from trainer_board";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -284,7 +314,7 @@ public class TrainerBoardDAO {
 		}
 		
 		
-		return 0; //글이 존재 하지 않으면 CB_IDX 0을 반환
+		return 0; //글이 존재 하지 않으면 TB_IDX 0을 반환
 	}
 	
 	//글 작성 메소드
@@ -296,23 +326,23 @@ public class TrainerBoardDAO {
 			con = ds.getConnection();
 			
 			//두번째 부터 입력되는 주글 들의 pos를 1증가 시킨다.
-			sql = "update trainer_board set cb_group = cb_group +1";
+			sql = "update trainer_board set tb_group = tb_group +1";
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 			
-			//insert SQL문 만들기 //cb_group , cb_level 0 0 으로 insert 규칙3
-			sql = "insert into trainer_board (cb_idx, cb_id, cb_nickname, cb_title, "
-							+ "cb_content, cb_group, "
-							+ "cb_level, cb_date, cb_cnt, cb_file) "
+			//insert SQL문 만들기 //tb_group , tb_level 0 0 으로 insert 규칙3
+			sql = "insert into trainer_board (tb_idx, tb_id, tb_name, tb_title, "
+							+ "tb_content, tb_group, "
+							+ "tb_level, tb_date, tb_cnt, tb_file) "
 							+ " values (?,?,?,?,?,0,0,sysdate,0,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, articleNO);
-			pstmt.setString(2, vo.getCb_id());
-			pstmt.setString(3, vo.getCb_nickname());
-			pstmt.setString(4, vo.getCb_title());
-			pstmt.setString(5, vo.getCb_content());
-			pstmt.setString(6, vo.getCb_file());
+			pstmt.setString(2, vo.getTb_id());
+			pstmt.setString(3, vo.getTb_name());
+			pstmt.setString(4, vo.getTb_title());
+			pstmt.setString(5, vo.getTb_content());
+			pstmt.setString(6, vo.getTb_file());
 			
 			pstmt.executeUpdate();
 			
@@ -326,29 +356,60 @@ public class TrainerBoardDAO {
 		return articleNO; //insert한 글번호를 반환 함. 이유 : 글번호 폴더를 만들어서 파일을 그안에 업로드 하기 위함
 	}
 	
-	
-	
-	
-
     // 게시글 수정
-    public int updateBoard(TrainerBoardVo board) throws SQLException {
-        int cnt = 0;
-        PreparedStatement pstmt = null;
-
+    public void updateBoard(HttpServletRequest request, HttpServletResponse response, String tb_idx) throws Exception {
+        
+    	PreparedStatement pstmt = null;
+        con = ds.getConnection();
         try {
-            String sql = "UPDATE TRAINER_BOARD SET cb_title=?, cb_content=?, cb_file=? WHERE cb_idx=?";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, board.getCb_title());
-            pstmt.setString(2, board.getCb_content());
-            pstmt.setString(3, board.getCb_file());
-            pstmt.setInt(4, board.getCb_idx());
+		Map<String, String> articleMap = upload(request, response);
+		
+		String writer = articleMap.get("name"); //작성자(이름)
+		String title = articleMap.get("title"); //제목
+		String content = articleMap.get("content"); //내용
+		String id = articleMap.get("id"); //글 작성자 아이디
+		String file = articleMap.get("file"); //글을 수정할때 업로드 하기 위해 첨부한 파일명
+		
+		TrainerBoardVo  vo = new TrainerBoardVo();
+		vo.setTb_name(writer);
+		vo.setTb_title(title);
+		vo.setTb_content(content);
+		vo.setTb_id(id);
+		vo.setTb_file(file);
+		
+		//수정할때 파일이 null이 아니라면 재 업로드
+		if (vo.getTb_file() != null) {
+		if(file != null && file.length() != 0) {
+			File srcFile = new File("C:\\file_repo\\temp\\"+file);
+			File destDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\tb_idx")+tb_idx);
+//			File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tb_idx);
+			destDir.mkdirs();
+			FileUtils.moveFileToDirectory(srcFile, destDir, true);
+		}//파일 재 업로드
 
-            cnt = pstmt.executeUpdate();
+            String sql = "UPDATE TRAINER_BOARD SET tb_name =?, tb_title=?, tb_content=?, tb_file=? WHERE tb_idx=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, vo.getTb_name());
+            pstmt.setString(2, vo.getTb_title());
+            pstmt.setString(3, vo.getTb_content());
+            pstmt.setString(4, vo.getTb_file());
+            pstmt.setString(5, tb_idx);
+            pstmt.executeUpdate();
+            
+		} else { //파일이 없다면 db에 tb_file은 업데이트 하지 않는다. 
+            String sql = "UPDATE TRAINER_BOARD SET tb_name =?, tb_title=?, tb_content=? WHERE tb_idx=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, vo.getTb_name());
+            pstmt.setString(2, vo.getTb_title());
+            pstmt.setString(3, vo.getTb_content());
+            pstmt.setString(4, tb_idx);
+            pstmt.executeUpdate();
+		}
         } finally {
         	closeResource();
         }
 
-        return cnt;
+//        return tb_idx;
     }
     
     
@@ -357,16 +418,16 @@ public class TrainerBoardDAO {
         List<TrainerBoardVo> boardList = new ArrayList<>();
         try {
             con = ds.getConnection();
-            String query = "SELECT cb_idx, cb_title, cb_nickname, cb_date, cb_cnt FROM TRAINER_BOARD ORDER BY cb_idx DESC";
+            String query = "SELECT tb_idx, tb_title, tb_name, tb_date, tb_cnt FROM TRAINER_BOARD ORDER BY tb_idx DESC";
             pstmt = con.prepareStatement(query);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 TrainerBoardVo board = new TrainerBoardVo();
-                board.setCb_idx(rs.getInt("cb_idx"));
-                board.setCb_title(rs.getString("cb_title"));
-                board.setCb_nickname(rs.getString("cb_nickname"));
-                board.setCb_date(rs.getTimestamp("cb_date"));
-                board.setCb_cnt(rs.getInt("cb_cnt"));
+                board.setTb_idx(rs.getInt("tb_idx"));
+                board.setTb_title(rs.getString("tb_title"));
+                board.setTb_name(rs.getString("tb_name"));
+                board.setTb_date(rs.getTimestamp("tb_date"));
+                board.setTb_cnt(rs.getInt("tb_cnt"));
                 boardList.add(board);
             }
         } catch (SQLException e) {
@@ -412,7 +473,7 @@ public class TrainerBoardDAO {
 		//요청하는 아이템들을 파싱(추출)해서 DiskFileItem객체에 각각 저장한 후 
 		//DiskFileItem객체들을 ArrayList배열에 추가합니다.
 		//그 후 ArrayList배열 자체를 반환 받습니다.
-		List items = upload.parseRequest(request);
+		List<FileItem> items = upload.parseRequest(request); //제네릭타입 FileItem추가
 		
 		//ArrayList가변 길이 배열의 크기만큼(DiskFileItem객체의 갯수만큼) 반복
 		for(int i=0; i<items.size(); i++ ) {
@@ -436,7 +497,7 @@ public class TrainerBoardDAO {
 		//업로드할 파일명을 얻어 파일명의 뒤에서부터 \\문자열이 포함되어 있는지
 		//index위치번호를 알려주는데 없으면 -1을 반환함
 		int idx = fileItem.getName().lastIndexOf("\\");
-		System.out.println("upload메소드에서 idx 번호 :"+idx);
+		
 		if(idx == -1) {//업로드할 파일명에 \\문자열이 포함되어 있지 않으면?
 		
 		idx = fileItem.getName().lastIndexOf("/");
@@ -445,7 +506,7 @@ public class TrainerBoardDAO {
 		
 		//업로드할 파일명 얻기
 		String fileName = fileItem.getName().substring(idx+1);
-		System.out.println("upload 메소드 내부에서 fileName : " + fileName);
+
 		//업로드할 파일 경로 + 파일명을 만들어서 그경로에 접근할 File객체 생성
 		File uploadFile = new File(currentDirPath + "\\temp\\" + fileName);
 		
@@ -466,8 +527,6 @@ public class TrainerBoardDAO {
 		return articleMap;
 		}
 	
-	
-	//"/writePro.bo"  
 		public int InsertBoard(HttpServletRequest request, 
 									  HttpServletResponse response) throws Exception {
 			TrainerBoardDAO dao = new TrainerBoardDAO();
@@ -475,22 +534,20 @@ public class TrainerBoardDAO {
 			Map<String, String> articleMap = upload(request, response);
 			
 			//작성한 글 정보(업로드할 파일정보 포함)를 HashMap에서 꺼내오기
-			String writer = articleMap.get("nickname"); //작성자(닉네임)
-//			String email = articleMap.get("email"); //이메일
+			String writer = articleMap.get("name"); //작성자(닉네임)
 			String title = articleMap.get("title"); //제목
 			String content = articleMap.get("content"); //내용
-//			String pass = articleMap.get("pass"); //글 비밀번호
 			String id = articleMap.get("id"); //글 작성자 아이디
 			String file = articleMap.get("file"); //글을 작성할때 업로드 하기 위해 첨부한 파일명
 			
 			
 			//요청한 값을 TrainerBoardVo객체의 각 변수에 저장
 			TrainerBoardVo  vo = new TrainerBoardVo();
-			vo.setCb_nickname(writer);
-			vo.setCb_title(title);
-			vo.setCb_content(content);
-			vo.setCb_id(id);
-			vo.setCb_file(file);
+			vo.setTb_name(writer);
+			vo.setTb_title(title);
+			vo.setTb_content(content);
+			vo.setTb_id(id);
+			vo.setTb_file(file);
 			
 			//작성한 글 내용을 DB에 insert하고 추가 시킨 글의 글번호를 조회 후 반환 받습니다.
 			//글번호 폴더를 생성하기 위해 글번호를 받아 저장할 변수
@@ -498,7 +555,8 @@ public class TrainerBoardDAO {
 			
 			if(file != null && file.length() != 0) {
 				File srcFile = new File("C:\\file_repo\\temp\\"+file);
-				File destDir = new File("C:\\file_repo\\"+articleNO);
+				File destDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\tb_idx")+articleNO);
+//				File destDir = new File("C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+articleNO);
 				
 				//DB에 추가한 글에 대한 글번호를 조회해서 가져왔기 때문에 글 번호 폴더 생성
 				destDir.mkdirs();
@@ -511,33 +569,31 @@ public class TrainerBoardDAO {
 		}
 		
 		//게시판 모든 글 조회하는 메소드
-		public ArrayList boardListAll() {
+		public ArrayList<TrainerBoardVo> boardListAll() { //TrainerBoardVo 제네릭타입 추가
 			
 			String sql = null;
 			
-			ArrayList list = new ArrayList();
+			ArrayList<TrainerBoardVo> list = new ArrayList<>();
 			
 			
 			try {
 				con = ds.getConnection();
-				sql = "select * from trainer_board order by cb_group asc";
+				sql = "select * from trainer_board order by tb_group asc";
 				pstmt = con.prepareStatement(sql);
 				
 				rs = pstmt.executeQuery();
 				
-				//조회된 Result의 정보를 한행 단위로 꺼내서
-				//BoardVo객체에 한행씩 저장 후 BoardVo객체들을 ArrayList배열에 하나씩 추가해서 저장
 				while(rs.next()) {
-					TrainerBoardVo vo = new TrainerBoardVo(rs.getInt("cb_idx"),
-											rs.getString("cb_id"),
-											rs.getString("cb_nickname"),
-											rs.getString("cb_title"), 
-											rs.getString("cb_content"), 
-											rs.getInt("cb_group"), 
-											rs.getInt("cb_level"), 
-											rs.getDate("cb_date"), 
-											rs.getInt("cb_cnt"),
-											rs.getString("cb_file")
+					TrainerBoardVo vo = new TrainerBoardVo(rs.getInt("tb_idx"),
+											rs.getString("tb_id"),
+											rs.getString("tb_name"),
+											rs.getString("tb_title"), 
+											rs.getString("tb_content"), 
+											rs.getInt("tb_group"), 
+											rs.getInt("tb_level"), 
+											rs.getDate("tb_date"), 
+											rs.getInt("tb_cnt"),
+											rs.getString("tb_file")
 											);
 					list.add(vo);
 				}
@@ -554,72 +610,6 @@ public class TrainerBoardDAO {
 			return list;
 		}
 		
-		
-		//현재 게시판 DB에 있는 글들을 조회 하는 메소드
-		//조건 : 선택한 검색기준값과 입력한 검색어 단어를 이용해 글들을 조회!
-		//삭제예정
-/*		public ArrayList SearchboardList(String key,String word) {
-			
-			String sql = null;
-			
-			ArrayList list = new ArrayList();
-			
-			if(!word.equals("")) {//검색어를 입력했다면 ?
-				
-				if(key.equals("titleContent")) {//검색 기준값 제목+내용을 선택했다면 ?
-					
-					sql = "select * from trainer_board "
-							+ " where cb_title like '%"+word+"%' "
-							+ " or cb_content like '%"+word+"%' order by cb_group asc";
-				}else{//검색 기준값 작성자를 선택했다면?
-					
-					sql = "select * from trainer_board where cb_name like '%"+word+"%' order by cb_group asc";
-				}
-				
-				
-			}else {//검색어를 입력하지 않았다면?
-				//모든 글 조회
-				//조건 -> b_idx열의 글번호 데이터들을 기준으로 해서 내림 차순으로 정렬 후 조회!
-				sql = "select * from trainer_board order by cb_group asc";
-				
-				//참고. 정렬 조회 -> order by 정렬기준열 desc(내림차순) 또는 asc(오름차순)
-			}
-			
-			try {
-				con = ds.getConnection();
-				
-				pstmt = con.prepareStatement(sql);
-				
-				rs = pstmt.executeQuery();
-				
-				//조회된 Result의 정보를 한행 단위로 꺼내서
-				//BoardVo객체에 한행씩 저장 후 BoardVo객체들을 ArrayList배열에 하나씩 추가해서 저장
-				while(rs.next()) {
-					TrainerBoardVo vo = new TrainerBoardVo(rs.getInt("cb_idx"),
-							rs.getString("cb_id"),
-							rs.getString("cb_nickname"),
-							rs.getString("cb_title"), 
-							rs.getString("cb_content"), 
-							rs.getInt("cb_group"), 
-							rs.getInt("cb_level"), 
-							rs.getDate("cb_date"), 
-							rs.getInt("cb_cnt"),
-							rs.getString("cb_file")
-							);
-					
-					list.add(vo);
-				}
-				
-			} catch (Exception e) {
-				System.out.println("boardList 메소드 내부에서 오류!");
-				e.printStackTrace();
-			} finally {
-				closeResource();
-			}
-			
-			return list;
-		}
-		*/
 		
 		public int getTotalRecord() {
 			//조회된 글의 글수 저장
@@ -648,41 +638,38 @@ public class TrainerBoardDAO {
 		//글을 읽을때(fnRead)시 조회수가 늘어나게 만드는 메소드
 		public TrainerBoardVo boardRead(HttpServletRequest request) {
 
-			String cb_idx = request.getParameter("cb_idx");
-			System.out.println("cb_idx값은?" + cb_idx);
+			String tb_idx = request.getParameter("tb_idx");
 			
 			TrainerBoardVo vo = null;
 			String sql = null;
 			try {
 				con = ds.getConnection();
 				
-				sql = "UPDATE trainer_board SET cb_cnt = cb_cnt +1 where cb_idx = ?";
+				sql = "UPDATE trainer_board SET tb_cnt = tb_cnt +1 where tb_idx = ?";
 				
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, Integer.parseInt(cb_idx));
+				pstmt.setInt(1, Integer.parseInt(tb_idx));
 				pstmt.executeUpdate();
 				
 				
-				sql = "select * from trainer_board where cb_idx = ?";
+				sql = "select * from trainer_board where tb_idx = ?";
 				
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, Integer.parseInt(cb_idx));
+				pstmt.setInt(1, Integer.parseInt(tb_idx));
 				
 				rs = pstmt.executeQuery();
 				
-				//조회된 Result의 정보를 한행 단위로 꺼내서
-				//BoardVo객체에 한행의 정보를 저장합니다.
 				if(rs.next()) {
-					vo = new TrainerBoardVo(rs.getInt("cb_idx"),  
-										rs.getString("cb_id"), 
-										rs.getString("cb_nickname"),
-										rs.getString("cb_title"), 
-										rs.getString("cb_content"), 
-										rs.getInt("cb_group"), 
-										rs.getInt("cb_level"), 
-										rs.getDate("cb_date"), 
-										rs.getInt("cb_cnt"),
-										rs.getString("cb_file")
+					vo = new TrainerBoardVo(rs.getInt("tb_idx"),  
+										rs.getString("tb_id"), 
+										rs.getString("tb_name"),
+										rs.getString("tb_title"), 
+										rs.getString("tb_content"), 
+										rs.getInt("tb_group"), 
+										rs.getInt("tb_level"), 
+										rs.getDate("tb_date"), 
+										rs.getInt("tb_cnt"),
+										rs.getString("tb_file")
 										);
 										
 					
@@ -691,7 +678,6 @@ public class TrainerBoardDAO {
 				System.out.println("boardRead메소드에서 SQL오류 : ");
 				e.printStackTrace();
 			}finally {
-				//자원해제
 				closeResource();
 			}
 			
@@ -699,14 +685,235 @@ public class TrainerBoardDAO {
 			 
 		}
 
-		public String serviceBoardReadView() {
+		public void downLoad(HttpServletResponse response, String filePath, String fileName) {
 			
-			return null;
+			
+			try {
+				File file = new File(filePath);
+				byte b[] = new byte[(int) file.length()];
+				
+				//page의 ContentType등을 동적으로 바꾸기 위해 초기화 시킨다
+				response.reset();
+				response.setContentType("apllication/octet-stream"); //파일 확장자를 모를때 사용 8비트로 된 데이터
+				
+				//한글 인코딩
+				String encoding = new String(fileName.getBytes("utf-8"));
+				
+				response.setHeader("Content-Disposition", "attachment;filename="+encoding);
+				response.setHeader("content-Length", String.valueOf(file.length()));
+				
+				if (file.isFile()) { //파일이 있을 경우
+					 FileInputStream fileInputStream = new FileInputStream(file);
+					 ServletOutputStream servletOutputStream = response.getOutputStream();
+					 
+					 //파일을 읽어서 클라이언트쪽으로 저장한다
+					 int readNum = 0;
+					 while ( (readNum = fileInputStream.read(b)) != -1) {
+		                    servletOutputStream.write(b, 0, readNum); //  b배열 안에 있는 시작 off(index) 부터 len 만큼 출력한다.
+		                }
+		                servletOutputStream.close();
+		                fileInputStream.close();
+				}
+			} catch (Exception e) {
+				System.out.println("download메소드에서 오류 발생");
+				e.printStackTrace();
+				
+			} finally {
+				closeResource();
+			}
+			
+		}
+
+		public TrainerBoardVo getReadPage(String tb_idx) {
+			String sql = "";
+			TrainerBoardVo vo = null;
+			
+			try {
+				con = ds.getConnection();
+				
+				sql = "select * from trainer_board where tb_idx = ?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(tb_idx));
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					
+					vo = new TrainerBoardVo(rs.getInt("tb_idx"),  
+							rs.getString("tb_id"), 
+							rs.getString("tb_name"),
+							rs.getString("tb_title"), 
+							rs.getString("tb_content"), 
+							rs.getInt("tb_group"), 
+							rs.getInt("tb_level"), 
+							rs.getDate("tb_date"), 
+							rs.getInt("tb_cnt"),
+							rs.getString("tb_file")
+							);
+				}
+				
+			} catch (Exception e) {
+				
+			} finally {
+				closeResource();
+			}
+			return vo;
+		}
+
+		public String deleteBoard(HttpServletRequest request) throws IOException {
+			String delete_idx = request.getParameter("tb_idx");
+			String delete_level = request.getParameter("tb_level");
+			File deleteDir;
+			if( Integer.parseInt(delete_level) > 0) {
+				deleteDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\reply_tb_idx") + delete_idx); 
+			} else {
+				deleteDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\tb_idx") + delete_idx); 
+			}
+			//글삭제에 성공하면 "삭제성공" 반환 받고, 실패하면 "삭제실패" 반환 받음 
+			String result = tbDBDelete(delete_idx);
+			
+			if(result.equals("삭제성공")) {
+				
+				if (deleteDir.exists()) {
+					
+					FileUtils.deleteDirectory(deleteDir);//글번호 폴더도 삭제
+				}
+			}
+			return result; //글삭제에 성공하면 "삭제성공" 반환 , 실패하면 "삭제실패" 반환  
+		}
+			
+	
+		public String tbDBDelete(String tb_idx) {
+			String result = null;
+			
+			try {
+				con = ds.getConnection();
+				
+				String sql = "DELETE FROM Trainer_board WHERE tb_idx=?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, tb_idx);
+				int val = pstmt.executeUpdate();
+				
+				if(val == 1) {
+					result = "삭제성공";
+				}else {
+					result = "삭제실패";
+				}
+				
+				
+			}catch (Exception e) {
+				System.out.println("tbDBDelete메소드 내부에서 오류 ");
+				e.printStackTrace();
+			}finally {
+				closeResource();
+			}
+			return result;
+		}	
+		
+
+	public List<String> contentLink(String tb_content) {
+		 tb_content
+	    .replaceAll("&", "&amp;")
+	    .replaceAll("<", "&lt;")
+	    .replaceAll(">", "&gt;")
+	    .replaceAll("\"", "&quot;")
+	    .replaceAll("'", "&#39;"); //크롬에선 문제x entity 변환필요한 브라우저에선 주석 해제 필요
+		Pattern pattern = Pattern.compile("src=\"(.*?)\""); //주어진 정규식을 갖는 패턴을 생성//src="http://localhost:8090/TeamProject/ckstorage/images/edu.png"
+		Matcher matcher = pattern.matcher(tb_content); //패턴에 매칭할 문자열을 입력해 Matcher를 생성(인자에 검사할 문자열)
+		List<String> imageUrls = new ArrayList<>(); //imageUrl을 저장할 배열 생성
+		
+		while (matcher.find()) { //패턴이 일치하는 다음 문자열을 찾는다. 다음 문자열이 있다면 true 
+			//src="http://localhost:8090/TeamProject/ckstorage/images/edu.png"
+			//src="http://localhost:8090/TeamProject/ckstorage/images/lessonlist.png"
+		 String imageUrl = matcher.group(1); //String group(int group) 매칭되는 문자열 중 group번째 그룹의 문자열 반환
+		//   System.out.println("matcher.group()값 : " +matcher.group()); // 패턴과 일치하는 모든 것, 그룹 0은 예약되어 있으며 항상 전체 일치 항목을 반환하는 반면 다른 모든 항목은 선택 사항이며 사용자가 정의
+		//   System.out.println("matcher.group(1)값 : " +matcher.group(1)); //그룹 1: 시작 단어 와 끝 단어 사이의 숫자 
+		 imageUrls.add(imageUrl);
+		}
+	
+		
+		return imageUrls;
+	}
+
+
+	//답변글 작성 메소드
+	public void insertReply(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String, String> rp_articleMap = upload(request,response);
+		
+		// 주글 (부모글) 글번호 + 작성한 답변글 내용 얻기
+		String super_tb_idx = rp_articleMap.get("super_tb_idx");//부모 글번호
+		String reply_id = rp_articleMap.get("id"); //답변글 작성자 아이디
+		String reply_name = rp_articleMap.get("name"); //답변글 작성자 이름
+		String reply_title = rp_articleMap.get("title"); //답변글 제목
+		String reply_content = rp_articleMap.get("content"); //답변글 내용
+		String reply_file = rp_articleMap.get("file"); //글을 작성할때 업로드 하기 위해 첨부한 파일명
+		
+		int rp_articleNO = replyInsertBoard(super_tb_idx,reply_id,reply_name,reply_title,reply_content,reply_file);
+		
+		if(reply_file != null && reply_file.length() != 0) {
+			
+			File srcFile = new File("C:\\file_repo\\temp\\"+reply_file);
+			File destDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\reply_tb_idx")+rp_articleNO); 
+			
+			destDir.mkdirs();
+			
+			FileUtils.moveFileToDirectory(srcFile, destDir, true);
+		
+		}
+	
+	}
+
+
+	//답변글 db등록
+	private int replyInsertBoard(String super_tb_idx, String reply_id, String reply_name, String reply_title,
+			String reply_content, String reply_file) {
+
+		int articleNO = getNewArticleNO(); 
+		String sql = null;
+		
+		try {
+			con = ds.getConnection();
+			
+			sql = "select tb_group, tb_level from trainer_board where tb_idx='"+super_tb_idx+"'";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			
+			String tb_group = rs.getString("tb_group");
+			String tb_level = rs.getString("tb_level");
+			
+			sql = "update Trainer_board set tb_group = tb_group + 1 where tb_group > ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, tb_group);
+			pstmt.executeUpdate();
+	
+			sql = "insert into trainer_board (tb_idx, tb_id, tb_name, "
+							+ " tb_title, tb_content, tb_group, "
+							+ "tb_level, tb_date, tb_cnt, tb_file) "
+							+ " values (?,?,?,?,?,?,?,sysdate,0,?)";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, articleNO);
+			pstmt.setString(2, reply_id);
+			pstmt.setString(3, reply_name);
+			pstmt.setString(4, reply_title);
+			pstmt.setString(5, reply_content);
+			pstmt.setInt(6, Integer.parseInt(tb_group)+1);
+			pstmt.setInt(7, Integer.parseInt(tb_level)+1);
+			pstmt.setString(8, reply_file);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("replyInsertBoard메소드 내부에서 오류 ");
+			e.printStackTrace();
+		} finally {
+			closeResource();
 		}
 		
-		
-		
+		return articleNO;
+	}
+	
+	
 }
-
-
 

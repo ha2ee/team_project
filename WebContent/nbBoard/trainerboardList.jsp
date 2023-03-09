@@ -25,7 +25,7 @@
 		/* 게시판 목록 테이블의 th와 td 스타일 */
 		.board-table th, .board-table td {
 		  padding: 10px 20px; 
-		  text-align: center; 
+/* 		  text-align: center;  */
 		  border-bottom: 1px solid #ddd; 
 		}
 		
@@ -45,6 +45,19 @@
 		.board-table td:nth-child(2) a:hover {
 		  color: #f44336;
 		}
+		
+		#newContent {
+		  float : right;
+		  position : relative;
+		  top : 10px;
+		  background-color: #f44336;
+		  color: white;
+		  border: none;
+		  padding: 10px;
+		  font-size: 16px;
+		  font-weight: bold;
+		  cursor: pointer;
+		}
    
     </style>
     
@@ -58,7 +71,7 @@
     		
     		
     		document.frmRead.action = "<%=contextPath%>/tb/read.bo";
-    		document.frmRead.cb_idx.value = val;
+    		document.frmRead.tb_idx.value = val;
     		document.frmRead.submit();
     	}
     </script>
@@ -75,8 +88,7 @@
             <input type="button" value="글쓰기" onclick="writeForm()">
         </c:if>    
     </div> --%>
-<%--      <input type ="button" id="newContent" onclick="location.href='<%=contextPath%>/tb/write.bo?nowPage=<%=nowPage%>&nowBlock=<%=nowBlock%>'"value = "글쓰기"> --%>
-     <input type ="button" id="newContent" onclick="location.href='<%=contextPath%>/tb/write.bo'"value = "글쓰기">
+     
     
     <!-- 게시글 목록 부분 -->
     <br>
@@ -91,20 +103,27 @@
             </tr>
         <c:forEach var="board" items="${requestScope.list}">
             <tr>
-                <td>${board.cb_idx}</td>
+                <td>${board.tb_idx}</td>
                 <td>
-                    <a href="read.bo?cb_idx=${board.cb_idx}&pageNum=${pageNum}">
-                    ${board.cb_title}
+                <c:if test="${board.tb_level > 0}">
+                	<c:forEach var="i" begin="0" end="${board.tb_level}" >
+                		&nbsp;
+                	</c:forEach>
+                	:RE
+                </c:if>
+                    <a href="read.bo?tb_idx=${board.tb_idx}&pageNum=${spage}">
+                    ${board.tb_title}
                     </a>
                 </td>
                 <td>
-                    ${board.cb_nickname}
+                    ${board.tb_name}
                 </td>
-                <td>${board.cb_date}</td>
-                <td>${board.cb_cnt}</td>
+                <td>${board.tb_date}</td>
+                <td>${board.tb_cnt}</td>
             </tr>
         </c:forEach>
         </table>
+        <input type ="button" id="newContent" onclick="location.href='<%=contextPath%>/tb/write.bo'"value = "글쓰기">
     </div>
     
     <!-- 페이지 넘버 부분 -->

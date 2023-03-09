@@ -21,7 +21,7 @@
 	<c:set var="center" value="Center.jsp"/>
 </c:if>
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <!-- 날씨 관련 스크립트 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>

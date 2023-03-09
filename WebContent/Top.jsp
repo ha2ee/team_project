@@ -133,10 +133,8 @@ $(document).ready(function(){
 		<!--                  1) 로그인 & 로그아웃 & 마이페이지 & 장바구니 버튼 -->
 		<div id = "nb_login">
 				<div id = "nb_box">
-					<ul id = "login_box">	
-					                    			
- <%
-					//session에 값이 저장되어 있지 않으면?
+					<ul id = "login_box">	                    			
+	<%				
 					if(id == null){
 				%>	
 
@@ -150,7 +148,7 @@ $(document).ready(function(){
 				%>
 				   <li><a href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
 	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
+<%-- 	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li> --%>
 	               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
 
 				<%
@@ -226,7 +224,7 @@ $(document).ready(function(){
 				<li><a class="edu_btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강신청 가기</a></li>
 			</ul>
 			<ul class="list_lnb_03">
-				<li><a href="<%=request.getContextPath()%>/freeboard/list.fb?pageNum=1&startRow=1&pageSize=5">자유 게시판</a></li>
+				<li><a href="<%=request.getContextPath()%>/freeboard/list.fb">자유 게시판</a></li>
 				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/review.bo?center=/nbBoard/review.jsp">수강 후기</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
@@ -266,9 +264,6 @@ $(document).ready(function(){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-
-
-
 navigator.geolocation.getCurrentPosition(showYourLocation, showErrorMsg); 
 function showYourLocation(position) {  // 성공했을때 실행
     var userLat = position.coords.latitude;

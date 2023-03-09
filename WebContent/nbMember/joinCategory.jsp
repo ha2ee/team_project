@@ -87,21 +87,21 @@
  			<h2> 회원가입 유형선택</h2>
  		</div>
 		<div class="join_top">
-			<strong id="guide">일반회원과 훈련사 회원중 원하는 유형을 선택해주세요</strong>
+			<strong id="guide">일반회원과 트레이너 회원중 원하는 유형을 선택해주세요</strong>
 		</div>
 	
 	
 <!--개인회원 -->
 		<div class="join_mid">
 			
-			<a type="button" id="join_mid_L" class="btn btn-outline-info" href="memJoin.me">
+			<a type="button" id="join_mid_L" class="btn btn-outline-info" href="<%=contextPath%>/member/memJoin.me">
 				<p style="margin-top: 60px;">일반회원</p>
 			</a>	
 	
 <!-- 트레이너 회원 -->
 		
-			<a type="button" id="join_mid_R" class="btn btn-outline-info" href="trJoin.me">
-				<p style="margin-top: 60px;">훈련사 회원</p>
+			<a type="button" id="join_mid_R" class="btn btn-outline-info" href="<%=contextPath%>/member/trJoin.me">
+				<p style="margin-top: 60px;">트레이너회원</p>
 			</a>
 			
 
@@ -113,4 +113,5 @@
 	
 	</div>
 </body>
+
 </html>

@@ -3,122 +3,133 @@ package VO;
 import java.util.Date;
 
 public class TrainerBoardVo {
-    private int cb_idx; // 글 번호
-    private String cb_id; // 작성자 아이디
-    private String cb_nickname; // 작성자 닉네임
-    private String cb_title; // 글 제목
-    private String cb_content; // 글 내용
-    private int cb_group; // 그룹 번호
-    private int cb_level; // 답글 계층
-    private Date cb_date; // 작성 일자
-    private int cb_cnt; // 조회수
-    private String cb_file; // 첨부 파일 이름
+    private int tb_idx; // 글 번호
+    private String tb_id; // 작성자 아이디
+    private String tb_name; // 작성자 이름
+    private String tb_title; // 글 제목
+    private String tb_content; // 글 내용
+    private int tb_group; // 그룹 번호
+    private int tb_level; // 답글 계층
+    private Date tb_date; // 작성 일자
+    private int tb_cnt; // 조회수
+    private String tb_file; // 첨부 파일 이름
     
     public TrainerBoardVo() {
 		// TODO Auto-generated constructor stub
 	}
-    
-    
-    
-    
 
-    public TrainerBoardVo(int cb_idx, String cb_id, String cb_nickname, String cb_title, String cb_content,
-			int cb_group, int cb_level, Date cb_date, int cb_cnt, String cb_file) {
+    //모든 생성자
+	public TrainerBoardVo(int tb_idx, String tb_id, String tb_name, String tb_title, String tb_content, int tb_group,
+			int tb_level, Date tb_date, int tb_cnt, String tb_file) {
 		super();
-		this.cb_idx = cb_idx;
-		this.cb_id = cb_id;
-		this.cb_nickname = cb_nickname;
-		this.cb_title = cb_title;
-		this.cb_content = cb_content;
-		this.cb_group = cb_group;
-		this.cb_level = cb_level;
-		this.cb_date = cb_date;
-		this.cb_cnt = cb_cnt;
-		this.cb_file = cb_file;
+		this.tb_idx = tb_idx;
+		this.tb_id = tb_id;
+		this.tb_name = tb_name;
+		this.tb_title = tb_title;
+		this.tb_content = tb_content;
+		this.tb_group = tb_group;
+		this.tb_level = tb_level;
+		this.tb_date = tb_date;
+		this.tb_cnt = tb_cnt;
+		this.tb_file = tb_file;
 	}
 
+	//작성일 제외 생성자
+	public TrainerBoardVo(int tb_idx, String tb_id, String tb_name, String tb_title, String tb_content, int tb_group,
+			int tb_level, int tb_cnt, String tb_file) {
+		super();
+		this.tb_idx = tb_idx;
+		this.tb_id = tb_id;
+		this.tb_name = tb_name;
+		this.tb_title = tb_title;
+		this.tb_content = tb_content;
+		this.tb_group = tb_group;
+		this.tb_level = tb_level;
+		this.tb_cnt = tb_cnt;
+		this.tb_file = tb_file;
+	}
 
+	//get set
+	public int getTb_idx() {
+		return tb_idx;
+	}
 
+	public void setTb_idx(int tb_idx) {
+		this.tb_idx = tb_idx;
+	}
 
+	public String getTb_id() {
+		return tb_id;
+	}
 
-	public int getCb_idx() {
-        return cb_idx;
-    }
+	public void setTb_id(String tb_id) {
+		this.tb_id = tb_id;
+	}
 
-    public void setCb_idx(int cb_idx) {
-        this.cb_idx = cb_idx;
-    }
+	public String getTb_name() {
+		return tb_name;
+	}
 
-    public String getCb_id() {
-        return cb_id;
-    }
+	public void setTb_name(String tb_name) {
+		this.tb_name = tb_name;
+	}
 
-    public void setCb_id(String cb_id) {
-        this.cb_id = cb_id;
-    }
+	public String getTb_title() {
+		return tb_title;
+	}
 
-    public String getCb_nickname() {
-        return cb_nickname;
-    }
+	public void setTb_title(String tb_title) {
+		this.tb_title = tb_title;
+	}
 
-    public void setCb_nickname(String cb_nickname) {
-        this.cb_nickname = cb_nickname;
-    }
+	public String getTb_content() {
+		return tb_content;
+	}
 
-    public String getCb_title() {
-        return cb_title;
-    }
+	public void setTb_content(String tb_content) {
+		this.tb_content = tb_content;
+	}
 
-    public void setCb_title(String cb_title) {
-        this.cb_title = cb_title;
-    }
+	public int getTb_group() {
+		return tb_group;
+	}
 
-    public String getCb_content() {
-        return cb_content;
-    }
+	public void setTb_group(int tb_group) {
+		this.tb_group = tb_group;
+	}
 
-    public void setCb_content(String cb_content) {
-        this.cb_content = cb_content;
-    }
+	public int getTb_level() {
+		return tb_level;
+	}
 
-    public int getCb_group() {
-        return cb_group;
-    }
+	public void setTb_level(int tb_level) {
+		this.tb_level = tb_level;
+	}
 
-    public void setCb_group(int cb_group) {
-        this.cb_group = cb_group;
-    }
+	public Date getTb_date() {
+		return tb_date;
+	}
 
-    public int getCb_level() {
-        return cb_level;
-    }
+	public void setTb_date(Date tb_date) {
+		this.tb_date = tb_date;
+	}
 
-    public void setCb_level(int cb_level) {
-        this.cb_level = cb_level;
-    }
+	public int getTb_cnt() {
+		return tb_cnt;
+	}
 
-    public Date getCb_date() {
-        return cb_date;
-    }
+	public void setTb_cnt(int tb_cnt) {
+		this.tb_cnt = tb_cnt;
+	}
 
-    public void setCb_date(Date cb_date) {
-        this.cb_date = cb_date;
-    }
+	public String getTb_file() {
+		return tb_file;
+	}
 
-    public int getCb_cnt() {
-        return cb_cnt;
-    }
-
-    public void setCb_cnt(int cb_cnt) {
-        this.cb_cnt = cb_cnt;
-    }
-
-    public String getCb_file() {
-        return cb_file;
-    }
-
-    public void setCb_file(String cb_file) {
-        this.cb_file = cb_file;
-    }
+	public void setTb_file(String tb_file) {
+		this.tb_file = tb_file;
+	}
+	
+	
 
 }

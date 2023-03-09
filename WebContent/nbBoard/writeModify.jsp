@@ -1,8 +1,12 @@
+<%@page import="VO.FreeBoardVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("UTF-8");
 String contextPath = request.getContextPath();
+
+FreeBoardVo vo = (FreeBoardVo) request.getAttribute("vo");
+String title = vo.getB_title();
 %>
 
 
@@ -30,11 +34,11 @@ String contextPath = request.getContextPath();
   
   	<div style="width: 1200px; margin: 0 auto; margin-bottom: 20px">
   		<div>
-	        <form action="<%=contextPath%>/freeboard/writePro.fb" method="post" enctype="multipart/form-data">
+	        <form action="<%=contextPath%>/freeboard/modifyPro.fb" method="post" enctype="multipart/form-data">
 		      <h1> 게시글 작성 </h1> <br>
-	          <input type="text" name="title" style="width: 100%; box-sizing: border-box; font-size: 20px" placeholder="제목을 입력해주세요"> 
-	                  											<%-- box-sizing: border-box를 style에 넣어줘야 너비 끝부분 처리가 완벽 --%>
+	          <input type="text" name="title" style="width: 100%; box-sizing: border-box; font-size: 20px" placeholder="제목을 입력해주세요" value="<%=title%>"> 
 	            <textarea name="editor1" id="editor1" rows="10" cols="80">
+              <%=vo.getB_content()%>
 	            </textarea>
 	            <script>
 	                // Replace the <textarea id="editor1"> with a CKEditor 4
@@ -57,7 +61,7 @@ String contextPath = request.getContextPath();
                		</div>
                	
   				</div>
-	            
+	            <input type="hidden" name="b_idx" value="<%=vo.getB_idx()%>">
 	        </form>
 
   		</div>
@@ -88,6 +92,7 @@ String contextPath = request.getContextPath();
 				 }
   			})
   		})
+  	
   	</script>
  --%>  		
 	<script type="text/javascript">

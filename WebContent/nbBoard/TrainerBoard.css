@@ -1,11 +1,4 @@
-    .tbwContainer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-
-h2 {
+	h2 {
             text-align: center;
             margin-top: 50px;
         }
@@ -18,8 +11,9 @@ h2 {
         }
         
         #tbwTable {
-            width: 100%;
-            max-width: 800px;
+             width: 1200px;
+/*             width: 100%; */
+/*             max-width: 800px; */
             border-collapse: collapse;
             border: 1px solid #ccc;
             background-color: #fff;
