@@ -19,27 +19,10 @@ String tr_price = request.getParameter("tr_price");
 //Session내장객체 메모리 영역에 session값 얻기
 String id = (String)session.getAttribute("id");
 
-// // list를 컨틀롤러에서 받아와서 변수에 저장
-// List<String> list = (List<String>)request.getAttribute("list");
+// list를 컨틀롤러에서 받아와서 변수에 저장
+List<String> list = (List<String>)request.getAttribute("list");
 
-// // 각월에 해당되는 List를 생성하고 필터 된 값을 저장시킨다.
-// // 1) 해당월
-// List<String> MonthlyDay = list.stream().filter(s -> s.contains("03-")).collect(Collectors.toList());
-
-// // 2) 다음달
-// List<String> NMonthlyDay = list.stream().filter(s -> s.contains("04-")).collect(Collectors.toList());
-// // 출력 해보기
-// out.print(MonthlyDay);
-// out.print(NMonthlyDay);
-
-// // 2) 다음달
-// List<String> NMonthlyDay = list.stream().filter(s -> s.contains("04-")).collect(Collectors.toList());
-// // 출력 해보기
-// out.print(MonthlyDay);
-// out.print(NMonthlyDay);
-
-// //리스트 생성
-
+out.print(list);
 
 
 
@@ -82,9 +65,8 @@ String id = (String)session.getAttribute("id");
 //     var nextMonth = new Date(today.getFullYear(), today.getMonth()+1, 1);
 //     var nextmonth = moment(nextMonth).format('YYYY-MM-DD');
     
-	console.log(regdate);
-	console.log(reg_date);
-
+// 	console.log(regdate);
+// 	console.log(reg_date);
 	
     
     /**
@@ -126,6 +108,8 @@ String id = (String)session.getAttribute("id");
      * @details 날짜 값을 받아 캘린더 폼을 생성하고, 날짜값을 채워넣는다.
      */
     function buildCalendar() {
+    	
+    	
 
          doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
          lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
@@ -207,6 +191,25 @@ String id = (String)session.getAttribute("id");
 
                     // @details 7일뒤보다 이후이면서 현재월에 포함되는 일인경우
                		}else if((date.getDate()+6) < day && lastDate.getDate() >= day) {
+               			
+                		// 예약 된 날짜를 가져온다.
+                		var list = <%=list%>;
+                		
+                		// for 문을 돌려서 예약날짜와 일치하는 날짜를 가져온다.
+                		for(var i =0; i < list.length; i++){
+
+                			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
+                			for(var j=1; j < 32; j++ ){
+
+                				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
+                				if(list[i].toString() == j.toString() && lastDate.getDate() >= day) {
+                					
+                					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+
+                				}
+                			}
+                			
+                		}
 	
 	                        column.style.backgroundColor = "#f8f8f8";
 	                        column.style.color = "";
@@ -506,6 +509,7 @@ String id = (String)session.getAttribute("id");
     
     
     $(document).ready(function(){
+    	 	
     	
     	$("#resetbtn").on("click",function(){
     		
@@ -577,11 +581,33 @@ String id = (String)session.getAttribute("id");
     		}
     	})
     	
-    	
-    	
-    	// 
+
     	// 다음 버튼을 눌렀을 때,
     	$("#next").on("click", function (){
+    		
+    		
+    		
+    		// 예약 된 날짜를 가져온다.
+    		var list = <%=list%>;
+    		
+    		// for 문을 돌려서 예약날짜와 일치하는 날짜를 가져온다.
+    		for(var i =0; i < list.length; i++){
+
+    			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
+    			for(var j=1; j < 32; j++ ){
+    				
+    				console.log(list[i]);
+    				console.log(j);
+    				
+    				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
+    				if(list[i].toString() == j.toString()){
+    					
+    					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+
+    				}
+    			}
+    			
+    		}
     		
     		// 다음달 마지막날을 구해서 가져오고,
     		var nextmonthlastday = new Date(today.getFullYear(), today.getMonth()+1, 0);
@@ -596,43 +622,31 @@ String id = (String)session.getAttribute("id");
     		console.log(nmld);
     		console.log(nmtd);
     		
-    		
     		// 시작날짜+1일과 마지막 날을 구해서 그 사이 날짜 구해서 배열에 저장하기	
     		function getDateRange(startDate, endDate, listDate){
     	
     	        var dateMove = new Date(startDate);
-    			
-    	        console.log("dateMove :"+dateMove);
     	        	
     	        var strDate = startDate;
-    	
-    	        console.log("strDate :"+strDate);
+ 
     	
     	        if (startDate == endDate){
     	
     	            var strDate = dateMove.toISOString().slice(0,10);
-    				
-    	            console.log("strDate :"+strDate);
     	            
     	            listDate.push(strDate);
-    				
-    	            console.log("listDate :"+listDate);
+
     	            
     	        }else{
     	
     	            while (strDate < endDate){
     	
     	                var strDate = dateMove.toISOString().slice(0, 10);
-    					
-    	                console.log("strDate :"+strDate);
     	                
     	                listDate.push(strDate.slice(8,10));
-    	                
-    	                console.log("listDate :"+listDate);
-    	
+
     	                dateMove.setDate(dateMove.getDate() + 1);
-    	                
-    	                console.log("dateMove :"+dateMove);
+
     	
     	            }
     	
@@ -657,7 +671,10 @@ String id = (String)session.getAttribute("id");
     					}
     					
     				}
-        		}    			
+        		}
+
+        		
+        		
 
    			
     		// 당월 마지막 날짜에서 현재날짜를 뺀 값이 0이면
@@ -717,6 +734,7 @@ String id = (String)session.getAttribute("id");
 	var totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     
 
+	
 </script>
 </head>
 <body>

@@ -12,13 +12,8 @@ String ContextPath = request.getContextPath();
 <script>
 //메인 메뉴에 마우스가 올려지면 토글하는 함수 생성
 $(document).ready(function(){
-	
 
-	// 로그인 된 정보가 있다면 로그인 버튼을 로그아웃으로 바꿔줌
 
-			
-
-		
 	$(".edu_btn").on("click", function(){
 		
 		<%

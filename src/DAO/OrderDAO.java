@@ -226,12 +226,11 @@ public class OrderDAO {
 	}
 	
 	// #4) 이미 예약된 일정을 필터링 해서 반환해주는 메소드
-	public List<String> checkDate(String tr_name) {
+	public List checkDate(String tr_name) {
 		
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList();
 		
 		System.out.println("OrderDAO -> checkDate 메소드 호출!");
-		
 
 		try {
 			
@@ -239,20 +238,14 @@ public class OrderDAO {
 			con = ds.getConnection();
 			//매개변수 tr_name으로 받는 입력한 이름에 해당되는 행을 조회 SELECT문
 			// sql = tr_name 값으로 선택 된 훈련사의 예약 된 일정들을 조회해 온다.
-			String sql = "select date1 from edu_order where tr_name=? " + 
-					"union " + 
-					"select date2 from edu_order where tr_name=? " + 
-					"union " + 
-					"select date3 from edu_order where tr_name=? " + 
-					"union " + 
-					"select date4 from edu_order where tr_name=? " + 
-					"union " + 
-					"select date5 from edu_order where tr_name=? " + 
-					"union " + 
-					"select date6 from edu_order where tr_name=? " + 
-					"union " + 
-					"select date7 from edu_order where tr_name=?";
-			
+			String sql = "SELECT TO_CHAR(date1, 'DD') from edu_order where tr_name=? AND NOT date1 IS NULL "
+						+"union SELECT TO_CHAR(date2, 'DD') from edu_order where tr_name=? AND NOT date2 IS NULL "
+						+"union SELECT TO_CHAR(date3, 'DD') from edu_order where tr_name=? AND NOT date3 IS NULL "
+						+ "union SELECT TO_CHAR(date4, 'DD') from edu_order where tr_name=? AND NOT date4 IS NULL "
+						+ "union SELECT TO_CHAR(date5, 'DD') from edu_order where tr_name=? AND NOT date5 IS NULL "
+						+ "union SELECT TO_CHAR(date6, 'DD') from edu_order where tr_name=? AND NOT date6 IS NULL "
+						+ "union SELECT TO_CHAR(date7, 'DD') from edu_order where tr_name=? AND NOT date7 IS NULL";
+
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, tr_name);
 			pstmt.setString(2, tr_name);
@@ -263,16 +256,21 @@ public class OrderDAO {
 			pstmt.setString(7, tr_name);
 			rs = pstmt.executeQuery();
 
+			// 값이 있다면
 			while(rs.next()) {
+			
+			// list 배열에 저장한다.
+			list.add(rs.getString(1));
+			
+			
+			
+		
 				
-				//Array 문자열 배열에 저장시킨다.
-				list.add(rs.getString("date1"));
 			}
 
-			
 		} catch (Exception e) {
 			
-			System.out.println("OrderDAO -> checkPet 메소드 내부에서 오류!");
+			System.out.println("OrderDAO -> checkDate 메소드 내부에서 오류!");
 			e.printStackTrace();
 			
 		}finally {

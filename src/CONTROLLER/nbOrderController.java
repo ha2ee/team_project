@@ -168,14 +168,9 @@ public class nbOrderController extends HttpServlet{
 			// 2) 변수를 eduordervo로 저장시킨다.
 			eduOrderVo eduordervo = new eduOrderVo();
 			
+			// 3) 예약정보를 list로 저장시킨다.
 			List<String> list = new ArrayList();
-			list.add(date1);
-			list.add(date2);
-			list.add(date3);
-			list.add(date4);
-			list.add(date5);
-			list.add(date6);
-			list.add(date7);
+
 			
 			// *1) 회원 정보
 			eduordervo.setEdu_id(edu_id);
@@ -199,8 +194,15 @@ public class nbOrderController extends HttpServlet{
 			eduordervo.setTr_img(tr_img);
 			eduordervo.setTr_name(tr_name);
 			eduordervo.setTr_hp(tr_hp);
+			
 			// *4) 예약 정보
-
+			list.add(date1);
+			list.add(date2);
+			list.add(date3);
+			list.add(date4);
+			list.add(date5);
+			list.add(date6);
+			list.add(date7);
 			eduordervo.setEdu_cnt(edu_cnt);
 			eduordervo.setEdu_totalprice(edu_totalprice);
 			
