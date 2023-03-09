@@ -4,8 +4,12 @@ import java.sql.Connection;
 
 
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,6 +23,7 @@ import VO.MemberVo;
 import VO.PetVo;
 import VO.TrainerVo;
 import VO.eduOrderVo;
+
 
 public class OrderDAO {
 
@@ -257,18 +262,13 @@ public class OrderDAO {
 			pstmt.setString(6, tr_name);
 			pstmt.setString(7, tr_name);
 			rs = pstmt.executeQuery();
-			
-			// 만약에 값들이 존재 한다면?
-			while(rs.next()) {
-			
-				//Array 배열에 저장시킨다.
-				list.add(rs.getString("date1"));
 
-			}
+			while(rs.next()) {
 				
-			System.out.println(list);
-			
-			
+				//Array 문자열 배열에 저장시킨다.
+				list.add(rs.getString("date1"));
+			}
+
 			
 		} catch (Exception e) {
 			

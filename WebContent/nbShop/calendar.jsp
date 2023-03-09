@@ -1,3 +1,5 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.util.stream.Collectors"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.Arrays"%>
@@ -20,14 +22,11 @@ String id = (String)session.getAttribute("id");
 // list를 컨틀롤러에서 받아와서 변수에 저장
 List<String> list = (List<String>)request.getAttribute("list");
 
-
-Date date = new Date();
-
-
 // 각월에 해당되는 List를 생성하고 필터 된 값을 저장시킨다.
-// 1) 해당월
-List<String> MonthlyDay = list.stream().filter(s -> s.contains("03-")).collect(Collectors.toList());
+// 1) 해당월 구하기
+LocalDate now = LocalDate.now();
 
+List<String> MonthlyDay = list.stream().filter(s -> s.contains("03-")).collect(Collectors.toList());
 // 2) 다음달
 List<String> NMonthlyDay = list.stream().filter(s -> s.contains("04-")).collect(Collectors.toList());
 // 출력 해보기
@@ -75,6 +74,8 @@ out.print(NMonthlyDay);
 	
     var doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
     var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+//     var nextMonth = new Date(today.getFullYear(), today.getMonth()+1, 1);
+//     var nextmonth = moment(nextMonth).format('YYYY-MM-DD');
     
 	console.log(regdate);
 	console.log(reg_date);
