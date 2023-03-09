@@ -17,24 +17,21 @@ String tr_price = request.getParameter("tr_price");
 //Session내장객체 메모리 영역에 session값 얻기
 String id = (String)session.getAttribute("id");
 
-// list를 컨틀롤러에서 받아와서 변수에 저장
-List<String> list = (List<String>)request.getAttribute("list");
+// // list를 컨틀롤러에서 받아와서 변수에 저장
+// List<String> list = (List<String>)request.getAttribute("list");
 
 
-Date date = new Date();
+// // 각월에 해당되는 List를 생성하고 필터 된 값을 저장시킨다.
+// // 1) 해당월
+// List<String> MonthlyDay = list.stream().filter(s -> s.contains("03-")).collect(Collectors.toList());
 
+// // 2) 다음달
+// List<String> NMonthlyDay = list.stream().filter(s -> s.contains("04-")).collect(Collectors.toList());
+// // 출력 해보기
+// out.print(MonthlyDay);
+// out.print(NMonthlyDay);
 
-// 각월에 해당되는 List를 생성하고 필터 된 값을 저장시킨다.
-// 1) 해당월
-List<String> MonthlyDay = list.stream().filter(s -> s.contains("03-")).collect(Collectors.toList());
-
-// 2) 다음달
-List<String> NMonthlyDay = list.stream().filter(s -> s.contains("04-")).collect(Collectors.toList());
-// 출력 해보기
-out.print(MonthlyDay);
-out.print(NMonthlyDay);
-
-//리스트 생성
+// //리스트 생성
 
 
 
@@ -103,14 +100,14 @@ out.print(NMonthlyDay);
      */
     function nextCalendar() {
     	if(today.getMonth()+1 == (realMonth +1)){
-    		
-    		// 금일기준 30일 이하로만 가능하다
-    		alert('수강 예약은 "당일 + 한달이전!"까지만 가능합니다');
+    		// 금일기준 한달 이하로만 가능하다
+    		alert('수강 예약은 "D+7일 한달이내" 까지만 가능합니다');
     		return false;
     		
     	}
+		
+                
         this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
-        console.log(this.today);
         buildCalendar();    // @param 명월 캘린더 출력 요청
 
     }
@@ -293,17 +290,19 @@ out.print(NMonthlyDay);
         column.classList.add("choiceDay");
         
         clickmonth = $("#calMonth").text();
-        clickyear = today.getFullYear();
+        clickyear = moment(date).format('YYYY');
+        clickyear2 = moment(date).format('YY');
         clickday = $(".choiceDay").text();
-        clickdate = clickyear+"-"+clickmonth+"-"+clickday;
+        clickdate = clickyear2+"/"+clickmonth+"/"+clickday;
         clickdate2 = clickmonth+"월 "+clickday+"일";
+        clickdate3 = clickyear+"-"+clickmonth+"-"+clickday;
         
         
         
         
         // @현재요일 구하기
         var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
-		var clickdow = new Date(clickdate).getDay();
+		var clickdow = new Date(clickdate3).getDay();
 		var todayLabel = week[clickdow];
         console.log(todayLabel);
 
@@ -317,7 +316,7 @@ out.print(NMonthlyDay);
         	   
 	   	        // 첫번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDay1").attr("value", clickdate2);
-	           	$("#selectDate1").attr("value", clickmonth+"-"+clickday);
+	           	$("#selectDate1").attr("value", clickdate);
 	   	        $("#dow1").attr("value", todayLabel);
 	   	        $("#Num1").attr("value", "1");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -339,7 +338,7 @@ out.print(NMonthlyDay);
 	   	        
         	   // 두번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDay2").attr("value", clickdate2);
-	           	$("#selectDate2").attr("value", clickmonth+"-"+clickday);
+	           	$("#selectDate2").attr("value", clickdate);
 	           	$("#dow2").attr("value", todayLabel);
 	           	$("#Num2").attr("value", "2");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -361,7 +360,7 @@ out.print(NMonthlyDay);
         	   
         	   // 세번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDay3").attr("value", clickdate2);
-	           	$("#selectDate3").attr("value", clickmonth+"-"+clickday);
+	           	$("#selectDate3").attr("value", clickdate);
 	           	$("#dow3").attr("value", todayLabel);
 	           	$("#Num3").attr("value", "3");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -383,7 +382,7 @@ out.print(NMonthlyDay);
 	   	        
         	   // 네번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDay4").attr("value", clickdate2);
-	           	$("#selectDate4").attr("value", clickmonth+"-"+clickday);
+	           	$("#selectDate4").attr("value", clickdate);
 	           	$("#dow4").attr("value", todayLabel);
 	           	$("#Num4").attr("value", "4");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -405,7 +404,7 @@ out.print(NMonthlyDay);
 	   	        
         	   // 다섯번째 예약 날짜에 입력 시킨다.
 	           	$("#selectDay5").attr("value", clickdate2);
-	           	$("#selectDate5").attr("value", clickmonth+"-"+clickday);
+	           	$("#selectDate5").attr("value", clickdate);
 	           	$("#dow5").attr("value", todayLabel);
 	           	$("#Num5").attr("value", "5");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -427,7 +426,7 @@ out.print(NMonthlyDay);
 	        
 	 	  		 // 여섯번째 예약 날짜에 입력 시킨다.
 	        	$("#selectDay6").attr("value", clickdate2);
-	        	$("#selectDate6").attr("value", clickmonth+"-"+clickday);
+	        	$("#selectDate6").attr("value", clickdate);
 	        	$("#dow6").attr("value", todayLabel);
 	        	$("#Num6").attr("value", "6");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -449,7 +448,7 @@ out.print(NMonthlyDay);
         
 	  		 	// 여섯번째 예약 날짜에 입력 시킨다.
 	   			$("#selectDay7").attr("value", clickdate2);
-	   			$("#selectDate7").attr("value", clickmonth+"-"+clickday);
+	   			$("#selectDate7").attr("value", clickdate);
 	   			$("#dow7").attr("value", todayLabel);
 	   			$("#Num7").attr("value", "7");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -574,6 +573,83 @@ out.print(NMonthlyDay);
     	// 
     	// 다음 버튼을 눌렀을 때,
     	$("#next").on("click", function (){
+    		
+    		// 다음달 마지막날을 구해서 가져오고,
+    		var nextmonthlastday = new Date(today.getFullYear(), today.getMonth()+1, 0);
+    		// 다음달 오늘날을 구해서
+    		var nextmonthtoday = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+    		
+    		// 방법1) 포맷형식을 바꾼다.
+    		var nmld = moment(nextmonthlastday).format('YYYY-MM-DD');
+    		var nmldint = moment(nextmonthlastday).format('DD');
+    		var nmtd = moment(nextmonthtoday).format('YYYY-MM-DD');
+    		
+    		console.log(nmld);
+    		console.log(nmtd);
+    		
+    		
+    		// 시작날짜+1일과 마지막 날을 구해서 그 사이 날짜 구해서 배열에 저장하기	
+    		function getDateRange(startDate, endDate, listDate){
+    	
+    	        var dateMove = new Date(startDate);
+    			
+    	        console.log("dateMove :"+dateMove);
+    	        	
+    	        var strDate = startDate;
+    	
+    	        console.log("strDate :"+strDate);
+    	
+    	        if (startDate == endDate){
+    	
+    	            var strDate = dateMove.toISOString().slice(0,10);
+    				
+    	            console.log("strDate :"+strDate);
+    	            
+    	            listDate.push(strDate);
+    				
+    	            console.log("listDate :"+listDate);
+    	            
+    	        }else{
+    	
+    	            while (strDate < endDate){
+    	
+    	                var strDate = dateMove.toISOString().slice(0, 10);
+    					
+    	                console.log("strDate :"+strDate);
+    	                
+    	                listDate.push(strDate.slice(8,10));
+    	                
+    	                console.log("listDate :"+listDate);
+    	
+    	                dateMove.setDate(dateMove.getDate() + 1);
+    	                
+    	                console.log("dateMove :"+dateMove);
+    	
+    	            }
+    	
+    	        }
+    	
+    	        return listDate;
+    	
+    	    }
+
+        	var listDate = [];
+        	// 함수 호출 구문
+        	getDateRange(nmtd, nmld, listDate);
+ 
+        		// 16부터 시작
+    			for(var i=listDate[0]; i <= nmldint; i++){
+    				// 1부터 시작
+    				for(var j=1; j < 32; j++ ){
+						
+    					// 만약에 일치하는 값이 있을때, 해당 컬럼 색상을 변경 시킨다.
+    					if(i == j){
+    						$("#"+i).css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    					}
+    					
+    				}
+        		}    			
+
    			
     		// 당월 마지막 날짜에서 현재날짜를 뺀 값이 0이면
     		if (diffday == 0){
@@ -663,7 +739,7 @@ out.print(NMonthlyDay);
         		</div>
        		</div>
         	<div id="dateTitle"> 
-        	* "오늘 기준으로 일주일 뒤"부터, 그리고 <strong>"한달 뒤"</strong> 까지 예약 가능 *<br>
+        	* "오늘 기준으로 일주일 뒤"부터, 그리고 <strong>"한달"</strong> 까지 예약 가능 *<br>
         	* "1회"부터 <strong>"최대 7회"</strong>까지 선택 가능합니다. <Strong>(매주 일요일 휴무 )</Strong>*
         	</div>
        	</div>

@@ -4,7 +4,13 @@ import java.io.IOException;
 
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -145,6 +151,7 @@ public class nbOrderController extends HttpServlet{
 			String tr_img = request.getParameter("tr_img");
 			String tr_name = request.getParameter("tr_name");
 			String tr_hp = request.getParameter("tr_hp");
+			
 			String date1 = request.getParameter("date1");
 			String date2 = request.getParameter("date2");
 			String date3 = request.getParameter("date3");
@@ -155,9 +162,20 @@ public class nbOrderController extends HttpServlet{
 			int	   edu_cnt = Integer.parseInt(request.getParameter("edu_cnt"));
 			String edu_totalprice = request.getParameter("edu_totalprice");
 			
+
+			
 			
 			// 2) 변수를 eduordervo로 저장시킨다.
 			eduOrderVo eduordervo = new eduOrderVo();
+			
+			List<String> list = new ArrayList();
+			list.add(date1);
+			list.add(date2);
+			list.add(date3);
+			list.add(date4);
+			list.add(date5);
+			list.add(date6);
+			list.add(date7);
 			
 			// *1) 회원 정보
 			eduordervo.setEdu_id(edu_id);
@@ -182,19 +200,13 @@ public class nbOrderController extends HttpServlet{
 			eduordervo.setTr_name(tr_name);
 			eduordervo.setTr_hp(tr_hp);
 			// *4) 예약 정보
-			eduordervo.setDate1(date1);
-			eduordervo.setDate2(date2);
-			eduordervo.setDate3(date3);
-			eduordervo.setDate4(date4);
-			eduordervo.setDate5(date5);
-			eduordervo.setDate6(date6);
-			eduordervo.setDate7(date7);
+
 			eduordervo.setEdu_cnt(edu_cnt);
 			eduordervo.setEdu_totalprice(edu_totalprice);
 			
 			
 			// 3) OrderDAO 객체의 insertEduOrder메소드 호출 시 저장한 값들을 전달한다.
-			orderdao.insertEduOrder(eduordervo);
+			orderdao.insertEduOrder(eduordervo, list);
 			
 			PrintWriter pw1 = response.getWriter();
 			pw1.print("<script>"+"alert('예약되었습니다.');"+"</script>");

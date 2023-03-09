@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -289,10 +290,12 @@ public class OrderDAO {
 	
 	
 	// #5) 수강신청 정보 등록 메소드
-	public void insertEduOrder(eduOrderVo eduordervo) {
+	public void insertEduOrder(eduOrderVo eduordervo, List<String> list) {
 		
 		System.out.println("OrderDAO -> InsertEduOrder 메소드 호출!");
 		
+		System.out.println(list);
+
 		try {
 			
 			//커넥션 풀 연결
@@ -334,13 +337,13 @@ public class OrderDAO {
 			pstmt.setString(18, eduordervo.getTr_name());
 			pstmt.setString(19, eduordervo.getTr_hp());
 			// 4) tr 예약일 부분
-			pstmt.setString(20, eduordervo.getDate1());
-			pstmt.setString(21, eduordervo.getDate2());
-			pstmt.setString(22, eduordervo.getDate3());
-			pstmt.setString(23, eduordervo.getDate4());
-			pstmt.setString(24, eduordervo.getDate5());
-			pstmt.setString(25, eduordervo.getDate6());
-			pstmt.setString(26, eduordervo.getDate7());
+			pstmt.setString(20, list.get(0));
+			pstmt.setString(21, list.get(1));
+			pstmt.setString(22, list.get(2));
+			pstmt.setString(23, list.get(3));
+			pstmt.setString(24, list.get(4));
+			pstmt.setString(25, list.get(5));
+			pstmt.setString(26, list.get(6));
 			pstmt.setInt(27, eduordervo.getEdu_cnt());
 			pstmt.setString(28, eduordervo.getEdu_totalprice());
 			
