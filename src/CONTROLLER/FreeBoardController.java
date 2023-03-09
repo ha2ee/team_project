@@ -80,7 +80,7 @@ public class FreeBoardController extends HttpServlet {
     // String word = null;
     // String memberid = null;
     int count = 0;
-
+    HttpSession session = request.getSession();
     PrintWriter out = response.getWriter();
 
     switch (action) {
@@ -123,7 +123,7 @@ public class FreeBoardController extends HttpServlet {
 //      //요청한 값 얻기
       
 //      //세션값으로 아이디 + 닉네임을 구할 것입니다.
-        HttpSession session = request.getSession();
+//        HttpSession session = request.getSession();
         String memberid   = (String)session.getAttribute("id");
         String nickname = memberdao.getMemNickName(memberid);
         
@@ -176,6 +176,7 @@ public class FreeBoardController extends HttpServlet {
         vo = boarddao.boardRead(b_idx);
         list = boarddao.boardListAll();
         count = boarddao.getTotalRecord();
+//        HttpSession session = request.getSession();
         
         // 댓글 목록 가져오기
         CommentDAO commnetdao = new CommentDAO();
@@ -216,7 +217,7 @@ public class FreeBoardController extends HttpServlet {
       case "/like.fb":
 
         int b_idx2 = Integer.parseInt(request.getParameter("b_idx"));
-        String id3 = request.getParameter("id2");
+        String id3 = request.getParameter("id");
 
         int result1 = boarddao.checkLike(id3, b_idx2);
         // int result2 = boarddao.getOnlyLikeCount(b_idx2); //FREE_BOARD에서 좋아요 다시 조회 //안먹히네
@@ -326,11 +327,11 @@ public class FreeBoardController extends HttpServlet {
   		CommentDAO dao = new CommentDAO();
   		CommentVO commentvo = new CommentVO();
   		
-//  		HttpSession session = request.getSession();
-//  		
-//  		commentvo.setId(session.getAttribute("id").toString()); // 댓글 작성자 아이디(= 로그인한 사람 세션)
-  		String testUser = "admin";
-  		commentvo.setId(testUser);
+  		session = request.getSession();
+  		
+  		commentvo.setId(session.getAttribute("id").toString()); // 댓글 작성자 아이디(= 로그인한 사람 세션)
+//  		String testUser = "admin";
+//  		commentvo.setId(testUser);
   		commentvo.setPseq(pseq);
   		commentvo.setContent(c_content);
   		

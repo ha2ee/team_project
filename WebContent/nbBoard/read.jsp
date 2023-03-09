@@ -21,6 +21,8 @@
   int like = vo.getB_like();
   int cnt = vo.getB_cnt();
   
+	String id = (String)session.getAttribute("id");
+  System.out.println(id);
   //댓글-----------------------------
 
   //댓글-------------------------------------------------------
@@ -145,9 +147,9 @@
 
     <div style="margin-left: 12%; display: flex; flex-direction: column;">
       <div>
-        <a href="" id="likeimgg"> 
+        <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
           <i class="fa-regular fa-heart fa-4x" id="likeimggg"></i>
-        </a>
+        </button>
       </div>
       <div>
         <p id="countLike" style="font-size: 30px"><%=like%></p>
@@ -158,38 +160,72 @@
   const b_idx = <%=vo.getB_idx()%>
   const id2 = "inseop";
   var originLikeCount = <%=like%>
+  
+  function clickLike(id){
+    $.ajax({
+      			url: "<%=contextPath%>/freeboard/like.fb",
+      			async : true,
+      			type : 'POST',
+      			data : {
+                			b_idx : b_idx,
+                			id : id
+      							},
+      			success : function(data) {
+       	  		   /* 	  if(data=originLikeCount-1){
+      									 $("#likeimggg").attr("class","fa-regular fa-heart fa-4x");	//이미 좋아요 누른 경우;
+      														 $("#countLike").text(data);
 
-  $("#likeimgg").on("click", function (event) {
-	  event.preventDefault();
-	  
-	  $.ajax({
-			url: "<%=contextPath%>/freeboard/like.fb",
-			async : true,
-			type : 'POST',
-			data : {
-          			b_idx : b_idx,
-          			id2 : id2
-							},
-			success : function(data) {
- 	  		   /* 	  if(data=originLikeCount-1){
-									 $("#likeimggg").attr("class","fa-regular fa-heart fa-4x");	//이미 좋아요 누른 경우;
-														 $("#countLike").text(data);
+      														 } else{
+      														 $("#countLike").text(data);
+      														 $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
+      														
+      														 } */
 
-														 } else{
-														 $("#countLike").text(data);
-														 $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
+      							$("#countLike").text(data);
+      							if (data > originLikeCount) {
+      								$("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
+      							} else if (data <= originLikeCount) {
+      								$("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
+      							}
+      							}
+      		});
+    
+  }
+  
+
+//   $("#likeimgg").on("click", function (event) {
+// 	  event.preventDefault();
+// 	  alert();
+// 	  $.ajax({
+<%-- 			url: "<%=contextPath%>/freeboard/like.fb", --%>
+// 			async : true,
+// 			type : 'POST',
+// 			data : {
+//           			b_idx : b_idx,
+//           			id2 : id2
+// 							},
+// 			success : function(data) {
+//  	  		   /* 	  if(data=originLikeCount-1){
+// 									 $("#likeimggg").attr("class","fa-regular fa-heart fa-4x");	//이미 좋아요 누른 경우;
+// 														 $("#countLike").text(data);
+
+// 														 } else{
+// 														 $("#countLike").text(data);
+// 														 $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
 														
-														 } */
+// 														 } */
 
-							$("#countLike").text(data);
-							if (data > originLikeCount) {
-								$("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
-							} else if (data <= originLikeCount) {
-								$("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
-							}
-							}
-		});
-	});
+// 							$("#countLike").text(data);
+// 							if (data > originLikeCount) {
+// 								$("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
+// 							} else if (data <= originLikeCount) {
+// 								$("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
+// 							}
+// 							}
+// 		});
+// 	});
+
+
 </script>
 
 
