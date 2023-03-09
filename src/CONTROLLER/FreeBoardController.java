@@ -328,11 +328,11 @@ public class FreeBoardController extends HttpServlet {
   		CommentDAO dao = new CommentDAO();
   		CommentVO commentvo = new CommentVO();
   		
-//  		HttpSession session = request.getSession();
-//  		
-//  		commentvo.setId(session.getAttribute("id").toString()); // 댓글 작성자 아이디(= 로그인한 사람 세션)
-  		String testUser = "admin";
-  		commentvo.setId(testUser);
+ 		HttpSession session = request.getSession();
+		
+ 		commentvo.setId(session.getAttribute("id").toString()); // 댓글 작성자 아이디(= 로그인한 사람 세션)
+  	//	String testUser = "admin";
+  	//	commentvo.setId(testUser);
   		commentvo.setPseq(pseq);
   		commentvo.setContent(c_content);
   		

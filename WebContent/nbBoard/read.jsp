@@ -21,10 +21,14 @@
   int like = vo.getB_like();
   int cnt = vo.getB_cnt();
   
-  //댓글-----------------------------
-
-  //댓글-------------------------------------------------------
-%>
+  String id = (String) session.getAttribute("id");
+  if (id == null || id.equals("")) {
+      %>      
+      <script>    
+          alert("로그인을 해야 댓글을 작성 할 수 있습니다."); 
+          history.back(); 
+      </script>
+  <%}%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -203,7 +207,7 @@
 <div>
 
 	<table id="tblListComment" class="table table-bordered">
-		
+	
 		<c:if test="${ clist.size() == 0 }">
 			<tr>
 				<td colspan="2">댓글이 없습니다.</td>
