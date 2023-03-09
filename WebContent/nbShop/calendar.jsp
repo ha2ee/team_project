@@ -22,11 +22,15 @@ String id = (String)session.getAttribute("id");
 // // list를 컨틀롤러에서 받아와서 변수에 저장
 // List<String> list = (List<String>)request.getAttribute("list");
 
-
-
 // // 각월에 해당되는 List를 생성하고 필터 된 값을 저장시킨다.
 // // 1) 해당월
 // List<String> MonthlyDay = list.stream().filter(s -> s.contains("03-")).collect(Collectors.toList());
+
+// // 2) 다음달
+// List<String> NMonthlyDay = list.stream().filter(s -> s.contains("04-")).collect(Collectors.toList());
+// // 출력 해보기
+// out.print(MonthlyDay);
+// out.print(NMonthlyDay);
 
 // // 2) 다음달
 // List<String> NMonthlyDay = list.stream().filter(s -> s.contains("04-")).collect(Collectors.toList());
