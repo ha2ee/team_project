@@ -91,7 +91,7 @@
           댓글 0 <!-- 댓글 들어오는 작업 해야합니다!! -->
         </div> 
         <div style="float: right; margin: 3px;">
-          추천 <%=like%> l
+          추천 <span id="topLike"><%=like%></span> l
         </div>
         <div style="float: right; margin: 3px;">
           조회수 <%=cnt%> l
@@ -162,33 +162,38 @@
   var originLikeCount = <%=like%>
   
   function clickLike(id){
-    $.ajax({
-      			url: "<%=contextPath%>/freeboard/like.fb",
-      			async : true,
-      			type : 'POST',
-      			data : {
-                			b_idx : b_idx,
-                			id : id
-      							},
-      			success : function(data) {
-       	  		   /* 	  if(data=originLikeCount-1){
-      									 $("#likeimggg").attr("class","fa-regular fa-heart fa-4x");	//이미 좋아요 누른 경우;
-      														 $("#countLike").text(data);
-
-      														 } else{
-      														 $("#countLike").text(data);
-      														 $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
-      														
-      														 } */
-
-      							$("#countLike").text(data);
-      							if (data > originLikeCount) {
-      								$("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
-      							} else if (data <= originLikeCount) {
-      								$("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
-      							}
-      							}
-      		});
+    if(id == "null"){
+      alert("로그인부터 해라");
+    } else{
+      $.ajax({
+        			url: "<%=contextPath%>/freeboard/like.fb",
+        			async : true,
+        			type : 'POST',
+        			data : {
+                  			b_idx : b_idx,
+                  			id : id
+        							},
+        			success : function(data) {
+         	  		   /* 	  if(data=originLikeCount-1){
+        									 $("#likeimggg").attr("class","fa-regular fa-heart fa-4x");	//이미 좋아요 누른 경우;
+        														 $("#countLike").text(data);
+  
+        														 } else{
+        														 $("#countLike").text(data);
+        														 $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
+        														
+        														 } */
+  
+        							$("#countLike").text(data);
+        							$("#topLike").text(data);
+        							if (data > originLikeCount) {
+        								$("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
+        							} else if (data <= originLikeCount) {
+        								$("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
+        							}
+        							}
+        		});
+      }
     
   }
   
