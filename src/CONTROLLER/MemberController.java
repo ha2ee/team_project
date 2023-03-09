@@ -35,9 +35,6 @@ public class MemberController extends HttpServlet {
 	// 일반회원 가입 메소드를 만들 MemberDao 호출
 	TrainerDAO trainerdao;
 	
-	// 트레이너 정보를 조회할 trMemberVo를 호출
-	TrainerVo trmembervo;
-	
 
 	@Override
 	public void init() throws ServletException {

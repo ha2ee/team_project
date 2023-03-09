@@ -88,6 +88,8 @@
 <html>
 <head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
 <style>
   #mem_address > a > input#mem_address5::placeholder {
   color : #ccc;

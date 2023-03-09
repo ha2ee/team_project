@@ -1,6 +1,6 @@
 package VO;
-import java.sql.Date;
 
+import java.util.Date;
 
 // 수강신청 예약 정보를 가져오고 입력하기 위한 클래스
 public class eduOrderVo {
@@ -26,13 +26,13 @@ public class eduOrderVo {
 	String	tr_name;
 	String	tr_hp;
 	Date	tr_reg_date;
-	String date1;
-	String date2;
-	String date3;
-	String date4;
-	String date5;
-	String date6;
-	String date7;
+	Date date1;
+	Date date2;
+	Date date3;
+	Date date4;
+	Date date5;
+	Date date6;
+	Date date7;
 	int		edu_cnt;
 	String edu_totalprice;
 
@@ -200,59 +200,59 @@ public class eduOrderVo {
 		this.tr_reg_date = tr_reg_date;
 	}
 
-	public String getDate1() {
+	public Date getDate1() {
 		return date1;
 	}
 
-	public void setDate1(String date1) {
+	public void setDate1(Date date1) {
 		this.date1 = date1;
 	}
 
-	public String getDate2() {
+	public Date getDate2() {
 		return date2;
 	}
 
-	public void setDate2(String date2) {
+	public void setDate2(Date date2) {
 		this.date2 = date2;
 	}
 
-	public String getDate3() {
+	public Date getDate3() {
 		return date3;
 	}
 
-	public void setDate3(String date3) {
+	public void setDate3(Date date3) {
 		this.date3 = date3;
 	}
 
-	public String getDate4() {
+	public Date getDate4() {
 		return date4;
 	}
 
-	public void setDate4(String date4) {
+	public void setDate4(Date date4) {
 		this.date4 = date4;
 	}
 
-	public String getDate5() {
+	public Date getDate5() {
 		return date5;
 	}
 
-	public void setDate5(String date5) {
+	public void setDate5(Date date5) {
 		this.date5 = date5;
 	}
 
-	public String getDate6() {
+	public Date getDate6() {
 		return date6;
 	}
 
-	public void setDate6(String date6) {
+	public void setDate6(Date date6) {
 		this.date6 = date6;
 	}
 
-	public String getDate7() {
+	public Date getDate7() {
 		return date7;
 	}
 
-	public void setDate7(String date7) {
+	public void setDate7(Date date7) {
 		this.date7 = date7;
 	}
 
@@ -284,8 +284,8 @@ public class eduOrderVo {
 	public eduOrderVo(String edu_id, String edu_name, String edu_hp, String edu_email, String edu_address1,
 			String edu_address2, String edu_address3, String edu_address4, String edu_address5, String pet_img,
 			String pet_name, String pet_type, int pet_age, int pet_weight, String pet_gender, String pet_op,
-			String tr_img, String tr_name, String tr_hp, String date1, String date2, String date3, String date4, String date5,
-			String date6, String date7, int edu_cnt, String edu_totalprice) {
+			String tr_img, String tr_name, String tr_hp, Date date1, Date date2, Date date3, Date date4, Date date5,
+			Date date6, Date date7, int edu_cnt, String edu_totalprice) {
 		
 		this.edu_id = edu_id;
 		this.edu_name = edu_name;

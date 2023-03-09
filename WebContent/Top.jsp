@@ -62,7 +62,6 @@ $(document).ready(function(){
 /*  나눔 고딕 글꼴 임포트 */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 /* 나눔 고딕 CSS 설정 */
-
 </style>
 
 <!--          			# 부트스트랩 플러그인  관련 -->
