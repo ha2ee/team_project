@@ -161,7 +161,7 @@
 					<h3 id="h3title">- 반려견 예약 정보 -</h3>
 				</div>
 				<div id = "pet_check">
-					<a id ="petcheck1" class = btn >반려견 정보 추가하기</a>
+					<a id ="petcheck1" class = btn  onclick="openChild2()">반려견 정보 추가하기</a>
 					<a id ="petcheck2" class = btn onclick="openChild()">반려견 정보 가져오기</a>
 					<input type="hidden" id="pInput" name="id" value="<%=id_%>"/>
 				</div>
@@ -268,6 +268,19 @@
 
 var openWindow;
 
+function openChild2() {
+	
+	alert("팝업창이 열립니다");
+	
+	window.name = "parentForm";
+	
+	var popupX = (window.screen.width/2)-(750/2);
+	var popupY = (window.screen.height/2)-(500/2);
+	
+	openWindow = window.open("<%=request.getContextPath()%>/nbOrder/petPopup.od", "childForm", "height=500, width=750, left="+popupX+", top="+popupY+", screenX="+popupX+", screenY="+popupY+" resizable=no, scrollbars=no");
+	
+}
+
 function openChild() {
 	
 	alert("팝업창이 열립니다");
@@ -296,18 +309,15 @@ function openChild() {
 
 		
 		
-		// 2) 반려견 정보 추가하기 버튼을 눌렸을 때 입력문구가 나오게 한다.
+		// 2) 반려견 정보 추가하기 버튼을 눌렸을 때 팝업창이 나오게 한다.
 		
 		$("#petcheck1").on("click", function(){
-			
-			
-			alert("빠짐 없이 입력 해주세요~!")
+		
 			$("#pet_img_name").css("display", "block");
 			$("#pet_img_box").css("display", "block");
 			$("#pet_info_box").css("display", "block");
 			$("#pet_op_box").css("display", "block");
 
-		
 		})
 	
 		// 3) 반려견 정보 가져오기 버튼을 눌렸을 때 팝업창이 나오게 한다.

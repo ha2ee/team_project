@@ -81,7 +81,8 @@ public class nbOrderController extends HttpServlet{
 		// nbOrderController INFO ////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// #1)      /petUpdate.od					<- 수강신청 페이지      			   반려견 정보 조회
-		// #2) 		/eduOrder.od			 		<- 수강신청 페이지					 최종 결제 요청
+		// #2)		/petPopup.od						<- 수강신청 페이지                     반려견 정보 입력 눌렀을 때,
+		// #3) 		/eduOrder.od			 			<- 수강신청 페이지						 최종 결제 요청
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		
@@ -122,10 +123,21 @@ public class nbOrderController extends HttpServlet{
 			
 			
 				break;
+				
+			// #2) 수강신청 페이지에서 반려견 정보 추가하기 버튼을 눌렀을 때,
+			case "/petPopup.od":
+				
+				
+			System.out.println("nbOrderController -> petPopup.od 호출 !");	
+			
+			nextPage = "/nbShop/popup.jsp";
+			
+			
+				break;
 		
 		
 		 	
-			// #2) 수강신청 최종 결제 요청
+			// #3) 수강신청 최종 결제 요청
 			case "/eduOrder.od":
 				
 			System.out.println("nbOrderController -> eduOrder.od 호출 !");	
