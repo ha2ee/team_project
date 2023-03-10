@@ -1,6 +1,5 @@
 <%@page import="VO.FreeBoardVo"%>
 <%@page import="java.util.Date"%>
-<%@page import="VO.TrainerBoardVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -21,7 +20,10 @@
 	int b_idx = vo.getB_idx();
   int like = vo.getB_like();
 	String id = (String)session.getAttribute("id");
-%>
+  
+/* 	String likeCheck = (String)request.getAttribute("likeCheck");
+  System.out.println("ㅇㅇㅇㅇ:" +likeCheck );
+ */%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -155,10 +157,27 @@ div.filedownload {
     
     <div style="margin-left: 12%; display: flex; flex-direction: column;">
       <div>
-        <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
+      
+       <%
+        if((String)request.getAttribute("likeCheck")=="0"){ //좋아요를 안 눌렀다면?
+      %>
+         <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
           <i class="fa-regular fa-heart fa-4x" id="likeimggg"></i>
         </button>
+         <%
+        } else{ //좋아요를 눌렀다면?
+        %>
+        <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
+          <i class="fa-solid fa-heart fa-4x" id="likeimggg"></i>
+        </button>
+        
+        <%
+        }
+        %>
+         
       </div>
+      
+      
       <div>
         <p id="countLike" style="font-size: 30px"><%=like%></p>
       </div>

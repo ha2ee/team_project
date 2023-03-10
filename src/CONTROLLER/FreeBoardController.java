@@ -182,10 +182,17 @@ public class FreeBoardController extends HttpServlet {
         CommentDAO commnetdao = new CommentDAO();
         ArrayList<CommentVO> clist = commnetdao.listComment(b_idx);
         
+        memberid   = (String)session.getAttribute("id");
+        System.out.println(memberid);
+        
+        String likeCheck = boarddao.checkLikeBeforeRead(memberid,b_idx);
+        System.out.println(likeCheck);
+        
         request.setAttribute("clist", clist);
         request.setAttribute("count", count);
         request.setAttribute("list", list);
         request.setAttribute("vo", vo);
+        request.setAttribute("likeCheck", likeCheck);
         request.setAttribute("center", "nbBoard/read.jsp");
 
         nextPage = "/nbMain.jsp";
