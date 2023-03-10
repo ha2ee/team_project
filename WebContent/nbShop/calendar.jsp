@@ -184,22 +184,36 @@ List<String> list = (List<String>)request.getAttribute("list");
             		// 예약 된 날짜를 가져온다.
             		var list = <%=list%>;
             		
+    	    		var monthtoday = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+    	    		var mtd = moment(monthtoday).format('DD');
+            		
             		// for 문을 돌려서 예약날짜와 일치하는 날짜를 가져온다.
             		for(var i =0; i < list.length; i++){
 
             			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
             			for(var j=1; j < 32; j++ ){
+            				
 
             				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
             				if(list[i].toString() == j.toString()) {
-
-
+            					
             					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
-
-                            }
+            					
+            					// 만약에 현재일+7일보다 낮은 숫자에 예약이 있을경우
+           						if(mtd > list[i]) {
+           	                        $("#"+list[i]).css("font-size", "16px").css("color", "E5E5E5").text(list[i]);
+           							
+ 
+                          		 }
+           						
+           						
+            				}
            				}
            			}
-
+					
+            		// 현재일의 배경색 주기
+            		$("#"+mtd).css("background", "#fff5f3");
+            		
                     // @details 현재일보다 이전인 경우이면서 현재월에 포함되는 일인경우
                     if(date.getDate() > day && Math.sign(day) == 1) {
                         column.style.backgroundColor = "#ffffff";
@@ -227,8 +241,7 @@ List<String> list = (List<String>)request.getAttribute("list");
                     
                     // @details 현재일인 경우
                 	}else if(date.getDate() == day) {
-                		
-                        column.style.backgroundColor = "#fff5f3";
+//                 		column.style.backgroundColor = "#fff5f3";
                     
                     // 현재일부터 7일이전 까지 라면
                     }else{
@@ -583,30 +596,26 @@ List<String> list = (List<String>)request.getAttribute("list");
     	// 다음 버튼을 눌렀을 때,
     	$("#next").on("click", function (){
     		
-    		
-    		
-    		// 예약 된 날짜를 가져온다.
-    		var list = <%=list%>;
-    		
-    		// for 문을 돌려서 예약날짜와 일치하는 날짜를 가져온다.
-    		for(var i =0; i < list.length; i++){
+	    		// 예약 된 날짜를 가져온다.
+	    		var list = <%=list%>;
+	    		
+	    		// for 문을 돌려서 예약날짜와 일치하는 날짜를 가져온다.
+	    		for(var i =0; i < list.length; i++){
 
-    			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
-    			for(var j=1; j < 32; j++ ){
-    				
-    				console.log(list[i]);
-    				console.log(j);
-    				
-    				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
-    				if(list[i].toString() == j.toString()){
+	    			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
+	    			for(var j=1; j < 32; j++ ){
+
+	    				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
+	    				if(list[i].toString() == j.toString() ){
+	    					
+	    					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+						
     					
-    					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+		   				}
+		   			}
+		   		}
 
-    				}
-    			}
-    			
-    		}
-    		
+	    		
     		// 다음달 마지막날을 구해서 가져오고,
     		var nextmonthlastday = new Date(today.getFullYear(), today.getMonth()+1, 0);
     		// 다음달 오늘날을 구해서
@@ -615,6 +624,7 @@ List<String> list = (List<String>)request.getAttribute("list");
     		// 방법1) 포맷형식을 바꾼다.
     		var nmld = moment(nextmonthlastday).format('YYYY-MM-DD');
     		var nmldint = moment(nextmonthlastday).format('DD');
+
     		var nmtd = moment(nextmonthtoday).format('YYYY-MM-DD');
     		
     		console.log(nmld);
@@ -665,7 +675,7 @@ List<String> list = (List<String>)request.getAttribute("list");
 						
     					// 만약에 일치하는 값이 있을때, 해당 컬럼 색상을 변경 시킨다.
     					if(i == j){
-    						$("#"+i).css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    						$("#"+i).css("font-size", "16px").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white").text(i);
     					}
     					
     				}
