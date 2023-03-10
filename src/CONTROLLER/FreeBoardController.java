@@ -367,21 +367,52 @@ public class FreeBoardController extends HttpServlet {
     	  
 //=====================댓글 수정 버튼 클릭시 /upcomment.do ==========================       
       case "/upcomment.do":
-    	
+    	// 1. 데이터 가져오기 (seq, pseq)
+    		String up_idx = request.getParameter("pseq"); // 보고있던 글번호(= 작성중인 댓글의 부모 글번호)
+    		String seq = request.getParameter("seq"); // 수정할 글번호
+    		
+    		// 2. DB 작업 > DAO 위임 > update
+    		CommentDAO commentdao1 = new CommentDAO();
+    		
+    		int u_result = commentdao1.upComment(seq); // 1, 0		
+    		
+    		// 3. 결과 후 처리
+    		if (u_result == 1) {
+    			response.sendRedirect("/TeamProject/freeboard/read.fb?b_idx=" + up_idx); //보고 있던 글번호를 가지고 돌아가기
+   			return;
+    		} else {
+    			
+    			response.setCharacterEncoding("UTF-8");
+    			
+    			PrintWriter writer = response.getWriter();			
+    			
+    			writer.print("<html>");
+    			writer.print("<body>");
+    			writer.print("<script>");
+    			writer.print("alert('댓글 수정 실패');");
+    			writer.print("history.back();");
+    			writer.print("</script>");
+    			writer.print("</body>");
+    			writer.print("</html>");
+    			
+    			writer.close();
+    			
+    			return;
+    		}
         
-//끝=====================댓글 수정 버튼 클릭시 /addcomment.do ========================== 
+//끝=====================댓글 수정 버튼 클릭시 /upcomment.do ========================== 
     	  
         
 //=====================댓글 삭제 버튼 클릭시 /delcomment.do ==========================    	  
       case "/delcomment.do":  
     	// 1. 데이터 가져오기 (seq, pseq)
   		String del_idx = request.getParameter("pseq"); // 보고있던 글번호(= 작성중인 댓글의 부모 글번호)
-  		String seq = request.getParameter("seq"); // 삭제할 글번호
+  		String d_seq = request.getParameter("seq"); // 삭제할 글번호
   		
   		// 2. DB 작업 > DAO 위임 > delete
-  		CommentDAO commentdao1 = new CommentDAO();
+  		CommentDAO commentdao2 = new CommentDAO();
   		
-  		int d_result = commentdao1.delComment(seq); // 1, 0		
+  		int d_result = commentdao2.delComment(d_seq); // 1, 0		
   		
   		// 3. 결과 후 처리
   		if (d_result == 1) {
