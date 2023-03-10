@@ -1,0 +1,282 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%
+	request.setCharacterEncoding("UTF-8");
+	String contextPath = request.getContextPath();
+%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style type="text/css">
+	.total {
+		max-width: 1240px;
+		margin: 0 auto;
+		text-align: center;
+		padding: 0px 20px 0px;
+		box-sizing: border-box;
+		position: relative;
+	}
+	
+	.leftBlock {
+		width: 220px;
+		margin-right: 30px;
+		position: absolute;
+		box-sizing: border-box;
+		border: 1px solid #d7d7d7;
+		border-top: 3px solid #fff5f3;
+		margin-top: 57px;
+		margin-left: 14px
+	}
+	
+	.userInfo {
+		padding: 30px;
+	}
+	
+	.userImg {
+		border-radius: 70%
+	}
+	
+	.userName, .userId {
+		font-size: 15px;
+		color: #555;
+		margin-bottom: 6px;
+	}
+	
+	.user {
+		display: inline-block;
+		width: 100%;
+		padding: 0 20px 30px;
+	}
+	
+	.myInfo, .petInfo {
+		font-size: 13px;
+		color: #555;
+		float: left;
+		width: 48%;
+		margin-right: 2%;
+		height: 30px;
+		line-height: 28px;
+		background: #eaeaea;
+		border-radius: 50px;
+	}
+	
+	.rightBlock {
+		padding: 3px 15px 80px 250px;
+		padding-left: 300px;
+		width: 100%;
+		box-sizing: border-box;
+		text-align: left;
+		min-height: 520px;
+	}
+	
+	.title{
+		font-size: 21px;
+	}
+	
+	.table {
+		width: 100%;
+		border-top: 1px solid #d5d5d5;
+		border-bottom: 1px solid #e9e9e9;
+	}
+	
+	.dt{
+		padding-top: 20px;
+		border-top: 1px solid #e9e9e9;
+	    display: table-cell;
+	    position: relative;
+	    float: left;
+	    width: 204px;
+	    text-align: center;
+	    vertical-align: middle;
+	    font-weight: bold;
+	    color: #555;
+	    font-family: 'NGB';
+	    font-size: 15px;
+	    line-height: 100%;
+		
+	}	
+	
+	.dd{
+	    position: relative;
+	    float: left;
+	    width: 513px;
+	    padding: 12px 0 12px 28px;
+	    border-top: 1px solid #e9e9e9;
+		border-left: 1px solid #e9e9e9;
+	}
+	
+	.btn_dd{
+		position: relative;
+	    float: left;
+	    width: 513px;
+	    padding: 12px 0 12px 28px;
+	}
+	
+	.whiteBtn {
+		background: transparent;
+   		border: 1px solid #231815;
+ 			box-sizing: border-box;
+	
+	}
+	
+	.blueBtn {
+		background: #061f5c;
+   		box-sizing: border-box;
+			color: #fff;
+	}
+	
+	.roundBtn {
+		border-radius: 50px;
+   		display: inline-block;
+	    text-align: center;
+	    transition: all 0.3s ease 0s;
+	    height: 43px;
+	    line-height: 41px;
+	    cursor: pointer;
+		width: 172px;
+	}
+	
+	.saveBtn{
+		margin-left: 90px;
+		margin-top: 13px;
+	}
+	
+	
+	
+	a:hover {
+ 	 	text-decoration: none;
+	}
+	
+	
+	
+</style>
+</head>
+<body>
+	<div class="total">
+		<hr>
+		
+		<div class="leftBlock">
+			<div class= "userInfo">
+				<div class="profile">
+					<img src="<%=contextPath%>/images/profile.png" class="userImg">
+				</div>
+			</div>
+			<div class="user" >
+				<div class="userName">님</div>
+				<div class="userId">()</div>
+				<div class="infoBtn">
+					<a href="#" class="myInfo">내 정보</a>
+					<a href="<%=contextPath%>/member/petInfo.me" class="petInfo">반려견 정보</a>
+				</div>
+			</div>
+		</div>
+		<div class="rightBlock">
+			<div>
+				<p class="title" 
+				style="margin-bottom: 15px;"	
+				>회원 정보</p>
+			</div>
+			<dl class="teble">
+				
+				<dt class="dt">
+					<span>아이디</span>
+				</dt>
+				<dd class="dd">
+					<div class="id_div">
+						<p id="id">admin</p>
+					</div>
+				</dd>
+				<dt class="dt">
+					<span>이름</span>
+				</dt>
+				<dd class="dd">
+					<div>
+						<p>홍길동</p>
+					</div>
+				</dd>			
+				<dt class="dt">
+					<span>닉네임</span>
+				</dt>
+				<dd class="dd">
+					<div>
+						<p>master</p>
+					</div>
+				</dd>			
+				<dt class="dt">
+					<span>생년월일</span>
+				</dt>
+				<dd class="dd">
+					<div>
+						<p>20010917</p>
+					</div>
+				</dd>			
+				<dt class="dt">
+					<span>전화번호</span>
+				</dt>
+				<dd class="dd">
+					<div>
+						<p>01012341234</p>
+					</div>
+				</dd>			
+				<dt class="dt">
+					<span>email</span>
+				</dt>
+				<dd class="dd">
+					<div>
+						<p>admin@naver.com</p>
+					</div>
+				</dd>			
+				<dt class="dt">
+					<span>주소</span>
+				</dt>
+				<dd class="dd">
+					<div>
+						<p>경남 양산시 중부동 686-7 양산역프라자 2층</p>
+					</div>
+				</dd>			
+				<dd class="btn_dd">
+					<div class="saveBtn">
+						<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">뒤로가기</a>				
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" class="roundBtn blueBtn">수정하기</a>
+					</div>
+				</dd>	
+				
+			</dl>
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+		  $("#backBtn").mouseover(function(){
+
+		    $("#backBtn").css("background-color", "#23527c");
+		    $("#backBtn").css("color", "white");
+			
+		  });
+
+		  $("#backBtn").mouseout(function(){
+
+		    $("#backBtn").css("background-color", "transparent");
+		    $("#backBtn").css("color", "#23527c");
+
+		  });
+
+		});
+	</script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+

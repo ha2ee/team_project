@@ -156,6 +156,7 @@
     		position: relative;
 			margin-left: 97px;
 			margin-top: -140px;
+			font-size: 13px;
 		}
 		
 		a:link{
@@ -186,6 +187,10 @@
    			color: #fff;
 		}
 		
+		a:hover {
+ 	 	text-decoration: none;
+	}
+		
 		
 	</style>
 
@@ -205,7 +210,7 @@
 				<div class="userName">님</div>
 				<div class="userId">()</div>
 				<div class="infoBtn">
-					<a href="#" class="myInfo">내 정보</a>
+					<a href="<%=contextPath%>/member/info.me" class="myInfo">내 정보</a>
 					<a href="<%=contextPath%>/member/petInfo.me" class="petInfo">반려견 정보</a>
 				</div>
 			</div>
@@ -287,11 +292,17 @@
 			<div class="saveBtn">
 				<a href="javascript:history.go(-1);" class="roundBtn whiteBtn">취소하기</a>				
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#" class="roundBtn blueBtn">저장하기</a>
+				<a href="#" class="roundBtn blueBtn">등록</a>
 			</div>
 	
 	
 	</div>
+	
+	
+		
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+
 </body>
 
 </html>
