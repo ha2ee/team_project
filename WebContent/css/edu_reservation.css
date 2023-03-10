@@ -844,6 +844,7 @@ input#file-upload-button {
 	top : 4px;
 	padding : 10px;
 	border-radius: 100px;
+	box-shadow: 0px 0px 10px 1px lightsalmon;
 
 }
 
