@@ -22,8 +22,6 @@ String id = (String)session.getAttribute("id");
 // list를 컨틀롤러에서 받아와서 변수에 저장
 List<String> list = (List<String>)request.getAttribute("list");
 
-out.print(list);
-
 
 
 
@@ -182,6 +180,25 @@ out.print(list);
 
                 // @details 현재월과 선택월이 같은경우
                 if(today.getMonth() == date.getMonth()) {
+                	
+            		// 예약 된 날짜를 가져온다.
+            		var list = <%=list%>;
+            		
+            		// for 문을 돌려서 예약날짜와 일치하는 날짜를 가져온다.
+            		for(var i =0; i < list.length; i++){
+
+            			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
+            			for(var j=1; j < 32; j++ ){
+
+            				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
+            				if(list[i].toString() == j.toString()) {
+
+
+            					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+
+                            }
+           				}
+           			}
 
                     // @details 현재일보다 이전인 경우이면서 현재월에 포함되는 일인경우
                     if(date.getDate() > day && Math.sign(day) == 1) {
@@ -192,26 +209,7 @@ out.print(list);
                     // @details 7일뒤보다 이후이면서 현재월에 포함되는 일인경우
                		}else if((date.getDate()+6) < day && lastDate.getDate() >= day) {
                			
-                		// 예약 된 날짜를 가져온다.
-                		var list = <%=list%>;
-                		
-                		// for 문을 돌려서 예약날짜와 일치하는 날짜를 가져온다.
-                		for(var i =0; i < list.length; i++){
-
-                			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
-                			for(var j=1; j < 32; j++ ){
-
-                				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
-                				if(list[i].toString() == j.toString() && lastDate.getDate() >= day) {
-                					
-                					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
-
-                				}
-                			}
-                			
-                		}
-	
-	                        column.style.backgroundColor = "#f8f8f8";
+						    column.style.backgroundColor = "#f8f8f8";
 	                        column.style.color = "";
 	                        column.style.cursor = "pointer";
 	                        column.onclick = function(){ calendarChoiceDay(this); }    
