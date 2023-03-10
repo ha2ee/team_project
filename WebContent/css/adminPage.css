@@ -101,7 +101,7 @@
 		/* 게시판 목록 테이블의 th와 td 스타일 */
 		.content .board-table th, .content .board-table td {
 		  padding: 10px 20px; 
-/* 		  text-align: center;  */
+ 		  text-align: center; 
 		  border-bottom: 1px solid #ddd; 
 		}
 		

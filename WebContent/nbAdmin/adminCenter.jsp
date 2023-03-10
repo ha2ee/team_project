@@ -1,26 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>	
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-admMemCtr.jsp ÆäÀÌÁö
+admMemCtr.jsp í˜ì´ì§€
 <div>
-<a href="${contextPath}/adm/memManage">È¸¿ø °ü¸®</a>
+<a href="${contextPath}/adm/memManage">íšŒì› ê´€ë¦¬</a>
 </div>
 
 <div>
-<a href="#">Æ®·¹ÀÌ³Ê °ü¸®</a>
+<a href="#">íŠ¸ë ˆì´ë„ˆ ê´€ë¦¬</a>
 </div>
 
 <div>
-<a href="#">°Ô½ÃÆÇ °ü¸®</a>
+<a href="#">ê²Œì‹œíŒ ê´€ë¦¬</a>
 </div>
 </body>
 </html>

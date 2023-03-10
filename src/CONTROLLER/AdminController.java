@@ -34,6 +34,7 @@ public class AdminController extends HttpServlet {
 		@Override
 		public void init() throws ServletException {
 			adminDAO = new AdminDAO();
+			memberDAO = new MemberDAO();
 		
 		}
 		
@@ -77,16 +78,25 @@ public class AdminController extends HttpServlet {
 				System.out.println("/memManage 호출");
 				List<MemberVo> list = adminDAO.selectAllMember();
 				
-				
-				
 				center = "/nbAdmin/adminMem.jsp";
 				
 				request.setAttribute("center", center);
 				request.setAttribute("membersList", list);
 				
-				System.out.println("center값" + center);
 				nextPage = "/nbAdmin/adminMain.jsp";
 				
+			} else if(action.equals("/memDetail.adm")) {
+				
+				String memberID = request.getParameter("memberID");
+				memberVO = memberDAO.memberOne(memberID);
+				
+				
+				center = "/nbAdmin/adminMemDetail.jsp";
+				
+				request.setAttribute("center", center);
+				request.setAttribute("memberVO", memberVO);
+				
+				nextPage = "/nbAdmin/adminMain.jsp";
 			}
 			
 		
