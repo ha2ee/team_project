@@ -54,16 +54,16 @@
 	$("#submitbtn").on("click", function(){
 		
 		// 기본 정보
-		opener.document.getElementById("pet_img").src = document.getElementById("pet_img").src;
-		opener.document.getElementById("edu_img").src = document.getElementById("pet_img").src;
+		opener.document.getElementById("pet_img").src = document.getElementById("pet_addimg").src;
+		opener.document.getElementById("edu_img").src = document.getElementById("pet_addimg").src;
 		opener.document.getElementById("pet_name").value = document.getElementById("pet_name").value;
 		opener.document.getElementById("edu_img_name").value = document.getElementById("pet_name").value;
 		opener.document.getElementById("pet_type").value = document.getElementById("pet_type").value;
 		opener.document.getElementById("pet_age").value = document.getElementById("pet_age").value;
 		opener.document.getElementById("pet_weight").value = document.getElementById("pet_weight").value;
-		
+		var rspet_name = document.getElementById("pet_name").value;
 		// 성별 정보 
-		if(document.getElementById("pet_gender").value == "남"){
+		if(document.getElementById("pet_gender1").checked == true){
 			
 			opener.document.getElementById("pet_gender1").checked = true;
 		
@@ -74,11 +74,11 @@
 		}
 		
 		// 중성화 정보
-		if(document.getElementById("pet_op").value == "예"){
+		if(document.getElementById("pet_op1").checked == true){
 			
 			opener.document.getElementById("pet_op1").checked = true;
 		
-		}else if(document.getElementById("pet_op").value == "아니오"){
+		}else if(document.getElementById("pet_op2").checked == true){
 			
 			opener.document.getElementById("pet_op2").checked = true;
 			
@@ -88,11 +88,24 @@
 			
 		}
 
-			alert('"반려견"의 정보 입력 완료!');
+			alert(rspet_name+"의 정보 입력 완료!");
 		
 	})
 	
 });
+	
+	// 강아지 사진 업로드 시 썸네일 형식의 미리보기 만들기
+	function setThumbnail(event) {
+	  var reader = new FileReader();
+
+	  reader.onload = function(event) {
+	    var img = document.querySelector("#pet_img_box > img");
+	    img.setAttribute("src", event.target.result);
+	  };
+
+	  reader.readAsDataURL(event.target.files[0]);
+
+	}
 
 </script>
 </head>
@@ -121,15 +134,36 @@
 					<a id="pet_img_name" type= "text">반려견 사진</a>
 				</div>
 				<div id= "pet_img_box" >
-						<a type= "text"><img id = "pet_img" name = "pet_img"  /></a>
+					<input type="file" id="pet_img" name="pet_img" accept="image/*" onchange="setThumbnail(event);"  />
+					<img src=""  id="pet_addimg" />
 				</div>
 				<div id = "pet_info_box">
-					<a type= "text">이름<input id = "pet_name" name = "pet_name" type="text" value=""  /></a>
-					<a type= "text">견종<input id = "pet_type" name = "pet_type" type="text" value=""  /></a>
-					<a type= "text">나이<input id = "pet_age" name = "pet_age" type="text"  value=""   /></a>
-					<a type= "text">몸무게<input id = "pet_weight" name = "pet_weight" type="text" value=""   /></a>
-					<a type= "text">성별<input id="pet_gender" name= "pet_gender" type="text" value=""   /></a>
-					<a type= "text">중성화여부<input id="pet_op" name= "pet_op" type="text" value=""  /></a>
+					<a type= "text">이름<input id = "pet_name" name = "pet_name" type="text" placeholder="이름을 입력해주세요" value=""  /></a>
+					<a type= "text">견종<input id = "pet_type" name = "pet_type" type="text" placeholder="ex)푸들..믹스..웰시코기.. 등등" value=""  /></a>
+					<a type= "text">나이<input id = "pet_age" name = "pet_age" type="text"  placeholder="숫자만 입력해주세요" value=""   /></a>
+					<a type= "text">몸무게<input id = "pet_weight" name = "pet_weight" type="text" placeholder="숫자만 입력해주세요" value=""   /></a>
+					<a type= "text">성별</a>					
+					<div id="radio">					
+						<input id="pet_gender1" type="radio" name="pet_gender" value="남" />
+						<input id="pet_gender1_text" type="text" value="남" />
+					</div>
+					<div id="radio" >
+						<input id="pet_gender2" type="radio" name="pet_gender" value="여" />
+						<input id="pet_gender2_text" type="text" value="여" />
+					</div>
+					<b id="pet_op" >중성화여부</b>
+					<div id="radio2">					
+						<input id="pet_op1" type="radio" name="pet_op" value="예" />
+						<input id="pet_op1_text" type="text" value="예" />
+					</div>
+					<div id="radio2" >
+						<input id="pet_op2" type="radio" name="pet_op" value="아니오" />
+						<input id="pet_op2_text" type="text" value="아니오" />
+					</div>
+					<div id="radio2" >	
+						<input id="pet_op3" type="radio" name="pet_op" value="모름"/>
+						<input id="pet_op3_text" type="text" value="모름" />
+					</div>
 				</div>
 			</div>
         </div>
@@ -139,6 +173,5 @@
         </div>
     </div>
 </form>
-
 </body>
 </html>
