@@ -73,6 +73,8 @@
 		color: #AAA;
 		font-size: 11px;
 	}
+	
+
 	/* 	댓글 CSS 끝*/
 </style>
 </head>
@@ -204,6 +206,19 @@
     	
      
  <!-- 댓글시작------------------------------------ -->  
+ 
+ <!-- 댓글수정 -->
+ 	<script type="text/javascript">
+ 	
+ 	function updateviewBtn()
+ 	
+ 	
+ 	</script>
+ 
+ 
+ 
+ <!-- 끝----댓글수정 -->
+ 
 <div>
 
 	<table id="tblListComment" class="table table-bordered">
@@ -217,16 +232,46 @@
 		<c:forEach items="${ clist }" var="cdto">
 			<tr>
 				<td>
-					${ cdto.content }
+				<!-- 댓글 표시&수정창 -->
+					<textarea id="updateActive" rows="3" cols="60" disabled="disabled">${ cdto.content }</textarea>
+				
+					
 					<span>${ cdto.name }. ${ cdto.regdate }</span>
 				</td>
 				<td>
+				<input id="update" type="button" value="수정하기" onclick="updateActive();" class="btn btn-default" >
+				
+				<input id="updatePro" type="button" value="수정완료" class="btn btn-default" 
+						onclick="location.href='<%=contextPath%>/freeboard/upComment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
 					<input type="button" value="삭제하기" class="btn btn-default" 
 						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
 				</td>
 			</tr>
 		</c:forEach>	
 	</table>
+	<style> 
+		#updatePro{
+		 display: none;
+		}
+	</style>
+	
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+	
+	function updateActive() {
+
+		//수정시 입력하는 화면 활성화
+		$("#updateActive").removeAttr("disabled");
+		
+		//수정하기 버튼 안보이게
+		document.getElementById("update").style.display = 'none';
+
+		//수정완료 버튼 보이게 
+		document.getElementById("updatePro").style.display = 'block';
+	}
+	
+	</script>
+	
 	
 	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
 		<table id="tblAddComment" class="table table-bordered">

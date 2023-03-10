@@ -363,7 +363,14 @@ public class FreeBoardController extends HttpServlet {
     	  
     	  break;
         
-//=====================댓글 작성 버튼 클릭시 /addcomment.do ==========================               
+//=====================댓글 작성 버튼 클릭시 /addcomment.do ========================== 
+    	  
+//=====================댓글 수정 버튼 클릭시 /upcomment.do ==========================       
+      case "/upcomment.do":
+    	
+        
+//끝=====================댓글 수정 버튼 클릭시 /addcomment.do ========================== 
+    	  
         
 //=====================댓글 삭제 버튼 클릭시 /delcomment.do ==========================    	  
       case "/delcomment.do":  
@@ -372,9 +379,9 @@ public class FreeBoardController extends HttpServlet {
   		String seq = request.getParameter("seq"); // 삭제할 글번호
   		
   		// 2. DB 작업 > DAO 위임 > delete
-  		CommentDAO commentdao = new CommentDAO();
+  		CommentDAO commentdao1 = new CommentDAO();
   		
-  		int d_result = commentdao.delComment(seq); // 1, 0		
+  		int d_result = commentdao1.delComment(seq); // 1, 0		
   		
   		// 3. 결과 후 처리
   		if (d_result == 1) {
