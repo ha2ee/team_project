@@ -1,150 +1,158 @@
-<%@page import="DAO.FreeBoardDAO"%>
-<%@page import="java.io.PrintWriter"%>
-<%@page import="javax.xml.stream.events.Comment"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.Date"%>
 <%@page import="VO.FreeBoardVo"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
+<%@page import="java.util.Date"%>
+<%@page import="VO.TrainerBoardVo"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%
-  request.setCharacterEncoding("UTF-8");
-   String contextPath = request.getContextPath();
-  FreeBoardVo vo = (FreeBoardVo) request.getAttribute("vo");
-
-  int idx = vo.getB_idx();
-  String title = vo.getB_title();
-  String content = vo.getB_content();
-  String nickname = vo.getB_nickname();
-  int b_idx = vo.getB_idx();
-  Date date = vo.getB_date();
+	request.setCharacterEncoding("UTF-8");
+	String contextPath = request.getContextPath();
+	//조회한 글정보 얻기
+	FreeBoardVo vo = (FreeBoardVo)request.getAttribute("vo");
+	String writerId = vo.getB_id();
+	String name = vo.getB_nickname();
+	String title = vo.getB_title();
+	String content = vo.getB_content(); 
+	String file = vo.getB_file();
+	Date date = vo.getB_date();
+	int cnt = vo.getB_cnt();
+	int b_idx = vo.getB_idx();
   int like = vo.getB_like();
-  int cnt = vo.getB_cnt();
-  
 	String id = (String)session.getAttribute("id");
-  System.out.println(id);
-  //댓글-----------------------------
-
-  //댓글-------------------------------------------------------
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" 
-      name="viewport" 
-      content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Insert title here</title>
-<script src="https://kit.fontawesome.com/d158a8723c.js"
-        crossorigin="anonymous"></script>
-<link rel="stylesheet" 
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
-      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" 
-      crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="../css/Team_FreeBoard.css">
-<style type="text/css">
-  body{
-  font-size: 20px;
-  }
+    <meta charset="UTF-8">
+    <title>게시글 상세</title>
 
-/* 	댓글 CSS */
-	
-	#tblAddCommnet, #tblListComment { width: 700px; margin: 15px auto; }
-	
-	#tblAddComment { margin-top: 30px; }
-	#tblAddComment td:nth-child(1) { width: 600px; }
-	#tblAddComment td:nth-child(2) { width: 100px; }
-	
-	#tblListComment td:nth-child(1) { width: 600px; }
-	#tblListComment td:nth-child(2) { width: 100px; }
-	
-	#tblListComment td {
-		position: relative;
-		left: 0;
-		top: 0;
-	}
-	
-	#tblListComment td span {
-		position: absolute;
-		right: 10px;
-		bottom: 5px;
-		color: #AAA;
-		font-size: 11px;
-	}
-	/* 	댓글 CSS 끝*/
-</style>
+    <style type="text/css">
+		.post-Container {
+		margin : 0 auto;
+		border-top: 1px solid #ddd;
+		border-bottom: 1px solid #ddd;
+		width:1200px;
+		padding: 20px;
+
+		}
+		
+		.post {
+		border-bottom: 1px solid #ddd;
+		background-color: #fffff;
+		
+		}
+		
+		.post-title {
+		  font-size: 24px;
+		}
+		
+		.post-info {
+		  color: #888;
+		  font-size: 14px;
+		}
+		
+		.post-body {
+		text-align : left;
+		  line-height: 1.5;
+		  
+		}
+		
+.post-header {
+	display:flex;
+	justify-content: space-between;
+	align-items : flex-end;
+	border-bottom: 1px solid #ddd;
+	background-color: #fafafa;
+}
+		
+.post-buttons {
+	position: relative;
+	text-align: right;
+	padding-top: 40px;
+	padding-bottom: 20px;
+}
+.post-buttons input[type="button"] {
+	display: inline-block;
+	margin-left: 10px;
+	padding: 8px 20px;
+	border-radius: 20px;
+	border : none;
+	color : white;
+	background-color: #EDAF8C;
+}
+
+a.download {
+  color: #000000;
+}
+
+div.filedownload {
+	position : relative;
+	top : 20px;
+	border: 1px solid #ddd;
+	padding: 20px;
+	font-size: 16px;
+}
+		
+    </style>
 </head>
 <body>
-  <div style="margin: 5% 5% 0 5%;"> <!-- 전체 width 바꾸기 위해서 존재하는 div -->
-    <div style="border: 1px solid black;">
-      <div style="margin: 3px;">
-        <b style="font-size: 20px;"><%=title%></b> <br>
-      </div>
-      <div style="border: 1px solid black; text-align: center; height: 30px;">
-        <div style="float: left; margin: 3px;">
-          <%=nickname%> l
-        </div>
-        <div style="float: left; margin: 3px;">
-          <%=date%>
-        </div>
-        <div style="float: right; margin: 3px;">
-          댓글 0 <!-- 댓글 들어오는 작업 해야합니다!! -->
-        </div> 
-        <div style="float: right; margin: 3px;">
-          추천 <span id="topLike"><%=like%></span> l
-        </div>
-        <div style="float: right; margin: 3px;">
-          조회수 <%=cnt%> l
-        </div>
-        
-      </div>
+	<div class="post-Container">
+	      <div class="post">
+	        <div class="post-header">
+	          <h2 class="post-title"><%=title%></h2>
+	         
+	          <div class="post-info">
+	            작성자: <%=name%> | 작성일자: <%=date%> | 조회수: <%=cnt%> | 추천수: <span id="topLike"><%=like%></span>
+				</div>
+	        </div>
+	        <div class="post-body">
+	          <p><%out.print(content);%></p>
+	        </div>
+	      </div>
+	
+<%-- 	<c:if test="${not empty vo.b_file || not empty imageUrls}">
+	<div align="left" class="filedownload">첨부파일<br>
 
+	다운로드할 폴더번호 경로와 다운로드 할 파일명 전달
+	<c:choose>
+		<c:when test="${vo.tb_level==0}">
+			<c:if test="${not empty vo.tb_file}">
+			<a href="<%=contextPath%>/tb/download.bo?tbidx=<%=tb_idx%>&fileName=<%=file%>" class="download"><%=file%></a>&nbsp;&nbsp;
+			</c:if>
+		</c:when>
+		<c:when test="${vo.tb_level>0}"> 
+			<c:if test="${not empty vo.tb_file}">
+			<a href="<%=contextPath%>/uploadFile/TrainerBoardFile/reply_tb_idx${vo.tb_idx}/<%=file%>" download class="download"><%=file%></a>&nbsp;&nbsp;
+			</c:if>
+		</c:when>
+	</c:choose>
+		CKEDITOR로 입력한 이미지 다운로드 링크생성
+		<c:if test="${not empty imageUrls}">
+			<c:forEach var="imageUrls" items="${imageUrls}">
+				<c:set var="imageUrl" value="${imageUrls}"/>
+				<c:set value="${fn:split(imageUrl, '/')}" var="imageNameTemp" />
+				<c:set var="imageName" value="${imageNameTemp[fn:length(imageNameTemp)-1]}"/>
+				<a href="${imageUrls}" download="${imageName}"  class="download" >${imageName}</a>&nbsp;&nbsp;
+			</c:forEach> 
+		</c:if>
+		CKEDITOR로 입력한 이미지 다운로드 링크생성 끝
+	</div>
+  	</c:if>
+ --%>    	
+    <div class="post-buttons">
+		<input type="button" value="목록으로" onclick="location.href='list.fb?nowPage=0&nowBlock=0'" id="list" />
+       
+        <!-- 수정,삭제는 세션아이디와 조회한 글의 작성자아이디가 동일할때만 노출시키기 필요 -->
+		<c:if test="${sessionScope.id eq vo.b_id}">
+			<input type="button" value="수정하기" onclick="location.href='tbUpdate.bo?b_idx=${b_idx}'" />
+			<input type="button" value="삭제하기" onclick="javascript:tbDelete('<%=b_idx%>');" id="delete"/>
+		</c:if>
+       
     </div>
-    <hr style="border: solid 1px grey;">
-
-    <!-- 윗부분 끝 -->
-    <div style="border: 1px solid black; height: 10%; margin-bottom: 1%;">
-      <%=content%>   <!-- 콘텐츠 들어온다. -->
-    </div>
-    <div style="float: right">
-        <form action ="<%=contextPath%>/freeboard/modify.fb">
-          <input type="hidden" name="b_idx" value="<%=idx%>">
-          <!-- ---------------------------- -->
-          <button type="button" class="btn btn-outline-danger" style="font-size: 20px" onclick="javascript:fnGoList()">목록</button>
-          <button type="submit" class="btn btn-outline-danger" style="font-size: 20px">수정</button>
-          <button type="button" class="btn btn-outline-danger" style="font-size: 20px" onclick="javascript:fnDel(<%=idx%>)">삭제</button>
-        </form>
-    </div>
-
-    <script type="text/javascript">
-      function fnDel(val){
-        $.ajax({
-    			url: "<%=contextPath%>/freeboard/del.fb",
-    			async : true,
-    			type : 'POST',
-    			data : {
-              			b_idx : b_idx
-    							},
-    			success : function(data) {
-      			  				if(data == 1){
-      			  				  alert("삭제 성공!");
-      			  				  location.href=
-      			  				    "<%=contextPath%>/freeboard/list.fb?nowPage=0&nowBlock=0";
-      			  				}else{
-      			  				  alert("삭제 실패!");
-      			  				  history.go(-1);
-      			  				}
-    								}
-    		});
-      }
-      function fnGoList(){
-        location.href="<%=contextPath%>/freeboard/list.fb?nowPage=0&nowBlock=0";
-      }
-    </script>
-
-      <!-- 	if 첨부 파일 있으면 위에 첨부하고 없으면 내용만 삽입 -->
-    <!-- 중간부분 끝 -->
-
+    
+    
     <div style="margin-left: 12%; display: flex; flex-direction: column;">
       <div>
         <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
@@ -158,7 +166,6 @@
 
 <script type="text/javascript">
   const b_idx = <%=vo.getB_idx()%>
-  const id2 = "inseop";
   var originLikeCount = <%=like%>
   
   function clickLike(id){
@@ -166,126 +173,83 @@
       alert("로그인부터 해라");
     } else{
       $.ajax({
-        			url: "<%=contextPath%>/freeboard/like.fb",
-        			async : true,
-        			type : 'POST',
-        			data : {
-                  			b_idx : b_idx,
-                  			id : id
-        							},
-        			success : function(data) {
-         	  		   /* 	  if(data=originLikeCount-1){
-        									 $("#likeimggg").attr("class","fa-regular fa-heart fa-4x");	//이미 좋아요 누른 경우;
-        														 $("#countLike").text(data);
+              url: "<%=contextPath%>/freeboard/like.fb",
+              async : true,
+              type : 'POST',
+              data : {
+                        b_idx : b_idx,
+                        id : id
+                      },
+              success : function(data) {
+                   /*     if(data=originLikeCount-1){
+                           $("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
+                                     $("#countLike").text(data);
   
-        														 } else{
-        														 $("#countLike").text(data);
-        														 $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
-        														
-        														 } */
+                                     } else{
+                                     $("#countLike").text(data);
+                                     $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
+                                    
+                                     } */
   
-        							$("#countLike").text(data);
-        							$("#topLike").text(data);
-        							if (data > originLikeCount) {
-        								$("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
-        							} else if (data <= originLikeCount) {
-        								$("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
-        							}
-        							}
-        		});
+                      $("#countLike").text(data);
+                      $("#topLike").text(data);
+                      if (data > originLikeCount) {
+                        $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
+                      } else if (data <= originLikeCount) {
+                        $("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
+                      }
+                      }
+            });
       }
     
   }
   
-
-//   $("#likeimgg").on("click", function (event) {
-// 	  event.preventDefault();
-// 	  alert();
-// 	  $.ajax({
-<%-- 			url: "<%=contextPath%>/freeboard/like.fb", --%>
-// 			async : true,
-// 			type : 'POST',
-// 			data : {
-//           			b_idx : b_idx,
-//           			id2 : id2
-// 							},
-// 			success : function(data) {
-//  	  		   /* 	  if(data=originLikeCount-1){
-// 									 $("#likeimggg").attr("class","fa-regular fa-heart fa-4x");	//이미 좋아요 누른 경우;
-// 														 $("#countLike").text(data);
-
-// 														 } else{
-// 														 $("#countLike").text(data);
-// 														 $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
-														
-// 														 } */
-
-// 							$("#countLike").text(data);
-// 							if (data > originLikeCount) {
-// 								$("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
-// 							} else if (data <= originLikeCount) {
-// 								$("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
-// 							}
-// 							}
-// 		});
-// 	});
-
-
 </script>
-
-
-
-
-
-  <div style="border: 1px solid black;  margin-bottom: 2%">
-    	
-     
-  <!-- 댓글시작------------------------------------ -->  
-    <div style="">
     
-    	<table id="tblListComment" class="table table-bordered">
-    		
-    		<c:if test="${ clist.size() == 0 }">
-    			<tr>
-    				<td colspan="2">댓글이 없습니다.</td>
-    			</tr>
-    		</c:if>
-    		
-    		<c:forEach items="${ clist }" var="cdto">
-    			<tr>
-    				<td>
-    					${ cdto.content }
-    					<span>${ cdto.name }. ${ cdto.regdate }</span>
-    				</td>
-    				<td>
-    					<input type="button" value="삭제하기" class="btn btn-default" 
-    						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
-    				</td>
-    			</tr>
-    		</c:forEach>	
-    	</table>
-    	
-    	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
-    		<table id="tblAddComment" class="table table-bordered">
-    			<tr>
-    				<td><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
-    				<td><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
-    			</tr>
-    		</table>
-    		<input type="hidden" name="pseq" value="<%=b_idx%>" />
-    	</form>
-    	
+    
+    
     </div>
-<!-- 댓글끝------------------------------------ -->    
-    <div style="border: 1px solid black; margin-bottom: 2%">
-      <jsp:include page="list.jsp">
-        <jsp:param value="0" name="nowBlock"/>
-        <jsp:param value="0" name="nowPage"/>
-        <jsp:param value="${list}" name="list"/>
-        <jsp:param value="${count}" name="count"/>
-      </jsp:include>
-    </div>
-  </div>
-</div>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>    
+<script type="text/javascript">
+//삭제하기를 눌렀을때 ajax로 삭제 처리하기
+function tbDelete(tb_idx){
+			var result = window.confirm("정말로 글을 삭제하시겠습니까?");
+			
+			if(result == true){//확인 버튼 클릭
+				
+				//비동기방식으로 글삭제 요청!
+				$.ajax({
+					type : "post",
+					async : true,
+					url : "<%=contextPath%>/tb/tbDelete.bo",
+					data : {tb_idx : tb_idx},
+					dataType : "text",
+					success : function(data){
+						
+						if(data=="삭제성공"){
+							alert("삭제 성공!");
+							
+							//강제로 클릭 이벤트 발생시키는 부분
+							location.href="<%=contextPath%>/tb/list.bo";
+							
+						}else{//"삭제실패"
+							alert("삭제에 실패했습니다.")
+							location.reload();
+						}
+						
+					},
+					error : function(){
+						alert("비동기 통신 장애");
+					}
+				});
+				
+			}else{//취소 버튼을 눌렀을때
+				return false;
+			}
+		}
+
+</script>    
+    
+
 </body>
 </html>

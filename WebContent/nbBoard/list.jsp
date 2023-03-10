@@ -41,7 +41,11 @@
 		  text-decoration: none; /* 밑줄 제거 */
 		  font-weight: bold; /* 글씨체 굵기 지정 */
 		}
-		
+    
+    .board-table td:nth-child(5),.board-table td:nth-child(6),.board-table td:nth-child(1) {
+    padding-left: 30px;
+    }
+ 		
 		/*마우스 올리면 색 변환*/
 		.board-table td:nth-child(2) a:hover {
 		  color: #f44336;
@@ -161,17 +165,18 @@
     <div class="board-table">
         <table class="board-table" >
             <tr>
-                <th>글번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일</th>
-                <th>조회수</th>
+                <th width="10%">글번호</th>
+                <th width="40%">제목</th>
+                <th width="15%">작성자</th>
+                <th width="15%">작성일</th>
+                <th width="10%">조회수</th>
+                <th width="10%">추천수</th>
             </tr>
         <c:forEach var="board" items="${requestScope.list}">
             <tr>
                 <td>${board.b_idx}</td>
                 <td>
-                    <a href="read.fb?b_idx=${board.b_idx}&pageNum=${spage}">
+                    <a href="read.fb?b_idx=${board.b_idx}">
                     ${board.b_title}
                     </a>
                 </td>
@@ -180,6 +185,7 @@
                 </td>
                 <td>${board.b_date}</td>
                 <td>${board.b_cnt}</td>
+                <td>${board.b_like}</td>
             </tr>
         </c:forEach>
         </table>
