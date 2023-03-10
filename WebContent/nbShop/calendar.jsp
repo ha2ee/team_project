@@ -520,6 +520,8 @@ List<String> list = (List<String>)request.getAttribute("list");
     
     
     $(document).ready(function(){
+    	
+    	$("#")
     	 	
     	
     	$("#resetbtn").on("click",function(){
