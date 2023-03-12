@@ -12,7 +12,7 @@
 <body>
 admMemCtr.jsp 페이지
 <div>
-<a href="${contextPath}/adm/memManage">회원 관리</a>
+<a href="${contextPath}/adm/memManage.adm">회원 관리</a>
 </div>
 
 <div>

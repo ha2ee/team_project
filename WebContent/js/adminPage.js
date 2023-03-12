@@ -8,7 +8,7 @@ board_manage.addEventListener('click', () => {
 function memPopup() {
 	let url = "/TeamProject/nbAdmin/memUpdatePopup.jsp";
 	let	name = "popup test";
-	var option = "width=500, height=500, top=100, left=200, location=yes"
+	var option = "width=700, height=800, top=100, left=200, location=yes"
 		window.open(url,name,option);
 }
 

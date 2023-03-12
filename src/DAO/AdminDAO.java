@@ -98,7 +98,67 @@ public class AdminDAO {
 		 return list;
 	
 	}	
-		 
+	
+	//일반회원 닉네임 체크
+	public boolean checkMemNick(String nick) {
+		
+		boolean memResult = false;
+		try {
+			con = ds.getConnection();
+			System.out.println(nick);
+
+			String sql = "SELECT MEM_NICK FROM YS_MEMBER WHERE MEM_NICK=?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memResult = true;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("memCheck 메소드 내부에서 오류!");
+			e.printStackTrace();
+		}finally {
+			closeResource();
+		}
+		
+		return memResult;
+	}
+	 
+		
+	//일반회원 정보 수정
+	public void memUpdate(MemberVo vo) {
+		
+		try {
+			con = ds.getConnection();
+			
+			String query = "update YS_MEMBER set MEM_NICK='" + vo.getMem_nick() + "',"
+						                     + " MEM_PW='" + vo.getMem_pw() + "',"
+						                     + " MEM_EMAIL='" + vo.getMem_email() + "',"
+						                     + " MEM_HP='" + vo.getMem_hp() + "',"
+				  						     + " MEM_ADDRESS1='" + vo.getMem_address1() + "',"
+										 	 + " MEM_ADDRESS2='" + vo.getMem_address2() + "',"
+										 	 + " MEM_ADDRESS3='" + vo.getMem_address3() + "',"
+										 	 + " MEM_ADDRESS4='" + vo.getMem_address4() + "',"
+										 	 + " MEM_ADDRESS5='" + vo.getMem_address5() + "'"
+						                     + " WHERE MEM_ID ='"+ vo.getMem_id() +"'";
+			pstmt = con.prepareStatement(query);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("memUpdate메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+		}
+		
+	}
+		
 	
 
 }
