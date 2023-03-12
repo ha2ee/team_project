@@ -220,12 +220,16 @@ public class nbOrderController extends HttpServlet{
 			
 			
 			// 3) OrderDAO 객체의 insertEduOrder메소드 호출 시 저장한 값들을 전달한다.
-			orderdao.insertEduOrder(eduordervo, list);
 			
-			PrintWriter pw1 = response.getWriter();
-			pw1.print("<script>"+"alert('예약되었습니다.');"+"</script>");
+			// 장바구니로 이동 시켜서 늘봄 샵에서 살거리들과 함께 결제 시킬지 ? 
+			// 수강신청만 별도로 결제 들어갈지 여부 체크
+			
+//			orderdao.insertEduOrder(eduordervo, list);
 
 			
+			//request에 "center" 값을 이용해서 cart.jsp로 이동 시킴
+			request.setAttribute("center", "nbShop/cart.jsp");	
+
 			nextPage = "/nbMain.jsp";
 			
 			
