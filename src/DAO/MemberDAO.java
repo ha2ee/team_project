@@ -11,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import VO.MemberVo;
+import VO.PetVo;
 import VO.TrainerVo;
 
 public class MemberDAO {
@@ -243,6 +244,9 @@ public class MemberDAO {
 			String sql = "INSERT INTO MEMBER_TRAINER(TR_ID, TR_NAME, TR_PW, TR_EMAIL, TR_HP, TR_BIRTH, TR_GENDER, TR_ADDRESS1,TR_ADDRESS2,TR_ADDRESS3,TR_ADDRESS4,TR_ADDRESS5, TR_IMG) "
 					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
 			
+			System.out.println("이미지"+tr_vo.getTr_img());
+			
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, tr_vo.getTr_id() );
 			pstmt.setString(2, tr_vo.getTr_name()  );
@@ -258,6 +262,7 @@ public class MemberDAO {
 			pstmt.setString(12, tr_vo.getTr_address5());
 			pstmt.setString(13, tr_vo.getTr_img());
 			
+		
 			
 			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
 			pstmt.executeUpdate();
@@ -841,8 +846,76 @@ public class MemberDAO {
 			closeResource();
 		}
 		return tr_vo;
-	}		
+	}
+
+	public boolean petJoin(PetVo petVo) {
 		
+		try {
+			
+			//커넥션 풀에 만들어져 있는 DB와 미리 연결을 맺은 Connection객체 빌려오기
+			//요약 DB연결
+			con = ds.getConnection();
+			//매개변수로 전달 받는 MemberVo객체의 각변수에 저장된 값들을 얻어
+			//insert문장 완성하기
+			
+			String sql = "INSERT INTO PET(P_NAME, P_AGE, P_GENDER, P_TYPE, P_OP, P_WEIGHT, P_IMG, P_MEM_ID) "
+					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, petVo.getP_name());
+			pstmt.setInt(2, petVo.getP_age());
+			pstmt.setString(3, petVo.getP_gender());
+			pstmt.setString(4, petVo.getP_type());
+			pstmt.setString(5, petVo.getP_op());
+			pstmt.setInt(6, petVo.getP_weight());
+			pstmt.setString(7, petVo.getP_img());
+			pstmt.setString(8, petVo.getP_mem_id());
+				
+			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			System.out.println("petJoin메소드 내부에서 SQL실행 오류" + e);
+		}finally {
+			closeResource();
+		}
+		
+		
+		
+		
+		
+		return false;
+	}
+
+	public PetVo petRead(String memberid) {
+		String sql = "SELECT * FROM PET WHERE P_MEM_ID=?";
+		
+		PetVo pet_vo = null;
+		try {
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(sql);
+
+				pstmt.setString(1, memberid);
+				
+				rs = pstmt.executeQuery();
+					rs.next();
+					pet_vo = new PetVo();
+								 pet_vo.setP_name(rs.getString("p_name"));
+								 pet_vo.setP_age(rs.getInt("p_age"));
+								 pet_vo.setP_gender(rs.getString("p_gender"));
+								 pet_vo.setP_type(rs.getString("p_type"));
+								 pet_vo.setP_op(rs.getString("p_op"));
+								 pet_vo.setP_weight(rs.getInt("P_weight"));
+								 pet_vo.setP_img(rs.getString("p_img"));
+		}catch(Exception e) {
+			
+			System.out.println("petRead메소드 내부에서 SQL오류");
+			e.printStackTrace();	
+			
+		}finally {
+			closeResource();
+		}
+		return pet_vo;
+	}
 		
 		
 }

@@ -1,10 +1,31 @@
+<%@page import="VO.PetVo"%>
+<%@page import="VO.TrainerVo"%>
+<%@page import="VO.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
 %>
+<%
+	MemberVo mem_vo = (MemberVo)request.getAttribute("mem_vo");
+	
+	String mem_name = mem_vo.getMem_name();	
+	String mem_img = mem_vo.getMem_img();
+	
+	PetVo pet_vo = (PetVo)request.getAttribute("pet_vo");
+	
+	String p_name = pet_vo.getP_name();	
+	int p_age = pet_vo.getP_age();
+	String p_gender = pet_vo.getP_gender();
+	String p_type = pet_vo.getP_type();
+	String p_op = pet_vo.getP_op();
+	int p_weight = pet_vo.getP_weight();
+	String p_img = pet_vo.getP_img();
+	
+	String id = (String)session.getAttribute("id");
 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -172,14 +193,17 @@
 	.whiteBtn {
 		background: transparent;
    		border: 1px solid #231815;
- 			box-sizing: border-box;
-	
+		box-sizing: border-box;
+		color: black;
+		
 	}
 	
 	.blueBtn {
 		background: #061f5c;
    		box-sizing: border-box;
-			color: #fff;
+		color: #fff;
+		border: 1px solid #231815;
+		
 	}
 	
 	.saveBtn{
@@ -223,10 +247,10 @@
 				</div>
 			</div>
 			<div class="user" >
-				<div class="userName">님</div>
-				<div class="userId">()</div>
+				<div class="userName"><%=mem_name%>님</div>
+				<div class="userId">(<%=id%>)</div>
 				<div class="infoBtn">
-					<a href="#" class="myInfo">내 정보</a>
+					<a href="<%=contextPath%>/member/info.me" class="myInfo">내 정보</a>
 					<a href="<%=contextPath%>/member/petInfo.me" class="petInfo">반려견 정보</a>
 				</div>
 			</div>
@@ -263,7 +287,7 @@
 				</dt>
 				<dd class="name_dd">
 					<div class="name_div">
-						<input type="text" name="p_name" class="p_name">
+						<input type="text" name="p_name" class="p_name" value="<%=p_name%>">
 					</div>
 				</dd>				
 				<dt class="age_dt">
@@ -271,7 +295,7 @@
 				</dt>
 				<dd class="age_dd">
 					<div class="age_div">
-						<input type="text" name="p_age" class="p_age">&nbsp;세
+						<input type="text" name="p_age" class="p_age" value="<%=p_age%>">&nbsp;세
 					</div>
 				</dd>				
 				<dt class="weight_dt">
@@ -279,7 +303,7 @@
 				</dt>
 				<dd class="weight_dd">
 					<div class="weight_div">
-						<input type="text" name="p_weight" class="p_weight">&nbsp;kg
+						<input type="text" name="p_weight" class="p_weight" value="<%=p_weight%>">&nbsp;kg
 					</div>
 				</dd>				
 				<dt class="type_dt">
@@ -287,7 +311,7 @@
 				</dt>
 				<dd class="type_dd">
 					<div class="type_div">
-						<input type="text" name="p_type" class="p_type">
+						<input type="text" name="p_type" class="p_type" value="<%=p_type%>">
 					</div>
 				</dd>				
 				
@@ -296,11 +320,12 @@
 				</dt>
 				<dd class="gender_dd">
 					<div class="gender_div">
-						<select class="p_gender" name="p_gender" id="p_gender">
-							<option>선택</option>
-							<option>남아</option>
-							<option>여아</option>
+						<select class="p_gender" name="p_gender" id="p_gender" value="<%=p_gender%>">
+							<option value="gen0">선택</option>
+							<option value="gen1">남아</option>
+							<option value="gen2">여아</option>
 						</select>
+					<input id="hidden_gen" type="hidden" value="<%=p_gender%>">
 					</div>
 				</dd>				
 				
@@ -309,11 +334,13 @@
 				</dt>
 				<dd class="op_dd">
 					<div class="op_div">
-						<select class="p_op" name="p_op" id="p_op">
-							<option>선택</option>
-							<option>했음</option>
-							<option>안했음</option>
+						<select class="p_op" name="p_op" id="p_op" value="<%=p_op%>">
+							<option value="op0">선택</option>
+							<option value="op1">했음</option>
+							<option value="op2">안했음</option>
+					<input id="hidden_op" type="hidden" value="<%=p_op%>">
 						</select>
+						
 					</div>
 				</dd>				
 				
@@ -321,9 +348,9 @@
 				</dt>
 				<dd class="btn_dd">
 					<div class="saveBtn">
-						<a href="javascript:history.go(-1);" class="roundBtn whiteBtn">취소하기</a>				
+						<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">취소하기</a>				
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#" class="roundBtn blueBtn">등록</a>
+						<a id="changeBtn" href="#" class="roundBtn blueBtn">저장</a>
 					</div>
 				</dd>				
 			
@@ -333,10 +360,67 @@
 		
 		</div>
 	</div>
+
+	<script type="text/javascript">
+	
+		$(function() {
+			
+			if($("#hidden_gen").val() == "남아" ){
+
+				$("#p_gender").val("gen1").prop("selected", true);
+					
+			}else{
+				
+				$("#p_gender").val("gen2").prop("selected", true);
+				
+			}
+			
+			
+			if($("#hidden_op").val() == "했음" ){
+
+				$("#p_op").val("op1").prop("selected", true);
+					
+			}else{
+				
+				$("#p_op").val("op2").prop("selected", true);
+				
+			}
+		});
+		
 	
 	
+		  $("#backBtn").mouseover(function(){
+
+		    $("#backBtn").css("background-color", "#061f5c");
+		    $("#backBtn").css("color", "white");
+			
+		  });
+
+		  $("#backBtn").mouseout(function(){
+
+		    $("#backBtn").css("background-color", "transparent");
+		    $("#backBtn").css("color", "#23527c");
+
+		  });
+		
+		  
+		  $("#changeBtn").mouseover(function(){
+
+		    $("#changeBtn").css("background-color", "white");
+		    $("#changeBtn").css("color", "#33333");
+		  });
+
+		  $("#changeBtn").mouseout(function(){
+
+		    $("#changeBtn").css("background-color", "#061f5c");
+		    $("#changeBtn").css("color", "#white");
+
+		  });
+
+		  
 	
 	
-	
+	</script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </body>
 </html>

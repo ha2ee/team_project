@@ -1,3 +1,5 @@
+<%@page import="VO.TrainerVo"%>
+<%@page import="VO.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -6,6 +8,33 @@
 	String contextPath = request.getContextPath();
 %>
 
+<%
+	MemberVo mem_vo = (MemberVo)request.getAttribute("mem_vo");
+	
+	String mem_nick = mem_vo.getMem_nick();
+	String mem_name = mem_vo.getMem_name();
+	String mem_hp = mem_vo.getMem_hp();
+	String mem_birth = mem_vo.getMem_birth();
+	String mem_email = mem_vo.getMem_email();
+	String mem_address2 = mem_vo.getMem_address2();
+	String mem_address4 = mem_vo.getMem_address4();
+	String mem_address5 = mem_vo.getMem_address5();
+	String mem_img = mem_vo.getMem_img();
+	String mem_address = mem_address2 + " " +mem_address4 + " " + mem_address5;
+	
+	TrainerVo tr_vo = (TrainerVo)request.getAttribute("tr_vo");
+	
+	String tr_name = tr_vo.getTr_name();
+	String tr_hp = tr_vo.getTr_hp();
+	String tr_birth = tr_vo.getTr_birth();
+	String tr_email = tr_vo.getTr_email();
+	String tr_address2 = tr_vo.getTr_address2();
+	String tr_address4 = tr_vo.getTr_address4();
+	String tr_address5 = tr_vo.getTr_address5();
+	String tr_img = tr_vo.getTr_img();
+	String tr_address = tr_address2 + tr_address4 + tr_address5;
+	String id = (String)session.getAttribute("id");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -120,14 +149,15 @@
 	.whiteBtn {
 		background: transparent;
    		border: 1px solid #231815;
- 			box-sizing: border-box;
-	
+		box-sizing: border-box;
+		color: black;
 	}
 	
 	.blueBtn {
 		background: #061f5c;
    		box-sizing: border-box;
-			color: #fff;
+		color: #fff;
+		border: 1px solid #231815;
 	}
 	
 	.roundBtn {
@@ -152,7 +182,9 @@
  	 	text-decoration: none;
 	}
 	
-	
+	input{
+		border: none;
+	}	
 	
 </style>
 </head>
@@ -167,8 +199,8 @@
 				</div>
 			</div>
 			<div class="user" >
-				<div class="userName">님</div>
-				<div class="userId">()</div>
+				<div class="userName"><%=mem_name + tr_name%>님</div>
+				<div class="userId">(<%=id%>)</div>
 				<div class="infoBtn">
 					<a href="#" class="myInfo">내 정보</a>
 					<a href="<%=contextPath%>/member/petInfo.me" class="petInfo">반려견 정보</a>
@@ -182,13 +214,13 @@
 				>회원 정보</p>
 			</div>
 			<dl class="teble">
-				
+
 				<dt class="dt">
 					<span>아이디</span>
 				</dt>
 				<dd class="dd">
 					<div class="id_div">
-						<p id="id">admin</p>
+						<p><%=id%></p>
 					</div>
 				</dd>
 				<dt class="dt">
@@ -196,23 +228,36 @@
 				</dt>
 				<dd class="dd">
 					<div>
-						<p>홍길동</p>
+						<p><%=mem_name + tr_name%></p>
 					</div>
 				</dd>			
+				
+				<%
+				if(mem_nick != ""){
+				%>
 				<dt class="dt">
 					<span>닉네임</span>
 				</dt>
 				<dd class="dd">
 					<div>
-						<p>master</p>
+						<p><%=mem_nick%></p>
 					</div>
 				</dd>			
+				<%
+				} else{
+				%>
+				
+				<%
+				}
+				%>
+				
+				
 				<dt class="dt">
 					<span>생년월일</span>
 				</dt>
 				<dd class="dd">
 					<div>
-						<p>20010917</p>
+						<input type="text" value="<%=mem_birth + tr_birth%>" readonly>						
 					</div>
 				</dd>			
 				<dt class="dt">
@@ -220,7 +265,7 @@
 				</dt>
 				<dd class="dd">
 					<div>
-						<p>01012341234</p>
+						<input type="text" value="<%=mem_hp + tr_hp%>" readonly>						
 					</div>
 				</dd>			
 				<dt class="dt">
@@ -228,7 +273,7 @@
 				</dt>
 				<dd class="dd">
 					<div>
-						<p>admin@naver.com</p>
+						<p><%=mem_email + tr_email%></p>
 					</div>
 				</dd>			
 				<dt class="dt">
@@ -236,14 +281,14 @@
 				</dt>
 				<dd class="dd">
 					<div>
-						<p>경남 양산시 중부동 686-7 양산역프라자 2층</p>
+						<p><%=mem_address + tr_address%></p>
 					</div>
 				</dd>			
 				<dd class="btn_dd">
 					<div class="saveBtn">
 						<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">뒤로가기</a>				
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#" class="roundBtn blueBtn">수정하기</a>
+						<a id="changeBtn" href="<%=contextPath%>/member/change.me" class="roundBtn blueBtn">수정하기</a>
 					</div>
 				</dd>	
 				
@@ -257,7 +302,7 @@
 
 		  $("#backBtn").mouseover(function(){
 
-		    $("#backBtn").css("background-color", "#23527c");
+		    $("#backBtn").css("background-color", "#061f5c");
 		    $("#backBtn").css("color", "white");
 			
 		  });
@@ -268,7 +313,24 @@
 		    $("#backBtn").css("color", "#23527c");
 
 		  });
+		
+		  
+		  $("#changeBtn").mouseover(function(){
 
+		    $("#changeBtn").css("background-color", "white");
+		    $("#changeBtn").css("color", "#33333");
+		  });
+
+		  $("#changeBtn").mouseout(function(){
+
+		    $("#changeBtn").css("background-color", "#061f5c");
+		    $("#changeBtn").css("color", "#white");
+
+		  });
+
+		  
+		  
+		  
 		});
 	</script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>

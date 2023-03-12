@@ -19,7 +19,7 @@
 					<div id="myPageLeftTop">
 					<a>가입시 이미지?</a>
 					<br><br>ㅇㅇㅇ님 (아이디)<br><br>
-					<a href="<%=contextPath%>/member/change.me" class="btn">내 정보 관리</a>
+					<a href="<%=contextPath%>/member/info.me" class="btn">내 정보 관리</a>
 					<a href="<%=contextPath%>/member/petJoin.me" class="btn">반려동물 정보 관리</a> 
 					</div>
 				</div>
