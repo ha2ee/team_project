@@ -115,6 +115,8 @@
 			opener.document.getElementById("pet_op3").checked = true;
 			
 		}
+		
+		opener.document.getElementById("nb_submitbtn").style.display = "block";
 
 			alert('"<%=pet_name%>"의 정보 불러오기 완료!');
 		

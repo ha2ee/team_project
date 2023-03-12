@@ -40,18 +40,87 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>반려견 정보 조회창</title>
+<title>반려견 정보 입력창</title>
 
 <script>
 
 	// jquery 호출 옵션 
 	$(document).ready(function(){
+		
+		$('input[id=pet_age]').on('keyup', function () {
+		    $(this).val($(this).val().replace(/[^0-9]/g, ""));
+		});
+		
+		$('input[id=pet_weight]').on('keyup', function () {
+		    $(this).val($(this).val().replace(/[^0-9]/g, ""));
+		});
+		
 	
 
 	
 	
 	// 새창을 닫을 때 자식창의 반려견 정보를 내보낸다.
 	$("#submitbtn").on("click", function(){
+
+		if($("#pet_addimg").attr("src") == ""){
+			
+			alert("사진을 등록해주세요!!");
+			return false;
+
+		}
+		
+		if($("#pet_name").val() == ""){
+			
+			alert(" 이름을 입력해주세요!!");
+			return false;
+			
+		}
+		
+		if($("#pet_type").val() == ""){	
+		
+			alert(" 견종을 입력해주세요!!");
+			return false;
+		
+		}
+		
+		if($("#pet_age").val() == ""){	
+		
+			alert(" 나이를 입력해주세요!!");
+			return false;
+		}
+		
+		if($("#pet_weight").val() == ""){	
+			
+			alert(" 몸무게를 입력해주세요!!");
+			return false;
+			
+		}
+		
+		if($("#pet_type").val() == ""){	
+			
+			alert(" 견종을 입력해주세요!!");
+			return false;
+		}	
+			
+		if($('input[id="pet_gender1"]').is(":checked") ==  false && $('input[id="pet_gender2"]').is(":checked") ==  false){
+			
+			alert(" 성별을 체크해주세요!!");
+			return false;
+			
+		}
+		
+		if($('input[id="pet_op1"]').is(":checked") ==  false && $('input[id="pet_op2"]').is(":checked") ==  false){
+	
+			if($('input[id="pet_op3"]').is(":checked") == false){
+				
+				alert(" 중성화여부를 체크해주세요!!");
+				return false;
+
+			
+			}
+
+		}
+		
 		
 		// 기본 정보
 		opener.document.getElementById("pet_img").src = document.getElementById("pet_addimg").src;
@@ -62,6 +131,8 @@
 		opener.document.getElementById("pet_age").value = document.getElementById("pet_age").value;
 		opener.document.getElementById("pet_weight").value = document.getElementById("pet_weight").value;
 		var rspet_name = document.getElementById("pet_name").value;
+		
+		
 		// 성별 정보 
 		if(document.getElementById("pet_gender1").checked == true){
 			
@@ -88,7 +159,12 @@
 			
 		}
 
-			alert(rspet_name+"의 정보 입력 완료!");
+		opener.document.getElementById("nb_submitbtn").style.display = "block";
+		
+		alert(rspet_name+"의 정보 입력 완료!");
+		
+		window.close();
+
 		
 	})
 	
@@ -169,7 +245,7 @@
         </div>
         <div class="pop1cmd">
         	
-            <input onclick="window.close();" id="submitbtn" type="submit" name="btnclose" class="popbtn" value="반려견 추가 완료">
+            <input id="submitbtn" type="submit" name="btnclose" class="popbtn" value="반려견 추가 완료">
         </div>
     </div>
 </form>

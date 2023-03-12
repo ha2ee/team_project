@@ -122,7 +122,7 @@
 
 	<!-- 	주문예약 들어갈 항목 -->
 	
-<!-- 	내용을 입력하고 예약확정 버튼을 눌렀을 때 /nbMemberCotroller/eduOrder.me 호출 -->
+<!-- 	내용을 입력하고 예약확정 버튼을 눌렀을 때 /nbOrder/eduOrder.od 호출 -->
 	<form method = "post" action="<%=contextPath%>/nbOrder/eduOrder.od" id="form">	
 	<input type="hidden" name="pet_img"  />
 	<input type="hidden" name="tr_img"	value="<%=tr_img %>" />
@@ -250,10 +250,12 @@
 				</div>
 			</div>
 		</div>
+		<h4><br>* <Strong>반려견</Strong> 예약 정보가 없으면 <Strong>"예약 하기"</Strong> 버튼이 생성되지 않습니다. *</h4>
 		<div id ="reservationBtnWrapper">
-			<div>
+			<div id = "res_box">
 				<a id ="nb_backbtn" class = btn href="#">일정 다시선택하기 </a>
 				<a id = "nb_submitbtn" type="submit" class = "btn"  onclick="document.getElementById('form').submit();" >예약 확정</a>
+<!-- 				<a id = "nb_submitbtn" type="submit" class = "btn" >예약 하기</a> -->
 				<a id = "nb_shopbtn" class= "btn" href="<%=request.getContextPath()%>/nb/pet.shop?center=/nbShop/pet.jsp">늘봄 샵으로</a>
 			</div>
 		</div>
@@ -261,7 +263,8 @@
 	 <br>
 	 <br>
 
-
+<!-- iamport.payment.js -->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script type="text/javascript">
 
 // 팝업창 띄우기
@@ -296,18 +299,16 @@ function openChild() {
 	
 	// jquery 호출 옵션 
 	$(document).ready(function(){
-		
-		
-		
-		
+
+
 		// 반려견 정보 추가하기 메소드 
 		// 1)처음 페이지에 왔을 때 펫 정보 입력문구를 보이지 않게 한다.
 		$("#pet_img_name").css("display", "none");
 		$("#pet_img_box").css("display", "none");
 		$("#pet_info_box").css("display", "none");
 		$("#pet_op_box").css("display", "none");
+		$("#nb_submitbtn").css("display", "none");
 
-		
 		
 		// 2) 반려견 정보 추가하기 버튼을 눌렸을 때 팝업창이 나오게 한다.
 		
@@ -317,13 +318,12 @@ function openChild() {
 			$("#pet_img_box").css("display", "block");
 			$("#pet_info_box").css("display", "block");
 			$("#pet_op_box").css("display", "block");
+			$("#pet_info_box > a > input").attr("readonly", true);
 
 		})
 	
 		// 3) 반려견 정보 가져오기 버튼을 눌렸을 때 팝업창이 나오게 한다.
 		
-		var openwindow;
-	
 		
 		$("#petcheck2").on("click", function(){
 			
@@ -331,6 +331,8 @@ function openChild() {
 			$("#pet_img_box").css("display", "block");
 			$("#pet_info_box").css("display", "block");
 			$("#pet_op_box").css("display", "block");
+			$("#pet_info_box > a > input").attr("readonly", true);
+
 			
 		})
 		
@@ -354,53 +356,18 @@ function openChild() {
 		})
 		
 		
-			// 강아지 사진의 출처를 저장한 뒤,
-			var src = $("#pet_img").attr("src");
-			
-			console.log(src);
-			
-			// 예약 반려견으로 바꿔준다.
-			$("#edu_img").attr("src", src);
-			
 		
-		// 강아지 이름을 입력하면,
-		$("#pet_name").keyup(function(){
-			
-			// 강아지 이름을 저장한 뒤,
-			var pet_name = $("#pet_name").val();
 
+		
+		// 최종금액에 콤마단위가 들어간 금액으로 설정
+		$("#tr_totalprice").attr("value", tr_totalprice2);
+        
+		// id 값이 back인 버튼을 클릭했을 때
+		$("#nb_backbtn").on("click", function(){
 			
-			// 예약 반려견명으로 바꿔준다.
-			
-			$("#edu_img_name").attr("value", pet_name).css("color", "#5cb85cc7");
+			 // 이전 페이지로 이동하게 한다.
+			 history.back();
 		})
-
-		
-		// 최종금액에 콤마단위가 들어간 금액으로 설정
-		$("#tr_totalprice").attr("value", tr_totalprice2);
-        
-		// id 값이 back인 버튼을 클릭했을 때
-		$("#nb_backbtn").on("click", function(){
-			
-			 // 이전 페이지로 이동하게 한다.
-			 history.back();
-			 
-		});
-
-		
-			
-
-		// 최종금액에 콤마단위가 들어간 금액으로 설정
-		$("#tr_totalprice").attr("value", tr_totalprice2);
-        
-		// id 값이 back인 버튼을 클릭했을 때
-		$("#nb_backbtn").on("click", function(){
-			
-			 // 이전 페이지로 이동하게 한다.
-			 history.back();
-			 
-		});
-
 
 	});
 	
