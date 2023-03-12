@@ -1,3 +1,4 @@
+<%@page import="VO.FreeBoardVo"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -66,20 +67,6 @@
    
     </style>
     
-    
-    <script type="text/javascript">
-//         function writeForm(){
-//             location.href="BoardWriteForm.bo";
-//         }
-        
-    	function fnRead(val){
-    		
-    		
-    		document.frmRead.action = "<%=contextPath%>/freeboard/read.fb";
-    		document.frmRead.b_idx.value = val;
-    		document.frmRead.submit();
-    	}
-    </script>
     
 </head>
 <body>    
@@ -172,22 +159,29 @@
                 <th width="10%">조회수</th>
                 <th width="10%">추천수</th>
             </tr>
-        <c:forEach var="board" items="${requestScope.list}">
-            <tr>
-                <td>${board.b_idx}</td>
+      <%
+        for(int j = beginPerPage; j < (beginPerPage+numPerPage); j++){
+          if(j == totalRecord){
+            break;
+          }
+          FreeBoardVo vo = (FreeBoardVo)list.get(j);
+      %>
+          <tr>
+                <td><%=vo.getB_idx()%></td>
                 <td>
-                    <a href="read.fb?b_idx=${board.b_idx}">
-                    ${board.b_title}
-                    </a>
-                </td>
+									<a href="read.fb?b_idx=<%=vo.getB_idx()%>">
+										<%=vo.getB_title()%>
+									</a>                </td>
                 <td>
-                    ${board.b_nickname}
+                    <%=vo.getB_nickname()%>
                 </td>
-                <td>${board.b_date}</td>
-                <td>${board.b_cnt}</td>
-                <td>${board.b_like}</td>
+                <td><%=vo.getB_date()%></td>
+                <td><%=vo.getB_cnt()%></td>
+                <td><%=vo.getB_like()%></td>
             </tr>
-        </c:forEach>
+       <%    
+        }
+        %>
         </table>
         <input type ="button" id="newContent" onclick="location.href='<%=contextPath%>/freeboard/write.fb'"value = "글쓰기">
     </div>
@@ -252,7 +246,6 @@
         
         
     <% }//바깥 if %>
-    
     
     </td> 
   </tr>
