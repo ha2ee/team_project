@@ -27,6 +27,20 @@ $(document).ready(function(){
 			}
 		%>
 	})
+	
+	$("#cart").on("click", function(){
+		
+		<%
+			if(id == null){
+		%> 
+				alert("회원 또는 비회원 조회로 가능합니다.");
+				location.replace("<%=request.getContextPath()%>/member/login.me");
+				return false;
+			
+		<%		
+			}
+		%>
+	})
 
 	// MEGA-MENU 롤다운 설정
 	$("#list_gnb").on("mouseover", function(){
@@ -136,7 +150,7 @@ $(document).ready(function(){
 				   <li><a href="<%=request.getContextPath()%>/member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
 	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
 	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
-	               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
+	               <li><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
 
 				<%
 					}else{//로그인 O
@@ -144,7 +158,7 @@ $(document).ready(function(){
 				   <li><a href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
 	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
 <%-- 	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li> --%>
-	               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
+	               <li><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
 
 				<%
 					}

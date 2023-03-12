@@ -90,6 +90,7 @@
 		opener.document.getElementById("pet_age").value = document.getElementById("pet_age").value;
 		opener.document.getElementById("pet_weight").value = document.getElementById("pet_weight").value;
 		
+		
 		// 성별 정보 
 		if(document.getElementById("pet_gender").value == "남"){
 			
@@ -117,6 +118,7 @@
 		}
 		
 		opener.document.getElementById("nb_submitbtn").style.display = "block";
+		opener.document.getElementById("pet_edu_img").value = "<%=pet_img%>";
 
 			alert('"<%=pet_name%>"의 정보 불러오기 완료!');
 		

@@ -122,10 +122,10 @@
 
 	<!-- 	주문예약 들어갈 항목 -->
 	
-<!-- 	내용을 입력하고 예약확정 버튼을 눌렀을 때 /nbOrder/eduOrder.od 호출 -->
-	<form method = "post" action="<%=contextPath%>/nbOrder/eduOrder.od" id="form">	
-	<input type="hidden" name="pet_img"  />
+<!-- 	내용을 입력하고 예약하기 버튼을 눌렀을 때 /nbOrder/goCart.od 호출 -->
+	<form method = "post" action="<%=contextPath%>/nbOrder/goCart.od" id="form">	
 	<input type="hidden" name="tr_img"	value="<%=tr_img %>" />
+	<input type="hidden" name="pet_edu_img" id="pet_edu_img" />
 	<div id = "reservationBox" >
 		<div id = "reservationFormWrapper">
 			<div id = "mem_box">
@@ -169,7 +169,7 @@
 					<a id="pet_img_name" type= "text">반려견 사진</a>
 				</div>
 				<div id= "pet_img_box" >
-						<img id="pet_img"  src="<%=request.getContextPath()%>/images/example.png" />
+						<img id="pet_img" name="pet_img"  src="<%=request.getContextPath()%>/images/example.png" />
 				</div>
 				<div id = "pet_info_box">
 					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" value="" placeholder="이름을 입력해주세요"  />
@@ -238,7 +238,7 @@
 					<a type= "text">반려견 이름<input id = "edu_img_name" name = "edu_name" type="text" value="" placeholder="이름"  readonly /></a>
 				</div>
 				<div id = "edu_img_box">	
-					<img  src="<%=request.getContextPath()%>/images/example.png" id = "edu_img" name="pet_img"  />
+					<img src="<%=request.getContextPath()%>/images/example.png" id = "edu_img" name="edu_img" />
 				</div>
 				<div id =  "tr_result_box">
 					<div id = "tr_totalcnt_box">

@@ -6,6 +6,7 @@ import java.util.Date;
 public class eduOrderVo {
 	
 	// edu_order 내에 있는 컬럼 값들을 해당 타입에 맞게 변수화 설정
+	int	   edu_num;
 	String edu_id;
 	String edu_name;
 	String edu_hp;
@@ -40,6 +41,14 @@ public class eduOrderVo {
 
 
 	// getter & setter 기본 설정
+	public int getEdu_num() {
+		return edu_num;
+	}
+
+	public void setedu_num(int edu_num) {
+		this.edu_num = edu_num;
+	}
+	
 	public String getEdu_id() {
 		return edu_id;
 	}
@@ -281,12 +290,13 @@ public class eduOrderVo {
 
 
 	// tr_reg_date를 제외한 선택자 생성
-	public eduOrderVo(String edu_id, String edu_name, String edu_hp, String edu_email, String edu_address1,
+	public eduOrderVo(int edu_num, String edu_id, String edu_name, String edu_hp, String edu_email, String edu_address1,
 			String edu_address2, String edu_address3, String edu_address4, String edu_address5, String pet_img,
 			String pet_name, String pet_type, int pet_age, int pet_weight, String pet_gender, String pet_op,
 			String tr_img, String tr_name, String tr_hp, Date date1, Date date2, Date date3, Date date4, Date date5,
 			Date date6, Date date7, int edu_cnt, String edu_totalprice) {
 		
+		this.edu_num = edu_num;
 		this.edu_id = edu_id;
 		this.edu_name = edu_name;
 		this.edu_hp = edu_hp;
@@ -316,5 +326,46 @@ public class eduOrderVo {
 		this.edu_cnt = edu_cnt;
 		this.edu_totalprice = edu_totalprice;
 	}
+
+	// 전체를 다가져오는 생성자 생성
+	public eduOrderVo(int edu_num, String edu_id, String edu_name, String edu_hp, String edu_email, String edu_address1,
+			String edu_address2, String edu_address3, String edu_address4, String edu_address5, String pet_img,
+			String pet_name, String pet_type, int pet_age, int pet_weight, String pet_gender, String pet_op,
+			String tr_img, String tr_name, String tr_hp, Date tr_reg_date, Date date1, Date date2, Date date3,
+			Date date4, Date date5, Date date6, Date date7, int edu_cnt, String edu_totalprice) {
+		super();
+		this.edu_num = edu_num;
+		this.edu_id = edu_id;
+		this.edu_name = edu_name;
+		this.edu_hp = edu_hp;
+		this.edu_email = edu_email;
+		this.edu_address1 = edu_address1;
+		this.edu_address2 = edu_address2;
+		this.edu_address3 = edu_address3;
+		this.edu_address4 = edu_address4;
+		this.edu_address5 = edu_address5;
+		this.pet_img = pet_img;
+		this.pet_name = pet_name;
+		this.pet_type = pet_type;
+		this.pet_age = pet_age;
+		this.pet_weight = pet_weight;
+		this.pet_gender = pet_gender;
+		this.pet_op = pet_op;
+		this.tr_img = tr_img;
+		this.tr_name = tr_name;
+		this.tr_hp = tr_hp;
+		this.tr_reg_date = tr_reg_date;
+		this.date1 = date1;
+		this.date2 = date2;
+		this.date3 = date3;
+		this.date4 = date4;
+		this.date5 = date5;
+		this.date6 = date6;
+		this.date7 = date7;
+		this.edu_cnt = edu_cnt;
+		this.edu_totalprice = edu_totalprice;
+	}
+	
+	
 	
 }

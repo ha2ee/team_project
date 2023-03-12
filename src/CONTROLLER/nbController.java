@@ -83,8 +83,9 @@ public class nbController extends HttpServlet{
 		// 6)    /calendar.do    	 		<- "수강신청"   		-> 		" 수강 신청가기" 		-> 		"일정 확인하기" 버튼을 							 눌렀을때
 		// 7)	 /edureservation.do		<- "수강신청"   		->  	" 수강 신청가기" 		->		"일정 확인하기" 버튼 	->		 "예약 신청"을 눌렀을때
 		// 8) 	 /popup1.do				<- "예약정보"         ->    									"반려견 정보 추가하기" 		 			 버튼을 눌렀을때
+		// 9)    /cart.do					<- "수강신청"         ->     " 예약하기 "																		 눌렀을때
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		// 9) 	/pet.shop       			<-  " 늘 봄샵 "   	-> 		" 샵 으로 이동  " 																	  요청
+		// 10) 	/pet.shop       			<-  " 늘 봄샵 "   	-> 		" 샵 으로 이동  " 																	  요청
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		// nextPage 변수 생성 및 초기화
@@ -247,7 +248,31 @@ public class nbController extends HttpServlet{
 			
 			nextPage = "/nbMain.jsp";
 			
-		// 9)	 /pet.shop 	<- "늘 봄샵"   ->  "샵으로 이동 버튼" 을 눌렀을때
+			
+		// 9)    /cart.do 메인페이지에서 장바구니를 눌렀을때
+		}else if(action.equals("/cart.do")) {
+			
+			System.out.println("cart.do 메소드 호출!");
+			
+			String id = request.getParameter("id");
+			
+			eduordervo = orderdao.checkCartedu(id);
+			
+			// 중앙 화면 요청한 주소 얻기
+			String center = request.getParameter("center");
+			
+			// 중앙 화면 바인딩 하기
+			System.out.println("요청한 center : "+ center);
+			
+			//request에 "center" 값으로 저장
+			request.setAttribute("center", center);
+			request.setAttribute("eduordervo", eduordervo);
+			
+			nextPage = "/nbMain.jsp";	
+			
+			
+			
+		// 10)	 /pet.shop 	<- "늘 봄샵"   ->  "샵으로 이동 버튼" 을 눌렀을때
 		}else if(action.equals("/pet.shop")) {
 			
 			System.out.println("pet.shop 메소드 호출!");

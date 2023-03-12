@@ -81,8 +81,9 @@ public class nbOrderController extends HttpServlet{
 		// nbOrderController INFO ////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// #1)      /petUpdate.od					<- 수강신청 페이지      			   반려견 정보 조회
-		// #2)		/petPopup.od						<- 수강신청 페이지                     반려견 정보 입력 눌렀을 때,
-		// #3) 		/eduOrder.od			 			<- 수강신청 페이지						 최종 결제 요청
+		// #2)		/petPopup.od					<- 수강신청 페이지      반려견 정보 입력 눌렀을 때,
+		// #3       /goCart.od						<- 수강신청 페이지 	->  예약하기 버튼을 눌렀을 때,
+		// #4) 		/eduOrder.od			 		<- 수강신청 페이지	-> 장바구니    최종 결제 요청
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		
@@ -134,89 +135,181 @@ public class nbOrderController extends HttpServlet{
 			
 			
 				break;
-		
-		
-		 	
-			// #3) 수강신청 최종 결제 요청
+			
+			// #3 /goCart.od	<- 수강신청 페이지 	->  예약하기 버튼을 눌렀을 때, (작성 중)
+			case "/goCart.od":	
+				
+				System.out.println("nbOrderController -> goCart.od 호출 !");	
+				
+				// 1) 받아온 값들을 변수에 저장한다.
+				String edu_id = request.getParameter("edu_id");
+				String edu_name = request.getParameter("edu_name");
+				String edu_hp = request.getParameter("edu_hp");
+				String edu_email = request.getParameter("edu_email");
+				String edu_address1 = request.getParameter("edu_address1");
+				String edu_address2 = request.getParameter("edu_address2");
+				String edu_address3 = request.getParameter("edu_address3");
+				String edu_address4 = request.getParameter("edu_address4");
+				String edu_address5 = request.getParameter("edu_address5");
+				
+				String pet_img = request.getParameter("pet_edu_img");
+				String pet_name = request.getParameter("pet_name");
+				String pet_type = request.getParameter("pet_type");
+				int	   pet_age = Integer.parseInt(request.getParameter("pet_age"));
+				int	   pet_weight = Integer.parseInt(request.getParameter("pet_weight"));
+				String pet_gender = request.getParameter("pet_gender");
+				String pet_op = request.getParameter("pet_op");
+				String tr_img = request.getParameter("tr_img");
+				String tr_name = request.getParameter("tr_name");
+				String tr_hp = request.getParameter("tr_hp");
+				
+				String date1 = request.getParameter("date1");
+				String date2 = request.getParameter("date2");
+				String date3 = request.getParameter("date3");
+				String date4 = request.getParameter("date4");
+				String date5 = request.getParameter("date5");
+				String date6 = request.getParameter("date6");
+				String date7 = request.getParameter("date7");
+				int	   edu_cnt = Integer.parseInt(request.getParameter("edu_cnt"));
+				String edu_totalprice = request.getParameter("edu_totalprice");
+				
+				// 2) 변수를 eduordervo로 저장시킨다.
+				eduOrderVo eduordervo = new eduOrderVo();
+				
+				// 3) 예약정보를 list로 저장시킨다.
+				List<String> list = new ArrayList();
+				
+				// *1) 회원 정보
+				eduordervo.setEdu_id(edu_id);
+				eduordervo.setEdu_name(edu_name);
+				eduordervo.setEdu_hp(edu_hp);
+				eduordervo.setEdu_email(edu_email);
+				eduordervo.setEdu_address1(edu_address1);
+				eduordervo.setEdu_address2(edu_address2);
+				eduordervo.setEdu_address3(edu_address3);
+				eduordervo.setEdu_address4(edu_address4);
+				eduordervo.setEdu_address5(edu_address5);
+				// *2) 펫 정보
+				eduordervo.setPet_img(pet_img);
+				eduordervo.setPet_name(pet_name);
+				eduordervo.setPet_type(pet_type);
+				eduordervo.setPet_age(pet_age);
+				eduordervo.setPet_weight(pet_weight);
+				eduordervo.setPet_gender(pet_gender);
+				eduordervo.setPet_op(pet_op);
+				// *3) 훈련사 정보
+				eduordervo.setTr_img(tr_img);
+				eduordervo.setTr_name(tr_name);
+				eduordervo.setTr_hp(tr_hp);
+				
+				// *4) 예약 정보
+				list.add(date1);
+				list.add(date2);
+				list.add(date3);
+				list.add(date4);
+				list.add(date5);
+				list.add(date6);
+				list.add(date7);
+				eduordervo.setEdu_cnt(edu_cnt);
+				eduordervo.setEdu_totalprice(edu_totalprice);
+				
+				
+				// 4) orderdao를 통해서 data를 저장시킨다.
+				orderdao.insertCartedu(eduordervo, list);
+				
+				// 5) orderdao를 통해서 인서트 시킨 값들을 다시 불러온다.
+				orderdao.checkCartedu(edu_id);
+				
+				// 5) cart.jsp 페이지에서 출력할 eduordervo와 list를 내보낸다.
+				request.setAttribute("eduordervo", eduordervo);
+				request.setAttribute("list", list);
+				request.setAttribute("id", edu_id);
+
+			nextPage = "/nbMain.jsp";
+			
+				break;
+				
+				
+			// #4) 장바구니에서 최종 결제 요청
 			case "/eduOrder.od":
 				
 			System.out.println("nbOrderController -> eduOrder.od 호출 !");	
 			
 			// 1) 받아온 값들을 변수에 저장한다.
-			String edu_id = request.getParameter("edu_id");
-			String edu_name = request.getParameter("edu_name");
-			String edu_hp = request.getParameter("edu_hp");
-			String edu_email = request.getParameter("edu_email");
-			String edu_address1 = request.getParameter("edu_address1");
-			String edu_address2 = request.getParameter("edu_address2");
-			String edu_address3 = request.getParameter("edu_address3");
-			String edu_address4 = request.getParameter("edu_address4");
-			String edu_address5 = request.getParameter("edu_address5");
+			 edu_id = request.getParameter("edu_id");
+			 edu_name = request.getParameter("edu_name");
+			 edu_hp = request.getParameter("edu_hp");
+			 edu_email = request.getParameter("edu_email");
+			 edu_address1 = request.getParameter("edu_address1");
+			 edu_address2 = request.getParameter("edu_address2");
+			 edu_address3 = request.getParameter("edu_address3");
+			 edu_address4 = request.getParameter("edu_address4");
+			 edu_address5 = request.getParameter("edu_address5");
 			
-			String pet_img = request.getParameter("pet_img");
-			String pet_name = request.getParameter("pet_name");
-			String pet_type = request.getParameter("pet_type");
-			int	   pet_age = Integer.parseInt(request.getParameter("pet_age"));
-			int	   pet_weight = Integer.parseInt(request.getParameter("pet_weight"));
-			String pet_gender = request.getParameter("pet_gender");
-			String pet_op = request.getParameter("pet_op");
-			String tr_img = request.getParameter("tr_img");
-			String tr_name = request.getParameter("tr_name");
-			String tr_hp = request.getParameter("tr_hp");
+			 pet_img = request.getParameter("pet_edu_img");
+			 pet_name = request.getParameter("pet_name");
+			 pet_type = request.getParameter("pet_type");
+		     pet_age = Integer.parseInt(request.getParameter("pet_age"));
+	    	 pet_weight = Integer.parseInt(request.getParameter("pet_weight"));
+			 pet_gender = request.getParameter("pet_gender");
+			 pet_op = request.getParameter("pet_op");
+			 tr_img = request.getParameter("tr_img");
+			 tr_name = request.getParameter("tr_name");
+			 tr_hp = request.getParameter("tr_hp");
 			
-			String date1 = request.getParameter("date1");
-			String date2 = request.getParameter("date2");
-			String date3 = request.getParameter("date3");
-			String date4 = request.getParameter("date4");
-			String date5 = request.getParameter("date5");
-			String date6 = request.getParameter("date6");
-			String date7 = request.getParameter("date7");
-			int	   edu_cnt = Integer.parseInt(request.getParameter("edu_cnt"));
-			String edu_totalprice = request.getParameter("edu_totalprice");
+			 date1 = request.getParameter("date1");
+			 date2 = request.getParameter("date2");
+			 date3 = request.getParameter("date3");
+			 date4 = request.getParameter("date4");
+			 date5 = request.getParameter("date5");
+			 date6 = request.getParameter("date6");
+			 date7 = request.getParameter("date7");
+		     edu_cnt = Integer.parseInt(request.getParameter("edu_cnt"));
+			 edu_totalprice = request.getParameter("edu_totalprice");
 			
 
 			
 			
 			// 2) 변수를 eduordervo로 저장시킨다.
-			eduOrderVo eduordervo = new eduOrderVo();
+			eduOrderVo eduordervo_ = new eduOrderVo();
 			
 			// 3) 예약정보를 list로 저장시킨다.
-			List<String> list = new ArrayList();
+			List<String> list_ = new ArrayList();
 
 			
 			// *1) 회원 정보
-			eduordervo.setEdu_id(edu_id);
-			eduordervo.setEdu_name(edu_name);
-			eduordervo.setEdu_hp(edu_hp);
-			eduordervo.setEdu_email(edu_email);
-			eduordervo.setEdu_address1(edu_address1);
-			eduordervo.setEdu_address2(edu_address2);
-			eduordervo.setEdu_address3(edu_address3);
-			eduordervo.setEdu_address4(edu_address4);
-			eduordervo.setEdu_address5(edu_address5);
+			eduordervo_.setEdu_id(edu_id);
+			eduordervo_.setEdu_name(edu_name);
+			eduordervo_.setEdu_hp(edu_hp);
+			eduordervo_.setEdu_email(edu_email);
+			eduordervo_.setEdu_address1(edu_address1);
+			eduordervo_.setEdu_address2(edu_address2);
+			eduordervo_.setEdu_address3(edu_address3);
+			eduordervo_.setEdu_address4(edu_address4);
+			eduordervo_.setEdu_address5(edu_address5);
 			// *2) 펫 정보
-			eduordervo.setPet_img(pet_img);
-			eduordervo.setPet_name(pet_name);
-			eduordervo.setPet_type(pet_type);
-			eduordervo.setPet_age(pet_age);
-			eduordervo.setPet_weight(pet_weight);
-			eduordervo.setPet_gender(pet_gender);
-			eduordervo.setPet_op(pet_op);
+			eduordervo_.setPet_img(pet_img);
+			eduordervo_.setPet_name(pet_name);
+			eduordervo_.setPet_type(pet_type);
+			eduordervo_.setPet_age(pet_age);
+			eduordervo_.setPet_weight(pet_weight);
+			eduordervo_.setPet_gender(pet_gender);
+			eduordervo_.setPet_op(pet_op);
 			// *3) 훈련사 정보
-			eduordervo.setTr_img(tr_img);
-			eduordervo.setTr_name(tr_name);
-			eduordervo.setTr_hp(tr_hp);
+			eduordervo_.setTr_img(tr_img);
+			eduordervo_.setTr_name(tr_name);
+			eduordervo_.setTr_hp(tr_hp);
 			
 			// *4) 예약 정보
-			list.add(date1);
-			list.add(date2);
-			list.add(date3);
-			list.add(date4);
-			list.add(date5);
-			list.add(date6);
-			list.add(date7);
-			eduordervo.setEdu_cnt(edu_cnt);
-			eduordervo.setEdu_totalprice(edu_totalprice);
+			list_.add(date1);
+			list_.add(date2);
+			list_.add(date3);
+			list_.add(date4);
+			list_.add(date5);
+			list_.add(date6);
+			list_.add(date7);
+			eduordervo_.setEdu_cnt(edu_cnt);
+			eduordervo_.setEdu_totalprice(edu_totalprice);
 			
 			
 			// 3) OrderDAO 객체의 insertEduOrder메소드 호출 시 저장한 값들을 전달한다.
@@ -224,7 +317,7 @@ public class nbOrderController extends HttpServlet{
 			// 장바구니로 이동 시켜서 늘봄 샵에서 살거리들과 함께 결제 시킬지 ? 
 			// 수강신청만 별도로 결제 들어갈지 여부 체크
 			
-//			orderdao.insertEduOrder(eduordervo, list);
+//			orderdao.insertEduOrder(eduordervo_, list);
 
 			
 			//request에 "center" 값을 이용해서 cart.jsp로 이동 시킴

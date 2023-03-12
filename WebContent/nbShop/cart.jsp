@@ -1,14 +1,773 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.util.List"%>
+<%@page import="VO.eduOrderVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	String contextPath = request.getContextPath();
+	
+	//Session내장객체 메모리 영역에 session값 얻기
+	String id_ = (String)session.getAttribute("id");
+	
+	out.print(id_);
+	
+	// 팝업창이 띄워지면서 가지고 오는 펫 정보를 변수에 저장해놓는다
+	eduOrderVo eduordervo = (eduOrderVo)request.getAttribute("eduordervo");
+	
+	int edu_num = eduordervo.getEdu_num();
+	String edu_id = eduordervo.getEdu_id();
+	String edu_name = eduordervo.getEdu_name();
+	String edu_hp = eduordervo.getEdu_hp();
+	String edu_email = eduordervo.getEdu_email();
+	String edu_address1 = eduordervo.getEdu_address1();
+	String edu_address2 = eduordervo.getEdu_address2();
+	String edu_address3 = eduordervo.getEdu_address3();
+	String edu_address4 = eduordervo.getEdu_address4();
+	String edu_address5 = eduordervo.getEdu_address5();
+	String pet_img = eduordervo.getPet_img();
+	String pet_name = eduordervo.getPet_name();
+	String pet_type = eduordervo.getPet_type();
+	int pet_age = eduordervo.getPet_age();
+	int	pet_weight = eduordervo.getPet_weight();
+	String pet_gender = eduordervo.getPet_gender();
+	String pet_op	= eduordervo.getPet_op();
+	String tr_img = eduordervo.getTr_img();
+	String tr_name = eduordervo.getTr_name();
+	String tr_hp = eduordervo.getTr_hp();
+	Date tr_reg_date = eduordervo.getTr_reg_date();
+	Date date1 = eduordervo.getDate1();
+	Date date2 = eduordervo.getDate2();
+	Date date3 = eduordervo.getDate3();
+	Date date4 = eduordervo.getDate4();
+	Date date5 = eduordervo.getDate5();
+	Date date6 = eduordervo.getDate6();
+	Date date7 = eduordervo.getDate7();
+	int edu_cnt = eduordervo.getEdu_cnt();
+	String edu_totalprice = eduordervo.getEdu_totalprice();
+
+	
+	
+	
+	// list를 컨틀롤러에서 받아와서 변수에 저장
+	List<String> list = (List<String>)request.getAttribute("list");
+
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+/* 전체 CSS 설정 */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#cartWrapper {
+
+	border: 1px solid floralwhite;
+	
+	width: 1200px;
+	height: 650px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#cartBox {
+
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	border-radius: 30px;
+	background : floralwhite;
+    box-shadow: 0px 0px 15px 1px #e91e6357;
+	
+}
+
+/* 수강 신청, 타이틀 CSS 설정 */
+#titleBox {
+
+/* 	border: 1px solid floralwhite; */
+	
+	width: 100%;
+	height: 100px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#title {
+
+/* 	border: 1px solid floralwhite; */
+	
+	width: 100%;
+	height: 50px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	line-height: 40px;
+	font-size: 30px;
+    background: pink;
+    border-radius: 10px;
+    color: #e91e63b0;
+    font-weight: bold;
+}
+
+#filter {
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 50px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	line-height: 40px;
+}
+
+#filter>div {
+	border: 1px solid floralwhite;
+	width: calc(100%/ 5);
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	float: left;
+	line-height: 40px;
+	font-size: 25px;
+    background: #f443361c;
+    border-radius: 10px;
+    color : #f4433685;
+}
+
+#filterEdu {
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#filterPet {
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#filterTr {
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#filterPrice {
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+/* 수강 신청 CSS 설정 */
+#eduResultBox {
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 35%;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#eduResultBox>div {
+	float: left;
+}
+
+#eduBox {
+
+	border: 1px solid aliceblue;
+	
+	width: 20%;
+	height: 40px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#eduBox>div {
+
+	border: 1px solid aliceblue;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 1px;
+	right: 0;
+	float: left;
+	width : 78px;
+}
+
+#eduBox>div>a {
+
+	border: 1px solid floralwhite;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+#petBox {
+
+	border: 1px solid aliceblue;
+	
+	width: 20%;
+	height: 40px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#petBox > div {
+
+	border: 1px solid aliceblue;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0px;
+	right: 0;
+	float: left;
+	width : 118px;
+}
+
+#petBox > div > a {
+
+	border: 1px solid aliceblue;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+#trbox {
+
+	border: 1px solid aliceblue;
+	
+	width: 20%;
+	height: 40px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#trbox > div {
+
+	border: 1px solid aliceblue;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 1px;
+	right: 0;
+	float: left;
+	width : 78px;
+}
+
+#trbox > div > a {
+
+	border: 1px solid aliceblue;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+#priceBox {
+
+	border: 1px solid aliceblue;
+	
+	width: 20%;
+	height: 40px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#priceBox > div {
+
+	border: 1px solid aliceblue;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0px;
+	right: 0;
+	float: left;
+	width : 118px;
+}
+
+#priceBox > div > a {
+
+	border: 1px solid aliceblue;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+#InfoBox {
+
+	border: 1px solid aliceblue;
+	
+	width: 20%;
+	height: 40px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#InfoBox > div {
+
+	border: 1px solid aliceblue;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 1px;
+	right: 0;
+	float: left;
+	width : 78px;
+}
+
+#InfoBox > div > a {
+
+	border: 1px solid aliceblue;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+
+/* 늘 봄샵 전체, 타이틀 CSS 설정 */
+#nbshopResultBox {
+
+/* 	border: 1px solid floralwhite; */
+
+	width: 100%;
+	height: calc(100%/ 2);
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#nbshopResultBox>div {
+	float: left;
+}
+
+#nbtitleBox {
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 100px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#nbtitle {
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 50px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	line-height: 40px;
+	font-size : 30px;
+    background: pink;
+    border-radius: 10px;
+    color: #e91e63b0;
+    font-weight: bold;
+}
+
+#nbfilter {
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 50px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	line-height: 40px;
+}
+
+#nbfilter>div {
+	border: 1px solid floralwhite;
+	width: calc(100%/ 4);
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	float: left;
+	line-height: 40px;
+	font-size: 25px;
+    background: #f443361c;
+    border-radius: 10px;
+    color : #f4433685;
+}
+
+#filterMem {
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#filterOrder {
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#filterCost {
+	border: 1px solid floralwhite;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+/* 늘봄샵 내부 CSS 설정	 */
+
+#memBox {
+
+	border: 1px solid aliceblue;
+	
+	width: 25%;
+	height: 40px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#memBox > div {
+
+	border: 1px solid aliceblue;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0px;
+	right: 0;
+	float: left;
+	width : 99px;
+}
+
+#memBox > div > a {
+
+	border: 1px solid aliceblue;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+
+
+#orderBox {
+
+	border: 1px solid aliceblue;
+	
+	width: 30%;
+	height: 40px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#orderBox > div {
+
+	border: 1px solid aliceblue;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 1px;
+	right: 0;
+	float: left;
+	width : 118px;
+}
+
+#orderBox > div > a {
+
+	border: 1px solid aliceblue;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+
+#costBox {
+
+	border: 1px solid aliceblue;
+	
+	width: 25%;
+	height: 40px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#costBox > div {
+
+	border: 1px solid aliceblue;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 1px;
+	right: 0;
+	float: left;
+	width : 148px;
+}
+
+#costBox > div > a {
+
+	border: 1px solid aliceblue;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+#nbInfoBox {
+
+	border: 1px solid aliceblue;
+	
+	width: 20%;
+	height: 40px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#nbInfoBox > div {
+
+	border: 1px solid aliceblue;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 1px;
+	right: 0;
+	float: left;
+	width : 78px;
+}
+
+#nbInfoBox > div > a {
+
+	border: 1px solid aliceblue;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+
+
+
+</style>
 <!--     CSS car.css 추가 -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/cart.css">
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/cart.css"> --%>
 <meta charset="UTF-8">
 <title>intro.jsp</title>
 
@@ -24,68 +783,61 @@
 					<div id="filterPet">반려견 정보</div>
 					<div id="filterTr">훈련사 정보</div>
 					<div id="filterPrice">수강 예약금액</div>
+					<div id="filtermod">비고</div>
 				</div>
 			</div>
 			<div id="eduResultBox">
 				<div id="eduBox">
-					<div id="edu_name" style="width: 23%">
-						<a id="eduName">이름<input id="eduNameInput" type="text"></a>
+					<div id="edu_num" >
+						<a id="eduNum">예약번호</a>
 					</div>
-					<div id="edu_hp" style="width: 37%">
-						<a id="eduHp">전화번호<input id="eduHpInput" type="text"></a>
+					<div id="edu_name" >
+						<a id="eduName">이름</a>
 					</div>
-					<div id="edu_email" style="width: 40%">
-						<a id="eduEmail">이메일<input style="font-size: 11px"
-							id="eduEmailInput" type="text"></a>
-					</div>
-					<div id="edu_address" style="width: 100%">
-						<a id="eduAddress">주소<input style="font-size: 11px"
-							id="eduAddressInput" type="text"></a>
+					<div id="edu_hp" >
+						<a id="eduHp" >전화번호</a>
 					</div>
 				</div>
 				<div id="petBox">
-					<div id="pet_img" style="height: 150px">
-						<a id="petImg">사진<input style="height: 70px; top:10px;" id="petImgInput"
-							type="image" src=""></a>
+					<div id="pet_img" >
+						<a id="petImg">사진</a>
 					</div>
 					<div id="pet_name">
-						<a id="petName">이름<input id="petNameInput" type="text"></a>
+						<a id="petName">이름</a>
 					</div>
-					<div id="pet_type">
-						<a id="petType">견종<input id="petTypeInput" type="text"></a>
-					</div>
-					<div id="pet_age">
-						<a id="petAge">나이<input id="petAgeInput" type="text"></a>
-					</div>
-					<div id="pet_weight">
-						<a id="petWeight">몸무게<input id="petWeightInput" type="text"></a>
-					</div>
-					<div id="pet_gender">
-						<a id="petGender">성별<input id="petGenderInput" type="text"></a>
-					</div>
-					<div id="pet_op">
-						<a id="petOp">중성화여부<input id="petOpInput" type="text"></a>
-					</div>
+
 				</div>
 				<div id="trBox">
 					<div id="tr_img">
-						<a id="trImg">사진<input style="height:105px" id="trImgInput" type="image" src=""></a>
+						<a id="trImg">사진</a>
 					</div>
-					<div id="tr_name" style="height:75px;">
-						<a style="height:40px" id="trName">훈련사<input id="trNameInput" type="text"></a>
+					<div id="tr_name" >
+						<a  id="trName">훈련사</a>
 					</div>
-					<div id="tr_hp" style="height:75px;">
-						<a style="height:40px" id="trHp">전화번호<input id="trHpInput" type="text"></a>
+					<div id="tr_hp" >
+						<a  id="trHp">전화번호</a>
 					</div>
 				</div>
 
 				<div id="priceBox">
 					<div id="edu_cnt">
-						<a id="eduCnt">수강횟수<input id="eduCntInput" type="text"></a>
+						<a id="eduCnt">수강횟수</a>
 					</div>
 					<div id="edu_totalprice">
-						<a id="eduTotalPrice">금액<input id="eduTotalPriceInput"
-							type="text"></a>
+						<a id="eduTotalPrice">금액</a>
+					</div>
+
+				</div>
+				
+				<div id="InfoBox">
+					<div id="edu_info">
+						<a id="eduInfo">상세 보기</a>
+					</div>
+					<div id="Cart_del">
+						<a id="cartDel">삭제하기</a>
+					</div>
+					<div id="Cart_mod">
+						<a id="cartMod">수정하기</a>
 					</div>
 				</div>
 			</div>
@@ -94,48 +846,62 @@
 				<div id="nbtitleBox">
 					<div id="nbtitle">늘봄 샵 정보</div>
 					<div id="nbfilter">
-						<div id="filterMem" style="width: 25%">예약자 정보</div>
-						<div id="filterOrder" style="width: 50%">물품 정보</div>
-						<div id="filterCost" style="width: 25%">금액 정보</div>
+						<div id="filterOrder" style="width : 30%;">물품 정보</div>
+						<div id="filterMem">주문자 정보</div>
+						<div id="filterCost">금액 정보</div>
+						<div id="filterInfo" style="width : 20%;">비고</div>
+						
 					</div>
 				</div>
-				<div id="memBox">
-					<div id="mem_name" style="width: 23%">
-						<a id="memName">이름<input id="memNameInput" type="text"></a>
+
+				<div id="orderBox" >
+					<div id="order_num" >
+						<a id="orderNum">주문번호</a>
 					</div>
-					<div id="mem_hp" style="width: 37%">
-						<a id="memHp">전화번호<input id="memHpInput" type="text"></a>
+					<div id="order_img" >
+						<a id="orderImg">물품사진</a>
 					</div>
-					<div id="mem_email" style="width: 40%">
-						<a id="memEmail">이메일<input style="font-size: 11px"
-							id="memEmailInput" type="text"></a>
-					</div>
-					<div id="mem_address" style="width: 100%">
-						<a id="memAddress">주소<input style="font-size: 11px"
-							id="memAddressInput" type="text"></a>
+					<div id="order_product" >
+						<a id="orderProduct">물품명</a>
 					</div>
 				</div>
-				<div id="orderBox">
-					<div id="order_num" style="width : 15%">
-						<a id="orderNum">주문번호<input id="orderNumInput" type="text"></a>
+				
+				<div id="memBox" >
+					<div id="mem_name" >
+						<a id="memName">이름</a>
 					</div>
-					<div id="order_img" style="width : 15%">
-						<a id="orderImg">물품사진<input id="orderImgInput" type="image"
-							src=""></a>
+					<div id="mem_hp" >
+						<a id="memHp">전화번호</a>
 					</div>
-					<div id="order_product" style="width : 70%">
-						<a id="orderProduct">물품명<input id="orderProductInput"
-							type="text"></a>
+					<div id="mem_email" >
+						<a id="memEmail">이메일</a>
 					</div>
 				</div>
-				<div id="costBox">
+				
+				
+				<div id="costBox" >
 					<div id="order_cpt">
-						<a id="orderCpt">수량<input id="orderCptInput" type="text"></a>
+						<a id="orderCpt">수량</a>
 					</div>
 					<div id="order_price">
-						<a id="orderPrice">금액<input id="orderPriceInput" type="text"></a>
+						<a id="orderPrice">금액</a>
+					</div>
+
+				</div>
+		
+				<div id="nbInfoBox">
+					<div id="order_Info">
+						<a id="orderInfo">상세보기</a>
+					</div>
+				
+					<div id="nbCart_del">
+						<a id="nbcartDel">삭제하기</a>
+					</div>
+					<div id="nbCart_mod">
+						<a id="nbcartMod">수정하기</a>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>
