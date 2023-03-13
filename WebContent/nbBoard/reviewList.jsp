@@ -78,6 +78,39 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
+      
+      .card-text{
+      font-size: 20px;
+/*       padding: 1rem; */
+ 
+      /* 추가하기 */
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+     -webkit-box-orient: vertical; 
+      overflow: hidden;
+      }
+      
+      .card-content__more-btn {
+  appearance: none;
+  border: 1px solid black;
+  padding: 0.5em;
+  border-radius: 0.25em;
+  cursor: pointer;
+  margin: 1rem;
+    }
+
+    .card-content__more-btn::before {
+      content: '더보기';
+    }
+    
+    .card-content__more-btn:checked::before {
+      content: '닫기';
+    }
+    
+    .card-text:has(+ .card-content__more-btn:checked) {
+      -webkit-line-clamp:unset
+    }
+      
     </style>
 
     
@@ -141,7 +174,8 @@
           <div class="card shadow-sm">
            <img alt="dd" src="<%=reviewUploadPath%>${review.img}" style="height: 300px; object-fit: contain;">
             <div class="card-body">
-              <p class="card-text" style="font-size: 15">${review.title}</p>
+              <p class="card-text" style="font-size: 15;margin-bottom: 0">${review.title}</p>
+              <input type="checkbox" class="card-content__more-btn">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
