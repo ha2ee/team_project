@@ -24,7 +24,7 @@ public class AdminController extends HttpServlet {
 
 		TrainerBoardDAO trainerboarddao;
 		TrainerDAO trainerdao;
-		TrainerVo trainerVo;
+		TrainerVo trainerVO;
 		
 		MemberDAO memberDAO;
 		MemberVo memberVO;
@@ -36,7 +36,8 @@ public class AdminController extends HttpServlet {
 			adminDAO = new AdminDAO();
 			memberDAO = new MemberDAO();
 			memberVO = new MemberVo();
-		
+			trainerVO = new TrainerVo();
+			trainerdao = new TrainerDAO();
 		}
 		
 		
@@ -73,6 +74,13 @@ public class AdminController extends HttpServlet {
 			id = (String) session.getAttribute("id");			
 			
 			if (action.equals("/adminMain")) {
+				
+				List<MemberVo> list = adminDAO.selectAllMember();
+				request.setAttribute("membersList", list);
+				
+				List<TrainerVo> trList = adminDAO.selectTrAllMember();
+				request.setAttribute("trMembersList", trList);
+				
 				nextPage = "/nbAdmin/adminMain.jsp";
 				
 			} else if(action.equals("/memManage.adm")) {
@@ -129,7 +137,45 @@ public class AdminController extends HttpServlet {
 				System.out.println(memberVO.getMem_id());
 				adminDAO.memUpdate(memberVO);
 				
-				out.print("<script>location.href='/TeamProject/adm/adminMain'</script>");
+				out.print("<script>location.href='/TeamProject/adm/memDetail.adm?memberID="+memberVO.getMem_id()+"'</script>");
+				return;
+			
+			} else if (action.equals("/trManage.adm")) {
+				List<TrainerVo> list = adminDAO.selectTrAllMember();
+				
+				center = "/nbAdmin/adminTrMem.jsp";
+				
+				request.setAttribute("center", center);
+				request.setAttribute("trMembersList", list);
+				
+				nextPage = "/nbAdmin/adminMain.jsp";
+				
+			} else if (action.equals("/trMemDetail.adm")) {
+				String trMemID = request.getParameter("trMemberID");
+
+				trainerVO = trainerdao.trainerOne(trMemID);
+				
+				center = "/nbAdmin/adminTrMemDetail.jsp";
+				
+				request.setAttribute("center", center);
+				request.setAttribute("trainerVo", trainerVO);
+				
+				nextPage = "/nbAdmin/adminMain.jsp";
+			
+			} else if (action.equals("/trUpdatePro.adm")) {
+				//트레이너정보업데이트
+				trainerVO.setTr_id(request.getParameter("id"));
+				trainerVO.setTr_pw(request.getParameter("pass"));
+				trainerVO.setTr_email(request.getParameter("email"));
+				trainerVO.setTr_hp(request.getParameter("hp"));
+				trainerVO.setTr_address1(request.getParameter("address1"));
+				trainerVO.setTr_address2(request.getParameter("address2"));
+				trainerVO.setTr_address3(request.getParameter("address3"));
+				trainerVO.setTr_address4(request.getParameter("address4"));
+				trainerVO.setTr_address5(request.getParameter("address5"));
+				adminDAO.trUpdate(trainerVO);
+				
+				out.print("<script>location.href='/TeamProject/adm/trMemDetail.adm?trMemberID="+trainerVO.getTr_id()+"'</script>");
 				return;
 			}
 			

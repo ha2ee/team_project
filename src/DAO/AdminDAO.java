@@ -96,8 +96,46 @@ public class AdminDAO {
 			closeResource();
 		}
 		 return list;
-	
 	}	
+	
+	// 모든 회원 조회
+	public List<TrainerVo> selectTrAllMember () {
+		 List<TrainerVo> list = new ArrayList<>();
+		 
+		 try {
+            con = ds.getConnection();
+            String query = "SELECT * from member_trainer";
+            pstmt = con.prepareStatement(query);
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+            	trainerVO = new TrainerVo();
+            	trainerVO.setTr_id(rs.getString("tr_id"));
+            	trainerVO.setTr_name(rs.getString("tr_name"));
+            	trainerVO.setTr_img(rs.getString("tr_img"));
+            	trainerVO.setTr_pw(rs.getString("tr_pw"));
+            	trainerVO.setTr_email(rs.getString("tr_email"));
+            	trainerVO.setTr_hp(rs.getString("tr_hp"));
+            	trainerVO.setTr_birth(rs.getString("tr_birth"));
+            	trainerVO.setTr_gender(rs.getString("tr_gender"));
+            	trainerVO.setTr_joindate(rs.getDate("tr_joindate"));
+            	trainerVO.setTr_address1(rs.getString("tr_address1"));
+            	trainerVO.setTr_address2(rs.getString("tr_address2"));
+            	trainerVO.setTr_address3(rs.getString("tr_address3"));
+            	trainerVO.setTr_address4(rs.getString("tr_address4"));
+            	trainerVO.setTr_address5(rs.getString("tr_address5"));
+            	list.add(trainerVO);
+            }
+		 }catch (SQLException e) {
+			System.out.println("selectAllMember메소드에서 오류");
+			e.printStackTrace();
+			
+		} finally {
+			closeResource();
+		}
+		 return list;
+	}		
+	
+	
 	
 	//일반회원 닉네임 체크
 	public boolean checkMemNick(String nick) {
@@ -105,8 +143,7 @@ public class AdminDAO {
 		boolean memResult = false;
 		try {
 			con = ds.getConnection();
-			System.out.println(nick);
-
+			
 			String sql = "SELECT MEM_NICK FROM YS_MEMBER WHERE MEM_NICK=?";
 			
 			pstmt = con.prepareStatement(sql);
@@ -122,7 +159,6 @@ public class AdminDAO {
 		}finally {
 			closeResource();
 		}
-		
 		return memResult;
 	}
 	 
@@ -149,16 +185,34 @@ public class AdminDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
 				closeResource();
-			} catch (Exception e) {
-				System.out.println("memUpdate메소드 내부에서 SQL실행 오류" + e );
-				e.printStackTrace();
-			}	
 		}
-		
 	}
-		
+
+	//트레이너 정보 수정
+		public void trUpdate(TrainerVo vo) {
+			
+			try {
+				con = ds.getConnection();
+				
+				String query = "update MEMBER_TRAINER set TR_PW='" + vo.getTr_pw() + "',"
+													  + " TR_EMAIL='" + vo.getTr_email() + "',"
+													  + " TR_HP='" + vo.getTr_hp() + "',"
+	            					   				  + " TR_ADDRESS1='" + vo.getTr_address1() + "',"
+	            					   				  + " TR_ADDRESS2='" + vo.getTr_address2() + "',"
+	            					   				  + " TR_ADDRESS3='" + vo.getTr_address3() + "',"
+	            					   				  + " TR_ADDRESS4='" + vo.getTr_address4() + "',"
+	            					   				  + " TR_ADDRESS5='" + vo.getTr_address5() + "'"
+													  + " WHERE TR_ID ='"+ vo.getTr_id() +"'";
+				pstmt = con.prepareStatement(query);
+				pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+					closeResource();
+			}
+		}
 	
 
 }

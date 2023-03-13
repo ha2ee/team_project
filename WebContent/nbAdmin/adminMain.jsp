@@ -19,12 +19,12 @@
 <body>
 	<div class="container">
 		<aside class="sidebar">
-			<h2>관리자</h2>
+			<h2><a href="${contextPath}/adm/adminMain">관리자</a></h2>
 			<ul class="menu">
 				<li><a href="${contextPath}/nb/Main">늘봄홈페이지로 돌아가기</a></li>
 				<li><a href="${contextPath}/adm/adminMain">관리자 메인으로</a></li>
 				<li><a href="${contextPath}/adm/memManage.adm">회원 리스트 관리</a></li>
-				<li><a href="#">훈련사 리스트 관리</a></li>
+				<li><a href="${contextPath}/adm/trManage.adm">훈련사 리스트 관리</a></li>
 				<li><a href="#" class="board_manage">게시판 관리</a>
 					<ul class="submenu">
 						<li><a href="#">자유게시판</a></li>
