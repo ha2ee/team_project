@@ -71,8 +71,7 @@ public class ReviewDAO {
         vo.setImg(rs.getString("img"));
         vo.setImgRealName(rs.getString("imgRealName"));
         vo.setTitle(rs.getString("title"));
-        
-        System.out.println(vo.getImg());
+        vo.setReview_date(rs.getDate("review_date"));
         list.add(vo);
       }
 
@@ -91,7 +90,7 @@ public class ReviewDAO {
     try {
       con = ds.getConnection();
       
-      String sql = "INSERT INTO REVIEW VALUES(REVIEW_SEQ.NEXTVAL,?,?,?,?,?)";
+      String sql = "INSERT INTO REVIEW VALUES(REVIEW_SEQ.NEXTVAL,?,?,?,?,?,sysdate)";
       pstmt = con.prepareStatement(sql);
       pstmt.setString(1, vo.getId());
       pstmt.setString(2, vo.getImg());

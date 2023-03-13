@@ -82,7 +82,7 @@
 
     
   </head>
-  <body>
+  <body style="font-size: 15px;">
     
 <header>
   <div class="collapse bg-dark" id="navbarHeader">
@@ -139,7 +139,7 @@
   <c:forEach var="review" items="${requestScope.list}">
         <div class="col item">
           <div class="card shadow-sm">
-           <img alt="dd" src="<%=reviewUploadPath%>${review.img}">
+           <img alt="dd" src="<%=reviewUploadPath%>${review.img}" style="height: 300px; object-fit: contain;">
             <div class="card-body">
               <p class="card-text" style="font-size: 15">${review.title}</p>
               <div class="d-flex justify-content-between align-items-center">
@@ -147,7 +147,7 @@
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 </div>
-                <small class="text-muted">9 mins</small>
+                <small class="text-muted">${review.review_date}</small>
               </div>
             </div>
           </div>
@@ -174,6 +174,23 @@
           </div>
         </div>
 <!------------------------- 반복 되는 부분인 듯? ------------------------->
+        <div class="col item">
+          <div class="card shadow-sm">
+<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+            <img alt="" src="../images/review_3.jpg">
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         
         <div class="col item">
           <div class="card shadow-sm">
@@ -192,10 +209,10 @@
             </div>
           </div>
         </div>
+        
         <div class="col item">
           <div class="card shadow-sm">
-<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-            <img alt="" src="../images/review_3.jpg">
+            <img alt="" src="../images/review_2.jpg" style="height: 200px; object-fit: cover;">
             <div class="card-body">
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">

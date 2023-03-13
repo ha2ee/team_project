@@ -60,7 +60,7 @@ public class ReviewController extends HttpServlet {
     // 서블릿으로 요청한 주소를 request에서 얻기
     String action = request.getPathInfo();// 2단계 요청 주소
     System.out.println("요청한  주소 : " + action);
-
+    String contextPath = request.getContextPath();
     // 조건에 따라서 포워딩 또는 보여줄 VIEW주소 경로를 저장할 변수
     String nextPage = null;
     // 요청한 중앙화면 뷰 주소를 저장할 변수
@@ -125,18 +125,15 @@ public class ReviewController extends HttpServlet {
       vo.setTitle(title);
       vo.setContext(content);
       int result = reviewdao.insertReview(vo);
+      System.out.println(result);
       
-      if(result ==1) {
-        out.println("<script>");
-        out.println("alert('작성 성공!')");
-        out.println("</script>");
-      } else {
-        out.println("<script>");
-        out.println("alert('작성 실패!')");
-        out.println("</script>");
-      }
-       nextPage = "/review/list.rv";
-       break;
+      out = response.getWriter();
+      out.print("<script>");
+      out.print(" alert( '" +result+" 글 추가 성공!' );");
+      out.print(" location.href='"+ contextPath +"/review/list.rv'");
+      out.print("</script>");
+      
+       return;
 //========================글을  작성하는 작업/writePro.fb =============================
         
       default:

@@ -1,8 +1,11 @@
 package VO;
 
+import java.util.Date;
+
 public class ReviewVo {
   int idx;
   String id, img, imgRealName,title,context;
+  Date review_date;
   
   public ReviewVo() {
   }
@@ -54,5 +57,14 @@ public class ReviewVo {
   public void setContext(String context) {
     this.context = context;
   }
+
+  public Date getReview_date() {
+    return review_date;
+  }
+
+  public void setReview_date(Date review_date) {
+    this.review_date = review_date;
+  }
+
   
 }
