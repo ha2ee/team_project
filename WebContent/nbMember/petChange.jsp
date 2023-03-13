@@ -257,17 +257,6 @@
 			</div>
 		
 		</div>
-		
-		
-		<%
-		if(p_name == ""){
-		%>	
-			<h1> 애완견 정보를 등록하여 주세요</h1>
-		
-		<% 	
-		}	
-		%>
-		
 		<div class="rightBlock">
 			
 			<div class="petBtn">
@@ -299,7 +288,7 @@
 				</dt>
 				<dd class="name_dd">
 					<div class="name_div">
-						<p name="p_name" class="p_name" ><%=p_name%></p>
+						<input type="text" name="p_name" class="p_name" value="<%=p_name%>">
 					</div>
 				</dd>				
 				<dt class="age_dt">
@@ -307,7 +296,7 @@
 				</dt>
 				<dd class="age_dd">
 					<div class="age_div">
-						<p type="text" name="p_age" class="p_age">&nbsp;<%=p_age%>세</p>
+						<input type="text" name="p_age" class="p_age" value="<%=p_age%>">&nbsp;세
 					</div>
 				</dd>				
 				<dt class="weight_dt">
@@ -315,7 +304,7 @@
 				</dt>
 				<dd class="weight_dd">
 					<div class="weight_div">
-						<p type="text" name="p_weight" class="p_weight" >&nbsp;<%=p_weight%>kg</p>
+						<input type="text" name="p_weight" class="p_weight" value="<%=p_weight%>">&nbsp;kg
 					</div>
 				</dd>				
 				<dt class="type_dt">
@@ -323,7 +312,7 @@
 				</dt>
 				<dd class="type_dd">
 					<div class="type_div">
-						<p type="text" name="p_type" class="p_type" ><%=p_type%></p>
+						<input type="text" name="p_type" class="p_type" value="<%=p_type%>">
 					</div>
 				</dd>				
 				
@@ -332,8 +321,12 @@
 				</dt>
 				<dd class="gender_dd">
 					<div class="gender_div">
-						<p class="p_gender" name="p_gender" id="p_gender"><%=p_gender%></p>
+						<select class="p_gender" name="p_gender" id="p_gender" value="<%=p_gender%>">
+							<option value="gen0">선택</option>
+							<option value="gen1">남아</option>
+							<option value="gen2">여아</option>
 						</select>
+					<input id="hidden_gen" type="hidden" value="<%=p_gender%>">
 					</div>
 				</dd>				
 				
@@ -342,7 +335,11 @@
 				</dt>
 				<dd class="op_dd">
 					<div class="op_div">
-						<p class="p_op" name="p_op" id="p_op"><%=p_op%></p>
+						<select class="p_op" name="p_op" id="p_op" value="<%=p_op%>">
+							<option value="op0">선택</option>
+							<option value="op1">했음</option>
+							<option value="op2">안했음</option>
+					<input id="hidden_op" type="hidden" value="<%=p_op%>">
 						</select>
 						
 					</div>
@@ -352,16 +349,47 @@
 				</dt>
 				<dd class="btn_dd">
 					<div class="saveBtn">
-						<a id="backBtn" href="<%=contextPath%>/member/petChange.me" class="roundBtn whiteBtn">정보 수정하기</a>				
+						<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">취소하기</a>				
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a id="changeBtn" href="<%=contextPath%>/member/petJoin.me" class="roundBtn blueBtn">애완견 등록하기</a>
+						<a id="changeBtn" href="#" class="roundBtn blueBtn">저장</a>
 					</div>
 				</dd>				
+			
+				
 			</dl>
+		
+		
 		</div>
 	</div>
 
 	<script type="text/javascript">
+	
+		$(function() {
+			
+			if($("#hidden_gen").val() == "남아" ){
+
+				$("#p_gender").val("gen1").prop("selected", true);
+					
+			}else{
+				
+				$("#p_gender").val("gen2").prop("selected", true);
+				
+			}
+			
+			
+			if($("#hidden_op").val() == "했음" ){
+
+				$("#p_op").val("op1").prop("selected", true);
+					
+			}else{
+				
+				$("#p_op").val("op2").prop("selected", true);
+			
+				
+			}
+		});
+		
+	
 	
 		  $("#backBtn").mouseover(function(){
 

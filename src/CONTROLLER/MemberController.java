@@ -248,7 +248,6 @@ public class MemberController extends HttpServlet {
 
 			String tr_id = request.getParameter("id");
 			String tr_name = request.getParameter("name");
-			String tr_img = request.getParameter("imageFileName");
 			String tr_pw = request.getParameter("pass");
 			String tr_email = request.getParameter("email");
 			String tr_hp = request.getParameter("hp");
@@ -262,7 +261,6 @@ public class MemberController extends HttpServlet {
 					 TrainerVo tr_vo = new TrainerVo();
 					  tr_vo.setTr_id(tr_id);
 					  tr_vo.setTr_name(tr_name);
-					  tr_vo.setTr_img(tr_img);
 					  tr_vo.setTr_pw(tr_pw);
 					  tr_vo.setTr_email(tr_email);
 					  tr_vo.setTr_hp(tr_hp);
@@ -507,7 +505,35 @@ public class MemberController extends HttpServlet {
 		
 		// 메인화면 view 주소
 		nextPage = "/nbMain.jsp";
+	
+	} else if(action.equals("/member/petChange.me")) {
+		
+		
+		
+		request.setAttribute("center", "nbMember/petChange.jsp");
+		
+		// 메인화면 view 주소
+		nextPage = "/nbMain.jsp";
+	}else if (action.equals("/petChange.me")) {
+		
+		System.out.println("nbMemberController -> /petChange.me 요청!");
+		
+		HttpSession session = request.getSession();
+		String memberid	= (String)session.getAttribute("id");
+		
+		
+		MemberVo mem_vo = memberdao.memRead(memberid);
+		PetVo pet_vo = memberdao.petRead(memberid);
+		request.setAttribute("mem_vo", mem_vo);
+		request.setAttribute("pet_vo", pet_vo);
+		request.setAttribute("center", "nbMember/petChange.jsp");
+		
+		// 메인화면 view 주소
+		nextPage = "/nbMain.jsp";
+	
 	}
+		
+		
 		// 포워딩 (디스패처 방식)
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);

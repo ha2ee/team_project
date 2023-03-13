@@ -168,8 +168,8 @@
 			width: 100%;
    		 	display: inline-block;
     		position: relative;
-			margin-left: 97px;
-			margin-top: -140px;
+			margin-left: 90px;
+			margin-top: -100px;
 			font-size: 13px;
 		}
 		

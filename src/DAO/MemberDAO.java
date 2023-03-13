@@ -241,8 +241,8 @@ public class MemberDAO {
 			con = ds.getConnection();
 			//매개변수로 전달 받는 MemberVo객체의 각변수에 저장된 값들을 얻어
 			//insert문장 완성하기
-			String sql = "INSERT INTO MEMBER_TRAINER(TR_ID, TR_NAME, TR_PW, TR_EMAIL, TR_HP, TR_BIRTH, TR_GENDER, TR_ADDRESS1,TR_ADDRESS2,TR_ADDRESS3,TR_ADDRESS4,TR_ADDRESS5, TR_IMG) "
-					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
+			String sql = "INSERT INTO MEMBER_TRAINER(TR_ID, TR_NAME, TR_PW, TR_EMAIL, TR_HP, TR_BIRTH, TR_GENDER, TR_ADDRESS1,TR_ADDRESS2,TR_ADDRESS3,TR_ADDRESS4,TR_ADDRESS5) "
+					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			System.out.println("이미지"+tr_vo.getTr_img());
 			
@@ -260,7 +260,6 @@ public class MemberDAO {
 			pstmt.setString(10, tr_vo.getTr_address3());
 			pstmt.setString(11, tr_vo.getTr_address4());
 			pstmt.setString(12, tr_vo.getTr_address5());
-			pstmt.setString(13, tr_vo.getTr_img());
 			
 		
 			
