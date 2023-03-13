@@ -1,3 +1,4 @@
+<%@page import="VO.CommentVO"%>
 <%@page import="DAO.FreeBoardDAO"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="javax.xml.stream.events.Comment"%>
@@ -11,7 +12,9 @@
   request.setCharacterEncoding("UTF-8");
    String contextPath = request.getContextPath();
   FreeBoardVo vo = (FreeBoardVo) request.getAttribute("vo");
-
+  CommentVO cvo = (CommentVO) request.getAttribute("id");
+ 
+		  
   int idx = vo.getB_idx();
   String title = vo.getB_title();
   String content = vo.getB_content();
@@ -210,7 +213,7 @@
  <!-- 댓글수정 -->
  	<script type="text/javascript">
  	
- 	function updateviewBtn()
+ 	function updateviewBtn();
  	
  	
  	</script>
@@ -233,18 +236,19 @@
 			<tr>
 				<td>
 				<!-- 댓글 표시&수정창 -->
-					<textarea id="updateActive" rows="3" cols="60" disabled="disabled">${ cdto.content }</textarea>
-				
-					
+					<textarea id="updateActive" rows="3" cols="60" disabled="disabled">${cdto.content}</textarea>
 					<span>${ cdto.name }. ${ cdto.regdate }</span>
 				</td>
 				<td>
+		<!-- 댓글 작성자만 수정/삭제 버튼이 보이게 처리 c:if -->
+		<c:if test="${ id eq cdto.id}">
 				<input id="update" type="button" value="수정하기" onclick="updateActive();" class="btn btn-default" >
 				
 				<input id="updatePro" type="button" value="수정완료" class="btn btn-default" 
 						onclick="location.href='<%=contextPath%>/freeboard/upComment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
 					<input type="button" value="삭제하기" class="btn btn-default" 
 						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
+		</c:if>
 				</td>
 			</tr>
 		</c:forEach>	
