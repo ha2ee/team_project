@@ -390,7 +390,7 @@
     height: 40px;
     position: relative;
     margin: 0 auto;
-    top: -13px;
+    top: -14px;
     left: -35px;
     right: 0;
     font-size: 15px;
@@ -2476,7 +2476,7 @@ border: 1px solid #e8d0d01f;
     top: 30px;
 	left: 0;
 	right: 0;
-	border-radius: 30px;
+	border-radius: 13px;
 	background : #f2dede29;
     box-shadow: 0px 0px 15px 1px #ccc;
 
@@ -2488,7 +2488,7 @@ border: 1px solid #e8d0d01f;
 
 	position: relative;
 	margin: 0 auto;
-    top: 5px;
+    top: 0px;
     left: 0;
     right: 0;
     float: left;
@@ -2515,12 +2515,12 @@ border: 1px solid #e8d0d01f;
 
 	border : 1px solid #f2dede20;
 	
-    width: 33%;
+    width : calc(100%/3);
     height: 70px;
     position: relative;
     margin: 0 auto;
     top: 0;
-    left: 6px;
+    left: 0;
     right: 0;
     float: left;
     border-radius : 5px;
@@ -2629,6 +2629,33 @@ border: 1px solid #e8d0d01f;
 	
 }
 
+#preview {
+
+	width : 300px;
+	height : 300px;
+	position : fixed;
+	margin : 0 auto;
+	left : 390px;
+	right : 0;
+	top : 430px;
+	border-radius: 20px;
+
+}
+
+#preview > img {
+	
+	width : 300px;
+	height : 300px;
+	position : relative;
+	margin : 0 auto;
+	left : 0;
+	right : 0;
+	top : 0;
+	border-radius: 80px;
+	box-shadow: 0px 0px 15px 5px pink;
+
+}
+
 </style>
 <!--     CSS car.css 추가 -->
 <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/cart.css"> --%>
@@ -2645,10 +2672,6 @@ $(document).ready(function(){
 	for(var i=1; i < ${vector.size()}; i++){
 		
 	}
-
-	
-	
-	
 	
 	
 })
@@ -2761,7 +2784,7 @@ $(document).ready(function(){
 				<!--반려견 사진 -->
 				<div id="pet_img_box">	
 					<div id="pet_img${j}">
-						<input type="image" id="petImg${j}" src="<%=request.getContextPath()%>/nbShop/img/${vo.pet_img}"  readonly="readonly" />
+						<input type="image" class="gallery"  id="petImg${j}" src="<%=request.getContextPath()%>/nbShop/img/${vo.pet_img}"  readonly="readonly" />
 					</div>
 				</div>
 				
@@ -2775,7 +2798,7 @@ $(document).ready(function(){
 				<!--훈련사 사진 -->
 				<div id="tr_img_box">
 					<div id="tr_img${j}">
-						<input type="image" id="trImg${j}" src="<%=request.getContextPath()%>/nbShop/img/${vo.tr_img}" readonly="readonly" />
+						<input type="image" class="gallery" id="trImg${j}" src="<%=request.getContextPath()%>/nbShop/img/${vo.tr_img}" readonly="readonly" />
 					</div>
 				</div>
 				
@@ -2917,7 +2940,7 @@ $(document).ready(function(){
 				<!-- 물품 사진 -->
 				<div id="order_img_box">
 					<div id="order_img1">
-						<input type="image" id="orderImg1"  src="" readonly="readonly"  />
+						<input type="image" class="gallery" id="orderImg1"  src="" readonly="readonly"  />
 					</div>
 				</div>
 				
@@ -3005,14 +3028,14 @@ $(document).ready(function(){
 				<a id="total_price" style="height:100%; font-size: 30px; line-height: 65px;">결제 할 금액</a>
 			</div>
 			<div id ="edu_shop_price">
-				<a style="width: 50% ">수강 금액</a>
+				<a style="width: 50% " >수강 금액</a>
 				<a style="width: 50% ">샵 금액</a>
-				<input id="eduPrice" type="text" value="수강 금액" />
-				<input type="text" value="샵 금액" />
+				<input id="eduPrice" type="text" value="수강 금액" readonly="readonly" />
+				<input type="text" value="샵 금액" readonly="readonly"  />
 			</div>
 			<div id="edu_shop_total_price">
 				<a>총 금액</a>
-				<input type="text" value="총금액" />
+				<input type="text" value="총금액" readonly="readonly"  />
 			</div>
 		</div>
 
@@ -3035,5 +3058,29 @@ $(document).ready(function(){
 	<br>
 	<br>
 	</form>
+	
+<script type="text/javascript">
+// 이미지 미리보기 
+//마우스 오버시 preview 생성
+$(document).on("mouseover",".gallery",function(e){
+    var input_data = $(this).data("input");
+    var add_caption = (input_data != undefined) ? "<br/>" + input_data : "" ;
+    $("#middle").append("<p id='preview'><img src='"+ $(this).attr("src") +"' width='400px' />"+ add_caption +"</p>");
+    $("#preview")
+    .css("z-index", "5")
+    .fadeIn("fast");
+});
+
+//마우스 이동시 preview 이동
+$(document).on("mousemove",".gallery",function(e){
+    $("#preview")
+
+});
+
+// 마우스 아웃시 preview 제거
+$(document).on("mouseout",".gallery",function(){
+    $("#preview").remove();
+});
+</script>
 </body>
 </html>
