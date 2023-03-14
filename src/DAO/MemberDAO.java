@@ -847,7 +847,7 @@ public class MemberDAO {
 		return tr_vo;
 	}
 
-	public boolean petJoin(PetVo petVo) {
+	public boolean petJoin(PetVo pet_vo) {
 		
 		try {
 			
@@ -860,14 +860,14 @@ public class MemberDAO {
 			String sql = "INSERT INTO PET(P_NAME, P_AGE, P_GENDER, P_TYPE, P_OP, P_WEIGHT, P_IMG, P_MEM_ID) "
 					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, petVo.getP_name());
-			pstmt.setInt(2, petVo.getP_age());
-			pstmt.setString(3, petVo.getP_gender());
-			pstmt.setString(4, petVo.getP_type());
-			pstmt.setString(5, petVo.getP_op());
-			pstmt.setInt(6, petVo.getP_weight());
-			pstmt.setString(7, petVo.getP_img());
-			pstmt.setString(8, petVo.getP_mem_id());
+			pstmt.setString(1, pet_vo.getP_name());
+			pstmt.setInt(2, pet_vo.getP_age());
+			pstmt.setString(3, pet_vo.getP_gender());
+			pstmt.setString(4, pet_vo.getP_type());
+			pstmt.setString(5, pet_vo.getP_op());
+			pstmt.setInt(6, pet_vo.getP_weight());
+			pstmt.setString(7, pet_vo.getP_img());
+			pstmt.setString(8, pet_vo.getP_mem_id());
 				
 			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
 			pstmt.executeUpdate();
@@ -914,6 +914,43 @@ public class MemberDAO {
 			closeResource();
 		}
 		return pet_vo;
+	}
+
+	public int petInfoChange(String p_name, String p_age, String p_weight, String p_type, String p_gender, String p_op, String P_mem_id) {
+		
+		int result = 0; //
+		
+		try {
+			con = ds.getConnection();
+			
+			String query = "update PET set p_name='" + p_name + "',"
+									   + " p_age='" + p_age + "',"
+									   + " p_weight='" + p_weight + "',"
+					   				   + " p_type='" + p_type + "',"
+					   				   + " p_gender='" + p_gender + "',"
+					   				   + " p_op='" + p_op + "'"
+									   + " WHERE P_mem_id ='"+ P_mem_id +"'";
+
+			
+			pstmt = con.prepareStatement(query);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("petInfoChange메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+		}
+		
+		
+		return result;
 	}
 		
 		

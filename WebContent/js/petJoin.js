@@ -85,31 +85,43 @@
 
     	//====================================================================================================
 
-	    	if($("#p_gender").val() == "선택"){
-		    	$("#genderInput").text("성별을 선택해주세요!").css("color","red");
-	    		$("#p_gender").focus();
-		    	return false;
-	    	
-	    	}else{
-    	    	$("#genderInput").text("");
-    		}
-	   
-	    	//====================================================================================================
-	    	
-	    	if($("#p_op").val() == "선택"){
-	    		$("#opInput").text("중성화 수술을 했나요?").css("color","red");
-	    		$("#p_op").focus();
-	    		return false;
-	    		
-	    	}else{
-	    		$("#opInput").text("");
-	    	}
-	    	
-	
-	    	
-   	    	alert("애완견 정보가 등록 되었습니다.");
-   	    	
-   	    	
-   	    	$("form").submit();
+    	if($("#p_gender").val() == "선택"){
+	    	$("#genderInput").text("성별을 선택해주세요!").css("color","red");
+    		$("#p_gender").focus();
+	    	return false;
+    	
+    	}else{
+	    	$("#genderInput").text("");
+		}
+   
+    	//====================================================================================================
+    	
+    	if($("#p_op").val() == "선택"){
+    		$("#opInput").text("중성화 수술을 했나요?").css("color","red");
+    		$("#p_op").focus();
+    		return false;
+    		
+    	}else{
+    		$("#opInput").text("");
+    	}
+    	
+
+    	
+    	alert("애완견 정보가 등록 되었습니다.");
+    	
+    	
+    	$("form").submit();
 	}
 		
+	function petInfoChange(){
+		
+		
+		
+    	$("form").submit();
+		
+	}
+
+
+
+	
+	

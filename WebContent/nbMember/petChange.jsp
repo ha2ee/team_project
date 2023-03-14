@@ -234,161 +234,167 @@
 	a:hover {
  	 	text-decoration: none;
 	}
+	
+	.title{
+	    margin-bottom: 15px;
+    	font-weight: bold;
+		font-size: 21px;
+	}
+	
+	
 </style>
 
 </head>
 <body>
-	<div class="pet_total">
-		<hr>
-		
-		<div class="leftBlock">
-			<div class= "userInfo">
-				<div class="profile">
-					<img src="<%=contextPath%>/images/profile.png" class="userImg">
-				</div>
-			</div>
-			<div class="user" >
-				<div class="userName"><%=mem_name%>님</div>
-				<div class="userId">(<%=id%>)</div>
-				<div class="infoBtn">
-					<a href="<%=contextPath%>/member/info.me" class="myInfo">내 정보</a>
-					<a href="<%=contextPath%>/member/petInfo.me" class="petInfo">반려견 정보</a>
-				</div>
-			</div>
-		
-		</div>
-		<div class="rightBlock">
+	<form action="<%=contextPath%>/member/petChangePro.me">	
+		<div class="pet_total">
+			<hr>
 			
-			<div class="petBtn">
-				<button class="Info" id="Info1" >반려견 정보1</button>
-				<button class="Info" id="Info2" >반려견 정보2</button>
-				<button class="Info" id="Info3" >반려견 정보3</button>
+			<div class="leftBlock">
+				<div class= "userInfo">
+					<div class="profile">
+						<img src="<%=contextPath%>/images/profile.png" class="userImg">
+					</div>
+				</div>
+				<div class="user" >
+					<div class="userName"><%=mem_name%>님</div>
+					<div class="userId">(<%=id%>)</div>
+					<div class="infoBtn">
+						<a href="<%=contextPath%>/member/info.me" class="myInfo">내 정보</a>
+						<a href="<%=contextPath%>/member/petInfo.me" class="petInfo">반려견 정보</a>
+					</div>
+				</div>
+			
 			</div>
-			<dl class="teble">
-				<dt class="img_dt">
-					<span>사진</span>
-				</dt>
-				<dd class="img_dd">
-					<div class="upload">
-						<div style="border: 1px solid #d7d7d7;
-					                width: 140px;
-					                height: 140px;">
-							 <span>  
-							    <img id="p_img" class="p_img" src="<%=contextPath%>/images/pet.png">
-							 </span>	
-					     	
-					     	<div class="imgBtn">
-						     	<input type="file"  name="imageFileName"  onchange="readURL(this);" />
+			<div class="rightBlock">
+				<div class="title">
+					<p>정보 수정</p>
+				</div>
+				<dl class="teble">
+					<dt class="img_dt">
+						<span>사진</span>
+					</dt>
+					<dd class="img_dd">
+						<div class="upload">
+							<div style="border: 1px solid #d7d7d7;
+						                width: 140px;
+						                height: 140px;">
+								 <span>  
+								    <img id="p_img" class="p_img" src="<%=contextPath%>/images/pet.png">
+								 </span>	
+						     	
+						     	<div class="imgBtn">
+							     	<input type="file"  name="imageFileName"  onchange="readURL(this);" />
+								</div>
 							</div>
 						</div>
-					</div>
-				</dd>
-				<dt class="name_dt">
-					<span>이름</span>
-				</dt>
-				<dd class="name_dd">
-					<div class="name_div">
-						<input type="text" name="p_name" class="p_name" value="<%=p_name%>">
-					</div>
-				</dd>				
-				<dt class="age_dt">
-					<span>나이</span>
-				</dt>
-				<dd class="age_dd">
-					<div class="age_div">
-						<input type="text" name="p_age" class="p_age" value="<%=p_age%>">&nbsp;세
-					</div>
-				</dd>				
-				<dt class="weight_dt">
-					<span>몸무게</span>
-				</dt>
-				<dd class="weight_dd">
-					<div class="weight_div">
-						<input type="text" name="p_weight" class="p_weight" value="<%=p_weight%>">&nbsp;kg
-					</div>
-				</dd>				
-				<dt class="type_dt">
-					<span>견종</span>
-				</dt>
-				<dd class="type_dd">
-					<div class="type_div">
-						<input type="text" name="p_type" class="p_type" value="<%=p_type%>">
-					</div>
-				</dd>				
+					</dd>
+					<dt class="name_dt">
+						<span>이름</span>
+					</dt>
+					<dd class="name_dd">
+						<div class="name_div">
+							<input type="text" name="p_name" class="p_name" value="<%=p_name%>">
+						</div>
+					</dd>				
+					<dt class="age_dt">
+						<span>나이</span>
+					</dt>
+					<dd class="age_dd">
+						<div class="age_div">
+							<input type="text" name="p_age" class="p_age" value="<%=p_age%>">&nbsp;세
+						</div>
+					</dd>				
+					<dt class="weight_dt">
+						<span>몸무게</span>
+					</dt>
+					<dd class="weight_dd">
+						<div class="weight_div">
+							<input type="text" name="p_weight" class="p_weight" value="<%=p_weight%>">&nbsp;kg
+						</div>
+					</dd>				
+					<dt class="type_dt">
+						<span>견종</span>
+					</dt>
+					<dd class="type_dd">
+						<div class="type_div">
+							<input type="text" name="p_type" class="p_type" value="<%=p_type%>">
+						</div>
+					</dd>				
+					
+					<dt class="gender_dt">
+						<span>성별</span>
+					</dt>
+					<dd class="gender_dd">
+						<div class="gender_div">
+							<select class="p_gender" name="p_gender" id="p_gender" value="<%=p_gender%>">
+								<option value="남아">남아</option>
+								<option value="여아">여아</option>
+							</select>
+						<input id="hidden_gen" type="hidden" value="<%=p_gender%>">
+						</div>
+					</dd>				
+					
+					<dt class="op_dt">
+						<span>중성화 수술</span>
+					</dt>
+					<dd class="op_dd">
+						<div class="op_div">
+							<select class="p_op" name="p_op" id="p_op" value="<%=p_op%>">
+								<option value="했음">했음</option>
+								<option value="안했음">안했음</option>
+						<input id="hidden_op" type="hidden" value="<%=p_op%>">
+							</select>
+							
+						</div>
+					</dd>				
+					
+					<dt class="btn_dt">
+					</dt>
+					<dd class="btn_dd">
+						<div class="saveBtn">
+							<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">취소하기</a>				
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a id="changeBtn" 
+							   href="#" 
+							   class="roundBtn blueBtn"
+							   onclick="petInfoChange(); return false;"
+							   >저장</a>
+						</div>
+					</dd>				
 				
-				<dt class="gender_dt">
-					<span>성별</span>
-				</dt>
-				<dd class="gender_dd">
-					<div class="gender_div">
-						<select class="p_gender" name="p_gender" id="p_gender" value="<%=p_gender%>">
-							<option value="gen0">선택</option>
-							<option value="gen1">남아</option>
-							<option value="gen2">여아</option>
-						</select>
-					<input id="hidden_gen" type="hidden" value="<%=p_gender%>">
-					</div>
-				</dd>				
-				
-				<dt class="op_dt">
-					<span>중성화 수술</span>
-				</dt>
-				<dd class="op_dd">
-					<div class="op_div">
-						<select class="p_op" name="p_op" id="p_op" value="<%=p_op%>">
-							<option value="op0">선택</option>
-							<option value="op1">했음</option>
-							<option value="op2">안했음</option>
-					<input id="hidden_op" type="hidden" value="<%=p_op%>">
-						</select>
-						
-					</div>
-				</dd>				
-				
-				<dt class="btn_dt">
-				</dt>
-				<dd class="btn_dd">
-					<div class="saveBtn">
-						<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">취소하기</a>				
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a id="changeBtn" href="#" class="roundBtn blueBtn">저장</a>
-					</div>
-				</dd>				
+					
+				</dl>
 			
-				
-			</dl>
-		
-		
+			
+			</div>
 		</div>
-	</div>
-
+	</form>
 	<script type="text/javascript">
-	
+		
 		$(function() {
 			
 			if($("#hidden_gen").val() == "남아" ){
 
-				$("#p_gender").val("gen1").prop("selected", true);
+				$("#p_gender").val("남아").prop("selected", true);
 					
-			}else{
+			}else if ($("#hidden_gen").val() == "여아"){
 				
-				$("#p_gender").val("gen2").prop("selected", true);
+				$("#p_gender").val("여아").prop("selected", true);
 				
 			}
-			
-			
-			if($("#hidden_op").val() == "했음" ){
 
-				$("#p_op").val("op1").prop("selected", true);
+			if($("#hidden_op").val() == "했음" ){
+	
+				$("#p_op").val("했음").prop("selected", true);
 					
-			}else{
+			}else if($("#hidden_op").val() == "안했음"){
 				
-				$("#p_op").val("op2").prop("selected", true);
+				$("#p_op").val("안했음").prop("selected", true);
 			
 				
 			}
 		});
-		
 	
 	
 		  $("#backBtn").mouseover(function(){
@@ -420,59 +426,13 @@
 		  });
 	
 		  
-		  
-		  
-		 
-		  $("#Info1").mouseover(function(){
 
-		    $("#Info1").css("background-color", "lightpink");
-		    $("#Info1").css("color", "white");
-			
-		  });
-
-		  $("#Info1").mouseout(function(){
-
-		    $("#Info1").css("background-color", "white");
-		    $("#Info1").css("color", "black");
-
-		  });
-		
-		 
-		  $("#Info2").mouseover(function(){
-
-		    $("#Info2").css("background-color", "lightpink");
-		    $("#Info2").css("color", "white");
-			
-		  });
-
-		  $("#Info2").mouseout(function(){
-
-		    $("#Info2").css("background-color", "white");
-		    $("#Info2").css("color", "black");
-
-		  });
-		
-		 
-		  $("#Info3").mouseover(function(){
-
-		    $("#Info3").css("background-color", "lightpink");
-		    $("#Info3").css("color", "white");
-			
-		  });
-
-		  $("#Info3").mouseout(function(){
-
-		    $("#Info3").css("background-color", "white");
-		    $("#Info3").css("color", "black");
-
-		  });
-		
-		  
 
 		  
 	
 	
 	</script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/petJoin.js"></script>
 </body>
 </html>

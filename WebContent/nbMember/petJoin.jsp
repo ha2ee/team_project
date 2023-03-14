@@ -127,6 +127,7 @@
 		    font-size: 20px;
    	 		display: inline-block;
    			font-weight: bold;
+		    margin-top: -14px;
 		}
 		
 		.line{
@@ -257,7 +258,7 @@
 					
 					<div class="p_age">
 						<label>반려견 나이</a></label><br>
-						<input type="text" name="p_age" id="p_age">&nbsp;세
+						<input type="text" name="p_age" id="p_age">
 					</div>
 					<div class="div">	
 						<p id="ageInput"></p>
@@ -267,7 +268,7 @@
 					
 					<div class="p_weight">
 						<label>반려견 몸무게</a></label><br>
-						<input type="text" name="p_weight" id="p_weight"> kg
+						<input type="text" name="p_weight" id="p_weight">
 					</div>
 					<div class="div">	
 						<p id="wdightInput"></p>

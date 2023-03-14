@@ -210,7 +210,8 @@
 		<div class="rightBlock">
 			<div>
 				<p class="title" 
-				style="margin-bottom: 15px;"	
+				style="margin-bottom: 15px;
+				font-weight: bold;"	
 				>회원 정보</p>
 			</div>
 			<dl class="teble">
@@ -288,7 +289,7 @@
 					<div class="saveBtn">
 						<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">뒤로가기</a>				
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a id="changeBtn" href="<%=contextPath%>/member/change.me" class="roundBtn blueBtn">수정하기</a>
+						<a id="changeBtn" href="<%=contextPath%>/member/changeInfo.me" class="roundBtn blueBtn">수정하기</a>
 					</div>
 				</dd>	
 				
@@ -334,6 +335,11 @@
 		});
 	</script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+
+	<%--회원정보 수정 유효성 체크  --%>
+	<script src="<%=request.getContextPath()%>/js/change.js"></script>
+	
 </body>
 </html>
 

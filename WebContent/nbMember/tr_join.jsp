@@ -410,7 +410,7 @@
 
 
 			<div class="join" style="margin-right: -40px; ">
-				<div style="margin-top: -209px;">
+				<div style="margin-top: -102px;">
 					<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3" readonly><br><br>		
 					<span id="guide" style="color:#999; display:none;"></span>
 					<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address4" ><br><br>		
@@ -421,7 +421,8 @@
 					<a href="#"
 					   onclick="check(); return false;" 
 					   type="button" 
-					   style="text-decoration: none;"
+					   style="text-decoration: none;
+					   		  margin-left: 235px;	"
 					   class="btn btn-outline-warning";
 					   id="joinBtn";
 					>회원가입</a>
