@@ -100,6 +100,7 @@
 	left: 0;
 	right: 0;
 	line-height: 40px;
+	background : #f443361c
 }
 
 #filter>div {
@@ -116,7 +117,8 @@
 	font-size: 25px;
     background: #f443361c;
     border-radius: 10px;
-    color : #f4433685;
+    color: #f443368c;
+    font-weight: bold;
 }
 
 #filterEdu {
@@ -249,7 +251,7 @@
     font-size: 15px;
     text-decoration: none;
     border-radius: 5px;
-    background: aliceblue;
+    background: #f443361c;
     line-height: 35px;
     color: cadetblue;
     font-weight: bold;
@@ -484,7 +486,7 @@ border: 1px solid #e8d0d01f;
     font-size: 15px;
     text-decoration: none;
     border-radius: 5px;
-    background: aliceblue;
+    background: #f443361c;
     line-height: 35px;
     color: cadetblue;
     font-weight: bold;
@@ -664,7 +666,7 @@ border: 1px solid #e8d0d01f;
     font-size: 15px;
     text-decoration: none;
     border-radius: 5px;
-    background: aliceblue;
+    background: #f443361c;
     line-height: 35px;
     color: cadetblue;
     font-weight: bold;
@@ -903,7 +905,7 @@ border: 1px solid #e8d0d01f;
     font-size: 15px;
     text-decoration: none;
     border-radius: 5px;
-    background: aliceblue;
+    background: #f443361c;
     line-height: 35px;
     color: cadetblue;
     font-weight: bold;
@@ -1143,7 +1145,7 @@ border: 1px solid #e8d0d01f;
     font-size: 15px;
     text-decoration: none;
     border-radius: 5px;
-    background: aliceblue;
+    background: #f443361c;
     line-height: 35px;
     color: cadetblue;
     font-weight: bold;
@@ -1420,6 +1422,7 @@ border: 1px solid #e8d0d01f;
 	left: 0;
 	right: 0;
 	line-height: 40px;
+	background : #f443361c;
 }
 
 #nbfilter>div {
@@ -1436,7 +1439,8 @@ border: 1px solid #e8d0d01f;
 	font-size: 25px;
     background: #f443361c;
     border-radius: 10px;
-    color : #f4433685;
+    color: #f443368c;
+    font-weight: bold;
 }
 
 #filterMem {
@@ -1516,7 +1520,7 @@ border: 1px solid #e8d0d01f;
     font-size: 15px;
     text-decoration: none;
     border-radius: 5px;
-    background: aliceblue;
+    background: #f443361c;
     line-height: 35px;
     color: cadetblue;
     font-weight: bold;
@@ -1580,7 +1584,7 @@ border: 1px solid #e8d0d01f;
     font-size: 15px;
     text-decoration: none;
     border-radius: 5px;
-    background: aliceblue;
+    background: #f443361c;
     line-height: 35px;
     color: cadetblue;
     font-weight: bold;
@@ -1706,7 +1710,7 @@ border: 1px solid #e8d0d01f;
     font-size: 15px;
     text-decoration: none;
     border-radius: 5px;
-    background: aliceblue;
+    background: #f443361c;
     line-height: 35px;
     text-align: center;
     color : black;
@@ -2006,7 +2010,7 @@ border: 1px solid #e8d0d01f;
     font-size: 15px;
     text-decoration: none;
     border-radius: 5px;
-    background: aliceblue;
+    background: #f443361c;
     line-height: 35px;
     color: cadetblue;
     font-weight: bold;
@@ -2244,7 +2248,7 @@ border: 1px solid #e8d0d01f;
     font-size: 15px;
     text-decoration: none;
     border-radius: 5px;
-    background: aliceblue;
+    background: #f443361c;
     line-height: 35px;
     color: cadetblue;
     font-weight: bold;
@@ -2585,6 +2589,7 @@ border: 1px solid #e8d0d01f;
     border-radius : 5px;
     font-size: 25px;
     color : orangered;
+    font-weight: bold;
 
 }
 
