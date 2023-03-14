@@ -538,7 +538,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
     
     display: inline-block;
-    width: 70%;
+    width: 40%;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -718,7 +718,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 60%;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -2662,20 +2662,6 @@ border: 1px solid #e8d0d01f;
 <meta charset="UTF-8">
 <title>intro.jsp</title>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-
-$(document).ready(function(){
-	
-
-	
-	// 가격 계산 하기 (작성중)
-	for(var i=1; i < ${vector.size()}; i++){
-		
-	}
-	
-	
-})
-</script>
 </head>
 <body>
 
@@ -3058,8 +3044,40 @@ $(document).ready(function(){
 	<br>
 	<br>
 	</form>
+<script>
+
+$(document).ready(function(){
 	
-<script type="text/javascript">
+	var i= 0;
+	var x = 0;
+	
+	// 수강 가격 계산 하기 (작성중)
+	for(i=1; i <= ${vector.size()}; i++){
+		
+		var price = document.getElementById("eduTotalprice"+i).value;
+
+		var replaceprice = parseInt(price.replace("," , ""));
+
+		x += replaceprice++;
+		
+	}
+	// 정규표현식으로 3자리숫자당 콤마로 구분한다.
+	var edu_price = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	
+	// 수강 신청 가격을 해당 구문에 넣기
+	$("#eduPrice").attr("value", edu_price);
+	
+	// 샵 금액 (작성중)
+	
+	var shop_price = 0;
+	
+	// 수강금액 + 샵금액 = 총금액 계산 하기
+	$("#edu_shop_total_price > input").attr("value", (edu_price+shop_price));
+	
+	
+	
+})
+
 // 이미지 미리보기 
 //마우스 오버시 preview 생성
 $(document).on("mouseover",".gallery",function(e){
