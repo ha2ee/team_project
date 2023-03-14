@@ -182,10 +182,13 @@ public class nbController extends HttpServlet{
 			// 3) 훈련사 이름을 매개변수로 해서 오더다오를 통해 선택된 훈련사의
 			//    예약 된 일자를 조회해서 캘린더에서 선택하지 못하도록 한다.
 			List list = orderdao.checkDate(tr_name);
+			//  	  추가로 장바구니에 등록되어 있는 일자도 조회해서 선택하지 못하도록 한다.
+			List list2 = orderdao.checkCart(tr_name);
 				
 			//request에 calendar.jsp로 저장
 			request.setAttribute("center", center);
 			request.setAttribute("list", list);
+			request.setAttribute("list2", list2);
 			
 			// 중앙 화면 바인딩 하기
 			System.out.println("요청한 center : "+ center);

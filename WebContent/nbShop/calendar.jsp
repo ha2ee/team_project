@@ -19,8 +19,11 @@ String tr_price = request.getParameter("tr_price");
 //Session내장객체 메모리 영역에 session값 얻기
 String id = (String)session.getAttribute("id");
 
-// list를 컨틀롤러에서 받아와서 변수에 저장
+//list를 컨틀롤러에서 받아와서 변수에 저장(예약확정 된 일정)
 List<String> list = (List<String>)request.getAttribute("list");
+
+//list2를 컨틀롤러에서 받아와서 변수에 저장(장바구니에 저장 된 일정)
+List<String> list2 = (List<String>)request.getAttribute("list2");
 
 
 
@@ -183,9 +186,34 @@ List<String> list = (List<String>)request.getAttribute("list");
                 	
             		// 예약 된 날짜를 가져온다.
             		var list = <%=list%>;
+            		var list2 = <%=list2%>;
             		
     	    		var monthtoday = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
     	    		var mtd = moment(monthtoday).format('DD');
+    	    		
+            		// for 문을 돌려서 카트에 담긴 날짜와 일치하는 날짜를 가져온다.
+            		for(var i =0; i < list2.length; i++){
+
+            			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
+            			for(var j=1; j < 32; j++ ){
+            				
+
+            				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
+            				if(list2[i].toString() == j.toString()) {
+            					
+            					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+            					
+            					// 만약에 현재일+7일보다 낮은 숫자에 예약이 있을경우
+           						if(mtd > list2[i]) {
+           	                        $("#"+list2[i]).css("font-size", "16px").css("color", "E5E5E5").text(list2[i]);
+           							
+ 
+                          		 }
+           						
+           						
+            				}
+           				}
+           			}
             		
             		// for 문을 돌려서 예약날짜와 일치하는 날짜를 가져온다.
             		for(var i =0; i < list.length; i++){
@@ -210,6 +238,8 @@ List<String> list = (List<String>)request.getAttribute("list");
             				}
            				}
            			}
+            		
+
 					
             		// 현재일의 배경색 주기
             		$("#"+mtd).css("background", "#fff5f3");
@@ -600,6 +630,34 @@ List<String> list = (List<String>)request.getAttribute("list");
     		
 	    		// 예약 된 날짜를 가져온다.
 	    		var list = <%=list%>;
+	    		var list2 =<%=list2%>;
+	    		
+	    		var monthtoday = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+	    		var mtd = moment(monthtoday).format('DD');
+	    		
+	    		// for 문을 돌려서 카트에 담긴 날짜와 일치하는 날짜를 가져온다.
+        		for(var i =0; i < list2.length; i++){
+
+        			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
+        			for(var j=1; j < 32; j++ ){
+        				
+
+        				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
+        				if(list2[i].toString() == j.toString()) {
+        					
+        					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+        					
+        					// 만약에 현재일+7일보다 낮은 숫자에 예약이 있을경우
+       						if(mtd > list2[i]) {
+       	                        $("#"+list2[i]).css("font-size", "16px").css("color", "E5E5E5").text(list2[i]);
+       							
+
+                      		 }
+       						
+       						
+        				}
+       				}
+       			}
 	    		
 	    		// for 문을 돌려서 예약날짜와 일치하는 날짜를 가져온다.
 	    		for(var i =0; i < list.length; i++){
