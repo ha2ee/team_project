@@ -229,8 +229,8 @@ String id = (String)session.getAttribute("id");
 	}
 	
 	.saveBtn{
-		margin-left: -50px;
-	}
+		margin-left: 14%;	
+		}
 	
 	.petBtn{
 		margin-bottom: 25px;
@@ -262,6 +262,23 @@ String id = (String)session.getAttribute("id");
     	font-weight: bold;
 		font-size: 21px;
 	}
+	
+	.address1{
+    	width: 17%;
+   		padding-left: 6px;
+	}
+	
+	.address2, .address3 {
+    width: 49%;
+    padding-left: 6px;
+	
+	}
+	
+	.passChange{
+		width: 21%;
+    	height: 6%;
+	}
+	
 	
 	
 </style>
@@ -340,34 +357,24 @@ String id = (String)session.getAttribute("id");
 					</dt>
 					<dd class="address_dd">
 						<div class="hp_div">
-							<input type="text" 
-								   id="sample4_postcode" 
-								   name="address1" 
-								   class="form-control" 
-								   placeholder="우편번호" 
-							   	   style="	width: 27%;
-											height: 33px;
-											background-color: white;"
-								   			readonly>	
-						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="background-color:#BDBDBD" id="sample4_find"><br><br>					<!-- class="form-control" --> 
-						<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소"  readonly><br><br>		
-					<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3"  readonly><br><br>		
-					<span id="guide" style="color:#999; display:none;"></span>
-					<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address4"><br><br>		
-					<input type="text" id="sample4_extraAddress" placeholder="참고항목"  name="address5"readonly>
-						
+							<input type="text" id="sample4_postcode" name="address1" class="address1"  placeholder="우편번호" >	
+							<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="background-color:#BDBDBD" id="sample4_find"><br><br>				<!-- class="form-control" --> 
+							<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소" class="address2" readonly>	<br><br>	
+							<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소" name="address3"  readonly>
+							<input type="text" placeholder="상세주소" name="address3" class="address3">
+							<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  name="address5"readonly>
 						</div>
+						
 					</dd>
 				
 					<dt class="pass_dt">
 						<span>비밀번호</span>
 					</dt>
-					<dd class="pass_dd">
+					<dd class="pass_dd" style="margin-bottom: 4%;">
 						<div class="pass_div">
 							<input type="button" name="passChange" class="passChange" value="변경하기">
 						</div>
 					</dd>
-					
 					
 					
 					
