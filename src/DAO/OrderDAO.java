@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Vector;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -55,9 +56,10 @@ public class OrderDAO {
 	// OrderDAO INFO ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// #1) 		checkTrainer()			 		메소드		<- 훈련사		 		정보 조회
-	// #2)      checkMember()                메소드     <- 멤버		  	  	정보 조회
+	// #2)     checkMember()                메소드     <- 멤버		  	  	정보 조회
 	// #3)		checkPet()						메소드		<- 반려견				정보 조회
 	// #4)      checkDate()					메소드     <- 예약일정에서 이미 예약된 일정을 조회
+	// #4-1)   checkCart()					메소드     <- 예약일정에서 카트에 저장된 일정을 조회
 	// #5)      insertCartedu()				메소드		<- 수강신청			정보 등록
 	// #6)		insertEduOrder()				메소드		<- 결제하기			정보 등록
 	// #7)		checkCartedu()				메소드		<- 장바구니		  	정보 조회
@@ -284,12 +286,69 @@ public class OrderDAO {
 		
 	}
 	
+	// #4-1) 현재 장바구니에 등록되어있는 예약일정을 반환해주는 메소드
+	public List checkCart(String tr_name) {
+		
+		List<String> list = new ArrayList();
+		
+		System.out.println("OrderDAO -> checkDate 메소드 호출!");
+
+		try {
+			
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 tr_name으로 받는 입력한 이름에 해당되는 행을 조회 SELECT문
+			// sql = tr_name 값으로 선택 된 훈련사의 예약 된 일정들을 조회해 온다.
+			String sql = "SELECT TO_CHAR(date1, 'DD') from cart_edu where tr_name=? AND NOT date1 IS NULL "
+						+"union SELECT TO_CHAR(date2, 'DD') from cart_edu where tr_name=? AND NOT date2 IS NULL "
+						+"union SELECT TO_CHAR(date3, 'DD') from cart_edu where tr_name=? AND NOT date3 IS NULL "
+						+ "union SELECT TO_CHAR(date4, 'DD') from cart_edu where tr_name=? AND NOT date4 IS NULL "
+						+ "union SELECT TO_CHAR(date5, 'DD') from cart_edu where tr_name=? AND NOT date5 IS NULL "
+						+ "union SELECT TO_CHAR(date6, 'DD') from cart_edu where tr_name=? AND NOT date6 IS NULL "
+						+ "union SELECT TO_CHAR(date7, 'DD') from cart_edu where tr_name=? AND NOT date7 IS NULL";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, tr_name);
+			pstmt.setString(2, tr_name);
+			pstmt.setString(3, tr_name);
+			pstmt.setString(4, tr_name);
+			pstmt.setString(5, tr_name);
+			pstmt.setString(6, tr_name);
+			pstmt.setString(7, tr_name);
+			rs = pstmt.executeQuery();
+
+			// 값이 있다면
+			while(rs.next()) {
+			
+			// list 배열에 저장한다.
+			list.add(rs.getString(1));
+			
+			
+			
+		
+				
+			}
+
+		} catch (Exception e) {
+			
+			System.out.println("OrderDAO -> checkCart 메소드 내부에서 오류!");
+			e.printStackTrace();
+			
+		}finally {
+			
+			closeResource();
+		}
+		return list;
+		
+		
+	}
+	
 	// #5) 수강신청 정보 카트에 등록 메소드
 	public void insertCartedu(eduOrderVo eduordervo, List<String> list) {
 		
 		System.out.println("OrderDAO -> insertCartedu 메소드 호출!");
 
-try {
+			try {
 			
 			//커넥션 풀 연결
 			con = ds.getConnection();
@@ -360,7 +419,9 @@ try {
 	}
 	
 	// #6) 장바구니 수강 정보 조회 메소드
-	public eduOrderVo checkCartedu(String id) {
+	public Vector<eduOrderVo> checkCartedu(String id) {
+		
+		Vector<eduOrderVo> vector = new Vector<eduOrderVo>();
 		
 		eduOrderVo eduordervo = new eduOrderVo();
 		
@@ -386,7 +447,7 @@ try {
 	        rs = pstmt.executeQuery();
 	        
 	        // 6) 조회해온 행이 있으면?
-	        if(rs.next()) {
+	        while(rs.next()) {
 	            
     		// 7) 조회해온 값들을 eduOrderVo에 저장한다.
 	        
@@ -422,9 +483,12 @@ try {
 	        	eduordervo.setDate7(rs.getDate("date7"));
 	        	eduordervo.setEdu_cnt(Integer.parseInt(rs.getString("edu_cnt")));
 	        	eduordervo.setEdu_totalprice(rs.getString("edu_totalprice"));
-
+	        		
+	        	vector.add(eduordervo);
+	        	
 	         }
 	        
+	        System.out.println(vector);
 			
 			
 		} catch (Exception e) {
@@ -438,7 +502,8 @@ try {
 		}
 		
 		// 8) eduordervo로 리턴해준다.
-		return eduordervo;
+		
+		return vector;
 	}
 	
 	

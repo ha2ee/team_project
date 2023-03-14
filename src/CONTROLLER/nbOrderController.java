@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -139,6 +140,7 @@ public class nbOrderController extends HttpServlet{
 			// #3 /goCart.od	<- 수강신청 페이지 	->  예약하기 버튼을 눌렀을 때, (작성 중)
 			case "/goCart.od":	
 				
+				
 				System.out.println("nbOrderController -> goCart.od 호출 !");	
 				
 				// 1) 받아온 값들을 변수에 저장한다.
@@ -218,16 +220,17 @@ public class nbOrderController extends HttpServlet{
 				orderdao.insertCartedu(eduordervo, list);
 				
 				// 5) orderdao를 통해서 인서트 시킨 값들을 다시 불러온다.
-				orderdao.checkCartedu(edu_id);
+				Vector<eduOrderVo> vector = orderdao.checkCartedu(edu_id);
 				
 				// 5) cart.jsp 페이지에서 출력할 eduordervo와 list를 내보낸다.
-				request.setAttribute("eduordervo", eduordervo);
+				request.setAttribute("vector", vector);
 				request.setAttribute("list", list);
 				request.setAttribute("id", edu_id);
 
-			nextPage = "/nbMain.jsp";
-			
-				break;
+				//request에 "center" 값을 이용해서 cart.jsp로 이동 시킴
+				request.setAttribute("center", "nbShop/cart.jsp");	
+
+				nextPage = "/nbMain.jsp";
 				
 				
 			// #4) 장바구니에서 최종 결제 요청

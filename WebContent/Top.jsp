@@ -158,7 +158,7 @@ $(document).ready(function(){
 				   <li><a href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
 	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
 <%-- 	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li> --%>
-	               <li><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
+	               <li><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
 
 				<%
 					}
