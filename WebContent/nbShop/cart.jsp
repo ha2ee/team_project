@@ -32,7 +32,7 @@
 	border: 1px solid #e8d0d01f;
 	
 	width: 1200px;
-	height: 710px;
+	height: 100%;
 	position: relative;
 	margin: 0 auto;
 	top: 0;
@@ -179,11 +179,32 @@
 	float: left;
 }
 
+#edu_res_box {
+
+	border: 1px solid #e8d0d01f;
+	
+    width: 100%;
+    height: 220px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: overlay;
+
+}
+
+
+
 #dataBox {
 
-	width: 100%;
+    position: relative;
+    width: 100%;
     height: 40px;
-
+    margin: 0 auto;
+    left: -6px;
+    top: 0;
+    
 }
 
 #eduBox {
@@ -244,7 +265,7 @@
     position: relative;
     margin: 0 auto;
     top: -13px;
-    left: -19px;
+    left: -28px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -307,7 +328,7 @@
     position: relative;
     margin: 0 auto;
     top: -13px;
-    left: -22px;
+    left: -31px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -370,7 +391,7 @@
     position: relative;
     margin: 0 auto;
     top: -13px;
-    left: -26px;
+    left: -35px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -479,7 +500,7 @@ border: 1px solid #e8d0d01f;
     position: relative;
     margin: 0 auto;
     top: 0;
-    left: -30px;
+    left: -39px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -544,7 +565,7 @@ border: 1px solid #e8d0d01f;
     position: relative;
     margin: 0 auto;
     top: -11px;
-    left: -33px;
+    left: -42px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -659,7 +680,7 @@ border: 1px solid #e8d0d01f;
     height: 40px;
     position: relative;
     margin: 0 auto;
-	left: -36px;
+	left: -45px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -724,7 +745,7 @@ border: 1px solid #e8d0d01f;
     position: relative;
     margin: 0 auto;
     top: -12px;
-    left: -40px;
+    left: -49px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -787,7 +808,7 @@ border: 1px solid #e8d0d01f;
     position: relative;
     margin: 0 auto;
     top: -14px;
-    left: -44px;
+    left: -53px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -898,7 +919,7 @@ border: 1px solid #e8d0d01f;
     position: relative;
     margin: 0 auto;
     top: -12px;
-    left: -47px;
+    left: -56px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -961,7 +982,7 @@ border: 1px solid #e8d0d01f;
     position: relative;
     margin: 0 auto;
     top: -12px;
-    left: -51px;
+    left: -60px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -1024,7 +1045,7 @@ border: 1px solid #e8d0d01f;
     position: relative;
     margin: 0 auto;
     top: -12px;
-    left: -55px;
+    left: -64px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -1084,12 +1105,12 @@ border: 1px solid #e8d0d01f;
 
     border: 1px solid #e8d0d01f;
     
-    width: 20%;
+    width : 18%;
     height: 40px;
     position: relative;
     margin: 0 auto;
     top: 0;
-    left: 0;
+	left : 0;
     right: 0;
 }
 
@@ -1104,7 +1125,7 @@ border: 1px solid #e8d0d01f;
 	left: 1px;
 	right: 0;
 	float: left;
-	width : 78px;
+	width : 70px;
 }
 
 #InfoBox > div > a {
@@ -1133,12 +1154,12 @@ border: 1px solid #e8d0d01f;
     border: 1px solid #e8d0d01f;
     
     display: inline-block;
-    width: 79px;
+    width: 70px;
     height: 40px;
     position: relative;
     margin: 0 auto;
-    top: -13px;
-    left: -59px;
+    top: -12px;
+    left: -65px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -1155,7 +1176,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 70px;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -1175,7 +1196,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 70px;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -1205,12 +1226,12 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 80px;
+    width: 65px;
     height: 40px;
     position: relative;
     margin: 0 auto;
     top: -13px;
-    left: 17px;
+    left: 8px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -1227,7 +1248,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 65px;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -1247,7 +1268,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 65px;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -1276,12 +1297,12 @@ border: 1px solid #e8d0d01f;
     border: 1px solid #e8d0d01f;
     
     display: inline-block;
-    width: 80px;
+    width: 70px;
     height: 40px;
     position: relative;
     margin: 0 auto;
-	top: -54px;
-    left: 477px;
+	top: -51px;
+    left: 472px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -1298,7 +1319,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 70px;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -1318,7 +1339,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 70px;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -1349,10 +1370,10 @@ border: 1px solid #e8d0d01f;
 /* 	border: 1px solid floralwhite; */
 
 	width: 100%;
-	height: 50%;
+	height: 300px;
 	position: relative;
 	margin: 0 auto;
-	top: 70px;
+	top: 15px;
 	left: 0;
 	right: 0;
 }
@@ -1501,6 +1522,22 @@ border: 1px solid #e8d0d01f;
     font-weight: bold;
 }
 
+#shop_res_box{
+
+	border: 1px solid #e8d0d01f;
+	
+    width: 100%;
+    height: 160px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: overlay;
+
+}
+
+
 #memBox {
 
 	border: 1px solid #e8d0d01f;
@@ -1559,7 +1596,7 @@ border: 1px solid #e8d0d01f;
     position: relative;
     margin: 0 auto;
     top: -0;
-    left: 3px;
+    left: -32px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -1622,7 +1659,7 @@ border: 1px solid #e8d0d01f;
     position: relative;
     margin: 0 auto;
     top: -0;
-    left: 3px;
+    left: -36px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -1684,8 +1721,8 @@ border: 1px solid #e8d0d01f;
     height: 35px;
     position: relative;
     margin: 0 auto;
-    top: -0;
-    left: 3px;
+    top: -3px;
+    left: -40px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -1747,8 +1784,8 @@ border: 1px solid #e8d0d01f;
     height: 35px;
     position: relative;
     margin: 0 auto;
-    top: -0;
-    left: 3px;
+    top: -1px;
+    left: -44px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -1810,8 +1847,8 @@ border: 1px solid #e8d0d01f;
     height: 35px;
     position: relative;
     margin: 0 auto;
-    top: -0;
-    left: 3px;
+    top: -3px;
+    left: -47px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -1872,8 +1909,8 @@ border: 1px solid #e8d0d01f;
     height: 35px;
     position: relative;
     margin: 0 auto;
-    top: -0;
-    left: 3px;
+    top: -3px;
+    left: -51px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -1984,8 +2021,8 @@ border: 1px solid #e8d0d01f;
    	height: 35px;
     position: relative;
     margin: 0 auto;
-    top: -0;
-    left: 3px;
+    top: -4px;
+    left: -56px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -2047,8 +2084,8 @@ border: 1px solid #e8d0d01f;
     height: 35px;
     position: relative;
     margin: 0 auto;
-    top: -0;
-    left: 3px;
+	top: -2px;
+    left: -60px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -2109,8 +2146,8 @@ border: 1px solid #e8d0d01f;
     height: 35px;
     position: relative;
     margin: 0 auto;
-    top: -0;
-    left: 3px;
+    top: -2px;
+    left: -64px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -2169,12 +2206,12 @@ border: 1px solid #e8d0d01f;
 
     border: 1px solid #e8d0d01f;
     
-    width: 20%;
+    width: 19%;
     height: 40px;
     position: relative;
     margin: 0 auto;
     top: 0;
-    left: 0;
+    left: 2px;
     right: 0;
 }
 
@@ -2189,7 +2226,7 @@ border: 1px solid #e8d0d01f;
 	left: 1px;
 	right: 0;
 	float: left;
-	width : 78px;
+	width : 73px;
 }
 
 #nbInfoBox > div > a {
@@ -2218,12 +2255,12 @@ border: 1px solid #e8d0d01f;
     border: 1px solid #e8d0d01f;
     
     display: inline-block;
-    width: 79px;
+    width: 70px;
     height: 40px;
     position: relative;
     margin: 0 auto;
-    top: 0;
-    left: 5px;
+    top: -4px;
+    left: -61px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -2240,7 +2277,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 70px;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -2260,7 +2297,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 70px;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -2289,12 +2326,12 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 80px;
+    width: 65px;
     height: 40px;
     position: relative;
     margin: 0 auto;
-    top: -0;
-    left: 3px;
+    top: -44px;
+    left: 539px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -2311,7 +2348,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 65px;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -2331,7 +2368,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 65px;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -2360,12 +2397,12 @@ border: 1px solid #e8d0d01f;
     border: 1px solid #e8d0d01f;
     
     display: inline-block;
-    width: 80px;
+    width: 70px;
     height: 40px;
     position: relative;
     margin: 0 auto;
-	top: -0;
-    left: 3px;
+    top: -4px;
+    left: -61px;
     right: 0;
     font-size: 15px;
     text-decoration: none;
@@ -2382,7 +2419,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 70px;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -2402,7 +2439,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 70px;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -2591,6 +2628,7 @@ border: 1px solid #e8d0d01f;
 	color : hotpink;
 	
 }
+
 </style>
 <!--     CSS car.css 추가 -->
 <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/cart.css"> --%>
@@ -2690,12 +2728,13 @@ $(document).ready(function(){
 				</div>
 			</div>
 				
-
+	
 <!-- 수강신청정보 -->
 	<c:set var="j" value="1"/>
+	<div id="edu_res_box">
 	<c:forEach var="vo"  items="${vector}" >
 	<c:if test="${vector.isEmpty()}">
-		<h1>예약된 정보가 없습니다!!</h1>
+		<h1>예약된 정보가 없습니다!!</h1>	
 	</c:if>
 		<div id="dataBox">
 				<!--예약번호 -->
@@ -2797,6 +2836,7 @@ $(document).ready(function(){
 			</div>	
 		<c:set var="j" value="${j+1}" /> 
 	</c:forEach>
+	</div>
 		
 				
 				
@@ -2864,6 +2904,7 @@ $(document).ready(function(){
 				
 <!-- 	늘봄 샵 관련 vector 구문 -->
 <%-- 	<c:set var="h" value="1"/> --%>
+		<div id="shop_res_box">
 <%-- 	<c:forEach var="vo"  items="${vector}" >			 --%>
 				
 				<!-- 주문 번호 -->
@@ -2950,6 +2991,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 <%-- 		<c:set var="h" value="${h+1}" />  --%>
+		</div>
 <%-- 	</c:forEach> --%>
 				
 			</div>
