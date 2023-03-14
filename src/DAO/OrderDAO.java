@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Vector;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -418,7 +419,9 @@ public class OrderDAO {
 	}
 	
 	// #6) 장바구니 수강 정보 조회 메소드
-	public eduOrderVo checkCartedu(String id) {
+	public Vector<eduOrderVo> checkCartedu(String id) {
+		
+		Vector<eduOrderVo> vector = new Vector<eduOrderVo>();
 		
 		eduOrderVo eduordervo = new eduOrderVo();
 		
@@ -444,7 +447,7 @@ public class OrderDAO {
 	        rs = pstmt.executeQuery();
 	        
 	        // 6) 조회해온 행이 있으면?
-	        if(rs.next()) {
+	        while(rs.next()) {
 	            
     		// 7) 조회해온 값들을 eduOrderVo에 저장한다.
 	        
@@ -480,9 +483,12 @@ public class OrderDAO {
 	        	eduordervo.setDate7(rs.getDate("date7"));
 	        	eduordervo.setEdu_cnt(Integer.parseInt(rs.getString("edu_cnt")));
 	        	eduordervo.setEdu_totalprice(rs.getString("edu_totalprice"));
-
+	        		
+	        	vector.add(eduordervo);
+	        	
 	         }
 	        
+	        System.out.println(vector);
 			
 			
 		} catch (Exception e) {
@@ -496,7 +502,8 @@ public class OrderDAO {
 		}
 		
 		// 8) eduordervo로 리턴해준다.
-		return eduordervo;
+		
+		return vector;
 	}
 	
 	

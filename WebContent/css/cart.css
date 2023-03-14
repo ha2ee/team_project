@@ -145,7 +145,7 @@
 #eduResultBox {
 	border: 1px solid #e8d0d01f;
 	width: 100%;
-	height: 35%;
+	height: 40px;
 	position: relative;
 	margin: 0 auto;
 	top: 0;
@@ -400,7 +400,7 @@ border: 1px solid #e8d0d01f;
     position: relative;
     margin: 0 auto;
     top: 0;
-    left: -239px;
+    left: 0;
     right: 0;
 }
 
@@ -578,7 +578,7 @@ border: 1px solid #e8d0d01f;
     position: relative;
     margin: 0 auto;
     top: 0;
-    left: -474px;
+    left: 0;
     right: 0;
     
 }
@@ -815,8 +815,8 @@ border: 1px solid #e8d0d01f;
     height: 40px;
     position: relative;
     margin: 0 auto;
-    top: -220px;
-    left: 719px;
+    top: 0;
+    left: 0;
     right: 0;
     
 }
@@ -1056,8 +1056,8 @@ border: 1px solid #e8d0d01f;
     height: 40px;
     position: relative;
     margin: 0 auto;
-    top: -220px;
-    left: 480px;
+    top: 0;
+    left: 0;
     right: 0;
 }
 
@@ -1150,7 +1150,7 @@ border: 1px solid #e8d0d01f;
     top: 0;
     left: 0;
     right: 0;
-    font-size: 15px;
+    font-size: 12px;
     text-decoration: none;
     border-radius: 5px;
     background: aliceblue;
@@ -1213,7 +1213,7 @@ border: 1px solid #e8d0d01f;
     top: 0;
     left: 0;
     right: 0;
-    font-size: 15px;
+    font-size: 12px;
     text-decoration: none;
     border-radius: 5px;
     background: aliceblue;
@@ -1276,7 +1276,7 @@ border: 1px solid #e8d0d01f;
     top: 0;
     left: 0;
     right: 0;
-    font-size: 15px;
+    font-size: 12px;
     text-decoration: none;
     border-radius: 5px;
     background: aliceblue;
@@ -2215,7 +2215,7 @@ border: 1px solid #e8d0d01f;
     top: 0;
     left: 0;
     right: 0;
-    font-size: 15px;
+    font-size: 12px;
     text-decoration: none;
     border-radius: 5px;
     background: aliceblue;
@@ -2278,7 +2278,7 @@ border: 1px solid #e8d0d01f;
     top: 0;
     left: 0;
     right: 0;
-    font-size: 15px;
+    font-size: 12px;
     text-decoration: none;
     border-radius: 5px;
     background: aliceblue;
@@ -2341,7 +2341,7 @@ border: 1px solid #e8d0d01f;
     top: 0;
     left: 0;
     right: 0;
-    font-size: 15px;
+    font-size: 12px;
     text-decoration: none;
     border-radius: 5px;
     background: aliceblue;

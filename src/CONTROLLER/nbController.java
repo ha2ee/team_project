@@ -259,7 +259,9 @@ public class nbController extends HttpServlet{
 			
 			String id = request.getParameter("id");
 			
-			eduordervo = orderdao.checkCartedu(id);
+			System.out.println(id);
+			
+			Vector<eduOrderVo> vector = orderdao.checkCartedu(id);
 			
 			// 중앙 화면 요청한 주소 얻기
 			String center = request.getParameter("center");
@@ -269,7 +271,8 @@ public class nbController extends HttpServlet{
 			
 			//request에 "center" 값으로 저장
 			request.setAttribute("center", center);
-			request.setAttribute("eduordervo", eduordervo);
+			request.setAttribute("vector", vector);
+			
 			
 			nextPage = "/nbMain.jsp";	
 			
