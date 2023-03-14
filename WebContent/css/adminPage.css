@@ -114,7 +114,7 @@
 		/* 게시판 목록 테이블의 th와 td 스타일 */
 		.content .board-table th, .content .board-table td {
 		  padding: 10px 20px; 
- 		  text-align: center; 
+ 		  text-align: left; 
 		  border-bottom: 1px solid #ddd; 
 		}
 		
@@ -147,5 +147,66 @@
 		  font-weight: bold;
 		  cursor: pointer;
 		}
-   
+   /* 페이지 넘버링 부분 스타일 */
+		#pageForm {
+		  margin: 20px auto;
+		  text-align: center;
+		  font-size: 14px;
+		}
+		
+		#pageForm a {
+		  color: #333;
+		  text-decoration: none;
+		  padding: 5px 10px;
+		  border: 1px solid lightgray;
+		}
+		
+		#pageForm a:hover {
+		  background-color: #f44336;
+		  color: white;
+		}
+		
+		#pageForm a:first-child, #pageForm a:last-child {
+		  background-color: #f5f5f5;
+		}
+		
+		#pageForm a:first-child:hover, #pageForm a:last-child:hover {
+		  background-color: #ddd;
+		}
+		
+		#pageForm span {
+		  display: inline-block;
+		  color: #f44336;
+		  padding: 5px 10px;
+		}
+		
+		/* 검색 부분 스타일 */
+		#searchForm {
+		  margin: 20px auto;
+		  text-align: center;
+		  font-size: 14px;
+		}
+		
+		#searchForm form {
+		  display: inline-block;
+		}
+		
+		#searchForm select, #searchForm input[type="text"] {
+		  font-size: 14px;
+		  padding: 5px;
+		  margin-right: 10px;
+		}
+		
+		#searchForm input[type="submit"] {
+		  background-color: #f44336;
+		  color: white;
+		  border: none;
+		  padding: 5px 10px;
+		  font-size: 14px;
+		  cursor: pointer;
+		}
+		
+		#searchForm input[type="submit"]:hover {
+		  background-color: #e53935;
+		}
   

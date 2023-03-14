@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.naming.Context;
@@ -13,6 +14,7 @@ import javax.sql.DataSource;
 
 import VO.MemberVo;
 import VO.PetVo;
+import VO.TrainerBoardVo;
 import VO.TrainerVo;
 
 public class AdminDAO {
@@ -213,6 +215,345 @@ public class AdminDAO {
 					closeResource();
 			}
 		}
+		
+	//훈련사 상담 게시판 글 목록 6개 가져오기
+		 public ArrayList<TrainerBoardVo> getBoardList()
+		    {
+		        ArrayList<TrainerBoardVo> list = new ArrayList<>();
+		        
+		        try {
+		            con = ds.getConnection();
+		            StringBuffer sql = new StringBuffer();
+		            
+		            // 글목록 전체를 보여줄 때
+		                // tb_group(그룹번호)의 내림차순 정렬 후 동일한 그룹번호일 때는
+		                // tb_level(답변글 순서)의 오름차순으로 정렬 한 후에
+		                // 10개의 글을 한 화면에 보여주는(start번째 부터 start+9까지) 쿼리
+		                // desc : 내림차순, asc : 오름차순 ( 생략 가능 )
+		                
+		                sql.append("select * from ");
+		                sql.append("(select rownum rnum, Tb_idx, Tb_ID, Tb_name");
+		                sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
+		                sql.append(" FROM ");
+		                sql.append("(select * from Trainer_board order by TB_GROUP)) ");
+		                sql.append("where rnum>=? and rnum<=?");
+		                
+		                
+		                pstmt = con.prepareStatement(sql.toString());
+		                pstmt.setInt(1, 1);
+		                pstmt.setInt(2, 6);
+		                
+		                // StringBuffer를 비운다.
+		                sql.delete(0, sql.toString().length());
+		                
+		                rs = pstmt.executeQuery();
+		                while(rs.next())
+		                {
+		    				TrainerBoardVo vo = new TrainerBoardVo(rs.getInt("Tb_idx"),
+		    						rs.getString("Tb_id"),
+		    						rs.getString("Tb_name"),
+		    						rs.getString("Tb_title"), 
+		    						rs.getString("Tb_content"), 
+		    						rs.getInt("Tb_group"), 
+		    						rs.getInt("Tb_level"), 
+		    						rs.getDate("Tb_date"), 
+		    						rs.getInt("Tb_cnt"),
+		    						rs.getString("Tb_file")
+		    						);
+		    				list.add(vo);
+		                }
+		                
+		                
+		                
+		        } catch (Exception e) {
+		        	e.printStackTrace();
+		        } finally {
+		        	closeResource();
+		        }
+		        return list;
+		    }
+		
+	//최근 회원 6명만 가져오기
+		//회원 목록 가져오기
+		    public ArrayList<MemberVo> getMemberListMain()
+		    {
+		        ArrayList<MemberVo> list = new ArrayList<>();
+		        
+		        try {
+		            con = ds.getConnection();
+		            StringBuffer sql = new StringBuffer();
+		            
+		            // 아이디 전체를 보여줄 때
+		                sql.append("select * from ");
+		                sql.append("(select rownum rnum, MEM_ID, MEM_NAME, MEM_NICK");
+		                sql.append(", MEM_IMG, MEM_PW, MEM_EMAIL, MEM_HP, MEM_BIRTH, MEM_GENDER, MEM_JOINDATE");
+		                sql.append(", MEM_PET, MEM_ADDRESS1, MEM_ADDRESS2, MEM_ADDRESS3, MEM_ADDRESS4, MEM_ADDRESS5");
+		                sql.append(" FROM ");
+		                sql.append("(select * from YS_MEMBER order by MEM_NAME)) ");
+		                sql.append("where rnum>=? and rnum<=?");
+		                pstmt = con.prepareStatement(sql.toString());
+		                pstmt.setInt(1, 1);
+		                pstmt.setInt(2, 6);
+		                
+		                // StringBuffer를 비운다.
+		                sql.delete(0, sql.toString().length());		 
+		                // StringBuffer를 비운다.
+		                sql.delete(0, sql.toString().length());
+		                
+		                rs = pstmt.executeQuery();
+		                while(rs.next())
+		                {
+		                	memberVO = new MemberVo();
+		                	memberVO.setMem_id(rs.getString("mem_id"));
+		                	memberVO.setMem_name(rs.getString("mem_name"));
+		                	memberVO.setMem_nick(rs.getString("mem_nick"));
+		                	memberVO.setMem_img(rs.getString("mem_img"));
+		                	memberVO.setMem_pw(rs.getString("mem_pw"));
+		                	memberVO.setMem_email(rs.getString("mem_email"));
+		                	memberVO.setMem_hp(rs.getString("mem_hp"));
+		                	memberVO.setMem_birth(rs.getString("mem_birth"));
+		                	memberVO.setMem_gender(rs.getString("mem_gender"));
+		                	memberVO.setMem_joindate(rs.getDate("mem_joindate"));
+		                	memberVO.setMem_pet(rs.getString("mem_pet"));
+		                	memberVO.setMem_address1(rs.getString("mem_address1"));
+		                	memberVO.setMem_address2(rs.getString("mem_address2"));
+		                	memberVO.setMem_address3(rs.getString("mem_address3"));
+		                	memberVO.setMem_address4(rs.getString("mem_address4"));
+		                	memberVO.setMem_address5(rs.getString("mem_address5"));
+		                	list.add(memberVO);
+		                }
+		        } catch (Exception e) {
+		        	e.printStackTrace();
+		        } finally {
+		        	closeResource();
+		        }
+		        return list;
+		    }
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+	//회원 삭제 기능
+	public void delMem(String id) {
+		String sql ="";
+		int total = 0;
+		try {
+			con = ds.getConnection();
+			sql = "select count(*) as cnt from ys_member where mem_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			rs.next();
+			total = rs.getInt("cnt");
+			
+			if(total == 1) {
+				sql = "delete from ys_member where mem_id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.executeUpdate();
+			} else {
+				sql = "delete from Member_trainer where tr_id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResource();
+		}
+	}
+
+	public void delImg(String delImgId) {
+		String sql ="";
+		int total = 0;
+		try {
+			con = ds.getConnection();
+			sql = "select count(*) as cnt from ys_member where mem_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, delImgId);
+			rs = pstmt.executeQuery();
+			rs.next();
+			total = rs.getInt("cnt");
+			
+			if(total == 1) {
+				sql = "update ys_member set mem_img = 'profile.png' where mem_id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, delImgId);
+				pstmt.executeUpdate();
+			} else {
+				sql = "update Member_trainer set tr_img = 'profile.png' where tr_id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, delImgId);
+				pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResource();
+		}
+	}
 	
+	
+	
+	//회원 목록 가져오기
+    public ArrayList<MemberVo> getMemberList(HashMap<String, Object> listOpt)
+    {
+        ArrayList<MemberVo> list = new ArrayList<>();
+        
+        String opt = (String)listOpt.get("opt"); // 검색옵션(제목, 내용, 글쓴이 등..)
+        String condition = (String)listOpt.get("condition"); // 검색내용
+        int start = (Integer)listOpt.get("start"); // 현재 페이지번호
+        
+        try {
+            con = ds.getConnection();
+            StringBuffer sql = new StringBuffer();
+            
+            // 아이디 전체를 보여줄 때
+            if(opt == null)
+            {
+                
+                sql.append("select * from ");
+                sql.append("(select rownum rnum, MEM_ID, MEM_NAME, MEM_NICK");
+                sql.append(", MEM_IMG, MEM_PW, MEM_EMAIL, MEM_HP, MEM_BIRTH, MEM_GENDER, MEM_JOINDATE");
+                sql.append(", MEM_PET, MEM_ADDRESS1, MEM_ADDRESS2, MEM_ADDRESS3, MEM_ADDRESS4, MEM_ADDRESS5");
+                sql.append(" FROM ");
+                sql.append("(select * from YS_MEMBER order by MEM_NAME)) ");
+                sql.append("where rnum>=? and rnum<=?");
+                
+                
+                pstmt = con.prepareStatement(sql.toString());
+                pstmt.setInt(1, start);
+                pstmt.setInt(2, start+9);
+                
+                // StringBuffer를 비운다.
+                sql.delete(0, sql.toString().length());
+            }
+            else if(opt.equals("0")) // 아이디로 검색
+            {
+                
+                sql.append("select * from ");
+                sql.append("(select rownum rnum, MEM_ID, MEM_NAME, MEM_NICK");
+                sql.append(", MEM_IMG, MEM_PW, MEM_EMAIL, MEM_HP, MEM_BIRTH, MEM_GENDER, MEM_JOINDATE");
+                sql.append(", MEM_PET, MEM_ADDRESS1, MEM_ADDRESS2, MEM_ADDRESS3, MEM_ADDRESS4, MEM_ADDRESS5");
+                sql.append(" FROM ");
+                sql.append("(select * from YS_MEMBER where MEM_ID like ? ");
+                sql.append("order BY MEM_NAME )) ");
+                sql.append("where rnum>=? and rnum<=?");
+                
+                pstmt = con.prepareStatement(sql.toString());
+                pstmt.setString(1, "%"+condition+"%");
+                pstmt.setInt(2, start);
+                pstmt.setInt(3, start+9);
+                
+                sql.delete(0, sql.toString().length());
+            }
+            else if(opt.equals("1")) // 펫유무로 검색
+            {
+                
+                sql.append("select * from ");
+                sql.append("(select rownum rnum, MEM_ID, MEM_NAME, MEM_NICK");
+                sql.append(", MEM_IMG, MEM_PW, MEM_EMAIL, MEM_HP, MEM_BIRTH, MEM_GENDER, MEM_JOINDATE");
+                sql.append(", MEM_PET, MEM_ADDRESS1, MEM_ADDRESS2, MEM_ADDRESS3, MEM_ADDRESS4, MEM_ADDRESS5");
+                sql.append(" FROM ");
+                sql.append("(select * from YS_MEMBER where MEM_PET like ? ");
+                sql.append("order BY YS_MEMBER )) ");
+                sql.append("where rnum>=? and rnum<=?");
+                
+                pstmt = con.prepareStatement(sql.toString());
+                pstmt.setString(1, "%"+condition+"%");
+                pstmt.setInt(2, start);
+                pstmt.setInt(3, start+9);
+                
+                sql.delete(0, sql.toString().length());
+            }
+            
+            rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+            	memberVO = new MemberVo();
+            	memberVO.setMem_id(rs.getString("mem_id"));
+            	memberVO.setMem_name(rs.getString("mem_name"));
+            	memberVO.setMem_nick(rs.getString("mem_nick"));
+            	memberVO.setMem_img(rs.getString("mem_img"));
+            	memberVO.setMem_pw(rs.getString("mem_pw"));
+            	memberVO.setMem_email(rs.getString("mem_email"));
+            	memberVO.setMem_hp(rs.getString("mem_hp"));
+            	memberVO.setMem_birth(rs.getString("mem_birth"));
+            	memberVO.setMem_gender(rs.getString("mem_gender"));
+            	memberVO.setMem_joindate(rs.getDate("mem_joindate"));
+            	memberVO.setMem_pet(rs.getString("mem_pet"));
+            	memberVO.setMem_address1(rs.getString("mem_address1"));
+            	memberVO.setMem_address2(rs.getString("mem_address2"));
+            	memberVO.setMem_address3(rs.getString("mem_address3"));
+            	memberVO.setMem_address4(rs.getString("mem_address4"));
+            	memberVO.setMem_address5(rs.getString("mem_address5"));
+            	list.add(memberVO);
+            }
+            
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+        
+        closeResource();
+        return list;
+    } // end getMemberList
+    
+    
+    
+ // 글의 개수를 가져오는 메서드
+    public int getMemberListCount(HashMap<String, Object> listOpt)
+    {
+        int result = 0;
+        String opt = (String)listOpt.get("opt"); // 검색옵션(제목, 내용, 글쓴이 등..)
+        String condition = (String)listOpt.get("condition"); // 검색내용
+        
+        try {
+            con = ds.getConnection();
+            StringBuffer sql = new StringBuffer();
+            
+            if(opt == null)    // 전체글의 개수
+            {
+                sql.append("select count(*) from ys_member");
+                pstmt = con.prepareStatement(sql.toString());
+                
+                // StringBuffer를 비운다.
+                sql.delete(0, sql.toString().length());
+            }
+            else if(opt.equals("0")) // 아이디로 검색한 멤버 수
+            {
+                sql.append("select count(*) from ys_member where mem_id like ?");
+                pstmt = con.prepareStatement(sql.toString());
+                pstmt.setString(1, '%'+condition+'%');
+                
+                sql.delete(0, sql.toString().length());
+            }
+            else if(opt.equals("1")) // 펫 유무로 검색한 멤버 수
+            {
+                sql.append("select count(*) from ys_member where mem_pet like ?");
+                pstmt = con.prepareStatement(sql.toString());
+                pstmt.setString(1, '%'+condition+'%');
+                
+                sql.delete(0, sql.toString().length());
+            }
+            
+            rs = pstmt.executeQuery();
+            if(rs.next())    result = rs.getInt(1);
+            
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+        
+        closeResource();
+        return result;
+    } // end getMemberListCount
 
 }

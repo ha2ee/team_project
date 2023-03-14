@@ -244,10 +244,6 @@ $("#checkBtn").click(function() {
 	}
 });
 
-
-
-
-
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function sample4_execDaumPostcode() {
         new daum.Postcode({
@@ -302,4 +298,39 @@ $("#checkBtn").click(function() {
                 }
             }
         }).open();
+    }
+
+    
+//===========================================================
+    //이미지 초기화 
+    function resetImg(id) {
+    	
+    	let result = window.confirm("정말로 이미지를 초기화 하시겠습니까?");
+    	
+    	let httpRequest; 
+    	
+    	if(result){
+    		httpRequest = new XMLHttpRequest();
+    	if(!httpRequest) {
+    		alert('XMLHTTP 인스턴스 생성 불가');
+    		return false;
+    	}
+    	httpRequest.onreadystatechange = function () {
+    		
+        if(httpRequest.readyState === XMLHttpRequest.DONE) {
+          if(httpRequest.status === 200) {
+            alert(httpRequest.responseText);
+            location.reload();
+          } else {
+            alert('request 문제 발생 확인');
+          }
+        }
+      };
+      httpRequest.open('GET','/TeamProject/adm/resetImg.adm?id='+id);
+      httpRequest.send();
+    	
+    } else {
+    	return false;
+    }
+    	
     }

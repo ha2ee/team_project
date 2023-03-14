@@ -166,6 +166,7 @@ display: inline;
 	</table>
 	
 <button onclick="openModal()">정보수정하기</button>
+<a href="${contextPath}/adm/delMem.adm?delID=${trainerVo.tr_id}">트레이너삭제하기</a>
 <div id="memModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -175,7 +176,7 @@ display: inline;
     	<table>
 		<tr>
 			<th>등록된 이미지</th>
-			<td>${trainerVo.tr_img}<button type="button" onclick="">이미지제거</button></td>
+			<td>${trainerVo.tr_img}<button type="button" onclick="resetImg('${trainerVo.tr_id}');">이미지 초기화</button></td>
 		</tr>
 		<tr>
 			<th>아이디</th>
@@ -244,5 +245,6 @@ display: inline;
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="${contextPath}/js/adminPageList.js"> </script>
+
 </body>
 </html>

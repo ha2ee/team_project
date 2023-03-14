@@ -2,6 +2,8 @@ package CONTROLLER;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,12 +19,14 @@ import DAO.MemberDAO;
 import DAO.TrainerBoardDAO;
 import DAO.TrainerDAO;
 import VO.MemberVo;
+import VO.TrainerBoardVo;
 import VO.TrainerVo;
 
 @WebServlet("/adm/*")
 public class AdminController extends HttpServlet {
 
 		TrainerBoardDAO trainerboarddao;
+		TrainerBoardVo trainerboardVO;
 		TrainerDAO trainerdao;
 		TrainerVo trainerVO;
 		
@@ -38,6 +42,8 @@ public class AdminController extends HttpServlet {
 			memberVO = new MemberVo();
 			trainerVO = new TrainerVo();
 			trainerdao = new TrainerDAO();
+			trainerboarddao = new TrainerBoardDAO();
+			trainerboardVO = new TrainerBoardVo();
 		}
 		
 		
@@ -74,12 +80,20 @@ public class AdminController extends HttpServlet {
 			id = (String) session.getAttribute("id");			
 			
 			if (action.equals("/adminMain")) {
-				
-				List<MemberVo> list = adminDAO.selectAllMember();
+				//회원 목록 
+				List<MemberVo> list = adminDAO.getMemberListMain();
 				request.setAttribute("membersList", list);
+				//============================================================
 				
+				//트레이너 목록
 				List<TrainerVo> trList = adminDAO.selectTrAllMember();
 				request.setAttribute("trMembersList", trList);
+				//============================================================
+				
+				//훈련사 상담 목록
+				ArrayList<TrainerBoardVo> trBoardList = adminDAO.getBoardList();
+				request.setAttribute("trBoardList", trBoardList);
+				//============================================================
 				
 				nextPage = "/nbAdmin/adminMain.jsp";
 				
@@ -87,12 +101,58 @@ public class AdminController extends HttpServlet {
 				System.out.println("/memManage 호출");
 				List<MemberVo> list = adminDAO.selectAllMember();
 				
-				center = "/nbAdmin/adminMem.jsp";
-				
 				request.setAttribute("center", center);
 				request.setAttribute("membersList", list);
 				
-				nextPage = "/nbAdmin/adminMain.jsp";
+//				nextPage = "/nbAdmin/adminMain.jsp";
+				
+				//========================================================
+				//회원목록 페이징 처리
+				 // 현재 페이지 번호 만들기
+		        int spage = 1;
+		        String page = request.getParameter("page");
+		        
+		        if(page != null)
+		            spage = Integer.parseInt(page);
+		        
+		        // 검색조건과 검색내용을 가져온다.
+		        String opt = request.getParameter("opt");
+		        String condition = request.getParameter("condition");
+		        
+		        // 검색조건과 내용을 Map에 담는다.
+		        HashMap<String, Object> listOpt = new HashMap<String, Object>();
+		        listOpt.put("opt", opt);
+		        listOpt.put("condition", condition);
+		        listOpt.put("start", spage*10-9);
+		        
+		        int listCount = adminDAO.getMemberListCount(listOpt);
+		        ArrayList<MemberVo> list2 =  adminDAO.getMemberList(listOpt);
+		        
+		        // 한 화면에 10개의 게시글을 보여지게함
+		        // 페이지 번호는 총 5개, 이후로는 [다음]으로 표시
+		        
+		        // 전체 페이지 수
+		        int maxPage = (int)(listCount/10.0 + 0.9);
+		        //시작 페이지 번호
+		        int startPage = (int)(spage/5.0 + 0.8) * 5 - 4;
+		        //마지막 페이지 번호
+		        int endPage = startPage + 4;
+		        if(endPage > maxPage)    endPage = maxPage;
+		        
+		        // 4개 페이지번호 저장
+		        request.setAttribute("spage", spage);
+		        request.setAttribute("maxPage", maxPage);
+		        request.setAttribute("startPage", startPage);
+		        request.setAttribute("endPage", endPage);
+		        
+		        request.setAttribute("listCount", listCount);
+		        request.setAttribute("membersList", list2);
+				center = "/nbAdmin/adminMem.jsp";
+		        request.setAttribute("center", center);
+		        request.setAttribute("trainerboarddao", trainerboarddao);
+				
+		        nextPage = "/nbAdmin/adminMain.jsp";
+				
 				
 			} else if(action.equals("/memDetail.adm")) {
 				
@@ -177,6 +237,89 @@ public class AdminController extends HttpServlet {
 				
 				out.print("<script>location.href='/TeamProject/adm/trMemDetail.adm?trMemberID="+trainerVO.getTr_id()+"'</script>");
 				return;
+				
+			} else if (action.equals("/trBoardList.adm")) {
+				
+				 // 현재 페이지 번호 만들기
+		        int spage = 1;
+		        String page = request.getParameter("page");
+		        
+		        if(page != null)
+		            spage = Integer.parseInt(page);
+		        
+		        // 검색조건과 검색내용을 가져온다.
+		        String opt = request.getParameter("opt");
+		        String condition = request.getParameter("condition");
+		        
+		        // 검색조건과 내용을 Map에 담는다.
+		        HashMap<String, Object> listOpt = new HashMap<String, Object>();
+		        listOpt.put("opt", opt);
+		        listOpt.put("condition", condition);
+		        listOpt.put("start", spage*10-9);
+		        
+		        int listCount = trainerboarddao.getBoardListCount(listOpt);
+		        ArrayList<TrainerBoardVo> list2 =  trainerboarddao.getBoardList(listOpt);
+		        
+		        // 한 화면에 10개의 게시글을 보여지게함
+		        // 페이지 번호는 총 5개, 이후로는 [다음]으로 표시
+		        
+		        // 전체 페이지 수
+		        int maxPage = (int)(listCount/10.0 + 0.9);
+		        //시작 페이지 번호
+		        int startPage = (int)(spage/5.0 + 0.8) * 5 - 4;
+		        //마지막 페이지 번호
+		        int endPage = startPage + 4;
+		        if(endPage > maxPage)    endPage = maxPage;
+		        
+		        // 4개 페이지번호 저장
+		        request.setAttribute("spage", spage);
+		        request.setAttribute("maxPage", maxPage);
+		        request.setAttribute("startPage", startPage);
+		        request.setAttribute("endPage", endPage);
+		        
+		        // 글의 총 수와 글목록 저장
+		        request.setAttribute("listCount", listCount);
+		        request.setAttribute("list", list2);
+		        center = "/nbAdmin/adminTrBoardList.jsp";
+		        request.setAttribute("center", center);
+		        request.setAttribute("trainerboarddao", trainerboarddao);
+				
+		        nextPage = "/nbAdmin/adminMain.jsp";
+				
+			} else if (action.equals("/trBoardRead.adm")) {
+				trainerboardVO = trainerboarddao.boardRead(request);
+		    	  //content를 읽어들여서 다운로드 링크를 만들 수 있는 메소드
+		    	  List<String> imageUrls = trainerboarddao.contentLink(trainerboardVO.getTb_content());
+					
+					//글제목을 눌러 글을 조회한 후 보여주는 중앙 화면  View 주소를 얻어옴
+					center = "/nbAdmin/adminTrBoardRead.jsp";
+			
+					request.setAttribute("center", center);
+					request.setAttribute("vo", trainerboardVO);
+					request.setAttribute("trainerboarddao", trainerboarddao);
+					
+					request.setAttribute("pageNum", request.getParameter("pageNum")); 
+					request.setAttribute("tb_idx", request.getParameter("tb_idx"));
+					request.setAttribute("imageUrls", imageUrls);
+					nextPage = "/nbAdmin/adminMain.jsp";
+					
+			} else if (action.equals("/delMem.adm")) {
+				String delID = request.getParameter("delID");
+				adminDAO.delMem(delID);
+				
+				out.print("<script>location.href='/TeamProject/adm/adminMain';</script>");
+				
+				return;
+			
+			} else if (action.equals("/resetImg.adm")) {
+				System.out.println("reset.adm 호출");
+				String delImgId = request.getParameter("id");
+				adminDAO.delImg(delImgId);
+				
+				out.print("초기화 완료");
+				
+				return;
+				
 			}
 			
 		

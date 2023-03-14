@@ -174,6 +174,9 @@ display: inline;
 	</table>
 	
 <button onclick="openModal()">정보수정하기</button>
+<a href="${contextPath}/adm/delMem.adm?delID=${memberVO.mem_id}">회원삭제하기</a>
+
+
 <div id="memModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -183,7 +186,7 @@ display: inline;
     	<table>
 		<tr>
 			<th>등록된 이미지</th>
-			<td>${memberVO.mem_img}<button type="button" onclick="">이미지제거</button></td>
+			<td>${memberVO.mem_img}<button type="button" onclick="resetImg('${memberVO.mem_id}');">이미지 초기화</button></td>
 		</tr>
 		<tr>
 			<th>아이디</th>
@@ -256,7 +259,6 @@ display: inline;
 		</tr>						
 	</table>
 	<a href="#" id="adClick" onclick="sample4_execDaumPostcode(); return false;" style="text-decoration: none; color:black;">우편번호찾기</a>
-<!-- 	<input type="submit" value="정보수정" style="float:right; position:relative; bottom:30px;"> -->
 <a href="#" onclick="check(); return false;" type="button" id="update" style="text-decoration: none; color:black;">정보수정</a>
 </form>
   </div>

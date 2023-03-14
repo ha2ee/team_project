@@ -18,21 +18,25 @@
     <div class="board-table">
         <table class="board-table" >
 			<tr>
-				<th>트레이너 아이디</th>
-				<th>트레이너 이름</th>
-				<th>트레이너 이메일</th>
-				<th>트레이너 전화번호</th>
-				<th>트레이너 가입일</th>
-				<th>트레이너 삭제</th>
+				<th>회원 아이디</th>
+				<th>회원 이름</th>
+				<th>회원 닉네임</th>
+				<th>회원 이메일</th>
+				<th>회원 전화번호</th>
+				<th>회원 가입일</th>
+				<th>회원 펫 유무</th>
+				<th>회원 삭제</th>
 			</tr>
-			<c:forEach var="trMem" items="${requestScope.trMembersList}">
+			<c:forEach var="mem" items="${requestScope.membersList}">
 				<tr>
-					<td><a href="${contextPath}/adm/trMemDetail.adm?trMemberID=${trMem.tr_id}">${trMem.tr_id}</a></td>
-					<td>${trMem.tr_name}</td>
-					<td>${trMem.tr_email}</td>
-					<td>${trMem.tr_hp}</td>
-					<td>${trMem.tr_joindate}</td>
-					<td><a href="${contextPath}/adm/delMem.adm?delID=${trMem.tr_id}">트레이너 삭제</a></td>
+					<td><a href="${contextPath}/adm/memDetail.adm?memberID=${mem.mem_id}">${mem.mem_id}</a></td>
+					<td>${mem.mem_name}</td>
+					<td>${mem.mem_nick}</td>
+					<td>${mem.mem_email}</td>
+					<td>${mem.mem_hp}</td>
+					<td>${mem.mem_joindate}</td>
+					<td>${mem.mem_pet}</td>
+					<td><a href="${contextPath}/adm/delMem.adm?delID=${mem.mem_id}">회원 삭제</a></td>
 				</tr>
 			</c:forEach>
 		</table>

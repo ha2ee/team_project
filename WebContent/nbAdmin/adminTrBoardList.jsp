@@ -1,73 +1,13 @@
-<%@page import="DAO.TrainerBoardDAO"%>
-<%@page import="VO.TrainerBoardVo"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
      <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath(); 
-	
-	TrainerBoardDAO tDAO = new TrainerBoardDAO();
-	boolean check = false;
-	
 %>
 <html>
 <head>
     <title>전체 게시글</title>
-    <style type="text/css">
-    	/* 게시판을 감싸는 div의 스타일 */
-		.board-wrap {
-		  margin: 20px auto; /* 중앙 정렬 */
-		  max-width: 1200px; /* 최대 가로 너비 지정 */
-		}
-		
-		/* 게시판 목록 테이블의 스타일 */
-		.board-table {
-		  width: 100%;
-		  border-collapse: collapse; /* 테두리 합치기 */
-		  border-top: 2px solid #ddd; /* 상단 테두리 지정 */
-		}
-		
-		/* 게시판 목록 테이블의 th와 td 스타일 */
-		.board-table th, .board-table td {
-		  padding: 10px 20px; 
-/* 		  text-align: center;  */
-		  border-bottom: 1px solid #ddd; 
-		}
-		
-		/* 게시판 목록 테이블의 th 스타일 */
-		.board-table th {
-		  background-color: #f5f5f5; /* 배경색 지정 */
-		}
-		
-		/* 게시판 목록 테이블의 td > a 스타일 */
-		.board-table td > a {
-		  color: #333; /* 링크 색상 지정 */
-		  text-decoration: none; /* 밑줄 제거 */
-		  font-weight: bold; /* 글씨체 굵기 지정 */
-		}
-		
-		/*마우스 올리면 색 변환*/
-		.board-table td:nth-child(2) a:hover {
-		  color: #f44336;
-		}
-		
-		#newContent {
-		  float : right;
-		  position : relative;
-		  top : 10px;
-		  background-color: #f44336;
-		  color: white;
-		  border: none;
-		  padding: 10px;
-		  font-size: 16px;
-		  font-weight: bold;
-		  cursor: pointer;
-		}
-   
-    </style>
-    
-    
     <script type="text/javascript">
     	function fnRead(val){
     		
@@ -76,7 +16,6 @@
     		document.frmRead.submit();
     	}
     </script>
-    
 </head>
 <body>    
  
@@ -103,12 +42,12 @@
                 	</c:forEach>
                 	:RE
                 </c:if>
-                    <a href="read.bo?tb_idx=${board.tb_idx}&pageNum=${spage}">
+                    <a href="trBoardRead.adm?tb_idx=${board.tb_idx}&pageNum=${spage}">
                     ${board.tb_title}
                     </a>
                 </td>
                 <td>
-                <c:choose>
+                     <c:choose>
                 	<c:when test="${!trainerboarddao.checkTable(board.tb_id)}">
                 		<b>🍎${board.tb_name}</b>
                 	</c:when>
@@ -122,16 +61,13 @@
             </tr>
         </c:forEach>
         </table>
-        <c:if test="${not empty sessionScope.id}">
-        <input type ="button" id="newContent" onclick="location.href='<%=contextPath%>/tb/write.bo'"value = "글쓰기">
-        </c:if>
     </div>
     
     <!-- 페이지 넘버 부분 -->
     <br>
     <div id="pageForm">
         <c:if test="${startPage != 1}">
-            <a href='list.bo?page=${startPage-1}'>[ 이전 ]</a>
+            <a href='trBoardList.adm?page=${startPage-1}'>[ 이전 ]</a>
         </c:if>
         
         <c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
@@ -139,12 +75,12 @@
                 ${pageNum}&nbsp;
             </c:if>
             <c:if test="${pageNum != spage}">
-                <a href='list.bo?page=${pageNum}'>${pageNum}&nbsp;</a>
+                <a href='trBoardList.adm?page=${pageNum}'>${pageNum}&nbsp;</a>
             </c:if>
         </c:forEach>
         
         <c:if test="${endPage != maxPage }">
-            <a href='list.bo?page=${endPage+1 }'>[다음]</a>
+            <a href='trBoardList.adm?page=${endPage+1 }'>[다음]</a>
         </c:if>
     </div>
     
