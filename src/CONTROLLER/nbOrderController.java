@@ -225,9 +225,10 @@ public class nbOrderController extends HttpServlet{
 				request.setAttribute("list", list);
 				request.setAttribute("id", edu_id);
 
-			nextPage = "/nbMain.jsp";
-			
-				break;
+				//request에 "center" 값을 이용해서 cart.jsp로 이동 시킴
+				request.setAttribute("center", "nbShop/cart.jsp");	
+
+				nextPage = "/nbMain.jsp";
 				
 				
 			// #4) 장바구니에서 최종 결제 요청

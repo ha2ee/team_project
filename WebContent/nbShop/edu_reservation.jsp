@@ -377,22 +377,6 @@ function openChild() {
 	// 정규표현식으로 3자리숫자당 콤마로 구분한다.
 	var tr_totalprice2 = original.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-	
-	// 강아지 사진 업로드 시 썸네일 형식의 미리보기 만들기
-// 	function setThumbnail(event) {
-// 	  var reader = new FileReader();
-
-// 	  reader.onload = function(event) {
-// 	    var img = document.createElement("img");
-// 	    img.setAttribute("src", event.target.result);
-// 	    document.querySelector("#pet_img_box").appendChild(img);
-// 	  };
-
-// 	  reader.readAsDataURL(event.target.files[0]);
-// 	}
-	
-	
-
 </script>
 <script
 src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
