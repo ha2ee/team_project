@@ -356,8 +356,12 @@ function openChild() {
 		})
 		
 		
+		$("#nb_submitbtn").on("click", function(){
 		
-
+			alert("결제를 위해 장바구니로 이동합니다!! ");
+		})
+		
+		
 		
 		// 최종금액에 콤마단위가 들어간 금액으로 설정
 		$("#tr_totalprice").attr("value", tr_totalprice2);
