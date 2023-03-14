@@ -1,3 +1,4 @@
+<%@page import="VO.ReviewVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
@@ -80,7 +81,6 @@
       }
       
       .card-text{
-      font-size: 20px;
 /*       padding: 1rem; */
  
       /* 추가하기 */
@@ -174,7 +174,11 @@
           <div class="card shadow-sm">
            <img alt="dd" src="<%=reviewUploadPath%>${review.img}" style="height: 300px; object-fit: contain;">
             <div class="card-body">
-              <p class="card-text" style="font-size: 15;margin-bottom: 0">${review.title}</p>
+              <div class="card-text" style="margin-bottom:0;"><b style="font-size: 15;">${review.title}</b><br><span><c:if test="${empty review.context}"><br></c:if>${review.context}</span></div>
+              <%
+              if()
+              
+              %>
               <input type="checkbox" class="card-content__more-btn">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
@@ -186,6 +190,8 @@
             </div>
           </div>
         </div>
+        
+        
         
   </c:forEach>
 <!-------------------------응용해보자 ------------------------->

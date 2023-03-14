@@ -71,6 +71,7 @@ public class ReviewDAO {
         vo.setImg(rs.getString("img"));
         vo.setImgRealName(rs.getString("imgRealName"));
         vo.setTitle(rs.getString("title"));
+        vo.setContext(rs.getString("context"));
         vo.setReview_date(rs.getDate("review_date"));
         list.add(vo);
       }
