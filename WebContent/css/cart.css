@@ -7,10 +7,10 @@
 
 #cartWrapper {
 
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	
 	width: 1200px;
-	height: 650px;
+	height: 710px;
 	position: relative;
 	margin: 0 auto;
 	top: 0;
@@ -20,7 +20,7 @@
 
 #cartBox {
 
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -29,7 +29,7 @@
 	left: 0;
 	right: 0;
 	border-radius: 30px;
-	background : floralwhite;
+	background : #f2dede29;
     box-shadow: 0px 0px 15px 1px #e91e6357;
 	
 }
@@ -68,7 +68,8 @@
 }
 
 #filter {
-	border: 1px solid floralwhite;
+
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 50px;
 	position: relative;
@@ -80,8 +81,8 @@
 }
 
 #filter>div {
-	border: 1px solid floralwhite;
-	width: calc(100%/ 4);
+	border: 1px solid #e8d0d01f;
+	width: calc(100%/ 5);
 	height: 100%;
 	position: relative;
 	margin: 0 auto;
@@ -97,7 +98,7 @@
 }
 
 #filterEdu {
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -108,7 +109,7 @@
 }
 
 #filterPet {
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -119,7 +120,7 @@
 }
 
 #filterTr {
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -130,7 +131,7 @@
 }
 
 #filterPrice {
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -142,7 +143,7 @@
 
 /* 수강 신청 CSS 설정 */
 #eduResultBox {
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 35%;
 	position: relative;
@@ -157,9 +158,11 @@
 }
 
 #eduBox {
-	border: 1px solid floralwhite;
-	width: 25%;
-	height: 150px;
+
+	border: 1px solid #e8d0d01f;
+	
+	width: 20%;
+	height: 40px;
 	position: relative;
 	margin: 0 auto;
 	top: 0;
@@ -168,233 +171,1121 @@
 }
 
 #eduBox>div {
-	border: 1px solid floralwhite;
-	height: 75px;
+
+	border: 1px solid #e8d0d01f;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 1px;
+	right: 0;
+	float: left;
+	width : 78px;
+}
+
+#eduBox>div>a {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+#eduNumBox {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 79px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: 40px;
+    left: -238px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+    
+}
+
+#eduNumBox > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+}
+
+#eduNumBox > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#eduNameBox {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 80px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: 40px;
+    left: -239px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    
+}
+
+#eduNameBox > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+}
+
+#eduNameBox > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#eduHpBox {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 80px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: 40px;
+    left: -240px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    
+}
+
+#eduHpBox > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+}
+
+#eduHpBox > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#petBox {
+
+border: 1px solid #e8d0d01f;
+    width: 20%;
+    height: 40px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: -239px;
+    right: 0;
+}
+
+#petBox > div {
+
+	border: 1px solid #e8d0d01f;
+	
+	height: 38px;
 	position: relative;
 	margin: 0 auto;
 	top: 0;
 	left: 0px;
 	right: 0;
 	float: left;
+	width : 118px;
 }
 
-#eduBox>div>a {
-	border: 1px solid floralwhite;
-	
-	display: inline-block;
-	width: 100%;
-	height: 35px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	font-size: 15px;
-	text-decoration: none;
-	border-radius: 5px;
-	background: aliceblue;
-	line-height: 35px;
+#petBox > div > a {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
     color: cadetblue;
     font-weight: bold;
 }
 
-#eduBox>div>a>input {
+#pet_img_box {
 
-	border: 1px solid floralwhite;
-	
-	width: 100%;
-	height: 100%;
-	position: relative;
-	margin: 0 auto;
-	top: 2px;
-	left: 0;
-	right: 0;
-	border-radius: 5px;
-	text-align: center;
-	font-size: 13px;
-	background : #fffaf0;
-	border-radius: 5px;
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 117px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: 40px;
+    left: -477px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+
 }
 
-#petBox {
-	border: 1px solid floralwhite;
-	width: 25%;
-	height: 150px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
+#pet_img_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+
 }
 
-#petBox>div {
-	border: 1px solid floralwhite;
-	width: 25%;
-	height: 75px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	float: left;
-	font-size: 14px;
+#pet_img_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color: black;
+
 }
 
-#petBox>div>a {
-	border: 1px solid floralwhite;
-	display: inline-block;
-	width: 100%;
-	height: 35px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	text-align: center;
-	font-size: 14px;
-	border-radius: 5px;
-	background: aliceblue;
-	text-decoration: none;
-	line-height: 35px;
-	color: cadetblue;
-	font-weight: bold;
+#pet_name_box {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 119px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: 40px;
+    left: -477px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+
 }
 
-#petBox>div>a>input {
+#pet_name_box > div {
 
-	border: 1px solid floralwhite;
-	
-	width: 100%;
-	height: 35px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	padding: 5px;
-	text-align: center;
-	font-size: 12px;
-	background : #fffaf0;
-	border-radius: 5px;
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+
 }
+
+#pet_name_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color: black;
+
+}
+
 
 #trBox {
 
-	border: 1px solid floralwhite;
-	
-	width: 25%;
-	height: 150px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
+	border: 1px solid #e8d0d01f;
+
+    width: 20%;
+    height: 40px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: -474px;
+    right: 0;
+    
 }
 
-#trBox > div{
+#trBox > div {
 
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	
-	width: 50%;
-	height: 150px;
+	height: 38px;
 	position: relative;
 	margin: 0 auto;
 	top: 0;
-	left: 0;
+	left: 1px;
 	right: 0;
 	float: left;
+	width : 78px;
 }
 
-#trBox div > a{
+#trBox > div > a {
 
-	border: 1px solid floralwhite;
-	
-	display : inline-block;
-	width: 100%;
-	height: 150px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	text-decoration : none;
-	line-height : 35px;
-	background : aliceblue;
-	border-radius: 5px;
-	font-size : 18px;
- 	color: cadetblue;	
- 	font-weight: bold;
-}
+	border: 1px solid #e8d0d01f;
 
-#trBox div > a > input{
-	border: 1px solid floralwhite;
-	width: 100%;
-	height: 30px;
-	position: relative;
-	margin: 0 auto;
-	top: 5px;
-	left: 0;
-	right: 0;
-	text-align : center;
-	background : #fffaf0;
-	border-radius: 5px;
-}
-
-#priceBox {
-	border: 1px solid floralwhite;
-	width: 25%;
-	height: 150px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-}
-
-#priceBox>div {
-	width: 100%;
-	height: 75px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-}
-
-#prIceBox>div>a {
-	border: 1px solid floralwhite;
-	display: inline-block;
-	width: 100%;
-	height: 35px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	font-size: 20px;
-	text-decoration: none;
-	border-radius: 5px;
-	background: aliceblue;
-	line-height: 35px;
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
     color: cadetblue;
     font-weight: bold;
 }
 
-#priceBox>div>a>input {
-	border: 1px solid floralwhite;
-	width: 100%;
-	height: 100%;
+
+#tr_img_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 79px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    left: -474px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    font-weight: bold;
+    top: 0px;
+    
+}
+
+#tr_img_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+}
+
+#tr_img_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    text-align: center;
+    color : black;
+}
+
+#tr_name_box {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 80px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: 0px;
+    left: -473px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    
+}
+
+#tr_name_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+}
+
+#tr_name_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 13px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#tr_hp_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 80px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: 0px;
+    left: -473px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    
+}
+
+#tr_hp_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+}
+
+#tr_hp_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#priceBox {
+
+    border: 1px solid #e8d0d01f;
+    
+    width: 20%;
+    height: 40px;
+    position: relative;
+    margin: 0 auto;
+    top: -220px;
+    left: 719px;
+    right: 0;
+    
+}
+
+#priceBox > div {
+
+	border: 1px solid #e8d0d01f;
+	
+	height: 38px;
 	position: relative;
 	margin: 0 auto;
-	top: 2px;
-	left: 0;
+	top: 0;
+	left: 1px;
 	right: 0;
-	border-radius: 5px;
-	text-align: center;
-	font-size: 25px;
-	background : #fffaf0;
-	border-radius: 5px;
+	float: left;
+	width : 78px;
 }
+
+#priceBox > div > a {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+#edu_date_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 79px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -180px;
+    left: 480px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    font-weight: bold;
+    
+}
+
+#edu_date_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+}
+
+#edu_date_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#edu_cnt_box {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 80px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -180px;
+    left: 480px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    font-weight: bold;
+    
+}
+
+#edu_cnt_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+}
+
+#edu_cnt_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#edu_totalprice_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 80px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -180px;
+    left: 480px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+    
+}
+
+#edu_totalprice_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+}
+
+#edu_totalprice_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 13px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    text-align: center;
+    color : black;
+}
+
+
+
+#InfoBox {
+
+    border: 1px solid #e8d0d01f;
+    
+    width: 20%;
+    height: 40px;
+    position: relative;
+    margin: 0 auto;
+    top: -220px;
+    left: 480px;
+    right: 0;
+}
+
+#InfoBox > div {
+
+	border: 1px solid #e8d0d01f;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 1px;
+	right: 0;
+	float: left;
+	width : 78px;
+}
+
+#InfoBox > div > a {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+#edu_info_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 79px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -180px;
+    left: 241px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    font-weight: bold;
+    
+}
+
+#edu_info_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+}
+
+#edu_info_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#cart_del_box {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 80px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -180px;
+    left: 318px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    font-weight: bold;
+    
+}
+
+#cart_del_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+}
+
+#cart_del_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#cart_mod_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 80px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -180px;
+    left: 160px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    font-weight: bold;
+    
+}
+
+#cart_mod_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+}
+
+#cart_mod_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    text-align: center;
+    color : black;
+}
+
 
 /* 늘 봄샵 전체, 타이틀 CSS 설정 */
 #nbshopResultBox {
@@ -405,7 +1296,7 @@
 	height: calc(100%/ 2);
 	position: relative;
 	margin: 0 auto;
-	top: 0;
+	top: -150px;
 	left: 0;
 	right: 0;
 }
@@ -415,7 +1306,7 @@
 }
 
 #nbtitleBox {
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 100px;
 	position: relative;
@@ -426,7 +1317,7 @@
 }
 
 #nbtitle {
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 50px;
 	position: relative;
@@ -443,7 +1334,7 @@
 }
 
 #nbfilter {
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 50px;
 	position: relative;
@@ -455,7 +1346,7 @@
 }
 
 #nbfilter>div {
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: calc(100%/ 4);
 	height: 100%;
 	position: relative;
@@ -472,7 +1363,7 @@
 }
 
 #filterMem {
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -483,7 +1374,7 @@
 }
 
 #filterOrder {
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -494,7 +1385,7 @@
 }
 
 #filterCost {
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -505,75 +1396,13 @@
 }
 
 /* 늘봄샵 내부 CSS 설정	 */
-#memBox {
-	border: 1px solid floralwhite;
-	width: 25%;
-	height: 150px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-}
-
-#memBox>div {
-	border: 1px solid floralwhite;
-	height: 75px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0px;
-	right: 0;
-	float: left;
-}
-
-#memBox>div>a {
-
-	border: 1px solid floralwhite;
-	
-	display: inline-block;
-	width: 100%;
-	height: 35px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	font-size: 15px;
-	text-decoration: none;
-	border-radius: 5px;
-	background: aliceblue;
-	line-height: 35px;
-    color: cadetblue;
-    font-weight: bold;
-}
-
-#memBox>div>a>input {
-
-	border: 1px solid floralwhite;
-	
-	width: 100%;
-	height: 100%;
-	position: relative;
-	margin: 0 auto;
-	top: 2px;
-	left: 0;
-	right: 0;
-	border-radius: 5px;
-	text-align: center;
-	font-size: 13px;
-	background : #fffaf0;
-	border-radius: 5px;
-	
-}
-
 
 #orderBox {
 
-	border: 1px solid floralwhite;
+	border: 1px solid #e8d0d01f;
 	
-	width: 50%;
-	height: 150px;
+	width: 30%;
+	height: 40px;
 	position: relative;
 	margin: 0 auto;
 	top: 0;
@@ -583,111 +1412,1106 @@
 
 #orderBox > div {
 
-	width : 100%;
-	height : 100%;
-	margin : 0 auto;
-	left : 0;
-	right : 0;
-	top : 0;
+	border: 1px solid #e8d0d01f;
+	
+	height: 38px;
 	position: relative;
-
-	float : left;
+	margin: 0 auto;
+	top: 0;
+	left: 1px;
+	right: 0;
+	float: left;
+	width : 118px;
 }
 
-#orderBox > div > a{
+#orderBox > div > a {
 
-	border: 1px solid floralwhite;
-	
-	display:inline-block;
-	width: 100%;
-    height: 75px;
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
     position: relative;
     margin: 0 auto;
     top: 0;
     left: 0;
     right: 0;
-    line-height: 75px;
+    font-size: 15px;
     text-decoration: none;
-    font-size: 20px;
-    background: aliceblue;
     border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
     color: cadetblue;
     font-weight: bold;
+}
+
+
+
+
+
+
+#memBox {
+
+	border: 1px solid #e8d0d01f;
+	
+	width: 25%;
+    height: 40px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: -356px;
+    right: 0;
+}
+
+#memBox > div {
+
+	border: 1px solid #e8d0d01f;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0px;
+	right: 0;
+	float: left;
+	width : 99px;
+}
+
+#memBox > div > a {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+#order_num_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+	width: 119px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+	top: 40px;
+    left: -358px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    font-weight: bold;
+    
+}
+
+#order_num_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+}
+
+#order_num_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#order_img_box {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 119px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+	top: 40px;
+    left: -358px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    font-weight: bold;
+    
+}
+
+#order_img_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+}
+
+#order_img_box > div > a {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#order_product_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+	width: 119px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+	top: 40px;
+    left: -358px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    
+}
+
+#order_product_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+}
+
+#order_product_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+
+#mem_name_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 100px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: 40px;
+	left: -656px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    font-weight: bold;
+    
+}
+
+#mem_name_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+}
+
+#mem_name_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#mem_hp_box {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -140px;
+    left: 458px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    
+}
+
+#mem_hp_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+}
+
+#mem_hp_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 11px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#mem_email_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 100px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -140px;
+    left: 458px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    
+}
+
+#mem_email_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+}
+
+#mem_email_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+
+#costBox {
+
+	border: 1px solid #e8d0d01f;
+	
+    width: 296px;
+    height: 40px;
+    position: relative;
+    margin: 0 auto;
+    top: -180px;
+    left: 459px;
+	right: 0;
+}
+
+#costBox > div {
+
+	border: 1px solid #e8d0d01f;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+    top: 0;
+    left: 0;
+	right: 0;
+	float: left;
+	width: 98px;
+	
+}
+
+#costBox > div > a {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+#order_date_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 99px;
+   	height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -140px;
+    left: 163px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    
+}
+
+#order_date_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+}
+
+#order_date_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#order_cpt_box {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 97px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -140px;
+	left: 163px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    
+}
+
+#order_cpt_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+}
+
+#order_cpt_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#order_price_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 97px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -140px;
+	left: 163px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    
+}
+
+#order_price_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+}
+
+#order_price_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+	width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    text-align: center;
+    color : black;
+}
+
+
+
+#nbInfoBox {
+
+	border: 1px solid #e8d0d01f;
+
+    width: 20%;
+    height: 40px;
+    position: relative;
+    margin: 0 auto;
+    top: -180px;
+    left: 166px;
+    right: 0;
+}
+
+#nbInfoBox > div {
+
+	border: 1px solid #e8d0d01f;
+	
+	height: 38px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 1px;
+	right: 0;
+	float: left;
+	width : 78px;
+}
+
+#nbInfoBox > div > a {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+#order_info_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 80px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -140;
+    left: -74px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    font-weight: bold;
+    
+}
+
+#order_info_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+}
+
+#order_info_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#nbcart_del_box {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 80px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -140;
+    left: 3px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    font-weight: bold;
+    
+}
+
+#nbcart_del_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+}
+
+#nbcart_del_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+#nbcart_mod_box {
+
+    border: 1px solid #e8d0d01f;
+    
+    display: inline-block;
+    width: 80px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto;
+    top: -320px;
+    left: 1033px;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: black;
+    font-weight: bold;
+    
+}
+
+#nbcart_mod_box > div {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    color: cadetblue;
+}
+
+#nbcart_mod_box > div > input {
+
+	border: 1px solid #e8d0d01f;
+
+    display: inline-block;
+    width: 77px;
+    height: 35px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: aliceblue;
+    line-height: 35px;
+    text-align: center;
+    color : black;
+}
+
+/* 결제관련 CSS 설정 */
+
+#total_price_box{
+
+	border: 1px solid #f2dede29;
+	
+	width: 1200px;
+	height: 170px;
+	position: relative;
+	margin: 0 auto;
+    top: 30px;
+	left: 0;
+	right: 0;
+	border-radius: 30px;
+	background : #f2dede29;
+    box-shadow: 0px 0px 15px 1px #ccc;
 
 }
 
-#orderBox > div > a > input {
+#total_price_box > div{
 
-	border: 1px solid floralwhite;
+	border : 1px solid #f2dede20;
+
+	position: relative;
+	margin: 0 auto;
+    top: -420px;
+    left: 0;
+    right: 0;
+    float: left;
+    border-radius: 10px;
+
+}
+
+#total_box{
+
+	border : 1px solid #f2dede20;
 	
-	width: 100%;
+	width : 100%;
+	height : 70px;
+	position: relative;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+   	border-radius : 5px;
+
+}
+
+#total_box > div{
+
+	border : 1px solid #f2dede20;
+	
+    width: 33%;
     height: 70px;
     position: relative;
     margin: 0 auto;
     top: 0;
+    left: 6px;
+    right: 0;
+    float: left;
+    border-radius : 5px;
+
+}
+
+#total_box > div > a{
+
+    border: 1px solid #f2dede20;
+
+	width: 100%;
+    height: 35px;
+    display: inline-block;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
     left: 0;
     right: 0;
-    font-size : 20px;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 30px;
+    float : left;
+    text-decoration : none;
+    border-radius : 5px;
+    background: pink;
+    color: #e91e63b0;
+}
+
+#edu_shop_price > input{
+
+    border: 1px solid #f2dede20;
+
+	width: 50%;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    float: left;
     text-align: center;
-   	background : #fffaf0;
-	border-radius: 5px;
+    height: 35px;
+    background : #f8dcdc69;
+    border-radius : 5px;
+    color: blueviolet;
+    font-size: 20px;
+
 }
 
-#costBox {
-	border: 1px solid floralwhite;
-	width: 25%;
-	height: 150px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-}
+#edu_shop_total_price > input{
 
-#costBox>div {
+    border: 1px solid #f2dede20;
+
 	width: 100%;
-	height: 75px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    height: 35px;
+    background : #f8dcdc69;
+    border-radius : 5px;
+    font-size: 25px;
+    color : orangered;
+
+}
+
+#confirm_box{
+
+	border : 1px solid #f2dede20;
+
+	width : 100%;
+	height : 70px;
 	position: relative;
 	margin: 0 auto;
 	top: 0;
 	left: 0;
 	right: 0;
-}
-
-#costBox>div>a {
-
-	border: 1px solid floralwhite;
 	
-	display: inline-block;
-	width: 100%;
-	height: 35px;
-	position: relative;
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	font-size: 20px;
-	text-decoration: none;
-	border-radius: 5px;
-	background: aliceblue;
-  	 color: cadetblue;
-  	 font-weight: bold;
 }
 
-#costBox>div>a>input {
+#confirm_box > a{
 
-	border: 1px solid floralwhite;
+    border: 1px dotted pink; 
+
+	width: 150px;
+    position: relative;
+    margin: 0 20px;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    font-weight: bold;
+    line-height: 35px;
+    font-size: 20px;
+    border-radius: 15px;
+    transition : 0.4s;
+    color : lightpink;
+}
+
+#confirm_box > a:hover {
 	
-	width: 100%;
-	height: 100%;
-	position: relative;
-	margin: 0 auto;
-	top: 8px;
-	left: 0;
-	right: 0;
-	border-radius: 5px;
-	text-align: center;
-	font-size: 25px;
-	background : #fffaf0;
-	border-radius: 5px;
+	border-radius : 20px;
+	transition : 0.4s;
+	color : hotpink;
+	
 }
