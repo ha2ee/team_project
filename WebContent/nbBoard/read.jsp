@@ -12,8 +12,7 @@
   request.setCharacterEncoding("UTF-8");
    String contextPath = request.getContextPath();
   FreeBoardVo vo = (FreeBoardVo) request.getAttribute("vo");
-  CommentVO cvo = (CommentVO) request.getAttribute("id");
- 
+//   CommentVO cvo = (CommentVO) request.getAttribute("cvo");
 		  
   int idx = vo.getB_idx();
   String title = vo.getB_title();
@@ -23,6 +22,7 @@
   Date date = vo.getB_date();
   int like = vo.getB_like();
   int cnt = vo.getB_cnt();
+//   int seqnum = Integer.parseInt(cvo.getSeq());
   
   String id = (String) session.getAttribute("id");
   if (id == null || id.equals("")) {
@@ -213,7 +213,7 @@
  <!-- 댓글수정 -->
  	<script type="text/javascript">
  	
- 	function updateviewBtn();
+ 	function updateviewBtn(){}
  	
  	
  	</script>
@@ -233,6 +233,7 @@
 		</c:if>
 		
 		<c:forEach items="${ clist }" var="cdto">
+		<c:set var="i" value="0"/>
 			<tr>
 				<td>
 				<!-- 댓글 표시&수정창 -->
@@ -242,12 +243,13 @@
 				<td>
 		<!-- 댓글 작성자만 수정/삭제 버튼이 보이게 처리 c:if -->
 		<c:if test="${ id eq cdto.id}">
-				<input id="update" type="button" value="수정하기" onclick="updateActive();" class="btn btn-default" >
+				<input id="update" type="button" value="수정하기" onclick="updateActive('${i}')" class="btn btn-default" >
 				
 				<input id="updatePro" type="button" value="수정완료" class="btn btn-default" 
 						onclick="location.href='<%=contextPath%>/freeboard/upComment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
 					<input type="button" value="삭제하기" class="btn btn-default" 
 						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
+			<c:set var="i" value="${i+1}"/>
 		</c:if>
 				</td>
 			</tr>
@@ -262,7 +264,7 @@
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
 	
-	function updateActive() {
+	function updateActive(a) {
 
 		//수정시 입력하는 화면 활성화
 		$("#updateActive").removeAttr("disabled");
