@@ -21,6 +21,42 @@
 <head>
 <style>
 
+
+   .modal {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   }
+
+   .modal .bg {
+     width: 100%;
+     height: 100%;
+     background-color: rgba(0, 0, 0, 0.6);
+   }
+
+   .modalBox {
+     position: absolute;
+     background-color: #fff;
+     width: 400px;
+     height: 200px;
+     padding: 15px;
+   }
+
+ #popBtn {
+     display: block;
+     width: 80px;
+     margin: 0 auto;
+   }
+
+   .hidden {
+     display: none;
+   }
+
 </style>
 <!--     CSS car.css 추가 -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/cart.css">
@@ -191,19 +227,19 @@
 				<!-- 상세 보기 -->
 				<div id="edu_info_box">
 					<div id="edu_info${j}">
-						<input class="btn" type="button" id="eduInfo${j}" value="상세보기"  />
+						<input class="btn" type="button" id="eduInfo${j}" onclick=reply_click(this.id) value="상세보기"  />
 					</div>
 				</div>
 				<!-- 비우기 -->
 				<div id="cart_del_box">	
 					<div id="cart_del${j}">
-						<input class="btn" type="button" id="cartDel${j}" value="비우기" />
+						<input class="btn" type="button" id="cartDel${j}" onclick=reply_click(this.id) value="비우기" />
 					</div>
 				</div>
 				<!-- 수정 -->
 				<div id="cart_mod_box">	
 					<div id="cart_mod${j}">
-						<input class="btn" type="button" id="cartMod${j}" value="수정" />
+						<input class="btn" type="button" id="cartMod${j}" onclick=reply_click(this.id) value="수정" />
 					</div>
 				</div>
 			</div>	
@@ -395,19 +431,124 @@
 		</div>
 
 	</div>
-
-
+	
+	
+<!-- 	상세보기 관련 vector 구문 -->
+	<div class="modal hidden">
+	<div class="bg">
+	<div class="modalBox">
+	<c:set var="a" value="1"/>
+	<c:forEach var="vo"  items="${vector}" >		
+	<div id="pop_mem_box">
+		<div id= "pop_num">
+			<input type="text" value="예약 번호" readonly="readonly"  />
+		</div>	
+		<div id= "pop_reg_date">
+			<input type="text" value="예약 날짜" readonly="readonly"  />
+		</div>		 
+		<div id= "pop_id">
+			<input type="text" value="예약 아이디" readonly="readonly"  />
+		</div>
+		<div id= "pop_name">
+			<input type="text" value="예약 이름" readonly="readonly"  />
+		</div>
+		<div id= "pop_hp">
+			<input type="text" value="예약한 번호" readonly="readonly"  />
+		</div>
+		<div id= "pop_email">
+			<input type="text" value="예약자 이메일" readonly="readonly"  />
+		</div>
+		<div id= "pop_address1">
+			<input type="text" value="예약자주소1" readonly="readonly"  />
+		</div>
+		<div id= "pop_address2">
+			<input type="text" value="예약자주소2" readonly="readonly"  />
+		</div>
+		<div id= "pop_address3">
+			<input type="text" value="예약자주소3" readonly="readonly"  />
+		</div>
+		<div id= "pop_address4">
+			<input type="text" value="예약자주소4" readonly="readonly"  />
+		</div>
+		<div id= "pop_address5">
+			<input type="text" value="예약자주소5" readonly="readonly"  />
+		</div>
+	</div>	
+	<div id= "pop_pet_box">
+		<div id= "pop_pet_img">
+			<img src=""  />
+		</div>
+		<div id= "pop_pet_name">
+			<input type="text" value="반려견 이름" readonly="readonly"  />
+		</div>
+		<div id= "pop_pet_type">
+			<input type="text" value="반려견 품종" readonly="readonly"  />
+		</div>
+		<div id= "pop_pet_age">
+			<input type="text" value="반려견 나이" readonly="readonly"  />
+		</div>
+		<div id= "pop_pet_weight">
+			<input type="text" value="반려견 몸무게" readonly="readonly"  />
+		</div>
+		<div id= "pop_pet_gender">
+			<input type="text" value="반려견 성별" readonly="readonly"  />
+		</div>
+		<div id= "pop_pet_op">
+			<input type="text" value="반려견 중성화여부" readonly="readonly"  />
+		</div>
+	</div>
+	<div id= "pop_tr_box">
+		<div id= "pop_tr_img">
+			<img src=""  />
+		</div>
+		<div id= "pop_tr_name">
+			<input type="text" value="훈련사 이름" readonly="readonly"  />
+		</div>
+		<div id= "pop_tr_hp">
+			<input type="text" value="훈련사 번호" readonly="readonly"  />
+		</div>
+		<div id= "pop_tr_reg_date">
+			<input type="text" value="훈련사 번호" readonly="readonly"  />
+		</div>
+		<div id= "pop_tr_date1">
+			<input type="text" value="예약일1" readonly="readonly"  />
+		</div>
+		<div id= "pop_tr_date2">
+			<input type="text" value="예약일2" readonly="readonly"  />
+		</div>
+		<div id= "pop_tr_date31">
+			<input type="text" value="예약일3" readonly="readonly"  />
+		</div>
+		<div id= "pop_tr_date4">
+			<input type="text" value="예약일4" readonly="readonly"  />
+		</div>
+		<div id= "pop_tr_date5">
+			<input type="text" value="예약일5" readonly="readonly"  />
+		</div>
+		<div id= "pop_tr_date6">
+			<input type="text" value="예약일6" readonly="readonly"  />
+		</div>
+		<div id= "pop_tr_date7">
+			<input type="text" value="예약일7" readonly="readonly"  />
+		</div>
+		<div id= "pop_cnt">
+			<input type="text" value="수강 횟수 readonly="readonly"  />
+		</div>
+		<div id= "pop_totalprice">
+			<input type="text" value="수강 금액" readonly="readonly"  />
+		</div>
+	</div>
+	<c:set var="h" value="${h+1}" /> 
+	</c:forEach>
+	<div id="pop_btn">
+		<input id="popBtn" class="btn" type="button" value="닫기"/>
+	</div>
+	</div>
+	</div>
+	</div>
 	<br><br><br><br><br>
+	
 
-
-	<!-- 	장바구니  들어갈 항목 -->
-	장바 구니 화면. jsp
-	<br> 설명 : 상단에는 신청한 수강정보를 확인 할 수있도록 하고
-	<br>
-	<br> 하단부에는 샵에서 장바구니에 담은 목록을 확인 시킨다
-	<br> 그 밑에는 최종 합산 금액 및 결제하기, ,장바구니비우기(?), 결제취소하기(고민중일 경우) 버튼을 만든다.
-	<br>
-	<br>
 	</form>
 <script>
 
@@ -440,23 +581,18 @@ $(document).ready(function(){
 	
 	// 수강금액 + 샵금액 = 총금액 계산 하기
 	$("#edu_shop_total_price > input").attr("value", (edu_price+shop_price));
-	
-	// 상세보기 버튼을 눌렀을 때,
-	  var open = () => {
-		    document.querySelector(".modal").classList.remove("hidden");
-		  }
 
-	  var close = () => {
-		    document.querySelector(".modal").classList.add("hidden");
-		  }
-
-		  document.querySelector(".openBtn").addEventListener("click", open);
-		  document.querySelector(".closeBtn").addEventListener("click", close);
-		  document.querySelector(".bg").addEventListener("click", close);
-	
-	
-	
 })
+
+function reply_click(clicked_id){
+
+	alert(clicked_id);
+	
+	
+	  
+
+}
+
 
 // 이미지 미리보기 
 //마우스 오버시 preview 생성
