@@ -1,591 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+//	Session내장객체 메모리 영역에 session값 얻기
+String id = (String)session.getAttribute("id");
+String ContextPath = request.getContextPath();
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 //메인 메뉴에 마우스가 올려지면 토글하는 함수 생성
 $(document).ready(function(){
-	$(".list_gnb").on("mouseover", function(){
+	
+
+	// 로그인 된 정보가 있다면 로그인 버튼을 로그아웃으로 바꿔줌
+
+			
+
+		
+	$(".edu_btn").on("click", function(){
+		
+		<%
+			if(id == null){
+		%> 
+				alert("회원만 로그인 후 수강신청 가능합니다!");
+				location.replace("<%=request.getContextPath()%>/member/login.me");
+				return false;
+			
+		<%		
+			}
+		%>
+	})
+
+	// MEGA-MENU 롤다운 설정
+	$("#list_gnb").on("mouseover", function(){
 		$("#mega-menu").stop().slideDown("fast");
 	})
 	
 	$("#mega_wrapper").on("mouseleave", function(){
-		$("#mega-menu").stop().slideUp("slow");
+		$("#mega-menu").stop().slideUp("fast");
 	})
+	
+	$("#hamburger > a").on("click", function(){
+		$("#mega-menu").stop().slideDown("fast");
+	})
+
+	
+
+	// quick-menu 설정	
+	  var currentPosition = parseInt($("#quickmenu").css("top"));
+	  $(window).scroll(function() {
+	    var position = $(window).scrollTop(); 
+	    $("#quickmenu").stop().animate({"top":position+currentPosition+"px"},1000);
+	  });
+	
 	
 });
 </script>
+
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
+<script>
+  Kakao.init('083d7283f7089c6f3d424efd747489e9'); // 사용하려는 앱의 JavaScript 키 입력
+</script>
+
 <style>
 /*  나눔 고딕 글꼴 임포트 */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 /* 나눔 고딕 CSS 설정 */
-* {
-	font-family: 'Nanum Gothic', sans-serif;
-}
-/* 중앙정렬을 위한 테이블 CSS 설정 */
-/*  header 영역이 항상 TOP쪽에 표시될 수 있도록 CSS 추가  */
-  
-.nb_top {
-  position : fixed;
-  width : 100%;
-  height : 100px;
-  margin : 0 auto 0 auto; 
-  align-content : center;
-  background-color : white;
-  text-align: center;
-  z-index: 3;
-}
-/* 커스텀 로고 영역 */
-@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
-@import url(https://fonts.googleapis.com/css?family=Lato:400,300,900);
-body{
-	padding-top : 250px;
-}
-#center{
-	z-index: 2;
-}
-#header, #middle, #footer {
-	width : 100%;
-	margin : 0 auto 0 auto;
-	text-align: center;
-}
-#header {
-	position : fixed;
-	left : 0;
-	right : 0;
-	top : 0;
-	height : 250px;
-	background-color : white;
-	z-index: 3;
-	
-}
-#middle {
-	position : relative;
-	display: contents;
-	text-align : center;
-	z-index: 2;
-	
-}
-#footer {
-	top : 500px;
-	height: 500px;
-	display : contents;
-	text-align: center;
-	position : relative;
-	height : auto;
-	z-index: 1;
-}
-/* Slider */
-#textSlider.row {
-	position: fixed;
-	left : 0;
-	right : 0;
-	top : 0;
-	width : 100%;
-	height:100px;
-	margin : 0 auto 0 auto;
-}
-#textSlider div {
-	
-	left : 0px;
-	right : 0;
-	position : relative;
-	width : 1200px;
-	color: black;
-	text-transform: uppercase;
-	margin : 0 auto 0 auto;
-}
-.scroller {
-   height: 100px;
-   overflow: hidden;
-}
-/* scroller 안에 .inner 클래스 안에 p 태그 지정 해서 line-height: 1.0줌 */
-.scroller .inner p{
-		
-		padding-top : 7px; 
-		margin : 0 auto 0 auto;
-		line-height: 0.85;
-		left: -30px;
-		right : 0;
-		top : -5px;
-		height : 100px;
-}
-.scroller .inner { 
-	
-	font-size : 65pt;
-	animation: 10s normal infinite running scroll; }
-	
-@keyframes scroll {
-   0%  	{margin-top: 0px;}
-   15% 	{margin-top: 0px;}
-   25%  {margin-top: -70pt;}
-   40%  {margin-top: -70pt;}
-   
-   50%  {margin-top: -140pt;}
-   65%  {margin-top: -140pt;}
-   75%  {margin-top: -210pt;}
-   90%  {margin-top: -210pt;}
-   
-   100% {margin-top: 0px;}
-}
-/* 로고 에 대한 CSS 설정 */
-#menu1 {
-	
-	left : 0;
-	right : 0;
-	margin : 0 auto 0 auto;
-	position : fixed;
-	height : 100px;
-	width : 100%;
-	text-align : center;
-	background-color: white;
-}
-/*  @ 네브바 + 날씨 API CSS 설정 */
-#menu2 {
-/*   border : 1px solid red; */
-	
-	position : fixed;
-	top : 100px;
-	background-color: white;
-	width : 100%;
-	height : 150px;
-	align-items : center;
-	list-style : none;
-	left : 0;
-	right : 0;
-}
-/* 네브 박스 CSS  설정 */
-	
-#nav_box {
-	height : 100%;
-	width : 100%;
-	position : relative;
-	margin : 0 auto 0 auto;
-	z-index : 5;
-}
-/* @ 네브바에 대한 CSS 설정 */
-#main_menu {
-/* 	border : 1px solid black; */
-	
-	left: 0;
-	right:0;
-	top : 0;
-	position: relative;
-	height: 150px;
-	width : 1200px;
-}
-/* 로그인에 대한 CSS 설정 */
-#nb_login {
-	position : fixed;
-	top : 0;
-	left : 0;
-	right : 0;
-	height: 100px;
-	width : 100%;
-}
-#nb_box{
-	margin : 0 auto 0 auto;
-	text-align: center;
-	height : 100%;
-	width :  1200px;	
-	position: relative;
-	top : 0;
-}
-#login_box {
-		
-		margin : 0 auto 0 auto;
-		position: relative;
-		width : 250px;
-		height : 100px;
-		top : -1px;
-		left : 475px;
-		right : 0;
-		text-align: center;
-		
-}
-#login_box > li {
-	
-	float : left;
-	position: relative;
-	text-align: center;
-	margin : 0 auto 0 auto;
-	padding : 10px;
-	left : 20px;
-}
-#login_box > li >a {
-	
-	color : black;
-	font-size : 15px;
-	position : relative;
-	top : 0;
-	left : 0;
-	right : 0;
-}
-	
-/* 	1) "메뉴"에 대한 CSS 설정 */
-.list_gnb {
-/* 	border : 1px solid red; */
-	position : relative;
-	margin : 0 auto 0 auto;
-	padding : 0;
-	list-style: none;
-	width : 950px;
-	height : 150px;
-	top : 0;
-	left : -125px;
-	right : 0;
-}
-/*  1-1) 메뉴의 정렬에 대한 CSS 설정 */
-.list_gnb>li{
-	position : relative;
-	top : 0;
-	left : 0;
-	right : 0;
-	margin : 0 auto 0 auto;
-	height : 150px;
-	width:1200px;
-}
-/* 1-2) 메뉴 버튼이 활성화 되었을때, CSS 디자인 */
-/* 1-3) 버튼 하나하나에 대한 CSS 디자인 */
-.list_gnb>li>a {
-	
-	top : 65px;
-	position : relative;
- 	font-weight : 400;
- 	color : black; 
-	text-align: center;
-	left : -150px;
-	padding : 15px;
-	font-size : 37px;
-	color : black;
-	text-decoration: none;
-	left : -130px;
-	margin : 15px;
-}
-/* 1-4) 버튼 하나하나가 활성화 되었을 CSS 디자인 */
- .list_gnb>li>a:hover { 
-/*  	border-bottom: 3px solid #ffebcd;  */
-	border : silver;
- 	background-color: #fff5f3;
- 	border-radius: 30px;
- } 
-/* 1-5) 나열된 메뉴가 활성화 되었을 때 메가메뉴를 어떻게 컨트롤 할건지에 대한 CSS 디자인 */
-/* .list_gnb > li:hover #mega-menu { */
-/* 	opacity: 1; */
-	
-/* } */
-/* 드롭  된 큰 메뉴에 대한 스타일 조정 */
-#mega-menu {
-	
- 	font-weight : 900;
-	width : 100%;
-	height : 170px;
-	background: white;
-	position : relative;
-	top : 250px;
-	left : 0;
-	right : 0;
-	border-radius: 3px;
-	display : none;
-	
-}
-#mega_wrapper{
-	
-/* 	border : 1px solid red; */
-	
-	left: 0;
-	right : 0;
-	position : relative;
-	top : 0;
-	width : 1200px;
-	height : 100%;
-	margin : 0 auto 0 auto;
-	
-}
-/* 드롭  된 각 메뉴에 대한 스타일 조정 */
-#mega_wrapper > ul {
-	text-align : center;
-	color : black;
-	font-size : 16px;
-	float : left;
-}
-/* 드롭 된 메뉴 전체의 스타일 조정 */
-#mega_wrapper > ul >li{
-	padding : 8px;
-	text-align : center;
-}
-#mega_wrapper > ul >li:hover{
-	border-radius :20px;
-	background-color : #fff5f3;
-	text-align : center;
-}
-/* 드롭 된 메뉴의 간격 조정 */
-.list_lnb_01 {
- 	margin-left : 140px;  
- 		width: 130px;
-}
-.list_lnb_02 {
- 	margin-left : 90px; 
- 	width : 150px;
-}
-.list_lnb_03 {
- 	margin-left : 80px; 
- 		width: 130px;
-}
-.list_lnb_04 {
- 	margin-left : 65px; 
- 		width: 130px;
-}
-/* 드롭 된 메뉴의 스타일 조정 */
-#mega_wrapper > ul >li > a{
-	font-size : 17px;
- 	font-weight : inherit;
-	text-align : center;
-	color : black;
-	text-decoration: none;
-}
-/* 드롭다운 버튼 구현을 위한 style 임포트 끝*/
- .nb_top > .login1 > ul{
-	left: 940;
-	position :  relative;
-	height: 100px;
-	width: 200px;
-	left :  940px;
-	list-style: none;
-}
- .nb_top >  .login1 > ul > li > a {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size : 15px;
-	text-transform: uppercase;
-	font-weight : 700;
-	padding: 7px 21px;
-	margin-bottom : 4px;
-	letter-spacing: .75px;
-	border-radius : 3px;
-	border : transparent;
-	transition : all 0.3s;
-	position : relative;
-	display: inline-block;
-	background : #fff;
-}
- .nb_top > .login1 > ul > li > a:hover {
-	border-radius : 20px;
-	background-color : #fff5f3;
-}
-.inner p {
-  background-color :white;
-}
-/* header 영역 고정 완료 */
-/*  날씨 구현 관련 CSS 설정  */
-	#weatherWrapper {
-	position : relative;
-	top : -150px;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 100%;
-	height : 150px;
-	}
-	#weatherbox{
-	
-/* 	border : 1px solid green; */
-	
-	position : relative;
-	top : 0;
-	left : 475px;
-	right : 0;
-	margin : 0 auto;
-	width : 250px;
-	height : 150px;
-	}
-	
-	#todayweather{
-	
-/* 	border : 1px solid green; */
-	
-	position : relative;
-	text-align : center;
-	top : 0;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 250px;
-	height : 30px;
-	font-size : 20px;
-	background : #fff5f3;
-	border-radius : 5px;
-	color : #9e9e9e;
-	}
-	
-	#topTitle{
-	
-/* 	border : 1px solid blue; */
-	
-	position : relative;
-	top : 0;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 250px;
-	height : 25px;
-	border-radius: 5px;
-	font-weight : 600;
-	}
-	
-	#topTitle > div{
-	
-/* 	border : 1px solid red; */
-	
-	float:left;
-	text-align : center;
-	position : relative;
-	top : 0;
-	left : 1px;
-	right : 0;
-	margin : 0 auto;
-	width : calc(96%/4);
-	height : 100%;
-	}
-	
-	#weatherBody{
-	text-align : center;
-	position : relative;
-	top : 0;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 250px;
-	height : 25px;
-	font-size : 13px;
-	
-	}
-	
-	#weatherBody > div{
-	
-/* 	border : 1px solid red; */
-	
-	float:left;
-	text-align : center;
-	position : relative;
-	top : 0;
-	left : 1px;
-	right : 0;
-	margin : 0 auto;
-	width : calc(96%/4);
-	height : 100%;
-	}
-	
-	#weatherFooter {
-	
-/* 	border : 1px solid red; */
-	
-	text-align : center;
-	position : relative;
-	top : 0;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 100%;
-	height : 65px;
-	
-	}
-	
-	
-	#weatherResult {
-	
-/* 	border : 1px solid red; */
-	
-	text-align : center;
-	position : relative;
-	top : 0;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 246px;
-	height : 100%;
-	border-radius: 5px;
-	}
-	
-	
-	#weatherResult > img {
-	
-/* 	border : 1px solid orange; */
-	
-	text-align : center;
-	position : relative;
-	top : 2px;
-	left : 2px;
-	right : 0;
-	margin : 0 auto;
-	width : 70px;
-	height : 96%;
-	border-radius: 5px;
-	}
-	
-/* 	날씨에 대한 결과값 계산 후 출력할 곳 */
-	
-	#weatherzone {
-	
-/* 	border : 1px solid blue; */
-	
-	text-align : center;
-	position : relative;
-	top : -13px;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 169px;
-	height : calc(60px / 2);
-	border-radius: 5px;
-	border: 1px dotted white;
-	
-	}
-	
-	#weatherzone2 {
-	
-/* 	border : 1px solid blue; */
-	
-	text-align : center;
-	position : relative;
-	top : -28px;
-	left : 37px;
-	right : 0;
-	margin : 0 auto;
-	width : 169px;
-	height : calc(60px / 2);
-	border-radius: 5px;
-	border: 1px dotted white;
-	
-	}
-	/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
-.btn:hover {
-  background: #fff5f3;
-  text-decoration: none;
-  border-radius: 20px;
-}
-.btn:focus {
-  outline: none;
-}
-.btn {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size : 15px;
-	text-transform: uppercase;
-	font-weight : 700;
-	padding: 7px 21px;
-	margin-bottom : 4px;
-	letter-spacing: .75px;
-	border-radius : 3px;
-	border : transparent;
-	transition : all 0.3s;
-	position : relative;
-	display: inline-block;
-	background : #fff;
-	color : black;
-}
-</style>
 
+</style>
 
 <!--          			# 부트스트랩 플러그인  관련 -->
     <meta charset="utf-8">
@@ -594,6 +79,15 @@ body{
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="Digital marketing courses website template that can help you boost your business courses website and its completely free.">
     <meta name="keywords" content="seo,free website template, free responsive website template, seo marketing, search engine optimization, web analytics">
+	
+<!-- 	Fontawesome 셋팅 -->
+	<script src="https://kit.fontawesome.com/4536cebc99.js" crossorigin="anonymous"></script>
+<!--  	 Top CSS 셋팅 -->
+ 	<link href="<%=request.getContextPath()%>/css/Top.css" rel="stylesheet">
+   
+<!--  	 quickmenu CSS 셋팅 -->
+ 	<link href="<%=request.getContextPath()%>/css/quickmenu.css" rel="stylesheet">
+   
     <!-- Bootstrap -->
     <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
     <!-- Style CSS -->
@@ -648,11 +142,7 @@ body{
 		<div id = "nb_login">
 				<div id = "nb_box">
 					<ul id = "login_box">	                    			
-		              <%
-					//session내장객체 메모리 영역에 session값 얻기
-					 String id = (String)session.getAttribute("id");
-				
-					//session에 값이 저장되어 있지 않으면?
+	<%				
 					if(id == null){
 				%>	
 
@@ -666,7 +156,7 @@ body{
 				%>
 				   <li><a href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
 	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
+<%-- 	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li> --%>
 	               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
 
 				<%
@@ -682,7 +172,7 @@ body{
 	<div id="menu2" align="center" >
 	  <div id = "nav_box">
 		<nav id="main_menu">
-			<ul class="list_gnb">
+			<ul id="list_gnb">
 				<li style="font-family: 'Nanum Gothic', sans-serif;">
 				<!-- 			 1-1)	홈 버튼 -->
 				<a id ="homebtn" href="<%=request.getContextPath()%>/nb/Main" title="">
@@ -691,7 +181,7 @@ body{
 				</svg></a>
 				<!-- 			 1-2)	메뉴 버튼 -->
 				<a href="<%=request.getContextPath()%>/nb/Intro.do?center=/nbCompany/intro.jsp"> 늘 봄이란?</a>
-				<a href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp"> 수강 신청 </a>
+				<a class = "edu_btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp"> 수강 신청 </a>
 				<a href="<%=request.getContextPath()%>/nb/free.bo?center=/nbBoard/freeboard.jsp"> 소통 하기</a>
 				<a href="<%=request.getContextPath()%>/nb/pet.shop?center=/nbShop/pet.jsp"> 늘 봄샵</a>
 
@@ -739,12 +229,12 @@ body{
 				<li><a href="<%=request.getContextPath()%>/nb/navi.do?center=/nbCompany/navi.jsp">오시는 길</a></li>
 			</ul>
 			<ul class="list_lnb_02">
-				<li><a href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강신청 가기</a></li>
+				<li><a class="edu_btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강신청 가기</a></li>
 			</ul>
 			<ul class="list_lnb_03">
 				<li><a href="<%=request.getContextPath()%>/freeboard/list.fb">자유 게시판</a></li>
 				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/review.bo?center=/nbBoard/review.jsp">수강 후기</a></li>
+				<li><a href="<%=request.getContextPath()%>/review/list.rv">수강 후기</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
 			</ul>
 			<ul class="list_lnb_04">
@@ -752,8 +242,24 @@ body{
 		 </ul>
 		 </div>
 	</div>	
-         
+
  </div>
+ 
+ 	<div id= "hamburger">
+ 		<a href="#"><i id="hamburgerbtn" class="fa-solid fa-bars"></i></a>
+ 	</div>
+ 
+ 
+ 	<!-- 	퀵 메뉴 설정 -->
+	<div id="quickmenubox">
+		<div id="quickmenu">
+			<ul>
+				<li><a href="">늘봄 샵</a></li>
+				<li><a href="">늘봄 후기</a></li>
+				<li><a id="add-channel-button" href="javascript:addChannel()"><br><i style="font-size: 55px;"id="chaticon" class="fa-solid fa-paw"></i><br>1:1 채팅문의</a></li>
+			</ul>
+		</div>
+	</div>
 
 
 
@@ -764,6 +270,7 @@ body{
 <!-- 날씨 관련 스크립트 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 navigator.geolocation.getCurrentPosition(showYourLocation, showErrorMsg); 
 function showYourLocation(position) {  // 성공했을때 실행
@@ -929,14 +436,13 @@ $.ajax({
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
-				
+					
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
 					
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/night.png");
 					$("#weatherzone").attr("value", "날이 어두워요 !! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "꼭 조심하세요!!").css("color", "#ff5722").css("font-weight","bold");
-					
 					
 					
 				// 온도는 16도 이상 25도 미만이지만 비가 오지 않을경우,	
@@ -959,6 +465,13 @@ $.ajax({
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+					
+				// 온도가 11도 이상 16도 미만이지만 눈이 올 경우	
+				}else if(rain== 3){
+					
+					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/snowy.png");
+					$("#weatherzone").attr("value", "눈이와요 *** ").css("font-weight","bold");
+					$("#weatherzone2").attr("value", "하얀 눈이 내립니다!").css("color", "#2196f3").css("font-weight","bold");	
 				
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
@@ -984,12 +497,17 @@ $.ajax({
 				// 온도는 6도 이상 11도 미만이지만 비가올 경우
 				if(rain > 0){
 					
-					
-					
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
-				
+
+				// 온도가 6도 이상 11도 미만이지만 눈이 올 경우	
+				}else if(rain== 3){
+					
+					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/snowy.png");
+					$("#weatherzone").attr("value", "눈이와요 *** ").css("font-weight","bold");
+					$("#weatherzone2").attr("value", "하얀 눈이 내립니다!").css("color", "#2196f3").css("font-weight","bold");	
+					
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
 					
@@ -1017,6 +535,13 @@ $.ajax({
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
 				
+				// 온도가 -1도 이상 6도 미만이지만 눈이 올 경우	
+				}else if(rain== 3){
+					
+					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/snowy.png");
+					$("#weatherzone").attr("value", "눈이와요 *** ").css("font-weight","bold");
+					$("#weatherzone2").attr("value", "하얀 눈이 내립니다!").css("color", "#2196f3").css("font-weight","bold");	
+							
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
 					
@@ -1033,7 +558,7 @@ $.ajax({
 				$("#weatherzone2").attr("value", "많은 주의가 필요합니다!").css("color", "#ff5722").css("font-weight","bold");
 				}
 			
-		// #6) 온도는 -2도보다 낮거나 같고 -4도 미만일 때
+				// #6) 온도는 -2도보다 낮거나 같고 -4도 미만일 때
 		}else if (temp <= -2 && temp > -4){
 			
 				// 온도는 -2도보다 낮거나 같고 -4도 미만일 때, 비가올 경우
@@ -1042,6 +567,13 @@ $.ajax({
 					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
 					$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 					$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+					
+				// 온도가 -2도 이상 -4도 미만이지만 눈이 올 경우	
+				}else if(rain== 3){
+					
+					$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/snowy.png");
+					$("#weatherzone").attr("value", "눈이와요 *** ").css("font-weight","bold");
+					$("#weatherzone2").attr("value", "하얀 눈이 내립니다!").css("color", "#2196f3").css("font-weight","bold");	
 				
 				// 오후 6시 이후일 경우,
 				}else if(rain == 0 && initTime >= 18){
@@ -1070,6 +602,13 @@ $.ajax({
 				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/rainy.png");
 				$("#weatherzone").attr("value", "비가 와요 T,.T! ").css("font-weight","bold");
 				$("#weatherzone2").attr("value", "집이 안전해요!").css("color", "#2196f3").css("font-weight","bold");
+				
+			// 온도가 -4도 이하이고 눈이 올 경우	
+			}else if(rain== 3){
+				
+				$("#weatherResult > img").attr("src", "<%=request.getContextPath()%>/nbShop/img/snowy.png");
+				$("#weatherzone").attr("value", "눈이와요 *** ").css("font-weight","bold");
+				$("#weatherzone2").attr("value", "하얀 눈이 내립니다!").css("color", "#2196f3").css("font-weight","bold");	
 			
 			// 오후 6시 이후일 경우,
 			}else if(rain == 0 && initTime >= 18){
@@ -1110,8 +649,15 @@ function showErrorMsg(error) { // 실패했을때 실행
         break;
     }
 }
-	
+function addChannel() {
+  Kakao.Channel.addChannel({
+    channelPublicId: '_Xpekxj',
+  });
+}
 </script>
+ 
+ 
+ 
  
 <!-- header-close -->
 <div id = "center1">

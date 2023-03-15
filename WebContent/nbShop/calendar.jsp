@@ -1,483 +1,56 @@
+<%@page import="java.util.stream.Collectors"%>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.stream.Stream"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+
+<% request.setCharacterEncoding("UTF-8"); %>
 <%
 String tr_name = request.getParameter("tr_name");
 String tr_price = request.getParameter("tr_price");
-	
+//Session내장객체 메모리 영역에 session값 얻기
+String id = (String)session.getAttribute("id");
+
+// list를 컨틀롤러에서 받아와서 변수에 저장
+List<String> list = (List<String>)request.getAttribute("list");
+
+
+Date date = new Date();
+
+
+// 각월에 해당되는 List를 생성하고 필터 된 값을 저장시킨다.
+// 1) 해당월
+List<String> MonthlyDay = list.stream().filter(s -> s.contains("03-")).collect(Collectors.toList());
+
+// 2) 다음달
+List<String> NMonthlyDay = list.stream().filter(s -> s.contains("04-")).collect(Collectors.toList());
+// 출력 해보기
+out.print(MonthlyDay);
+out.print(NMonthlyDay);
+
+//리스트 생성
+
+
+
+
+
 %>
-<% request.setCharacterEncoding("UTF-8"); %>
 <html>
 <head>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
+
 <title>일정 예약 페이지</title>
+<!--  	 calendar CSS 셋팅 -->
+ 	<link href="<%=request.getContextPath()%>/css/calendar.css" rel="stylesheet">
 <style type="text/css">
-
-
-     * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
-     }
-     
-     #calandtotalWrapper{
-        
-/*  border : 1px solid red; */
-   	position : relative;
-   	width : 1200px;
-   	height : 780px;
-   	margin : 0 auto 0 auto;
-   	left: 0;
-   	right : 0;
-   	top : 50px;
-     
-    }
-     
-    #calendarWrapper{
-     
-	position : relative;
-    width: 600px;
-    height: 600px;
-    margin: 0 auto 0 auto;
-    left : -270px;
-    top : 40px;
-    border-radius: 20px;
-    border : ridge;
-     
-    }
-     
-	div#notice{
-       	
-  	width : 100%;
-  	height : 50px;
-  	position : relative;
-  	margin : 0 auto;
-  	left : 0;
-    top : 0;
-  	right : 0;
-       	
-    }
-       
-    div#tr_name_box {
- 	margin : 0 auto 0 auto;
-  	text-align: center;
-  	position: relative;
-  	top : 0px;
-  	left : 0;
-  	right : 0;
-  	height: 100%;
-  	width : 100%;
-  	border-radius: 20px;
-  	background : #fff5f3;
-    }
-    
-    div#tr_name {
-    text-align: center;
-    position : relative;
-    top : 5px;
-    left : 0;
-    right : 0;
-    height : 100%;
-    width : 100%;
-    font-size: 23px;
-
-    
-    
-    }
-    
-    div#tr_name > input {
-    text-align: center;
-    margin : 0 auto;
-    border : 0px;
-    background : #fff5f3;
-    width: 150px;
-    font-weight : bold;
-    
-    }
-       
-    div#dateTitle {
-    font-size: 16px;
-    text-align: left;
-    margin : 0 auto 0 auto;
-    position: relative;
-    top : 15px;
-    left : 30px;
-    right : 0px;
-    height:50px;
-    width:100%;
-    color : orangered;
-    } 
-    
-    #titleBox{
-    position: relative;
-    margin: 0 auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width : 100%;
-    }
-    
-    #calendarTitle {
-   	background : #f8f8f8;
-    }
-    
-/*     #calendarTitle:hover { */
-/*   	background : #f8f8f8; */
-/*     } */
-    
-    
-/*     #calendar >  { */
-/*     border :  1px solid rgb(0 0 0 / 8%); */
-/*     }  */
-       
-     
-   	.scriptCalendar {
-  	position : relative;
-    width: 90%;
-    height: 350px;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    top : 70px;
-    border : none;
-    text-align: center;
-    }
-     
-    #ButtonWrapper {
-    width: 100%;
-    margin: 0 auto;
-	position : absolute;
-	height : 50px;     
-	top : 530px;
-	left : 0;
-	right : 0;
-   		
-    }
-        
-    #Btnbox{
-        width: 590px;
-        margin: 0 auto;
-   		position : relative;
-   		height : 100%;     
-   		top : 0;
-   		left : 0;
-   		right : 0;
-    
-    }
-    
-    
-    #Btnbox > a {
-    
-    position : relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    font-size: 23px;
-    background : #cccccc21;
-    border-radius : 15px;
-    margin : 0 10px;
-    
-    }
-    
-    
-    #Btnbox > a:hover {
- 	background : #fff5f3;
- 	
-    }
-    
-    #totalBox{
-        
-	position : absolute;
-    margin: 0 auto 0 auto;
-    width: 500px;
-    height:600px;
-    overflow: hidden;
-    top : 40px;
-    left : 670px;
-    border : ridge;
-    border-radius: 20px;
-    }
-    
-    #tableSelect{
-
-	position : relative;
-    margin : 0 auto;
-    width : 100%;
-    height : 52px;
-    border : none;
-    border-radius: 20px;
-    left : 0;
-    right : 0;
-    top : 0;	
-	}
-
-	#selectHeader{
-    width: 100%;
-    height:100%;
-    line-height: 30px;
-    text-align: center;
-    background : #fff5f3;
-    color : black;
-    position : relative;
-    border-radius: 20px;
-	}
-	
-	#selectHeader > div {
-    width : calc(100% / 3);
-    height: 100%;
-    float : left;
-    font-size : 20px;
-    margin : 10px auto;
-	}
-	
-	#result {
-	margin : 0 auto;
-	left : 0;
-	right : 0;
-	top : 10px;
-	position : relative;
-	height: 320px;
-	width : 100%;
-	}
-	
-	#result > div {
-	position : relative;
-    width : calc(100% / 3);
-    height: 100%;
-    float : left;
-    font-size : 14px;
-    margin : 0 10px 0 10px;
-    border : none;
-	}
-	
-	#result > div > input {
-	position : relative;
-    margin : 12px auto;
-    left:0;
-    right:0;
-    top:-3px;
-    border : 0px;
-    border-radius: 5px;
-    background : #cccccc21;
-    text-align: center;
-    font-weight : bold;
-    color : steelblue;
-    
-	}
-	
-	#result > div#selectDate {
-	position : relative;
-	left : 0;
-	right: 0;
-	top : 0;
-	margin : 0 auto;
-	}
-	
-	#result > div#selectDow {
-	position : relative;
-	left : 0;
-	right: 0;
-	top : 0;
-	margin : 0 auto;
-	}
-	
-	#result > div#selectNum {
-	position : relative;
-	left : 0;
-	right: 0;
-	top : 0;
-	margin : 0 auto;
-	}
-	
-	div#selectNum > input {
-
-	}
-	
-	#selectResetBox{
-	position : relative;
-	left : 0;
-	right: 0;
-	top : 340px;
-	margin : 0 auto;
-	width: 100%;
-	height : 40px;
-	}
-	
-	#selectReset{
-	position : relative;
-	left : 0;
-	right: 0;
-	top : 0px;
-	margin : 0 auto;
-	width: 100%;
-	height : 100%;
-	
-	}
-	
-	#selectReset > a{
-	position : relative;
-	left : 0;
-	right: 0;
-	top : -339px;
-	margin : 0 auto;
-	width: 150px;
-	height : 100%;
-	text-align: center;
-	font-size: 20px;
-	background: #cccccc50;
-	
-	}
-	
-	#selectReset > a:hover{
-	background : #fff5f3;
-	
-	}
-	
-	div#resultBox{
-  	position : absolute;
-  	margin : 0 auto 0 auto;
-  	left : 0;
-  	right : 0;
-  	top : 440px;
-  	width : 100%;
-  	height : 150px;
-  	
-   
-   }
- 
- 	div#totalvalue{
- 	font-size : 14px;
- 	position : absolute;
- 	height : 100%;
- 	width : 390px;
- 	margin : 0 auto 0 auto;
- 	left : 0;
- 	top : 0;
- 	right : 0;
- 	
-   }
-   
-   div#totalvalue > div{
-        
-/*         	border : 1px solid red; */
- 	text-align : right;
- 	padding : 10px;
- 	border-radius : 10px;
- 	background: #cccccc21;
- 	margin : 5px auto;
-    height : 45px;
-    width: 100%;
-    position : relative;
-    font-weight : bold;    
-    }
-    
-    div#totalvalue > div > input{
-        
-/*         	border : 1px solid red; */
- 	border-radius : 5px;
- 	margin : 0 auto;
-    height : 100%;
-    width: 60%;
-    position : relative;
-    border : 0px;    
-    font-weight : bold;
-    color : #9e9e9e;
-    }
-    
-    div#btnBox2{
-	  
-  	position : relative;
-  	height : 50px;
-  	width : 100%;
-  	margin : 0 auto 0 auto;
-  	left : 0;
-  	top : -40px;
-  	right:0;
-	  
-  	}
-        
-    div#totalvalue > div{
-        
-/*  border : 1px solid red; */
-  	text-align : right;
-  	padding : 10px;
-  	border-radius : 10px;
-  	background: #cccccc21;
-  	margin : 5px auto;
-     
-     }
-     
-    div#Totalsubmit {
-	position : relative;
-	margin : 0 auto;
-	font-size : 20px;
-	left : 15px;
-	right : 0;
-	top : 0;
-	width: 1200px;
-	height : 100%;
-	text-align: center;
-    		
-    }
-    
-    div#Totalsubmit > a{
-    
-	background : #cccccc21; 
-	border-radius : 20px;
-	margin : 0 10px;
-	font-size : 22px;
-
-    		
-    }
-    
-    div#Totalsubmit > a:hover{
-	
-	background : #fff5f3;
-	border-radius : 20px;
-	font-size : 22px;
-
-    		
-    } 
-    
-    #Totalsubmit > #submitbtn {
-    
-   	background : #cccccc21; 
-	border-radius : 20px;
-	margin : 0 10px;
-	font-size : 22px;
-	touch-action : manipulation;
-    
-    }
-    
-    #Totalsubmit > #submitbtn:hover {
-    
-	background : #fff5f3;
-	border-radius : 20px;
-	font-size : 22px;
-    transition : 0.5s;
-    }
-    
-    tbody > tr > td:first-child {
-    	color : red;
-    	pointer-events : none;
-    }
-    
-    tbody > tr >td:last-child {
-    	color : blue;
-    }
-    
-     
-    a { color:#000000;text-decoration:none; }
-    .scriptCalendar > thead > tr > td { width:50px;height:50px; }
-    .scriptCalendar > thead > tr:first-child > td { font-weight:bold; }
-    .scriptCalendar > thead > tr:last-child > td { background-color:#f8f8f8; }
-    .scriptCalendar > tbody > tr > td { width:50px;height:50px; border:1px solid white; border-radius : 5px;}
-    .btn:hover > button {background : #fff5f3; }
-
 </style>
 <script type="text/javascript">
 
@@ -502,9 +75,11 @@ String tr_price = request.getParameter("tr_price");
 	
     var doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
     var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-	
+    
 	console.log(regdate);
 	console.log(reg_date);
+
+	
     
     /**
      * @brief   이전달 버튼 클릭
@@ -535,6 +110,7 @@ String tr_price = request.getParameter("tr_price");
     		
     	}
         this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+        console.log(this.today);
         buildCalendar();    // @param 명월 캘린더 출력 요청
 
     }
@@ -621,25 +197,37 @@ String tr_price = request.getParameter("tr_price");
                     if(date.getDate() > day && Math.sign(day) == 1) {
                         column.style.backgroundColor = "#ffffff";
                         column.style.color = "E5E5E5";
-                    }
+                  
 
-                    // @details 현재일보다 이후이면서 현재월에 포함되는 일인경우
-                    else if(date.getDate() < day && lastDate.getDate() >= day) {
-                        column.style.color = "#E5E5E5";                
+                    // @details 7일뒤보다 이후이면서 현재월에 포함되는 일인경우
+               		}else if((date.getDate()+6) < day && lastDate.getDate() >= day) {
+	
+	                        column.style.backgroundColor = "#f8f8f8";
+	                        column.style.color = "";
+	                        column.style.cursor = "pointer";
+	                        column.onclick = function(){ calendarChoiceDay(this); }    
+
                    
                     // 현재일 +6일 뒤 부터 선택 가능하게 만듬
-                    }else if((date.getDate()+6) < day ) {
+//                     }else if((date.getDate()+6) < day ) {
 
-                        column.style.backgroundColor = "#f8f8f8";
-                        column.style.color = "";
-                        column.style.cursor = "pointer";
-                        column.onclick = function(){ calendarChoiceDay(this); }    
+// //                         column.style.backgroundColor = "#f8f8f8";
+// //                         column.style.color = "";
+// //                         column.style.cursor = "pointer";
+// //                         column.onclick = function(){ calendarChoiceDay(this); }    
                     	
                     	
-                    }
+                    
                     // @details 현재일인 경우
-                    else if(date.getDate() == day) {
+                	}else if(date.getDate() == day) {
+                		
                         column.style.backgroundColor = "#fff5f3";
+                    
+                    // 현재일부터 7일이전 까지 라면
+                    }else{
+                    	
+                    	 column.style.color = "E5E5E5";
+                    	
                     }
                 // @details 현재월보다 이전인경우
                 } else if(today.getMonth() < date.getMonth()) {
@@ -708,6 +296,9 @@ String tr_price = request.getParameter("tr_price");
         clickyear = today.getFullYear();
         clickday = $(".choiceDay").text();
         clickdate = clickyear+"-"+clickmonth+"-"+clickday;
+        clickdate2 = clickmonth+"월 "+clickday+"일";
+        
+        
         
         
         // @현재요일 구하기
@@ -715,10 +306,9 @@ String tr_price = request.getParameter("tr_price");
 		var clickdow = new Date(clickdate).getDay();
 		var todayLabel = week[clickdow];
         console.log(todayLabel);
-        
-           
+
            //첫번째 예약란이 빈공백이면,
-           if($("#selectDate1").val() == ""){
+           if($("#selectDay1").val() == ""){
         	   
         	   resultcnt++;
         	   resultprice = <%=tr_price%>;
@@ -726,7 +316,8 @@ String tr_price = request.getParameter("tr_price");
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         	   
 	   	        // 첫번째 예약 날짜에 입력 시킨다.
-	           	$("#selectDate1").attr("value", clickdate);
+	           	$("#selectDay1").attr("value", clickdate2);
+	           	$("#selectDate1").attr("value", clickmonth+"-"+clickday);
 	   	        $("#dow1").attr("value", todayLabel);
 	   	        $("#Num1").attr("value", "1");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -740,14 +331,15 @@ String tr_price = request.getParameter("tr_price");
 	   	     return false;
 	   	   
 	       //두번째 예약란이 공백일때
-           }else if($("#selectDate2").val() == ""){
+           }else if($("#selectDay2").val() == ""){
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	   	        
         	   // 두번째 예약 날짜에 입력 시킨다.
-	           	$("#selectDate2").attr("value", clickdate);
+	           	$("#selectDay2").attr("value", clickdate2);
+	           	$("#selectDate2").attr("value", clickmonth+"-"+clickday);
 	           	$("#dow2").attr("value", todayLabel);
 	           	$("#Num2").attr("value", "2");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -761,14 +353,15 @@ String tr_price = request.getParameter("tr_price");
    	       	return false;
    	       		
  	       //세번째 예약란이 공백일때
-           }else if($("#selectDate3").val() == ""){
+           }else if($("#selectDay3").val() == ""){
 	   	        
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         	   
         	   // 세번째 예약 날짜에 입력 시킨다.
-	           	$("#selectDate3").attr("value", clickdate);
+	           	$("#selectDay3").attr("value", clickdate2);
+	           	$("#selectDate3").attr("value", clickmonth+"-"+clickday);
 	           	$("#dow3").attr("value", todayLabel);
 	           	$("#Num3").attr("value", "3");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -782,14 +375,15 @@ String tr_price = request.getParameter("tr_price");
    	       return false;    
 	   	        
   	       //네번째 예약란이 공백일때
-           }else if($("#selectDate4").val() == ""){
+           }else if($("#selectDay4").val() == ""){
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	   	        
         	   // 네번째 예약 날짜에 입력 시킨다.
-	           	$("#selectDate4").attr("value", clickdate);
+	           	$("#selectDay4").attr("value", clickdate2);
+	           	$("#selectDate4").attr("value", clickmonth+"-"+clickday);
 	           	$("#dow4").attr("value", todayLabel);
 	           	$("#Num4").attr("value", "4");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -803,14 +397,15 @@ String tr_price = request.getParameter("tr_price");
    	     	return false;     
 	   	        
   	       //다섯번째 예약란이 공백일때
-           }else if($("#selectDate5").val() == ""){
+           }else if($("#selectDay5").val() == ""){
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	   	        
         	   // 다섯번째 예약 날짜에 입력 시킨다.
-	           	$("#selectDate5").attr("value", clickdate);
+	           	$("#selectDay5").attr("value", clickdate2);
+	           	$("#selectDate5").attr("value", clickmonth+"-"+clickday);
 	           	$("#dow5").attr("value", todayLabel);
 	           	$("#Num5").attr("value", "5");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -824,14 +419,15 @@ String tr_price = request.getParameter("tr_price");
    	    	 return false;
 	   	        
   	       //여섯번째 예약란이 공백일때
-           }else if($("#selectDate6").val() == ""){
+           }else if($("#selectDay6").val() == ""){
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	        
 	 	  		 // 여섯번째 예약 날짜에 입력 시킨다.
-	        	$("#selectDate6").attr("value", clickdate);
+	        	$("#selectDay6").attr("value", clickdate2);
+	        	$("#selectDate6").attr("value", clickmonth+"-"+clickday);
 	        	$("#dow6").attr("value", todayLabel);
 	        	$("#Num6").attr("value", "6");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -845,14 +441,15 @@ String tr_price = request.getParameter("tr_price");
    	    	 return false;     
 	   	        
   	       //일곱번째 예약란이 공백일때
-           }else if($("#selectDate7").val() == ""){
+           }else if($("#selectDay7").val() == ""){
         	   
         	   resultcnt++;
         	   totalresult = resultcnt * resultprice;
         	   totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         
 	  		 	// 여섯번째 예약 날짜에 입력 시킨다.
-	   			$("#selectDate7").attr("value", clickdate);
+	   			$("#selectDay7").attr("value", clickdate2);
+	   			$("#selectDate7").attr("value", clickmonth+"-"+clickday);
 	   			$("#dow7").attr("value", todayLabel);
 	   			$("#Num7").attr("value", "7");
 	   	        $("#totalcnt > input").attr("value", resultcnt);
@@ -890,8 +487,8 @@ String tr_price = request.getParameter("tr_price");
     }
     
     
-    
-	var dlastday  = moment(lastDate).format('YYYYMMDD');
+    var lastDate2 = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+	var dlastday  = moment(lastDate2).format('YYYYMMDD');
 	var d_day = moment(today).format('YYYYMMDD');
 	var diffday = dlastday-d_day;
 	
@@ -1041,10 +638,18 @@ String tr_price = request.getParameter("tr_price");
 <form method ="post" action ="<%=request.getContextPath()%>/nb/edureservation.do">
 
 <!-- 예약한 날짜와 트레이너금액, 총금액 원본 넘기기 -->
-<input type="hidden" name ="tr_mem_reg_date" id="tr_mem_reg_date" />
-<input type="hidden" name ="reg_date" id="reg_date" />
-<input type="hidden" name ="tr_price" id="tr_price" />
-<input type="hidden" name ="totalprice" id="totalprice" />
+<input type="hidden" name = "id" id= "id" value="<%=id%>" readonly>
+<input type="hidden" name ="tr_mem_reg_date" id="tr_mem_reg_date" readonly />
+<input type="hidden" name ="reg_date" id="reg_date" readonly />
+<input type="hidden" name ="tr_price" id="tr_price" value="<%=tr_price%>" readonly />
+<input type="hidden" name ="totalprice" id="totalprice" readonly />
+<input id="selectDate1" name="date1" type="hidden"  readonly="readonly"/>
+<input id="selectDate2" name="date2" type="hidden"  readonly="readonly"/>
+<input id="selectDate3" name="date3" type="hidden"  readonly="readonly"/>
+<input id="selectDate4" name="date4" type="hidden"  readonly="readonly"/>
+<input id="selectDate5" name="date5" type="hidden"  readonly="readonly"/>
+<input id="selectDate6" name="date6" type="hidden"  readonly="readonly"/>
+<input id="selectDate7" name="date7" type="hidden"  readonly="readonly"/>
 
 <!-- 캘린더 넣기 -->
 <div id = "calandtotalWrapper">
@@ -1103,13 +708,13 @@ String tr_price = request.getParameter("tr_price");
         </div>
         	<div id="result">
         		<div id="selectDate">
-	        		<input id="selectDate1" name="date1" type="text"  readonly="readonly"/>
-	        		<input id="selectDate2" name="date2" type="text"  readonly="readonly"/>
-	        		<input id="selectDate3" name="date3" type="text"  readonly="readonly"/>
-	        		<input id="selectDate4" name="date4" type="text"  readonly="readonly"/>
-	        		<input id="selectDate5" name="date5" type="text"  readonly="readonly"/>
-	        		<input id="selectDate6" name="date6" type="text"  readonly="readonly"/>
-	        		<input id="selectDate7" name="date7" type="text"  readonly="readonly"/>
+	        		<input id="selectDay1"  type="text"  name= "selectDay1" readonly="readonly"/>
+	        		<input id="selectDay2"  type="text"  name= "selectDay2" readonly="readonly"/>
+	        		<input id="selectDay3"  type="text"  name= "selectDay3" readonly="readonly"/>
+	        		<input id="selectDay4"  type="text"  name= "selectDay4" readonly="readonly"/>
+	        		<input id="selectDay5"  type="text"  name= "selectDay5" readonly="readonly"/>
+	        		<input id="selectDay6"  type="text"  name= "selectDay6" readonly="readonly"/>
+	        		<input id="selectDay7"  type="text"  name= "selectDay7" readonly="readonly"/>
         		</div>
         		<div id="selectDow">
 	        		<input id="dow1" type="text"  readonly="readonly"/>

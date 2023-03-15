@@ -10,7 +10,6 @@
 <%
 // https://nameybs.tistory.com/37?category=810277
 // 체크박스 체크한  <input>항목 얻고  체크한 값 얻어 사용
-
 %>    
    
     
@@ -44,8 +43,6 @@
 <title>회원가입</title>
 
 <style type="text/css">
-
-
 	#pass,#nickname,#checkpass,#name,
 	#hp,.birth,#email,#sample4_postcode,
 	#sample4_find,#sample4_detailAddress,
@@ -114,14 +111,11 @@
   	
 	.join{
 		display: flex;     
-
 		align-items: center;   
-
 		justify-content: center;   
 	
 	}
 	
-
 	/* #Photo{
 	  display: inline-block;
 	  padding: .5em .75em;
@@ -135,7 +129,6 @@
 	  border-bottom-color: #e2e2e2;
 	  border-radius: .25em;
 	} */
-
 	#ex_file	{  /* 파일 필드 숨기기 */
 	  position: absolute;
 	  width: 1px;
@@ -146,27 +139,28 @@
 	  clip:rect(0,0,0,0);
 	  border: 0;
 	}
-
  	#preview{
-    width: auto;
     max-width: 60%;
-    height: auto;
     margin: 0;
     padding: 0;
     border: none;
     line-height: normal;
     vertical-align: middle;
+	width : 150px; 
+	height :160px;
+ 	margin-left : -210px; 
+ 	margin-bottom: -20px; 
 }
-
 	.heigthD{
-		height: 100px;
+		height: 100px;	
 	
 	}
+	
 		
 </style>
 </head>
 <body>
-<form action="<%=contextPath%>/nb_member/tr_joinPro.me" class="form">	
+<form action="<%=contextPath%>/member/trJoinPro.me" class="form">	
 	<div>
 		<div align="center" ><!-- class="row justify-content-left" -->
 			<h1>트레이너 회원가입 </h1>
@@ -315,13 +309,13 @@
 			</div>
 			<div class="join">
 				<div class="heigthD">
-					<label><strong>&nbsp;닉네임</strong></label><br><br> 
+					<label><strong>&nbsp;이름</strong></label><br><br> 
 					<input type="text" 
-						   id="nickname" 
-						   name="nickname"
+						   id="name" 
+						   name="name"
 						   class="form-control"
-						   placeholder="사용할 닉네임을 적어주세요".">
-				    <p id="nickInput"></p> 
+						   placeholder="가입할 이름을 적어주세요."> 
+					<p id="nameInput"></p>
 				</div>
 				<div class="heigthD" style="margin-left: 40px;">
 					<label><strong>&nbsp;비밀번호 확인</strong></label><br><br> 
@@ -334,14 +328,14 @@
 				</div>						
 			</div>
 			<div class="join">
-				<div class="heigthD">
-					<label><strong>&nbsp;이름</strong></label><br><br> 
-					<input type="text" 
-						   id="name" 
-						   name="name"
-						   class="form-control"
-						   placeholder="가입할 이름을 적어주세요."> 
-					<p id="nameInput"></p>
+				<div class="heigthD" id="selbox">
+					<label><strong>&nbsp;생년월일</strong></label><br><br>
+						<input type="text" 
+						   id="birth" 
+						   name="birth"
+						   class="birth"
+						   placeholder="ex)20010917"> 
+					<p id="birthInput"></p>
 				</div>
 				<div class="heigthD" style="margin-left: 40px;">	
 					<label><strong>&nbsp;핸드폰번호</strong></label><br><br>
@@ -354,14 +348,11 @@
 				</div>
 			</div>
 			<div  class="join">
-				<div class="heigthD" id="selbox">
-					<label><strong>&nbsp;생년월일</strong></label><br><br>
-						<input type="text" 
-						   id="birth" 
-						   name="birth"
-						   class="birth"
-						   placeholder="ex)20010917"> 
-					<p id="birthInput"></p>
+				<div class="heigthD" >
+					<%-- name속성값 address1 부터 ~~ address5 까지 입력되어 있는 주소를 모두 합쳐서 DB에 address열에  INSERT 하자. --%>
+					<label><strong>&nbsp;주소</strong></label><br><br>	
+					<input type="text" id="sample4_postcode" name="address1" class="form-control" placeholder="우편번호" readonly><br><br>	
+
 				</div>					
 				<div class="heigthD" style="margin-left: 40px;">
 					<label><strong>&nbsp;Email</strong></label><br><br>
@@ -375,10 +366,7 @@
 			</div>
 			<div class="join">
 				<div class="heigthD" >
-					<%-- name속성값 address1 부터 ~~ address5 까지 입력되어 있는 주소를 모두 합쳐서 DB에 address열에  INSERT 하자. --%>
-					<label><strong>&nbsp;주소</strong></label><br><br>	
-					<input type="text" id="sample4_postcode" name="address1" class="form-control" placeholder="우편번호" readonly><br><br>	
-
+					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="background-color:#BDBDBD; margin-top: -10px;" id="sample4_find"><br><br>					<!-- class="form-control" --> 
 				</div>	
 				<div class="join">
 					<div style="margin-left: 30px; width: 120px; height: 90px;">
@@ -388,29 +376,16 @@
 								<option>남자</option>
 								<option>여자</option>
 							</select>
-						
 					</div>
- 				<div style="margin-left: 30px; width: 260px; height: 90px;">	
-<!-- 						<label> -->
-<!-- 							<strong style="margin-right: 133px;"> -->
-<!-- 								&nbsp;&nbsp;애완견을 키우나요? -->
-<!-- 							</strong> -->
-<!-- 						</label> -->
-						<br>
-<!-- 							<select class="pet" name="pet" id="pet" style="width:100px;height:38px;"> -->
-<!-- 								<option>선택</option> -->
-<!-- 								<option>네</option> -->
-<!-- 								<option>아니요</option> -->
-<!-- 							</select> -->
-							<p id="genderInput" style="font-size: 13px;"></p>
-<!-- 							<p id="petInput" style="font-size: 13px;"></p> -->
-							
+ 					
+ 					<div style="margin-left: 30px; width: 260px; height: 90px;">	
+							<p id="genderInput" style="font-size: 13px; margin-top: 30px; margin-right: 140px;"></p>
+
 					</div>
 				</div>			
 			</div>
-			<div class="join" style="margin-right: 30px; ">
-				<div>
-					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="background-color:#BDBDBD" id="sample4_find"><br><br>					<!-- class="form-control" --> 
+			<div class="join">
+				<div style="margin-top: -69px;"> <!-- style="margin-top: -140px;" -->
 					<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소"readonly><br><br>		
 					<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3" readonly><br><br>		
 					<span id="guide" style="color:#999; display:none;"></span>
@@ -418,27 +393,36 @@
 					<input type="text" id="sample4_extraAddress" placeholder="참고항목"  name="address5" readonly>
 				    <p id="addressInput"></p> 
 				</div>	
-				<div style="width: 400px;" > 
-				    <img  id="preview" src="<%=contextPath%>/images/profile.png" width=200 height=220 style="margin-right: 70px;"/>
-				</div>
-				
-				
-				<div class="filebox" style="margin-left: -50px;margin-top: 200px;" >
-		 			<label id="Photo"for="ex_file" class="btn btn-outline-warning">사진 등록</label>
-				    <input type="file" id="ex_file" name="imageFileName"  onchange="readURL(this);"> 
+				<div style="width: 440px;">	
+					<div>  <!--  -->
+					    <img  id="preview" src="<%=contextPath%>/images/profile.png" class="profile">
+					</div>
+					<div>
+				     	<input type="file"  name="imageFileName"  onchange="readURL(this);" style="margin-left: 200px;"/>
+					</div>
+					
+					<!-- <div class="filebox" style="margin-right: -250px;"> 
+ 			 			<labe class="btn btn-outline-warning">사진 등록</label>
+					    <input type="file" id="ex_file"  name="imageFileName"  onchange="readURL(this);">
+					</div> -->
+					
+					
+					<div>
+						<a href="#"
+						   onclick="check(); return false;" 
+						   type="button" 
+						   style="text-decoration: none;
+						   		  margin-left: 380px;
+						   		  margin-top: -25px;"
+						   class="btn btn-outline-warning";
+						>회원가입</a>
+					</div>
 				</div>
 			</div>
 			<br>
 			<br>
 			<div align="center" style="margin-left: 50%;">
-				<div>
-					<a href="#"
-					   onclick="check(); return false;" 
-					   type="button" 
-					   style="text-decoration: none;"
-					   class="btn btn-outline-warning";
-					>회원가입</a>
-				</div>	
+					
 			</div>
 			<br /> <br /> <br />
 		</div>
@@ -569,5 +553,3 @@
 
 </body>
 </html>
-
-

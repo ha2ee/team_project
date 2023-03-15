@@ -88,7 +88,6 @@ String contextPath = request.getContextPath();
 				 }
   			})
   		})
-  	
   	</script>
  --%>  		
 	<script type="text/javascript">

@@ -20,7 +20,7 @@
     				{
     					type:"post", // 전송요청 방식 설정 ! get 또는 post 둘중 하나를 작성
     					async:true, // 비동기 통신으로 서버페이지를 요청 하는 설정!  false를 작성하면 동기화 통신
-    					url:"http://localhost:8090/TeamProject/nb_member/joinIdCheck.me", //요청할 주소
+    					url:"http://localhost:8090/TeamProject/member/joinIdCheck.me", //요청할 주소
     					data:{ id : $("#id").val() },//서버페이지로 요청할 데이터 설정!
     					dataType:"text", //서버페이지로 부터 응답 받을 데이터 종류 설정!
     									 //종류는 json 또는 xml 또는 text 중 하나 설정!
@@ -34,7 +34,7 @@
     						
     						//서버페이지에서 전송된 아이디 중복? 인지 아닌지 판단하여
     						//현재 josin.jsp화면에 보여주는 처리 구문 작성
-    						if(data == 'usable'){ //아이디가 DB에 없으면?(중복아님)
+    						if(data == '사용 가능'){ //아이디가 DB에 없으면?(중복아님)
     							
     							$("#idInput").text("사용할수 있는 ID입니다.").css("color","green");
     							$("#id").attr('readonly', true); 

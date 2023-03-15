@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--     인덱스 파일을 실행 했을때, 인덱스 화면으로 사용 될 main.js파일 -->
+    <script src="js/main.js"></script>
+
 <style>
 
 /*  나눔 고딕 글꼴 임포트 */
@@ -41,8 +44,7 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/slider.js"></script>
     
-<!--     인덱스 파일을 실행 했을때, 인덱스 화면으로 사용 될 main.js파일 -->
-    <script src="js/main.js"></script>
+
 
 </body>
 </html>
