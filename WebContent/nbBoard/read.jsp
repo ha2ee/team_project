@@ -39,9 +39,9 @@
       </script>
   <%}%>
   
-/* 	String likeCheck = (String)request.getAttribute("likeCheck");
+<!--  	String likeCheck = (String)request.getAttribute("likeCheck");
   System.out.println("ㅇㅇㅇㅇ:" +likeCheck );
- */%>
+ --> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -140,7 +140,9 @@ div.filedownload {
 	
 
 	/* 	댓글 CSS 끝*/
-		
+		#updatePro{
+     display: none;
+    }
     </style>
 </head>
 <body>
@@ -313,7 +315,8 @@ function tbDelete(tb_idx){
 
 </script>    
     
-    <div style="border: 1px solid black; height: 500px; margin-bottom: 2%">
+<div style="margin-bottom: 2%">
+
  <!-- 댓글시작------------------------------------ -->  
  
  <!-- 댓글수정 -->
@@ -328,7 +331,7 @@ function tbDelete(tb_idx){
  
  <!-- 끝----댓글수정 -->
  
-<div>
+<div style="margin: 0 77;">
 
 	<table id="tblListComment" class="table table-bordered">
 	
@@ -361,11 +364,6 @@ function tbDelete(tb_idx){
 			</tr>
 		</c:forEach>	
 	</table>
-	<style> 
-		#updatePro{
-		 display: none;
-		}
-	</style>
 	
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
@@ -386,7 +384,7 @@ function tbDelete(tb_idx){
 	
 	
 	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
-		<table id="tblAddComment" class="table table-bordered">
+		<table id="tblAddComment" class="table table-bordered" >
 			<tr>
 				<td><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
 				<td><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
@@ -397,7 +395,7 @@ function tbDelete(tb_idx){
 	
 </div>
 <!-- 댓글끝------------------------------------ -->    
-    <div style="border: 1px solid black; height: 1000px; margin-bottom: 2%">
+    <div style="margin-bottom: 2%">
       <jsp:include page="list.jsp">
         <jsp:param value="0" name="nowBlock"/>
         <jsp:param value="0" name="nowPage"/>
