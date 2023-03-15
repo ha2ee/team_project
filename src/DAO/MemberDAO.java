@@ -11,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import VO.MemberVo;
+import VO.PetVo;
 import VO.TrainerVo;
 
 public class MemberDAO {
@@ -240,8 +241,11 @@ public class MemberDAO {
 			con = ds.getConnection();
 			//매개변수로 전달 받는 MemberVo객체의 각변수에 저장된 값들을 얻어
 			//insert문장 완성하기
-			String sql = "INSERT INTO MEMBER_TRAINER(TR_ID, TR_NAME, TR_PW, TR_EMAIL, TR_HP, TR_BIRTH, TR_GENDER, TR_ADDRESS1,TR_ADDRESS2,TR_ADDRESS3,TR_ADDRESS4,TR_ADDRESS5, TR_IMG) "
-					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
+			String sql = "INSERT INTO MEMBER_TRAINER(TR_ID, TR_NAME, TR_PW, TR_EMAIL, TR_HP, TR_BIRTH, TR_GENDER, TR_ADDRESS1,TR_ADDRESS2,TR_ADDRESS3,TR_ADDRESS4,TR_ADDRESS5) "
+					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			
+			System.out.println("이미지"+tr_vo.getTr_img());
+			
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, tr_vo.getTr_id() );
@@ -256,8 +260,8 @@ public class MemberDAO {
 			pstmt.setString(10, tr_vo.getTr_address3());
 			pstmt.setString(11, tr_vo.getTr_address4());
 			pstmt.setString(12, tr_vo.getTr_address5());
-			pstmt.setString(13, tr_vo.getTr_img());
 			
+		
 			
 			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
 			pstmt.executeUpdate();
@@ -882,5 +886,112 @@ public class MemberDAO {
     }
     return result;
   }   
+
+	public boolean petJoin(PetVo pet_vo) {
+		
+		try {
+			
+			//커넥션 풀에 만들어져 있는 DB와 미리 연결을 맺은 Connection객체 빌려오기
+			//요약 DB연결
+			con = ds.getConnection();
+			//매개변수로 전달 받는 MemberVo객체의 각변수에 저장된 값들을 얻어
+			//insert문장 완성하기
+			
+			String sql = "INSERT INTO PET(P_NAME, P_AGE, P_GENDER, P_TYPE, P_OP, P_WEIGHT, P_IMG, P_MEM_ID) "
+					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pet_vo.getP_name());
+			pstmt.setInt(2, pet_vo.getP_age());
+			pstmt.setString(3, pet_vo.getP_gender());
+			pstmt.setString(4, pet_vo.getP_type());
+			pstmt.setString(5, pet_vo.getP_op());
+			pstmt.setInt(6, pet_vo.getP_weight());
+			pstmt.setString(7, pet_vo.getP_img());
+			pstmt.setString(8, pet_vo.getP_mem_id());
+				
+			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			System.out.println("petJoin메소드 내부에서 SQL실행 오류" + e);
+		}finally {
+			closeResource();
+		}
+		
+		
+		
+		
+		
+		return false;
+	}
+
+	public PetVo petRead(String memberid) {
+		String sql = "SELECT * FROM PET WHERE P_MEM_ID=?";
+		
+		PetVo pet_vo = null;
+		try {
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(sql);
+
+				pstmt.setString(1, memberid);
+				
+				rs = pstmt.executeQuery();
+					rs.next();
+					pet_vo = new PetVo();
+								 pet_vo.setP_name(rs.getString("p_name"));
+								 pet_vo.setP_age(rs.getInt("p_age"));
+								 pet_vo.setP_gender(rs.getString("p_gender"));
+								 pet_vo.setP_type(rs.getString("p_type"));
+								 pet_vo.setP_op(rs.getString("p_op"));
+								 pet_vo.setP_weight(rs.getInt("P_weight"));
+								 pet_vo.setP_img(rs.getString("p_img"));
+		}catch(Exception e) {
+			
+			System.out.println("petRead메소드 내부에서 SQL오류");
+			e.printStackTrace();	
+			
+		}finally {
+			closeResource();
+		}
+		return pet_vo;
+	}
+
+	public int petInfoChange(String p_name, String p_age, String p_weight, String p_type, String p_gender, String p_op, String P_mem_id) {
+		
+		int result = 0; //
+		
+		try {
+			con = ds.getConnection();
+			
+			String query = "update PET set p_name='" + p_name + "',"
+									   + " p_age='" + p_age + "',"
+									   + " p_weight='" + p_weight + "',"
+					   				   + " p_type='" + p_type + "',"
+					   				   + " p_gender='" + p_gender + "',"
+					   				   + " p_op='" + p_op + "'"
+									   + " WHERE P_mem_id ='"+ P_mem_id +"'";
+
+			
+			pstmt = con.prepareStatement(query);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("petInfoChange메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+		}
+		
+		
+		return result;
+	}
+		
 		
 }
