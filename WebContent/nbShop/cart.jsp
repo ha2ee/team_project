@@ -421,11 +421,13 @@ $(document).ready(function(){
 		
 		var price = document.getElementById("eduTotalprice"+i).value;
 
-		var replaceprice = parseInt(price.replace("," , ""));
+		var replaceprice = parseInt(price.replace(/,/g , ""));
 
 		x += replaceprice++;
 		
 	}
+
+	
 	// 정규표현식으로 3자리숫자당 콤마로 구분한다.
 	var edu_price = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	
