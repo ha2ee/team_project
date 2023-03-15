@@ -1,3 +1,8 @@
+<%@page import="VO.CommentVO"%>
+<%@page import="DAO.FreeBoardDAO"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="javax.xml.stream.events.Comment"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="VO.FreeBoardVo"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -12,6 +17,7 @@
 	FreeBoardVo vo = (FreeBoardVo)request.getAttribute("vo");
 	String writerId = vo.getB_id();
 	String name = vo.getB_nickname();
+  String nickname = vo.getB_nickname();
 	String title = vo.getB_title();
 	String content = vo.getB_content(); 
 	String file = vo.getB_file();
@@ -19,7 +25,19 @@
 	int cnt = vo.getB_cnt();
 	int b_idx = vo.getB_idx();
   int like = vo.getB_like();
+  
+  //   CommentVO cvo = (CommentVO) request.getAttribute("cvo");
+  //   int seqnum = Integer.parseInt(cvo.getSeq());
+
 	String id = (String)session.getAttribute("id");
+  
+   if (id == null || id.equals("")) {
+      %>      
+      <script>    
+          alert("로그인을 해야 댓글을 작성 할 수 있습니다."); 
+          history.back(); 
+      </script>
+  <%}%>
   
 /* 	String likeCheck = (String)request.getAttribute("likeCheck");
   System.out.println("ㅇㅇㅇㅇ:" +likeCheck );
@@ -29,15 +47,13 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 상세</title>
-
-    <style type="text/css">
+ <style type="text/css">
 		.post-Container {
 		margin : 0 auto;
 		border-top: 1px solid #ddd;
 		border-bottom: 1px solid #ddd;
 		width:1200px;
 		padding: 20px;
-
 		}
 		
 		.post {
@@ -96,6 +112,34 @@ div.filedownload {
 	padding: 20px;
 	font-size: 16px;
 }
+
+/* 	댓글 CSS */
+	
+	#tblAddCommnet, #tblListComment { width: 700px; margin: 15px auto; }
+	
+	#tblAddComment { margin-top: 30px; }
+	#tblAddComment td:nth-child(1) { width: 600px; }
+	#tblAddComment td:nth-child(2) { width: 100px; }
+	
+	#tblListComment td:nth-child(1) { width: 600px; }
+	#tblListComment td:nth-child(2) { width: 100px; }
+	
+	#tblListComment td {
+		position: relative;
+		left: 0;
+		top: 0;
+	}
+	
+	#tblListComment td span {
+		position: absolute;
+		right: 10px;
+		bottom: 5px;
+		color: #AAA;
+		font-size: 11px;
+	}
+	
+
+	/* 	댓글 CSS 끝*/
 		
     </style>
 </head>
@@ -269,6 +313,99 @@ function tbDelete(tb_idx){
 
 </script>    
     
+    <div style="border: 1px solid black; height: 500px; margin-bottom: 2%">
+ <!-- 댓글시작------------------------------------ -->  
+ 
+ <!-- 댓글수정 -->
+ 	<script type="text/javascript">
+ 	
+ 	function updateviewBtn(){}
+ 	
+ 	
+ 	</script>
+ 
+ 
+ 
+ <!-- 끝----댓글수정 -->
+ 
+<div>
+
+	<table id="tblListComment" class="table table-bordered">
+	
+		<c:if test="${ clist.size() == 0 }">
+			<tr>
+				<td colspan="2">댓글이 없습니다.</td>
+			</tr>
+		</c:if>
+		
+		<c:forEach items="${ clist }" var="cdto">
+		<c:set var="i" value="0"/>
+			<tr>
+				<td>
+				<!-- 댓글 표시&수정창 -->
+					<textarea id="updateActive" rows="3" cols="60" disabled="disabled">${cdto.content}</textarea>
+					<span>${ cdto.name }. ${ cdto.regdate }</span>
+				</td>
+				<td>
+		<!-- 댓글 작성자만 수정/삭제 버튼이 보이게 처리 c:if -->
+		<c:if test="${ id eq cdto.id}">
+				<input id="update" type="button" value="수정하기" onclick="updateActive('${i}')" class="btn btn-default" >
+				
+				<input id="updatePro" type="button" value="수정완료" class="btn btn-default" 
+						onclick="location.href='<%=contextPath%>/freeboard/upComment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
+					<input type="button" value="삭제하기" class="btn btn-default" 
+						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
+			<c:set var="i" value="${i+1}"/>
+		</c:if>
+				</td>
+			</tr>
+		</c:forEach>	
+	</table>
+	<style> 
+		#updatePro{
+		 display: none;
+		}
+	</style>
+	
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+	
+	function updateActive(a) {
+
+		//수정시 입력하는 화면 활성화
+		$("#updateActive").removeAttr("disabled");
+		
+		//수정하기 버튼 안보이게
+		document.getElementById("update").style.display = 'none';
+
+		//수정완료 버튼 보이게 
+		document.getElementById("updatePro").style.display = 'block';
+	}
+	
+	</script>
+	
+	
+	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
+		<table id="tblAddComment" class="table table-bordered">
+			<tr>
+				<td><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
+				<td><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
+			</tr>
+		</table>
+		<input type="hidden" name="pseq" value="<%=b_idx%>" />
+	</form>
+	
+</div>
+<!-- 댓글끝------------------------------------ -->    
+    <div style="border: 1px solid black; height: 1000px; margin-bottom: 2%">
+      <jsp:include page="list.jsp">
+        <jsp:param value="0" name="nowBlock"/>
+        <jsp:param value="0" name="nowPage"/>
+        <jsp:param value="${list}" name="list"/>
+        <jsp:param value="${count}" name="count"/>
+      </jsp:include>
+    </div>
+  </div>
 
 </body>
 </html>
