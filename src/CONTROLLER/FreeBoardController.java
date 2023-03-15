@@ -398,7 +398,7 @@ public class FreeBoardController extends HttpServlet {
     			
     			writer.close();
     			
-    			return;
+    			return ;
     		}
         
 //끝=====================댓글 수정 버튼 클릭시 /upcomment.do ========================== 
