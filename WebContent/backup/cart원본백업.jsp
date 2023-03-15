@@ -194,6 +194,9 @@
 						<input class="btn" type="button" id="eduInfo${j}" value="상세보기"  />
 					</div>
 				</div>
+				
+					<div id="edu${j}">
+					</div>
 				<!-- 비우기 -->
 				<div id="cart_del_box">	
 					<div id="cart_del${j}">
@@ -440,19 +443,6 @@ $(document).ready(function(){
 	
 	// 수강금액 + 샵금액 = 총금액 계산 하기
 	$("#edu_shop_total_price > input").attr("value", (edu_price+shop_price));
-	
-	// 상세보기 버튼을 눌렀을 때,
-	  var open = () => {
-		    document.querySelector(".modal").classList.remove("hidden");
-		  }
-
-	  var close = () => {
-		    document.querySelector(".modal").classList.add("hidden");
-		  }
-
-		  document.querySelector(".openBtn").addEventListener("click", open);
-		  document.querySelector(".closeBtn").addEventListener("click", close);
-		  document.querySelector(".bg").addEventListener("click", close);
 	
 	
 	

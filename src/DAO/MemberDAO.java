@@ -857,5 +857,4 @@ public class MemberDAO {
 	}		
 		
 		
-		
 }

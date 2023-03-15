@@ -88,6 +88,8 @@
 <html>
 <head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
 <style>
   #mem_address > a > input#mem_address5::placeholder {
   color : #ccc;
@@ -120,10 +122,10 @@
 
 	<!-- 	주문예약 들어갈 항목 -->
 	
-<!-- 	내용을 입력하고 예약확정 버튼을 눌렀을 때 /nbMemberCotroller/eduOrder.me 호출 -->
-	<form method = "post" action="<%=contextPath%>/nbOrder/eduOrder.od" id="form">	
-	<input type="hidden" name="pet_img"  />
+<!-- 	내용을 입력하고 예약하기 버튼을 눌렀을 때 /nbOrder/goCart.od 호출 -->
+	<form method = "post" action="<%=contextPath%>/nbOrder/goCart.od" id="form">	
 	<input type="hidden" name="tr_img"	value="<%=tr_img %>" />
+	<input type="hidden" name="pet_edu_img" id="pet_edu_img" />
 	<div id = "reservationBox" >
 		<div id = "reservationFormWrapper">
 			<div id = "mem_box">
@@ -159,7 +161,7 @@
 					<h3 id="h3title">- 반려견 예약 정보 -</h3>
 				</div>
 				<div id = "pet_check">
-					<a id ="petcheck1" class = btn >반려견 정보 추가하기</a>
+					<a id ="petcheck1" class = btn  onclick="openChild2()">반려견 정보 추가하기</a>
 					<a id ="petcheck2" class = btn onclick="openChild()">반려견 정보 가져오기</a>
 					<input type="hidden" id="pInput" name="id" value="<%=id_%>"/>
 				</div>
@@ -167,7 +169,7 @@
 					<a id="pet_img_name" type= "text">반려견 사진</a>
 				</div>
 				<div id= "pet_img_box" >
-						<img id="pet_img"  src="<%=request.getContextPath()%>/images/example.png" />
+						<img id="pet_img" name="pet_img"  src="<%=request.getContextPath()%>/images/example.png" />
 				</div>
 				<div id = "pet_info_box">
 					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" value="" placeholder="이름을 입력해주세요"  />
@@ -236,7 +238,7 @@
 					<a type= "text">반려견 이름<input id = "edu_img_name" name = "edu_name" type="text" value="" placeholder="이름"  readonly /></a>
 				</div>
 				<div id = "edu_img_box">	
-					<img  src="<%=request.getContextPath()%>/images/example.png" id = "edu_img" name="pet_img"  />
+					<img src="<%=request.getContextPath()%>/images/example.png" id = "edu_img" name="edu_img" />
 				</div>
 				<div id =  "tr_result_box">
 					<div id = "tr_totalcnt_box">
@@ -248,10 +250,12 @@
 				</div>
 			</div>
 		</div>
+		<h4><br>* <Strong>반려견</Strong> 예약 정보가 없으면 <Strong>"예약 하기"</Strong> 버튼이 생성되지 않습니다. *</h4>
 		<div id ="reservationBtnWrapper">
-			<div>
+			<div id = "res_box">
 				<a id ="nb_backbtn" class = btn href="#">일정 다시선택하기 </a>
 				<a id = "nb_submitbtn" type="submit" class = "btn"  onclick="document.getElementById('form').submit();" >예약 확정</a>
+<!-- 				<a id = "nb_submitbtn" type="submit" class = "btn" >예약 하기</a> -->
 				<a id = "nb_shopbtn" class= "btn" href="<%=request.getContextPath()%>/nb/pet.shop?center=/nbShop/pet.jsp">늘봄 샵으로</a>
 			</div>
 		</div>
@@ -259,12 +263,26 @@
 	 <br>
 	 <br>
 
-
+<!-- iamport.payment.js -->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script type="text/javascript">
 
 // 팝업창 띄우기
 
 var openWindow;
+
+function openChild2() {
+	
+	alert("팝업창이 열립니다");
+	
+	window.name = "parentForm";
+	
+	var popupX = (window.screen.width/2)-(750/2);
+	var popupY = (window.screen.height/2)-(500/2);
+	
+	openWindow = window.open("<%=request.getContextPath()%>/nbOrder/petPopup.od", "childForm", "height=500, width=750, left="+popupX+", top="+popupY+", screenX="+popupX+", screenY="+popupY+" resizable=no, scrollbars=no");
+	
+}
 
 function openChild() {
 	
@@ -281,37 +299,31 @@ function openChild() {
 	
 	// jquery 호출 옵션 
 	$(document).ready(function(){
-		
-		
-		
-		
+
+
 		// 반려견 정보 추가하기 메소드 
 		// 1)처음 페이지에 왔을 때 펫 정보 입력문구를 보이지 않게 한다.
 		$("#pet_img_name").css("display", "none");
 		$("#pet_img_box").css("display", "none");
 		$("#pet_info_box").css("display", "none");
 		$("#pet_op_box").css("display", "none");
+		$("#nb_submitbtn").css("display", "none");
 
 		
-		
-		// 2) 반려견 정보 추가하기 버튼을 눌렸을 때 입력문구가 나오게 한다.
+		// 2) 반려견 정보 추가하기 버튼을 눌렸을 때 팝업창이 나오게 한다.
 		
 		$("#petcheck1").on("click", function(){
-			
-			
-			alert("빠짐 없이 입력 해주세요~!")
+		
 			$("#pet_img_name").css("display", "block");
 			$("#pet_img_box").css("display", "block");
 			$("#pet_info_box").css("display", "block");
 			$("#pet_op_box").css("display", "block");
+			$("#pet_info_box > a > input").attr("readonly", true);
 
-		
 		})
 	
 		// 3) 반려견 정보 가져오기 버튼을 눌렸을 때 팝업창이 나오게 한다.
 		
-		var openwindow;
-	
 		
 		$("#petcheck2").on("click", function(){
 			
@@ -319,6 +331,8 @@ function openChild() {
 			$("#pet_img_box").css("display", "block");
 			$("#pet_info_box").css("display", "block");
 			$("#pet_op_box").css("display", "block");
+			$("#pet_info_box > a > input").attr("readonly", true);
+
 			
 		})
 		
@@ -342,27 +356,12 @@ function openChild() {
 		})
 		
 		
-			// 강아지 사진의 출처를 저장한 뒤,
-			var src = $("#pet_img").attr("src");
-			
-			console.log(src);
-			
-			// 예약 반려견으로 바꿔준다.
-			$("#edu_img").attr("src", src);
-			
+		$("#nb_submitbtn").on("click", function(){
 		
-		// 강아지 이름을 입력하면,
-		$("#pet_name").keyup(function(){
-			
-			// 강아지 이름을 저장한 뒤,
-			var pet_name = $("#pet_name").val();
-
-			
-			// 예약 반려견명으로 바꿔준다.
-			
-			$("#edu_img_name").attr("value", pet_name).css("color", "#5cb85cc7");
+			alert("결제를 위해 장바구니로 이동합니다!! ");
 		})
-
+		
+		
 		
 		// 최종금액에 콤마단위가 들어간 금액으로 설정
 		$("#tr_totalprice").attr("value", tr_totalprice2);
@@ -372,23 +371,7 @@ function openChild() {
 			
 			 // 이전 페이지로 이동하게 한다.
 			 history.back();
-			 
-		});
-
-		
-			
-
-		// 최종금액에 콤마단위가 들어간 금액으로 설정
-		$("#tr_totalprice").attr("value", tr_totalprice2);
-        
-		// id 값이 back인 버튼을 클릭했을 때
-		$("#nb_backbtn").on("click", function(){
-			
-			 // 이전 페이지로 이동하게 한다.
-			 history.back();
-			 
-		});
-
+		})
 
 	});
 	
@@ -397,22 +380,6 @@ function openChild() {
 	
 	// 정규표현식으로 3자리숫자당 콤마로 구분한다.
 	var tr_totalprice2 = original.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-	
-	// 강아지 사진 업로드 시 썸네일 형식의 미리보기 만들기
-// 	function setThumbnail(event) {
-// 	  var reader = new FileReader();
-
-// 	  reader.onload = function(event) {
-// 	    var img = document.createElement("img");
-// 	    img.setAttribute("src", event.target.result);
-// 	    document.querySelector("#pet_img_box").appendChild(img);
-// 	  };
-
-// 	  reader.readAsDataURL(event.target.files[0]);
-// 	}
-	
-	
 
 </script>
 <script

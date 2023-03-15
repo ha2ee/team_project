@@ -1,3 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	// 예약일 가져와서 변수에 저장
+	String tr_date1 = request.getParameter("date1");
+	String tr_date2 = request.getParameter("date2");
+	String tr_date3 = request.getParameter("date3");
+	String tr_date4 = request.getParameter("date4");
+	String tr_date5 = request.getParameter("date5");
+	String tr_date6 = request.getParameter("date6");
+	String tr_date7 = request.getParameter("date7");
+	
+	// 총 수강 횟수 가져와서 변수에 저장
+	String totalcnt = request.getParameter("totalcnt");
+	
+	// 총 수강 금액 가져와서 변수에 저장
+	String tr_totalprice = request.getParameter("totalprice");
+	
+	// 선택 된 트레이너 가져와서 변수에 저장
+	String tr_mem_name = request.getParameter("tr_name");
+	
+	// 예약 작성일 가져와서 변수에 저장
+	String tr_mem_reg_date = request.getParameter("tr_mem_reg_date");
+	// 한글버젼으로 된 예약일을 가져와서 변수에 저장
+	String tr_reg_date = request.getParameter("reg_date");
+
+
+%>    
+    
+<!DOCTYPE html>
+<html>
+<head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+
 /*  예약 신청화면 CSS 설정 */
 
 #h3title{
@@ -19,12 +56,12 @@
 /*  1) 예약자 CSS 설정 */
 #reservationBox {
 	
-/* 	border : 1px solid #fff5f373; */
+	border : 1px solid #fff5f373;
 	
 	position : relative;
 	text-align :center;
 	width : 100%;
-	height : 1150px;
+	height : 1100px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -106,10 +143,10 @@
 	
 	position :relative;
 	text-align :center;
-	width : 150px;
+	width : 130px;
 	height : 30px;
 	margin : 0 auto;
-	left : 490px;
+	left : 500px;
 	right : 0;
 	top : 6px;
 	background : aliceblue;
@@ -186,8 +223,6 @@
 	top : 1px;
 	font-weight : normal;
 	border-radius: 5px;
-	color : black;
-	font-weight : bold;
 	
 
 
@@ -219,7 +254,7 @@
 	width : 130px;
 	height : 30px;
 	margin : 0 auto;
-	left : 979px;
+	left : 971px;
 	right : 0;
 	top : 1px;
 	background : aliceblue;
@@ -283,7 +318,7 @@
 	
 	position :relative;
 	text-align :center;
-	width : 229px;
+	width : 288px;
 	height : 35px;
 	margin : 0 5px;
 	left : 0;
@@ -295,7 +330,7 @@
 	font-weight : bold;
 	text-decoration: none;
 	background : #fff5f3;
-
+	
 
 }
 
@@ -313,12 +348,9 @@
 	top : 4px;
 	font-weight : normal;
 	border-radius: 5px;
-	color : black;
-	font-size: 15px;
 
 
 }
-
 
 /*  2) 예약자 반려견 설정 */
 #reservationBox > #reservationPetFormWrapper{
@@ -328,7 +360,7 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-    height: 375px;
+	height : 382px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -343,7 +375,7 @@
 	position :relative;
 	text-align :center;
 	width : 1200px;
-	height: 373px;
+	height : 383px;
 	margin : 0 auto;
 	left : 0;
 	right : 0;
@@ -387,37 +419,16 @@
 
 }
 
-
-#pet_check > a {
-	
- 	border : 1px dashed #ff811959;
-	
-	position :relative;
-	text-align :center;
-	height : 30px;
-	margin : 0 10px;
-	left : 390px;
-	right : 0;
-	top : 2px;
-	background : aliceblue;
-	border-radius: 10px;
-	transition : all 0.5s;
-	font-weight : bold;
-	color : #ff5722;
-	
-	
-}
-
-#petcheck1 {
+#pet_box > #pet_check > #petcheck {
 
  	border : 1px dashed #ff811959;
 	
 	position :relative;
 	text-align :center;
-	width : 170px;
+	width : 160px;
 	height : 30px;
 	margin : 0 auto;
-	left : 350px;
+	left : 505px;
 	right : 0;
 	top : 2px;
 	background : aliceblue;
@@ -429,36 +440,7 @@
 
 }
 
-#petcheck2 {
-
- 	border : 1px dashed #ff811959;
-	
-	position :relative;
-	text-align :center;
-	width : 170px;
-	height : 30px;
-	margin : 0 auto;
-	left : 350px;
-	right : 0;
-	top : 2px;
-	background : aliceblue;
-	border-radius: 10px;
-	transition : all 0.5s;
-	font-weight : bold;
-	color : #ff5722;
-	
-
-}
-
-#pet_box > #pet_check > #petcheck1:hover {
-
-	background : #fff5f3;
-	border-radius: 15px;
-	transition : all 0.5s;
-	
-}
-
-#pet_box > #pet_check > #petcheck2:hover {
+#pet_box > #pet_check > #petcheck:hover {
 
 	background : #fff5f3;
 	border-radius: 15px;
@@ -469,58 +451,44 @@
 
 #pet_box > #pet_img_box {
 
-border: 1px solid #fff5f373;
-
-position: relative;
-    text-align: center;
-    width: 250px;
-	height: 230px;
-    margin: 0 auto;
-    left: -474px;
-    right: 0;
-    top: 0;
-
-}
-
-#pet_box > #pet_name_box {
- 
-    border: 1px solid #fff5f373;
-    
-    position: relative;
-    text-align: center;
-    width: 250px;
-    height: 35px;
-    margin: 0 auto;
-    left: -474px;
-    right: 0;
-    top: 1px;
-    border-radius: 10px;
+	border : 1px solid #fff5f373;
+	
+	position :relative;
+	text-align :center;
+	width : 250px;
+	height : 275px;
+	margin : 0 auto;
+	left : -474px;
+	right : 0;
+	top : 0;
 
 }
 
 #pet_img_name {
 
-    border: 1px solid #fff5f373;
-    display: block;
-    position: relative;
-    text-align: center;
-    width: 100%;
-    height: 33px;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    font-size: 18px;
-    background: #fff5f3;
-    border-radius: 5px;
-    color: #ff572282;
-    padding: 5px;
-    font-weight: bold;
-    text-decoration: none;
+	border : 1px solid #fff5f373;
+	
+	display : block;
+	position :relative;
+	text-align :center;
+	width : 100%;
+	height : 35px;
+	margin : 0 auto;
+	left : 0;
+	right : 0;
+	top : 0;
+	font-size : 18px;
+	background : #fff5f3;
+	border-radius: 5px;
+	color : #ff572282;
+	padding : 5px;
+	font-weight : bold;
+	text-decoration: none;
+
 
 }
 
-#pet_img_box > #pet_img {
+#pet_img_box > img {
 
 	border : 1px solid #fff5f373;
 	
@@ -535,7 +503,22 @@ position: relative;
 	top : 4px;
 	padding : 10px;
 	border-radius: 100px;
-    box-shadow: 0px 0px 10px 1px lightsalmon;
+
+}
+
+#pet_img {
+
+    border: 1px solid #fff5f373;
+    
+    width: 75px;
+    height: 25px;
+    position: relative;
+    left: 2px;
+    top: 210px;
+    right: 0;
+    margin: 0 auto;
+    font-size : 13px;
+    text-align : center;
 
 }
 
@@ -557,14 +540,14 @@ input#file-upload-button {
 
 	border : 1px solid #fff5f373;
 	
-	position: relative;
-    text-align: center;
-    width: 820px;
-    height: 265px;
-    margin: 0 auto;
-    left: 65px;
-    right: 0;
-    top: -264px;
+	position :relative;
+	text-align :center;
+	width : 820px;
+	height : 275px;
+	margin : 0 auto;
+	left : 65px;
+	right : 0;
+	top : -275px;
 
 }
 
@@ -603,10 +586,10 @@ input#file-upload-button {
 	margin : 0 auto;
 	left : 0;
 	right : 0;
-	top : 80px;
+	top : 70px;
 	border-radius : 15px;
 	color : #5cb85cc7;
-    font-size: 20px;
+	
 
 }
 
@@ -614,15 +597,15 @@ input#file-upload-button {
 
 	border : 1px solid #fff5f373;
 	
-	display: block;
-    position: relative;
-    text-align: center;
-    width: 133px;
-    height: 265px;
-    margin: 0 auto;
-    left: 533px;
-    right: 0;
-    top: -529px;
+	display : block;
+	position :relative;
+	text-align :center;
+	width : 133px;
+	height : 275px;
+	margin : 0 auto;
+	left : 533px;
+	right : 0;
+	top : -550px;
 
 }
 
@@ -844,7 +827,6 @@ input#file-upload-button {
 	top : 4px;
 	padding : 10px;
 	border-radius: 100px;
-	box-shadow: 0px 0px 10px 1px lightsalmon;
 
 }
 
@@ -895,12 +877,11 @@ input#file-upload-button {
 	text-align :center;
 	width : 100%;
 	height : 30px;
-	margin : 10px auto;
+	margin : 40px auto;
 	left : 0;
 	right : 0;
-	top : 2px;
+	top : -29px;
 	border-radius : 15px;
-	color : #80c880;
 	
 
 }
@@ -978,47 +959,6 @@ input#file-upload-button {
 
 }
 
- #edu_name_box > a {
- 
-	border : 1px solid #fff5f373;
-	
-	display : block;
-	position :relative;
-	text-align :center;
-	width : 123px;
-	height : 35px;
-	margin : 0 auto;
-    left: 0px;
-    right: 0;
-    top: 1px;
-	float : left;
-	font-size : 18px;
-	background : #fff5f3;
-	border-radius: 5px;
-	color : #ff572282;
-	padding : 5px;
-	font-weight : bold;
-	text-decoration: none;
-
- }
- 
- #edu_name_box > a > input {
- 
-	border : 1px solid #fff5f373;
-	
-	position: relative;
-    text-align: center;
-    width: 123px;
-    height: 35px;
-    margin: 0 auto;
-    left: 121px;
-    right: 0;
-    top: -32px;
-    color : #4caf50cf;
-    border-radius: 10px;
-
-}
-
 
 
  #edu_img_box {
@@ -1075,7 +1015,6 @@ input#file-upload-button {
 	top : 11px;
 	padding : 10px;
 	border-radius: 100px;
-    box-shadow: 0px 0px 10px 1px lightsalmon;
 
 }
 
@@ -1208,7 +1147,7 @@ input#file-upload-button {
 /*  4) 버튼 CSS 설정 */
 #reservationBox > #reservationBtnWrapper{
 
-/* 	border : 1px solid #fff5f373; */
+	border : 1px solid #fff5f373;
 	
 	position :relative;
 	text-align :center;
@@ -1221,30 +1160,6 @@ input#file-upload-button {
 
 }
 
-#res_box {
-	
-/* 	border : 1px solid #fff5f373; */
-	
-    position: relative;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    top: 0;
-	
-	
-	
-}
-
-#res_box > a {
-	
-	float: left;
-
-}
-
-
 #nb_backbtn {
 
     /* border: 1px solid red; */
@@ -1254,9 +1169,9 @@ input#file-upload-button {
     width: 220px;
     height: 50px;
     margin: 0 auto;
-    left: -300px;
+    left: -50px;
     right: 0;
-    top: -390px;
+    top: 20px;
     background : #cccccc21;
     border-radius: 10px;
     transition: all 0.5s;
@@ -1282,9 +1197,9 @@ input#file-upload-button {
     width: 130px;
     height: 50px;
     margin: 0 auto;
-    left: -280px;
+    left: -30px;
     right: 0;
-    top: -390px;
+    top: 20px;
     background : #cccccc21;
     border-radius: 10px;
     transition: all 0.5s;
@@ -1310,9 +1225,9 @@ input#file-upload-button {
     width: 150px;
     height: 50px;
     margin: 0 auto;
-    left: -260px;
+    left: -10px;
     right: 0;
-    top: -390px;
+    top: 20px;
     background : #cccccc21;
     border-radius: 10px;
     transition: all 0.5s;
@@ -1328,3 +1243,245 @@ input#file-upload-button {
 	transition : all 0.5s;
 
 }
+
+</style>
+<meta charset="UTF-8">
+<title>intro.jsp</title>
+</head>
+<body>
+<%
+	request.setCharacterEncoding("utf-8");
+	String contextPath = request.getContextPath();
+%>
+
+
+
+
+
+
+	<!-- 	주문예약 들어갈 항목 -->
+	
+<!-- 	내용을 입력하고 예약확정 버튼을 눌렀을 때 /nbMemberCotroller/eduOrder.me 호출 -->
+	<form method = "post" action="<%=contextPath%>/nbMember/eduOrder.me" id="form">	
+	<div id = "reservationBox" >
+		<div id = "reservationFormWrapper">
+			<div id = "mem_box">
+				<div id = "mem_title">
+					<h3 id="h3title">- 회원 예약 정보 -</h3>
+				</div>
+				<div id = "member_check">
+					<a id ="membercheck" class = btn href="#">내 정보 수정하기</a>
+				</div>
+				<div id = "memData">
+					<a type="text">아이디<input id = "mem_id" name = "mem_id" type="text" placeholder="회원아이디" readonly /></a>
+					<a type="text">이름<input id = "mem_name" name = "mem_name" type="text" placeholder="회원이름" readonly /></a>
+					<a type="text">&nbsp;&nbsp;전화번호<input id = "mem_hp" name = "mem_hp" type="text" placeholder= "회원전화번호" readonly /></a>
+					<a type="text">이메일<input id = "mem_email" name = "mem_email" type="text" placeholder= "회원이메일" readonly /></a>
+				</div>
+				<div id = "memAddress">
+					<div id = "address_check">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소<a id ="addresscheck" class = btn href="#">우편번호 찾기</a>
+					</div>
+					<div id = "mem_address">
+						<a type="text"><input id = "mem_address1" name = "mem_address1" type ="text" placeholder= "우편번호" readonly /></a>
+						<a type="text"><input id = "mem_address2" name = "mem_address2" type ="text" placeholder= "도로명주소" readonly /></a>
+						<a type="text"><input id = "mem_address3" name = "mem_address3" type ="text" placeholder= "지번주소" readonly /></a>
+						<a type="text"><input id = "mem_address4" name = "mem_address4" type ="text" placeholder= "상세주소" readonly /></a>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<div id = "reservationPetFormWrapper">
+			<div id = "pet_box">
+				<div id = "mem_title">
+					<h3 id="h3title">- 반려견 예약 정보 -</h3>
+				</div>
+				<div id = "pet_check">
+					<a id ="petcheck" class = btn href="#">반려견 정보 가져오기</a>
+				</div>
+				<div id = "pet_img_box">
+					<a id="pet_img_name" type= "text">반려견 사진<input type="file" id="pet_img" name="pet_img" accept="image/*" onchange="setThumbnail(event);"/></a>
+				</div>
+				<div id = "pet_info_box">
+					<a type= "text">반려견 이름<input id = "pet_name" name = "pet_name" type="text" placeholder="반려견이름"  />
+						<label id ="pet_input">강아지이름을 입력해주세요!</label>
+					</a>
+					<a type= "text">반려견 견종<input id = "pet_type" name = "pet_type" type="text" placeholder="반려견종"  />
+						<label id ="pet_input">품종 또는 믹스 등등</label>
+					</a>
+					<a type= "text">반려견 나이<input id = "pet_age" name = "pet_age" type="text" placeholder="반려견나이"  />
+						<label id ="pet_input">숫자로 입력해주세요 !</label>
+					</a>
+					<a type= "text">반려견 몸무게<input id = "pet_weight" name = "pet_weight" type="text" placeholder="반려견몸무게"  />
+						<label id ="pet_input">숫자로 입력해주세요 !</label>
+					</a>
+					<a type= "text">반려견 성별</a>
+					<div id="radio">					
+						<input type="radio" name="pet_gender" value="남" />남
+					</div>
+					<div id="radio" >
+						<input type="radio" name="pet_gender" value="여" />여
+					</div>
+				</div>
+				<div id ="pet_op_box">
+					<a type= "text">중성화 여부</a>
+					<div id="radio2">					
+						<input type="radio" name="pet_op" value="예" />예
+					</div>
+					<div id="radio2" >
+						<input type="radio" name="pet_op" value="아니오" />아니오
+					</div>
+					<div id="radio2" >	
+						<input type="radio" name="pet_op" value="모름"/>모름
+					</div>
+				</div>
+			</div>	
+		</div>
+		<div id = "reservationResultWrapper">
+			<div id = "reservation_result_box">
+				<div id = "mem_title">
+					<h3 id="h3title">- 최종 예약 확인 -</h3>
+				</div>
+				<div id = "tr_img_box">
+					<a id="tr_img_name" type= "text">트레이너 사진<img src="<%=request.getContextPath()%>/nbShop/img/trainer5.png" id = "tr_img" name = "tr_img"  /></a>
+				</div>
+				
+				<div id = "tr_info_box">
+					<a id="tr_mem_name">담당 훈련사<input style="color : #5cb85cc7; " id ="tr_mem_name" name = "tr_mem_name" type="text" placeholder="훈련사이름" value="<%=tr_mem_name%>" readonly /></a>
+					<a id="tr_mem_hp">전화번호<input id ="tr_mem_hp" name = "tr_mem_hp" type="text" placeholder="전화번호" readonly /></a>
+					<a id="tr_mem_reg_date">예약신청일<input style="color : #5cb85cc7; " id ="tr_reg_date" name = "tr_reg_date" type="text" placeholder="수강신청일자" value="<%=tr_reg_date%>" readonly /></a>
+					<input type="hidden" id="tr_mem_reg_date" name=  "tr_mem_reg_date" value = "<%=tr_mem_reg_date%>" />
+				</div>
+				<div id = "tr_date_box">
+					<a id= "tr_date_title">수강예약일</a>
+					<input id ="tr_date1" name = "tr_date1" type="text" placeholder="첫번째 예약일" value="<%=tr_date1%>" readonly />
+					<input id ="tr_date2" name = "tr_date2" type="text" placeholder="두번째 예약일" value="<%=tr_date2%>" readonly />
+					<input id ="tr_date3" name = "tr_date3" type="text" placeholder="세번째 예약일" value="<%=tr_date3%>"  readonly />
+					<input id ="tr_date4" name = "tr_date4" type="text" placeholder="네번째 예약일" value="<%=tr_date4%>"  readonly />
+					<input id ="tr_date5" name = "tr_date5" type="text" placeholder="다섯번째 예약일" value="<%=tr_date5%>"  readonly />
+					<input id ="tr_date6" name = "tr_date6" type="text" placeholder="여섯번째 예약일" value="<%=tr_date6%>"  readonly />
+					<input id ="tr_date7" name = "tr_date7" type="text" placeholder="일곱번째 예약일" value="<%=tr_date7%>"  readonly />
+				</div>
+				<div id = "edu_name_box">
+					<a id="edu_img_name" type= "text">예약한 반려견이름</a>
+				</div>
+				<div id = "edu_img_box">	
+					<img  src="#" id = "edu_img"  />
+				</div>
+				<div id =  "tr_result_box">
+					<div id = "tr_totalcnt_box">
+						<a>수강 횟수<input id = "totalcnt" name ="totalcnt" type="text" placeholder="수강 횟수" value = "<%=totalcnt%>" readonly /></a>
+					</div>
+					<div id = "tr_totalprice_box">
+						<a>총 수강 금액<input id = "tr_totalprice" name ="tr_price" type ="text" placeholder="총 수강 금액"  readonly /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id ="reservationBtnWrapper">
+			<div>
+				<a id ="nb_backbtn" class = btn href="#">일정 다시선택하기 </a>
+				<a id = "nb_submitbtn" type="submit" class = "btn"  onclick="document.getElementById('form').submit();" >예약 확정</a>
+				<a id = "nb_shopbtn" class= "btn" href="<%=request.getContextPath()%>/nb/pet.shop?center=/nbShop/pet.jsp">늘봄 샵으로</a>
+			</div>
+		</div>
+	</div>
+	 <br>
+	 <br>
+<script type="text/javascript">
+	
+	// jquery 호출 옵션 
+	$(document).ready(function(){
+		
+		
+		// 만약에 가져온 트레이너 이름이 강형욱이라면
+		if( $("#tr_mem_name > input").val() == "강형욱" ){
+			
+			// 사진을 바꿔준다.
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer1.png");
+			
+		// 다니엘 헤니라면	
+		}else if( $("#tr_mem_name > input").val() == "다니엘헤니" ){
+			
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer2.png");
+		
+		// 김효진이라면
+		}else if( $("#tr_mem_name > input").val() == "김효진" ){
+			
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer3.png");
+		
+		// 이경규라면
+		}else if( $("#tr_mem_name > input").val() == "이경규" ){
+				
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer4.png");
+		// 박봄이라면
+		}else{
+			
+			$("#tr_img").attr("src", "<%=request.getContextPath()%>/nbShop/img/trainer5.png");
+			
+		}
+		
+		
+		// 강아지 사진을 올리면,
+		$("#pet_img_name > input").on("mouseout" , function(){
+			
+			// 강아지 사진의 출처를 저장한 뒤,
+			var src = $("#pet_img_box > img").attr("src");
+			
+			// 예약 반려견으로 바꿔준다.
+			$("#edu_img").attr("src", src);
+			
+
+		})
+		
+		// 강아지 이름을 입력하면,
+		$("#pet_name").keyup(function(){
+			
+			// 강아지 이름을 저장한 뒤,
+			var pet_name = $("#pet_name").val();
+			
+			console.log(pet_name);
+			
+			// 예약 반려견명으로 바꿔준다.
+			
+			$("#edu_img_name").text(pet_name).css("color", "#5cb85cc7");
+		})
+		
+		
+		// 최종금액에 콤마단위가 들어간 금액으로 설정
+		$("#tr_totalprice").attr("value", tr_totalprice2);
+        
+		// id 값이 back인 버튼을 클릭했을 때
+		$("#nb_backbtn").on("click", function(){
+			
+			 // 이전 페이지로 이동하게 한다.
+			 history.back();
+			 
+		});
+
+	});
+	
+	// 리퀘스트로 받아온 금액을
+	var original = <%=tr_totalprice%>;
+	
+	// 정규표현식으로 3자리숫자당 콤마로 구분한다.
+	var tr_totalprice2 = original.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	
+	
+	// 강아지 사진 업로드 시 썸네일 형식의 미리보기 만들기
+	function setThumbnail(event) {
+	  var reader = new FileReader();
+
+	  reader.onload = function(event) {
+	    var img = document.createElement("img");
+	    img.setAttribute("src", event.target.result);
+	    document.querySelector("#pet_img_box").appendChild(img);
+	  };
+
+	  reader.readAsDataURL(event.target.files[0]);
+	}
+
+</script>
+</form>
+</body>
+</html>
