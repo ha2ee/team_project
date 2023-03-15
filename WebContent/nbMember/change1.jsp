@@ -168,7 +168,7 @@
 <form action="<%=contextPath%>/member/updateInfo.me" class="form" method="post">	
 	<div>
 		<div align="center" ><!-- class="row justify-content-left" -->
-			<h1>회원정보 관리 </h1>
+			<h1>정보 수정하기</h1>
 			<div style="height: 50px;"></div>
 		</div>
 		<div>
@@ -224,8 +224,7 @@
 						   id="nickname" 
 						   name="nickname"
 						   class="nickname"
-						   value="<%=mem_nick + tr_name%>"
-						   placeholder="사용할 닉네임을 적어주세요"
+						   placeholder="트레이너는 닉네임을 지정할수 없습니다."
 						   readonly >
 				<% 
 					}

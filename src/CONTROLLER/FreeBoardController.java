@@ -13,8 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import DAO.CommentDAO;
 import DAO.FreeBoardDAO;
 import DAO.MemberDAO;
+import VO.CommentVO;
 import VO.FreeBoardVo;
 import VO.LikeVo;
 import VO.MemberVo;
@@ -122,7 +125,7 @@ public class FreeBoardController extends HttpServlet {
       String id = "inseop";
       String nickname = "seeeop2";
       
-//      //업로드 작업 중ㅇ...
+//      //업로드 작업 중...
       String directory ="/Users/inseop/Desktop/팀프로젝트/upload";
       System.out.println(directory);
       int maxSize = 1024 * 1024 * 100;
@@ -166,7 +169,12 @@ public class FreeBoardController extends HttpServlet {
         vo = boarddao.boardRead(b_idx);
         list = boarddao.boardListAll();
         count = boarddao.getTotalRecord();
-
+        
+        // 댓글 목록 가져오기
+        CommentDAO commnetdao = new CommentDAO();
+        ArrayList<CommentVO> clist = commnetdao.listComment(b_idx);
+        
+        request.setAttribute("clist", clist);
         request.setAttribute("count", count);
         request.setAttribute("list", list);
         request.setAttribute("vo", vo);
@@ -292,10 +300,100 @@ public class FreeBoardController extends HttpServlet {
           out.println(0);
         }
         
+    //게시글 삭제 버튼 눌렀을때 게시글 삭제전 댓글 전체 삭제 부터 해야함.    
+    
+        CommentDAO allDel_dao = new CommentDAO();
+ 		
+ 		//현재 글번호를 이용하여 댓글 테이블에서 부모글번호 댓글 전체 삭제
+ 		allDel_dao.delAllComment(idx1); // 부모글번호
 
         return;
 //=====================게시글 삭제 버튼 클릭시 /del.fb ==========================
 
+        
+//=====================댓글 작성 버튼 클릭시 /addcomment.do ==========================       
+      case "/addcomment.do":
+    	// 1. 데이터 가져오기(content, pseq)
+  		String pseq = request.getParameter("pseq"); // 보고있던 글번호(= 작성중인 댓글의 부모 글번호)
+  		String c_content = request.getParameter("content");
+  		
+  		// 2. DB 작업 > DAO 위임 > insert
+  		CommentDAO dao = new CommentDAO();
+  		CommentVO commentvo = new CommentVO();
+  		
+//  		HttpSession session = request.getSession();
+//  		
+//  		commentvo.setId(session.getAttribute("id").toString()); // 댓글 작성자 아이디(= 로그인한 사람 세션)
+  		String testUser = "admin";
+  		commentvo.setId(testUser);
+  		commentvo.setPseq(pseq);
+  		commentvo.setContent(c_content);
+  		
+  		int c_result = dao.addComment(commentvo); // 1, 0		
+  		
+  		// 3. 돌아가기 > read.fb?b_idx=
+  		if (c_result == 1) {
+  	        
+  	        nextPage = "/freeboard/read.fb?b_idx="+pseq;
+  			
+  		} else {
+  			
+  			response.setCharacterEncoding("UTF-8");
+  			
+  			PrintWriter writer = response.getWriter();			
+  			
+  			writer.print("<html>");
+  			writer.print("<body>");
+  			writer.print("<script>");
+  			writer.print("alert('댓글 쓰기 실패');");
+  			writer.print("history.back();");
+  			writer.print("</script>");
+  			writer.print("</body>");
+  			writer.print("</html>");
+  			
+  			writer.close();
+  		}
+    	  
+    	  break;
+        
+//=====================댓글 작성 버튼 클릭시 /addcomment.do ==========================               
+        
+//=====================댓글 삭제 버튼 클릭시 /delcomment.do ==========================    	  
+      case "/delcomment.do":  
+    	// 1. 데이터 가져오기 (seq, pseq)
+  		String del_idx = request.getParameter("pseq"); // 보고있던 글번호(= 작성중인 댓글의 부모 글번호)
+  		String seq = request.getParameter("seq"); // 삭제할 글번호
+  		
+  		// 2. DB 작업 > DAO 위임 > delete
+  		CommentDAO commentdao = new CommentDAO();
+  		
+  		int d_result = commentdao.delComment(seq); // 1, 0		
+  		
+  		// 3. 결과 후 처리
+  		if (d_result == 1) {
+  			response.sendRedirect("/TeamProject/freeboard/read.fb?b_idx=" + del_idx); //보고 있던 글번호를 가지고 돌아가기
+ 			return;
+  		} else {
+  			
+  			response.setCharacterEncoding("UTF-8");
+  			
+  			PrintWriter writer = response.getWriter();			
+  			
+  			writer.print("<html>");
+  			writer.print("<body>");
+  			writer.print("<script>");
+  			writer.print("alert('댓글 삭제 실패');");
+  			writer.print("history.back();");
+  			writer.print("</script>");
+  			writer.print("</body>");
+  			writer.print("</html>");
+  			
+  			writer.close();
+  			return;
+  		}
+    	  
+//=====================댓글 삭제 버튼 클릭시 /delcomment.do ==========================     	  
+    	  
       default:
         break;
     }

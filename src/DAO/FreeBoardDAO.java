@@ -9,6 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import VO.CommentVO;
 import VO.FreeBoardVo;
 import VO.LikeVo;
 
@@ -468,5 +469,7 @@ public class FreeBoardDAO {
     return result;
   }
 
+//====================댓글작성  
+ 
   
 }
