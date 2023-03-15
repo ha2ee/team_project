@@ -52,12 +52,12 @@ String contextPath = request.getContextPath();
 	             <!-- <input type="hidden" name="content11" id="content11"> -->
 	            <div style="width: 1200px; display:flex; justify-content:space-between;  margin:0 auto;  " >
 	             
-               		<div><input type="file" name="fileName"></div>
+               		<div><input type="file" name="fileName" id="fileName"></div>
                	
                		<div>
                 		<div style="display: inline-block;"><input type="button" value="목 록" style="width: 100%; font-weight: bold;" onclick="location.href='<%=contextPath%>/review/list.rv'" /></div>
                 		&nbsp;
-	                	<div style="display: inline-block;"><input type="submit" value="등 록" id="registration" style="width: 100%; font-weight: bold;"></div>
+	                	<div style="display: inline-block;"><input type="button" value="등 록" id="registration" style="width: 100%; font-weight: bold;" onclick="frmsubmit()"></div>
                		</div>
                	
   				</div>
@@ -95,9 +95,13 @@ String contextPath = request.getContextPath();
   	</script>
  --%>  		
 	<script type="text/javascript">
-	function fnsubmit(){
+	function frmsubmit(){
 //		$("#content11").attr("value",str);
+		if(!$("#fileName").val()){
+		  alert("이미지를 첨부해주세요");
+		} else{
 		$("form").submit();
+		}
 	}
 	
 	$('.DOC_TEXT').keyup(function (e){
