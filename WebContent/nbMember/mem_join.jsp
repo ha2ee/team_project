@@ -410,7 +410,7 @@
 						<label>
 							<strong style="margin-right: 133px;">
 								&nbsp;&nbsp;애완견을 키우나요?
-							</strong>
+							</strong> 
 						</label>
 						<br>
 							<select class="pet" name="pet" id="pet" style="width:100px;height:38px;">
