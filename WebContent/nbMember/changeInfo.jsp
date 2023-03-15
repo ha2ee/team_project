@@ -367,12 +367,13 @@ String id = (String)session.getAttribute("id");
 						
 					</dd>
 				
+			
 					<dt class="pass_dt">
 						<span>비밀번호</span>
 					</dt>
 					<dd class="pass_dd" style="margin-bottom: 4%;">
 						<div class="pass_div">
-							<button onclick="passPop()" name="passChange" class="passChange">변경하기</button>
+							<input onclick="passPop();"  type="button" name="passChange" class="passChange" value="변경하기"/>
 						</div>
 					</dd>
 					
@@ -392,14 +393,12 @@ String id = (String)session.getAttribute("id");
 							   >저장</a>
 						</div>
 					</dd>				
-				
-					
 				</dl>
-			
-			
 			</div>
 		</div>
-	</form>
+	</form>	
+	
+		
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
 		
