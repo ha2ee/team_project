@@ -252,7 +252,7 @@
 			<c:set var="i" value="${i+1}"/>
 		</c:forEach>	
 	</table>
-	<style> 
+	<style>  
 		#updatePro{
 		 display: none;
 		}

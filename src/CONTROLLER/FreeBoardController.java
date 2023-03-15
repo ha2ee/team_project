@@ -375,7 +375,7 @@ public class FreeBoardController extends HttpServlet {
     		
     		// 2. DB 작업 > DAO 위임 > update
     		CommentDAO commentdao1 = new CommentDAO();
-    		
+    		 
     		commentvo.setSeq(seq);
     		commentvo.setPseq(up_idx);
     		commentvo.setContent(comment);

@@ -48,7 +48,7 @@ public class CommentDAO {
 			
 			rs = pstmt.executeQuery();
 			
-			ArrayList<CommentVO> clist = new ArrayList<CommentVO>();
+			ArrayList<CommentVO> clist = new ArrayList<CommentVO>(); 
 			
 			while ( rs.next() ) {
 				
