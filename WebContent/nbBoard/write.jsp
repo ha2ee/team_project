@@ -63,19 +63,7 @@ String contextPath = request.getContextPath();
   		</div>
   		
   	</div>
-<%--  		<div style="width: 1200px; display:flex; justify-content:space-between;  margin:0 auto;  " >
-               	<div><input type="file"></div>
-               	
-               	
-               	<div>
-                	<div style="display: inline-block;"><button style="width: 100%; font-weight: bold;" onclick="location.href='<%=contextPath%>/freeboard/list.fb'">목   록</button></div>
-                	&nbsp;
-	                <div style="display: inline-block;"><input type="submit" value="등 록" style="width: 100%; font-weight: bold;"></div>
-               	</div>
-               	
-  		</div> --%>
   		<br>
-  		
   		
 <%-- 제이쿼리가 안 먹힌다....................   		
   	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -98,17 +86,8 @@ String contextPath = request.getContextPath();
 				 success:function(data){
 					 console.log(data);
 				 }
-  				
-  				
   			})
-  			
-  			
-  			
-  			
   		})
-  	
-  	
-  	
   	</script>
  --%>  		
 	<script type="text/javascript">

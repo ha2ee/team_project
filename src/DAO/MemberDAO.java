@@ -1,6 +1,7 @@
 package DAO;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +10,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import VO.FileBoardVo;
 import VO.MemberVo;
 import VO.TrainerVo;
 
@@ -37,9 +37,34 @@ public class MemberDAO {
 		if(rs != null)try {rs.close();} catch (Exception e) {e.printStackTrace();}
 	}
 	
-	//일반회원 중복 체크
-	public boolean memCkeck(String id) {
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// MemberDAO INFO /////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// #1) 		memCheck()			 		메소드			<- 일반회원		 중복 체크
+	// #2)      trCheck()										<- 회원 아이디 	 중복 체크
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// #3)      insertMember()								<- 일반회원      	 회원 가입
+	// #3-1)    insertMemberAddress()											 주소 입력
+	// #3-2)    memDelete()							 		 					 정보 삭제
+	// #3-3)  	 memUpdate()								 		 				 정보 수정
+	// #3-4)	 memAddUpdate()									 				 주소 수정
+	// #3-5)     userCheck()														 정보 조회
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// #4)      insertTrMember()		 						<- 훈련사			 회원 가입
+	// #4-1)    insertTrMemberAddress()											 주소 입력
+	// #4-2)    trDelete()															 정보 삭제
+	// #4-3)    trUpdate()															 정보 수정
+	// #4-4)    trAddUpdate()														 주소 수정
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	
+	// #1) 일반회원 중복 체크
+	public boolean memCheck(String id) {
 		
+		System.out.println("MemberDAO -> /memCheck.me 요청!");
+
 		boolean memResult = false;
 		try {
 			//DB접속 : 커넥션풀에 만들어져 있는 커넥션 얻기
@@ -63,15 +88,13 @@ public class MemberDAO {
 				memResult = true;
 			}
 			
-//			 조회된 제목줄에 커서(화살표)가 있다가 조회된 줄로 내려가 위치함			
-//			memResult = Boolean.parseBoolean(value);
 			
 			
 			System.out.println("일반멤버 :"+memResult);
 //			true면 중복 , false면 중복아님
 			
 		} catch (Exception e) {
-			System.out.println("memCkeck 메소드 내부에서 오류!");
+			System.out.println("memCheck 메소드 내부에서 오류!");
 			e.printStackTrace();
 		}finally {
 			closeResource();
@@ -163,7 +186,7 @@ public class MemberDAO {
 			pstmt.executeUpdate();
 			
 		}catch (Exception e) {
-			System.out.println("insertMember메소드 내부에서 SQL실행 오류" + e);
+			System.out.println("insertTrMember메소드 내부에서 SQL실행 오류" + e);
 		}finally {
 			closeResource();
 		}
@@ -172,7 +195,10 @@ public class MemberDAO {
 	
 /*	//일반회원 주소 insert
 	public void insertMemAddress(MemberVo mem_vo) {
+=======
+>>>>>>> branch 'seohoon' of https://github.com/ha2ee/neulbom.git
 		
+<<<<<<< HEAD
 		try {
 			//커넥션 풀에 만들어져 있는 DB와 미리 연결을 맺은 Connection객체 빌려오기
 			//요약 DB연결
@@ -533,9 +559,8 @@ public class MemberDAO {
 			pstmt.setString(1, login_id);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {//입력한 아이디로 조회한 행이 있으면? (아이디가 있으면?)
-				
-				//
+			if(rs.next()) {
+			//
 				if(login_pass.equals(rs.getString("MEM_PW"))) {
 					memCheck = 1;
 				}else {
@@ -543,6 +568,7 @@ public class MemberDAO {
 				}
 			}else {
 				memCheck = 0;
+
 			}
 			
 			System.out.println(memCheck);
@@ -597,45 +623,85 @@ public class MemberDAO {
 
 	public MemberVo memberOne(String memberid) {
 			MemberVo membervo = null;
-		
 		try {
 	
 			//DB접속
 			con = ds.getConnection();
 			// email,name,id 값을 매개변수 id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
-			String sql = "select mem_email, mem_name, mem_id from ys_member where mem_id=?";
-			
+			String sql = "select * from YS_MEMBER where mem_id=?";
+
 			pstmt = con.prepareStatement(sql);
-			
-			// sql문이 잘들어갔는지출력해보기
-			System.out.println(sql);
 			pstmt.setString(1, memberid);
-			
-			// 불러온 email, name, id 값을 result set에 저장한다
 			rs = pstmt.executeQuery();
-	
-			// 조회된 내용을 한개씩 나열해서, membervo에 저장시킴
-			if (rs.next()) {
-				
+			rs.next();
 //				membervo 객체 생성
-				membervo = new MemberVo();
-				membervo.setMem_email(rs.getString("mem_email"));
-				membervo.setMem_id(rs.getString("mem_id"));
-				membervo.setMem_name(rs.getString("mem_name"));
+			membervo = new MemberVo();
+			membervo.setMem_name(rs.getString("mem_name"));
+			membervo.setMem_id(rs.getString("mem_id"));
+			membervo.setMem_pw(rs.getString("mem_pw"));
+			membervo.setMem_nick(rs.getString("mem_nick"));
+			 membervo.setMem_img(rs.getString("mem_img"));
+			 membervo.setMem_email(rs.getString("mem_email"));
+			 membervo.setMem_hp(rs.getString("mem_hp"));
+			 membervo.setMem_birth(rs.getString("mem_birth"));
+			 membervo.setMem_gender(rs.getString("mem_gender"));
+			 membervo.setMem_pet(rs.getString("mem_pet"));
+			 membervo.setMem_joindate(rs.getDate("mem_joindate"));
+			 membervo.setMem_address1(rs.getString("mem_address1"));
+			 membervo.setMem_address2(rs.getString("mem_address2"));
+			 membervo.setMem_address3(rs.getString("mem_address3"));
+			 membervo.setMem_address4(rs.getString("mem_address4"));
+			 membervo.setMem_address5(rs.getString("mem_address5"));
 				
-			}
-			
-			
-		} catch (Exception e) {
-			System.out.println("memberOne 메소드 내부에서 오류!");
-			e.printStackTrace();
-		}finally {
-			closeResource();
+				
+				
+			} catch (Exception e) {
+					System.out.println("memberOne메소드 내부에서 SQL실행 오류" + e );
+					e.printStackTrace();
+				} finally {
+					closeResource();
+				}
+			return membervo;
 		}
 		
-		//BoardController로 전달 
-		return membervo;
-		}
+		
+		
+		//	#4-4) 훈련사회원  주소 정보 수정
+//		public int trAddUpdate(String up_id, String up_address1,String up_address2,String up_address3,String up_address4,String up_address5) {
+//			
+//			int trAdd_UpResult = 0; //
+//			
+//			try {
+//				con = ds.getConnection();
+//				
+//				String query = "update YS_MEMBER set TR_ID='" + up_id + "',"
+//											 + " address1='" + up_address1 + "',"
+//											 + " address2='" + up_address2 + "'"
+//											 + " address3='" + up_address3 + "'"
+//											 + " address4='" + up_address4 + "'"
+//											 + " address5='" + up_address5 + "'"
+//											 + " where MEMBERID ='"+ up_id +"'";
+//				
+//				pstmt = con.prepareStatement(query);
+//				
+//				trAdd_UpResult = pstmt.executeUpdate();
+//				
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//				
+//			} finally {
+//				
+//				try {
+//					closeResource();
+//				} catch (Exception e) {
+//					System.out.println("trAddUpdate메소드 내부에서 SQL실행 오류" + e );
+//					e.printStackTrace();
+//				}	
+//			}
+//			
+//			return trAdd_UpResult;
+//			
+//		}
 
 	public MemberVo memberOneIdPass(String id) {
 	      MemberVo membervo = null;

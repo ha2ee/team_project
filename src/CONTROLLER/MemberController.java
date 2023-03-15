@@ -19,9 +19,6 @@ import DAO.OrderDAO;
 import DAO.TrainerDAO;
 import VO.MemberVo;
 import VO.TrainerVo;
-import VO.nbOrderVo;
-import VO.nbTrOrderVo;
-import VO.trMemberVo;
 
 @WebServlet("/member/*")
 public class MemberController extends HttpServlet {
@@ -41,9 +38,6 @@ public class MemberController extends HttpServlet {
 	// 트레이너 정보를 조회할 trMemberVo를 호출
 	TrainerVo trmembervo;
 	
-	// 조회 또는 저장 시킬 오더vo, tr오더vo 호출
-	nbOrderVo nbordervo;
-	nbTrOrderVo nbtrordervo;
 
 	@Override
 	public void init() throws ServletException {
@@ -382,7 +376,7 @@ public class MemberController extends HttpServlet {
 //				System.out.println(id);
 				//입력한 아이디가 DB에 저장되어 있는지 중복 체크 작업
 				//true -> 중복 , false -> 중복아님 둘중 하나를 반환 받음
-				boolean memResult = memberdao.memCkeck(id);
+				boolean memResult = memberdao.memCheck(id);
 				boolean trResult = memberdao.trCheck(id);
 				//아이디 중복결과를 다시 한번 확인 하여 조건값을
 				//join.jsp파일과 연결된 join.js파일에 작성해 놓은
@@ -400,6 +394,7 @@ public class MemberController extends HttpServlet {
 		// 포워딩 (디스패처 방식)
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);
+
 
 	}
 }

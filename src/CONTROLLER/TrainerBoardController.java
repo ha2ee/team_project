@@ -200,7 +200,7 @@ public class TrainerBoardController extends HttpServlet{
 		        request.setAttribute("list", list2);
 		        center = "nbBoard/trainerboardList.jsp";
 		        request.setAttribute("center", center);
-		        
+		        request.setAttribute("trainerboarddao", trainerboarddao);
 		        nextPage = "/nbMain.jsp";
 		        
 	    	  

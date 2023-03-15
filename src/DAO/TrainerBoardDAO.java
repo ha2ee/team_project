@@ -185,7 +185,7 @@ public class TrainerBoardDAO {
             {
                 
                 sql.append("select * from ");
-                sql.append("(select rownum rnum, Tb_idx, Tb_ID, Tb_nickname");
+                sql.append("(select rownum rnum, Tb_idx, Tb_ID, Tb_name");
                 sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
                 sql.append(" FROM ");
                 sql.append("(select * from Trainer_board where Tb_name like ? ");
