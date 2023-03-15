@@ -249,7 +249,7 @@ $(document).ready(function(){
 			<ul>
 				<li><a href="">늘봄 샵</a></li>
 				<li><a href="">늘봄 후기</a></li>
-				<li><a href="#"><br><i style="font-size: 55px;"id="chaticon" class="fa-solid fa-paw"></i><br>1:1 채팅문의</a></li>
+				<li><a href="http://pf.kakao.com/_Xpekxj/chat"><br><i style="font-size: 55px;"id="chaticon" class="fa-solid fa-paw""></i><br>1:1 채팅문의</a></li>
 			</ul>
 		</div>
 	</div>

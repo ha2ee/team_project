@@ -40,6 +40,7 @@
     width: 50%;
     padding-left: 0;
     list-style: none;
+    color: black;
     }
     .image-text2{
     position: relative;
@@ -50,6 +51,7 @@
     width: 50%;
     padding-left: 0;
     list-style: none;
+    color: black;
     }
     .image-text3{
     position: relative;
@@ -60,6 +62,7 @@
     width: 50%;
     padding-left: 0;
     list-style: none;
+    color: black;
     }
     .image-text4{
     position: relative;
@@ -70,10 +73,32 @@
     width: 50%;
     padding-left: 0;
     list-style: none;
+    color: black;
+    }
+    .image-text5{
+    position: relative;
+    top: -30px;
+    bottom: 500px;
+    right: 35%;			
+    z-index: 10;
+    width: 50%;
+    padding-left: 0;
+    list-style: none;
+    color: black;
+    }
+    button{
+    position: relative;
+    width: 200px;
+    height: 40px;
+    color: black; 
+    border-width: 2; 
+    border-radius: 20px; 
+    background-color:transparent; 
+    font-size: 16px;
     }
     
 </style> 
-
+<script src="https://kit.fontawesome.com/0ec4758f24.js" crossorigin="anonymous"></script>
 <body>
 <!-- Images Slider Start -->
 <div id="carousel-example-generic" class ="carousel slide" data-ride="carousel">
@@ -96,7 +121,9 @@
 <!-- 이미지의 개수만큼 item을 만든다. 
 중요한 포인트는 carousel-indicators의 li 태그 개수와 item의 개수는 일치해야 한다. -->
 <!-- Wrapper for slides -->
-<div class="carousel-inner" role="list box"> <div class="item active">
+<div class="carousel-inner" role="list box">
+
+<div class="item active">
 <img src="<%=contextPath%>/images/slider1.png" alt="slide1">
 <div class="carousel-caption">
 <div class="image-text1">
@@ -105,7 +132,7 @@
 <h1>내 반려견에게</h1> 
 <h3>필요한것은 뭘까요?</h3> <br>
 <a style="text-decoration: none" href="<%=contextPath%>/nbShop/pet.jsp">
-<button style="color: white; border:none; border-radius: 20px; background-color:lightpink; font-size: 15px">늘봄샵 바로가기</button></a>
+<button>늘봄샵 바로가기</button></a>
 </div>
 </div>
 </div>
@@ -118,7 +145,7 @@
 <h1>함께 살아가기 위한</h1> 
 <h3>수업을 받아보세요!</h3> <br>
 <a style="text-decoration: none" href="<%=contextPath%>/nbShop/trainer.jsp">
-<button style="color: white; border:none; border-radius: 20px; background-color:lightpink; font-size: 15px">수강신청 바로가기</button></a>
+<button>수강신청 바로가기</button></a>
 </div>
 </div>
 </div>
@@ -132,7 +159,7 @@
 <h1>수강후기를</h1> 
 <h3>들려주세요!</h3> <br>
  <a style="text-decoration: none" href="<%=contextPath%>/nbBoard/">
-<button style="color: white; border:none; border-radius: 20px; background-color:lightpink; font-size: 15px">수강후기 바로가기</button></a>  
+<button>수강후기 바로가기</button></a>  
 </div>
 </div>
 </div>
@@ -146,11 +173,21 @@
 <h1>자유롭게</h1> 
 <h3>소통해봐요!</h3> <br>
  <a style="text-decoration: none" href="<%=contextPath%>/nbBoard/list.jsp">
-<button style="color: white; border:none; border-radius: 20px; background-color:lightpink; font-size: 15px">소통하러가기</button></a>  
+<button>소통하러가기</button></a>  
 </div>
 </div>
 </div>
 
+<div class="map">
+<img src="<%=contextPath%>/images/doghospital.png" alt="searchMap">
+<div class="carousel-caption">
+<div class="image-text5">
+<h2>내 주변</h2>
+<h3>편의 시설을 알아봐요!</h3> <br>
+<a href="<%=request.getContextPath()%>/nbShop/map.jsp"><i class="fa-solid fa-store fa-10x" style="color: #fff5f3"></i></a>
+<h5><i class="fa fa-arrow-up"></i> 클릭해보세요</h5>
+</div>
+</div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
