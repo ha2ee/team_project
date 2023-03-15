@@ -244,7 +244,6 @@
 			</div>
         </div>
         <div class="pop1cmd">
-        	
             <input id="submitbtn" type="submit" name="btnclose" class="popbtn" value="반려견 추가 완료">
         </div>
     </div>
