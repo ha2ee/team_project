@@ -25,6 +25,7 @@ String contextPath = request.getContextPath();
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
  <script type="text/javascript" src="<%=contextPath%>/ckeditor/ckeditor.js"></script>
+ <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
   <body >
   
@@ -34,7 +35,10 @@ String contextPath = request.getContextPath();
 		      <h1> 게시글 작성 </h1> <br>
 	          <input type="text" name="title" style="width: 100%; box-sizing: border-box; font-size: 20px" placeholder="제목을 입력해주세요"> 
 	                  											<%-- box-sizing: border-box를 style에 넣어줘야 너비 끝부분 처리가 완벽 --%>
-	            <textarea name="editor1" id="editor1" rows="10" cols="80">
+            <br><br>
+            <textarea rows="20" style="width:100%;" name="editor1" class="DOC_TEXT" name="DOC_TEXT" placeholder="리뷰에 대한 내용을 200자 이내로 기재해주세요." ></textarea>
+            <span style="color:#aaa;" id="counter">(0 / 최대 1000자)</span>
+<!-- 	            <textarea name="editor1" id="editor1" rows="10" cols="80">
 	            </textarea>
 	            <script>
 	                // Replace the <textarea id="editor1"> with a CKEditor 4
@@ -43,7 +47,7 @@ String contextPath = request.getContextPath();
 	                	height : 500
 	                } );
 //	      			var str = CKEDITOR.instances.editor1.getData();
-	            </script>
+	            </script>  -->
 	             <br>
 	             <!-- <input type="hidden" name="content11" id="content11"> -->
 	            <div style="width: 1200px; display:flex; justify-content:space-between;  margin:0 auto;  " >
@@ -96,6 +100,16 @@ String contextPath = request.getContextPath();
 		$("form").submit();
 	}
 	
+	$('.DOC_TEXT').keyup(function (e){
+	  var content = $(this).val();
+	  $('#counter').html("("+content.length+" / 최대 1000자)");    //글자수 실시간 카운팅
+
+	  if (content.length > 1000){
+	      alert("최대 1000자까지 입력 가능합니다.");
+	      $(this).val(content.substring(0, 1000));
+	      $('#counter').html("(1000 / 최대 1000자)");
+	  }
+	});
 	</script>
   		
   		
