@@ -553,21 +553,11 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
     
     // JQUERY - 화면이 요청 되었을 때,
     $(document).ready(function(){
-    	
 
-    	
 
     	// 리셋 버튼을 눌렀을 때,
     	$("#resetbtn").on("click",function(){
-    		
-    		// 만약에 첫번째가 공백이라면,
-    		if($("#selectDate1").val() == ""){
-    			
-    			alert("최소 1회의 수강을 선택하셔야합니다");
-    		
-    			return false;
-    			
-    		}
+
     		
     		
     		//현재 보이는 창이 현재달 이면
@@ -577,7 +567,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
     		
     		if(dmon == 03){
     			
-    			
+
     			
     			
     			//예약 정보를 초기화 시킨다.
@@ -731,12 +721,13 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
     		$("#tr_mem_reg_date").attr("value", regdate);
     		$("#reg_date").attr("value", reg_date);
     		
-    		if($("#selectDate1").val() == ""){
+    		if($("#totalcnt > input").val() == ""){
     			
-    			alert("최소 1회의 수강을 선택하셔야합니다");
+    			alert("최소 1회의 수강을 선택해주세요!");
     			
     			return false;
     		}
+    		
     	})
     	
 
@@ -916,6 +907,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 	// 정규표현식으로 3자리숫자당 콤마로 구분한다.
 	var tr_price2 = original.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	var totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	
 
 </script>
 </head>
@@ -1026,7 +1018,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 <!--       우측 중단 초기화 버튼 테이블 -->
 	<div id="selectResetBox">
 		<div id="selectReset">
-		<a class = "btn" id="resetbtn" >예약 초기화</a>
+		<a class = "btn" id="resetbtn" type="reset">예약 초기화</a>
 		</div>
 	</div>
   
@@ -1045,7 +1037,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 		<div id = "btnBox2">
       		<div id = "Totalsubmit">
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp" >이전 페이지로</a> 
-         	<button id="submitbtn" type="submit" style="font-weight : 400; padding : 6px 12px; margin : 0 10px; font-size : 22px; border-radius: 20px; border:0px; ">예약 신청</button>
+         	<button id="submitbtn" type="submit" style="font-weight : 400; padding : 6px 12px; margin : 0 10px; font-size : 22px; border-radius: 20px; border:0px; " >예약 신청</button>
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/Main" >홈으로</a>
         	</div>
         </div>
