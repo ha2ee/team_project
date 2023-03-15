@@ -30,6 +30,7 @@ public class FreeBoardController extends HttpServlet {
 
   // FreeBoardDAO객체를 저장할 참조변수 선언
   FreeBoardDAO boarddao;
+  CommentVO commentvo;
 
   // MemberDAO객체를 저장할 참조변수 선언
   // MemberDAO memberdao;
@@ -42,6 +43,7 @@ public class FreeBoardController extends HttpServlet {
     boarddao = new FreeBoardDAO();
     // memberdao = new MemberDAO();
     // membervo = new MemberVo();
+    commentvo = new CommentVO();
   }
 
   @Override
@@ -326,7 +328,6 @@ public class FreeBoardController extends HttpServlet {
   		
   		// 2. DB 작업 > DAO 위임 > insert
   		CommentDAO dao = new CommentDAO();
-  		CommentVO commentvo = new CommentVO();
   		
  		HttpSession session = request.getSession();
 		
@@ -374,7 +375,7 @@ public class FreeBoardController extends HttpServlet {
     		// 2. DB 작업 > DAO 위임 > update
     		CommentDAO commentdao1 = new CommentDAO();
     		
-    		int u_result = commentdao1.upComment(seq); // 1, 0		
+    		int u_result = commentdao1.upComment(commentvo); // 1, 0		
     		
     		// 3. 결과 후 처리
     		if (u_result == 1) {

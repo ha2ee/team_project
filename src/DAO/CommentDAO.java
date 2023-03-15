@@ -125,26 +125,27 @@ public class CommentDAO {
 		return 0;
 	}
 	
-	//댓글 삭제기능
-		public int upComment(String b_idx) {
-			
+	//댓글 수정기능
+		public int upComment(CommentVO comment) {
+			int result = 0;
 			try {
 				con = ds.getConnection();
-				String sql = "update tblComment content where seq = ?";
+				String sql = "update tblComment set content = ? where seq = ?";
 				
 				pstmt = con.prepareStatement(sql);
 				
-				pstmt.setString(1, b_idx);
+				pstmt.setString(1, comment.getContent());
+				pstmt.setString(2, comment.getSeq());
 				
-				return pstmt.executeUpdate(); // 성공시 1 실패시 0
+				result =pstmt.executeUpdate(); // 성공시 1 실패시 0
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
 			      closeResource();
 		    }
+			return result;
 			
-			return 0;
 		}
 	
 	//게시글을 삭제했을때 그에 해당되는 댓글 전체 삭제 하는 기능

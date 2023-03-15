@@ -243,13 +243,12 @@
 				<td>
 		<!-- 댓글 작성자만 수정/삭제 버튼이 보이게 처리 c:if -->
 		<c:if test="${ id eq cdto.id}">
-				<input id="update" type="button" value="수정하기" onclick="updateActive('${i}')" class="btn btn-default" >
+				<input id="update" type="button" value="수정하기" onclick="updateActive('${ cdto.seq }')" class="btn btn-default" >
 				
 				<input id="updatePro" type="button" value="수정완료" class="btn btn-default" 
 						onclick="location.href='<%=contextPath%>/freeboard/upComment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
 					<input type="button" value="삭제하기" class="btn btn-default" 
 						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
-			<c:set var="i" value="${i+1}"/>
 		</c:if>
 				</td>
 			</tr>
