@@ -175,10 +175,6 @@
            <img alt="dd" src="<%=reviewUploadPath%>${review.img}" style="height: 300px; object-fit: contain;">
             <div class="card-body">
               <div class="card-text" style="margin-bottom:0;"><b style="font-size: 15;">${review.title}</b><br><span><c:if test="${empty review.context}"><br></c:if>${review.context}</span></div>
-              <%
-              if()
-              
-              %>
               <input type="checkbox" class="card-content__more-btn">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
