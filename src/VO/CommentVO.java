@@ -3,6 +3,11 @@ package VO;
 public class CommentVO {
 	
 	
+	
+	
+	
+	
+	
 	private String seq;
 	private String id;
 	private String content;
