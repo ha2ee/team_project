@@ -12,7 +12,7 @@ public class FreeBoardVo {
 	private int b_cnt;
 	private String b_file,b_realfile;
 	private int b_like;
-	
+	private String ccnt;
 	public FreeBoardVo() {}
 
   public FreeBoardVo(int b_idx, String b_id, String b_nickname, String b_title, String b_content,
@@ -29,8 +29,32 @@ public class FreeBoardVo {
     this.b_realfile = b_realfile;
     this.b_like = b_like;
   }
+  
+  
+  public FreeBoardVo(int b_idx, String b_id, String b_nickname, String b_title, String b_content, Date b_date, int b_cnt,
+		String b_file, String b_realfile, int b_like, String ccnt) {
+	this.b_idx = b_idx;
+	this.b_id = b_id;
+	this.b_nickname = b_nickname;
+	this.b_title = b_title;
+	this.b_content = b_content;
+	this.b_date = b_date;
+	this.b_cnt = b_cnt;
+	this.b_file = b_file;
+	this.b_realfile = b_realfile;
+	this.b_like = b_like;
+	this.ccnt = ccnt;
+}
 
-  public int getB_idx() {
+public String getCcnt() {
+	return ccnt;
+  }
+
+public void setCcnt(String ccnt) {
+	this.ccnt = ccnt;
+	}
+
+public int getB_idx() {
     return b_idx;
   }
 

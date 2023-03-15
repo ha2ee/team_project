@@ -855,6 +855,32 @@ public class MemberDAO {
 		}
 		return tr_vo;
 	}		
-		
+//==============================================================================
+	public String getMemNickName(String memberid) {
+	  String result = null;
+	  
+    String sql = "SELECT MEM_NICK FROM YS_MEMBER WHERE MEM_ID = ? ";
+    
+    try {
+      con = ds.getConnection();
+      pstmt = con.prepareStatement(sql);
+      pstmt.setString(1, memberid);
+      
+      rs = pstmt.executeQuery();
+      
+      if(rs.next()) {
+        result = rs.getString("mem_nick");
+      }
+        
+    }catch(Exception e) {
+      
+      System.out.println("getMemNickName메소드 내부에서 SQL오류");
+      e.printStackTrace();  
+      
+    }finally {
+      closeResource();
+    }
+    return result;
+  }   
 		
 }

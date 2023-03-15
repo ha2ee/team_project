@@ -3,14 +3,19 @@
 <%
 request.setCharacterEncoding("UTF-8");
 String contextPath = request.getContextPath();
-String id = (String) session.getAttribute("id");
-if (id == null || id.equals("")) {
-    %>      
-    <script>    
-        alert("로그인을 해야 글을 작성 할 수 있습니다."); 
-        history.back(); 
-    </script>
-<%}%>
+%>
+
+
+
+<%--
+	String id = (String)session.getAttribute("id");
+	if(id == null){//로그인 하지 않았을경우
+--%>		
+<%--	<script>	
+		alert("로그인 하고 글을 작성하세요!"); 
+		history.back(); 
+ 	</script> --%>
+<%-- 	}--%>
 
 
 <!DOCTYPE html>
@@ -20,19 +25,20 @@ if (id == null || id.equals("")) {
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
  <script type="text/javascript" src="<%=contextPath%>/ckeditor/ckeditor.js"></script>
+ <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
   <body >
   
   	<div style="width: 1200px; margin: 0 auto; margin-bottom: 20px">
   		<div>
-	        <form action="<%=contextPath%>/freeboard/writePro.fb" method="post" enctype="multipart/form-data">
+	        <form action="<%=contextPath%>/review/reviewWritePro.rv" method="post" enctype="multipart/form-data">
 		      <h1> 게시글 작성 </h1> <br>
 	          <input type="text" name="title" style="width: 100%; box-sizing: border-box; font-size: 20px" placeholder="제목을 입력해주세요"> 
 	                  											<%-- box-sizing: border-box를 style에 넣어줘야 너비 끝부분 처리가 완벽 --%>
-	           
-	            <input type="hidden" name ="id" value="<%=id%>"> <!-- 세션아이디 넘기기 -->      											
-	                  											
-	            <textarea name="editor1" id="editor1" rows="10" cols="80">
+            <br><br>
+            <textarea rows="20" style="width:100%;" name="editor1" class="DOC_TEXT" name="DOC_TEXT" placeholder="리뷰에 대한 내용을 200자 이내로 기재해주세요." ></textarea>
+            <span style="color:#aaa;" id="counter">(0 / 최대 1000자)</span>
+<!-- 	            <textarea name="editor1" id="editor1" rows="10" cols="80">
 	            </textarea>
 	            <script>
 	                // Replace the <textarea id="editor1"> with a CKEditor 4
@@ -41,17 +47,17 @@ if (id == null || id.equals("")) {
 	                	height : 500
 	                } );
 //	      			var str = CKEDITOR.instances.editor1.getData();
-	            </script>
+	            </script>  -->
 	             <br>
 	             <!-- <input type="hidden" name="content11" id="content11"> -->
 	            <div style="width: 1200px; display:flex; justify-content:space-between;  margin:0 auto;  " >
 	             
-               		<div><input type="file" name="fileName"></div>
+               		<div><input type="file" name="fileName" id="fileName"></div>
                	
                		<div>
-                		<div style="display: inline-block;"><input type="button" value="목 록" style="width: 100%; font-weight: bold;" onclick="location.href='<%=contextPath%>/freeboard/list.fb'" /></div>
+                		<div style="display: inline-block;"><input type="button" value="목 록" style="width: 100%; font-weight: bold;" onclick="location.href='<%=contextPath%>/review/list.rv'" /></div>
                 		&nbsp;
-	                	<div style="display: inline-block;"><input type="submit" value="등 록" id="registration" style="width: 100%; font-weight: bold;"></div>
+	                	<div style="display: inline-block;"><input type="button" value="등 록" id="registration" style="width: 100%; font-weight: bold;" onclick="frmsubmit()"></div>
                		</div>
                	
   				</div>
@@ -89,11 +95,25 @@ if (id == null || id.equals("")) {
   	</script>
  --%>  		
 	<script type="text/javascript">
-	function fnsubmit(){
+	function frmsubmit(){
 //		$("#content11").attr("value",str);
+		if(!$("#fileName").val()){
+		  alert("이미지를 첨부해주세요");
+		} else{
 		$("form").submit();
+		}
 	}
 	
+	$('.DOC_TEXT').keyup(function (e){
+	  var content = $(this).val();
+	  $('#counter').html("("+content.length+" / 최대 1000자)");    //글자수 실시간 카운팅
+
+	  if (content.length > 1000){
+	      alert("최대 1000자까지 입력 가능합니다.");
+	      $(this).val(content.substring(0, 1000));
+	      $('#counter').html("(1000 / 최대 1000자)");
+	  }
+	});
 	</script>
   		
   		
