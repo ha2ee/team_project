@@ -282,7 +282,7 @@ String id = (String)session.getAttribute("id");
 	
 	
 </style>
-
+  
 </head>
 <body>
 	<form action="<%=contextPath%>/member/petChangePro.me">	
@@ -372,7 +372,7 @@ String id = (String)session.getAttribute("id");
 					</dt>
 					<dd class="pass_dd" style="margin-bottom: 4%;">
 						<div class="pass_div">
-							<input type="button" name="passChange" class="passChange" value="변경하기">
+							<button onclick="passPop()" name="passChange" class="passChange">변경하기</button>
 						</div>
 					</dd>
 					
@@ -513,7 +513,12 @@ String id = (String)session.getAttribute("id");
 		    }
 
 		  
-	
+	        function passPop(){
+	            var url = "http://localhost:8090/TeamProject/nbMember/passPop.jsp";
+	            var name = "비밀번호 변경";
+	            var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+	            window.open(url, name, option);
+	        }
 	
 	</script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
