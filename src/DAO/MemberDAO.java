@@ -389,7 +389,7 @@ public class MemberDAO {
 	}
 	
 	//일반회원 정보 수정
-	public int memUpdate(String up_id, String up_pw,String up_nick,String up_hp,String up_email,String up_img,String up_address1,String up_address2,String up_address3,String up_address4,String up_address5) {
+	public int memUpdate(String id, String up_pw,String up_nick,String up_hp,String up_email,String up_address1,String up_address2,String up_address3,String up_address4,String up_address5) {
 		
 		int mem_UpResult = 0; //
 
@@ -405,7 +405,7 @@ public class MemberDAO {
 										 	 + " MEM_ADDRESS3='" + up_address3 + "',"
 										 	 + " MEM_ADDRESS4='" + up_address4 + "',"
 										 	 + " MEM_ADDRESS5='" + up_address5 + "'"
-						                     + " WHERE MEM_ID ='"+ up_id +"'";
+						                     + " WHERE MEM_ID ='"+ id +"'";
 			
 			
 			pstmt = con.prepareStatement(query);
@@ -430,7 +430,7 @@ public class MemberDAO {
 	}
 	
 	//트레이너 정보 수정
-	public int trUpdate(String up_id ,String up_pw, String up_hp, String up_email, String up_img, String up_address1, String up_address2, String up_address3, String up_address4, String up_address5) {
+	public int trUpdate(String id ,String up_pw, String up_hp, String up_email, String up_address1, String up_address2, String up_address3, String up_address4, String up_address5) {
 		
 		int tr_UpResult = 0; //
 		
@@ -445,7 +445,7 @@ public class MemberDAO {
             					   				  + " TR_ADDRESS3='" + up_address3 + "',"
             					   				  + " TR_ADDRESS4='" + up_address4 + "',"
             					   				  + " TR_ADDRESS5='" + up_address5 + "'"
-												  + " WHERE TR_ID ='"+ up_id +"'";
+												  + " WHERE TR_ID ='"+ id +"'";
 
 			
 			pstmt = con.prepareStatement(query);

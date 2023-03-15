@@ -9,15 +9,13 @@
 <style type="text/css">
 	
 	.total{
-   		width: 550px;
+   		width: 500px;
 	    height: 365px;
 	    font-size: 16px;
 	    margin-left: -11%;
-	    margin-top: 180px;
 	}
 	
 	.input{
-		width: 55%;
 	    height: 23%;
 	    font-size: 16px;
 	    margin-top: 4%;
@@ -53,7 +51,8 @@
 	
 	.message{
 	    margin-left: 117px;
-	}
+	    height: 46px;
+		}
 	
 </style>
 
@@ -91,6 +90,40 @@
 <script src="<%=request.getContextPath()%>/js/change.js"></script>
 
 </form>	
+	
+	<script>
+	  	function passChange(event) {
 		
+ 				
+    	var pass = $("#pass");
+    	var passValue = pass.val();
+    	
+    	var passReg = RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{10,20}$/);
+    	var resultPass = passReg.test(passValue);
+
+		if(!resultPass){
+			$("#Message").text("영어,숫자,특수문자를 호함하여 8~20자로 작성하여주세요.").css("color","red");
+			pass.focus();
+			return false;
+		}else{
+			$("#Message").text("");
+		}
+		
+		
+    	if($("#checkpass").val() != $("#pass").val()){
+    		$("#Message").text("비밀번호가 일치하지 않습니다!").css("color","red");
+    		$("#checkpass").focus();
+    		return false;
+    	}else{
+    		$("#Message").text("");
+    	}
+
+		window.opener.document.getElementById("pw").value = document.getElementById("pass").value;
+    	window.close();
+  		
+		alert("저장을 눌러주세요.");
+	}	
+	  	
+  	</script>  	  	
 </body>
 </html>

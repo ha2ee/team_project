@@ -15,11 +15,14 @@ String mem_name = mem_vo.getMem_name();
 String mem_hp = mem_vo.getMem_hp();
 String mem_birth = mem_vo.getMem_birth();
 String mem_email = mem_vo.getMem_email();
+
+String mem_address1 = mem_vo.getMem_address1();
 String mem_address2 = mem_vo.getMem_address2();
+String mem_address3 = mem_vo.getMem_address3();
 String mem_address4 = mem_vo.getMem_address4();
 String mem_address5 = mem_vo.getMem_address5();
+
 String mem_img = mem_vo.getMem_img();
-String mem_address = mem_address2 + " " +mem_address4 + " " + mem_address5;
 
 TrainerVo tr_vo = (TrainerVo)request.getAttribute("tr_vo");
 
@@ -27,11 +30,12 @@ String tr_name = tr_vo.getTr_name();
 String tr_hp = tr_vo.getTr_hp();
 String tr_birth = tr_vo.getTr_birth();
 String tr_email = tr_vo.getTr_email();
+String tr_address1 = tr_vo.getTr_address1();
 String tr_address2 = tr_vo.getTr_address2();
+String tr_address3 = tr_vo.getTr_address3();
 String tr_address4 = tr_vo.getTr_address4();
 String tr_address5 = tr_vo.getTr_address5();
 String tr_img = tr_vo.getTr_img();
-String tr_address = tr_address2 + tr_address4 + tr_address5;
 String id = (String)session.getAttribute("id");
 
 %>
@@ -191,13 +195,14 @@ String id = (String)session.getAttribute("id");
 	
 	}
 	
-	.email,.nickName,.hp,
+	.email,.nickname,.hp,
 	.address
 	{
 	    width: 49%;
     	height: 6%;
     	font-size: 16px;
     	padding: 11px;
+    	margin-bottom: 15px;
 	}
 	
 	
@@ -285,7 +290,7 @@ String id = (String)session.getAttribute("id");
   
 </head>
 <body>
-	<form action="<%=contextPath%>/member/petChangePro.me">	
+	<form action="<%=contextPath%>/member/updateInfo.me">	
 		<div class="pet_total">
 			<hr>
 			
@@ -321,8 +326,9 @@ String id = (String)session.getAttribute("id");
 					</dt>
 					<dd class="nick_dd">
 						<div class="nick_div">
-							<input type="text" name="nickName" class="nickName" value="<%=mem_nick%>">
+							<input type="text" name="nickname" id="nickname" class="nickname" value="<%=mem_nick%>">
 						</div>
+						<p id="nickInput">
 					</dd>				
 					
 				<%
@@ -336,9 +342,10 @@ String id = (String)session.getAttribute("id");
 						<span>이메일</span>
 					</dt>
 					<dd class="email_dd">
-						<div class="nick_div">
-							<input type="text" name="email" class="email" value="<%=mem_email + tr_email%>">
+						<div class="email_div">
+							<input type="text" id="email" name="email" class="email" value="<%=mem_email + tr_email%>">
 						</div>
+						<p id="emailInput">
 					</dd>
 					
 					
@@ -347,8 +354,9 @@ String id = (String)session.getAttribute("id");
 					</dt>
 					<dd class="hp_dd">
 						<div class="hp_div">
-							<input type="text" name="hp" class="hp" value="<%=mem_hp + tr_hp%>">
+							<input type="text" id="hp" name="hp" class="hp" value="<%=mem_hp + tr_hp%>">
 						</div>
+						<p id="hpInput">
 					</dd>
 					
 					
@@ -357,14 +365,14 @@ String id = (String)session.getAttribute("id");
 					</dt>
 					<dd class="address_dd">
 						<div class="hp_div">
-							<input type="text" id="sample4_postcode" name="address1" class="address1"  placeholder="우편번호" >	
+							<input type="text" id="sample4_postcode" name="address1" class="address1"  placeholder="우편번호" value="<%=mem_address1 + tr_address1 %>">	
 							<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="background-color:#BDBDBD" id="sample4_find"><br><br>				<!-- class="form-control" --> 
-							<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소" class="address2" readonly>	<br><br>	
-							<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소" name="address3"  readonly>
-							<input type="text" placeholder="상세주소" name="address3" class="address3">
-							<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  name="address5"readonly>
+							<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소" class="address2" value="<%=mem_address2 + tr_address2 %>" readonly>	<br><br>	
+							<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소" name="address3" value="<%=mem_address3 + tr_address3 %>" readonly>
+							<input type="text" placeholder="상세주소" id="#sample4_detailAddress" name="address4" value="<%=mem_address4 + tr_address4 %>" class="address4">
+							<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  name="address5" value="<%=mem_address5 + tr_address5 %>" readonly>
 						</div>
-						
+						<p id="addressInput">
 					</dd>
 				
 			
@@ -375,8 +383,8 @@ String id = (String)session.getAttribute("id");
 						<div class="pass_div">
 							<input onclick="passPop();"  type="button" name="passChange" class="passChange" value="변경하기"/>
 						</div>
+						<input type="hidden" name="pw" id="pw">
 					</dd>
-					
 					
 					
 					
@@ -389,7 +397,7 @@ String id = (String)session.getAttribute("id");
 							<a id="changeBtn" 
 							   href="#" 
 							   class="roundBtn blueBtn"
-							   onclick="petInfoChange(); return false;"
+							   onclick="change();"
 							   >저장</a>
 						</div>
 					</dd>				
@@ -512,15 +520,20 @@ String id = (String)session.getAttribute("id");
 		    }
 
 		  
-	        function passPop(){
-	            var url = "http://localhost:8090/TeamProject/nbMember/passPop.jsp";
-	            var name = "비밀번호 변경";
-	            var option = "width = 500, height = 500, top = 100, left = 200, location = no"
-	            window.open(url, name, option);
-	        }
+		  	
+			
+		    function passPop(){
+		        var url = "http://localhost:8090/TeamProject/nbMember/passPop.jsp";
+		        var name = "비밀번호 변경";
+		        var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+		        window.open(url, name, option);
+		    }
+		    
+		    
+			
 	
 	</script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/petJoin.js"></script>
+	<script src="<%=request.getContextPath()%>/js/change.js"></script>
 </body>
 </html>

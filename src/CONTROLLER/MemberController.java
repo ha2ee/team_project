@@ -358,21 +358,32 @@ public class MemberController extends HttpServlet {
 
 			System.out.println("nbMemberController -> /updateInfo.me 요청!");
 			
-			String up_id = request.getParameter("id");
-			String up_pw = request.getParameter("pass");
+			HttpSession session = request.getSession();
+			String id	= (String)session.getAttribute("id");
+			
+			String up_pw = request.getParameter("pw");
 			String up_nick = request.getParameter("nickname");
 			String up_hp = request.getParameter("hp");
 			String up_email = request.getParameter("email");
-			String up_img = request.getParameter("img");
 			String up_address1 = request.getParameter("address1");
 			String up_address2 = request.getParameter("address2");
 			String up_address3 = request.getParameter("address3");
 			String up_address4 = request.getParameter("address4");
 			String up_address5 = request.getParameter("address5");
 
-			int up_MemResult = memberdao.memUpdate(up_id, up_pw, up_nick, up_hp, up_email, up_img, up_address1, up_address2, up_address3, up_address4, up_address5);
-		
-			int up_TrResult = memberdao.trUpdate(up_id ,up_pw, up_hp, up_email, up_img, up_address1, up_address2, up_address3, up_address4, up_address5);
+			System.out.println(up_pw);
+			System.out.println(up_nick);
+			System.out.println(up_hp);
+			System.out.println(up_email);
+			System.out.println(up_address1);
+			System.out.println(up_address2);
+			System.out.println(up_address3);
+			System.out.println(up_address4);
+			System.out.println(up_address5);
+			
+			int up_MemResult = memberdao.memUpdate(id, up_pw, up_nick, up_hp, up_email,  up_address1, up_address2, up_address3, up_address4, up_address5);
+				
+			int up_TrResult = memberdao.trUpdate(id ,up_pw, up_hp, up_email, up_address1, up_address2, up_address3, up_address4, up_address5);
 
 			if (up_MemResult == 0 && up_TrResult ==0 ) {
 				out.println("<script>");
@@ -385,7 +396,7 @@ public class MemberController extends HttpServlet {
 			} else if (up_MemResult == 1 || up_TrResult == 1) {
 				out.println("<script>");
 				out.println("window.alert('정보를 수정하였습니다.');");
-				out.println("location.href='/TeamProject/member/change.me'");
+				out.println("location.href='/TeamProject/member/changeInfo.me'");
 				out.println("</script>");				
 				
 				return;
