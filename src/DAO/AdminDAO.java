@@ -241,7 +241,7 @@ public class AdminDAO {
 		                
 		                pstmt = con.prepareStatement(sql.toString());
 		                pstmt.setInt(1, 1);
-		                pstmt.setInt(2, 6);
+		                pstmt.setInt(2, 8);
 		                
 		                // StringBuffer를 비운다.
 		                sql.delete(0, sql.toString().length());
@@ -293,7 +293,7 @@ public class AdminDAO {
 		                sql.append("where rnum>=? and rnum<=?");
 		                pstmt = con.prepareStatement(sql.toString());
 		                pstmt.setInt(1, 1);
-		                pstmt.setInt(2, 6);
+		                pstmt.setInt(2, 8);
 		                
 		                // StringBuffer를 비운다.
 		                sql.delete(0, sql.toString().length());		 

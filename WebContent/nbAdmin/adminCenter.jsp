@@ -1,8 +1,12 @@
+<%@page import="DAO.TrainerBoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%TrainerBoardDAO trainerboarddao = new TrainerBoardDAO(); 
+	request.setAttribute("trainerboarddao", trainerboarddao);
+%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
+<c:set var="trainerboarddao" value="${trainerboarddao}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -169,7 +173,14 @@ text-decoration: underline;
                     </c:if>
                 </td>
                 <td>
-                    ${trBoard.tb_name}
+                    <c:choose>
+                	<c:when test="${!trainerboarddao.checkTable(trBoard.tb_id)}">
+                		<b>🍎${trBoard.tb_name}</b>
+                	</c:when>
+                	<c:otherwise>
+                		${trBoard.tb_name}
+                	</c:otherwise>
+                </c:choose>
                 </td>
                 <td>${trBoard.tb_date}</td>
             </tr>

@@ -174,12 +174,6 @@
 		  background-color: #ddd;
 		}
 		
-		#pageForm span {
-		  display: inline-block;
-		  color: #f44336;
-		  padding: 5px 10px;
-		}
-		
 		/* 검색 부분 스타일 */
 		#searchForm {
 		  margin: 20px auto;
