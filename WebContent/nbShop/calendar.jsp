@@ -63,11 +63,20 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 	
     var doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
     var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-//     var nextMonth = new Date(today.getFullYear(), today.getMonth()+1, 1);
-//     var nextmonth = moment(nextMonth).format('YYYY-MM-DD');
-    
-// 	console.log(regdate);
-// 	console.log(reg_date);
+	var array = [];	
+
+	
+	
+		
+// 	  var hz = document.getElementById('hz');
+// 	  if (hz.innerText == "A") {
+// 	    hz.innerText = "B";      
+// 	  } else if (hz.innerText == "B") {
+// 	    hz.innerText = "C";   
+// 	  } else {
+// 	    hz.innerText = "A";
+// 	  }
+	
 	
     
     /**
@@ -153,7 +162,8 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
                 // @param 평일 날짜 데이터 삽입
 
                 column.innerText = autoLeftPad(day, 2);
-                column.setAttribute('id', day);
+                column.setAttribute('id', "c"+day);
+                column.setAttribute('onClick', "change()");
                 column.align = "center";
 
 
@@ -201,16 +211,12 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
             				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
             				if(list2[i].toString() == j.toString()) {
             					
-            					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+            					$("#c"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
             					
             					// 만약에 현재일+7일보다 낮은 숫자에 예약이 있을경우
            						if(mtd > list2[i]) {
-           	                        $("#"+list2[i]).css("font-size", "16px").css("color", "E5E5E5").text(list2[i]);
-           							
- 
-                          		 }
-           						
-           						
+           	                        $("#c"+list2[i]).css("font-size", "16px").css("color", "E5E5E5").text(list2[i]);
+                        		}
             				}
            				}
            			}
@@ -225,22 +231,15 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
             				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
             				if(list[i].toString() == j.toString()) {
             					
-            					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+            					$("#c"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
             					
             					// 만약에 현재일+7일보다 낮은 숫자에 예약이 있을경우
            						if(mtd > list[i]) {
-           	                        $("#"+list[i]).css("font-size", "16px").css("color", "E5E5E5").text(list[i]);
-           							
- 
-                          		 }
-           						
-           						
+           	                        $("#c"+list[i]).css("font-size", "16px").css("color", "E5E5E5").text(list[i]);
+                          		}
             				}
            				}
            			}
-            		
-
-					
             		// 현재일의 배경색 주기
             		$("#"+mtd).css("background", "#fff5f3");
             		
@@ -319,6 +318,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 
         }
     }
+    
 
     /**
      * @brief   날짜 선택
@@ -349,9 +349,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
         clickdate = clickyear2+"/"+clickmonth+"/"+clickday;
         clickdate2 = clickmonth+"월 "+clickday+"일";
         clickdate3 = clickyear+"-"+clickmonth+"-"+clickday;
-        
-        
-        
+
         
         // @현재요일 구하기
         var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
@@ -546,24 +544,43 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 	var monthd = new Date(today.getFullYear(), today.getMonth() + 1, 1);
 	var month2 = new Date(today.getFullYear(), today.getMonth() + 1, 1);
 	var nextmonth = moment(monthd).format('MM');
-	var month = moment(new Date(today.getFullYear(), today.getMonth() + 1, 1)).format('MM');
 	
 	console.log("당월마지막날짜 : "+dlastday);
 	console.log("현재날짜 : "+d_day);
 	console.log("당월-현재날짜 : "+diffday);
-    console.log("선택한 월 : "+month);
+	
+	
     
+    // JQUERY - 화면이 요청 되었을 때,
     $(document).ready(function(){
     	
+
+    	
+
+    	// 리셋 버튼을 눌렀을 때,
     	$("#resetbtn").on("click",function(){
     		
+    		// 만약에 첫번째가 공백이라면,
     		if($("#selectDate1").val() == ""){
     			
     			alert("최소 1회의 수강을 선택하셔야합니다");
-			
+    		
     			return false;
     			
     		}
+    		
+    		
+    		//현재 보이는 창이 현재달 이면
+    		var dmon = document.getElementById("calMonth").innerText = autoLeftPad((today.getMonth() + 1), 2);
+    		
+    		console.log(dmon);
+    		
+    		if(dmon == 03){
+    			
+    			
+    			
+    			
+    			//예약 정보를 초기화 시킨다.
         		$("#result > div > input").attr("value", "");
        	        $("#totalcnt > input").attr("value", "");
        	    	$("#tr_price > input").attr("value", "");
@@ -571,9 +588,138 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
        	    	resultcnt = 0;
        	    	totalresult = 0;
     			
+       	    	buildCalendar();
+       	    	
+    		}else{
     			
-    	
+    			
+    			//예약 정보를 초기화 시킨다.
+        		$("#result > div > input").attr("value", "");
+       	        $("#totalcnt > input").attr("value", "");
+       	    	$("#tr_price > input").attr("value", "");
+       	    	$("#tr_totalprice > input").attr("value", "");
+       	    	resultcnt = 0;
+       	    	totalresult = 0;
+       	    	
+       	        this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+       	        buildCalendar();    // @param 명월 캘린더 출력 요청
 
+	    		// 예약 된 날짜를 가져온다.
+	    		var list = <%=list%>;
+	    		var list2 =<%=list2%>;
+	    		
+	    		var monthtoday = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+	    		var mtd = moment(monthtoday).format('DD');
+	    		
+	    		// for 문을 돌려서 카트에 담긴 날짜와 일치하는 날짜를 가져온다.
+        		for(var i =0; i < list2.length; i++){
+
+        			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
+        			for(var j=1; j < 32; j++ ){
+        				
+
+        				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
+        				if(list2[i].toString() == j.toString()) {
+        					
+        					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+        					
+        					// 만약에 현재일+7일보다 낮은 숫자에 예약이 있을경우
+       						if(mtd > list2[i]) {
+       	                        $("#"+list2[i]).css("font-size", "16px").css("color", "E5E5E5").text(list2[i]);
+       							
+
+                      		 }
+       						
+       						
+        				}
+       				}
+       			}
+	    		
+	    		// for 문을 돌려서 예약날짜와 일치하는 날짜를 가져온다.
+	    		for(var i =0; i < list.length; i++){
+
+	    			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
+	    			for(var j=1; j < 32; j++ ){
+
+	    				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
+	    				if(list[i].toString() == j.toString() ){
+	    					
+	    					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+						
+    					
+		   				}
+		   			}
+		   		}
+
+	    		
+    		// 다음달 마지막날을 구해서 가져오고,
+    		var nextmonthlastday = new Date(today.getFullYear(), today.getMonth()+1, 0);
+    		// 다음달 오늘날을 구해서
+    		var nextmonthtoday = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+    		
+    		// 방법1) 포맷형식을 바꾼다.
+    		var nmld = moment(nextmonthlastday).format('YYYY-MM-DD');
+    		var nmldint = moment(nextmonthlastday).format('DD');
+
+    		var nmtd = moment(nextmonthtoday).format('YYYY-MM-DD');
+    		
+    		console.log(nmld);
+    		console.log(nmtd);
+    		
+    		// 시작날짜+1일과 마지막 날을 구해서 그 사이 날짜 구해서 배열에 저장하기	
+    		function getDateRange(startDate, endDate, listDate){
+    	
+    	        var dateMove = new Date(startDate);
+    	        	
+    	        var strDate = startDate;
+ 
+    	
+    	        if (startDate == endDate){
+    	
+    	            var strDate = dateMove.toISOString().slice(0,10);
+    	            
+    	            listDate.push(strDate);
+
+    	            
+    	        }else{
+    	
+    	            while (strDate < endDate){
+    	
+    	                var strDate = dateMove.toISOString().slice(0, 10);
+    	                
+    	                listDate.push(strDate.slice(8,10));
+
+    	                dateMove.setDate(dateMove.getDate() + 1);
+
+    	
+    	            }
+    	
+    	        }
+    	
+    	        return listDate;
+    	
+    	    }
+
+        	var listDate = [];
+        	// 함수 호출 구문
+        	getDateRange(nmtd, nmld, listDate);
+ 
+        		// 16부터 시작
+    			for(var i=listDate[0]; i <= nmldint; i++){
+    				// 1부터 시작
+    				for(var j=1; j < 32; j++ ){
+						
+    					// 만약에 일치하는 값이 있을때, 해당 컬럼 색상을 변경 시킨다.
+    					if(i == j){
+    						$("#c"+i).css("font-size", "16px").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white").text(i);
+    					}
+    					
+    				}
+        		}// 복붙함
+    			
+    		}	
+    		
+    		
     	})
     	
     	
@@ -705,7 +851,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 						
     					// 만약에 일치하는 값이 있을때, 해당 컬럼 색상을 변경 시킨다.
     					if(i == j){
-    						$("#"+i).css("font-size", "16px").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white").text(i);
+    						$("#c"+i).css("font-size", "16px").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white").text(i);
     					}
     					
     				}
@@ -718,51 +864,51 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
     		// 당월 마지막 날짜에서 현재날짜를 뺀 값이 0이면
     		if (diffday == 0){
     			
-    			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#4").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#5").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#6").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c4").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c5").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c6").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
 
     		// 1이면
     		}else if(diffday == 1){
     			
-    			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#4").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#5").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c4").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c5").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
    			// 2이면
     		}else if (diffday == 2){
     			
-    			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#4").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c4").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
     		
    			// 3이면
     		}else if (diffday == 3){
     			
-    			$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-    			$("#3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+    			$("#c3").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
 			
    			// 4이면
 			}else if (diffday == 4){
 			
-				$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
-				$("#2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+				$("#c1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+				$("#c2").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
 			
 			// 5이면
 			}else if (diffday == 5){
 			
-				$("#1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
+				$("#c1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
 			}
     		
     	})
     	
-    })
+    });
     
     	// 리퀘스트로 받아온 금액을
 	var original = <%=tr_price%>;
@@ -770,9 +916,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 	// 정규표현식으로 3자리숫자당 콤마로 구분한다.
 	var tr_price2 = original.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	var totalresult2 = totalresult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    
 
-	
 </script>
 </head>
 <body>
@@ -882,7 +1026,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 <!--       우측 중단 초기화 버튼 테이블 -->
 	<div id="selectResetBox">
 		<div id="selectReset">
-		<a class = "btn" id="resetbtn" onclick="buildCalendar();">예약 초기화</a>
+		<a class = "btn" id="resetbtn" >예약 초기화</a>
 		</div>
 	</div>
   
