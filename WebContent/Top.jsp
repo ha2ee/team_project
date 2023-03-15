@@ -58,6 +58,13 @@ $(document).ready(function(){
 	
 });
 </script>
+
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
+<script>
+  Kakao.init('083d7283f7089c6f3d424efd747489e9'); // 사용하려는 앱의 JavaScript 키 입력
+</script>
+
 <style>
 /*  나눔 고딕 글꼴 임포트 */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
@@ -227,7 +234,7 @@ $(document).ready(function(){
 			<ul class="list_lnb_03">
 				<li><a href="<%=request.getContextPath()%>/freeboard/list.fb">자유 게시판</a></li>
 				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/review.bo?center=/nbBoard/review.jsp">수강 후기</a></li>
+				<li><a href="<%=request.getContextPath()%>/review/list.rv">수강 후기</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
 			</ul>
 			<ul class="list_lnb_04">
@@ -249,7 +256,7 @@ $(document).ready(function(){
 			<ul>
 				<li><a href="">늘봄 샵</a></li>
 				<li><a href="">늘봄 후기</a></li>
-				<li><a href="#"><br><i style="font-size: 55px;"id="chaticon" class="fa-solid fa-paw"></i><br>1:1 채팅문의</a></li>
+				<li><a id="add-channel-button" href="javascript:addChannel()"><br><i style="font-size: 55px;"id="chaticon" class="fa-solid fa-paw"></i><br>1:1 채팅문의</a></li>
 			</ul>
 		</div>
 	</div>
@@ -642,8 +649,15 @@ function showErrorMsg(error) { // 실패했을때 실행
         break;
     }
 }
-	
+function addChannel() {
+  Kakao.Channel.addChannel({
+    channelPublicId: '_Xpekxj',
+  });
+}
 </script>
+ 
+ 
+ 
  
 <!-- header-close -->
 <div id = "center1">

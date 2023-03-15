@@ -31,16 +31,16 @@ public class FreeBoardController extends HttpServlet {
   // FreeBoardDAO객체를 저장할 참조변수 선언
   FreeBoardDAO boarddao;
 
-  // MemberDAO객체를 저장할 참조변수 선언
-  // MemberDAO memberdao;
+//   MemberDAO객체를 저장할 참조변수 선언
+   MemberDAO memberdao;
 
   // MemberVo객체를 저장할 참조변수 선언
-  // MemberVo membervo;
+//   MemberVo membervo;
 
   @Override
   public void init() throws ServletException {
     boarddao = new FreeBoardDAO();
-    // memberdao = new MemberDAO();
+     memberdao = new MemberDAO();
     // membervo = new MemberVo();
   }
 
@@ -68,6 +68,7 @@ public class FreeBoardController extends HttpServlet {
     String action = request.getPathInfo();// 2단계 요청 주소
     System.out.println("요청한  주소 : " + action);
 
+    String contextPath = request.getContextPath();
     // 조건에 따라서 포워딩 또는 보여줄 VIEW주소 경로를 저장할 변수
     String nextPage = null;
     // 요청한 중앙화면 뷰 주소를 저장할 변수
@@ -80,7 +81,7 @@ public class FreeBoardController extends HttpServlet {
     // String word = null;
     // String memberid = null;
     int count = 0;
-
+    HttpSession session = request.getSession();
     PrintWriter out = response.getWriter();
 
     switch (action) {
@@ -123,8 +124,10 @@ public class FreeBoardController extends HttpServlet {
 //      //요청한 값 얻기
       
 //      //세션값으로 아이디 + 닉네임을 구할 것입니다.
-      String id = "inseop";
-      String nickname = "seeeop2";
+//        HttpSession session = request.getSession();
+        String memberid   = (String)session.getAttribute("id");
+        String nickname = memberdao.getMemNickName(memberid);
+        
       
 //      //업로드 작업 중...
       String directory = request.getServletContext().getRealPath("upload");
@@ -145,7 +148,7 @@ public class FreeBoardController extends HttpServlet {
       
 
       vo= new FreeBoardVo();
-      vo.setB_id(id);
+      vo.setB_id(memberid);
       vo.setB_nickname(nickname);
       vo.setB_title(title);
       vo.setB_content(content);
@@ -153,18 +156,12 @@ public class FreeBoardController extends HttpServlet {
       vo.setB_realfile(fileRealName);
       int result = boarddao.insertBoard(vo);
       
-      if(result ==1) {
-        out.println("<script>");
-        out.println("alert('작성 성공!')");
-        out.println("</script>");
-      } else {
-        out.println("<script>");
-        out.println("alert('작성 실패!')");
-        out.println("</script>");
-      }
-       nextPage = "/freeboard/list.fb";
-       
-       break;
+      out.print("<script>");
+      out.print(" alert( '" +result+" 글 추가 성공!' );");
+      out.print(" location.href='"+ contextPath +"/review/list.rv'");
+      out.print("</script>");
+      
+       return;
 //========================글을  작성하는 작업/writePro.fb =============================
 //====================게시글 한 줄 클릭시 글을 읽는 /read.fb =========================
       case "/read.fb":
@@ -174,15 +171,23 @@ public class FreeBoardController extends HttpServlet {
         vo = boarddao.boardRead(b_idx);
         list = boarddao.boardListAll();
         count = boarddao.getTotalRecord();
+//        HttpSession session = request.getSession();
         
         // 댓글 목록 가져오기
         CommentDAO commnetdao = new CommentDAO();
         ArrayList<CommentVO> clist = commnetdao.listComment(b_idx);
         
+        memberid   = (String)session.getAttribute("id");
+        System.out.println(memberid);
+        
+        String likeCheck = boarddao.checkLikeBeforeRead(memberid,b_idx);
+        System.out.println(likeCheck);
+        
         request.setAttribute("clist", clist);
         request.setAttribute("count", count);
         request.setAttribute("list", list);
         request.setAttribute("vo", vo);
+        request.setAttribute("likeCheck", likeCheck);
         request.setAttribute("center", "nbBoard/read.jsp");
 
         nextPage = "/nbMain.jsp";
@@ -214,7 +219,7 @@ public class FreeBoardController extends HttpServlet {
       case "/like.fb":
 
         int b_idx2 = Integer.parseInt(request.getParameter("b_idx"));
-        String id3 = request.getParameter("id2");
+        String id3 = request.getParameter("id");
 
         int result1 = boarddao.checkLike(id3, b_idx2);
         // int result2 = boarddao.getOnlyLikeCount(b_idx2); //FREE_BOARD에서 좋아요 다시 조회 //안먹히네
@@ -252,8 +257,6 @@ public class FreeBoardController extends HttpServlet {
 //=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
 //=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
       case "/modifyPro.fb":
-        String id1 = "inseop";
-        String nickname1 = "seeeop2";
         
 //        //업로드 작업 중ㅇ...
         String directory2 = request.getServletContext().getRealPath("upload");
@@ -274,8 +277,6 @@ public class FreeBoardController extends HttpServlet {
 
         vo= new FreeBoardVo();
         vo.setB_idx(idx);
-        vo.setB_id(id1);
-        vo.setB_nickname(nickname1);
         vo.setB_title(title1);
         vo.setB_content(content1);
         vo.setB_file(fileName1);
@@ -328,11 +329,11 @@ public class FreeBoardController extends HttpServlet {
   		CommentDAO dao = new CommentDAO();
   		CommentVO commentvo = new CommentVO();
   		
- 		HttpSession session = request.getSession();
-		
- 		commentvo.setId(session.getAttribute("id").toString()); // 댓글 작성자 아이디(= 로그인한 사람 세션)
-  	//	String testUser = "admin";
-  	//	commentvo.setId(testUser);
+  		session = request.getSession();
+  		
+  		commentvo.setId(session.getAttribute("id").toString()); // 댓글 작성자 아이디(= 로그인한 사람 세션)
+//  		String testUser = "admin";
+//  		commentvo.setId(testUser);
   		commentvo.setPseq(pseq);
   		commentvo.setContent(c_content);
   		
