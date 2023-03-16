@@ -43,7 +43,6 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/sticky-header.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/slider.js"></script>
-    
 
 
 </body>

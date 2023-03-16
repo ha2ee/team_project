@@ -158,7 +158,7 @@ public class FreeBoardController extends HttpServlet {
       
       out.print("<script>");
       out.print(" alert( '" +result+" 글 추가 성공!' );");
-      out.print(" location.href='"+ contextPath +"/review/list.rv'");
+      out.print(" location.href='"+ contextPath +"/freeboad/list.fb?nowPage=0&nowBlock=0'");
       out.print("</script>");
       
        return;

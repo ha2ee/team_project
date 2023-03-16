@@ -115,10 +115,10 @@ div.filedownload {
 
 /* 	댓글 CSS */
 	
-	#tblAddCommnet, #tblListComment { width: 700px; margin: 15px auto; }
+	#tblAddCommnet, #tblListComment { margin: 15px auto; }
 	
 	#tblAddComment { margin-top: 30px; }
-	#tblAddComment td:nth-child(1) { width: 600px; }
+/* 	#tblAddComment td:nth-child(1) { width: 600px; } */
 	#tblAddComment td:nth-child(2) { width: 100px; }
 	
 	#tblListComment td:nth-child(1) { width: 600px; }
@@ -194,8 +194,8 @@ div.filedownload {
        
         <!-- 수정,삭제는 세션아이디와 조회한 글의 작성자아이디가 동일할때만 노출시키기 필요 -->
 		<c:if test="${sessionScope.id eq vo.b_id}">
-			<input type="button" value="수정하기" onclick="location.href='tbUpdate.bo?b_idx=${b_idx}'" />
-			<input type="button" value="삭제하기" onclick="javascript:tbDelete('<%=b_idx%>');" id="delete"/>
+			<input type="button" value="수정하기" onclick="location.href='modify.fb?b_idx=<%=b_idx%>'" />
+			<input type="button" value="삭제하기" onclick="javascript:Delete('<%=b_idx%>');" id="delete"/>
 		</c:if>
        
     </div>
@@ -207,15 +207,15 @@ div.filedownload {
        <%
         if((String)request.getAttribute("likeCheck")=="0"){ //좋아요를 안 눌렀다면?
       %>
-         <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
+         <a id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
           <i class="fa-regular fa-heart fa-4x" id="likeimggg"></i>
-        </button>
+        </a>
          <%
         } else{ //좋아요를 눌렀다면?
         %>
-        <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
+        <a id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
           <i class="fa-solid fa-heart fa-4x" id="likeimggg"></i>
-        </button>
+        </a>
         
         <%
         }
@@ -277,7 +277,7 @@ div.filedownload {
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>    
 <script type="text/javascript">
 //삭제하기를 눌렀을때 ajax로 삭제 처리하기
-function tbDelete(tb_idx){
+function Delete(b_idx){
 			var result = window.confirm("정말로 글을 삭제하시겠습니까?");
 			
 			if(result == true){//확인 버튼 클릭
@@ -286,16 +286,16 @@ function tbDelete(tb_idx){
 				$.ajax({
 					type : "post",
 					async : true,
-					url : "<%=contextPath%>/tb/tbDelete.bo",
-					data : {tb_idx : tb_idx},
+					url : "<%=contextPath%>/freeboard/del.fb",
+					data : {b_idx : b_idx},
 					dataType : "text",
 					success : function(data){
 						
-						if(data=="삭제성공"){
+						if(data==1){
 							alert("삭제 성공!");
 							
 							//강제로 클릭 이벤트 발생시키는 부분
-							location.href="<%=contextPath%>/tb/list.bo";
+							location.href="<%=contextPath%>/freeboad/list.fb";
 							
 						}else{//"삭제실패"
 							alert("삭제에 실패했습니다.")
@@ -346,7 +346,7 @@ function tbDelete(tb_idx){
 			<tr>
 				<td>
 				<!-- 댓글 표시&수정창 -->
-					<textarea id="updateActive" rows="3" cols="60" disabled="disabled">${cdto.content}</textarea>
+					<textarea id="updateActive" rows="2" style="width: 100%;" disabled="disabled">${cdto.content}</textarea>
 					<span>${ cdto.name }. ${ cdto.regdate }</span>
 				</td>
 				<td>
@@ -384,10 +384,10 @@ function tbDelete(tb_idx){
 	
 	
 	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
-		<table id="tblAddComment" class="table table-bordered" >
-			<tr>
-				<td><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
-				<td><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
+		<table style="border: none;" id="tblAddComment" class="table table-bordered">
+			<tr style="border: none;">
+				<td style="border: none;"><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
+				<td style="border: none;"><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
 			</tr>
 		</table>
 		<input type="hidden" name="pseq" value="<%=b_idx%>" />
