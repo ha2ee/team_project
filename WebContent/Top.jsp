@@ -12,19 +12,28 @@ String ContextPath = request.getContextPath();
 <script>
 //메인 메뉴에 마우스가 올려지면 토글하는 함수 생성
 $(document).ready(function(){
-	
 
-	// 로그인 된 정보가 있다면 로그인 버튼을 로그아웃으로 바꿔줌
 
-			
-
-		
 	$(".edu_btn").on("click", function(){
 		
 		<%
 			if(id == null){
 		%> 
 				alert("회원만 로그인 후 수강신청 가능합니다!");
+				location.replace("<%=request.getContextPath()%>/member/login.me");
+				return false;
+			
+		<%		
+			}
+		%>
+	})
+	
+	$("#cart").on("click", function(){
+		
+		<%
+			if(id == null){
+		%> 
+				alert("회원 또는 비회원 조회로 가능합니다.");
 				location.replace("<%=request.getContextPath()%>/member/login.me");
 				return false;
 			
@@ -58,11 +67,17 @@ $(document).ready(function(){
 	
 });
 </script>
+
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
+<script>
+  Kakao.init('083d7283f7089c6f3d424efd747489e9'); // 사용하려는 앱의 JavaScript 키 입력
+</script>
+
 <style>
 /*  나눔 고딕 글꼴 임포트 */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 /* 나눔 고딕 CSS 설정 */
-
 </style>
 
 <!--          			# 부트스트랩 플러그인  관련 -->
@@ -142,7 +157,7 @@ $(document).ready(function(){
 				   <li><a href="<%=request.getContextPath()%>/member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
 	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
 	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
-	               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
+	               <li><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
 
 				<%
 					}else{//로그인 O
@@ -150,7 +165,7 @@ $(document).ready(function(){
 				   <li><a href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
 	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
 <%-- 	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li> --%>
-	               <li><a href="<%=request.getContextPath()%>/nb/cart.member?center=/nbMember/cart.jsp" class="btn">장바구니</a></li>
+	               <li><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
 
 				<%
 					}
@@ -227,7 +242,7 @@ $(document).ready(function(){
 			<ul class="list_lnb_03">
 				<li><a href="<%=request.getContextPath()%>/freeboard/list.fb">자유 게시판</a></li>
 				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/review.bo?center=/nbBoard/review.jsp">수강 후기</a></li>
+				<li><a href="<%=request.getContextPath()%>/review/list.rv">수강 후기</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
 			</ul>
 			<ul class="list_lnb_04">
@@ -249,7 +264,7 @@ $(document).ready(function(){
 			<ul>
 				<li><a href="">늘봄 샵</a></li>
 				<li><a href="">늘봄 후기</a></li>
-				<li><a href="#"><br><i style="font-size: 55px;"id="chaticon" class="fa-solid fa-paw"></i><br>1:1 채팅문의</a></li>
+				<li><a id="add-channel-button" href="javascript:addChannel()"><br><i style="font-size: 55px;"id="chaticon" class="fa-solid fa-paw"></i><br>1:1 채팅문의</a></li>
 			</ul>
 		</div>
 	</div>
@@ -642,8 +657,15 @@ function showErrorMsg(error) { // 실패했을때 실행
         break;
     }
 }
-	
+function addChannel() {
+  Kakao.Channel.addChannel({
+    channelPublicId: '_Xpekxj',
+  });
+}
 </script>
+ 
+ 
+ 
  
 <!-- header-close -->
 <div id = "center1">

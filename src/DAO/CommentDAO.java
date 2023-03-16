@@ -48,7 +48,7 @@ public class CommentDAO {
 			
 			rs = pstmt.executeQuery();
 			
-			ArrayList<CommentVO> clist = new ArrayList<CommentVO>();
+			ArrayList<CommentVO> clist = new ArrayList<CommentVO>(); 
 			
 			while ( rs.next() ) {
 				
@@ -102,6 +102,7 @@ public class CommentDAO {
 	}
 	
 	
+	
 	//댓글 삭제기능
 	public int delComment(String b_idx) {
 		
@@ -123,6 +124,29 @@ public class CommentDAO {
 		
 		return 0;
 	}
+	
+	//댓글 수정기능
+		public int upComment(CommentVO comment) {
+			int result = 0;
+			try {
+				con = ds.getConnection();
+				String sql = "update tblComment set content = ? where seq = ?";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, comment.getContent());
+				pstmt.setString(2, comment.getSeq());
+				
+				result =pstmt.executeUpdate(); // 성공시 1 실패시 0
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+			      closeResource();
+		    }
+			return result;
+			
+		}
 	
 	//게시글을 삭제했을때 그에 해당되는 댓글 전체 삭제 하는 기능
 	public void delAllComment(int b_idx) {

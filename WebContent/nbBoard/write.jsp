@@ -3,19 +3,14 @@
 <%
 request.setCharacterEncoding("UTF-8");
 String contextPath = request.getContextPath();
-%>
-
-
-
-<%--
-	String id = (String)session.getAttribute("id");
-	if(id == null){//로그인 하지 않았을경우
---%>		
-<%--	<script>	
-		alert("로그인 하고 글을 작성하세요!"); 
-		history.back(); 
- 	</script> --%>
-<%-- 	}--%>
+String id = (String) session.getAttribute("id");
+if (id == null || id.equals("")) {
+    %>      
+    <script>    
+        alert("로그인을 해야 글을 작성 할 수 있습니다."); 
+        history.back(); 
+    </script>
+<%}%>
 
 
 <!DOCTYPE html>
@@ -34,6 +29,9 @@ String contextPath = request.getContextPath();
 		      <h1> 게시글 작성 </h1> <br>
 	          <input type="text" name="title" style="width: 100%; box-sizing: border-box; font-size: 20px" placeholder="제목을 입력해주세요"> 
 	                  											<%-- box-sizing: border-box를 style에 넣어줘야 너비 끝부분 처리가 완벽 --%>
+	           
+	            <input type="hidden" name ="id" value="<%=id%>"> <!-- 세션아이디 넘기기 -->      											
+	                  											
 	            <textarea name="editor1" id="editor1" rows="10" cols="80">
 	            </textarea>
 	            <script>

@@ -632,17 +632,30 @@ public class MemberDAO {
 			//DB접속
 			con = ds.getConnection();
 			// email,name,id 값을 매개변수 id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
-			String sql = "select mem_email, mem_name, mem_id from ys_member where mem_id=?";
+			String sql = "select * from YS_MEMBER where mem_id=?";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberid);
 			rs = pstmt.executeQuery();
 			rs.next();
 //				membervo 객체 생성
-				membervo = new MemberVo();
-				membervo.setMem_email(rs.getString("mem_email"));
-				membervo.setMem_id(rs.getString("mem_id"));
-				membervo.setMem_name(rs.getString("mem_name"));
+			membervo = new MemberVo();
+			membervo.setMem_name(rs.getString("mem_name"));
+			membervo.setMem_id(rs.getString("mem_id"));
+			membervo.setMem_pw(rs.getString("mem_pw"));
+			membervo.setMem_nick(rs.getString("mem_nick"));
+			 membervo.setMem_img(rs.getString("mem_img"));
+			 membervo.setMem_email(rs.getString("mem_email"));
+			 membervo.setMem_hp(rs.getString("mem_hp"));
+			 membervo.setMem_birth(rs.getString("mem_birth"));
+			 membervo.setMem_gender(rs.getString("mem_gender"));
+			 membervo.setMem_pet(rs.getString("mem_pet"));
+			 membervo.setMem_joindate(rs.getDate("mem_joindate"));
+			 membervo.setMem_address1(rs.getString("mem_address1"));
+			 membervo.setMem_address2(rs.getString("mem_address2"));
+			 membervo.setMem_address3(rs.getString("mem_address3"));
+			 membervo.setMem_address4(rs.getString("mem_address4"));
+			 membervo.setMem_address5(rs.getString("mem_address5"));
 				
 				
 				
@@ -845,7 +858,34 @@ public class MemberDAO {
 			closeResource();
 		}
 		return tr_vo;
-	}
+	}		
+//==============================================================================
+	public String getMemNickName(String memberid) {
+	  String result = null;
+	  
+    String sql = "SELECT MEM_NICK FROM YS_MEMBER WHERE MEM_ID = ? ";
+    
+    try {
+      con = ds.getConnection();
+      pstmt = con.prepareStatement(sql);
+      pstmt.setString(1, memberid);
+      
+      rs = pstmt.executeQuery();
+      
+      if(rs.next()) {
+        result = rs.getString("mem_nick");
+      }
+        
+    }catch(Exception e) {
+      
+      System.out.println("getMemNickName메소드 내부에서 SQL오류");
+      e.printStackTrace();  
+      
+    }finally {
+      closeResource();
+    }
+    return result;
+  }   
 
 	public boolean petJoin(PetVo pet_vo) {
 		
@@ -952,6 +992,5 @@ public class MemberDAO {
 		
 		return result;
 	}
-		
 		
 }
