@@ -10,7 +10,8 @@
 </head>
 
 <body>
-	<table width="100%"  cellpadding="0" cellspacing="0">
+<div style="margin: 0 auto; width:1200px;">
+	<table cellpadding="0" cellspacing="0">
 		<tr>
 			<td width="70%" valign="top"><jsp:include page="left.jsp"
 					flush="false"></jsp:include></td>
@@ -59,5 +60,6 @@
 			</td>
 		</tr>
 	</table>
+	</div>
 </body>
 </html>
