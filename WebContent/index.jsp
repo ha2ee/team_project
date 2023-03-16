@@ -43,7 +43,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/slider.js"></script>
     
- 
+  
 <!-- 인덱스 파일을 실행 했을때, 인덱스 화면으로 사용 될 main.js파일 -->
 <script src="js/main.js"></script>
 
