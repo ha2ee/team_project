@@ -554,21 +554,15 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
     // JQUERY - 화면이 요청 되었을 때,
     $(document).ready(function(){
 
-
     	// 리셋 버튼을 눌렀을 때,
     	$("#resetbtn").on("click",function(){
 
-    		
-    		
     		//현재 보이는 창이 현재달 이면
     		var dmon = document.getElementById("calMonth").innerText = autoLeftPad((today.getMonth() + 1), 2);
     		
     		console.log(dmon);
     		
     		if(dmon == 03){
-    			
-
-    			
     			
     			//예약 정보를 초기화 시킨다.
         		$("#result > div > input").attr("value", "");
@@ -581,7 +575,6 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
        	    	buildCalendar();
        	    	
     		}else{
-    			
     			
     			//예약 정보를 초기화 시킨다.
         		$("#result > div > input").attr("value", "");
