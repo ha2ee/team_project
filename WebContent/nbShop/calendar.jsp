@@ -560,7 +560,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
    	    	resultcnt = 0;
    	    	totalresult = 0;
    	    	
-   	  // 예약 된 날짜를 가져온다.
+    		// 예약 된 날짜를 가져온다.
     		var list = <%=list%>;
     		var list2 =<%=list2%>;
     		
