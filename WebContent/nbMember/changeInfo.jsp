@@ -268,13 +268,20 @@ String id = (String)session.getAttribute("id");
 		font-size: 21px;
 	}
 	
+	.title2{
+	    margin-bottom: 15px;
+    	font-weight: bold;
+		font-size: 21px;
+		margin-top: 250px;
+	}
+	
 	.address1{
     	width: 17%;
    		padding-left: 6px;
 	}
 	
 	.address2, .address3 {
-    width: 49%;
+    width: 49%;	
     padding-left: 6px;
 	
 	}
@@ -284,7 +291,39 @@ String id = (String)session.getAttribute("id");
     	height: 6%;
 	}
 	
+	.img_dt{
+		padding-top: 31px;
+		border-top: 1px solid #e9e9e9;
+	    display: table-cell;
+	    position: relative;
+	    float: left;
+	    width: 204px;
+	    text-align: center;
+	    vertical-align: middle;
+	    font-weight: bold;
+	    color: #555;
+	    font-family: 'NGB';
+	    font-size: 14px;
+	    line-height: 100%;
+	}
 	
+	.img_dd{
+	    position: relative;
+	    float: left;
+	    width: 513px;
+	    padding: 20px 0 20px 28px;
+	    border-top: 1px solid #e9e9e9;		
+	}
+ 	#preview{
+	    max-width: 60%;
+	    margin: 0;
+	    padding: 0;
+	    border: none;
+	    line-height: normal;
+	    vertical-align: middle;
+		width : 160px; 
+		height :170px;
+	}
 	
 </style>
   
@@ -311,98 +350,113 @@ String id = (String)session.getAttribute("id");
 			
 			</div>
 			<div class="rightBlock">
-				<div class="title">
-					<p>정보 수정</p>
-				</div>
-				<dl class="teble">
+					
+ 				<div class="title">
+						<p>사진 등록</p>
+					</div>
+					<dl>
+						<dt class="img_dt">
+							<span>이미지</span>
+						</dt>
+						<dd class="img_dd">
+							<div class="img_div">
+							    <img  id="preview" src="<%=contextPath%>/images/profile.png" width=200 height=220 style="margin-right: 70px;"/>
+								<input type="file" name="fileNmae" id="fileNmae" class="fileNmae" >
+							</div>
+						</dd>
+					</dl>
+				<div>	
+					<div class="title2">
+						<p>정보 수정</p>
+					</div>
+					<dl class="table">
 	
-
-
-				<%
-				if(mem_nick != ""){
-				%>
-					<dt class="nick_dt">
-						<span>닉네임</span>
-					</dt>
-					<dd class="nick_dd">
-						<div class="nick_div">
-							<input type="text" name="nickname" id="nickname" class="nickname" value="<%=mem_nick%>">
-						</div>
-						<p id="nickInput">
-					</dd>				
+					<%
+					if(mem_nick != ""){
+					%>
+						<dt class="nick_dt">
+							<span>닉네임</span>
+						</dt>
+						<dd class="nick_dd">
+							<div class="nick_div">
+								<input type="text" name="nickname" id="nickname" class="nickname" value="<%=mem_nick%>">
+							</div>
+							<p id="nickInput">
+						</dd>				
+						
+					<%
+					} else{
+					%>
 					
-				<%
-				} else{
-				%>
+					<%
+					}
+					%>
+						<dt class="email_dt">
+							<span>이메일</span>
+						</dt>
+						<dd class="email_dd">
+							<div class="email_div">
+								<input type="text" id="email" name="email" class="email" value="<%=mem_email + tr_email%>">
+							</div>
+							<p id="emailInput">
+						</dd>
+						
+						
+						<dt class="hp_dt">
+							<span>전화번호</span>
+						</dt>
+						<dd class="hp_dd">
+							<div class="hp_div">
+								<input type="text" id="hp" name="hp" class="hp" value="<%=mem_hp + tr_hp%>">
+							</div>
+							<p id="hpInput">
+						</dd>
+						
+						
+						<dt class="address_dt">
+							<span>주소</span>
+						</dt>
+						<dd class="address_dd">
+							<div class="hp_div">
+								<input type="text" id="sample4_postcode" name="address1" class="address1"  placeholder="우편번호" value="<%=mem_address1 + tr_address1 %>">	
+								<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="background-color:#BDBDBD" id="sample4_find"><br><br>				<!-- class="form-control" --> 
+								<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소" class="address2" value="<%=mem_address2 + tr_address2 %>" readonly>	<br><br>	
+								<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소" name="address3" value="<%=mem_address3 + tr_address3 %>" readonly>
+								<input type="text" placeholder="상세주소" id="#sample4_detailAddress" name="address4" value="<%=mem_address4 + tr_address4 %>" class="address4">
+								<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  name="address5" value="<%=mem_address5 + tr_address5 %>" readonly>
+							</div>
+							<p id="addressInput">
+						</dd>
+					
 				
-				<%
-				}
-				%>
-					<dt class="email_dt">
-						<span>이메일</span>
-					</dt>
-					<dd class="email_dd">
-						<div class="email_div">
-							<input type="text" id="email" name="email" class="email" value="<%=mem_email + tr_email%>">
-						</div>
-						<p id="emailInput">
-					</dd>
-					
-					
-					<dt class="hp_dt">
-						<span>전화번호</span>
-					</dt>
-					<dd class="hp_dd">
-						<div class="hp_div">
-							<input type="text" id="hp" name="hp" class="hp" value="<%=mem_hp + tr_hp%>">
-						</div>
-						<p id="hpInput">
-					</dd>
-					
-					
-					<dt class="address_dt">
-						<span>주소</span>
-					</dt>
-					<dd class="address_dd">
-						<div class="hp_div">
-							<input type="text" id="sample4_postcode" name="address1" class="address1"  placeholder="우편번호" value="<%=mem_address1 + tr_address1 %>">	
-							<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="background-color:#BDBDBD" id="sample4_find"><br><br>				<!-- class="form-control" --> 
-							<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소" class="address2" value="<%=mem_address2 + tr_address2 %>" readonly>	<br><br>	
-							<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소" name="address3" value="<%=mem_address3 + tr_address3 %>" readonly>
-							<input type="text" placeholder="상세주소" id="#sample4_detailAddress" name="address4" value="<%=mem_address4 + tr_address4 %>" class="address4">
-							<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  name="address5" value="<%=mem_address5 + tr_address5 %>" readonly>
-						</div>
-						<p id="addressInput">
-					</dd>
-				
-			
-					<dt class="pass_dt">
-						<span>비밀번호</span>
-					</dt>
-					<dd class="pass_dd" style="margin-bottom: 4%;">
-						<div class="pass_div">
-							<input onclick="passPop();"  type="button" name="passChange" class="passChange" value="변경하기"/>
-						</div>
-						<input type="hidden" name="pw" id="pw">
-					</dd>
-					
-					
-					
-					<dt class="btn_dt">
-					</dt>
-					<dd class="btn_dd">
-						<div class="saveBtn">
-							<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">취소하기</a>				
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<a id="changeBtn" 
-							   href="#" 
-							   class="roundBtn blueBtn"
-							   onclick="change();"
-							   >저장</a>
-						</div>
-					</dd>				
-				</dl>
-			</div>
+						<dt class="pass_dt">
+							<span>비밀번호</span>
+						</dt>
+						<dd class="pass_dd" style="margin-bottom: 4%;">
+							<div class="pass_div">
+								<input onclick="passPop();"  type="button" name="passChange" class="passChange" value="변경하기"/>
+							</div>
+							<input type="hidden" name="pw" id="pw">
+						</dd>
+						
+						
+						
+						<dt class="btn_dt">
+						</dt>
+						<dd class="btn_dd">
+							<div class="saveBtn">
+								<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">취소하기</a>				
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a id="changeBtn" 
+								   href="#" 
+								   class="roundBtn blueBtn"
+								   onclick="change();"
+								   >저장</a>
+							</div>
+						</dd>				
+					</dl>
+				</div>
+			</div>	
 		</div>
 	</form>	
 	
@@ -530,7 +584,47 @@ String id = (String)session.getAttribute("id");
 		    }
 		    
 		    
-			
+		    //제이쿼리를 이용해 아래쪽의 <input type="file">태그에서 이미지 파일 첨부시 미리보기 기능을 구현하는 함수 
+		    function readURL(input) { // <- <input type="file">태그를 매개변수로 전달 받는다.
+		 	
+		 	 //크롬 웹브라우저의 F12 눌러 개발자모드창을 열어서 console탭에 띄운 로그메세지를 확인 한다.
+		 	  console.log(input);
+		    	  console.log(input.files)
+		    	//참고.
+		    	//<input type="file">인 태그객체의 files메소드를 호출하면
+		    	//FileList라는 배열이 생성 되면서 FileList배열 내부의 0번쨰 인덱스 위치에
+		    	//아래에서 선택한(업로드할) 파일 정보들을 key:value쌍으로 저장한 File객체가 저장되어 있음
+		    	  
+		   	//FileList라는 배열이 존재하고...
+		   	//FileList라는 배열의 0번째 인덱스 위치에 아래에서 파일을 업로드하기 위해서 선택한 File객체가 저장되어 있다면?
+		   	//요약 : 아래의 <input type="file">태그에서 업로드를 하기 위한 파일을 선택 했다면?
+		       if (input.files && input.files[0]) {
+		     	  
+		     	  //파일을 문자 단위로 읽어들일 통로 생성 
+		 	      var reader = new FileReader();
+		     	     	  
+		 	      //지정한 img태그에 첫번째 파일 input에 첨부한 파일에 대한 File객체를 읽어드립니다. 
+		 	      reader.readAsDataURL(input.files[0]);
+		     	  
+		     	  //업로드 하기 위해 선택한 파일을 모두 읽어 들였다면?
+		 	      reader.onload = function (ProgressEvent) {
+		     		 //읽어들인 File객체의 정보는 매개변수로 넘어오는 ProgressEvent객체내부의?
+		     		 //target속성에 대응되는 객체(JSON객체 데이터형식)로 저장 되어 있다.
+		     		 console.log(ProgressEvent);
+		     		  
+		  		    //id가 preview인 <img>태그를 선택해 
+		  		    //attr메서드를 이용해 파일 첨부시 미리보기 이미지를 나타내기 위해
+		  		    //src속성값에  new FileReader()객체를 이용하여 읽어들인 첨부할 File객체정보를 지정하여
+		  		    //추가 함으로써 이미지 파일의 미리보기기능이 가능 한 것입니다.
+		 	        $('#preview').attr('src', ProgressEvent.target.result);
+		 	        
+		           }
+		     	
+		       }
+		  			
+		  }
+				  
+		  
 	
 	</script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>

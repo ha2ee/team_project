@@ -198,7 +198,7 @@
 					<img src="<%=contextPath%>/images/profile.png" class="userImg">
 				</div>
 				<div>
-					<button>사진 등록</button>				
+					<input type="file" value="사진 등록" />				
 				</div>
 			</div>
 			<div class="user" >
