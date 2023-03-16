@@ -235,7 +235,7 @@ $(document).ready(function(){
 				<li><a href="<%=request.getContextPath()%>/freeboard/list.fb">자유 게시판</a></li>
 				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
 				<li><a href="<%=request.getContextPath()%>/review/list.rv">수강 후기</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
+				<li><a href="<%=request.getContextPath()%>/review/qna.bo">Q&A</a></li>
 			</ul>
 			<ul class="list_lnb_04">
 				<li><a href="<%=request.getContextPath()%>/nb/pet.shop?center=/nbShop/pet.jsp"> 샵으로 이동 </a></li>

@@ -135,6 +135,14 @@ public class ReviewController extends HttpServlet {
       
        return;
 //========================글을  작성하는 작업/writePro.fb =============================
+       
+//========================글 작성하기 ================================
+      case "/qna.bo":
+
+        request.setAttribute("center", "nbBoard/QnA.jsp");
+        nextPage = "/nbMain.jsp";
+        break;
+//========================글 작성하기 ================================
         
       default:
         break;
