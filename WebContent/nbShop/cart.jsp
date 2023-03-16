@@ -1,3 +1,4 @@
+<%@page import="java.util.Vector"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 <%@page import="VO.eduOrderVo"%>
@@ -413,112 +414,154 @@ display : none;
 	
 	
 <!-- 	상세보기 관련 vector 구문 -->
-	<div class="modal">
-	<div class="modalBox">
-	<div id="pop_mem_box">
-		<div id= "pop_num">
-			<input id=" popNum" type="text" value="예약 번호" readonly="readonly"  />
+
+	<!-- 	늘봄 샵 상세보기 관련 vector 구문 -->
+	
+
+		<c:set var="a" value="1"/>
+		<c:forEach var="vo"  items="${vector}" >
+		<div class="modal${a}">
+		<div class="modalBox">
+		<div id="pop_mem_box">			
+			<div id= "pop_num${a}">
+				<a id="pop1">예약 번호</a>
+				<input id="popNum${a}" type="text" value="${vo.edu_num}" readonly="readonly"  />
+			</div>	
+			<div id= "pop_reg_date">
+				<a id="pop2">예약 일자</a>
+				<input id="popRegDate${a}" type="text" value="${vo.tr_reg_date}" readonly="readonly"  />
+			</div>		 
+			<div id= "pop_id${a}">
+				<a id="pop3">예약 아이디</a>
+				<input id="popId${a}" type="text" value="${vo.edu_id}" readonly="readonly"  />
+			</div>
+			<div id= "pop_name${a}">
+				<a id="pop4">예약자 이름</a>
+				<input id="popName${a}" type="text" value="${vo.edu_name}" readonly="readonly"  />
+			</div>
+			<div id= "pop_hp${a}">
+				<a id="pop5">예약자 전화번호</a>
+				<input id="popHp${a}"type="text" value="${vo.edu_hp}" readonly="readonly"  />
+			</div>
+			<div id= "pop_email${a}">
+				<a id="pop6">예약자 이메일</a>
+				<input id="popEmail${a}"type="text" value="${vo.edu_email}" readonly="readonly"  />
+			</div>
+			<div id= "pop_address1">
+				<a id="pop7">예약자 주소1</a>
+				<input type="text" value="${vo.edu_address1}" readonly="readonly"  />
+			</div>
+			<div id= "pop_address2">
+				<a id="pop8">예약자 주소2</a>
+				<input type="text" value="${vo.edu_address2}" readonly="readonly"  />
+			</div>
+			<div id= "pop_address3">
+				<a id="pop8">예약자 주소3</a>
+				<input type="text" value="${vo.edu_address3}" readonly="readonly"  />
+			</div>
+			<div id= "pop_address4">
+				<a id="pop9">예약자 주소4</a>
+				<input type="text" value="${vo.edu_address4}" readonly="readonly"  />
+			</div>
+			<div id= "pop_address5">
+				<a id="pop10">예약자 주소5</a>
+				<input type="text" value="${vo.edu_address5}" readonly="readonly"  />
+			</div>
 		</div>	
-		<div id= "pop_reg_date">
-			<input type="text" value="예약 날짜" readonly="readonly"  />
-		</div>		 
-		<div id= "pop_id">
-			<input type="text" value="예약 아이디" readonly="readonly"  />
+	
+		<div id= "pop_pet_box">
+			<div id= "pop_pet_img${a}">
+				<a id="pop11">반려견 사진</a>
+				<img id="popPetImg${a}" src="<%request.getContextPath()%>/nbShop/img/${vo.pet_img}"  />
+			</div>
+			<div id= "pop_pet_name${a}">
+				<a id="pop12">반려견 이름</a>
+				<input id="popPetName${a}"type="text" value="${vo.pet_name}" readonly="readonly"  />
+			</div>
+			<div id= "pop_pet_type${a}">
+				<a id="pop13">반려견 품종</a>
+				<input id="popPetType${a}" type="text" value="${vo.pet_type}" readonly="readonly"  />
+			</div>
+			<div id= "pop_pet_age${a}">
+				<a id="pop14">반려견 나이</a>
+				<input type="text" id="popPetAge${a}" value="${vo.pet_age}" readonly="readonly"  />
+			</div>
+			<div id= "pop_pet_weight${a}">
+				<a id="pop15">반려견 몸무게</a>
+				<input type="text" id="popPetWeight${a}" value="${vo.pet_weight}" readonly="readonly"  />
+			</div>
+			<div id= "pop_pet_gender${a}">
+				<a id="pop16">반려견 성별</a>
+				<input type="text" id="popPetGender${a}" value="${vo.pet_gender}" readonly="readonly"  />
+			</div>
+			<div id= "pop_pet_op${a}">
+				<a id="pop17">반려견 중성화여부</a>
+				<input type="text" id="popPetOp${a}" value="${vo.pet_op}" readonly="readonly"  />
+			</div>
 		</div>
-		<div id= "pop_name">
-			<input type="text" value="예약 이름" readonly="readonly"  />
+		
+		<div id= "pop_tr_box">
+			<div id= "pop_tr_img${a}">
+				<a id="pop18">훈련사 사진</a>
+				<img id="popTrImg${a}" src="<%request.getContextPath()%>/nbShop/img/${vo.tr_img}"  />
+			</div>
+			<div id= "pop_tr_name${a}">
+				<a id="pop19">훈련사 이름</a>
+				<input id="popTrName${a}" type="text" value="${vo.tr_name}" readonly="readonly"  />
+			</div>
+			<div id= "pop_tr_hp${a}">
+				<a id="pop20">훈련사 번호</a>
+				<input id="popTrHp${a}" type="text" value="${vo.tr_hp}" readonly="readonly"  />
+			</div>
+			<div id= "pop_tr_date1">
+				<a id="pop21">수강 예약일</a>
+				<input type="text" value="${vo.date1}" readonly="readonly"  />
+			</div>
+			<div id= "pop_tr_date2">
+				<a id="pop22">수강 예약일2</a>
+				<input type="text" value="${vo.date2}" readonly="readonly"  />
+			</div>
+			<div id= "pop_tr_date3">
+				<a id="pop23">수강 예약일3</a>
+				<input type="text" value="${vo.date3}" readonly="readonly"  />
+			</div>
+			<div id= "pop_tr_date4">
+				<a id="pop24">수강 예약일4</a>
+				<input type="text" value="${vo.date4}" readonly="readonly"  />
+			</div>
+			<div id= "pop_tr_date5">
+				<a id="pop25">수강 예약일5</a>
+				<input type="text" value="${vo.date5}" readonly="readonly"  />
+			</div>
+			<div id= "pop_tr_date6">
+				<a id="pop26">수강 예약일6</a>
+				<input type="text" value="${vo.date6}" readonly="readonly"  />
+			</div>
+			<div id= "pop_tr_date7">
+				<a id="pop27">수강 예약일7</a>
+				<input type="text" value="${vo.date7}" readonly="readonly"  />
+			</div>
+			<div id= "pop_cnt${a}">
+				<a id="pop28">수강 횟수</a>
+				<input id="popCnt${a}" type="text" value="${vo.edu_cnt}" readonly="readonly"  />
+			</div>
+			<div id= "pop_totalprice${a}">
+				<a id="pop29">수강 금액</a>
+				<input id="popTotalPrice${a}" type="text" value="${vo.edu_totalprice}" readonly="readonly"  />
+			</div>
 		</div>
-		<div id= "pop_hp">
-			<input type="text" value="예약한 번호" readonly="readonly"  />
+		
+		<div id="pop_btn">
+			<input id="popBtn" class="btn" type="button"  onclick="close()" value="닫기"/>
 		</div>
-		<div id= "pop_email">
-			<input type="text" value="예약자 이메일" readonly="readonly"  />
-		</div>
-		<div id= "pop_address1">
-			<input type="text" value="예약자주소1" readonly="readonly"  />
-		</div>
-		<div id= "pop_address2">
-			<input type="text" value="예약자주소2" readonly="readonly"  />
-		</div>
-		<div id= "pop_address3">
-			<input type="text" value="예약자주소3" readonly="readonly"  />
-		</div>
-		<div id= "pop_address4">
-			<input type="text" value="예약자주소4" readonly="readonly"  />
-		</div>
-		<div id= "pop_address5">
-			<input type="text" value="예약자주소5" readonly="readonly"  />
-		</div>
-	</div>	
-	<div id= "pop_pet_box">
-		<div id= "pop_pet_img">
-			<img src=""  />
-		</div>
-		<div id= "pop_pet_name">
-			<input type="text" value="반려견 이름" readonly="readonly"  />
-		</div>
-		<div id= "pop_pet_type">
-			<input type="text" value="반려견 품종" readonly="readonly"  />
-		</div>
-		<div id= "pop_pet_age">
-			<input type="text" value="반려견 나이" readonly="readonly"  />
-		</div>
-		<div id= "pop_pet_weight">
-			<input type="text" value="반려견 몸무게" readonly="readonly"  />
-		</div>
-		<div id= "pop_pet_gender">
-			<input type="text" value="반려견 성별" readonly="readonly"  />
-		</div>
-		<div id= "pop_pet_op">
-			<input type="text" value="반려견 중성화여부" readonly="readonly"  />
-		</div>
-	</div>
-	<div id= "pop_tr_box">
-		<div id= "pop_tr_img">
-			<img src=""  />
-		</div>
-		<div id= "pop_tr_name">
-			<input type="text" value="훈련사 이름" readonly="readonly"  />
-		</div>
-		<div id= "pop_tr_hp">
-			<input type="text" value="훈련사 번호" readonly="readonly"  />
-		</div>
-		<div id= "pop_tr_reg_date">
-			<input type="text" value="훈련사 번호" readonly="readonly"  />
-		</div>
-		<div id= "pop_tr_date1">
-			<input type="text" value="예약일1" readonly="readonly"  />
-		</div>
-		<div id= "pop_tr_date2">
-			<input type="text" value="예약일2" readonly="readonly"  />
-		</div>
-		<div id= "pop_tr_date31">
-			<input type="text" value="예약일3" readonly="readonly"  />
-		</div>
-		<div id= "pop_tr_date4">
-			<input type="text" value="예약일4" readonly="readonly"  />
-		</div>
-		<div id= "pop_tr_date5">
-			<input type="text" value="예약일5" readonly="readonly"  />
-		</div>
-		<div id= "pop_tr_date6">
-			<input type="text" value="예약일6" readonly="readonly"  />
-		</div>
-		<div id= "pop_tr_date7">
-			<input type="text" value="예약일7" readonly="readonly"  />
-		</div>
-		<div id= "pop_cnt">
-			<input type="text" value="수강 횟수" readonly="readonly"  />
-		</div>
-		<div id= "pop_totalprice">
-			<input type="text" value="수강 금액" readonly="readonly"  />
-		</div>
-	</div>
-	<div id="pop_btn">
-		<input id="popBtn" class="btn" type="button"  onclick="close()" value="닫기"/>
+		
+
+		
 	</div>
 	</div>
-	</div>
+		<c:set var="b" value="${b+1}" /> 
+		</c:forEach>
+<!-- 		늘봄 샵 상세보기 끝 -->
 	<br><br><br><br><br>
 	
 
@@ -567,23 +610,21 @@ $(document).ready(function(){
 
 // 장바구니에서 각 버튼을 눌렀을 때,
 function reply_click(clicked_id){
-	
-	var edu_num = 0;
-	
+
 	// for문을 통해 인덱스 번호를 가져온다
-	for(var idx=1; idx <= ${vector.size()}; idx++ ){
+// 	for(var idx=1; idx <= ${vector.size()}; idx++ ){
 
-	
-	//2. 가져온 vector를 저장시킨다.
 
-	
+		// 해당되는 버튼을 눌렀을 때,
 		if(clicked_id == "eduInfo"+idx){
 
+			//해당되는 상세 정보를 가져와서 div로 값을 출력한다.
+			
 		}
 		
+
 // 		document.getElementById("pop_num").value = edu_num;
 
-	}
     var CloseModal = document.querySelector(".modal");
     CloseModal.style.display = "flex";
     

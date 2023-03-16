@@ -222,7 +222,7 @@ public class nbOrderController extends HttpServlet{
 				// 5) orderdao를 통해서 인서트 시킨 값들을 다시 불러온다.
 				Vector<eduOrderVo> vector = orderdao.checkCartedu(edu_id);
 				
-				// 5) cart.jsp 페이지에서 출력할 eduordervo와 list를 내보낸다.
+				// 6) cart.jsp 페이지에서 출력할 eduordervo와 list를 내보낸다.
 				request.setAttribute("vector", vector);
 				request.setAttribute("list", list);
 				request.setAttribute("id", edu_id);

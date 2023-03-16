@@ -446,7 +446,7 @@ border: 1px solid #e8d0d01f;
 	left: 0px;
 	right: 0;
 	float: left;
-	width : 118px;
+	width : 117px;
 }
 
 #petBox > div > a {
@@ -634,7 +634,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 100%;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -873,7 +873,7 @@ border: 1px solid #e8d0d01f;
 	border: 1px solid #e8d0d01f;
 
     display: inline-block;
-    width: 77px;
+    width: 100%;
     height: 35px;
     position: relative;
     margin: 0 auto;
@@ -1544,7 +1544,7 @@ border: 1px solid #e8d0d01f;
 	left: 0px;
 	right: 0;
 	float: left;
-	width : 99px;
+	width : 98px;
 }
 
 #memBox > div > a {
@@ -1969,7 +1969,7 @@ border: 1px solid #e8d0d01f;
     left: 0;
 	right: 0;
 	float: left;
-	width: 98px;
+	width: 97px;
 	
 }
 
