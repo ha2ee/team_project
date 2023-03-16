@@ -18,9 +18,10 @@
 	text-align: left;
 	width : 500px;
 	position: relative;
-	left : 360px;
-	right : 360px;
-	margin : 100px 10px;
+	left : -310px;
+	right : 0;
+	margin : 0 auto;
+	top:68px;
 	
 		
 	}
@@ -29,8 +30,8 @@
 	
 	position : relative;
     width: 650px;
-    left : 900px;
-    bottom : 800px;
+    left : 960px;
+    bottom : 623px;
     filter : opacity(0.7);
     
     

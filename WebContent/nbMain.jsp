@@ -18,6 +18,7 @@
 <%-- 처음으로 CarMain.jsp 메인화면을 요청 했을때... 중앙화면은 Center.jsp로 보이게 설정하자 --%>
  
 <c:if test="${center == null}">
+
 	<c:set var="center" value="Center.jsp"/>
 </c:if>
 <!DOCTYPE html>

@@ -18,6 +18,7 @@ import DAO.MemberDAO;
 import DAO.OrderDAO;
 import DAO.TrainerDAO;
 import VO.MemberVo;
+import VO.PetVo;
 import VO.TrainerVo;
 
 @WebServlet("/member/*")
@@ -34,9 +35,6 @@ public class MemberController extends HttpServlet {
 	
 	// 일반회원 가입 메소드를 만들 MemberDao 호출
 	TrainerDAO trainerdao;
-	
-	// 트레이너 정보를 조회할 trMemberVo를 호출
-	TrainerVo trmembervo;
 	
 
 	@Override
@@ -247,7 +245,6 @@ public class MemberController extends HttpServlet {
 
 			String tr_id = request.getParameter("id");
 			String tr_name = request.getParameter("name");
-			String tr_img = request.getParameter("imageFileName");
 			String tr_pw = request.getParameter("pass");
 			String tr_email = request.getParameter("email");
 			String tr_hp = request.getParameter("hp");
@@ -261,7 +258,6 @@ public class MemberController extends HttpServlet {
 					 TrainerVo tr_vo = new TrainerVo();
 					  tr_vo.setTr_id(tr_id);
 					  tr_vo.setTr_name(tr_name);
-					  tr_vo.setTr_img(tr_img);
 					  tr_vo.setTr_pw(tr_pw);
 					  tr_vo.setTr_email(tr_email);
 					  tr_vo.setTr_hp(tr_hp);
@@ -278,8 +274,11 @@ public class MemberController extends HttpServlet {
 					
 			nextPage = "/nbMain.jsp";
 
-			// # 4) "회원 정보" 요청 했을 때,
-		} else if (action.equals("/change.me")) {
+			
+			
+			
+			// # 4) "회원 정보"수정 요청 화면ㄴ 했을 때,
+		} else if (action.equals("/changeInfo.me")) {
 			
 			HttpSession session = request.getSession();
 			String memberid	= (String)session.getAttribute("id");
@@ -290,12 +289,34 @@ public class MemberController extends HttpServlet {
 			TrainerVo tr_vo = memberdao.trRead(memberid);
 			
 			// 중앙화면 주소 바인딩
-			request.setAttribute("center", "nbMember/change.jsp");
+			request.setAttribute("center", "nbMember/changeInfo.jsp");
 			request.setAttribute("mem_vo", mem_vo);
 			request.setAttribute("tr_vo", tr_vo);
 			
 			// 전체 메인화면 주소 저장
 			nextPage = "/nbMain.jsp";
+			
+			// # 4) "회원 정보" 요청 했을 때,
+		} else if (action.equals("/info.me")) {
+			
+			HttpSession session = request.getSession();
+			String memberid	= (String)session.getAttribute("id");
+			
+			System.out.println("MemberController -> info.me 호출!");
+			MemberVo mem_vo = memberdao.memRead(memberid);
+			
+			TrainerVo tr_vo = memberdao.trRead(memberid);
+			
+			// 중앙화면 주소 바인딩
+			request.setAttribute("center", "nbMember/info.jsp");
+			request.setAttribute("mem_vo", mem_vo);
+			request.setAttribute("tr_vo", tr_vo);
+			
+			// 전체 메인화면 주소 저장
+			nextPage = "/nbMain.jsp";
+			
+			
+			
 			
 			// # 4-1) "회원 정보 삭제" 요청 했을 때,
 		} else if (action.equals("/delete.me")) {
@@ -389,8 +410,163 @@ public class MemberController extends HttpServlet {
 					return;
 				}
 			
-		}
+		//펫 정보 등록 화면 요청
+		} else if (action.equals("/petJoin.me")) {
 
+			System.out.println("nbMemberController -> /petJoin.me 요청!");
+			HttpSession session = request.getSession();
+			String memberid	= (String)session.getAttribute("id");
+			
+			MemberVo mem_vo = memberdao.memRead(memberid);
+			TrainerVo tr_vo = memberdao.trRead(memberid);
+			
+			request.setAttribute("mem_vo", mem_vo);
+			request.setAttribute("tr_vo", tr_vo);
+			request.setAttribute("center", "nbMember/petJoin.jsp");
+
+			// 메인화면 view 주소
+			nextPage = "/nbMain.jsp";
+		
+		
+		//펫 정보 요청화면
+		} else if (action.equals("/petInfo.me")) {
+			
+			System.out.println("nbMemberController -> /petInfo.me 요청!");
+			
+			HttpSession session = request.getSession();
+			String memberid	= (String)session.getAttribute("id");
+			
+			
+			
+			MemberVo mem_vo = memberdao.memRead(memberid);
+			PetVo pet_vo = memberdao.petRead(memberid);
+			request.setAttribute("mem_vo", mem_vo);
+			request.setAttribute("pet_vo", pet_vo);
+			request.setAttribute("center", "nbMember/petInfo.jsp");
+			
+			// 메인화면 view 주소
+			nextPage = "/nbMain.jsp";
+		
+		//회원정보 조회 화면 요청
+		} else if (action.equals("/info.me")) {
+			
+			System.out.println("nbMemberController -> /info.me 요청!");
+			
+			HttpSession session = request.getSession();
+			String memberid	= (String)session.getAttribute("id");
+			
+			MemberVo mem_vo = memberdao.memRead(memberid);
+			TrainerVo tr_vo = memberdao.trRead(memberid);
+			
+			request.setAttribute("mem_vo", mem_vo);
+			request.setAttribute("tr_vo", tr_vo);
+			request.setAttribute("center", "nbMember/info.jsp");
+			
+			// 메인화면 view 주소
+			nextPage = "/nbMain.jsp";
+		
+		//펫 등록 화면 요청
+		} else if (action.equals("/petJoinPro.me")) {
+		
+		System.out.println("nbMemberController -> /petJoinPro.me 요청!");
+		
+		HttpSession session = request.getSession();
+		
+		
+		String p_name = request.getParameter("p_name");
+
+		String p_age = request.getParameter("p_age");
+
+		String p_gender = request.getParameter("p_gender");
+
+		String p_type = request.getParameter("p_type");
+
+		String p_op = request.getParameter("p_op");
+
+		String p_weight = request.getParameter("p_weight");
+
+		String p_img = request.getParameter("imageFileName");
+
+		
+		PetVo pet_vo = new PetVo();
+			  pet_vo.setP_name(p_name);
+			  pet_vo.setP_age(Integer.parseInt(p_age));
+			  pet_vo.setP_gender(p_gender);
+			  pet_vo.setP_type(p_type);
+			  pet_vo.setP_op(p_op);
+			  pet_vo.setP_weight(Integer.parseInt(p_weight));
+			  pet_vo.setP_img(p_img);
+			  pet_vo.setP_mem_id((String)session.getAttribute("id"));
+		
+		  boolean result = memberdao.petJoin(pet_vo);
+			  
+		
+		// 메인화면 view 주소
+		nextPage = "/nbMain.jsp";
+	
+	} else if(action.equals("/member/petChange.me")) {
+		
+		
+		
+		request.setAttribute("center", "nbMember/petChange.jsp");
+		
+		// 메인화면 view 주소
+		nextPage = "/nbMain.jsp";
+	}else if (action.equals("/petChange.me")) {
+		
+		System.out.println("nbMemberController -> /petChange.me 요청!");
+		
+		HttpSession session = request.getSession();
+		String memberid	= (String)session.getAttribute("id");
+		
+		
+		MemberVo mem_vo = memberdao.memRead(memberid);
+		PetVo pet_vo = memberdao.petRead(memberid);
+		request.setAttribute("mem_vo", mem_vo);
+		request.setAttribute("pet_vo", pet_vo);
+		request.setAttribute("center", "nbMember/petChange.jsp");
+		
+		// 메인화면 view 주소
+		nextPage = "/nbMain.jsp";
+	
+	} else if(action.equals("/petChangePro.me")) {
+		
+		System.out.println("nbMemberController -> /petChangePro.me 요청!");
+		
+		HttpSession session = request.getSession();
+		
+		String p_name = request.getParameter("p_name");
+		String p_age = request.getParameter("p_age");
+		String p_weight = request.getParameter("p_weight");
+		String p_type = request.getParameter("p_type");
+		String p_gender = request.getParameter("p_gender");
+		String p_op = request.getParameter("p_op");
+		String P_mem_id = ((String)session.getAttribute("id"));
+		
+		
+	    int result = memberdao.petInfoChange(p_name, p_age, p_weight, p_type, p_gender, p_op, P_mem_id);
+		
+	    if(result == 0) {
+			out.println("<script>");
+			out.println("window.alert('수정실패 하였습니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			
+			return;
+
+		} else if (result == 1) {
+			out.println("<script>");
+			out.println("window.alert('정보를 수정하였습니다.');");
+			out.println("location.href='/TeamProject/member/petInfo.me'");
+			out.println("</script>");				
+			
+			return;
+	    	
+	    }
+	    
+	}
+		
+		
 		// 포워딩 (디스패처 방식)
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);
