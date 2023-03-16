@@ -10,6 +10,7 @@
 <%
 MemberVo mem_vo = (MemberVo)request.getAttribute("mem_vo");
 
+
 String mem_nick = mem_vo.getMem_nick();
 String mem_name = mem_vo.getMem_name();
 String mem_hp = mem_vo.getMem_hp();
