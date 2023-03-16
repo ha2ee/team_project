@@ -417,7 +417,7 @@ display : none;
 	<div class="modalBox">
 	<div id="pop_mem_box">
 		<div id= "pop_num">
-			<input type="text" value="예약 번호" readonly="readonly"  />
+			<input id=" popNum" type="text" value="예약 번호" readonly="readonly"  />
 		</div>	
 		<div id= "pop_reg_date">
 			<input type="text" value="예약 날짜" readonly="readonly"  />
@@ -568,31 +568,26 @@ $(document).ready(function(){
 // 장바구니에서 각 버튼을 눌렀을 때,
 function reply_click(clicked_id){
 	
-	//1. vector를 가져온다.
+	var edu_num = 0;
+	
+	// for문을 통해 인덱스 번호를 가져온다
+	for(var idx=1; idx <= ${vector.size()}; idx++ ){
+
 	
 	//2. 가져온 vector를 저장시킨다.
-	
-	for(var num=1; num <= ${vector.size()}; num++ ){
-	
-		if(clicked_id == "eduInfo"+num){
-			
-		var edu_num = "${vector}";
-		
-		for(var i in edu_num){
-			
-			alert(edu_num[i]);
-		}
-		
-// 		console.log(edu_num.toString());
-// 		document.getElementById("pop_num").value = edu_num;
-			
-			
-			
-		}
-	}
 
+	
+		if(clicked_id == "eduInfo"+idx){
+
+		}
+		
+// 		document.getElementById("pop_num").value = edu_num;
+
+	}
     var CloseModal = document.querySelector(".modal");
     CloseModal.style.display = "flex";
+    
+    
 }
 
 // 이미지 미리보기 
