@@ -190,9 +190,8 @@ String id = (String)session.getAttribute("id");
 		
 	
 	}
-	.address2,.address3{
-	
-	
+	.address4{
+		width: 49%;
 	}
 	
 	.email,.nickname,.hp,

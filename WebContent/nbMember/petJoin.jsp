@@ -113,7 +113,7 @@
 		    width: 100%;
 		    box-sizing: border-box;
 		    text-align: left;
-		    min-height: 650px;
+		    min-height: 520px;
 			
 		} 
 		
@@ -169,7 +169,7 @@
 			width: 100%;
    		 	display: inline-block;
     		position: relative;
-			margin-left: 90px;
+			margin-left: 9%;
 			margin-top: -100px;
 			font-size: 13px;
 		}
@@ -275,7 +275,14 @@
 					</div>		
 					<br>
 					
+	
+
+				
+				
+				</div>
+				<div class="rightBlock3">
 					
+									
 					<div class="p_type">
 						<label>반려견 견종</a></label><br>
 						<input type="text" name="p_type" id="p_type">
@@ -284,11 +291,8 @@
 						<p id="typeInput"></p>
 					</div>		
 					<br>
-
-				
-				
-				</div>
-				<div class="rightBlock3">
+					
+					
 					<div class="p_gender">
 						<label>성별</label><br>
 							<select class="p_gender" name="p_gender" id="p_gender">
@@ -315,6 +319,7 @@
 					</div>
 					<br>
 					<div class="upload">
+<%-- 				
 						<div style="border: 1px solid #d7d7d7;
 					                width: 140px;
 					                height: 140px;">
@@ -326,6 +331,7 @@
 						     	<input type="file"  name="imageFileName"  onchange="readURL(this);" />
 							</div>
 						</div>
+--%>
 					</div>
 				</div>
 			</div>

@@ -12,7 +12,7 @@
    		width: 500px;
 	    height: 365px;
 	    font-size: 16px;
-	    margin-left: -11%;
+	    margin-left: -6%;
 	}
 	
 	.input{

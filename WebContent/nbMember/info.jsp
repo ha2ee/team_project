@@ -142,7 +142,7 @@
 	.btn_dd{
 		position: relative;
 	    float: left;
-	    width: 513px;
+	    width: 750px;
 	    padding: 12px 0 12px 28px;
 	}
 	
@@ -172,7 +172,7 @@
 	}
 	
 	.saveBtn{
-		margin-left: 90px;
+		margin-left: 35px;
 		margin-top: 13px;
 	}
 	
@@ -196,6 +196,9 @@
 			<div class= "userInfo">
 				<div class="profile">
 					<img src="<%=contextPath%>/images/profile.png" class="userImg">
+				</div>
+				<div>
+					<button>사진 등록</button>				
 				</div>
 			</div>
 			<div class="user" >
@@ -290,6 +293,8 @@
 						<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">뒤로가기</a>				
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a id="changeBtn" href="<%=contextPath%>/member/changeInfo.me" class="roundBtn blueBtn">수정하기</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button  id="delBtn" class="roundBtn blueBtn">회원탈퇴</button>
 					</div>
 				</dd>	
 				
@@ -304,7 +309,7 @@
 		  $("#backBtn").mouseover(function(){
 
 		    $("#backBtn").css("background-color", "#061f5c");
-		    $("#backBtn").css("color", "white");
+ 		    $("#backBtn").css("color", "white");
 			
 		  });
 
@@ -319,15 +324,31 @@
 		  $("#changeBtn").mouseover(function(){
 
 		    $("#changeBtn").css("background-color", "white");
-		    $("#changeBtn").css("color", "#33333");
+ 		    $("#changeBtn").css("color", "#23527c");
 		  });
 
 		  $("#changeBtn").mouseout(function(){
 
 		    $("#changeBtn").css("background-color", "#061f5c");
-		    $("#changeBtn").css("color", "#white");
+		    $("#changeBtn").css("color", "white");
 
 		  });
+		
+		  
+		  
+		  $("#delBtn").mouseover(function(){
+
+		    $("#delBtn").css("background-color", "white");
+		    $("#delBtn").css("color", "#23527c");
+		  });
+
+		  $("#delBtn").mouseout(function(){
+
+		    $("#delBtn").css("background-color", "#061f5c");
+		    $("#delBtn").css("color", "white");
+
+		  });
+		
 
 		  
 		  
