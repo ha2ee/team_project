@@ -554,21 +554,15 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
     // JQUERY - 화면이 요청 되었을 때,
     $(document).ready(function(){
 
-
     	// 리셋 버튼을 눌렀을 때,
     	$("#resetbtn").on("click",function(){
 
-    		
-    		
     		//현재 보이는 창이 현재달 이면
     		var dmon = document.getElementById("calMonth").innerText = autoLeftPad((today.getMonth() + 1), 2);
     		
     		console.log(dmon);
     		
     		if(dmon == 03){
-    			
-
-    			
     			
     			//예약 정보를 초기화 시킨다.
         		$("#result > div > input").attr("value", "");
@@ -581,7 +575,6 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
        	    	buildCalendar();
        	    	
     		}else{
-    			
     			
     			//예약 정보를 초기화 시킨다.
         		$("#result > div > input").attr("value", "");
@@ -611,11 +604,11 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
         				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
         				if(list2[i].toString() == j.toString()) {
         					
-        					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+        					$("#c"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
         					
         					// 만약에 현재일+7일보다 낮은 숫자에 예약이 있을경우
        						if(mtd > list2[i]) {
-       	                        $("#"+list2[i]).css("font-size", "16px").css("color", "E5E5E5").text(list2[i]);
+       	                        $("#c"+list2[i]).css("font-size", "16px").css("color", "E5E5E5").text(list2[i]);
        							
 
                       		 }
@@ -634,7 +627,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 	    				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
 	    				if(list[i].toString() == j.toString() ){
 	    					
-	    					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+	    					$("#c"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
 						
     					
 		   				}
@@ -752,11 +745,11 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
         				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
         				if(list2[i].toString() == j.toString()) {
         					
-        					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+        					$("#c"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
         					
         					// 만약에 현재일+7일보다 낮은 숫자에 예약이 있을경우
        						if(mtd > list2[i]) {
-       	                        $("#"+list2[i]).css("font-size", "16px").css("color", "E5E5E5").text(list2[i]);
+       	                        $("#c"+list2[i]).css("font-size", "16px").css("color", "E5E5E5").text(list2[i]);
        							
 
                       		 }
@@ -775,7 +768,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 	    				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
 	    				if(list[i].toString() == j.toString() ){
 	    					
-	    					$("#"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+	    					$("#c"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
 						
     					
 		   				}

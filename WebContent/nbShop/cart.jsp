@@ -21,41 +21,20 @@
 <head>
 <style>
 
+.modal{
 
-   .modal {
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-   }
+position: fixed;
+width: 1200px;
+height: 750px;
+margin: 0 auto;
+top: 360px;
+left: 0;
+flex-wrap: nowrap;
+justify-content: center;
+align-items: center;
 
-   .modal .bg {
-     width: 100%;
-     height: 100%;
-     background-color: rgba(0, 0, 0, 0.6);
-   }
-
-   .modalBox {
-     position: absolute;
-     background-color: #fff;
-     width: 400px;
-     height: 200px;
-     padding: 15px;
-   }
-
- #popBtn {
-     display: block;
-     width: 80px;
-     margin: 0 auto;
-   }
-
-   .hidden {
-     display: none;
-   }
+display : none;
+}
 
 </style>
 <!--     CSS car.css 추가 -->
@@ -434,11 +413,8 @@
 	
 	
 <!-- 	상세보기 관련 vector 구문 -->
-	<div class="modal hidden">
-	<div class="bg">
+	<div class="modal">
 	<div class="modalBox">
-	<c:set var="a" value="1"/>
-	<c:forEach var="vo"  items="${vector}" >		
 	<div id="pop_mem_box">
 		<div id= "pop_num">
 			<input type="text" value="예약 번호" readonly="readonly"  />
@@ -532,17 +508,14 @@
 			<input type="text" value="예약일7" readonly="readonly"  />
 		</div>
 		<div id= "pop_cnt">
-			<input type="text" value="수강 횟수 readonly="readonly"  />
+			<input type="text" value="수강 횟수" readonly="readonly"  />
 		</div>
 		<div id= "pop_totalprice">
 			<input type="text" value="수강 금액" readonly="readonly"  />
 		</div>
 	</div>
-	<c:set var="h" value="${h+1}" /> 
-	</c:forEach>
 	<div id="pop_btn">
-		<input id="popBtn" class="btn" type="button" value="닫기"/>
-	</div>
+		<input id="popBtn" class="btn" type="button"  onclick="close()" value="닫기"/>
 	</div>
 	</div>
 	</div>
@@ -553,6 +526,14 @@
 <script>
 
 $(document).ready(function(){
+	
+	// 모달창의 닫기 버튼을 눌렀을 때,
+	$("#popBtn").on("click", function(){
+		
+		$(".modal").css("display", "none");
+		
+	})
+	
 	
 	var i= 0;
 	var x = 0;
@@ -584,15 +565,35 @@ $(document).ready(function(){
 
 })
 
+// 장바구니에서 각 버튼을 눌렀을 때,
 function reply_click(clicked_id){
-
-	alert(clicked_id);
 	
+	//1. vector를 가져온다.
 	
-	  
+	//2. 가져온 vector를 저장시킨다.
+	
+	for(var num=1; num <= ${vector.size()}; num++ ){
+	
+		if(clicked_id == "eduInfo"+num){
+			
+		var edu_num = "${vector}";
+		
+		for(var i in edu_num){
+			
+			alert(edu_num[i]);
+		}
+		
+// 		console.log(edu_num.toString());
+// 		document.getElementById("pop_num").value = edu_num;
+			
+			
+			
+		}
+	}
 
+    var CloseModal = document.querySelector(".modal");
+    CloseModal.style.display = "flex";
 }
-
 
 // 이미지 미리보기 
 //마우스 오버시 preview 생성
