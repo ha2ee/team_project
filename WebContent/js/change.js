@@ -93,7 +93,8 @@
 	    //=====================================================================================================
 			
 	    	if(confirm("정보를 수정하시겠습니까??")){
-				
+		        
+	    		$("form").attr("action", "http://localhost:8090/TeamProject/member/updateInfo.me");
 				$("form").submit();
 				
 			}else {

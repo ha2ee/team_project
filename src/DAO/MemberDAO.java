@@ -992,5 +992,40 @@ public class MemberDAO {
 		
 		return result;
 	}
+
+	public int imgUpdate(String p_mem_id, String fileName) {
+		
+		System.out.println(p_mem_id);
+		System.out.println(fileName);
+		
+		int result = 0; //
+				
+			try {
+				con = ds.getConnection();
+				
+				String query = "update YS_MEMBER set mem_img='" + fileName + "'"
+										   + " WHERE mem_id ='"+ p_mem_id +"'";
+	
+				
+				pstmt = con.prepareStatement(query);
+				result = pstmt.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				
+			} finally {
+				
+				try {
+					closeResource();
+				} catch (Exception e) {
+					System.out.println("petInfoChange메소드 내부에서 SQL실행 오류" + e );
+					e.printStackTrace();
+				}	
+			
+			}
+		return result;
+	
+	}
 		
 }

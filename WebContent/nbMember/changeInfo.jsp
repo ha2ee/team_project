@@ -187,10 +187,6 @@ String id = (String)session.getAttribute("id");
 	}
 	
 	
-	.address1{
-		
-	
-	}
 	.address4{
 		width: 49%;
 	}
@@ -272,7 +268,7 @@ String id = (String)session.getAttribute("id");
 	    margin-bottom: 15px;
     	font-weight: bold;
 		font-size: 21px;
-		margin-top: 250px;
+		margin-top: 220px;
 	}
 	
 	.address1{
@@ -292,7 +288,7 @@ String id = (String)session.getAttribute("id");
 	}
 	
 	.img_dt{
-		padding-top: 31px;
+		padding-top: 97px;
 		border-top: 1px solid #e9e9e9;
 	    display: table-cell;
 	    position: relative;
@@ -325,11 +321,55 @@ String id = (String)session.getAttribute("id");
 		height :170px;
 	}
 	
+		
+		
+	input[type=file] {
+ 	    width: 124px;
+	    max-width: 100%;
+	    color: #444;
+	    padding: 10px;
+	}
+		
+	input[type=file]::file-selector-button {
+	  	margin-right: 20px;
+		border: none;
+		background: white;
+		padding: 10px 20px;
+		border-radius: 10px;
+		color: black;
+		cursor: pointer;
+		transition: background .2s ease-in-out;
+ 		border: 1px solid #231815;
+	}
+		
+	.imgBtn{
+		margin-top: -50px;
+	}
+	 
+	 .imgSave{
+        width: 102px;
+	    background: white;
+	    padding: 11px 20px;
+	    border-radius: 10px;
+	    color: black;
+	    border: 1px solid #231815;
+	    height: 41px;
+	 }
+	 
+	 
+	 
+	 
+	input[type=file]::file-selector-button:hover {
+ 		 background: #061F5C;
+		 color:white;
+		 border: 0px solid #231815;
+	}
+	 
 </style>
   
 </head>
 <body>
-	<form action="<%=contextPath%>/member/updateInfo.me">	
+	<form method="post">	
 		<div class="pet_total">
 			<hr>
 			
@@ -355,15 +395,28 @@ String id = (String)session.getAttribute("id");
 						<p>사진 등록</p>
 					</div>
 					<dl>
+						
+						
 						<dt class="img_dt">
 							<span>이미지</span>
 						</dt>
 						<dd class="img_dd">
 							<div class="img_div">
-							    <img  id="preview" src="<%=contextPath%>/images/profile.png" width=200 height=220 style="margin-right: 70px;"/>
-								<input type="file" name="fileNmae" id="fileNmae" class="fileNmae" >
+						    	<img  id="preview" src="<%=contextPath%>/images/profile.png">
+								<div class="imgBtn">
+									<label for="images" class="drop-container">
+						     		<input id="imgBtn" type="file"  name="imageFileName"  onchange="readURL(this);" />
+								   	</label>
+									<button id="imgSave" class="imgSave">저장</button>
+								</div>
+
+<!-- 				     	<input type="file"  name="imageFileName"  onchange="readURL(this);" /> -->
+<!-- 						<input type="file" name="fileNmae" id="fileNmae" class="fileNmae" > -->
+							
 							</div>
 						</dd>
+					
+					
 					</dl>
 				<div>	
 					<div class="title2">
@@ -516,8 +569,23 @@ String id = (String)session.getAttribute("id");
 		    $("#changeBtn").css("color", "#white");
 
 		  });
-	
 		  
+		 
+		  $("#imgSave").mouseover(function(){
+
+		    $("#imgSave").css("background-color", "#061f5c");
+		    $("#imgSave").css("color", "white");
+			
+		  });
+
+		  $("#imgSave").mouseout(function(){
+
+		    $("#imgSave").css("background-color", "transparent");
+		    $("#imgSave").css("color", "black");
+
+		  });
+			
+			  
 		    function sample4_execDaumPostcode() {
 		        new daum.Postcode({
 		            oncomplete: function(data) {
@@ -625,6 +693,12 @@ String id = (String)session.getAttribute("id");
 		  }
 				  
 		  
+		 $(".imgSave").click(function () {
+		        $("form").attr("action", "<%=contextPath%>/member/imgUpdate.me");
+		        $("form").attr("enctype", "multipart/form-data");
+		        $("form").submit();
+		 });
+
 	
 	</script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>

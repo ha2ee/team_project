@@ -1,11 +1,13 @@
 <%@page import="VO.TrainerVo"%>
 <%@page import="VO.MemberVo"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
+	String memImgPath = contextPath + "/memImg/";
 %>
 
 <%
@@ -194,12 +196,17 @@
 		
 		<div class="leftBlock">
 			<div class= "userInfo">
+				
+ 				<c:set var="img" items="${requestScope.mem_vo}">
 				<div class="profile">
-					<img src="<%=contextPath%>/images/profile.png" class="userImg">
+<%-- 					<img src="<%=contextPath%>/images/profile.png" class="userImg"> --%>
+					<img src="<%=memImgPath%>${img.mem_img}" class="userImg">
+				
+				
 				</div>
-				<div>
-					<input type="file" value="사진 등록" />				
-				</div>
+				
+				
+				</c:set>
 			</div>
 			<div class="user" >
 				<div class="userName"><%=mem_name + tr_name%>님</div>
