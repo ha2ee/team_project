@@ -122,7 +122,6 @@
   if(request.getAttribute("nowBlock") != null){
     //BoardController로 부터 전달 받는다.
     nowBlock = Integer.parseInt(request.getAttribute("nowBlock").toString());
-    
   }
   
   totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
@@ -169,7 +168,7 @@
           <tr>
                 <td><%=vo.getB_idx()%></td>
                 <td>
-									<a href="read.fb?b_idx=<%=vo.getB_idx()%>">
+									<a href="read.fb?b_idx=<%=vo.getB_idx()%>&nowBlock=<%=nowBlock%>&nowPage=<%=nowPage%>">
 										<%=vo.getB_title()%>
 									</a>                </td>
                 <td>

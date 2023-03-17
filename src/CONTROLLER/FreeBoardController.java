@@ -30,6 +30,7 @@ public class FreeBoardController extends HttpServlet {
 
   // FreeBoardDAO객체를 저장할 참조변수 선언
   FreeBoardDAO boarddao;
+  CommentVO commentvo;
 
 //   MemberDAO객체를 저장할 참조변수 선언
    MemberDAO memberdao;
@@ -42,6 +43,7 @@ public class FreeBoardController extends HttpServlet {
     boarddao = new FreeBoardDAO();
      memberdao = new MemberDAO();
     // membervo = new MemberVo();
+    commentvo = new CommentVO();
   }
 
   @Override
@@ -109,12 +111,6 @@ public class FreeBoardController extends HttpServlet {
 //========================글을 작성하는 페이지/write.fb ===============================
       case "/write.fb":
 
-        // String unknown = request.getParameter("gildong");
-        // //새글을 입력하는 화면에 로그인한 회원의 이름, 아이디, 이메일을 보여주기 위해
-        // //member테이블에서 SELECT하여 가져와야 합니다.
-        // HttpSession session = request.getSession();
-        // memberid = (String)session.getAttribute("id");
-        //
         request.setAttribute("center", "nbBoard/write.jsp");
         nextPage = "/nbMain.jsp";
         break;
@@ -122,9 +118,6 @@ public class FreeBoardController extends HttpServlet {
 //========================글을  작성하는 작업/writePro.fb =============================
       case "/writePro.fb":
 //      //요청한 값 얻기
-      
-//      //세션값으로 아이디 + 닉네임을 구할 것입니다.
-//        HttpSession session = request.getSession();
         String memberid   = (String)session.getAttribute("id");
         String nickname = memberdao.getMemNickName(memberid);
         
@@ -158,13 +151,15 @@ public class FreeBoardController extends HttpServlet {
       
       out.print("<script>");
       out.print(" alert( '" +result+" 글 추가 성공!' );");
-      out.print(" location.href='"+ contextPath +"/freeboad/list.fb?nowPage=0&nowBlock=0'");
+      out.print(" location.href='"+ contextPath +"/freeboard/list.fb?nowPage=0&nowBlock=0'");
       out.print("</script>");
       
-       return;
+      return;
 //========================글을  작성하는 작업/writePro.fb =============================
 //====================게시글 한 줄 클릭시 글을 읽는 /read.fb =========================
       case "/read.fb":
+        nowBlock = request.getParameter("nowBlock");
+        nowPage = request.getParameter("nowPage");
         // //요청한 값 얻기
         int b_idx = Integer.parseInt(request.getParameter("b_idx"));
         // //글 번호 (b_idx)를 이용해 수정 또는 삭제를 위해 DB로 부터 조회하기
@@ -189,6 +184,8 @@ public class FreeBoardController extends HttpServlet {
         request.setAttribute("vo", vo);
         request.setAttribute("likeCheck", likeCheck);
         request.setAttribute("center", "nbBoard/read.jsp");
+        request.setAttribute("nowBlock", nowBlock);
+        request.setAttribute("nowPage", nowPage);
 
         nextPage = "/nbMain.jsp";
         break;
@@ -296,7 +293,6 @@ public class FreeBoardController extends HttpServlet {
          nextPage = "/freeboard/list.fb";
          break;
 //=====================게시글 수정 버튼 클릭시 /modify.fb ==========================
-
 //=====================게시글 삭제 버튼 클릭시 /del.fb ==========================
       case "/del.fb":
         int idx1 = Integer.parseInt( request.getParameter("b_idx")  );
@@ -317,8 +313,6 @@ public class FreeBoardController extends HttpServlet {
 
         return;
 //=====================게시글 삭제 버튼 클릭시 /del.fb ==========================
-
-        
 //=====================댓글 작성 버튼 클릭시 /addcomment.do ==========================       
       case "/addcomment.do":
     	// 1. 데이터 가져오기(content, pseq)
@@ -327,7 +321,6 @@ public class FreeBoardController extends HttpServlet {
   		
   		// 2. DB 작업 > DAO 위임 > insert
   		CommentDAO dao = new CommentDAO();
-  		CommentVO commentvo = new CommentVO();
   		
   		session = request.getSession();
   		
@@ -365,17 +358,22 @@ public class FreeBoardController extends HttpServlet {
     	  break;
         
 //=====================댓글 작성 버튼 클릭시 /addcomment.do ========================== 
-    	  
 //=====================댓글 수정 버튼 클릭시 /upcomment.do ==========================       
       case "/upcomment.do":
     	// 1. 데이터 가져오기 (seq, pseq)
-    		String up_idx = request.getParameter("pseq"); // 보고있던 글번호(= 작성중인 댓글의 부모 글번호)
-    		String seq = request.getParameter("seq"); // 수정할 글번호
+    		String up_idx = request.getParameter("b_idx"); // 보고있던 글번호(= 작성중인 댓글의 부모 글번호)
+    		String seq = request.getParameter("seq2"); // 수정할 댓글번호
+    		String comment = request.getParameter("commupdate");
     		
     		// 2. DB 작업 > DAO 위임 > update
     		CommentDAO commentdao1 = new CommentDAO();
+    		 
+    		commentvo.setSeq(seq);
+    		commentvo.setPseq(up_idx);
+    		commentvo.setContent(comment);
+    		int u_result = commentdao1.upComment(commentvo); // 1, 0	
     		
-    		int u_result = commentdao1.upComment(seq); // 1, 0		
+    		
     		
     		// 3. 결과 후 처리
     		if (u_result == 1) {
@@ -398,7 +396,7 @@ public class FreeBoardController extends HttpServlet {
     			
     			writer.close();
     			
-    			return;
+    			return ;
     		}
         
 //끝=====================댓글 수정 버튼 클릭시 /upcomment.do ========================== 

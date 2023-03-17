@@ -116,7 +116,7 @@
     
   </head>
   <body style="font-size: 15px;">
-    
+<!--  스무스하게 내려갔다 올라가는 슬라이드??? 일단 킵
 <header>
   <div class="collapse bg-dark" id="navbarHeader">
     <div class="container">
@@ -148,7 +148,7 @@
     </div>
   </div>
 </header>
-
+ -->
 <main>
 
   <section class="py-5 text-center container">
@@ -158,7 +158,7 @@
         <p class="lead text-muted" style="font-size: 15px;">샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라</p>
         <p>
           <a class="btn btn-primary my-2" onclick="location.href='<%=contextPath%>/review/write.rv'" style="font-size: 15;">수강후기 작성</a>
-          <a href="#" class="btn btn-secondary my-2" style="font-size: 15">추가할 액션?</a>
+<!--           <a href="#" class="btn btn-secondary my-2" style="font-size: 15">추가할 액션?</a> -->
         </p>
       </div>
     </div>

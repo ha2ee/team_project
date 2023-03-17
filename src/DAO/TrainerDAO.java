@@ -64,18 +64,18 @@ public class TrainerDAO {
 				trainervo = new TrainerVo();
 				trainervo.setTr_id(rs.getString("tr_id"));
 				trainervo.setTr_name(rs.getString("tr_name"));
-//				trainervo.setTr_pw(rs.getString("tr_img"));
+				trainervo.setTr_img(rs.getString("tr_img"));
 				trainervo.setTr_pw(rs.getString("tr_pw"));
 				trainervo.setTr_email(rs.getString("tr_email"));
 				trainervo.setTr_hp(rs.getString("tr_hp"));
 				trainervo.setTr_birth(rs.getString("tr_birth"));
 				trainervo.setTr_gender(rs.getString("tr_gender"));
-//				trainervo.setTr_joindate(rs.getDate("tr_joindate"));
+				trainervo.setTr_joindate(rs.getDate("tr_joindate"));
 				trainervo.setTr_address1(rs.getString("tr_address1"));
 				trainervo.setTr_address2(rs.getString("tr_address2"));
 				trainervo.setTr_address3(rs.getString("tr_address3"));
 				trainervo.setTr_address4(rs.getString("tr_address4"));
-				trainervo.setTr_address4(rs.getString("tr_address5"));
+				trainervo.setTr_address5(rs.getString("tr_address5"));
 				
 			}
 			

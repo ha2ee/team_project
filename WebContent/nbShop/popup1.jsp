@@ -54,7 +54,7 @@
 <head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!--     CSS popup1.css 추가 -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/popup.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/popup1.css">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -90,6 +90,7 @@
 		opener.document.getElementById("pet_age").value = document.getElementById("pet_age").value;
 		opener.document.getElementById("pet_weight").value = document.getElementById("pet_weight").value;
 		
+		
 		// 성별 정보 
 		if(document.getElementById("pet_gender").value == "남"){
 			
@@ -115,6 +116,9 @@
 			opener.document.getElementById("pet_op3").checked = true;
 			
 		}
+		
+		opener.document.getElementById("nb_submitbtn").style.display = "block";
+		opener.document.getElementById("pet_edu_img").value = "<%=pet_img%>";
 
 			alert('"<%=pet_name%>"의 정보 불러오기 완료!');
 		
