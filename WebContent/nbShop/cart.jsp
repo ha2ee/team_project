@@ -24,15 +24,68 @@
 
 .modal {
 
-position: fixed;
-width: 1200px;
-height: 750px;
-margin: 0 auto;
-top: 360px;
-left: 0;
-flex-wrap: nowrap;
-justify-content: center;
-align-items: center;
+	background : gray;
+    position: relative;
+    width: 1200px;
+    height : 750px;
+    margin: 0 auto;
+    top: -920px;
+    left: 0;
+}
+
+.modal > div {
+
+	position : relative;
+	width : 100%;
+	height : 100%;
+	margin : 0 auto;
+	top : 0;
+	left : 0;
+	float : left;
+}
+
+
+.modal > div > div{
+
+
+	position : relative;
+	width : 25%;
+	height : 25%;
+	margin : 0 auto;
+	top : 0;
+	left : 0;
+	float : left;
+
+
+}
+
+.modal > div > div > a{
+
+
+    position: relative;
+    width: 25%;
+    height: 25%;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    float: left;
+    text-align: right;
+   	text-decoration: none;
+
+
+}
+
+.modal > div > div > input{
+
+
+	position : relative;
+	width : 100%;
+	height : 100%;
+	margin : 0 auto;
+	top : 0;
+	left : 0;
+
+
 }
 
 </style>
@@ -105,13 +158,10 @@ align-items: center;
 				</div>
 				<div id="InfoBox">
 					<div id="edu_info">
-						<a id="eduInfo">상세보기</a>
-					</div>
-					<div id="Cart_mod">
-						<a id="cartMod">수정</a>
+						<a id="eduInfo">상세 보기</a>
 					</div>
 					<div id="Cart_del">
-						<a id="cartDel">비우기</a>
+						<a id="cartDel">예약 삭제</a>
 					</div>
 				</div>
 			</div>
@@ -120,10 +170,11 @@ align-items: center;
 <!-- 수강신청정보 -->
 	<c:set var="j" value="1"/>
 	<div id="edu_res_box">
-	<c:forEach var="vo"  items="${vector}" >
 	<c:if test="${vector.isEmpty()}">
-		<h1>예약된 정보가 없습니다!!</h1>	
+		<h3><Strong>예약된 정보가 없습니다!!</Strong></h3>	
 	</c:if>
+	<c:forEach var="vo"  items="${vector}" >
+
 		<div id="dataBox">
 				<!--예약번호 -->
 				<div id="eduNumBox">
@@ -205,19 +256,13 @@ align-items: center;
 				<!-- 상세 보기 -->
 				<div id="edu_info_box">
 					<div id="edu_info${j}">
-						<input class="btn" type="button" id="eduInfo${j}" onclick=reply_click(this.id) value="상세보기"  />
+						<input class="btn" type="button" id="eduInfo${j}" onclick=reply_click(this.id) value="상세 보기"  />
 					</div>
 				</div>
-				<!-- 비우기 -->
+				<!-- 예약 삭제 -->
 				<div id="cart_del_box">	
 					<div id="cart_del${j}">
-						<input class="btn" type="button" id="cartDel${j}" onclick=reply_click(this.id) value="비우기" />
-					</div>
-				</div>
-				<!-- 수정 -->
-				<div id="cart_mod_box">	
-					<div id="cart_mod${j}">
-						<input class="btn" type="button" id="cartMod${j}" onclick=reply_click(this.id) value="수정" />
+						<a type="button" id="cartDel${j}"  href="<%=request.getContextPath()%>/nbOrder/eduDel.od?id=<%=id_%>&edu_num=${vo.edu_num}"  onclick='window.confirm("정말 삭제하시겠습니까?")'>예약 삭제</a>
 					</div>
 				</div>
 			</div>	
@@ -394,17 +439,17 @@ align-items: center;
 			<div id ="edu_shop_price">
 				<a style="width: 50% " >수강 금액</a>
 				<a style="width: 50% ">샵 금액</a>
-				<input id="eduPrice" type="text" value="수강 금액" readonly="readonly" />
-				<input type="text" value="샵 금액" readonly="readonly"  />
+				<input id="eduPrice" type="text" value="" readonly="readonly" />
+				<input type="text" value="" readonly="readonly"  />
 			</div>
 			<div id="edu_shop_total_price">
 				<a>총 금액</a>
-				<input type="text" value="총금액" readonly="readonly"  />
+				<input type="text" value="" readonly="readonly"  />
 			</div>
 		</div>
 
 		<div id="confirm_box">
-			<a type="button" class="btn" >모두 비우기</a>
+			<a type="button"  class="btn" href="<%=request.getContextPath()%>/nbOrder/eduAlldel.od?id=<%=id_%>"  onclick='window.confirm("수강 예약과 물품이 리스트에서 모두 삭제됩니다")'>모두 삭제하기</a>
 			<a type="button"  class="btn" >결제 하기</a>
 		</div>
 
@@ -415,10 +460,13 @@ align-items: center;
 
 	<!-- 	늘봄 샵 상세보기 관련 vector 구문 -->
 	
-		<div class="modal">
+		<div class="modal" style="display : none;">
 		<c:set var="a" value="1"/>
+		<c:if test="${vector.isEmpty()}">
+		<h3><Strong>예약된 정보가 없습니다!!</Strong></h3>	
+		</c:if>
 		<c:forEach var="vo"  items="${vector}" >
-		<div class="modalBox${a}">
+		<div id="modalBox${a}" style="display : none;">
 		<div id="pop_mem_box">			
 			<div id= "pop_num${a}">
 				<a id="pop1">예약 번호</a>
@@ -467,7 +515,7 @@ align-items: center;
 		</div>	
 	
 		<div id= "pop_pet_box">
-			<div id= "pop_pet_img${a}">
+			<div id= "pop_pet_img${a}" style="width: 200px; height : 200px; margin : 0 auto; position : relative; left: 0; top :0;">
 				<a id="pop11">반려견 사진</a>
 				<img id="popPetImg${a}" src="<%=request.getContextPath()%>/nbShop/img/${vo.pet_img}"  />
 			</div>
@@ -498,7 +546,7 @@ align-items: center;
 		</div>
 		
 		<div id= "pop_tr_box">
-			<div id= "pop_tr_img${a}">
+			<div id= "pop_tr_img${a}" style="width: 200px; height : 200px; margin : 0 auto; position : relative; left: 0; top :0;">
 				<a id="pop18">훈련사 사진</a>
 				<img id="popTrImg${a}" src="<%=request.getContextPath()%>/nbShop/img/${vo.tr_img}"  />
 			</div>
@@ -549,7 +597,7 @@ align-items: center;
 		</div>
 		
 		<div id="pop_btn">
-			<input id="popBtn" class="btn" type="button"  onclick="close()" value="닫기"/>
+			<input class="btn popBtn" type="button"  value="닫기"/>
 		</div>
 		
 
@@ -567,17 +615,14 @@ align-items: center;
 
 $(document).ready(function(){
 	
-	// 페이지가 열렸을때 modal의 display를 none 시킨다.
-	$(".modal").css("display", "none");
-	
-
 	// 모달창의 닫기 버튼을 눌렀을 때,
-	$("#popBtn").on("click", function(){
+	$(".popBtn").on("click", function(){
 		
 		$(".modal").css("display", "none");
+		$(".modal > div").css("display", "none");
 		
 	})
-	
+
 	
 	var i= 0;
 	var x = 0;
@@ -612,37 +657,19 @@ $(document).ready(function(){
 // 장바구니에서 각 버튼을 눌렀을 때,
 function reply_click(clicked_id){
 	
-	var modal = document.getElementsByClassName("modal");
-	
-	for(var i=1; i <= ${vector.size()}; i++){
+	// vector 배열의 길이만큼의 배열을 가져오고
+	for(var a=1; a <= ${vector.size()}; a++){
 
 			
-		// 만약에 eduinfo 일때
-		if(clicked_id == "eduInfo"+i){
-			
-			// eduinfo1 일 때,
-			if(clicked_id == "eduInfo1"){
-				
-				document.getElementsByClassName("modal").style.display = "block";
-				document.getElementByClassName("modalBox1").style.display = "block";
+		// 만약 클릭한 아이디가 eduInfo+배열길이숫자와 동일하다면,
+		if(clicked_id == "eduInfo"+a){
 
-
-			}
-			
-			
-		}else if(clicked_id == "cartMod"+i){
-			
-			
-			
-		}else if(clicked_id = "cartDel"+i){
-			
-			
-			
-			
+			// 모달창을 오픈시킨다.
+			$(".modal").css("display", "block");
+			$("#modalBox"+a).css("display", "block");
 		}
-
+		
 	}
-
 }
 
 // 이미지 미리보기 
