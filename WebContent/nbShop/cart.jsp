@@ -462,9 +462,6 @@
 	
 		<div class="modal" style="display : none;">
 		<c:set var="a" value="1"/>
-		<c:if test="${vector.isEmpty()}">
-		<h3><Strong>예약된 정보가 없습니다!!</Strong></h3>	
-		</c:if>
 		<c:forEach var="vo"  items="${vector}" >
 		<div id="modalBox${a}" style="display : none;">
 		<div id="pop_mem_box">			
