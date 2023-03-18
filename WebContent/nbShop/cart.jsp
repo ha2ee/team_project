@@ -22,7 +22,7 @@
 <head>
 <style>
 
-.modal{
+.modal {
 
 position: fixed;
 width: 1200px;
@@ -33,8 +33,6 @@ left: 0;
 flex-wrap: nowrap;
 justify-content: center;
 align-items: center;
-
-display : none;
 }
 
 </style>
@@ -417,11 +415,10 @@ display : none;
 
 	<!-- 	늘봄 샵 상세보기 관련 vector 구문 -->
 	
-
+		<div class="modal">
 		<c:set var="a" value="1"/>
 		<c:forEach var="vo"  items="${vector}" >
-		<div class="modal${a}">
-		<div class="modalBox">
+		<div class="modalBox${a}">
 		<div id="pop_mem_box">			
 			<div id= "pop_num${a}">
 				<a id="pop1">예약 번호</a>
@@ -472,7 +469,7 @@ display : none;
 		<div id= "pop_pet_box">
 			<div id= "pop_pet_img${a}">
 				<a id="pop11">반려견 사진</a>
-				<img id="popPetImg${a}" src="<%request.getContextPath()%>/nbShop/img/${vo.pet_img}"  />
+				<img id="popPetImg${a}" src="<%=request.getContextPath()%>/nbShop/img/${vo.pet_img}"  />
 			</div>
 			<div id= "pop_pet_name${a}">
 				<a id="pop12">반려견 이름</a>
@@ -503,7 +500,7 @@ display : none;
 		<div id= "pop_tr_box">
 			<div id= "pop_tr_img${a}">
 				<a id="pop18">훈련사 사진</a>
-				<img id="popTrImg${a}" src="<%request.getContextPath()%>/nbShop/img/${vo.tr_img}"  />
+				<img id="popTrImg${a}" src="<%=request.getContextPath()%>/nbShop/img/${vo.tr_img}"  />
 			</div>
 			<div id= "pop_tr_name${a}">
 				<a id="pop19">훈련사 이름</a>
@@ -558,9 +555,9 @@ display : none;
 
 		
 	</div>
-	</div>
-		<c:set var="b" value="${b+1}" /> 
+		<c:set var="a" value="${a+1}" /> 
 		</c:forEach>
+	</div>
 <!-- 		늘봄 샵 상세보기 끝 -->
 	<br><br><br><br><br>
 	
@@ -570,6 +567,10 @@ display : none;
 
 $(document).ready(function(){
 	
+	// 페이지가 열렸을때 modal의 display를 none 시킨다.
+	$(".modal").css("display", "none");
+	
+
 	// 모달창의 닫기 버튼을 눌렀을 때,
 	$("#popBtn").on("click", function(){
 		
@@ -610,25 +611,38 @@ $(document).ready(function(){
 
 // 장바구니에서 각 버튼을 눌렀을 때,
 function reply_click(clicked_id){
+	
+	var modal = document.getElementsByClassName("modal");
+	
+	for(var i=1; i <= ${vector.size()}; i++){
 
-	// for문을 통해 인덱스 번호를 가져온다
-// 	for(var idx=1; idx <= ${vector.size()}; idx++ ){
+			
+		// 만약에 eduinfo 일때
+		if(clicked_id == "eduInfo"+i){
+			
+			// eduinfo1 일 때,
+			if(clicked_id == "eduInfo1"){
+				
+				document.getElementsByClassName("modal").style.display = "block";
+				document.getElementByClassName("modalBox1").style.display = "block";
 
 
-		// 해당되는 버튼을 눌렀을 때,
-		if(clicked_id == "eduInfo"+idx){
-
-			//해당되는 상세 정보를 가져와서 div로 값을 출력한다.
+			}
+			
+			
+		}else if(clicked_id == "cartMod"+i){
+			
+			
+			
+		}else if(clicked_id = "cartDel"+i){
+			
+			
+			
 			
 		}
-		
 
-// 		document.getElementById("pop_num").value = edu_num;
+	}
 
-    var CloseModal = document.querySelector(".modal");
-    CloseModal.style.display = "flex";
-    
-    
 }
 
 // 이미지 미리보기 

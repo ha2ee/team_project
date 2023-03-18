@@ -163,7 +163,6 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 
                 column.innerText = autoLeftPad(day, 2);
                 column.setAttribute('id', "c"+day);
-                column.setAttribute('onClick', "change()");
                 column.align = "center";
 
 
@@ -746,15 +745,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
         				if(list2[i].toString() == j.toString()) {
         					
         					$("#c"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
-        					
-        					// 만약에 현재일+7일보다 낮은 숫자에 예약이 있을경우
-       						if(mtd > list2[i]) {
-       	                        $("#c"+list2[i]).css("font-size", "16px").css("color", "E5E5E5").text(list2[i]);
-       							
 
-                      		 }
-       						
-       						
         				}
        				}
        			}
