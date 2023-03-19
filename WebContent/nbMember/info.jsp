@@ -22,6 +22,7 @@
 	String mem_address4 = mem_vo.getMem_address4();
 	String mem_address5 = mem_vo.getMem_address5();
 	String mem_img = mem_vo.getMem_img();
+	
 	String mem_address = mem_address2 + " " +mem_address4 + " " + mem_address5;
 	
 	TrainerVo tr_vo = (TrainerVo)request.getAttribute("tr_vo");
@@ -69,7 +70,8 @@
 	}
 	
 	.userImg {
-		border-radius: 70%
+		border-radius: 70%;
+		height: 158px;
 	}
 	
 	.userName, .userId {
@@ -197,16 +199,17 @@
 		<div class="leftBlock">
 			<div class= "userInfo">
 				
- 				<c:set var="img" items="${requestScope.mem_vo}">
+<%--  				<c:set var="img" value="${mem_vo}"> --%>
+<%-- 			<c:set var="img" items="${requestScope.mem_vo}"> --%>
 				<div class="profile">
 <%-- 					<img src="<%=contextPath%>/images/profile.png" class="userImg"> --%>
-					<img src="<%=memImgPath%>${img.mem_img}" class="userImg">
-				
+					<img src="<%=memImgPath+mem_img%>" class="userImg">
+					
 				
 				</div>
 				
 				
-				</c:set>
+<%-- 				</c:set> --%>
 			</div>
 			<div class="user" >
 				<div class="userName"><%=mem_name + tr_name%>님</div>

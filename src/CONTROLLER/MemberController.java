@@ -300,7 +300,7 @@ public class MemberController extends HttpServlet {
 			// 전체 메인화면 주소 저장
 			nextPage = "/nbMain.jsp";
 			
-			// # 4) "회원 정보" 요청 했을 때,
+		// # 4) "회원 정보" 요청 했을 때,
 		} else if (action.equals("/info.me")) {
 			
 			HttpSession session = request.getSession();
@@ -311,10 +311,13 @@ public class MemberController extends HttpServlet {
 			
 			TrainerVo tr_vo = memberdao.trRead(memberid);
 			
+			
 			// 중앙화면 주소 바인딩
 			request.setAttribute("center", "nbMember/info.jsp");
 			request.setAttribute("mem_vo", mem_vo);
 			request.setAttribute("tr_vo", tr_vo);
+			
+			
 			
 			// 전체 메인화면 주소 저장
 			nextPage = "/nbMain.jsp";
@@ -322,7 +325,7 @@ public class MemberController extends HttpServlet {
 			
 			
 			
-			// # 4-1) "회원 정보 삭제" 요청 했을 때,
+		// # 4-1) "회원 정보 삭제" 요청 했을 때,
 		} else if (action.equals("/delete.me")) {
 
 			System.out.println("nbMemberController -> /delete.me 요청!");
@@ -354,7 +357,7 @@ public class MemberController extends HttpServlet {
 
 			}
 
-			// # 4-2) "회원 정보 수정" 요청 했을 때,
+		// # 4-2) "회원 정보 수정" 요청 했을 때,
 		} else if (action.equals("/updateInfo.me")) {
 
 			System.out.println("nbMemberController -> /updateInfo.me 요청!");
