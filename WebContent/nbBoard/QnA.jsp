@@ -5,16 +5,21 @@
 <html>
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Layout.jsp</title>
+
 </head>
 
 <body>
 <div style="margin: 0 auto; width:1200px;">
 	<table cellpadding="0" cellspacing="0">
 		<tr>
-			<td width="70%" valign="top"><jsp:include page="left.jsp"
-					flush="false"></jsp:include></td>
+			<td width="70%" valign="top">
+			<jsp:include page="left.jsp">
+				<jsp:param value="left" name="left"/>
+			</jsp:include>
+			</td>
+					
 			<td width="30%" valign="top">
 				<!--  내용부분 :시작 -->
 
