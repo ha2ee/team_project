@@ -476,6 +476,8 @@ public class MemberController extends HttpServlet {
 			MemberVo mem_vo = memberdao.memRead(memberid);
 			TrainerVo tr_vo = memberdao.trRead(memberid);
 			
+			System.out.println("맴버사진:"+ mem_vo.getMem_img());
+			System.out.println("트레이너사진"+tr_vo.getTr_img());
 			
 			request.setAttribute("mem_vo", mem_vo);
 			request.setAttribute("tr_vo", tr_vo);
@@ -605,6 +607,49 @@ public class MemberController extends HttpServlet {
 		
 		String fileName = multipartRequest.getOriginalFileName("imageFileName");
 
+		
+		int result = memberdao.imgUpdate(P_mem_id,fileName);
+		System.out.println("result :"+ result);
+		
+		if(result == 0) {
+			out.println("<script>");
+			out.println("window.alert('수정실패 하였습니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			
+			return;
+			
+		} else if (result == 1) {
+			out.println("<script>");
+			out.println("window.alert('사진을 등록 하였습니다.');");
+			out.println("location.href='/TeamProject/member/info.me'");
+			out.println("</script>");				
+			
+			return;
+			
+		}
+		
+	}else if(action.equals("/petImgUpdate.me")) {
+		
+		System.out.println("nbMemberController -> /petImgUpdate.me 요청!");
+		
+		HttpSession session = request.getSession();
+		
+		String P_mem_id = ((String)session.getAttribute("id"));
+		
+//      //업로드 작업 중...
+		String directory = request.getServletContext().getRealPath("petImg");
+		File dir = new File(directory);
+		if (!dir.exists()) dir.mkdirs();
+		
+		System.out.println(directory);
+		int maxSize = 1024 * 1024 * 100;
+		String encoding = "utf-8";
+		
+		MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
+		
+		String fileName = multipartRequest.getOriginalFileName("petImageFileName");
+		
 		
 		int result = memberdao.imgUpdate(P_mem_id,fileName);
 		System.out.println("result :"+ result);

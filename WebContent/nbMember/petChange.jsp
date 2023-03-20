@@ -6,6 +6,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
+	String memImgPath = contextPath + "/memImg/";
 %>
 <%
 	MemberVo mem_vo = (MemberVo)request.getAttribute("mem_vo");
@@ -58,7 +59,8 @@
 	}
 	
 	.userImg{
-		border-radius: 70%
+		border-radius: 70%;
+		height: 158px;
 	}
 	
 	.userName,.userId{
@@ -253,7 +255,17 @@
 			<div class="leftBlock">
 				<div class= "userInfo">
 					<div class="profile">
-						<img src="<%=contextPath%>/images/profile.png" class="userImg">
+					<%
+						if(mem_img == "profile.png"){
+					%>
+  						<img src="<%=contextPath%>/images/profile.png" class="userImg">  
+					<%
+						}else{
+					%>
+						<img src="<%=memImgPath+mem_img%>" class="userImg">
+					<%
+						}
+					%>
 					</div>
 				</div>
 				<div class="user" >

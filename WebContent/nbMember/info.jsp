@@ -70,7 +70,7 @@
 	}
 	
 	.userImg {
-		border-radius: 70%;
+ 		border-radius: 50%; 
 		height: 158px;
 	}
 	
@@ -186,9 +186,6 @@
  	 	text-decoration: none;
 	}
 	
-	input{
-		border: none;
-	}	
 	
 </style>
 </head>
@@ -202,9 +199,20 @@
 <%--  				<c:set var="img" value="${mem_vo}"> --%>
 <%-- 			<c:set var="img" items="${requestScope.mem_vo}"> --%>
 				<div class="profile">
-<%-- 					<img src="<%=contextPath%>/images/profile.png" class="userImg"> --%>
-					<img src="<%=memImgPath+mem_img%>" class="userImg">
 					
+					<%
+						if(mem_img == "profile.png" || tr_img == "profile.png"){
+					%>
+  						<img src="<%=contextPath%>/images/profile.png" class="userImg">  
+					<%
+						}else{
+					%>
+						<img src="<%=memImgPath+mem_img+tr_img%>" class="userImg">
+					<%
+						}
+					%>
+				
+				
 				
 				</div>
 				
@@ -271,7 +279,7 @@
 				</dt>
 				<dd class="dd">
 					<div>
-						<input type="text" value="<%=mem_birth + tr_birth%>" readonly>						
+						<p><%=mem_birth + tr_birth%></p>						
 					</div>
 				</dd>			
 				<dt class="dt">
@@ -279,7 +287,7 @@
 				</dt>
 				<dd class="dd">
 					<div>
-						<input type="text" value="<%=mem_hp + tr_hp%>" readonly>						
+						<p><%=mem_hp + tr_hp%></p>					
 					</div>
 				</dd>			
 				<dt class="dt">
