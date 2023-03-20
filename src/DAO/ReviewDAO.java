@@ -110,6 +110,49 @@ public class ReviewDAO {
     return result;
   }
 
+  public ReviewVo boardRead(String loginid) {
+    ReviewVo vo = null;
+    try {
+      con = ds.getConnection();
+      
+      String sql = "SELECT * FROM REVIEW WHERE ID = ?";
+      pstmt = con.prepareStatement(sql);
+      pstmt.setString(1, loginid);
+      rs = pstmt.executeQuery();
+      while(rs.next()) {
+        vo.setId(rs.getString("id"));
+      }
+      
+    } catch (Exception e) {
+      System.out.println("boardRead 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
+      e.printStackTrace();
+    } finally {
+      closeResource();
+    }
+    return vo;
+  }
+
+  public int deleteOne(int idx) {
+    int result = 0;
+    try {
+      con = ds.getConnection();
+      
+      String sql = "DELETE FROM REVIEW WHERE IDX = ?";
+      pstmt = con.prepareStatement(sql);
+      pstmt.setInt(1, idx);
+      result = pstmt.executeUpdate();
+      
+    } catch (Exception e) {
+      System.out.println("deleteOne 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
+      e.printStackTrace();
+    } finally {
+      closeResource();
+    }
+    
+    return result;
+  }
+
+
  
   
 }

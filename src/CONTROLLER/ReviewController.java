@@ -76,9 +76,12 @@ public class ReviewController extends HttpServlet {
 //========================글 목록을 가져올 /list.fb ================================
       case "/list.rv":
         
+        String loginid = (String)session.getAttribute("id");
         list = reviewdao.reviewListAll();
+//        vo = reviewdao.boardRead(loginid);
         
         request.setAttribute("center", "nbBoard/reviewList.jsp");
+        request.setAttribute("vo", vo);
         request.setAttribute("list", list);
 
         nextPage = "/nbMain.jsp";
@@ -135,7 +138,21 @@ public class ReviewController extends HttpServlet {
       
        return;
 //========================글을  작성하는 작업/writePro.fb =============================
+//========================글 삭제하기 ================================
+      case "/del.rv":
         
+        int idx = Integer.parseInt( request.getParameter("idx") );
+        int result1 = reviewdao.deleteOne(idx);
+        
+        if(result1 == 1) {
+          out.println(1);
+        } else {
+          out.println(0);
+        }
+
+        return;
+        
+//========================글 삭제하기 ================================
       default:
         break;
     }

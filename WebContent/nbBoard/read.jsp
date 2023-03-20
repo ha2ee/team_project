@@ -204,6 +204,13 @@
         <c:set var="i" value="${i+1}"/>
         </c:forEach>  
       </table>
+      <%
+        if(id == null){
+      %>
+          <p>로그인을 해야 댓글 작성이 가능합니다.</p>
+      <% 
+        }else{
+      %>
       <form method="POST" action="<%=contextPath%>/freeboard/addcomment.do" id="SendComment">
         <table style="border: none;" id="tblAddComment" class="table table-bordered">
           <tr style="border: none;">
@@ -213,6 +220,9 @@
         </table>
         <input type="hidden" name="pseq" value="<%=b_idx%>" />
       </form>
+      <%
+        }
+      %>
     </div>
   <!-- 댓글끝------------------------------------ -->    
     <div style="margin-bottom: 2%">
