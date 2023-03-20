@@ -56,6 +56,7 @@
 		.post-body {
 		text-align : left;
 		  line-height: 1.5;
+		  min-height : 250px;
 		  
 		}
 		

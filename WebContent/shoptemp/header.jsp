@@ -20,42 +20,42 @@
             <li class="menu_item"><a href="" class="menu_link"><span class="top_menu">NEW</span></a></li>
             <li class="menu_item"><a href="" class="menu_link"><span class="top_menu">야외용품</span></a>
                 <ul class="submenu">
-                    <li class="submenu_item">목줄</li>
-                    <li class="submenu_item">산책용품</li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">목줄</a></li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">산책용품</a></li>
                 </ul>
             </li>
             <li class="menu_item"><a href="" class="menu_link"><span class="top_menu">패션</span></a>
                 <ul class="submenu">
-                    <li class="submenu_item">아우터</li>
-                    <li class="submenu_item">악세사리</li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">아우터</a></li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">악세사리</a></li>
                 </ul>
             </li>
             <li class="menu_item"><a href="" class="menu_link"><span class="top_menu">리빙</span></a>
                 <ul class="submenu">
-                    <li class="submenu_item">이동장</li>
-                    <li class="submenu_item">방석</li>
-                    <li class="submenu_item">식기 보관</li>
-                    <li class="submenu_item">위생 용품</li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">이동장</a></li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">방석</a></li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">식기 보관</a></li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">위생 용품</a></li>
                 </ul>
             </li>
             <li class="menu_item"><a href="" class="menu_link"><span class="top_menu">장난감</span></a>
                 <ul class="submenu">
-                    <li class="submenu_item">노즈워크</li>
-                    <li class="submenu_item">공</li>
-                    <li class="submenu_item">사운드</li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">노즈워크</a></li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">공</a></li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">사운드</a></li>
                 </ul>
             </li>
             <li class="menu_item"><a href="" class="menu_link"><span class="top_menu">훈련용품</span></a>
                 <ul class="submenu">
-                    <li class="submenu_item">가방</li>
-                    <li class="submenu_item">클리커</li>
-                    <li class="submenu_item">트레이너의류</li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">가방</a></li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">클리커</a></li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">트레이너의류</a></li>
                 </ul>
             </li>
             <li class="menu_item"><a href="" class="menu_link"><span class="top_menu">푸드</span></a>
                 <ul class="submenu">
-                    <li class="submenu_item">영양제</li>
-                    <li class="submenu_item">사료</li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">영양제</a></li>
+                    <li class="submenu_item"><a href="#" class="submenu_item_link">사료</a></li>
                 </ul>
             </li>
             <li class="menu_item"><a href="" class="menu_link"><span class="top_menu">늘봄</span></a></li>
