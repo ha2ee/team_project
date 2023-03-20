@@ -24,13 +24,308 @@
 
 .modal {
 
-	background : gray;
+    border: 1px solid #fbf3f7;
+    
+    background: #fbf3f7;
     position: relative;
     width: 1200px;
-    height : 750px;
+    height: 750px;
     margin: 0 auto;
     top: -920px;
     left: 0;
+    border-radius: 20px;
+    box-shadow: 1px 1px 15px 15px #f2dede;
+}
+
+
+#pop_title {
+
+	border : 1px solid pink;
+
+	position : relative;
+	margin: 15px 0;
+	text-align : center;
+	top : 0;
+	left : 0;
+	border-radius: 20px;
+	width : 98%;
+	height : 70px;
+	background : pink;
+
+}
+
+#pop_title > div{
+
+	border : 1px solid pink;
+
+	position : relative;
+	margin : 0 auto;
+	text-align : center;
+	top : 0;
+	left : 0;
+	width : calc(100%/3);
+	height : 100%;
+	float : left;
+	border-radius: 20px;
+	background : pink;
+
+}
+
+#pop_title > div > a {
+
+	display : inline-block;
+	position : relative;
+	margin : 0 auto;
+	text-align : center;
+	top : 0;
+	left : 0;
+	width : 100%;
+	height : 100%;
+	font-weight : bold;
+	font-size : 30px;
+	text-align: center;
+    line-height: 60px;
+    text-decoration: none;
+    color : #f05083;
+}
+
+#pop_mem_box {
+
+    border: 1px solid #f443368c;
+
+	position : relative;
+    width: 390px;
+    height: 550px;
+	margin : 0 auto;
+	top : 0;
+	left : 0;
+	border-radius: 15px;
+	float: left;
+	background : #f443368c;
+}
+
+#pop_mem_box > div {
+
+    border: 1px solid #f443368c;
+
+	position : relative;
+	width : 100%;
+	height: 50px;
+	margin : 0 auto;
+	top : 0;
+	left : 0;
+	border-radius: 15px;
+
+}
+
+#pop_mem_box > div > a {
+
+    border: 1px solid #f443368c;
+    
+    display: inline-block;
+    position: relative;
+    width: 48%;
+    height: 100%;
+    margin: 0 auto;
+    top: 0px;
+    left: -6px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    line-height: 50px;
+    background : #f443368c;
+}
+
+#pop_mem_box > div > input {
+
+	border: 1px solid #f443368c;
+
+    display: inline-block;
+    position: relative;
+    width: 48%;
+    height: 100%;
+    margin: 0 auto;
+    top: -3px;
+    left: 0;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+
+}
+
+#pop_pet_box {
+
+    border: 1px solid #f443368c;
+
+	position : relative;
+    width: 390px;
+    height: 551px;
+	margin : 0 auto;
+	top : 0;
+	left : 0;
+	border-radius: 15px;
+	float: left;
+	background : #f443368c;
+}
+
+#pop_pet_box > div {
+
+    border: 1px solid #f443368c;
+
+	position : relative;
+	width : 100%;
+	height: 56px;
+	margin : 0 auto;
+	top : 12px;
+	left : 0;
+	border-radius: 15px;
+
+}
+
+#pop_pet_box > div > a {
+
+    border: 1px solid #f443368c;
+    
+    display: inline-block;
+    position: relative;
+    width: 48%;
+    height: 100%;
+    margin: 0 auto;
+    top: 0;
+    left: -5px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    line-height: 50px;
+    background : #f443368c;
+}
+
+#pop_pet_box > div > input {
+
+	border: 1px solid #f443368c;
+
+    display: inline-block;
+    position: relative;
+    width: 48%;
+    height: 100%;
+    margin: 0 auto;
+    top: -2px;
+    left: 0;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+
+}
+
+#pop_tr_box {
+
+    border: 1px solid #f443368c;
+
+	position : relative;
+    width: 390px;
+    height: 551px;
+	margin : 0 auto;
+	top : 0;
+	left : 0;
+	border-radius: 15px;
+	float: left;
+	background : #f443368c;
+}
+
+#pop_tr_box > div {
+
+    border: 1px solid #f443368c;
+
+	position : relative;
+	width : 100%;
+	height: 32px;
+	margin : 0 auto;
+	top : 0;
+	left : 0;
+	border-radius: 15px;
+
+}
+
+#pop_tr_box > div > a {
+
+    border: 1px solid #f443368c;
+    
+    display: inline-block;
+    position: relative;
+    width: 48%;
+    height: 100%;
+    margin: 0 auto;
+    top: 0;
+    left: -5px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    line-height: 30px;
+    background : #fbeeee;
+}
+
+#pop_tr_box > div > input {
+
+	border: 1px solid #f443368c;
+
+    display: inline-block;
+    position: relative;
+    width: 48%;
+    height: 100%;
+    margin: 0 auto;
+    top: -1px;
+    left: 0;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+
+}
+
+#pop_btn {
+
+    border: 1px solid #f443368c;
+    position: relative;
+    width: 200px;
+    height: 60px;
+    margin: 0 auto;
+    top: 663px;
+    left: -14px;
+    border-radius: 20px;
+
+}
+
+#pop_btn > input {
+
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    top: -648px;
+    left: 0;
+    border-radius: 20px;
+
+
+}
+
+#pop_btn > input:hover {
+
+
+
 }
 
 .modal > div {
@@ -38,55 +333,13 @@
 	position : relative;
 	width : 100%;
 	height : 100%;
-	margin : 0 auto;
+	margin : 15px 15px;
 	top : 0;
 	left : 0;
 	float : left;
 }
 
 
-.modal > div > div{
-
-
-	position : relative;
-	width : 25%;
-	height : 25%;
-	margin : 0 auto;
-	top : 0;
-	left : 0;
-	float : left;
-
-
-}
-
-.modal > div > div > a{
-
-
-    position: relative;
-    width: 25%;
-    height: 25%;
-    margin: 0 auto;
-    top: 0;
-    left: 0;
-    float: left;
-    text-align: right;
-   	text-decoration: none;
-
-
-}
-
-.modal > div > div > input{
-
-
-	position : relative;
-	width : 100%;
-	height : 100%;
-	margin : 0 auto;
-	top : 0;
-	left : 0;
-
-
-}
 
 </style>
 <!--     CSS car.css 추가 -->
@@ -464,6 +717,17 @@
 		<c:set var="a" value="1"/>
 		<c:forEach var="vo"  items="${vector}" >
 		<div id="modalBox${a}" style="display : none;">
+		<div id="pop_title">
+			<div id="pop_mem_title_box">
+				<a type="text">예약 정보</a>
+			</div>
+			<div id="pop_pet_title_box">
+				<a type="text">반려견 정보</a>
+			</div>
+			<div id="pop_tr_title_box">
+				<a type="text">훈련사 정보</a>
+			</div>
+		</div>
 		<div id="pop_mem_box">			
 			<div id= "pop_num${a}">
 				<a id="pop1">예약 번호</a>
@@ -513,8 +777,8 @@
 	
 		<div id= "pop_pet_box">
 			<div id= "pop_pet_img${a}" style="width: 200px; height : 200px; margin : 0 auto; position : relative; left: 0; top :0;">
-				<a id="pop11">반려견 사진</a>
-				<img id="popPetImg${a}" src="<%=request.getContextPath()%>/nbShop/img/${vo.pet_img}"  />
+				<a id="pop11" style="width : 100%; height : 50px; line-height: 50px;">반려견 사진</a>
+				<img style="width : 100%; height : 150px; border-radius: 20px;" id="popPetImg${a}" src="<%=request.getContextPath()%>/nbShop/img/${vo.pet_img}"  />
 			</div>
 			<div id= "pop_pet_name${a}">
 				<a id="pop12">반려견 이름</a>
@@ -544,8 +808,8 @@
 		
 		<div id= "pop_tr_box">
 			<div id= "pop_tr_img${a}" style="width: 200px; height : 200px; margin : 0 auto; position : relative; left: 0; top :0;">
-				<a id="pop18">훈련사 사진</a>
-				<img id="popTrImg${a}" src="<%=request.getContextPath()%>/nbShop/img/${vo.tr_img}"  />
+				<a id="pop18" style="width : 100%; height : 50px; line-height: 50px;">훈련사 사진</a>
+				<img style="width : 100%;  height : 150px; border-radius: 20px;" id="popTrImg${a}" src="<%=request.getContextPath()%>/nbShop/img/${vo.tr_img}"  />
 			</div>
 			<div id= "pop_tr_name${a}">
 				<a id="pop19">훈련사 이름</a>
