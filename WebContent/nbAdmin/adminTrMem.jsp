@@ -27,12 +27,12 @@
 			</tr>
 			<c:forEach var="trMem" items="${requestScope.trMembersList}">
 				<tr>
-					<td><a href="${contextPath}/adm/trMemDetail.adm?trMemberID=${trMem.tr_id}">${trMem.tr_id}</a></td>
+					<td><a class="mem_link" href="${contextPath}/adm/trMemDetail.adm?trMemberID=${trMem.tr_id}">${trMem.tr_id}</a></td>
 					<td>${trMem.tr_name}</td>
 					<td>${trMem.tr_email}</td>
 					<td>${trMem.tr_hp}</td>
 					<td>${trMem.tr_joindate}</td>
-					<td><a href="${contextPath}/adm/delMem.adm?delID=${trMem.tr_id}">트레이너 삭제</a></td>
+					<td><a class="mem_link" href="${contextPath}/adm/delMem.adm?delID=${trMem.tr_id}">트레이너 삭제</a></td>
 				</tr>
 			</c:forEach>
 		</table>

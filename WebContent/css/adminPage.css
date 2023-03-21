@@ -97,113 +97,6 @@
   
   
   
-/*ㅇㅇ*/
- 	/* 게시판을 감싸는 div의 스타일 */
-		.content .board-wrap {
-		  margin: 20px auto; /* 중앙 정렬 */
-		  max-width: 1200px; /* 최대 가로 너비 지정 */
-		}
-		
-		/* 게시판 목록 테이블의 스타일 */
-		.content .board-table {
-		  width: 100%;
-		  border-collapse: collapse; /* 테두리 합치기 */
-		  border-top: 2px solid #ddd; /* 상단 테두리 지정 */
-		}
-		
-		/* 게시판 목록 테이블의 th와 td 스타일 */
-		.content .board-table th, .content .board-table td {
-		  padding: 10px 20px; 
- 		  text-align: left; 
-		  border-bottom: 1px solid #ddd; 
-		}
-		
-		/* 게시판 목록 테이블의 th 스타일 */
-		.content .board-table th {
-		  background-color: #f5f5f5; /* 배경색 지정 */
-		}
-		
-		/* 게시판 목록 테이블의 td > a 스타일 */
-		.content .board-table td > a {
-		  color: #333; /* 링크 색상 지정 */
-		  text-decoration: none; /* 밑줄 제거 */
-		  font-weight: bold; /* 글씨체 굵기 지정 */
-		}
-		
-		/*마우스 올리면 색 변환*/
-		.content .board-table td:nth-child(2) a:hover {
-		  color: #f44336;
-		}
-		
-		.content #newContent {
-		  float : right;
-		  position : relative;
-		  top : 10px;
-		  background-color: #f44336;
-		  color: white;
-		  border: none;
-		  padding: 10px;
-		  font-size: 16px;
-		  font-weight: bold;
-		  cursor: pointer;
-		}
-   /* 페이지 넘버링 부분 스타일 */
-		#pageForm {
-		  margin: 20px auto;
-		  text-align: center;
-		  font-size: 14px;
-		}
-		
-		#pageForm a {
-		  color: #333;
-		  text-decoration: none;
-		  padding: 5px 10px;
-		  border: 1px solid lightgray;
-		}
-		
-		#pageForm a:hover {
-		  background-color: #f44336;
-		  color: white;
-		}
-		
-		#pageForm a:first-child, #pageForm a:last-child {
-		  background-color: #f5f5f5;
-		}
-		
-		#pageForm a:first-child:hover, #pageForm a:last-child:hover {
-		  background-color: #ddd;
-		}
-		
-		/* 검색 부분 스타일 */
-		#searchForm {
-		  margin: 20px auto;
-		  text-align: center;
-		  font-size: 14px;
-		}
-		
-		#searchForm form {
-		  display: inline-block;
-		}
-		
-		#searchForm select, #searchForm input[type="text"] {
-		  font-size: 14px;
-		  padding: 5px;
-		  margin-right: 10px;
-		}
-		
-		#searchForm input[type="submit"] {
-		  background-color: #f44336;
-		  color: white;
-		  border: none;
-		  padding: 5px 10px;
-		  font-size: 14px;
-		  cursor: pointer;
-		}
-		
-		#searchForm input[type="submit"]:hover {
-		  background-color: #e53935;
-		}
-  
   
 /*adminCenter*/
 .center_Container {
@@ -324,7 +217,14 @@ outline : none;
 text-align : center;
 font-size: 16px;
 readonly:none;
+}
 
+#delMem {
+	text-decoration: none;
+	color : inherit;
+}
+#delMem:hover {
+	text-decoration: underline;
 }
 
 /* 모달 창 스타일 */
@@ -386,3 +286,9 @@ display: inline;
   text-decoration: none;
   cursor: pointer;
 }  
+
+
+/*회원, 트레이너 리스트 조회 시 첫번째 링크 줄 생성*/
+.mem_link:hover {
+	text-decoration: underline;
+}
