@@ -14,12 +14,12 @@ function checkLength() {
 	}
 }
 
-//contextPath얻기
+// contextPath얻기
 function getContextPath() {
-	  var hostIndex = location.href.indexOf( location.host ) + location.host.length;
-	  return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+	var hostIndex = location.href.indexOf(location.host) + location.host.length;
+	return location.href.substring(hostIndex, location.href.indexOf('/',
+			hostIndex + 1));
 };
-
 
 // 삭제하기를 눌렀을때 ajax로 삭제 처리하기
 function tbDelete(tb_idx, tb_level) {
@@ -31,7 +31,7 @@ function tbDelete(tb_idx, tb_level) {
 		$.ajax({
 			type : "post",
 			async : true,
-			url : getContextPath()+"/tb/tbDelete.bo",
+			url : getContextPath() + "/tb/tbDelete.bo",
 			data : {
 				tb_idx : tb_idx,
 				tb_level : tb_level
@@ -43,7 +43,7 @@ function tbDelete(tb_idx, tb_level) {
 					alert("삭제 성공!");
 
 					// 강제로 클릭 이벤트 발생시키는 부분
-					location.href = getContextPath()+"/tb/list.bo";
+					location.href = getContextPath() + "/tb/list.bo";
 
 				} else {// "삭제실패"
 					alert("삭제에 실패했습니다.")
@@ -59,4 +59,12 @@ function tbDelete(tb_idx, tb_level) {
 	} else {// 취소 버튼을 눌렀을때
 		return false;
 	}
+}
+
+//글 읽기
+function fnRead(val) {
+
+	document.frmRead.action = getContextPath()+"/tb/read.bo";
+	document.frmRead.tb_idx.value = val;
+	document.frmRead.submit();
 }
