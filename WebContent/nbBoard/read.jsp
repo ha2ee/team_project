@@ -386,7 +386,7 @@ function tbDelete(tb_idx){
 	</script>
 	
 	<!-- 로그인 세션값이 있어야 댓글작성 form이 노출되도록 수정 -->
-	<c:if test="${!sessionScope.id == null}">
+	<c:if test="${not empty sessionScope.id}">
 	
 	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
 		<table id="tblAddComment" class="table table-bordered" >
