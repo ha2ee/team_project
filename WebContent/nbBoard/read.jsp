@@ -30,14 +30,7 @@
   //   int seqnum = Integer.parseInt(cvo.getSeq());
 
 	String id = (String)session.getAttribute("id");
-  
-   if (id == null || id.equals("")) {
-      %>      
-      <script>    
-          alert("로그인을 해야 댓글을 작성 할 수 있습니다."); 
-          history.back(); 
-      </script>
-  <%}%>
+  %>
   
 <!--  	String likeCheck = (String)request.getAttribute("likeCheck");
   System.out.println("ㅇㅇㅇㅇ:" +likeCheck );
@@ -382,16 +375,22 @@ function tbDelete(tb_idx){
 	
 	</script>
 	
+	<!-- 로그인 세션값이 있어야 댓글작성 form이 노출되도록 수정 -->
+	<c:if test="${!sessionScope.id == null}">
 	
 	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
 		<table id="tblAddComment" class="table table-bordered" >
 			<tr>
 				<td><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
+				
+				
 				<td><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
 			</tr>
 		</table>
 		<input type="hidden" name="pseq" value="<%=b_idx%>" />
 	</form>
+	
+	</c:if>
 	
 </div>
 <!-- 댓글끝------------------------------------ -->    
