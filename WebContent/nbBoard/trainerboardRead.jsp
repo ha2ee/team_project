@@ -27,76 +27,7 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 상세</title>
-
-    <style type="text/css">
-		.post-Container {
-		margin : 0 auto;
-		border-top: 1px solid #ddd;
-		border-bottom: 1px solid #ddd;
-		width:1200px;
-		padding: 20px;
-
-		}
-		
-		.post {
-		border-bottom: 1px solid #ddd;
-		background-color: #fffff;
-		
-		}
-		
-		.post-title {
-		  font-size: 24px;
-		}
-		
-		.post-info {
-		  color: #888;
-		  font-size: 14px;
-		}
-		
-		.post-body {
-		text-align : left;
-		  line-height: 1.5;
-		  min-height : 250px;
-		  
-		}
-		
-.post-header {
-	display:flex;
-	justify-content: space-between;
-	align-items : flex-end;
-	border-bottom: 1px solid #ddd;
-	background-color: #fafafa;
-}
-		
-.post-buttons {
-	position: relative;
-	text-align: right;
-	padding-top: 40px;
-	padding-bottom: 20px;
-}
-.post-buttons input[type="button"] {
-	display: inline-block;
-	margin-left: 10px;
-	padding: 8px 20px;
-	border-radius: 20px;
-	border : none;
-	color : white;
-	background-color: #EDAF8C;
-}
-
-a.download {
-  color: #000000;
-}
-
-div.filedownload {
-	position : relative;
-	top : 20px;
-	border: 1px solid #ddd;
-	padding: 20px;
-	font-size: 16px;
-}
-		
-    </style>
+	<link rel="stylesheet" href="<%=contextPath%>/nbBoard/TrainerBoard.css">
 </head>
 <body>
 	<div class="post-Container">

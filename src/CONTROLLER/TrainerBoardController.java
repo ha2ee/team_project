@@ -26,6 +26,11 @@ import VO.TrainerVo;
 @WebServlet("/tb/*")
 public class TrainerBoardController extends HttpServlet{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//TrainerBoardDAO객체를 저장할 참조변수 선언
 	TrainerBoardDAO trainerboarddao;
 	
@@ -88,10 +93,6 @@ public class TrainerBoardController extends HttpServlet{
 		TrainerVo trainervo = null;
 		MemberVo membervo = null;
 
-		ArrayList list = null;
-		int count = 0;
-		String key = null;
-		String word = null;
 		String memberid = null;
 		
 		HttpSession session = request.getSession();
@@ -142,16 +143,6 @@ public class TrainerBoardController extends HttpServlet{
 	    	    
 	    	  
 	      } else if (action.equals("/list.bo")) {
-	    	  
-//				//-------------------------------------------------------
-//				
-//				//로그인시 기능 주석처리중
-////				HttpSession session_ = request.getSession();
-////				String loginid = (String)session_.getAttribute("id");
-////				
-////				request.setAttribute("id", loginid);
-//				
-				//----------------------------------------------------------------------
 				
 				 // 현재 페이지 번호 만들기
 		        int spage = 1;
@@ -172,8 +163,6 @@ public class TrainerBoardController extends HttpServlet{
 		        
 		        int listCount = trainerboarddao.getBoardListCount(listOpt);
 		        ArrayList<TrainerBoardVo> list2 =  trainerboarddao.getBoardList(listOpt);
-		        System.out.println(list2.size());
-		        list =  trainerboarddao.getBoardList(listOpt);
 		        
 		        // 한 화면에 10개의 게시글을 보여지게함
 		        // 페이지 번호는 총 5개, 이후로는 [다음]으로 표시
@@ -227,8 +216,6 @@ public class TrainerBoardController extends HttpServlet{
 	    	  String fileName = request.getParameter("fileName");
 	    	  String tbidx = request.getParameter("tbidx");
 	    	  String folder = request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\tb_idx")+tbidx;
-//	    	  String folder = "C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tbidx;
-//	    	  String folder = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tbidx;
 	    	  String filePath = folder + "/" + fileName;
 	    	  
 	    	  trainerboarddao.downLoad(response,filePath,fileName);
@@ -246,14 +233,12 @@ public class TrainerBoardController extends HttpServlet{
 		    		 
 		    	  }
 	    	  
-	    	  
 	    	  TrainerBoardVo tvo = trainerboarddao.getReadPage(tb_idx);
 	    	  request.setAttribute("tvo", tvo);
 	    	  request.setAttribute("trainervo", trainervo);
 	    	  request.setAttribute("membervo", membervo);
 	    	  request.setAttribute("trainerboarddao", trainerboarddao);
 	    	  request.setAttribute("center", "/nbBoard/trainerboardupdateWrite.jsp");
-
 	    	  
 	    	  nextPage ="/nbMain.jsp";
 	    	  
@@ -266,7 +251,6 @@ public class TrainerBoardController extends HttpServlet{
 					try {
 						trainerboarddao.updateBoard(request,response,tb_idx);
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					
@@ -306,7 +290,6 @@ public class TrainerBoardController extends HttpServlet{
 	    	  try {
 				trainerboarddao.insertReply(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	    	  
