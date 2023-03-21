@@ -61,12 +61,13 @@
             <%} else {%>
             <tr>
             	 <td>파일</td>
-                <td>파일이 첨부 되어 있습니다.(파일명 : <%=tbo.getTb_file()%>)</td>
+                <td><span id="attachFile">파일이 첨부 되어 있습니다.(파일명 : <%=tbo.getTb_file()%>)</span> 
+                <input type="button" id="delButton" value="파일삭제" onclick="fileDel(<%=tbo.getTb_idx()%>,<%=tbo.getTb_level()%>);"></td>
             </tr>
             <%} %>
         </table>
         <br>
-        <input type="button" value="글수정" onclick="checkLength();" />
+        <input type="button" value="글수정" onclick="checkEditor();" />
 
         <script>
             CKEDITOR.replace('content',{height : 500, width : 1200}

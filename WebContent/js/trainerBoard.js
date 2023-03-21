@@ -1,10 +1,16 @@
 /**
  * 
  */
-// ckeditor 글 작성시 3300자 이상(줄바꿈 8자) 작성 불가
-function checkLength() {
+// ckeditor 글 작성시 3300자 이상(줄바꿈 8자),제목,내용 미입력시 작성 불가
+function checkEditor() {
 	let ckForm = document.getElementById('ckForm');
+	let title = document.getElementById('tbwTitle').value;
 	let editor = CKEDITOR.instances.content.getData().replace(/<[^>]*>?/g, '');
+
+	if (title == '' || title == null || editor == '' || editor == null) {
+		alert('제목, 내용을 입력해주세요');
+		return false;
+	}
 
 	if (editor.length > 3300) {
 		alert('3300자 이상 작성 불가' + '현재 ' + editor.length + '자 작성됨');
@@ -42,7 +48,6 @@ function tbDelete(tb_idx, tb_level) {
 				if (data == "삭제성공") {
 					alert("삭제 성공!");
 
-					// 강제로 클릭 이벤트 발생시키는 부분
 					location.href = getContextPath() + "/tb/list.bo";
 
 				} else {// "삭제실패"
@@ -61,10 +66,49 @@ function tbDelete(tb_idx, tb_level) {
 	}
 }
 
-//글 읽기
+// 글 읽기
 function fnRead(val) {
 
-	document.frmRead.action = getContextPath()+"/tb/read.bo";
+	document.frmRead.action = getContextPath() + "/tb/read.bo";
 	document.frmRead.tb_idx.value = val;
 	document.frmRead.submit();
+}
+
+// 글 수정 간 파일 제거 후 재업로드
+function fileDel(tb_idx, tb_level) {
+	let result = window.confirm("정말로 파일을 삭제하시겠습니까?");
+
+	if (result == true) {// 확인 버튼 클릭
+
+		// 비동기방식으로 글삭제 요청!
+		$.ajax({
+			type : "post",
+			async : true,
+			url : getContextPath() + "/tb/fileDel.bo",
+			data : {
+				tb_idx : tb_idx,
+				tb_level : tb_level
+			},
+			dataType : "text",
+			success : function(data) {
+
+				if (data == "삭제성공") {
+					alert("삭제 성공!");
+
+					location.href = getContextPath() + "/tb/list.bo";
+
+				} else {// "삭제실패"
+					alert("삭제에 실패했습니다.")
+					location.reload();
+				}
+
+			},
+			error : function() {
+				alert("비동기 통신 장애");
+			}
+		});
+
+	} else {// 취소 버튼을 눌렀을때
+		return false;
+	}
 }

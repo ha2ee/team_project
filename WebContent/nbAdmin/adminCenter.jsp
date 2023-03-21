@@ -17,7 +17,6 @@
 </style>
 </head>
 <body>
-	center 페이지
 	<div class="center_Container">
 		<div class="centerBox_1"><h3>회원목록</h3><a class="seeMore" href="${contextPath}/adm/memManage.adm">&#43;</a><hr>
 		<table class="center_memTable" >

@@ -57,7 +57,7 @@
             </tr>
         </table>
         <br>
-        <input type="button" value="글작성" onclick="checkLength();" />
+        <input type="button" value="글작성" onclick="checkEditor();" />
         <script>
             CKEDITOR.replace('content',{height : 500, width : 1200}
             );

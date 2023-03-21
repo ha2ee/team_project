@@ -263,8 +263,12 @@ public class TrainerBoardController extends HttpServlet{
 	      } else if (action.equals("/tbDelete.bo")) {
 	    	 
 	    	  String delete_result = "";
+	    	  String delete_idx = request.getParameter("tb_idx");
 	    	  try {
-	    		  delete_result = trainerboarddao.deleteBoard(request);
+	    		  delete_result = trainerboarddao.deleteFile(request);
+	    		  if(delete_result.equals("삭제성공")) {
+	    		  trainerboarddao.tbDBDelete(delete_idx);
+	    		  }
 					out = response.getWriter();
 					out.write(delete_result); //Ajax 글삭제에 성공하면 "삭제성공" 반환 , 실패하면 "삭제실패" 반환
 					return;
@@ -298,6 +302,23 @@ public class TrainerBoardController extends HttpServlet{
 				out.print(" location.href='http://localhost:8090/TeamProject/tb/list.bo'");
 				out.print("</script>");
 				return;
+				
+	      } else if (action.equals("/fileDel.bo")) {
+	    	  //파일수정 시 db파일명 null로 수정 및 실제 파일 삭제
+	    	  String delete_result = "";
+	    	  String tb_idx = request.getParameter("tb_idx");
+	    	  try {
+	    		  delete_result = trainerboarddao.deleteFile(request);
+	    		  trainerboarddao.DBFileReset(tb_idx);
+	    		  if(delete_result.equals("삭제성공")) {
+	    		  }
+					out = response.getWriter();
+					out.write(delete_result); //Ajax 글삭제에 성공하면 "삭제성공" 반환 , 실패하면 "삭제실패" 반환
+					return;
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 	      }
 			
 		

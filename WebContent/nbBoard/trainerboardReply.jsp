@@ -44,7 +44,7 @@
             </tr>
         </table>
         <br>
-        <input type="button" value="답변등록" onclick="checkLength();" />
+        <input type="button" value="답변등록" onclick="checkEditor();" />
 
         <script>
             CKEDITOR.replace('content',{height : 500, width : 1200}
