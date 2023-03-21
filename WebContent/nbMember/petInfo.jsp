@@ -7,6 +7,7 @@
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
 	String memImgPath = contextPath + "/memImg/";
+	String petImgPath = contextPath + "/petImg/";
 %>
 <%
 	MemberVo mem_vo = (MemberVo)request.getAttribute("mem_vo");
@@ -33,7 +34,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+	.title{
+	    margin-bottom: 15px;
+    	font-weight: bold;
+		font-size: 21px;
+	}
+	
 	.pet_total{
 	    max-width: 1240px;
 	    margin: 0 auto;
@@ -61,6 +67,8 @@
 	.userImg{
 		border-radius: 70%;
 		height: 158px;
+	    border: 1px solid #231815;
+	    width: 150px;
 	}
 	
 	.userName,.userId{
@@ -138,7 +146,6 @@
 	.upload{
 	    display: inline-block;
 	    width: 150px;
-	    border: 1px solid #e9e9e9;
 		height: 162px;
 		
 		}	
@@ -152,7 +159,7 @@
 	.name_dt,.age_dt,.weight_dt,
 	.type_dt,.op_dt,.gender_dt,
 	.btn_dt{
-		padding-top: 37px;
+		padding-top: 33px;
 		border-top: 1px solid #e9e9e9;
 	    display: table-cell;
 	    position: relative;
@@ -174,7 +181,7 @@
 	    position: relative;
 	    float: left;
 	    width: 513px;
-	    padding: 20px 0 20px 28px;
+	    padding: 26px 0 20px 28px;
 	    border-top: 1px solid #e9e9e9;
 	}
 	
@@ -287,6 +294,7 @@
 	    vertical-align: middle;
 	    width: 150px;
 	    height: 160px;
+		border-radius: 50%;
 	}	
 </style>
 
@@ -302,11 +310,11 @@
 						<%
 							if(mem_img == "profile.png"){
 						%>
-	  						<img src="<%=contextPath%>/images/profile.png" class="userImg">  
+	  						<img id="preview" src="<%=contextPath%>/images/profile.png" class="userImg">  
 						<%
 							}else{
 						%>
-							<img src="<%=memImgPath+mem_img%>" class="userImg">
+							<img id="preview" src="<%=memImgPath+mem_img%>" class="userImg">
 						<%
 							}
 						%>
@@ -334,12 +342,15 @@
 			%>
 			
 			<div class="rightBlock">
-				
+<!-- 				
 				<div class="petBtn">
 					<button class="Info" id="Info1" >반려견 정보1</button>
 					<button class="Info" id="Info2" >반려견 정보2</button>
 					<button class="Info" id="Info3" >반려견 정보3</button>
 				</div>
+-->
+				
+				<p class="title">반려견 정보</p>
 				<dl class="teble">
 					<dt class="img_dt">
 						<span>사진</span>
@@ -347,14 +358,28 @@
 					<dd class="img_dd">
 						<div class="upload">
 							<span>  
-							   <img id="p_img" class="p_img" src="<%=contextPath%>/images/pet.png">
+							
+							<%
+								if(p_img == "pet.png"){
+							%>
+ 							    <img id="p_img" class="p_img" src="<%=contextPath%>/images/pet.png"> 
+							<%
+								}else{
+							%>
+								<img src="<%=petImgPath+p_img%>" class="p_img" id="p_img"> 
+							<%
+								}
+							%>
+							
 							</span>	
+<!-- 
 							<div class="imgBtn">
 								<label for="images" class="drop-container">
 					     		<input id="imgBtn" type="file"  name="petImageFileName"  onchange="readURL(this);" />
 							   	</label>
 								<button id="petImgSave" class="petImgSave">저장</button>
 							</div>
+-->
 						</div>
 					</dd>
 					<dt class="name_dt">
@@ -503,65 +528,9 @@
 
 		  });
 		
-		  $("#petImgSave").mouseover(function(){
 
-		    $("#petImgSave").css("background-color", "#061f5c");
-		    $("#petImgSave").css("color", "white");
-				
-		  });
-
-		  $("#petImgSave").mouseout(function(){
-
-		    $("#petImgSave").css("background-color", "transparent");
-		    $("#petImgSave").css("color", "black");
-
-		  });
-			
-		//제이쿼리를 이용해 아래쪽의 <input type="file">태그에서 이미지 파일 첨부시 미리보기 기능을 구현하는 함수 
-		    function readURL(input) { // <- <input type="file">태그를 매개변수로 전달 받는다.
-		 	
-		 	 //크롬 웹브라우저의 F12 눌러 개발자모드창을 열어서 console탭에 띄운 로그메세지를 확인 한다.
-		 	  console.log(input);
-		    	  console.log(input.files)
-		    	//참고.
-		    	//<input type="file">인 태그객체의 files메소드를 호출하면
-		    	//FileList라는 배열이 생성 되면서 FileList배열 내부의 0번쨰 인덱스 위치에
-		    	//아래에서 선택한(업로드할) 파일 정보들을 key:value쌍으로 저장한 File객체가 저장되어 있음
-		    	  
-		   	//FileList라는 배열이 존재하고...
-		   	//FileList라는 배열의 0번째 인덱스 위치에 아래에서 파일을 업로드하기 위해서 선택한 File객체가 저장되어 있다면?
-		   	//요약 : 아래의 <input type="file">태그에서 업로드를 하기 위한 파일을 선택 했다면?
-		       if (input.files && input.files[0]) {
-		     	  
-		     	  //파일을 문자 단위로 읽어들일 통로 생성 
-		 	      var reader = new FileReader();
-		     	     	  
-		 	      //지정한 img태그에 첫번째 파일 input에 첨부한 파일에 대한 File객체를 읽어드립니다. 
-		 	      reader.readAsDataURL(input.files[0]);
-		     	  
-		     	  //업로드 하기 위해 선택한 파일을 모두 읽어 들였다면?
-		 	      reader.onload = function (ProgressEvent) {
-		     		 //읽어들인 File객체의 정보는 매개변수로 넘어오는 ProgressEvent객체내부의?
-		     		 //target속성에 대응되는 객체(JSON객체 데이터형식)로 저장 되어 있다.
-		     		 console.log(ProgressEvent);
-		     		  
-		  		    //id가 preview인 <img>태그를 선택해 
-		  		    //attr메서드를 이용해 파일 첨부시 미리보기 이미지를 나타내기 위해
-		  		    //src속성값에  new FileReader()객체를 이용하여 읽어들인 첨부할 File객체정보를 지정하여
-		  		    //추가 함으로써 이미지 파일의 미리보기기능이 가능 한 것입니다.
-		 	        $('#p_img').attr('src', ProgressEvent.target.result);
-		 	        
-		           }
-		     	
-		       }
-		  			
-		  }
 		
-		 $(".petImgSave").click(function () {
-		        $("form").attr("action", "<%=contextPath%>/member/petImgUpdate.me");
-		        $("form").attr("enctype", "multipart/form-data");
-		        $("form").submit();
-		 });
+	
 
 	</script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>

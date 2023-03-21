@@ -84,6 +84,8 @@
 		.userImg{
 			border-radius: 70%;
 			height: 158px;
+		    border: 1px solid #231815;
+	    	width: 150px;
 		}
 		
 		.userName,.userId{

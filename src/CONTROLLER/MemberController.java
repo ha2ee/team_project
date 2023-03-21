@@ -110,7 +110,7 @@ public class MemberController extends HttpServlet {
 			// 전체 메인화면 주소 저장
 			nextPage = "/nbMain.jsp";
 
-			// # 1-1) "로그인" -> 아이디&비밀번호 입력 후 로그인 버튼을 요청 했을 때,
+		// # 1-1) "로그인" -> 아이디&비밀번호 입력 후 로그인 버튼을 요청 했을 때,
 		} else if (action.equals("/loginPro.me")) {
 
 			System.out.println("nbMemberController -> /loginPro.me 요청!");
@@ -154,7 +154,7 @@ public class MemberController extends HttpServlet {
 			// 메인화면 view 주소
 			nextPage = "/nbMain.jsp";
 
-			// # 1-2) "로그아웃"을 요청 했을 때,
+		// # 1-2) "로그아웃"을 요청 했을 때,
 		} else if (action.equals("/logout.me")) {
 
 			System.out.println("nbMemberController -> /logout.me 요청!");
@@ -166,7 +166,7 @@ public class MemberController extends HttpServlet {
 			// 메인화면 view 주소
 			nextPage = "/nbMain.jsp";
 
-			// # 2) "회원가입" 버튼을 눌러 요청 했을 때,
+		// # 2) "회원가입" 버튼을 눌러 요청 했을 때,
 		} else if (action.equals("/joinCategory.me")) {
 
 			System.out.println("MemberController -> joinCategory.me 호출!");
@@ -177,7 +177,7 @@ public class MemberController extends HttpServlet {
 			// 전체 메인화면 주소 저장
 			nextPage = "/nbMain.jsp";
 
-			// # 2-1) "회원가입" -> "일반회원가입" 버튼을 눌러 요청 했을 때,
+		// # 2-1) "회원가입" -> "일반회원가입" 버튼을 눌러 요청 했을 때,
 		} else if (action.equals("/memJoin.me")) {
 
 			System.out.println("MemberController -> memJoin.me 호출!");
@@ -188,7 +188,7 @@ public class MemberController extends HttpServlet {
 			// 전체 메인화면 주소 저장
 			nextPage = "/nbMain.jsp";
 
-			// # 2-2) "회원가입" -> "일반회원가입" -> "회원 가입" 버튼을 눌러 요청 했을 때,
+		// # 2-2) "회원가입" -> "일반회원가입" -> "회원 가입" 버튼을 눌러 요청 했을 때,
 		} else if (action.equals("/memJoinPro.me")) {
 
 			System.out.println("MemberController -> memJoinPro.me 호출!");
@@ -231,7 +231,7 @@ public class MemberController extends HttpServlet {
 			// 전체 메인화면 주소 저장
 			nextPage = "/nbMain.jsp";
 
-			// # 3) "회원가입" -> "훈련사회원가입" 버튼을 눌러 요청 했을 때,
+		// # 3) "회원가입" -> "훈련사회원가입" 버튼을 눌러 요청 했을 때,
 		} else if (action.equals("/trJoin.me")) {
 
 			System.out.println("MemberController -> trJoin.me 호출!");
@@ -242,7 +242,7 @@ public class MemberController extends HttpServlet {
 			// 전체 메인화면 주소 저장
 			nextPage = "/nbMain.jsp";
 
-			// # 3-1) "회원가입" -> "훈련사회원가입" -> "회원 가입" 버튼을 눌러 요청 했을 때,
+		// # 3-1) "회원가입" -> "훈련사회원가입" -> "회원 가입" 버튼을 눌러 요청 했을 때,
 		} else if (action.equals("/trJoinPro.me")) {
 
 			System.out.println("MemberController -> trJoinPro.me 호출!");
@@ -281,13 +281,13 @@ public class MemberController extends HttpServlet {
 			
 			
 			
-			// # 4) "회원 정보"수정 요청 화면 했을 때,
+		// # 4) "회원 정보"수정 요청 화면 했을 때,
 		} else if (action.equals("/changeInfo.me")) {
 			
 			HttpSession session = request.getSession();
 			String memberid	= (String)session.getAttribute("id");
 			
-			System.out.println("MemberController -> change.me 호출!");
+			System.out.println("MemberController -> changeInfo.me 호출!");
 			MemberVo mem_vo = memberdao.memRead(memberid);
 			
 			TrainerVo tr_vo = memberdao.trRead(memberid);
@@ -311,6 +311,8 @@ public class MemberController extends HttpServlet {
 			
 			TrainerVo tr_vo = memberdao.trRead(memberid);
 			
+			System.out.println("세션 아이디:"+memberid);
+			System.out.println("맴버 아이디:"+mem_vo.getMem_id());
 			
 			// 중앙화면 주소 바인딩
 			request.setAttribute("center", "nbMember/info.jsp");
@@ -375,16 +377,6 @@ public class MemberController extends HttpServlet {
 			String up_address4 = request.getParameter("address4");
 			String up_address5 = request.getParameter("address5");
 
-			System.out.println("1"+ up_pw);
-			System.out.println("2"+up_nick);
-			System.out.println("3"+up_hp);
-			System.out.println("4"+up_email);
-			System.out.println("5"+up_address1);
-			System.out.println("6"+up_address2);
-			System.out.println("7"+up_address3);
-			System.out.println("8"+up_address4);
-			System.out.println("9"+up_address5);
-			
 			int up_MemResult = memberdao.memUpdate(id, up_pw, up_nick, up_hp, up_email,  up_address1, up_address2, up_address3, up_address4, up_address5);
 				
 			int up_TrResult = memberdao.trUpdate(id ,up_pw, up_hp, up_email, up_address1, up_address2, up_address3, up_address4, up_address5);
@@ -454,13 +446,13 @@ public class MemberController extends HttpServlet {
 			HttpSession session = request.getSession();
 			String memberid	= (String)session.getAttribute("id");
 			
-			
-			
 			MemberVo mem_vo = memberdao.memRead(memberid);
 			PetVo pet_vo = memberdao.petRead(memberid);
 			request.setAttribute("mem_vo", mem_vo);
 			request.setAttribute("pet_vo", pet_vo);
 			request.setAttribute("center", "nbMember/petInfo.jsp");
+			
+			System.out.println(pet_vo.getP_img());
 			
 			// 메인화면 view 주소
 			nextPage = "/nbMain.jsp";
@@ -476,9 +468,6 @@ public class MemberController extends HttpServlet {
 			MemberVo mem_vo = memberdao.memRead(memberid);
 			TrainerVo tr_vo = memberdao.trRead(memberid);
 			
-			System.out.println("맴버사진:"+ mem_vo.getMem_img());
-			System.out.println("트레이너사진"+tr_vo.getTr_img());
-			
 			request.setAttribute("mem_vo", mem_vo);
 			request.setAttribute("tr_vo", tr_vo);
 			request.setAttribute("center", "nbMember/info.jsp");
@@ -492,7 +481,7 @@ public class MemberController extends HttpServlet {
 		System.out.println("nbMemberController -> /petJoinPro.me 요청!");
 		
 		HttpSession session = request.getSession();
-		
+		String memberid = (String)session.getAttribute("id");
 		
 		String p_name = request.getParameter("p_name");
 
@@ -517,11 +506,13 @@ public class MemberController extends HttpServlet {
 			  pet_vo.setP_op(p_op);
 			  pet_vo.setP_weight(Integer.parseInt(p_weight));
 			  pet_vo.setP_img(p_img);
-			  pet_vo.setP_mem_id((String)session.getAttribute("id"));
+			  pet_vo.setP_mem_id(memberid);
 		
 		  boolean result = memberdao.petJoin(pet_vo);
-			  
-		
+		  int mem_pet = memberdao.mem_pet(memberid);	  
+		  
+		  System.out.println("애완견 보유:"+mem_pet);
+		  
 		// 메인화면 view 주소
 		nextPage = "/nbMain.jsp";
 	
@@ -608,10 +599,10 @@ public class MemberController extends HttpServlet {
 		String fileName = multipartRequest.getOriginalFileName("imageFileName");
 
 		
-		int result = memberdao.imgUpdate(P_mem_id,fileName);
-		System.out.println("result :"+ result);
+		int memResult = memberdao.imgUpdate(P_mem_id,fileName);
+		int trResult = memberdao.trImgUpdate(P_mem_id,fileName);
 		
-		if(result == 0) {
+		if(memResult == 0 && trResult == 0) {
 			out.println("<script>");
 			out.println("window.alert('수정실패 하였습니다.');");
 			out.println("history.go(-1);");
@@ -619,7 +610,7 @@ public class MemberController extends HttpServlet {
 			
 			return;
 			
-		} else if (result == 1) {
+		} else if (memResult == 1 || trResult == 1) {
 			out.println("<script>");
 			out.println("window.alert('사진을 등록 하였습니다.');");
 			out.println("location.href='/TeamProject/member/info.me'");
@@ -642,7 +633,6 @@ public class MemberController extends HttpServlet {
 		File dir = new File(directory);
 		if (!dir.exists()) dir.mkdirs();
 		
-		System.out.println(directory);
 		int maxSize = 1024 * 1024 * 100;
 		String encoding = "utf-8";
 		
@@ -650,9 +640,7 @@ public class MemberController extends HttpServlet {
 		
 		String fileName = multipartRequest.getOriginalFileName("petImageFileName");
 		
-		
-		int result = memberdao.imgUpdate(P_mem_id,fileName);
-		System.out.println("result :"+ result);
+		int result = memberdao.petImgUpdate(P_mem_id,fileName);
 		
 		if(result == 0) {
 			out.println("<script>");
@@ -665,7 +653,7 @@ public class MemberController extends HttpServlet {
 		} else if (result == 1) {
 			out.println("<script>");
 			out.println("window.alert('사진을 등록 하였습니다.');");
-			out.println("location.href='/TeamProject/member/info.me'");
+			out.println("location.href='/TeamProject/member/petInfo.me'");
 			out.println("</script>");				
 			
 			return;

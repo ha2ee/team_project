@@ -114,10 +114,9 @@
 	}
 		
 	function petInfoChange(){
+		$("form").attr("action", "<%=contextPath%>/member/petChangePro.me");
+        $("form").submit();	
 		
-		
-		
-    	$("form").submit();
 		
 	}
 

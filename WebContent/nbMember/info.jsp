@@ -22,6 +22,7 @@
 	String mem_address4 = mem_vo.getMem_address4();
 	String mem_address5 = mem_vo.getMem_address5();
 	String mem_img = mem_vo.getMem_img();
+	String mem_id = mem_vo.getMem_id();
 	
 	String mem_address = mem_address2 + " " +mem_address4 + " " + mem_address5;
 	
@@ -72,6 +73,8 @@
 	.userImg {
  		border-radius: 50%; 
 		height: 158px;
+	    border: 1px solid #231815;
+	    width: 150px;
 	}
 	
 	.userName, .userId {
@@ -224,7 +227,17 @@
 				<div class="userId">(<%=id%>)</div>
 				<div class="infoBtn">
 					<a href="#" class="myInfo">내 정보</a>
+					<%
+					if(mem_id != ""){
+					%>					
 					<a href="<%=contextPath%>/member/petInfo.me" class="petInfo">반려견 정보</a>
+					<%
+					}else{
+					%>
+					
+					<%
+					}
+					%>
 				</div>
 			</div>
 		</div>
@@ -308,7 +321,7 @@
 				</dd>			
 				<dd class="btn_dd">
 					<div class="saveBtn">
-						<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">뒤로가기</a>				
+						<a id="backBtn" href="javascript:history.go(-1),location.reload();" class="roundBtn whiteBtn">뒤로가기</a>				
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a id="changeBtn" href="<%=contextPath%>/member/changeInfo.me" class="roundBtn blueBtn">수정하기</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

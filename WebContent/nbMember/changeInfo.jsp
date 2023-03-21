@@ -6,6 +6,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
+	String memImgPath = contextPath + "/memImg/";
 %>
 <%
 MemberVo mem_vo = (MemberVo)request.getAttribute("mem_vo");
@@ -16,13 +17,12 @@ String mem_name = mem_vo.getMem_name();
 String mem_hp = mem_vo.getMem_hp();
 String mem_birth = mem_vo.getMem_birth();
 String mem_email = mem_vo.getMem_email();
-
 String mem_address1 = mem_vo.getMem_address1();
 String mem_address2 = mem_vo.getMem_address2();
 String mem_address3 = mem_vo.getMem_address3();
 String mem_address4 = mem_vo.getMem_address4();
 String mem_address5 = mem_vo.getMem_address5();
-
+String mem_id = mem_vo.getMem_id();
 String mem_img = mem_vo.getMem_img();
 
 TrainerVo tr_vo = (TrainerVo)request.getAttribute("tr_vo");
@@ -72,7 +72,10 @@ String id = (String)session.getAttribute("id");
 	}
 	
 	.userImg{
-		border-radius: 70%
+		border-radius: 70%;
+		height: 158px;
+	    border: 1px solid #231815;
+	    width: 150px;
 	}
 	
 	.userName,.userId{
@@ -376,7 +379,18 @@ String id = (String)session.getAttribute("id");
 			<div class="leftBlock">
 				<div class= "userInfo">
 					<div class="profile">
-						<img src="<%=contextPath%>/images/profile.png" class="userImg">
+												
+						<%
+							if(mem_img == "profile.png" || tr_img == "profile.png"){
+						%>
+	  						<img src="<%=contextPath%>/images/profile.png" class="userImg">  
+						<%
+							}else{
+						%>
+							<img src="<%=memImgPath+mem_img+tr_img%>" class="userImg">
+						<%
+							}
+						%>
 					</div>
 				</div>
 				<div class="user" >
@@ -384,7 +398,17 @@ String id = (String)session.getAttribute("id");
 					<div class="userId">(<%=id%>)</div>
 					<div class="infoBtn">
 						<a href="<%=contextPath%>/member/info.me" class="myInfo">내 정보</a>
-						<a href="<%=contextPath%>/member/petInfo.me" class="petInfo">반려견 정보</a>
+					<%
+					if(mem_id != ""){
+					%>					
+					<a href="<%=contextPath%>/member/petInfo.me" class="petInfo">반려견 정보</a>
+					<%
+					}else{
+					%>
+					
+					<%
+					}
+					%>
 					</div>
 				</div>
 			
@@ -498,7 +522,7 @@ String id = (String)session.getAttribute("id");
 						</dt>
 						<dd class="btn_dd">
 							<div class="saveBtn">
-								<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">취소하기</a>				
+								<a id="backBtn" href="javascript:history.go(-1),location.reload();" class="roundBtn whiteBtn">취소하기</a>				
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<a id="changeBtn" 
 								   href="#" 
@@ -694,12 +718,21 @@ String id = (String)session.getAttribute("id");
 				  
 		  
 		 $(".imgSave").click(function () {
-		        $("form").attr("action", "<%=contextPath%>/member/imgUpdate.me");
-		        $("form").attr("enctype", "multipart/form-data");
-		        $("form").submit();
+	            var src = $("#preview").attr("src");
+					            
+	            if(src == "/TeamProject/images/profile.png"){
+		        	alert("등록할 사진을 선택하여 주세요.");
+		        	
+		        }else{
+				 	$("form").attr("action", "<%=contextPath%>/member/imgUpdate.me");
+			        $("form").attr("enctype", "multipart/form-data");
+			        $("form").submit();	
+		        }
+			 
+	
 		 });
 
-	
+		
 	</script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/change.js"></script>
