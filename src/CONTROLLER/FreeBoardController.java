@@ -30,6 +30,7 @@ public class FreeBoardController extends HttpServlet {
 
   // FreeBoardDAO객체를 저장할 참조변수 선언
   FreeBoardDAO boarddao;
+  CommentVO commentvo;
 
 //   MemberDAO객체를 저장할 참조변수 선언
    MemberDAO memberdao;
@@ -42,6 +43,7 @@ public class FreeBoardController extends HttpServlet {
     boarddao = new FreeBoardDAO();
      memberdao = new MemberDAO();
     // membervo = new MemberVo();
+    commentvo = new CommentVO();
   }
 
   @Override
@@ -327,7 +329,6 @@ public class FreeBoardController extends HttpServlet {
   		
   		// 2. DB 작업 > DAO 위임 > insert
   		CommentDAO dao = new CommentDAO();
-  		CommentVO commentvo = new CommentVO();
   		
   		session = request.getSession();
   		
@@ -369,13 +370,19 @@ public class FreeBoardController extends HttpServlet {
 //=====================댓글 수정 버튼 클릭시 /upcomment.do ==========================       
       case "/upcomment.do":
     	// 1. 데이터 가져오기 (seq, pseq)
-    		String up_idx = request.getParameter("pseq"); // 보고있던 글번호(= 작성중인 댓글의 부모 글번호)
-    		String seq = request.getParameter("seq"); // 수정할 글번호
+    		String up_idx = request.getParameter("b_idx"); // 보고있던 글번호(= 작성중인 댓글의 부모 글번호)
+    		String seq = request.getParameter("seq2"); // 수정할 댓글번호
+    		String comment = request.getParameter("commupdate");
     		
     		// 2. DB 작업 > DAO 위임 > update
     		CommentDAO commentdao1 = new CommentDAO();
+    		 
+    		commentvo.setSeq(seq);
+    		commentvo.setPseq(up_idx);
+    		commentvo.setContent(comment);
+    		int u_result = commentdao1.upComment(commentvo); // 1, 0	
     		
-    		int u_result = commentdao1.upComment(seq); // 1, 0		
+    		
     		
     		// 3. 결과 후 처리
     		if (u_result == 1) {
@@ -398,7 +405,7 @@ public class FreeBoardController extends HttpServlet {
     			
     			writer.close();
     			
-    			return;
+    			return ;
     		}
         
 //끝=====================댓글 수정 버튼 클릭시 /upcomment.do ========================== 

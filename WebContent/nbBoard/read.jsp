@@ -313,13 +313,6 @@ function tbDelete(tb_idx){
  <!-- 댓글시작------------------------------------ -->  
  
  <!-- 댓글수정 -->
- 	<script type="text/javascript">
- 	
- 	function updateviewBtn(){}
- 	
- 	
- 	</script>
- 
  
  
  <!-- 끝----댓글수정 -->
@@ -334,43 +327,60 @@ function tbDelete(tb_idx){
 			</tr>
 		</c:if>
 		
-		<c:forEach items="${ clist }" var="cdto">
 		<c:set var="i" value="0"/>
+		<c:forEach items="${ clist }" var="cdto">
 			<tr>
 				<td>
 				<!-- 댓글 표시&수정창 -->
-					<textarea id="updateActive" rows="3" cols="60" disabled="disabled">${cdto.content}</textarea>
+				<form id="commentUpdate${i}" action="<%=contextPath%>/freeboard/upcomment.do" method="post">
+					<textarea id="updateActive${i}" rows="3" name="commupdate" cols="60" disabled="disabled">${cdto.content}</textarea>
+					<input type="hidden" value="${cdto.seq}" name ="seq2"/>
+					<input type="hidden" value="<%=b_idx%>" name="b_idx"/>
+					</form>
 					<span>${ cdto.name }. ${ cdto.regdate }</span>
 				</td>
 				<td>
 		<!-- 댓글 작성자만 수정/삭제 버튼이 보이게 처리 c:if -->
 		<c:if test="${ id eq cdto.id}">
-				<input id="update" type="button" value="수정하기" onclick="updateActive('${i}')" class="btn btn-default" >
+				<input id="update${i}" type="button" value="수정하기" onclick="updateActive('${i}')" class="btn btn-default" >
 				
-				<input id="updatePro" type="button" value="수정완료" class="btn btn-default" 
-						onclick="location.href='<%=contextPath%>/freeboard/upComment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
+				<input id="updatePro${i}" type="button" value="수정완료" class="btn btn-default" style="display:none;"
+						onclick="comment('${i}');"/>
 					<input type="button" value="삭제하기" class="btn btn-default" 
 						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
-			<c:set var="i" value="${i+1}"/>
 		</c:if>
 				</td>
 			</tr>
+			<c:set var="i" value="${i+1}"/>
 		</c:forEach>	
 	</table>
+	<style>  
+		#updatePro{
+		 display: none;
+		}
+	</style>
 	
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
 	
+	function comment (b) {
+		 var commentUpdate = document.getElementById("commentUpdate"+b);
+		 
+		 commentUpdate.submit();
+	}
+	
+	
+	
 	function updateActive(a) {
 
 		//수정시 입력하는 화면 활성화
-		$("#updateActive").removeAttr("disabled");
+		$("#updateActive"+a).removeAttr("disabled");
 		
 		//수정하기 버튼 안보이게
-		document.getElementById("update").style.display = 'none';
+		document.getElementById("update"+a).style.display = 'none';
 
 		//수정완료 버튼 보이게 
-		document.getElementById("updatePro").style.display = 'block';
+		document.getElementById("updatePro"+a).style.display = 'block';
 	}
 	
 	</script>
