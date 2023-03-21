@@ -25,6 +25,7 @@
     <meta charset="UTF-8">
     <title>글쓰기</title>
     <script type="text/javascript" src="<%=contextPath%>/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="<%=contextPath%>/js/trainerBoard.js"></script>
     <link rel="stylesheet" href="<%=contextPath%>/nbBoard/TrainerBoard.css">
 
 </head>
@@ -46,11 +47,11 @@
             </tr>
             <tr>
                 <td>제목</td>
-                <td><input type="text" id="tbwTitle"name="title" value="<%=tbo.getTb_title() %>" /></td>
+                <td><input type="text" id="tbwTitle"name="title" value="<%=tbo.getTb_title() %>" maxlength="33" /></td>
             </tr>
             <tr>
                 <td>내용</td>
-                <td><textarea name="content" id="content"><%=tbo.getTb_content() %></textarea></td>
+                <td><textarea name="content" id="content" ><%=tbo.getTb_content() %></textarea></td>
             </tr>
 			<%if (tbo.getTb_file() == null) {//파일이 첨부되어 있지 않을때만 파일 첨부가 가능하게 만든다.  %>
             <tr>
@@ -65,14 +66,16 @@
             <%} %>
         </table>
         <br>
-        <input type="submit" value="글수정" />
+        <input type="button" value="글수정" onclick="checkLength();" />
 
         <script>
             CKEDITOR.replace('content',{height : 500, width : 1200}
             );
         </script>
+      
     </form>
     
+            
     </div>
 </body>
 </html>

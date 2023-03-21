@@ -104,7 +104,6 @@ public class TrainerBoardController extends HttpServlet{
 		
 	      if (action.equals("/write.bo")) {
 	    	  
-	    	  System.out.println("write.bo에서 result값 확인" + result);
 	    	//새글 입력시 작성자에 닉네임 넣어주려고 가져오는 메소드
 	    	  if(result) {//ys_member테이블에 있다면? true를 받았으니
 	    		  membervo = memberdao.memberOne(memberid);

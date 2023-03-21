@@ -24,6 +24,7 @@
     <meta charset="UTF-8">
     <title>글쓰기</title>
     <script type="text/javascript" src="<%=contextPath%>/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="<%=contextPath%>/js/trainerBoard.js"></script>
     <link rel="stylesheet" href="<%=contextPath%>/nbBoard/TrainerBoard.css">
 </head>
 <body>
@@ -31,7 +32,7 @@
 
 
  <div class="tbwContainer">
-    <form method="post" action="<%=contextPath%>/tb/writePro.bo" enctype="multipart/form-data">
+    <form method="post" action="<%=contextPath%>/tb/writePro.bo" enctype="multipart/form-data" id="ckForm">
 
       <input type="hidden" name ="id" value="<%=id%>"> <!-- 세션아이디 넘기기 -->
 
@@ -44,7 +45,7 @@
             </tr>
             <tr>
                 <td>제목</td>
-                <td><input type="text" id="tbwTitle"name="title" /></td>
+                <td><input type="text" id="tbwTitle"name="title" maxlength="33"/></td>
             </tr>
             <tr>
                 <td>내용</td>
@@ -56,11 +57,11 @@
             </tr>
         </table>
         <br>
-        <input type="submit" value="글작성" />
-
+        <input type="button" value="글작성" onclick="checkLength();" />
         <script>
             CKEDITOR.replace('content',{height : 500, width : 1200}
             );
+           
         </script>
     </form>
     

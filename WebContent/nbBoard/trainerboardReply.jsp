@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <title>글쓰기</title>
     <script type="text/javascript" src="<%=contextPath%>/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="<%=contextPath%>/js/trainerBoard.js"></script>
     <link rel="stylesheet" href="<%=contextPath%>/nbBoard/TrainerBoard.css">
 </head>
 <body>
@@ -31,7 +32,7 @@
             </tr>
             <tr>
                 <td>제목</td>
-                <td><input type="text" id="tbwTitle"name="title" /></td>
+                <td><input type="text" id="tbwTitle"name="title" maxlength="33" /></td>
             </tr>
             <tr>
                 <td>내용</td>
@@ -43,12 +44,14 @@
             </tr>
         </table>
         <br>
-        <input type="submit" value="답변등록" />
+        <input type="button" value="답변등록" onclick="checkLength();" />
 
         <script>
             CKEDITOR.replace('content',{height : 500, width : 1200}
             );
+            
         </script>
+
     </form>
     
     </div>
