@@ -25,6 +25,7 @@
     <meta charset="UTF-8">
     <title>글쓰기</title>
     <script type="text/javascript" src="<%=contextPath%>/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="<%=contextPath%>/js/trainerBoard.js"></script>
     <link rel="stylesheet" href="<%=contextPath%>/nbBoard/TrainerBoard.css">
 
 </head>
@@ -33,7 +34,7 @@
 
 
  <div class="tbwContainer">
-    <form method="post" action="<%=contextPath%>/tb/tbUpdatePro.bo?tb_idx=<%=tbo.getTb_idx()%>" enctype="multipart/form-data">
+    <form method="post" action="<%=contextPath%>/tb/tbUpdatePro.bo?tb_idx=<%=tbo.getTb_idx()%>" enctype="multipart/form-data" id="ckForm">
       <input type="hidden" name ="id" value="<%=tbo.getTb_id()%>"> <!-- 세션아이디 영역 -->
      
         <table id="tbwTable">
@@ -46,33 +47,39 @@
             </tr>
             <tr>
                 <td>제목</td>
-                <td><input type="text" id="tbwTitle"name="title" value="<%=tbo.getTb_title() %>" /></td>
+                <td><input type="text" id="tbwTitle"name="title" value="<%=tbo.getTb_title() %>" maxlength="33" /></td>
             </tr>
             <tr>
                 <td>내용</td>
-                <td><textarea name="content" id="content"><%=tbo.getTb_content() %></textarea></td>
+                <td><textarea name="content" id="content" ><%=tbo.getTb_content() %></textarea></td>
             </tr>
 			<%if (tbo.getTb_file() == null) {//파일이 첨부되어 있지 않을때만 파일 첨부가 가능하게 만든다.  %>
             <tr>
                 <td>파일</td>
-                <td><input type="file" name="file" /></td>
+                <td><input type="file" name="file"/></td>
             </tr>
             <%} else {%>
             <tr>
             	 <td>파일</td>
-                <td>파일이 첨부 되어 있습니다.(파일명 : <%=tbo.getTb_file()%>)</td>
+                <td><span id="attachFile">파일이 첨부 되어 있습니다.(파일명 : <%=tbo.getTb_file()%>)</span> 
+                <input type="button" id="delButton" value="파일삭제" onclick="fileDel(<%=tbo.getTb_idx()%>,<%=tbo.getTb_level()%>);">
+                <input type="file" name="file" id="updateFile" style="display: none;"/>
+                </td>
+               
             </tr>
             <%} %>
         </table>
         <br>
-        <input type="submit" value="글수정" />
+        <input type="button" value="글수정" onclick="checkEditor();" />
 
         <script>
             CKEDITOR.replace('content',{height : 500, width : 1200}
             );
         </script>
+      
     </form>
     
+            
     </div>
 </body>
 </html>

@@ -13,4 +13,4 @@ location.href="/TeamProject/adm/adminMain";
 <body>
 
 </body>
-</html>  
+</html> 

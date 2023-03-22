@@ -7,100 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 정보 조회화면</title>
-<style type="text/css">
-.memDetail_Board {
-border-collapse: collapse;
-width : 1200px;
-}
-
-.memDetail_Board th, .memDetail_Board td {
-		  padding: 10px 20px; 
- 		  text-align: center; 
-		  border: 1px solid #ddd; 
-		}
-		
-.memDetail_Board td {
-	width : 80%;
-}
-
-.updateMem {
-border : none;
-outline : none;
-text-align : center;
-font-size: 16px;
-readonly:none;
-
-}
-
-/* input[type="text"] {
-border : none;
-outline : none;
-text-align : center;
-font-size: 16px;
-readonly:readonly;
-
-} */
-
-/* 모달 창 스타일 */
-.modal {
-  display: none; /* 모달 창을 초기에 숨김 */
-  position: fixed; /* 모달 창이 화면에 고정됨 */
-  z-index: 1; /* 다른 요소들보다 위에 표시됨 */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto; /* 모달 내용이 화면 크기를 초과하면 스크롤바를 표시함 */
-  background-color: rgba(0,0,0,0.4); /* 배경색을 검정색 반투명으로 지정 */
-}
-
-/* 모달 내용 스타일 */
-.modal-content {
-  background-color: white;
-  margin: 10% auto; /* 모달 창이 화면 중앙에 위치하도록 함 */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 800px;
-}
-
-.modal-content table {
-	width : 100%;
-	margin : 0 auto;
-	border: 1px solid #888;
-}
-
-.modal-content th {
-	text-align: center;
-	width : 30%;
-}
-
-.modal-content td {
-	width : 70%;
-}
-input[type="text"] {
-	width: 250px;
-}
-
-p {
-font-size: 10px;
-display: inline;
-}
-
-/* 모달 닫기 버튼 스타일 */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-</style>
 </head>
 <body>
 
@@ -174,7 +80,7 @@ display: inline;
 	</table>
 	
 <button onclick="openModal()">정보수정하기</button>
-<a href="${contextPath}/adm/delMem.adm?delID=${memberVO.mem_id}">회원삭제하기</a>
+<a id="delMem" href="${contextPath}/adm/delMem.adm?delID=${memberVO.mem_id}">회원삭제하기</a>
 
 
 <div id="memModal" class="modal">
