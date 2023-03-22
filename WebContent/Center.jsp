@@ -97,6 +97,34 @@
     font-size: 16px;
     }
     
+    }
+    .slider2 > a> img{
+	position: relative;
+	background-size: cover;
+    left: 70px;
+    height: 380px;
+    width: 450px;
+    top: 10px;
+	}
+	.slider3 > a> img{
+	position: relative;
+    left: 50px;
+    height: 380px;
+    width: 450px;
+    top: 10px;
+	}
+	.slider4 > a> img{
+	position: relative;
+    left: 50px;
+    height: 380px;
+    width: 450px;
+    top: 10px;
+	}
+	.bx-wrapper .bx-pager.bx-default-pager a{
+	position: relative;
+	top: 30px;
+    }
+
 </style> 
 <script src="https://kit.fontawesome.com/0ec4758f24.js" crossorigin="anonymous"></script>
 <body>
@@ -191,8 +219,63 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<script src="<%=contextPath%>/js/jquery.min.js"></script>
+<script src="<%=contextPath%>/js/bootstrap.min.js"></script>
+<script src="<%=contextPath%>/js/run_prettify.js"></script>
+
+</div>
+</div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+        $('.slider').bxSlider({
+          slideWidth: 500,
+          minSlides: 3,
+          maxSlides: 4,
+          slideWidth: 800,
+          touchEnabled: false,
+          moveSlides: 1,
+          infiniteLoop: false,
+		  hideControlOnEnd: true,
+		  controls: false
+         });
+      });
+    </script>
+
+  </head>
+  <body>
+
+<div class="bx-wrapper" style="border:#fff8d263;  height: 485px; background: #fff8d263;" >
+    
+    <span style="font-size: 40px; font-weight: 700;">교육영상</span> <br>
+    <span style="font-size: 20px; font-weight: 600;">유튜브로 연결됩니다!</span>
+    
+    <ul class="slider" style="border: none; box-shadow: none; background: #fff8d263;">
+   		<li class="slider1">
+		   <a href="https://youtu.be/aFojR9xDl30"><img src="<%=contextPath%>/images/slider5.png" alt="slide5">
+		   </a>
+		</li>
+		<li class="slider2">
+		    	<a href="https://youtu.be/skxf5OEpoxk"><img src="<%=contextPath%>/images/slider8.png" alt="slide6">
+	    		</a>
+	    </li>
+		<li class="slider3">
+				<a href="https://youtu.be/S9WWAMjDF8E"><img src="<%=contextPath%>/images/slider6.png" alt="slide7">
+				</a>
+			</li>
+		    <li class="slider4">
+		    	<a href="https://youtu.be/V7c5SUIuswE"><img src="<%=contextPath%>/images/slider7.png" alt="slide8">
+				</a>
+			</li>
+		</ul>
+    </div>
+</div>
+
 
 </body>
 </html>
