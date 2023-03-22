@@ -738,7 +738,7 @@ public class MemberDAO {
 	      return membervo;
 	   }
 
-		
+	//회원 정보 조회
 	public MemberVo memRead(String memberid) {
 			
 			String sql = "select * from YS_MEMBER where mem_id=?";
@@ -801,7 +801,7 @@ public class MemberDAO {
 		}
 	
 
-			
+	//트레이너 정보 조회		
 	public TrainerVo trRead(String memberid) {
 
 		String sql = "select * from MEMBER_TRAINER where tr_id=?";
@@ -860,6 +860,8 @@ public class MemberDAO {
 		return tr_vo;
 	}		
 //==============================================================================
+	
+	//??
 	public String getMemNickName(String memberid) {
 	  String result = null;
 	  
@@ -887,6 +889,7 @@ public class MemberDAO {
     return result;
   }   
 
+	//펫 정보 등록
 	public boolean petJoin(PetVo pet_vo) {
 		
 		try {
@@ -925,6 +928,7 @@ public class MemberDAO {
 		return false;
 	}
 
+	//펫 정보 조회
 	public PetVo petRead(String memberid) {
 		String sql = "SELECT * FROM PET WHERE P_MEM_ID=?";
 		
@@ -956,6 +960,7 @@ public class MemberDAO {
 		return pet_vo;
 	}
 
+	//펫 정보 수정
 	public int petInfoChange(String p_name, String p_age, String p_weight, String p_type, String p_gender, String p_op, String P_mem_id) {
 		
 		int result = 0; //
@@ -993,6 +998,7 @@ public class MemberDAO {
 		return result;
 	}
 
+	//회원 사진 등록,업데이트
 	public int imgUpdate(String p_mem_id, String fileName) {
 		
 		System.out.println(p_mem_id);
@@ -1028,6 +1034,7 @@ public class MemberDAO {
 	
 	}
 	
+	//트레이너 사진 등록,업데이트
 	public int trImgUpdate(String p_mem_id, String fileName) {
 		
 		System.out.println(p_mem_id);
@@ -1063,6 +1070,7 @@ public class MemberDAO {
 		
 	}
 	
+	//펫 사진 등록,업데이트
 	public int petImgUpdate(String p_mem_id, String fileName) {
 		
 		System.out.println(p_mem_id);
@@ -1098,7 +1106,7 @@ public class MemberDAO {
 		
 	}
 
-	
+	//펫정보 등록할때 YS_MEMBER 애완견 키움으로 변경
 	public int mem_pet(String memberid) {
 		
 		int petResult = 0; 

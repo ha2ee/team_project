@@ -400,7 +400,7 @@ public class MemberController extends HttpServlet {
 				// 전체 메인화면 주소 저장
 				nextPage = "/nbMain.jsp";
 
-				
+		//아이디 중복체크	
 		} else if (action.equals("/joinIdCheck.me")) {
 				//입력한 아이디 얻기
 				String id = request.getParameter("id");
@@ -516,140 +516,137 @@ public class MemberController extends HttpServlet {
 		// 메인화면 view 주소
 		nextPage = "/nbMain.jsp";
 	
-	} else if(action.equals("/member/petChange.me")) {
 		
+		//펫 정보 수정 화면 요청
+		} else if (action.equals("/petChange.me")) {
+			
+			System.out.println("nbMemberController -> /petChange.me 요청!");
+			
+			HttpSession session = request.getSession();
+			String memberid	= (String)session.getAttribute("id");
+			
+			
+			MemberVo mem_vo = memberdao.memRead(memberid);
+			PetVo pet_vo = memberdao.petRead(memberid);
+			request.setAttribute("mem_vo", mem_vo);
+			request.setAttribute("pet_vo", pet_vo);
+			request.setAttribute("center", "nbMember/petChange.jsp");
+			
+			// 메인화면 view 주소
+			nextPage = "/nbMain.jsp";
 		
-		
-		request.setAttribute("center", "nbMember/petChange.jsp");
-		
-		// 메인화면 view 주소
-		nextPage = "/nbMain.jsp";
-	}else if (action.equals("/petChange.me")) {
-		
-		System.out.println("nbMemberController -> /petChange.me 요청!");
-		
-		HttpSession session = request.getSession();
-		String memberid	= (String)session.getAttribute("id");
-		
-		
-		MemberVo mem_vo = memberdao.memRead(memberid);
-		PetVo pet_vo = memberdao.petRead(memberid);
-		request.setAttribute("mem_vo", mem_vo);
-		request.setAttribute("pet_vo", pet_vo);
-		request.setAttribute("center", "nbMember/petChange.jsp");
-		
-		// 메인화면 view 주소
-		nextPage = "/nbMain.jsp";
+		//펫 정보 수정
+		} else if(action.equals("/petChangePro.me")) {
+			
+			System.out.println("nbMemberController -> /petChangePro.me 요청!");
+			
+			HttpSession session = request.getSession();
+			
+			String p_name = request.getParameter("p_name");
+			String p_age = request.getParameter("p_age");
+			String p_weight = request.getParameter("p_weight");
+			String p_type = request.getParameter("p_type");
+			String p_gender = request.getParameter("p_gender");
+			String p_op = request.getParameter("p_op");
+			String P_mem_id = ((String)session.getAttribute("id"));
+			
+			
+		    int result = memberdao.petInfoChange(p_name, p_age, p_weight, p_type, p_gender, p_op, P_mem_id);
+			
+		    if(result == 0) {
+				out.println("<script>");
+				out.println("window.alert('수정실패 하였습니다.');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+				
+				return;
 	
-	} else if(action.equals("/petChangePro.me")) {
-		
-		System.out.println("nbMemberController -> /petChangePro.me 요청!");
-		
-		HttpSession session = request.getSession();
-		
-		String p_name = request.getParameter("p_name");
-		String p_age = request.getParameter("p_age");
-		String p_weight = request.getParameter("p_weight");
-		String p_type = request.getParameter("p_type");
-		String p_gender = request.getParameter("p_gender");
-		String p_op = request.getParameter("p_op");
-		String P_mem_id = ((String)session.getAttribute("id"));
-		
-		
-	    int result = memberdao.petInfoChange(p_name, p_age, p_weight, p_type, p_gender, p_op, P_mem_id);
-		
-	    if(result == 0) {
-			out.println("<script>");
-			out.println("window.alert('수정실패 하였습니다.');");
-			out.println("history.go(-1);");
-			out.println("</script>");
+			} else if (result == 1) {
+				out.println("<script>");
+				out.println("window.alert('정보를 수정하였습니다.');");
+				out.println("location.href='/TeamProject/member/petInfo.me'");
+				out.println("</script>");				
+				
+				return;
+		    	
+		    }
+		  
+		//회원,트레이너 사진 등록,업데이트    
+		} else if(action.equals("/imgUpdate.me")) {
 			
-			return;
-
-		} else if (result == 1) {
-			out.println("<script>");
-			out.println("window.alert('정보를 수정하였습니다.');");
-			out.println("location.href='/TeamProject/member/petInfo.me'");
-			out.println("</script>");				
+			System.out.println("nbMemberController -> /imgUpdate.me 요청!");
 			
-			return;
-	    	
-	    }
-	    
-	}else if(action.equals("/imgUpdate.me")) {
-		
-		System.out.println("nbMemberController -> /imgUpdate.me 요청!");
-		
-		HttpSession session = request.getSession();
-		
-		String P_mem_id = ((String)session.getAttribute("id"));
-		
-//      //업로드 작업 중...
-		String directory = request.getServletContext().getRealPath("memImg");
-		System.out.println(directory);
-		File dir = new File(directory);
-		if (!dir.exists()) dir.mkdirs();
-      
-		System.out.println(directory);
-		int maxSize = 1024 * 1024 * 100;
-		String encoding = "utf-8";
-		
-		MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
-		
-		String fileName = multipartRequest.getOriginalFileName("imageFileName");
-
-		
-		int memResult = memberdao.imgUpdate(P_mem_id,fileName);
-		int trResult = memberdao.trImgUpdate(P_mem_id,fileName);
-		
-		if(memResult == 0 && trResult == 0) {
-			out.println("<script>");
-			out.println("window.alert('수정실패 하였습니다.');");
-			out.println("history.go(-1);");
-			out.println("</script>");
+			HttpSession session = request.getSession();
 			
-			return;
+			String P_mem_id = ((String)session.getAttribute("id"));
 			
-		} else if (memResult == 1 || trResult == 1) {
-			out.println("<script>");
-			out.println("window.alert('사진을 등록 하였습니다.');");
-			out.println("location.href='/TeamProject/member/info.me'");
-			out.println("</script>");				
+	//      //업로드 작업 중...
+			String directory = request.getServletContext().getRealPath("memImg");
+			System.out.println(directory);
+			File dir = new File(directory);
+			if (!dir.exists()) dir.mkdirs();
+	      
+			System.out.println(directory);
+			int maxSize = 1024 * 1024 * 100;
+			String encoding = "utf-8";
 			
-			return;
+			MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
 			
-		}
-		
-	}else if(action.equals("/petImgUpdate.me")) {
-		
-		System.out.println("nbMemberController -> /petImgUpdate.me 요청!");
-		
-		HttpSession session = request.getSession();
-		
-		String P_mem_id = ((String)session.getAttribute("id"));
-		
-//      //업로드 작업 중...
-		String directory = request.getServletContext().getRealPath("petImg");
-		File dir = new File(directory);
-		if (!dir.exists()) dir.mkdirs();
-		
-		int maxSize = 1024 * 1024 * 100;
-		String encoding = "utf-8";
-		
-		MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
-		
-		String fileName = multipartRequest.getOriginalFileName("petImageFileName");
-		
-		int result = memberdao.petImgUpdate(P_mem_id,fileName);
-		
-		if(result == 0) {
-			out.println("<script>");
-			out.println("window.alert('수정실패 하였습니다.');");
-			out.println("history.go(-1);");
-			out.println("</script>");
+			String fileName = multipartRequest.getOriginalFileName("imageFileName");
+	
 			
-			return;
+			int memResult = memberdao.imgUpdate(P_mem_id,fileName);
+			int trResult = memberdao.trImgUpdate(P_mem_id,fileName);
 			
+			if(memResult == 0 && trResult == 0) {
+				out.println("<script>");
+				out.println("window.alert('수정실패 하였습니다.');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+				
+				return;
+				
+			} else if (memResult == 1 || trResult == 1) {
+				out.println("<script>");
+				out.println("window.alert('사진을 등록 하였습니다.');");
+				out.println("location.href='/TeamProject/member/info.me'");
+				out.println("</script>");				
+				
+				return;
+				
+			}
+		
+		//펫 사진 등록,업데이트
+		} else if(action.equals("/petImgUpdate.me")) {
+			
+			System.out.println("nbMemberController -> /petImgUpdate.me 요청!");
+			
+			HttpSession session = request.getSession();
+			
+			String P_mem_id = ((String)session.getAttribute("id"));
+			
+	//      //업로드 작업 중...
+			String directory = request.getServletContext().getRealPath("petImg");
+			File dir = new File(directory);
+			if (!dir.exists()) dir.mkdirs();
+			
+			int maxSize = 1024 * 1024 * 100;
+			String encoding = "utf-8";
+			
+			MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
+			
+			String fileName = multipartRequest.getOriginalFileName("petImageFileName");
+			
+			int result = memberdao.petImgUpdate(P_mem_id,fileName);
+			
+			if(result == 0) {
+				out.println("<script>");
+				out.println("window.alert('수정실패 하였습니다.');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+				
+				return;
+				
 		} else if (result == 1) {
 			out.println("<script>");
 			out.println("window.alert('사진을 등록 하였습니다.');");
@@ -659,9 +656,9 @@ public class MemberController extends HttpServlet {
 			return;
 			
 		}
-		
-	}
-		
+			
+		}
+			
 		
 		// 포워딩 (디스패처 방식)
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
