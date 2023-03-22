@@ -114,10 +114,9 @@
 	}
 		
 	function petInfoChange(){
+		$("form").attr("action", "http://localhost:8090/TeamProject/member/petChangePro.me");
+        $("form").submit();	
 		
-		
-		
-    	$("form").submit();
 		
 	}
 

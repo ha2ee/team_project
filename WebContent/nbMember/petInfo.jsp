@@ -6,6 +6,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
+	String memImgPath = contextPath + "/memImg/";
+	String petImgPath = contextPath + "/petImg/";
 %>
 <%
 	MemberVo mem_vo = (MemberVo)request.getAttribute("mem_vo");
@@ -32,7 +34,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+	.title{
+	    margin-bottom: 15px;
+    	font-weight: bold;
+		font-size: 21px;
+	}
+	
 	.pet_total{
 	    max-width: 1240px;
 	    margin: 0 auto;
@@ -58,7 +65,10 @@
 	}
 	
 	.userImg{
-		border-radius: 70%
+		border-radius: 70%;
+		height: 158px;
+	    border: 1px solid #231815;
+	    width: 150px;
 	}
 	
 	.userName,.userId{
@@ -135,8 +145,11 @@
 	
 	.upload{
 	    display: inline-block;
-	    width: 100%;
+	    width: 150px;
+		height: 162px;
+		
 		}	
+	
 	.imgBtn{
 		height: 25px;
 		margin-left: 170px;	
@@ -146,7 +159,7 @@
 	.name_dt,.age_dt,.weight_dt,
 	.type_dt,.op_dt,.gender_dt,
 	.btn_dt{
-		padding-top: 37px;
+		padding-top: 33px;
 		border-top: 1px solid #e9e9e9;
 	    display: table-cell;
 	    position: relative;
@@ -168,7 +181,7 @@
 	    position: relative;
 	    float: left;
 	    width: 513px;
-	    padding: 20px 0 20px 28px;
+	    padding: 26px 0 20px 28px;
 	    border-top: 1px solid #e9e9e9;
 	}
 	
@@ -234,133 +247,209 @@
 	a:hover {
  	 	text-decoration: none;
 	}
+	
+ 	.petImgSave{
+        width: 102px;
+	    background: white;
+	    padding: 11px 20px;
+	    border-radius: 10px;
+	    color: black;
+	    border: 1px solid #231815;
+	    height: 41px;
+	 	margin-left: 114px;
+    	margin-top: -46px;
+	 }
+	 
+ 	.imgBtn{
+		height: 25px;
+		margin-left: 170px;	
+		margin-top: -40px;		
+	 	color: #fff !important;
+	 }
+	
+	input[type=file]::file-selector-button:hover {
+ 		 background: #061F5C;
+		 color:white;
+		 border: 0px solid #231815;
+	}
+	
+	input[type=file]::file-selector-button {
+	  	margin-right: 20px;
+		border: none;
+		background: white;
+		padding: 10px 20px;
+		border-radius: 10px;
+		color: black;
+		cursor: pointer;
+		transition: background .2s ease-in-out;
+ 		border: 1px solid #231815;	
+ 	}	
+ 		
+ 	#p_img{
+		max-width: 100%;
+	    margin: 0;
+	    padding: 0px;
+	    border: none;
+	    line-height: normal;
+	    vertical-align: middle;
+	    width: 150px;
+	    height: 160px;
+		border-radius: 50%;
+	}	
 </style>
 
 </head>
 <body>
-	<div class="pet_total">
-		<hr>
-		
-		<div class="leftBlock">
-			<div class= "userInfo">
-				<div class="profile">
-					<img src="<%=contextPath%>/images/profile.png" class="userImg">
-				</div>
-			</div>
-			<div class="user" >
-				<div class="userName"><%=mem_name%>님</div>
-				<div class="userId">(<%=id%>)</div>
-				<div class="infoBtn">
-					<a href="<%=contextPath%>/member/info.me" class="myInfo">내 정보</a>
-					<a href="<%=contextPath%>/member/petInfo.me" class="petInfo">반려견 정보</a>
-				</div>
-			</div>
-		
-		</div>
-		
-		
-		<%
-		if(p_name == ""){
-		%>	
-			<h1> 애완견 정보를 등록하여 주세요</h1>
-		
-		<% 	
-		}	
-		%>
-		
-		<div class="rightBlock">
+	<form method="post">
+		<div class="pet_total">
+			<hr>
 			
-			<div class="petBtn">
-				<button class="Info" id="Info1" >반려견 정보1</button>
-				<button class="Info" id="Info2" >반려견 정보2</button>
-				<button class="Info" id="Info3" >반려견 정보3</button>
+			<div class="leftBlock">
+				<div class= "userInfo">
+					<div class="profile">
+						<%
+							if(mem_img == "profile.png"){
+						%>
+	  						<img id="preview" src="<%=contextPath%>/images/profile.png" class="userImg">  
+						<%
+							}else{
+						%>
+							<img id="preview" src="<%=memImgPath+mem_img%>" class="userImg">
+						<%
+							}
+						%>
+					</div>
+				</div>
+				<div class="user" >
+					<div class="userName"><%=mem_name%>님</div>
+					<div class="userId">(<%=id%>)</div>
+					<div class="infoBtn">
+						<a href="<%=contextPath%>/member/info.me" class="myInfo">내 정보</a>
+						<a href="<%=contextPath%>/member/petInfo.me" class="petInfo">반려견 정보</a>
+					</div>
+				</div>
+			
 			</div>
-			<dl class="teble">
-				<dt class="img_dt">
-					<span>사진</span>
-				</dt>
-				<dd class="img_dd">
-					<div class="upload">
-						<div style="border: 1px solid #d7d7d7;
-					                width: 140px;
-					                height: 140px;">
-							 <span>  
-							    <img id="p_img" class="p_img" src="<%=contextPath%>/images/pet.png">
-							 </span>	
-					     	
-					     	<div class="imgBtn">
-						     	<input type="file"  name="imageFileName"  onchange="readURL(this);" />
+			
+			
+			<%
+			if(p_name == ""){
+			%>	
+				<h1> 애완견 정보를 등록하여 주세요</h1>
+			
+			<% 	
+			}	
+			%>
+			
+			<div class="rightBlock">
+<!-- 				
+				<div class="petBtn">
+					<button class="Info" id="Info1" >반려견 정보1</button>
+					<button class="Info" id="Info2" >반려견 정보2</button>
+					<button class="Info" id="Info3" >반려견 정보3</button>
+				</div>
+-->
+				
+				<p class="title">반려견 정보</p>
+				<dl class="teble">
+					<dt class="img_dt">
+						<span>사진</span>
+					</dt>
+					<dd class="img_dd">
+						<div class="upload">
+							<span>  
+							
+							<%
+								if(p_img == "pet.png"){
+							%>
+ 							    <img id="p_img" class="p_img" src="<%=contextPath%>/images/pet.png"> 
+							<%
+								}else{
+							%>
+								<img src="<%=petImgPath+p_img%>" class="p_img" id="p_img"> 
+							<%
+								}
+							%>
+							
+							</span>	
+<!-- 
+							<div class="imgBtn">
+								<label for="images" class="drop-container">
+					     		<input id="imgBtn" type="file"  name="petImageFileName"  onchange="readURL(this);" />
+							   	</label>
+								<button id="petImgSave" class="petImgSave">저장</button>
 							</div>
+-->
 						</div>
-					</div>
-				</dd>
-				<dt class="name_dt">
-					<span>이름</span>
-				</dt>
-				<dd class="name_dd">
-					<div class="name_div">
-						<p name="p_name" class="p_name" ><%=p_name%></p>
-					</div>
-				</dd>				
-				<dt class="age_dt">
-					<span>나이</span>
-				</dt>
-				<dd class="age_dd">
-					<div class="age_div">
-						<p type="text" name="p_age" class="p_age">&nbsp;<%=p_age%>세</p>
-					</div>
-				</dd>				
-				<dt class="weight_dt">
-					<span>몸무게</span>
-				</dt>
-				<dd class="weight_dd">
-					<div class="weight_div">
-						<p type="text" name="p_weight" class="p_weight" >&nbsp;<%=p_weight%>kg</p>
-					</div>
-				</dd>				
-				<dt class="type_dt">
-					<span>견종</span>
-				</dt>
-				<dd class="type_dd">
-					<div class="type_div">
-						<p type="text" name="p_type" class="p_type" ><%=p_type%></p>
-					</div>
-				</dd>				
-				
-				<dt class="gender_dt">
-					<span>성별</span>
-				</dt>
-				<dd class="gender_dd">
-					<div class="gender_div">
-						<p class="p_gender" name="p_gender" id="p_gender"><%=p_gender%></p>
-						</select>
-					</div>
-				</dd>				
-				
-				<dt class="op_dt">
-					<span>중성화 수술</span>
-				</dt>
-				<dd class="op_dd">
-					<div class="op_div">
-						<p class="p_op" name="p_op" id="p_op"><%=p_op%></p>
-						</select>
-						
-					</div>
-				</dd>				
-				
-				<dt class="btn_dt">
-				</dt>
-				<dd class="btn_dd">
-					<div class="saveBtn">
-						<a id="backBtn" href="<%=contextPath%>/member/petChange.me" class="roundBtn whiteBtn">정보 수정하기</a>				
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a id="changeBtn" href="<%=contextPath%>/member/petJoin.me" class="roundBtn blueBtn">애완견 등록하기</a>
-					</div>
-				</dd>				
-			</dl>
+					</dd>
+					<dt class="name_dt">
+						<span>이름</span>
+					</dt>
+					<dd class="name_dd">
+						<div class="name_div">
+							<p name="p_name" class="p_name" ><%=p_name%></p>
+						</div>
+					</dd>				
+					<dt class="age_dt">
+						<span>나이</span>
+					</dt>
+					<dd class="age_dd">
+						<div class="age_div">
+							<p type="text" name="p_age" class="p_age">&nbsp;<%=p_age%>세</p>
+						</div>
+					</dd>				
+					<dt class="weight_dt">
+						<span>몸무게</span>
+					</dt>
+					<dd class="weight_dd">
+						<div class="weight_div">
+							<p type="text" name="p_weight" class="p_weight" >&nbsp;<%=p_weight%>kg</p>
+						</div>
+					</dd>				
+					<dt class="type_dt">
+						<span>견종</span>
+					</dt>
+					<dd class="type_dd">
+						<div class="type_div">
+							<p type="text" name="p_type" class="p_type" ><%=p_type%></p>
+						</div>
+					</dd>				
+					
+					<dt class="gender_dt">
+						<span>성별</span>
+					</dt>
+					<dd class="gender_dd">
+						<div class="gender_div">
+							<p class="p_gender" name="p_gender" id="p_gender"><%=p_gender%></p>
+							</select>
+						</div>
+					</dd>				
+					
+					<dt class="op_dt">
+						<span>중성화 수술</span>
+					</dt>
+					<dd class="op_dd">
+						<div class="op_div">
+							<p class="p_op" name="p_op" id="p_op"><%=p_op%></p>
+							</select>
+							
+						</div>
+					</dd>				
+					
+					<dt class="btn_dt">
+					</dt>
+					<dd class="btn_dd">
+						<div class="saveBtn">
+							<a id="backBtn" href="<%=contextPath%>/member/petChange.me" class="roundBtn whiteBtn">정보 수정하기</a>				
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a id="changeBtn" href="<%=contextPath%>/member/petJoin.me" class="roundBtn blueBtn">애완견 등록하기</a>
+						</div>
+					</dd>				
+				</dl>
+			</div>
 		</div>
-	</div>
-
+	</form>
+	
 	<script type="text/javascript">
 	
 		  $("#backBtn").mouseover(function(){
@@ -439,11 +528,10 @@
 
 		  });
 		
-		  
 
-		  
+		
 	
-	
+
 	</script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </body>
