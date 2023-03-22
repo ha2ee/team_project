@@ -152,6 +152,58 @@ public class ReviewDAO {
     return result;
   }
 
+  public ReviewVo getAllByIdx(int idx1) {
+    ReviewVo vo= null;
+    try {
+      con = ds.getConnection();
+      
+      String sql = "SELECT * FROM REVIEW WHERE IDX = ?";
+      pstmt = con.prepareStatement(sql);
+      pstmt.setInt(1, idx1);
+      rs = pstmt.executeQuery();
+      if(rs.next()) {
+        vo = new ReviewVo();
+        vo.setContext(rs.getString("context"));
+        vo.setId(rs.getString("id"));
+        vo.setImg(rs.getString("img"));
+        vo.setImgRealName(rs.getString("imgRealName"));
+        vo.setTitle(rs.getString("title"));
+        vo.setIdx(idx1);
+      }
+    } catch (Exception e) {
+      System.out.println("getAllByIdx 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
+      e.printStackTrace();
+    } finally {
+      closeResource();
+    }
+    
+    return vo;
+  }
+
+  public int editOnePro(ReviewVo vo) {
+    int result = 0;
+    try {
+      con = ds.getConnection();
+      
+      String sql = "UPDATE REVIEW "
+                 + "SET TITLE = ? , CONTEXT = ? "
+                 + "WHERE IDX = ?";
+      pstmt = con.prepareStatement(sql);
+      pstmt.setString(1, vo.getTitle());
+      pstmt.setString(2, vo.getContext());
+      pstmt.setInt(3, vo.getIdx());
+      
+      result = pstmt.executeUpdate();
+      System.out.println("흠..."+result);
+    } catch (Exception e) {
+      System.out.println("modifyOnePro 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
+      e.printStackTrace();
+    } finally {
+      closeResource();
+    }
+    return result;
+  }
+
 
  
   

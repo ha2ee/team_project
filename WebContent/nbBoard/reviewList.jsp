@@ -181,7 +181,7 @@
                 <div class="btn-group">
 <!--                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
                   <c:if test="${sessionScope.id eq review.id}">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='<%=contextPath%>/review/edit.rv?idx=${review.idx}'">Edit</button>
                     <button type="button" class="btn btn-sm btn-outline-secondary" onclick="del(${review.idx})">Delete</button>
                   </c:if>
                 </div>

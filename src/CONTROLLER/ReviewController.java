@@ -154,13 +154,63 @@ public class ReviewController extends HttpServlet {
 //========================글 삭제하기 ================================
 //========================QNA================================
       case "/qna.bo":
-    	  String pageChange = request.getParameter("pageChange");
-    	  request.setAttribute("pageChange", pageChange);
+        String pageChange = request.getParameter("pageChange");
+        request.setAttribute("pageChange", pageChange);
         request.setAttribute("center", "/nbBoard/QnA.jsp");
         nextPage = "/nbMain.jsp";
         break;
 //========================QNA================================
+//========================글 수정하기================================
+      case "/edit.rv":
+        int idx1 = Integer.parseInt( request.getParameter("idx") );
+        vo = reviewdao.getAllByIdx(idx1);
         
+        request.setAttribute("vo", vo);
+        request.setAttribute("center", "nbBoard/reviewWriteUpdate.jsp");
+        nextPage = "/nbMain.jsp";
+        break;
+//========================글 수정하기================================
+      case "/editPro.rv":
+        
+//      //업로드 작업 중ㅇ...
+      String directory2 = request.getServletContext().getRealPath("upload");
+      
+      dir = new File(directory2);
+      if (!dir.exists()) dir.mkdirs();
+              int maxSize1 = 1024 * 1024 * 100;
+      String encoding1 = "utf-8";
+//      
+      MultipartRequest multipartRequest1 = new MultipartRequest(request, directory2,maxSize1,encoding1,new DefaultFileRenamePolicy());
+      String title1 = multipartRequest1.getParameter("title");
+      String content1 = multipartRequest1.getParameter("editor1");
+      String fileName1 = multipartRequest1.getOriginalFileName("fileName");
+      String fileRealName1 = multipartRequest1.getFilesystemName("fileName");
+      int idx2 =  Integer.parseInt( multipartRequest1.getParameter("idx") );
+//      //여기까지
+      
+
+      vo= new ReviewVo();
+      vo.setIdx(idx2);
+      vo.setTitle(title1);
+      vo.setContext(content1);
+      vo.setTitle(fileName1);
+      vo.setImgRealName(fileRealName1);
+      
+      int result2 = reviewdao.editOnePro(vo);
+      PrintWriter out3 = response.getWriter();
+
+      if(result2 ==1) {
+        out3.println("<script>");
+        out3.println("alert('수정 성공!')");
+        out3.println("</script>");
+      } else {
+        out3.println("<script>");
+        out3.println("alert('수정 실패!')");
+        out3.println("</script>");
+      }
+       nextPage = "/review/list.rv";
+       break;
+
        
         
       default:
