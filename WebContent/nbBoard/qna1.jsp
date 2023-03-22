@@ -110,7 +110,7 @@ ul, li, p { list-style:none; padding:0; margin:0; }
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
         <div class="answer">결제한 날을 기준으로 다음 달 10일까지 신청하실 수 있습니다.</div>
-    </li>
+    </li> 
         <li class="qa_li">
         <div class="question">
             <p class="tit"></p>
