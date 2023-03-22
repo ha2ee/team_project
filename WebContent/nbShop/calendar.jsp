@@ -163,7 +163,6 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 
                 column.innerText = autoLeftPad(day, 2);
                 column.setAttribute('id', "c"+day);
-                column.setAttribute('onClick', "change()");
                 column.align = "center";
 
 
@@ -746,9 +745,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
         				if(list2[i].toString() == j.toString()) {
         					
         					$("#c"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
-        					
-       						
-       						
+
         				}
        				}
        			}
