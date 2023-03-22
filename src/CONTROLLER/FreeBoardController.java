@@ -1,12 +1,14 @@
 package CONTROLLER;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -84,7 +86,6 @@ public class FreeBoardController extends HttpServlet {
     // String memberid = null;
     int count = 0;
     HttpSession session = request.getSession();
-    PrintWriter out = response.getWriter();
 
     switch (action) {
       // 새글 입력하는 화면 요청!
@@ -149,6 +150,7 @@ public class FreeBoardController extends HttpServlet {
       vo.setB_realfile(fileRealName);
       int result = boarddao.insertBoard(vo);
       
+      PrintWriter out = response.getWriter();
       out.print("<script>");
       out.print(" alert( '" +result+" 글 추가 성공!' );");
       out.print(" location.href='"+ contextPath +"/freeboard/list.fb?nowPage=0&nowBlock=0'");
@@ -221,18 +223,19 @@ public class FreeBoardController extends HttpServlet {
         int result1 = boarddao.checkLike(id3, b_idx2);
         // int result2 = boarddao.getOnlyLikeCount(b_idx2); //FREE_BOARD에서 좋아요 다시 조회 //안먹히네
         // int result2 = boarddao.getOnlyLikeCount(b_idx2);
-        
+
+        PrintWriter out2 = response.getWriter();
         if (result1 == 1) {// 1이면 이미 테이블에 있다 == 이미 좋아요를 눌렀다.
           System.out.println("이미 있네요...삭제할게요~ ㅋㅋ");
           boarddao.deleteLike(id3, b_idx2);
           int result3 = boarddao.getOnlyLikeCount(b_idx2);
-          out.print(result3);
+          out2.print(result3);
         
         } else { // 테이블에 없다면?
           boolean result2 = boarddao.insertLikeBoard(b_idx2, id3);
           if (result2 == true) {
             int result4 = boarddao.getOnlyLikeCount(b_idx2);
-            out.print(result4);
+            out2.print(result4);
             System.out.println("like투입성공");
           } else {
             System.out.println("like투입실패");
@@ -280,15 +283,16 @@ public class FreeBoardController extends HttpServlet {
         vo.setB_realfile(fileRealName1);
         
         int result2 = boarddao.modifyOnePro(vo);
-        
+        PrintWriter out3 = response.getWriter();
+
         if(result2 ==1) {
-          out.println("<script>");
-          out.println("alert('수정 성공!')");
-          out.println("</script>");
+          out3.println("<script>");
+          out3.println("alert('수정 성공!')");
+          out3.println("</script>");
         } else {
-          out.println("<script>");
-          out.println("alert('수정 실패!')");
-          out.println("</script>");
+          out3.println("<script>");
+          out3.println("alert('수정 실패!')");
+          out3.println("</script>");
         }
          nextPage = "/freeboard/list.fb";
          break;
@@ -297,11 +301,11 @@ public class FreeBoardController extends HttpServlet {
       case "/del.fb":
         int idx1 = Integer.parseInt( request.getParameter("b_idx")  );
         int result3 = boarddao.deleteOne(idx1);
-        
+        PrintWriter out4 = response.getWriter();
         if(result3 == 1) {
-          out.println(1);
+          out4.println(1);
         } else {
-          out.println(0);
+          out4.println(0);
         }
         
     //게시글 삭제 버튼 눌렀을때 게시글 삭제전 댓글 전체 삭제 부터 해야함.    
@@ -438,6 +442,45 @@ public class FreeBoardController extends HttpServlet {
     	  
 //=====================댓글 삭제 버튼 클릭시 /delcomment.do ==========================     	  
     	  
+      case "/download.fb":
+        
+        int idx2 = Integer.parseInt(request.getParameter("idx"));
+        vo = boarddao.modifyOne(idx2);
+        String fileName11 = vo.getB_file();
+        System.out.println(fileName11);
+        
+        String directory1 = this.getServletContext().getRealPath("/upload/");
+        File file = new File(directory1 + "/" + fileName11);
+        
+        String mimeType = getServletContext().getMimeType(file.toString());
+        
+        if(mimeType ==null) {
+          response.setContentType("application/octet-stream");
+        }
+        
+        String downloadName = null;
+        if(request.getHeader("user-agent").indexOf("MSIE") == -1) {
+          downloadName = new String(fileName11.getBytes("utf-8"),"8859_1");
+        } else {
+          downloadName = new String(fileName11.getBytes("EUC-KR"),"8859_1");
+        }
+        response.setHeader("content-Disposition", "attachment;fileName=\""+downloadName + "\";");
+        
+        FileInputStream fileInputStream = new FileInputStream(file);
+        ServletOutputStream servletOutputStream = response.getOutputStream();
+        
+        byte b[] = new byte[1024];
+        int data= 0;
+        
+        while( (data= (fileInputStream.read(b,0,b.length))) != -1   ) {
+          servletOutputStream.write(b,0,data);
+        }
+        
+        servletOutputStream.flush();
+        servletOutputStream.close();
+        fileInputStream.close();
+        return;
+  		
       default:
         break;
     }

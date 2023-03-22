@@ -183,6 +183,8 @@ div.filedownload {
   	</c:if>
  --%>    	
     <div class="post-buttons">
+    <a href="<%=contextPath%>/freeboard/download.fb?idx=<%=b_idx%>"><%=file%></a>
+    
 		<input type="button" value="목록으로" onclick="location.href='list.fb?nowPage=0&nowBlock=0'" id="list" />
        
         <!-- 수정,삭제는 세션아이디와 조회한 글의 작성자아이디가 동일할때만 노출시키기 필요 -->
