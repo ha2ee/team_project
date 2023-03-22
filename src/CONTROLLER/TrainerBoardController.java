@@ -264,13 +264,16 @@ public class TrainerBoardController extends HttpServlet{
 	    	 
 	    	  String delete_result = "";
 	    	  String delete_idx = request.getParameter("tb_idx");
+	    	  String DBDelete_result = "";
 	    	  try {
 	    		  delete_result = trainerboarddao.deleteFile(request);
-	    		  if(delete_result.equals("삭제성공")) {
-	    		  trainerboarddao.tbDBDelete(delete_idx);
-	    		  }
+	    		  DBDelete_result = trainerboarddao.tbDBDelete(delete_idx);
 					out = response.getWriter();
+					if(delete_result.equals("삭제성공")) {
 					out.write(delete_result); //Ajax 글삭제에 성공하면 "삭제성공" 반환 , 실패하면 "삭제실패" 반환
+					} else {
+						out.write(DBDelete_result);
+					}
 					return;
 					
 				} catch (Exception e) {

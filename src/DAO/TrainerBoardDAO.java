@@ -780,7 +780,9 @@ public class TrainerBoardDAO {
 		}
 			
 	
-		public void tbDBDelete(String tb_idx) {
+		public String tbDBDelete(String tb_idx) {
+			String DBDelete_result = "";
+			int count = 0;
 			try {
 				con = ds.getConnection();
 				
@@ -788,7 +790,13 @@ public class TrainerBoardDAO {
 				
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, tb_idx);
-				pstmt.executeUpdate();
+				count = pstmt.executeUpdate();
+				
+				if(count >0) {
+					DBDelete_result = "삭제성공";
+				} else {
+					DBDelete_result = "삭제실패";
+				}
 				
 			}catch (Exception e) {
 				System.out.println("tbDBDelete메소드 내부에서 오류 ");
@@ -796,6 +804,7 @@ public class TrainerBoardDAO {
 			}finally {
 				closeResource();
 			}
+			return DBDelete_result;
 		}	
 		
 		
