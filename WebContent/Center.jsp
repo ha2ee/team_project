@@ -339,7 +339,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script> 
 <script src="js/run_prettify.js"></script>
 
 </div>
@@ -369,7 +369,7 @@
   </head>
   <body>
 
-<div class="bx-wrapper" style="border:#fff8d263;  height: 485px; background: #fff8d263;" >
+<div class="bx-wrapper" style="border:#fff8d263; height: 485px; background: #fff8d263;">
     
     <span style="font-size: 40px; font-weight: 700;">교육영상</span> <br>
     <span style="font-size: 20px; font-weight: 600;">유튜브로 연결됩니다!</span>
