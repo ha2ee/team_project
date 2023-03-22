@@ -32,6 +32,7 @@
 <title>인덱스 요청페이지</title>
 </head>
 <body>
+<!--          			# 부트스트랩 플러그인  관련 -->
 <!-- # 부트스트랩 플러그인  관련 -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="<%=request.getContextPath()%>/js/jquery.min.js" type="text/javascript"></script>

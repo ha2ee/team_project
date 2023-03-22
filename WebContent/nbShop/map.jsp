@@ -20,9 +20,9 @@
 	font-family : 'Nanum Gothic', sans-serif;
 }    
     
-.map_wrap, .map_wrap * {margin:0;padding:0; font-size:16px;}
+.map_wrap, .map_wrap * {margin:0;padding:0; font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-.map_wrap {position:relative;width: 100%;height: 900px;}
+.map_wrap {position:relative;width:100%;height:800px;}
 #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap.bg_white{width: 400px;}
@@ -61,20 +61,12 @@
     margin-left: 5px;
     background-color: #edd7db;
     border-width: thin;
-    border-radius: 25px;
-    font-size: 16px;
-    width: 80px;
+    border-radius: 10px;
+    font-size: 12px;
+    width: 55px;
     height: 35px;
-    font-size: 
 }
-#searchBtn{
-	font-size: 16px;
-}
-#keyword{
-	width: 170px;
-    height: 25px;
-    border-radius: 5px;
-}
+
 </style>
 </head>
 <body>
@@ -85,8 +77,8 @@
         	<div class="option">
             	<div>
                 	<form onsubmit="searchPlaces(); return false;">
-                    	키워드 : <input type="text"  id="keyword"  onkeypress="searchPlaces()" placeholder="검색어를 입력해주세요" style="font-size: 17px;"> 
-                    	<button type="submit" id="searchBtn">검색하기</button> 
+                    	키워드 : <input type="text"  id="keyword"  onkeypress="searchPlaces()" size="20" placeholder="검색어를 입력해주세요"> 
+                    	<button type="submit" style= "font-size: 12px">검색하기</button> 
                 	</form>
                	</div>
         	</div>
@@ -96,7 +88,7 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=888d3ff1efb2a655c0327793f15f7c2b&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=888d3ff1efb2a655c0327793f15f7c2b&libraries=services"></script>
 <script>
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -117,8 +109,8 @@ navigator.geolocation.getCurrentPosition(function(position) {
         lon = position.coords.longitude; // 경도
     
     var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-        message = '<div style="padding:5px; position: relative;left: 45px;">내 위치</div>'; //인포윈도우에 표시될 내용입니다
-        //<div style="padding: 5px;position: relative;left: 45px;">내 위치</div>
+        message = '<div style="padding:5px;">내 위치</div>'; //인포윈도우에 표시될 내용입니다
+    
     // 마커와 인포윈도우를 표시합니다
     displayMarker(locPosition, message);
         
@@ -272,7 +264,7 @@ function getListItem(index, places) {
     var el = document.createElement('li'),
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5><a href="https://map.kakao.com/link/search/' + places.place_name + '">' + places.place_name +'</a></h5>';
+                '   <h5>' + places.place_name + '</h5>';
 
     if (places.road_address_name) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +
@@ -284,7 +276,6 @@ function getListItem(index, places) {
       itemStr += '  <span class="tel">' + places.phone  + '</span>' +
                 '</div>';           
 
-                
     el.innerHTML = itemStr;
     el.className = 'item';
 

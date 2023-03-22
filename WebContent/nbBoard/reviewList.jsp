@@ -8,6 +8,7 @@
   String reviewUploadPath = contextPath + "/reviewUpload/";
   System.out.println(contextPath);
   System.out.println(reviewUploadPath);
+  
 %>
 <!doctype html>
 <html lang="en">
@@ -116,7 +117,7 @@
     
   </head>
   <body style="font-size: 15px;">
-    
+<!--  스무스하게 내려갔다 올라가는 슬라이드??? 일단 킵
 <header>
   <div class="collapse bg-dark" id="navbarHeader">
     <div class="container">
@@ -148,17 +149,17 @@
     </div>
   </div>
 </header>
-
+ -->
 <main>
 
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">수강 후기</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <p class="lead text-muted" style="font-size: 15px;">샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라</p>
         <p>
-          <a class="btn btn-primary my-2" onclick="location.href='<%=contextPath%>/review/write.rv'">수강후기 작성</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          <a class="btn btn-primary my-2" onclick="clickWrite('${sessionScope.id}')" style="font-size: 15;">수강후기 작성</a>
+<!--           <a href="#" class="btn btn-secondary my-2" style="font-size: 15">추가할 액션?</a> -->
         </p>
       </div>
     </div>
@@ -178,8 +179,11 @@
               <input type="checkbox" class="card-content__more-btn">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
+                  <c:if test="${sessionScope.id eq review.id}">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="del(${review.idx})">Delete</button>
+                  </c:if>
                 </div>
                 <small class="text-muted">${review.review_date}</small>
               </div>
@@ -187,188 +191,86 @@
           </div>
         </div>
         
-        
-        
   </c:forEach>
 <!-------------------------응용해보자 ------------------------->
         
 <!------------------------- 반복 되는 부분인 듯? ------------------------->
-        <div class="col item">
-          <div class="card shadow-sm">
-<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-            <img alt="" src="../images/review_1.jpg">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
+
         </div>
+        </div>
+        
 <!------------------------- 반복 되는 부분인 듯? ------------------------->
-        <div class="col item">
-          <div class="card shadow-sm">
-<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-            <img alt="" src="../images/review_3.jpg">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        
-        <div class="col item">
-          <div class="card shadow-sm">
-<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
- -->
-            <img alt="" src="../images/review_2.jpg" style="height: 200px; object-fit: contain;">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col item">
-          <div class="card shadow-sm">
-            <img alt="" src="../images/review_2.jpg" style="height: 200px; object-fit: cover;">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="col item">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col item">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col item">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="col item">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col item">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col item">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
-  </div>
-
 </main>
 
 
     <script src="../js/review.min.js"></script>
     <script type="text/javascript">
+      const fullContent = document.querySelector("#container"); // 전체를 둘러싼 컨텐츠 정보획득
+
+      function clickWrite(id){
+        if(!id){
+          alert("로그인 후 작성이 가능합니다.");
+        }else{
+          location.href='<%=contextPath%>/review/write.rv';
+        }
+      }
+      
+      function del(idx){
+  			var result = window.confirm("정말로 글을 삭제하시겠습니까?");
+  			
+//   			if(result == true){//확인 버튼 클릭
+//   				//비동기방식으로 글삭제 요청!
+//   				$.ajax({
+//   					type : "post",
+//   					async : true,
+<%--   					url : "<%=contextPath%>/review/del.rv", --%>
+//   					data : {idx : idx},
+//   					dataType : "text",
+//   					success : function(data){
+//   						if(data==1){
+//   							alert("삭제 성공!");
+//   							//강제로 클릭 이벤트 발생시키는 부분
+<%--   							location.href="<%=contextPath%>/review/list.rv"; --%>
+//   						}else{//"삭제실패"
+//   							alert("삭제에 실패했습니다.")
+//   							location.reload();
+//   						}
+//   					},
+//   					error : function(){
+//   						alert("비동기 통신 장애");
+//   					}
+//   				});
+//   			}else{//취소 버튼을 눌렀을때
+//   				return false;
+//   			}
+//   		}
+      }
+      
+      
     
+      function YesScroll () {
+        const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득
+        const screenHeight = screen.height; // 화면 크기
+        let oneTime = false; // 일회용 글로벌 변수
+        document.addEventListener('scroll',OnScroll,{passive:true}) // 스크롤 이벤트함수정의
+         
+        function OnScroll () { //스크롤 이벤트 함수
+           const fullHeight = fullContent.clientHeight; // infinite 클래스의 높이   
+           const scrollPosition = pageYOffset; // 스크롤 위치
+           if (fullHeight-screenHeight/2 <= scrollPosition && !oneTime) { // 만약 전체높이-화면높이/2가 스크롤포지션보다 작아진다면, 그리고 oneTime 변수가 거짓이라면
+             oneTime = true; // oneTime 변수를 true로 변경해주고,
+             madeBox(); // 컨텐츠를 추가하는 함수를 불러온다.
+           }
+         }
+         }
+      YesScroll()
+
     
     
     </script>

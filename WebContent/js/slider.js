@@ -1,4 +1,4 @@
-/*// 메인화면 - 캐러셀
+// 메인화면 - 캐러셀
 
 $(function() {
   var winW = cnt = setId = 0;
@@ -56,7 +56,7 @@ $(function() {
     $(".pageBt").removeClass("addPageBt");
     $(".pageBt").eq(cnt > 3 ? cnt = 0 : cnt).addClass("addPageBt");
   };
-});*/
+});
 
 
 // trainer.jsp에 있는 캐러셀
@@ -80,11 +80,6 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
-
-      
-
-	
-
 
 
 

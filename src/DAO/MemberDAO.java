@@ -389,7 +389,7 @@ public class MemberDAO {
 	}
 	
 	//일반회원 정보 수정
-	public int memUpdate(String up_id, String up_pw,String up_nick,String up_hp,String up_email,String up_img,String up_address1,String up_address2,String up_address3,String up_address4,String up_address5) {
+	public int memUpdate(String id, String up_pw,String up_nick,String up_hp,String up_email,String up_address1,String up_address2,String up_address3,String up_address4,String up_address5) {
 		
 		int mem_UpResult = 0; //
 
@@ -405,7 +405,7 @@ public class MemberDAO {
 										 	 + " MEM_ADDRESS3='" + up_address3 + "',"
 										 	 + " MEM_ADDRESS4='" + up_address4 + "',"
 										 	 + " MEM_ADDRESS5='" + up_address5 + "'"
-						                     + " WHERE MEM_ID ='"+ up_id +"'";
+						                     + " WHERE MEM_ID ='"+ id +"'";
 			
 			
 			pstmt = con.prepareStatement(query);
@@ -430,7 +430,7 @@ public class MemberDAO {
 	}
 	
 	//트레이너 정보 수정
-	public int trUpdate(String up_id ,String up_pw, String up_hp, String up_email, String up_img, String up_address1, String up_address2, String up_address3, String up_address4, String up_address5) {
+	public int trUpdate(String id ,String up_pw, String up_hp, String up_email, String up_address1, String up_address2, String up_address3, String up_address4, String up_address5) {
 		
 		int tr_UpResult = 0; //
 		
@@ -445,7 +445,7 @@ public class MemberDAO {
             					   				  + " TR_ADDRESS3='" + up_address3 + "',"
             					   				  + " TR_ADDRESS4='" + up_address4 + "',"
             					   				  + " TR_ADDRESS5='" + up_address5 + "'"
-												  + " WHERE TR_ID ='"+ up_id +"'";
+												  + " WHERE TR_ID ='"+ id +"'";
 
 			
 			pstmt = con.prepareStatement(query);
@@ -738,11 +738,11 @@ public class MemberDAO {
 	      return membervo;
 	   }
 
-		
+	//회원 정보 조회
 	public MemberVo memRead(String memberid) {
 			
 			String sql = "select * from YS_MEMBER where mem_id=?";
-			
+
 			MemberVo mem_vo = null;
 			try {
 					con = ds.getConnection();
@@ -768,7 +768,7 @@ public class MemberDAO {
 										 mem_vo.setMem_address3(rs.getString("mem_address3"));
 										 mem_vo.setMem_address4(rs.getString("mem_address4"));
 										 mem_vo.setMem_address5(rs.getString("mem_address5"));
-	
+										 mem_vo.setMem_id(rs.getString("mem_id"));
 					}else {
 							mem_vo = new MemberVo();
 										 mem_vo.setMem_name("");
@@ -785,7 +785,7 @@ public class MemberDAO {
 										 mem_vo.setMem_address3("");
 										 mem_vo.setMem_address4("");
 										 mem_vo.setMem_address5("");
-						
+										 mem_vo.setMem_id("");
 						
 					}
 					
@@ -801,7 +801,7 @@ public class MemberDAO {
 		}
 	
 
-			
+	//트레이너 정보 조회		
 	public TrainerVo trRead(String memberid) {
 
 		String sql = "select * from MEMBER_TRAINER where tr_id=?";
@@ -860,6 +860,8 @@ public class MemberDAO {
 		return tr_vo;
 	}		
 //==============================================================================
+	
+	//??
 	public String getMemNickName(String memberid) {
 	  String result = null;
 	  
@@ -887,6 +889,7 @@ public class MemberDAO {
     return result;
   }   
 
+	//펫 정보 등록
 	public boolean petJoin(PetVo pet_vo) {
 		
 		try {
@@ -925,6 +928,7 @@ public class MemberDAO {
 		return false;
 	}
 
+	//펫 정보 조회
 	public PetVo petRead(String memberid) {
 		String sql = "SELECT * FROM PET WHERE P_MEM_ID=?";
 		
@@ -956,6 +960,7 @@ public class MemberDAO {
 		return pet_vo;
 	}
 
+	//펫 정보 수정
 	public int petInfoChange(String p_name, String p_age, String p_weight, String p_type, String p_gender, String p_op, String P_mem_id) {
 		
 		int result = 0; //
@@ -991,6 +996,146 @@ public class MemberDAO {
 		
 		
 		return result;
+	}
+
+	//회원 사진 등록,업데이트
+	public int imgUpdate(String p_mem_id, String fileName) {
+		
+		System.out.println(p_mem_id);
+		System.out.println(fileName);
+		
+		int result = 0; //
+				
+			try {
+				con = ds.getConnection();
+				
+				String query = "update YS_MEMBER set mem_img='" + fileName + "'"
+										   + " WHERE mem_id ='"+ p_mem_id +"'";
+	
+				
+				pstmt = con.prepareStatement(query);
+				result = pstmt.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				
+			} finally {
+				
+				try {
+					closeResource();
+				} catch (Exception e) {
+					System.out.println("imgUpdate메소드 내부에서 SQL실행 오류" + e );
+					e.printStackTrace();
+				}	
+			
+			}
+		return result;
+	
+	}
+	
+	//트레이너 사진 등록,업데이트
+	public int trImgUpdate(String p_mem_id, String fileName) {
+		
+		System.out.println(p_mem_id);
+		System.out.println(fileName);
+		
+		int result = 0; //
+		
+		try {
+			con = ds.getConnection();
+			
+			String query = "update MEMBER_TRAINER set tr_img='" + fileName + "'"
+					+ " WHERE tr_id ='"+ p_mem_id +"'";
+			
+			
+			pstmt = con.prepareStatement(query);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("trImgUpdate메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+			
+		}
+		return result;
+		
+	}
+	
+	//펫 사진 등록,업데이트
+	public int petImgUpdate(String p_mem_id, String fileName) {
+		
+		System.out.println(p_mem_id);
+		System.out.println(fileName);
+		
+		int result = 0; //
+		
+		try {
+			con = ds.getConnection();
+			
+			String query = "update PET set p_img='" + fileName + "'"
+					+ " WHERE p_mem_id ='"+ p_mem_id +"'";
+			
+			
+			pstmt = con.prepareStatement(query);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("petImgUpdate메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+			
+		}
+		return result;
+		
+	}
+
+	//펫정보 등록할때 YS_MEMBER 애완견 키움으로 변경
+	public int mem_pet(String memberid) {
+		
+		int petResult = 0; 
+		
+		try {
+			con = ds.getConnection();
+			
+			String query = "update YS_MEMBER set p_img='네'"
+					+ " WHERE p_mem_id ='"+ memberid +"'";
+			
+			
+			pstmt = con.prepareStatement(query);
+			petResult = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("mem_pet메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+			
+		}
+		return petResult;
 	}
 		
 }

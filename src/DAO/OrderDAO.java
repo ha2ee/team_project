@@ -63,6 +63,8 @@ public class OrderDAO {
 	// #5)      insertCartedu()				메소드		<- 수강신청			정보 등록
 	// #6)		insertEduOrder()				메소드		<- 결제하기			정보 등록
 	// #7)		checkCartedu()				메소드		<- 장바구니		  	정보 조회
+	// #8)		deleteEdu()					메소드     <- 장바구니			예약 삭제
+	// #8-1) 	deleteAlledu()					메소드		<- 장바구니			모두 비우기
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	
@@ -434,7 +436,7 @@ public class OrderDAO {
 			con = ds.getConnection();
 			
 			// sql 문을 이용해 select 하기
-			String sql = "select * from cart_edu where edu_id=?";
+			String sql = "select * from cart_edu where edu_id=? order by edu_num asc";
 			
 			// sql문을 pstmt 객체에 저장
 			pstmt = con.prepareStatement(sql);
@@ -512,8 +514,6 @@ public class OrderDAO {
 		
 		System.out.println("OrderDAO -> InsertEduOrder 메소드 호출!");
 		
-		System.out.println(list);
-
 		try {
 			
 			//커넥션 풀 연결
@@ -583,7 +583,82 @@ public class OrderDAO {
 	
 		
 	}
+	// #8)		deleteEdu()					메소드     <- 장바구니			예약 삭제
+	public void deleteEdu(String loginId, int eduNum) {
+		
+		System.out.println("OrderDAO -> deleteEdu 메소드 호출!");
+		
+		try {
+			
+			//커넥션 풀 연결
+			con = ds.getConnection();
+			
+			// 매개변수로 전달받은 로그인 아이디와 예약번호를 
+			// sql 문을 이용해 insert 하기
+			String sql = "DELETE FROM cart_edu WHERE edu_id=? AND edu_num=?";
+			
+			// sql문을 pstmt 객체에 저장
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, loginId);
+			pstmt.setInt(2, eduNum);
 
+			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
+			pstmt.executeUpdate();
+					
+			
+			
+			
+		} catch(Exception e) {
+			
+			System.out.println("deleteEdu 메소드 내부에서 SQL 실행 오류 "+ e);
+			
+		} finally {
+			
+			closeResource();
+			
+		}
+		
+		
+		
+	}
+	
+	// #8-1) 	deleteAlledu()					메소드		<- 장바구니			모두 비우기
+	public void deleteAlledu(String loginId) {
+		
+		System.out.println("OrderDAO -> deleteAlledu 메소드 호출!");
+		
+		try {
+			
+			//커넥션 풀 연결
+			con = ds.getConnection();
+			
+			// 매개변수로 전달받은 로그인 아이디와 예약번호를 
+			// sql 문을 이용해 insert 하기
+			String sql = "DELETE FROM cart_edu WHERE edu_id=?";
+			
+			// sql문을 pstmt 객체에 저장
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, loginId);
+
+			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
+			pstmt.executeUpdate();
+					
+			
+			
+			
+		} catch(Exception e) {
+			
+			System.out.println("deleteEdu 메소드 내부에서 SQL 실행 오류 "+ e);
+			
+		} finally {
+			
+			closeResource();
+			
+		}
+		
+		
+		
+	}
 		
 }
 

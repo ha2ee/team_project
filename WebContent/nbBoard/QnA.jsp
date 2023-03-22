@@ -1,23 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
 <head>
-<meta charset="UTF-8">
-<title>intro.jsp</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Layout.jsp</title>
+
 </head>
+
 <body>
-<%
-	request.setCharacterEncoding("utf-8");
-	String contextPath = request.getContextPath();
-%>
-	<!-- 	Q&A 들어갈 항목 -->
-	QnA 화면. jsp <br>
-	 설명 : 자주묻는 질문들 위주의 답변 내용 작성 <br>
-	 <br>
-	 체크사항 : 우측 하단에 채팅창 기능 구현으로, 1:1 문의랑 연동하고, qna에 있는 키워드는 이동하도록 연결(?)<br>
-	 <br>
-	 <br>
-	 
+<div style="margin: 0 auto; width:1200px;">
+	<table cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="70%" valign="top">
+			<jsp:include page="left.jsp">
+				<jsp:param value="left" name="left"/>
+			</jsp:include>
+			</td>
+					
+			<td width="30%" valign="top">
+				<!--  내용부분 :시작 -->
+
+				<center>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				
+				<div>
+					<h1>
+					<img src="<%=request.getContextPath()%>/images/qna1.png">
+					상담신청
+					</h1>
+					<div>아직 어떤 프로그램을 들어야 할지 모르시나요?</div>
+					<div>
+					<br>
+						<a href="#">상담신청하기</a>
+						<br>
+					</div>
+				</div>
+				<div>
+				<div>
+				<h1><img src="<%=request.getContextPath()%>/images/qna2.png">고객센터</h1>
+				</div>
+				1800-6358<br>
+				<h3>보듬교육 고객센터</h3><br>
+				업무시간 : 10:00 - 18:00<br>
+				점심시간 : 13:00 - 14:00<br>
+				토요일, 일요일, 공휴일 휴무입니다.<br>
+				<h3>보듬숍 고객센터</h3><br>
+				업무시간 : 10:00 - 18:00<br>
+				점심시간 : 13:00 - 14:00<br>
+				토요일, 일요일, 공휴일 휴무입니다.
+					</div>
+					
+				</center> <!--  내용부분 :끝 -->
+			</td>
+		</tr>
+	</table>
+	</div>
 </body>
 </html>

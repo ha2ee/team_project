@@ -341,7 +341,6 @@
 				     	<input type="file"  name="imageFileName"  onchange="readURL(this);" style="margin-top: 220px;"/>
 					</div>
 				
-				
 				<%-- <div style="width: 400px;" > 
 				    <img  id="preview" src="<%=contextPath%>/images/profile.png" width=200 height=220 style="margin-right: 70px;"/>
 				</div>

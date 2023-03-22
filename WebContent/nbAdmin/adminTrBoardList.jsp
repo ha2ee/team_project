@@ -8,14 +8,6 @@
 <html>
 <head>
     <title>전체 게시글</title>
-    <script type="text/javascript">
-    	function fnRead(val){
-    		
-    		document.frmRead.action = "<%=contextPath%>/tb/read.bo";
-    		document.frmRead.tb_idx.value = val;
-    		document.frmRead.submit();
-    	}
-    </script>
 </head>
 <body>    
  
@@ -99,6 +91,6 @@
         </form>    
     </div>
 </div>    
- 
+ <script type="text/javascript" src="<%=contextPath%>/js/trainerBoard.js"></script>    
 </body>
 </html>

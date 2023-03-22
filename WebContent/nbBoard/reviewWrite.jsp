@@ -36,8 +36,8 @@ String contextPath = request.getContextPath();
 	          <input type="text" name="title" style="width: 100%; box-sizing: border-box; font-size: 20px" placeholder="제목을 입력해주세요"> 
 	                  											<%-- box-sizing: border-box를 style에 넣어줘야 너비 끝부분 처리가 완벽 --%>
             <br><br>
-            <textarea rows="20" style="width:100%;" name="editor1" class="DOC_TEXT" name="DOC_TEXT" placeholder="리뷰에 대한 내용을 200자 이내로 기재해주세요." ></textarea>
-            <span style="color:#aaa;" id="counter">(0 / 최대 1000자)</span>
+            <textarea rows="20" style="width:100%; font-size: 25px;" name="editor1" class="DOC_TEXT" name="DOC_TEXT" placeholder="리뷰에 대한 내용을 1000자 이내로 기재해주세요."></textarea>
+            <span style="color:#aaa; font-size: 15px;" id="counter">(0 / 최대 1000자)</span>
 <!-- 	            <textarea name="editor1" id="editor1" rows="10" cols="80">
 	            </textarea>
 	            <script>
