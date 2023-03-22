@@ -30,14 +30,14 @@
             </tr>
         <c:forEach var="mem" items="${requestScope.membersList}">
 				<tr>
-					<td><a href="${contextPath}/adm/memDetail.adm?memberID=${mem.mem_id}">${mem.mem_id}</a></td>
+					<td><a class="mem_link" href="${contextPath}/adm/memDetail.adm?memberID=${mem.mem_id}">${mem.mem_id}</a></td>
 					<td>${mem.mem_name}</td>
 					<td>${mem.mem_nick}</td>
 					<td>${mem.mem_email}</td>
 					<td>${mem.mem_hp}</td>
 					<td>${mem.mem_joindate}</td>
 					<td>${mem.mem_pet}</td>
-					<td><a href="${contextPath}/adm/delMem.adm?delID=${mem.mem_id}">회원 삭제</a></td>
+					<td><a class="mem_link" href="${contextPath}/adm/delMem.adm?delID=${mem.mem_id}">회원 삭제</a></td>
 				</tr>
 			</c:forEach>
         </table>

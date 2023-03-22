@@ -1,6 +1,8 @@
 
 	//====================================================================================================
-	    
+	 
+
+
 	
 	function change(event) {
 		
@@ -27,7 +29,39 @@
 			$("#nickInput").text("");
 		}
     	
-	
+	 	
+    	//====================================================================================================
+		
+			var mail = $("#email");
+    		var mailValue = mail.val();
+    		var mailReg = /^\w{5,12}@[a-z]{2,10}[\.][a-z]{2,3}[\.]?[a-z]{0,2}$/;
+    		var rsEmail = mailReg.test(mailValue);
+    		
+	    	if(!rsEmail){
+    			$("#emailInput").text("이메일 형식이 올바르지 않습니다.").css("color","red");
+    			mail.focus();
+    			return false;
+	    	
+	    	}else{
+    			$("#emailInput").text("");
+    		}
+ 	   
+    	//====================================================================================================
+
+	    
+			var p = $("#hp");
+    		var pValue = p.val();
+    		var pReg = RegExp(/^01[0179][0-9]{7,8}$/);
+    		var resultP = pReg.test(pValue);
+    		if(!resultP){
+    			$("#hpInput").text("휴대폰번호 형식이 올바르지 않습니다.").css("color","red");
+    			p.focus();
+    			return false;
+    		
+    		}else{
+    			$("#hpInput").text("");
+    		}	
+	   
     	//====================================================================================================
 
 		var address1 = $("#sample4_postcode");
@@ -53,75 +87,14 @@
 			$("#sample4_detailAddress").focus();
 			return false;
 		}
-		//====================================================================================================
-
-		
-		
-    	var pass = $("#pass");
-    	var passValue = pass.val();
-    	
-    	var passReg = RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{10,20}$/);
-    	var resultPass = passReg.test(passValue);
-
-		if(!resultPass){
-			$("#passInput").text("영어,숫자,특수문자를 호함하여 8~20자로 작성하여주세요.").css("color","red");
-			pass.focus();
-			return false;
-		}else{
-			$("#passInput").text("사용 가능한 비밀번호 입니다.").css("color","green");
-		}
-		
-	    //====================================================================================================
-    	
-	    
-			
-    	if($("#checkpass").val() != $("#pass").val()){
-    		$("#checkpassInput").text("비밀번호가 일치하지 않습니다.!").css("color","red");
-    		$("#checkpass").focus();
-    		return false;
-    	}else{
-    		$("#checkpassInput").text("비밀번호가 일치합니다.").css("color","green");
-    	}
 
 
-	   
-    	//====================================================================================================
-
-	    
-			var p = $("#hp");
-    		var pValue = p.val();
-    		var pReg = RegExp(/^01[0179][0-9]{7,8}$/);
-    		var resultP = pReg.test(pValue);
-    		if(!resultP){
-    			$("#hpInput").text("휴대폰번호 형식이 올바르지 않습니다.").css("color","red");
-    			p.focus();
-    			return false;
-    		
-    		}else{
-    			$("#hpInput").text("");
-    		}	
-    	
-    	//====================================================================================================
-		
-			var mail = $("#email");
-    		var mailValue = mail.val();
-    		var mailReg = /^\w{5,12}@[a-z]{2,10}[\.][a-z]{2,3}[\.]?[a-z]{0,2}$/;
-    		var rsEmail = mailReg.test(mailValue);
-    		
-	    	if(!rsEmail){
-    			$("#emailInput").text("이메일 형식이 올바르지 않습니다.").css("color","red");
-    			mail.focus();
-    			return false;
-	    	
-	    	}else{
-    			$("#emailInput").text("");
-    		}
-	    	
 	    	
 	    //=====================================================================================================
 			
 	    	if(confirm("정보를 수정하시겠습니까??")){
-				
+		        
+	    		$("form").attr("action", "http://localhost:8090/TeamProject/member/updateInfo.me");
 				$("form").submit();
 				
 			}else {
@@ -130,7 +103,11 @@
 				
 			}
 		}
-	    //=====================================================================================================	
+	
+	
+  	
+  	
+		//=====================================================================================================	
 	    		
 	    	$("#delBtn").click(function(){
 	    		
@@ -147,8 +124,11 @@
 	    	
 	    	});
 	    	
-			
-	
+	    	//=====================================================================================================	
+    		
+  
+	    	
+
 			
 
 	

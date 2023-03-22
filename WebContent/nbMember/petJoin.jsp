@@ -6,6 +6,8 @@
  <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
+	String memImgPath = contextPath + "/memImg/";
+
 %>
 
 <%
@@ -61,7 +63,7 @@
 			height: 36px;
 			border-radius: 10px;
 			border: 1px solid #231815;
-			
+			padding-left: 10px;	
 		}
 				
 		.leftBlock {
@@ -80,7 +82,10 @@
 		}
 		
 		.userImg{
-			border-radius: 70%
+			border-radius: 70%;
+			height: 158px;
+		    border: 1px solid #231815;
+	    	width: 150px;
 		}
 		
 		.userName,.userId{
@@ -110,10 +115,10 @@
 		.rightBlock{
 		    padding: 35px 15px 80px 250px;
 		    padding-left: 250px;
-		    width: 100%;
+			width: 1100px;
 		    box-sizing: border-box;
 		    text-align: left;
-		    min-height: 650px;
+		    min-height: 520px;
 			
 		} 
 		
@@ -169,7 +174,7 @@
 			width: 100%;
    		 	display: inline-block;
     		position: relative;
-			margin-left: 90px;
+			margin-left: 9%;
 			margin-top: -100px;
 			font-size: 13px;
 		}
@@ -224,7 +229,17 @@
 			<div class="leftBlock">
 				<div class= "userInfo">
 					<div class="profile">
-						<img src="<%=contextPath%>/images/profile.png" class="userImg">
+					<%
+						if(mem_img == "profile.png" || tr_img == "profile.png"){
+					%>
+  						<img src="<%=contextPath%>/images/profile.png" class="userImg">  
+					<%
+						}else{
+					%>
+						<img src="<%=memImgPath+mem_img+tr_img%>" class="userImg">
+					<%
+						}
+					%>
 					</div>
 				</div>
 				<div class="user" >
@@ -275,7 +290,14 @@
 					</div>		
 					<br>
 					
+	
+
+				
+				
+				</div>
+				<div class="rightBlock3">
 					
+									
 					<div class="p_type">
 						<label>반려견 견종</a></label><br>
 						<input type="text" name="p_type" id="p_type">
@@ -284,11 +306,8 @@
 						<p id="typeInput"></p>
 					</div>		
 					<br>
-
-				
-				
-				</div>
-				<div class="rightBlock3">
+					
+					
 					<div class="p_gender">
 						<label>성별</label><br>
 							<select class="p_gender" name="p_gender" id="p_gender">
@@ -315,6 +334,7 @@
 					</div>
 					<br>
 					<div class="upload">
+<%-- 				
 						<div style="border: 1px solid #d7d7d7;
 					                width: 140px;
 					                height: 140px;">
@@ -326,6 +346,7 @@
 						     	<input type="file"  name="imageFileName"  onchange="readURL(this);" />
 							</div>
 						</div>
+--%>
 					</div>
 				</div>
 			</div>
