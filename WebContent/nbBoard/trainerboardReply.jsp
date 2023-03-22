@@ -21,7 +21,7 @@
 
 
  <div class="tbwContainer">
-    <form method="post" action="<%=contextPath%>/tb/tbReplyPro.bo" enctype="multipart/form-data">
+    <form method="post" action="<%=contextPath%>/tb/tbReplyPro.bo" enctype="multipart/form-data" id="ckForm">
       <input type="hidden" name ="id" value="<%=id %>"><!-- 세션아이디 영역(트레이너) -->
       <input type="hidden" name ="super_tb_idx" value="${super_tb_idx}"><!-- 부모글번호 -->
      

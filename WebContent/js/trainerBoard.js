@@ -94,9 +94,12 @@ function fileDel(tb_idx, tb_level) {
 
 				if (data == "삭제성공") {
 					alert("삭제 성공!");
-
-					location.href = getContextPath() + "/tb/list.bo";
-
+					document.getElementById("delButton").style.display = "none";
+					document.getElementById("attachFile").style.display = "none";
+					document.getElementById("updateFile").style.display = "block";
+					
+//					location.href = getContextPath() + "/tb/list.bo";
+					
 				} else {// "삭제실패"
 					alert("삭제에 실패했습니다.")
 					location.reload();
