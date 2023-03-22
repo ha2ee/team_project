@@ -331,7 +331,7 @@
 
 <div id="text2">
 <a href="<%=request.getContextPath()%>/nbShop/map.jsp">
-<i class="fa-solid fa-store fa-10x"></i>
+<i class="fa-solid fa-store fa-10x"></i> 
 </a>
 <i class="fa fa-arrow-up">&nbsp;&nbsp;클릭해보세요</i>
 </div>
