@@ -97,7 +97,6 @@
     font-size: 16px;
     }
     
-    }
     .slider2 > a> img{
 	position: relative;
 	background-size: cover;
