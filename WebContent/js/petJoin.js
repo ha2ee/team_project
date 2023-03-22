@@ -114,7 +114,7 @@
 	}
 		
 	function petInfoChange(){
-		$("form").attr("action", "<%=contextPath%>/member/petChangePro.me");
+		$("form").attr("action", "http://localhost:8090/TeamProject/member/petChangePro.me");
         $("form").submit();	
 		
 		
