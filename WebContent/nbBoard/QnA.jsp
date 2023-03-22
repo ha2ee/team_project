@@ -44,7 +44,7 @@
 					<div>아직 어떤 프로그램을 들어야 할지 모르시나요?</div>
 					<div>
 					<br>
-						<a href="#">상담신청하기</a>
+						<a href="javascript:addChannel()">상담신청하기</a>
 						<br>
 					</div>
 				</div>
@@ -67,6 +67,14 @@
 			</td>
 		</tr>
 	</table>
+	<script type="text/javascript">
+	function addChannel() {
+		  Kakao.Channel.addChannel({
+		    channelPublicId: '_Xpekxj',
+		  });
+		}
+	
+	</script>
 	</div>
 </body>
 </html>
