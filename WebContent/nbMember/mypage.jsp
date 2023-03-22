@@ -39,7 +39,7 @@
 					
 					
 					<div class="imgBox">
-											<%
+					<%
 						if(mem_img == "profile.png" || tr_img == "profile.png"){
 					%>
   						<img src="<%=contextPath%>/images/profile.png" class="userImg">  
@@ -56,7 +56,22 @@
 					<br><p><%=mem_name + tr_name%>(<%=id%>)</p>
 					
 					<a href="<%=contextPath%>/member/info.me" class="btn">내 정보 관리</a>
-					<a href="<%=contextPath%>/member/petInfo.me" class="btn">반려동물 정보 관리</a> 
+					
+					<%
+						if(tr_name != ""){
+					%>
+					
+					<%
+						}else{
+					%>
+						<a href="<%=contextPath%>/member/petInfo.me" class="btn">반려동물 정보 관리</a> 
+					<%
+						}
+					%>
+					
+					
+					
+					
 					</div>
 				</div>
 				<div class = "myPageRight mptr">
