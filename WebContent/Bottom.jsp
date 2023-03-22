@@ -9,7 +9,7 @@
 	width: 1920px;
 	margin: 0 auto;
 	}
-	p{
+	.copyright{
 	left: 180px;
     position: relative;
 	}
@@ -79,7 +79,7 @@
                     <div class="footer-line"></div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                    <p>Copyright 2021. <i class="fa fa-love"></i><a href="<%=request.getContextPath()%>/nb/Main">nb All rights reserved</a>
+                    <p class="copyright">Copyright 2021. <i class="fa fa-love"></i><a href="<%=request.getContextPath()%>/nb/Main">nb All rights reserved</a>
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
