@@ -183,7 +183,11 @@ div.filedownload {
   	</c:if>
  --%>    	
     <div class="post-buttons">
-    <a href="<%=contextPath%>/freeboard/download.fb?idx=<%=b_idx%>"><%=file%></a>
+    
+    
+    <c:if test="${not empty vo.b_realfile}">
+      <a href="<%=contextPath%>/freeboard/download.fb?idx=<%=b_idx%>"><%=file%></a>
+    </c:if>
     
 		<input type="button" value="목록으로" onclick="location.href='list.fb?nowPage=0&nowBlock=0'" id="list" />
        

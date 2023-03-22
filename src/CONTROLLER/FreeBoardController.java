@@ -137,7 +137,7 @@ public class FreeBoardController extends HttpServlet {
       String title = multipartRequest.getParameter("title");
       String content = multipartRequest.getParameter("editor1");
       String fileName = multipartRequest.getOriginalFileName("fileName");
-      String fileRealName = multipartRequest.getFilesystemName("file");
+      String fileRealName = multipartRequest.getFilesystemName("fileName");
 //      //여기까지
       
 
@@ -446,7 +446,7 @@ public class FreeBoardController extends HttpServlet {
         
         int idx2 = Integer.parseInt(request.getParameter("idx"));
         vo = boarddao.modifyOne(idx2);
-        String fileName11 = vo.getB_file();
+        String fileName11 = vo.getB_realfile();
         System.out.println(fileName11);
         
         String directory1 = this.getServletContext().getRealPath("/upload/");
