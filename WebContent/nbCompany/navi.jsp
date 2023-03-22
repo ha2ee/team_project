@@ -81,7 +81,7 @@
 		</div>
 
 		<div id="bigdiv"> 
-			<form name="mailform" action="MAILTO:kisschu@naver.com" method="post" enctype="text/plain">
+			<form name="mailform" action="MAILTO:kisschu@naver.com" method="post" enctype="text/plain" >
 			<div id="middlediv">
 				<h2>무엇이든 물어보세요!</h2>
 				<br>
