@@ -2865,13 +2865,20 @@ border: 1px solid #e8d0d01f;
     top: -648px;
     left: 0;
     border-radius: 20px;
+   	font-size: 20px;
+    font-weight: bold;
+    color: pink;
+    transition: 0.4s;
 
 
 }
 
 #pop_btn > input:hover {
 
-
+	font-size: 20px;
+    font-weight: bold;
+    color: pink;
+    transition: 0.4s;
 
 }
 
