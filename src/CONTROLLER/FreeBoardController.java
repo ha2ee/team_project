@@ -470,6 +470,7 @@ public class FreeBoardController extends HttpServlet {
         ServletOutputStream servletOutputStream = response.getOutputStream();
         
         
+        
         byte b[] = new byte[1024];
         int data= 0;
         
