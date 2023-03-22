@@ -44,8 +44,8 @@
 					<div>아직 어떤 프로그램을 들어야 할지 모르시나요?</div>
 					<div>
 					<br>
-						<a href="javascript:addChannel()">상담신청하기</a>
-						<br>
+						<a style="border-radius: 20px; font-size: 20px;height: 33px; border:0; background:#FFB2D9;" href="javascript:addChannel()" class="btn btn-primary btn-sm">1:1 상담하기<br></a>
+						<br><br><br>
 					</div>
 				</div>
 				<div>

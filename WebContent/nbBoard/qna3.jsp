@@ -128,17 +128,62 @@ ul, li, p { list-style:none; padding:0; margin:0; }
     
     <li class="qa_li">
         <div class="question">
-            <p class="tit">질문3</p>
+            <p class="tit">무통장 결제는 어떻게 하나요?</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
-        <div class="answer">답변3</div>
+        <div class="answer">무통장 계좌는 각 주문마다 일회성으로 생성되는 전용 계좌이며 주문 시 주문확인 페이지 상단의 "결제방법'에서 선택하시면 됩니다.<br> 
+발급 받은 계좌로는 결제금액과 일치해야만 입금이 되며, 입금자명은 동일하지 않아도 됩니다. <br> 
+또한, 무통장 계좌는 생성된 다음날 자정까지 입금하지 않으면 자동 소멸되고 주문도 취소됩니다.</div>
     </li>
     <li class="qa_li">
         <div class="question">
-            <p class="tit">질문3</p>
+            <p class="tit">신용카드 결제가 되지않을경우 어떻게 하나요?</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
-        <div class="answer">답변3</div>
+        <div class="answer">신용카드 결제가 되지 않는 것은 PC 환경 또는 Active X 컨트롤이 정상적으로 설치되지 않은 경우들로 상황에 따라 다음과 같이 하시면 됩니다. <br> <br> 
+  
+1. 결제수단 선택 후 결제창이 나타나지 않는 경우<br> 
+ (1) 임시 파일 및 쿠키 삭제<br> 
+     “인터넷 익스플로러 > 도구 > 인터넷 옵션” 클릭 후 일반 탭에서 검색기록, 쿠키 선택 후 삭제<br> 
+ (2) 오류 자동복구 및 프로그램 실행<br> 
+  ① http://www.inicis.com/blog/archives/496에 접속 <br> 
+  ② 'INIpay 마법사' 프로그램 실행<br> 
+  ③ 'INIpay 마법사' 안내에 따라 PC점검 및 결제창 플러그인 설치 진행<br> <br> 
+  
+2. 결제 중 Load Library Error라는 에러 메시지가 나오는 경우<br> 
+ (1) 현재 실행 중인 플러그인 모두 닫기<br> 
+ (2) 새로운 인터넷 브라우저 실행<br> 
+ (3) 주소 입력 부분에 "http://www.inicis.com/Support_new/Demo_INIsecurepay.php" 입력하고 엔터키 클릭<br> 
+ (4) 지불 테스트 화면이 나타나면 ‘지불’ 버튼 클릭<br> 
+ (5) 정상적으로 신용카드 입력 화면이 나오는지 확인<br> 
+ (6) 정상 작동하면 다시 결제 시도<br> <br> 
+   
+3. "initialize fail(초기화 실패)" 또는 "플러그인 초기화"라고 나오는 경우<br> 
+ (1) 열려 있는 인터넷 익스플로러 창 모두 닫기<br> 
+ (2) C:\WINDOWS\Downloaded Program Files 에서 KVPplugin00 Control 파일 삭제<br> 
+ (3) 다시 인터넷안전결제(ISP)를 신청하거나, 수동설치파일을 설치한 후 재신청<br> <br> 
+  
+4. 카드번호와 이메일 주소 입력 후 다음 단계로 넘어가지 못하고 화면이 종료되는 경우<br> 
+ (1) 시작 버튼을 클릭하고 검색의 "파일 또는 폴더 찾기"에서 kvpvcd.dll 검색<br> 
+ (2) 검색결과에서 C:WINDOWSSYSTEM32(SYSTEM) 위치에 있는 kvpvcd.dll 파일을 삭제 후 다시 시도<br> <br> 
+
+5. 크롬 브라우저에서 결제하려는데 페이지 이동이 안 되는 경우<br> 
+ (1) 플러그인이 설치되지 않은 경우<br> 
+  ① URL 주소 입력창 오른쪽 끝에 표시 된 "플러그인 차단 됨" 아이콘 클릭<br> 
+  ② www.dogpre.com에서 "플러그인 항상 허용" 선택 후 완료 버튼 클릭<br> 
+  ③ 크롬 브라우저를 새로고침(F5)한 후 결제 재시도<br> 
+  ④ 재시도 해도 안 될 경우 안내 창의 [수동설치하기] 버튼을 클릭하여 플러그인을 수동으로 설치<br> 
+ (2) 팝업이 차단 된 경우<br> 
+  ① 크롬 브라우저의 "설정 > 고급 설정 표시"를 클릭<br> 
+  ② "개인정보 > 콘텐츠 설정 > 팝업"에서 "모든 사이트에서 팝업 표시 허용"을 체크한 후 완료 클릭<br> 
+  ③ 크롬 브라우저를 새로고침(F5)한 후 결제 재시도<br> <br> 
+
+6. 파이어폭스 브라우저에서 결제하려는데 페이지 이동이 안되는 경우<br> 
+ (1) 브라우저 상단에 INICIS INIpay 플러그인을 설치하라는 안내 메시지에서 "허락" 버튼 클릭<br> 
+      (안내가 영문으로 제공되는 경우 "Allow www.dogpre.com to run "INICIS INIpay?" 에서 "Allow" 버튼 클릭)<br> 
+ (2) URL 주소 입력창 왼쪽 상단에서 허락하고 유지한다는 버튼 클릭<br> 
+      (안내가 영문으로 제공되는 경우 "Allow and Remenber" 버튼 클릭)<br> 
+ (3) "결제하기" 버튼 클릭하여 결제 재시도</div>
     </li>
     
     <li class="qa_li">
