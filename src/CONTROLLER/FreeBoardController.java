@@ -469,6 +469,7 @@ public class FreeBoardController extends HttpServlet {
         FileInputStream fileInputStream = new FileInputStream(file);
         ServletOutputStream servletOutputStream = response.getOutputStream();
         
+        
         byte b[] = new byte[1024];
         int data= 0;
         
