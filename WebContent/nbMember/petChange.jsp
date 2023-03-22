@@ -93,7 +93,7 @@
 	.rightBlock{
 	    padding: 3px 15px 80px 250px;
 	    padding-left: 300px;
-	    width: 100%;
+		width: 1100px;
 	    box-sizing: border-box;
 	    text-align: left;
 	    min-height: 850px;
