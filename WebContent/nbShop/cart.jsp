@@ -432,23 +432,23 @@
 				<input id="popEmail${a}"type="text" value="${vo.edu_email}" readonly="readonly"  />
 			</div>
 			<div id= "pop_address1">
-				<a id="pop7">예약자 주소1</a>
+				<a id="pop7">우편 번호</a>
 				<input type="text" value="${vo.edu_address1}" readonly="readonly"  />
 			</div>
 			<div id= "pop_address2">
-				<a id="pop8">예약자 주소2</a>
+				<a id="pop8">도로명 주소</a>
 				<input type="text" value="${vo.edu_address2}" readonly="readonly"  />
 			</div>
 			<div id= "pop_address3">
-				<a id="pop8">예약자 주소3</a>
+				<a id="pop8">지번 주소</a>
 				<input type="text" value="${vo.edu_address3}" readonly="readonly"  />
 			</div>
 			<div id= "pop_address4">
-				<a id="pop9">예약자 주소4</a>
+				<a id="pop9">참고 주소</a>
 				<input type="text" value="${vo.edu_address4}" readonly="readonly"  />
 			</div>
 			<div id= "pop_address5">
-				<a id="pop10">예약자 주소5</a>
+				<a id="pop10">상세 주소</a>
 				<input type="text" value="${vo.edu_address5}" readonly="readonly"  />
 			</div>
 		</div>	
@@ -498,31 +498,31 @@
 				<input id="popTrHp${a}" type="text" value="${vo.tr_hp}" readonly="readonly"  />
 			</div>
 			<div id= "pop_tr_date1">
-				<a id="pop21">수강 예약일</a>
+				<a id="pop21">수강 예약 1회</a>
 				<input type="text" value="${vo.date1}" readonly="readonly"  />
 			</div>
 			<div id= "pop_tr_date2">
-				<a id="pop22">수강 예약일2</a>
+				<a id="pop22">수강 예약 2회</a>
 				<input type="text" value="${vo.date2}" readonly="readonly"  />
 			</div>
 			<div id= "pop_tr_date3">
-				<a id="pop23">수강 예약일3</a>
+				<a id="pop23">수강 예약 3회</a>
 				<input type="text" value="${vo.date3}" readonly="readonly"  />
 			</div>
 			<div id= "pop_tr_date4">
-				<a id="pop24">수강 예약일4</a>
+				<a id="pop24">수강 예약 4회</a>
 				<input type="text" value="${vo.date4}" readonly="readonly"  />
 			</div>
 			<div id= "pop_tr_date5">
-				<a id="pop25">수강 예약일5</a>
+				<a id="pop25">수강 예약 5회</a>
 				<input type="text" value="${vo.date5}" readonly="readonly"  />
 			</div>
 			<div id= "pop_tr_date6">
-				<a id="pop26">수강 예약일6</a>
+				<a id="pop26">수강 예약 6회</a>
 				<input type="text" value="${vo.date6}" readonly="readonly"  />
 			</div>
 			<div id= "pop_tr_date7">
-				<a id="pop27">수강 예약일7</a>
+				<a id="pop27">수강 예약 7회</a>
 				<input type="text" value="${vo.date7}" readonly="readonly"  />
 			</div>
 			<div id= "pop_cnt${a}">
