@@ -59,23 +59,25 @@ ul, li, p { list-style:none; padding:0; margin:0; }
 
 <body>
 
-
+<!-- 취소관련 페이지 -->
 
 <ul class="listWrap">
-    <li class="qa_li">
+     <li class="qa_li">
         <div class="question">
-            <p class="tit">질문5</p>
+            <p class="tit">부분 취소가 가능한가요?</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
-        <div class="answer">답변1</div>
+        <div class="answer">부분 취소는 불가능합니다. <br>
+다만, '입금대기, 입금완료' 상태인 경우 주문 취소 후 다시 주문하실 수 있습니다. </div>
     </li>
-    <li class="qa_li">
+        <li class="qa_li">
         <div class="question">
-            <p class="tit">질문2</p>
+            <p class="tit">주문 취소는 어떻게 하나요?</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
-        <div class="answer">답변2</div>
-    </li>
+        <div class="answer">'입금대기' 상태인 경우 취소 가능합니다. '입급완료'후엔 수강 시작일 7일 전까지는 무료취소 가능합니다.
+ 
+</div>
     <li class="qa_li">
         <div class="question">
             <p class="tit">질문3</p>

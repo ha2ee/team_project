@@ -59,15 +59,16 @@ ul, li, p { list-style:none; padding:0; margin:0; }
 
 <body>
 
-
+<!-- 사이트 이용/혜택관련 질문페이지 -->
 
 <ul class="listWrap">
-    <li class="qa_li">
+   <li class="qa_li">
         <div class="question">
-            <p class="tit">질문6</p>
+            <p class="tit">고객센터에 전화 연결이 되지 않을 경우는 어떻게 해야 하나요?</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
-        <div class="answer">답변1</div>
+        <div class="answer">고객센터 상담 시간은 평일 오전 9시 ~ 오후 6시이며(점심시간 오후 12시 ~ 13시), 토요일/공휴일은 휴무입니다. 
+고객센터 상담 시간 이외 또는 상담량이 많아 전화 연결이 되지 않을 경우에는 [마이페이지 > 고객센터] 채팅 또는 1:1문의로 연락주시면 신속히 안내해 드리겠습니다.</div>
     </li>
     <li class="qa_li">
         <div class="question">

@@ -59,12 +59,12 @@ ul, li, p { list-style:none; padding:0; margin:0; }
 
 <body>
 
-
+<!-- 회원서비스 관련 질문페이지 -->
 
 <ul class="listWrap">
     <li class="qa_li">
         <div class="question">
-            <p class="tit">질문2</p>
+            <p class="tit">회원서비스 관련 질문페이지</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
         <div class="answer">답변1</div>

@@ -59,15 +59,15 @@ ul, li, p { list-style:none; padding:0; margin:0; }
 
 <body>
 
-
+<!-- 주문/결제 질문페이지 -->
 
 <ul class="listWrap">
     <li class="qa_li">
         <div class="question">
-            <p class="tit">질문3</p>
+            <p class="tit">인터넷안전결제(ISP) 결제가 안돼요!</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
-        <div class="answer">답변1</div>
+        <div class="answer">iOS (아이폰) 고양이대통령 앱에서 ISP 결제가 어려운 경우 PC 또는 모바일 웹(m.catpre.com) 을 이용해 주시고, 앱 쿠폰을 사용해야 할 경우 ISP 결제가 아닌 앱 카드(간편결제) 또는 다른 결제 수단을 선택하여 결제 바랍니다.</div>
     </li>
     <li class="qa_li">
         <div class="question">

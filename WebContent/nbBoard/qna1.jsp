@@ -59,58 +59,123 @@ ul, li, p { list-style:none; padding:0; margin:0; }
 
 <body>
 
-
+<!-- 전제질문페이지 -->
 
 <ul class="listWrap">
     <li class="qa_li">
         <div class="question">
-            <p class="tit">질문1</p>
+            <p class="tit">인터넷안전결제(ISP) 결제가 안돼요!</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
-        <div class="answer">답변1</div>
+        <div class="answer">iOS (아이폰) 고양이대통령 앱에서 ISP 결제가 어려운 경우 PC 또는 모바일 웹(m.catpre.com) 을 이용해 주시고, 앱 쿠폰을 사용해야 할 경우 ISP 결제가 아닌 앱 카드(간편결제) 또는 다른 결제 수단을 선택하여 결제 바랍니다.</div>
     </li>
     <li class="qa_li">
         <div class="question">
-            <p class="tit">질문2</p>
+            <p class="tit">택배사 파업지역인데 타 택배로 발송 가능한가요?</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
-        <div class="answer">답변2</div>
+        <div class="answer">- 파업으로 배송이 원활하지 않은 지역은 타 택배를 통해 대체 발송됩니다.<br>
+- 타 택배 발송 대상 건에도 CJ대한통운 발송 완료 기본 알림이 전송됩니다.<br>
+-  마이페이지 > 주문 · 배송 페이지에는 CJ대한통운 운송장 번호가 확인되지만 실제 배송은 타 택배사를 통해 진행됩니다.<br>
+- 타 택배 발송 완료 후, 문자로 실제 배송 정보를 전달드립니다.</div>
     </li>
     <li class="qa_li">
         <div class="question">
-            <p class="tit">질문3</p>
+            <p class="tit">고객센터에 전화 연결이 되지 않을 경우는 어떻게 해야 하나요?</p>
+            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
+        </div>
+        <div class="answer">고객센터 상담 시간은 평일 오전 9시 ~ 오후 6시이며(점심시간 오후 12시 ~ 13시), 토요일/공휴일은 휴무입니다. 
+고객센터 상담 시간 이외 또는 상담량이 많아 전화 연결이 되지 않을 경우에는 [마이페이지 > 고객센터] 채팅 또는 1:1문의로 연락주시면 신속히 안내해 드리겠습니다.</div>
+    </li>
+        <li class="qa_li">
+        <div class="question">
+            <p class="tit">부분 취소가 가능한가요?</p>
+            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
+        </div>
+        <div class="answer">부분 취소는 불가능합니다. <br>
+다만, '입금대기, 입금완료' 상태인 경우 주문 취소 후 다시 주문하실 수 있습니다. </div>
+    </li>
+        <li class="qa_li">
+        <div class="question">
+            <p class="tit">주문 취소는 어떻게 하나요?</p>
+            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
+        </div>
+        <div class="answer">'입금대기' 상태인 경우 취소 가능합니다. '입급완료'후엔 수강 시작일 7일 전까지는 무료취소 가능합니다.
+ 
+</div>
+    </li>
+        <li class="qa_li">
+        <div class="question">
+            <p class="tit">세금계산서 신청은 언제까지 할 수 있나요?</p>
+            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
+        </div>
+        <div class="answer">결제한 날을 기준으로 다음 달 10일까지 신청하실 수 있습니다.</div>
+    </li>
+        <li class="qa_li">
+        <div class="question">
+            <p class="tit"></p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
         <div class="answer">답변3</div>
     </li>
-        <li class="qa_li">
+     <li class="qa_li">
         <div class="question">
             <p class="tit">질문3</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
         <div class="answer">답변3</div>
     </li>
-        <li class="qa_li">
+     <li class="qa_li">
         <div class="question">
             <p class="tit">질문3</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
         <div class="answer">답변3</div>
     </li>
-        <li class="qa_li">
+     <li class="qa_li">
         <div class="question">
             <p class="tit">질문3</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
         <div class="answer">답변3</div>
     </li>
-        <li class="qa_li">
+     <li class="qa_li">
         <div class="question">
             <p class="tit">질문3</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
         <div class="answer">답변3</div>
     </li>
+     <li class="qa_li">
+        <div class="question">
+            <p class="tit">질문3</p>
+            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
+        </div>
+        <div class="answer">답변3</div>
+    </li>
+     <li class="qa_li">
+        <div class="question">
+            <p class="tit">질문3</p>
+            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
+        </div>
+        <div class="answer">답변3</div>
+    </li>
+     <li class="qa_li">
+        <div class="question">
+            <p class="tit">질문3</p>
+            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
+        </div>
+        <div class="answer">답변3</div>
+    </li>
+     <li class="qa_li">
+        <div class="question">
+            <p class="tit">질문3</p>
+            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
+        </div>
+        <div class="answer">답변3</div>
+    </li>
+    
+    
         
 </ul>
 

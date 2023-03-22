@@ -59,15 +59,18 @@ ul, li, p { list-style:none; padding:0; margin:0; }
 
 <body>
 
-
+<!-- 배송관련 질문페이지 -->
 
 <ul class="listWrap">
     <li class="qa_li">
         <div class="question">
-            <p class="tit">질문4</p>
+            <p class="tit">택배사 파업지역인데 타 택배로 발송 가능한가요?</p>
             <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
         </div>
-        <div class="answer">답변1</div>
+        <div class="answer">- 파업으로 배송이 원활하지 않은 지역은 타 택배를 통해 대체 발송됩니다.<br>
+- 타 택배 발송 대상 건에도 CJ대한통운 발송 완료 기본 알림이 전송됩니다.<br>
+-  마이페이지 > 주문 · 배송 페이지에는 CJ대한통운 운송장 번호가 확인되지만 실제 배송은 타 택배사를 통해 진행됩니다.<br>
+- 타 택배 발송 완료 후, 문자로 실제 배송 정보를 전달드립니다.</div>
     </li>
     <li class="qa_li">
         <div class="question">
