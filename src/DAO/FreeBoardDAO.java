@@ -9,6 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import VO.CommentVO;
 import VO.FreeBoardVo;
 import VO.LikeVo;
 
@@ -468,5 +469,33 @@ public class FreeBoardDAO {
     return result;
   }
 
+  public String checkLikeBeforeRead(String memberid, int b_idx) {
+    String result = "0";
+    try {
+      con = ds.getConnection();
+      
+      String sql = " SELECT * "
+                  + "FROM LIKE_TABLE "
+                  + "WHERE FREEBOARD_B_ID = ? "
+                  + "AND FREEBOARD_B_IDX = ? ";
+      pstmt = con.prepareStatement(sql);
+      pstmt.setString(1,memberid);
+      pstmt.setInt(2, b_idx);
+      
+      rs = pstmt.executeQuery();
+      if(rs.next()) {
+        result = "1";
+      }
+    } catch (Exception e) {
+      System.out.println("checkLikeBeforeRead 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
+      e.printStackTrace();
+    } finally {
+      closeResource();
+    }
+    return result;
+  }
+
+//====================댓글작성  
+ 
   
 }

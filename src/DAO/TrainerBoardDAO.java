@@ -185,7 +185,7 @@ public class TrainerBoardDAO {
             {
                 
                 sql.append("select * from ");
-                sql.append("(select rownum rnum, Tb_idx, Tb_ID, Tb_nickname");
+                sql.append("(select rownum rnum, Tb_idx, Tb_ID, Tb_name");
                 sql.append(", TB_TITLE, TB_CONTENT, TB_GROUP, TB_LEVEL, TB_DATE, TB_CNT, TB_FILE");
                 sql.append(" FROM ");
                 sql.append("(select * from Trainer_board where Tb_name like ? ");
@@ -759,32 +759,28 @@ public class TrainerBoardDAO {
 			return vo;
 		}
 
-		public String deleteBoard(HttpServletRequest request) throws IOException {
+		public String deleteFile(HttpServletRequest request) throws IOException {
 			String delete_idx = request.getParameter("tb_idx");
 			String delete_level = request.getParameter("tb_level");
 			File deleteDir;
+			String result = "";
+			
 			if( Integer.parseInt(delete_level) > 0) {
 				deleteDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\reply_tb_idx") + delete_idx); 
 			} else {
 				deleteDir = new File(request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\tb_idx") + delete_idx); 
 			}
-			//글삭제에 성공하면 "삭제성공" 반환 받고, 실패하면 "삭제실패" 반환 받음 
-			String result = tbDBDelete(delete_idx);
-			
-			if(result.equals("삭제성공")) {
-				
 				if (deleteDir.exists()) {
-					
 					FileUtils.deleteDirectory(deleteDir);//글번호 폴더도 삭제
-				}
+					result = "삭제성공";
+			} else {
+					result ="삭제실패";
 			}
 			return result; //글삭제에 성공하면 "삭제성공" 반환 , 실패하면 "삭제실패" 반환  
 		}
 			
 	
-		public String tbDBDelete(String tb_idx) {
-			String result = null;
-			
+		public void tbDBDelete(String tb_idx) {
 			try {
 				con = ds.getConnection();
 				
@@ -792,14 +788,7 @@ public class TrainerBoardDAO {
 				
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, tb_idx);
-				int val = pstmt.executeUpdate();
-				
-				if(val == 1) {
-					result = "삭제성공";
-				}else {
-					result = "삭제실패";
-				}
-				
+				pstmt.executeUpdate();
 				
 			}catch (Exception e) {
 				System.out.println("tbDBDelete메소드 내부에서 오류 ");
@@ -807,7 +796,25 @@ public class TrainerBoardDAO {
 			}finally {
 				closeResource();
 			}
-			return result;
+		}	
+		
+		
+		public void DBFileReset(String tb_idx) {
+			try {
+				con = ds.getConnection();
+				
+				String sql = "UPDATE TRAINER_BOARD SET TB_FILE = NULL WHERE tb_idx=?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, tb_idx);
+				pstmt.executeUpdate();
+				
+			}catch (Exception e) {
+				System.out.println("DBFileReset메소드 내부에서 오류 ");
+				e.printStackTrace();
+			}finally {
+				closeResource();
+			}
 		}	
 		
 

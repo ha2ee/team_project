@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    height: 105vh;
+  }
+  
+    h2>a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+    h2>a:hover {
+    background-color: #555;
+  }
+  
+  .sidebar {
+    background-color: #333;
+    color: #fff;
+    min-width : 250px;
+    padding: 20px;
+    height: 100%;
+/*     flex: 1; */
+  }
+  
+  .sidebar h2 {
+    margin-top: 0;
+    text-align: center;
+  }
+  
+  .menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .menu li {
+    margin-bottom: 10px;
+  }
+  
+  .menu a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .menu a:hover {
+    background-color: #555;
+  }
+  
+  .submenu {
+    list-style-type: none;
+    padding: 0 30px;
+    display: none;
+  }
+
+  .submenu.active {
+    display: block;
+  }
+  
+  .submenu li {
+    margin-bottom: 5px;
+  }
+  
+  .submenu a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .submenu a:hover {
+    background-color: #555;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    overflow: auto;
+  }
+  
+  
+  
+  
+/*adminCenter*/
+.center_Container {
+	position:relative;
+	width:1200px;
+	min-width : 1200px;
+	height : 800px;
+	min-height : 800px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin: 0 auto;
+}
+
+.link {
+text-decoration: none;
+color : #000;
+display : inline-block;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+width: 150px;
+}
+
+.link:hover {
+text-decoration: underline;
+}
+
+
+.center_Container>div {
+	width:600px;
+	height: 50%;
+	box-sizing: border-box;
+	border: 1px solid #888;
+	text-align: center;
+}
+
+.center_Container>div:nth-child(1) {
+	background: #fcc;
+}
+
+.center_Container>div:nth-child(2) {
+	background: #cfc;
+}
+
+.center_Container>div:nth-child(3) {
+	background: #fcf;
+	width: 400px;
+	height : 50%;
+}
+
+.center_Container>div:nth-child(4) {
+	background-color: #cff;
+	width: 400px;
+	height : 50%;
+}
+.center_Container>div:nth-child(5) {
+	background: #888;
+	width: 400px;
+	height : 50%;
+}
+
+.seeMore {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position:relative;
+  top : -45px;
+  right : 15px;
+  text-decoration: none;
+}
+
+.seeMore:hover,
+.seeMore:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.center_memTable,.center_trTable, .center_trBoardTable {
+	border-collapse: collapse;
+	margin : 0 auto;
+}
+
+.center_memTable th, .center_memTable td, .center_trTable th, .center_trTable td {
+	text-align: center;
+	border-bottom: 1px solid #888;
+	width : 20%;
+	height:30px;
+}
+.center_memTable th, .center_trTable th{
+	background-color: #EAEAEA;
+}
+  
+  
+  
+  
+/*adminTrMemDetail, adminMemDetail*/
+.memDetail_Board {
+border-collapse: collapse;
+width : 1200px;
+}
+
+.memDetail_Board th, .memDetail_Board td {
+		  padding: 10px 20px; 
+ 		  text-align: center; 
+		  border: 1px solid #ddd; 
+		}
+		
+.memDetail_Board td {
+	width : 80%;
+}
+
+.updateMem {
+border : none;
+outline : none;
+text-align : center;
+font-size: 16px;
+readonly:none;
+}
+
+#delMem {
+	text-decoration: none;
+	color : inherit;
+}
+#delMem:hover {
+	text-decoration: underline;
+}
+
+/* 모달 창 스타일 */
+.modal {
+  display: none; /* 모달 창을 초기에 숨김 */
+  position: fixed; /* 모달 창이 화면에 고정됨 */
+  z-index: 1; /* 다른 요소들보다 위에 표시됨 */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* 모달 내용이 화면 크기를 초과하면 스크롤바를 표시함 */
+  background-color: rgba(0,0,0,0.4); /* 배경색을 검정색 반투명으로 지정 */
+}
+
+/* 모달 내용 스타일 */
+.modal-content {
+  background-color: white;
+  margin: 10% auto; /* 모달 창이 화면 중앙에 위치하도록 함 */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 800px;
+}
+
+.modal-content table {
+	width : 100%;
+	margin : 0 auto;
+	border: 1px solid #888;
+}
+
+.modal-content th {
+	text-align: center;
+	width : 30%;
+}
+
+.modal-content td {
+	width : 70%;
+}
+input[type="text"] {
+	width: 200px;
+}
+
+p {
+font-size: 10px;
+display: inline;
+}
+
+/* 모달 닫기 버튼 스타일 */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}  
+
+
+/*회원, 트레이너 리스트 조회 시 첫번째 링크 줄 생성*/
+.mem_link:hover {
+	text-decoration: underline;
+}

@@ -332,8 +332,19 @@ public class nbController extends HttpServlet{
 			nextPage = "/nbMain.jsp";
 			
 			
+		}else if(action.equals("/search.map")) {
+
+			// 중앙 화면 요청한 주소 얻기
+			String center = request.getParameter("center");
+
+			// 중앙 화면 바인딩 하기
+			System.out.println("요청한 center : "+ center);
+
+			//request에 "center" 값으로 저장
+			request.setAttribute("center", center);
+
+			nextPage = "/nbMain.jsp";
 		}
-		
 		//포워딩 (디스패처 방식)
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);

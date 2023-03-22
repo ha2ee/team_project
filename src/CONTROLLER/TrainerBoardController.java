@@ -26,6 +26,11 @@ import VO.TrainerVo;
 @WebServlet("/tb/*")
 public class TrainerBoardController extends HttpServlet{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//TrainerBoardDAO객체를 저장할 참조변수 선언
 	TrainerBoardDAO trainerboarddao;
 	
@@ -88,10 +93,6 @@ public class TrainerBoardController extends HttpServlet{
 		TrainerVo trainervo = null;
 		MemberVo membervo = null;
 
-		ArrayList list = null;
-		int count = 0;
-		String key = null;
-		String word = null;
 		String memberid = null;
 		
 		HttpSession session = request.getSession();
@@ -103,7 +104,6 @@ public class TrainerBoardController extends HttpServlet{
 		
 	      if (action.equals("/write.bo")) {
 	    	  
-	    	  System.out.println("write.bo에서 result값 확인" + result);
 	    	//새글 입력시 작성자에 닉네임 넣어주려고 가져오는 메소드
 	    	  if(result) {//ys_member테이블에 있다면? true를 받았으니
 	    		  membervo = memberdao.memberOne(memberid);
@@ -142,16 +142,6 @@ public class TrainerBoardController extends HttpServlet{
 	    	    
 	    	  
 	      } else if (action.equals("/list.bo")) {
-	    	  
-//				//-------------------------------------------------------
-//				
-//				//로그인시 기능 주석처리중
-////				HttpSession session_ = request.getSession();
-////				String loginid = (String)session_.getAttribute("id");
-////				
-////				request.setAttribute("id", loginid);
-//				
-				//----------------------------------------------------------------------
 				
 				 // 현재 페이지 번호 만들기
 		        int spage = 1;
@@ -172,8 +162,6 @@ public class TrainerBoardController extends HttpServlet{
 		        
 		        int listCount = trainerboarddao.getBoardListCount(listOpt);
 		        ArrayList<TrainerBoardVo> list2 =  trainerboarddao.getBoardList(listOpt);
-		        System.out.println(list2.size());
-		        list =  trainerboarddao.getBoardList(listOpt);
 		        
 		        // 한 화면에 10개의 게시글을 보여지게함
 		        // 페이지 번호는 총 5개, 이후로는 [다음]으로 표시
@@ -200,7 +188,7 @@ public class TrainerBoardController extends HttpServlet{
 		        request.setAttribute("list", list2);
 		        center = "nbBoard/trainerboardList.jsp";
 		        request.setAttribute("center", center);
-		        
+		        request.setAttribute("trainerboarddao", trainerboarddao);
 		        nextPage = "/nbMain.jsp";
 		        
 	    	  
@@ -227,8 +215,6 @@ public class TrainerBoardController extends HttpServlet{
 	    	  String fileName = request.getParameter("fileName");
 	    	  String tbidx = request.getParameter("tbidx");
 	    	  String folder = request.getServletContext().getRealPath("\\uploadFile\\TrainerBoardFile\\tb_idx")+tbidx;
-//	    	  String folder = "C:\\Users\\HP\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tbidx;
-//	    	  String folder = "C:\\Users\\kdhvc\\git\\neulbom\\WebContent\\uploadFile\\TrainerBoardFile\\tb_idx"+tbidx;
 	    	  String filePath = folder + "/" + fileName;
 	    	  
 	    	  trainerboarddao.downLoad(response,filePath,fileName);
@@ -246,14 +232,12 @@ public class TrainerBoardController extends HttpServlet{
 		    		 
 		    	  }
 	    	  
-	    	  
 	    	  TrainerBoardVo tvo = trainerboarddao.getReadPage(tb_idx);
 	    	  request.setAttribute("tvo", tvo);
 	    	  request.setAttribute("trainervo", trainervo);
 	    	  request.setAttribute("membervo", membervo);
 	    	  request.setAttribute("trainerboarddao", trainerboarddao);
 	    	  request.setAttribute("center", "/nbBoard/trainerboardupdateWrite.jsp");
-
 	    	  
 	    	  nextPage ="/nbMain.jsp";
 	    	  
@@ -266,7 +250,6 @@ public class TrainerBoardController extends HttpServlet{
 					try {
 						trainerboarddao.updateBoard(request,response,tb_idx);
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					
@@ -280,8 +263,12 @@ public class TrainerBoardController extends HttpServlet{
 	      } else if (action.equals("/tbDelete.bo")) {
 	    	 
 	    	  String delete_result = "";
+	    	  String delete_idx = request.getParameter("tb_idx");
 	    	  try {
-	    		  delete_result = trainerboarddao.deleteBoard(request);
+	    		  delete_result = trainerboarddao.deleteFile(request);
+	    		  if(delete_result.equals("삭제성공")) {
+	    		  trainerboarddao.tbDBDelete(delete_idx);
+	    		  }
 					out = response.getWriter();
 					out.write(delete_result); //Ajax 글삭제에 성공하면 "삭제성공" 반환 , 실패하면 "삭제실패" 반환
 					return;
@@ -306,7 +293,6 @@ public class TrainerBoardController extends HttpServlet{
 	    	  try {
 				trainerboarddao.insertReply(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	    	  
@@ -316,6 +302,23 @@ public class TrainerBoardController extends HttpServlet{
 				out.print(" location.href='http://localhost:8090/TeamProject/tb/list.bo'");
 				out.print("</script>");
 				return;
+				
+	      } else if (action.equals("/fileDel.bo")) {
+	    	  //파일수정 시 db파일명 null로 수정 및 실제 파일 삭제
+	    	  String delete_result = "";
+	    	  String tb_idx = request.getParameter("tb_idx");
+	    	  try {
+	    		  delete_result = trainerboarddao.deleteFile(request);
+	    		  trainerboarddao.DBFileReset(tb_idx);
+	    		  if(delete_result.equals("삭제성공")) {
+	    		  }
+					out = response.getWriter();
+					out.write(delete_result); //Ajax 글삭제에 성공하면 "삭제성공" 반환 , 실패하면 "삭제실패" 반환
+					return;
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 	      }
 			
 		
