@@ -30,91 +30,112 @@
   //   int seqnum = Integer.parseInt(cvo.getSeq());
 
 	String id = (String)session.getAttribute("id");
-%>
-
+  %>
+  
+<!--  	String likeCheck = (String)request.getAttribute("likeCheck");
+  System.out.println("ㅇㅇㅇㅇ:" +likeCheck );
+ --> 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>게시글 상세</title>
-    <style type="text/css">
-      .post-Container {
-   		 margin : 0 auto;
-   		 border-top: 1px solid #ddd;
-   		 border-bottom: 1px solid #ddd;
-   		 width:1200px;
-   		 padding: 20px;
-   		}
-      .post {
-       border-bottom: 1px solid #ddd;
-       background-color: #fffff;
-      }
-      .post-title {
-       font-size: 24px;
-      }
-      .post-info {
-       color: #888;
-       font-size: 14px;
-      }
-      .post-body {
-       text-align : left;
-       line-height: 1.5;
-    		}
-      .post-header {
-       display:flex;
-       justify-content: space-between;
-       align-items : flex-end;
-       border-bottom: 1px solid #ddd;
-       background-color: #fafafa;
-      }
-      .post-buttons {
-       position: relative;
-       text-align: right;
-    	 padding-top: 40px;
-    	 padding-bottom: 20px;
-      }
-      .post-buttons input[type="button"] {
-       display: inline-block;
-       margin-left: 10px;
-       padding: 8px 20px;
-       border-radius: 20px;
-       border : none;
-       color : white;
-       background-color: #EDAF8C;
-      }
-      a.download {
-       color: #000000;
-      }
-      div.filedownload {
-    	 position : relative;
-    	 top : 20px;
-    	 border: 1px solid #ddd;
-    	 padding: 20px;
-    	 font-size: 16px;
-      }
-    /* 	댓글 CSS */
-    	#tblAddCommnet, #tblListComment { margin: 15px auto; }
-    	#tblAddComment { margin-top: 30px; }
-    /* 	#tblAddComment td:nth-child(1) { width: 600px; } */
-    	#tblAddComment td:nth-child(2) { width: 100px; }
-    	#tblListComment td:nth-child(1) { width: 600px; }
-    	#tblListComment td:nth-child(2) { width: 100px; }
-    	#tblListComment td {
-    		position: relative;
-    		left: 0;
-    		top: 0;
-    	}
-    	#tblListComment td span {
-    		position: absolute;
-    		right: 10px;
-    		bottom: 5px;
-    		color: #AAA;
-    		font-size: 11px;
-    	}
-    	/* 	댓글 CSS 끝*/
-    		#updatePro{
-         display: none;
-        }
+ <style type="text/css">
+		.post-Container {
+		margin : 0 auto;
+		border-top: 1px solid #ddd;
+		border-bottom: 1px solid #ddd;
+		width:1200px;
+		padding: 20px;
+		}
+		
+		.post {
+		border-bottom: 1px solid #ddd;
+		background-color: #fffff;
+		
+		}
+		
+		.post-title {
+		  font-size: 24px;
+		}
+		
+		.post-info {
+		  color: #888;
+		  font-size: 14px;
+		}
+		
+		.post-body {
+		text-align : left;
+		  line-height: 1.5;
+		  
+		}
+		
+.post-header {
+	display:flex;
+	justify-content: space-between;
+	align-items : flex-end;
+	border-bottom: 1px solid #ddd;
+	background-color: #fafafa;
+}
+		
+.post-buttons {
+	position: relative;
+	text-align: right;
+	padding-top: 40px;
+	padding-bottom: 20px;
+}
+.post-buttons input[type="button"] {
+	display: inline-block;
+	margin-left: 10px;
+	padding: 8px 20px;
+	border-radius: 20px;
+	border : none;
+	color : white;
+	background-color: #EDAF8C;
+}
+
+a.download {
+  color: #000000;
+}
+
+div.filedownload {
+	position : relative;
+	top : 20px;
+	border: 1px solid #ddd;
+	padding: 20px;
+	font-size: 16px;
+}
+
+/* 	댓글 CSS */
+	
+	#tblAddCommnet, #tblListComment { width: 700px; margin: 15px auto; }
+	
+	#tblAddComment { margin-top: 30px; }
+	#tblAddComment td:nth-child(1) { width: 600px; }
+	#tblAddComment td:nth-child(2) { width: 100px; }
+	
+	#tblListComment td:nth-child(1) { width: 600px; }
+	#tblListComment td:nth-child(2) { width: 100px; }
+	
+	#tblListComment td {
+		position: relative;
+		left: 0;
+		top: 0;
+	}
+	
+	#tblListComment td span {
+		position: absolute;
+		right: 10px;
+		bottom: 5px;
+		color: #AAA;
+		font-size: 11px;
+	}
+	
+
+	/* 	댓글 CSS 끝*/
+		#updatePro{
+     display: none;
+    }
     </style>
 </head>
 <body>
@@ -132,117 +153,75 @@
 	        </div>
 	      </div>
 	
+<%-- 	<c:if test="${not empty vo.b_file || not empty imageUrls}">
+	<div align="left" class="filedownload">첨부파일<br>
+
+	다운로드할 폴더번호 경로와 다운로드 할 파일명 전달
+	<c:choose>
+		<c:when test="${vo.tb_level==0}">
+			<c:if test="${not empty vo.tb_file}">
+			<a href="<%=contextPath%>/tb/download.bo?tbidx=<%=tb_idx%>&fileName=<%=file%>" class="download"><%=file%></a>&nbsp;&nbsp;
+			</c:if>
+		</c:when>
+		<c:when test="${vo.tb_level>0}"> 
+			<c:if test="${not empty vo.tb_file}">
+			<a href="<%=contextPath%>/uploadFile/TrainerBoardFile/reply_tb_idx${vo.tb_idx}/<%=file%>" download class="download"><%=file%></a>&nbsp;&nbsp;
+			</c:if>
+		</c:when>
+	</c:choose>
+		CKEDITOR로 입력한 이미지 다운로드 링크생성
+		<c:if test="${not empty imageUrls}">
+			<c:forEach var="imageUrls" items="${imageUrls}">
+				<c:set var="imageUrl" value="${imageUrls}"/>
+				<c:set value="${fn:split(imageUrl, '/')}" var="imageNameTemp" />
+				<c:set var="imageName" value="${imageNameTemp[fn:length(imageNameTemp)-1]}"/>
+				<a href="${imageUrls}" download="${imageName}"  class="download" >${imageName}</a>&nbsp;&nbsp;
+			</c:forEach> 
+		</c:if>
+		CKEDITOR로 입력한 이미지 다운로드 링크생성 끝
+	</div>
+  	</c:if>
+ --%>    	
     <div class="post-buttons">
-      <input type="button" value="목록으로" onclick="location.href='list.fb?nowPage=${nowPage}&nowBlock=${nowBlock}'" id="list" />
-          <!-- 수정,삭제는 세션아이디와 조회한 글의 작성자아이디가 동일할때만 노출시키기 필요 -->
-      <c:if test="${sessionScope.id eq vo.b_id}">
-        <input type="button" value="수정하기" onclick="location.href='modify.fb?b_idx=<%=b_idx%>'" />
-        <input type="button" value="삭제하기" onclick="javascript:Delete('<%=b_idx%>');" id="delete"/>
-      </c:if>
+		<input type="button" value="목록으로" onclick="location.href='list.fb?nowPage=0&nowBlock=0'" id="list" />
+       
+        <!-- 수정,삭제는 세션아이디와 조회한 글의 작성자아이디가 동일할때만 노출시키기 필요 -->
+		<c:if test="${sessionScope.id eq vo.b_id}">
+			<input type="button" value="수정하기" onclick="location.href='tbUpdate.bo?b_idx=${b_idx}'" />
+			<input type="button" value="삭제하기" onclick="javascript:tbDelete('<%=b_idx%>');" id="delete"/>
+		</c:if>
+       
     </div>
     
-    <div style="display: flex; flex-direction: column;">
+    
+    <div style="margin-left: 12%; display: flex; flex-direction: column;">
       <div>
+      
        <%
         if((String)request.getAttribute("likeCheck")=="0"){ //좋아요를 안 눌렀다면?
       %>
-         <a id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
+         <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
           <i class="fa-regular fa-heart fa-4x" id="likeimggg"></i>
-        </a>
+        </button>
          <%
         } else{ //좋아요를 눌렀다면?
         %>
-        <a id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
+        <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
           <i class="fa-solid fa-heart fa-4x" id="likeimggg"></i>
-        </a>
+        </button>
+        
         <%
         }
         %>
+         
       </div>
+      
+      
       <div>
         <p id="countLike" style="font-size: 30px"><%=like%></p>
       </div>
     </div>
-    
-  <div style="margin-bottom: 2%">
 
-   <!-- 댓글시작------------------------------------ -->  
-  <!-- 댓글수정 -->
-  <!-- 끝----댓글수정 -->
-    <div style="margin: 0 77;">
-
-      <table id="tblListComment" class="table table-bordered">
-        <c:if test="${ clist.size() == 0 }">
-          <tr>
-            <td colspan="2">댓글이 없습니다.</td>
-          </tr>
-        </c:if>
-        <c:set var="i" value="0"/>
-        <c:forEach items="${ clist }" var="cdto">
-          <tr>
-            <td>
-          <!-- 댓글 표시&수정창 -->
-				<form id="commentUpdate${i}" action="<%=contextPath%>/freeboard/upcomment.do" method="post">
-					<textarea id="updateActive${i}" rows="3" name="commupdate" cols="60" disabled="disabled">${cdto.content}</textarea>
-					<input type="hidden" value="${cdto.seq}" name ="seq2"/>
-					<input type="hidden" value="<%=b_idx%>" name="b_idx"/>
-					</form>
-					<span>${ cdto.name }. ${ cdto.regdate }</span>
-				</td>
-            <td>
-         <!-- 댓글 작성자만 수정/삭제 버튼이 보이게 처리 c:if -->
-              <c:if test="${ id eq cdto.id}">
-				<input id="update${i}" type="button" value="수정하기" onclick="updateActive('${i}')" class="btn btn-default" >
-				
-				<input id="updatePro${i}" type="button" value="수정완료" class="btn btn-default" style="display:none;"
-						onclick="comment('${i}');"/>
-					<input type="button" value="삭제하기" class="btn btn-default" 
-						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
-              </c:if>
-            </td>
-          </tr>
-        <c:set var="i" value="${i+1}"/>
-        </c:forEach>  
-      </table>
-
-<!--박인섭 부분       <%
-        if(id == null){
-      %>
-          <p>로그인을 해야 댓글 작성이 가능합니다.</p>
-      <% 
-        }else{
-      %>
--->
-  <!-- 로그인 세션값이 있어야 댓글작성 form이 노출되도록 수정 -->
-  <c:if test="${not empty sessionScope.id}">
-      <form method="POST" action="<%=contextPath%>/freeboard/addcomment.do" id="SendComment">
-        <table style="border: none;" id="tblAddComment" class="table table-bordered">
-          <tr style="border: none;">
-            <td style="border: none;"><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
-            <td style="border: none;"><input type="button" value="댓글쓰기" class="btn btn-primary" onclick="submitCmt('<%=id%>')" /></td>
-          </tr>
-        </table>
-        <input type="hidden" name="pseq" value="<%=b_idx%>" />
-      </form>
-<!--박인섭       <%
-        }
-      %>
--->
-  </c:if>
-    </div>
-  <!-- 댓글끝------------------------------------ -->    
-    <div style="margin-bottom: 2%">
-      <jsp:include page="list.jsp">
-        <jsp:param value="0" name="nowBlock"/>
-        <jsp:param value="0" name="nowPage"/>
-        <jsp:param value="${list}" name="list"/>
-        <jsp:param value="${count}" name="count"/>
-      </jsp:include>
-    </div>
-  </div>
-  </div>
-    
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
   const b_idx = <%=vo.getB_idx()%>
   var originLikeCount = <%=like%>
@@ -283,63 +262,157 @@
     
   }
   
-  function comment (b) {
-    var commentUpdate = document.getElementById("commentUpdate"+b);
-    commentUpdate.submit();
- }
- 
- 
-  function updateActive(a) {
-    //수정시 입력하는 화면 활성화
-    $("#updateActive"+a).removeAttr("disabled");
-    //수정하기 버튼 안보이게
-    document.getElementById("update"+a).style.display = 'none';
-    //수정완료 버튼 보이게 
-    document.getElementById("updatePro"+a).style.display = 'block';
-  }
-
-  function submitCmt(id){
-    if(!id){
-      alert("로그인부터 해라");
-    } else if(id){
-      $("#SendComment").submit();
-    }
-  }
- //삭제하기를 눌렀을때 ajax로 삭제 처리하기
-  function Delete(b_idx){
-  			var result = window.confirm("정말로 글을 삭제하시겠습니까?");
-  			
-  			if(result == true){//확인 버튼 클릭
-  				//비동기방식으로 글삭제 요청!
-  				$.ajax({
-  					type : "post",
-  					async : true,
-  					url : "<%=contextPath%>/freeboard/del.fb",
-  					data : {b_idx : b_idx},
-  					dataType : "text",
-  					success : function(data){
-  						if(data==1){
-  							alert("삭제 성공!");
-  							//강제로 클릭 이벤트 발생시키는 부분
-  							location.href="<%=contextPath%>/freeboard/list.fb";
-  						}else{//"삭제실패"
-  							alert("삭제에 실패했습니다.")
-  							location.reload();
-  						}
-  					},
-  					error : function(){
-  						alert("비동기 통신 장애");
-  					}
-  				});
-  			}else{//취소 버튼을 눌렀을때
-  				return false;
-  			}
-  		}
 </script>
+    
+    
+    
+    </div>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>    
+<script type="text/javascript">
+//삭제하기를 눌렀을때 ajax로 삭제 처리하기
+function tbDelete(tb_idx){
+			var result = window.confirm("정말로 글을 삭제하시겠습니까?");
+			
+			if(result == true){//확인 버튼 클릭
+				
+				//비동기방식으로 글삭제 요청!
+				$.ajax({
+					type : "post",
+					async : true,
+					url : "<%=contextPath%>/tb/tbDelete.bo",
+					data : {tb_idx : tb_idx},
+					dataType : "text",
+					success : function(data){
+						
+						if(data=="삭제성공"){
+							alert("삭제 성공!");
+							
+							//강제로 클릭 이벤트 발생시키는 부분
+							location.href="<%=contextPath%>/tb/list.bo";
+							
+						}else{//"삭제실패"
+							alert("삭제에 실패했습니다.")
+							location.reload();
+						}
+						
+					},
+					error : function(){
+						alert("비동기 통신 장애");
+					}
+				});
+				
+			}else{//취소 버튼을 눌렀을때
+				return false;
+			}
+		}
 
+</script>    
+    
+<div style="margin-bottom: 2%">
 
+ <!-- 댓글시작------------------------------------ -->  
+ 
+ <!-- 댓글수정 -->
+ 
+ 
+ <!-- 끝----댓글수정 -->
+ 
+<div style="margin: 0 77;">
 
+	<table id="tblListComment" class="table table-bordered">
+	
+		<c:if test="${ clist.size() == 0 }">
+			<tr>
+				<td colspan="2">댓글이 없습니다.</td>
+			</tr>
+		</c:if>
+		
+		<c:set var="i" value="0"/>
+		<c:forEach items="${ clist }" var="cdto">
+			<tr>
+				<td>
+				<!-- 댓글 표시&수정창 -->
+				<form id="commentUpdate${i}" action="<%=contextPath%>/freeboard/upcomment.do" method="post">
+					<textarea id="updateActive${i}" rows="3" name="commupdate" cols="60" disabled="disabled">${cdto.content}</textarea>
+					<input type="hidden" value="${cdto.seq}" name ="seq2"/>
+					<input type="hidden" value="<%=b_idx%>" name="b_idx"/>
+					</form>
+					<span>${ cdto.name }. ${ cdto.regdate }</span>
+				</td>
+				<td>
+		<!-- 댓글 작성자만 수정/삭제 버튼이 보이게 처리 c:if -->
+		<c:if test="${ id eq cdto.id}">
+				<input id="update${i}" type="button" value="수정하기" onclick="updateActive('${i}')" class="btn btn-default" >
+				
+				<input id="updatePro${i}" type="button" value="수정완료" class="btn btn-default" style="display:none;"
+						onclick="comment('${i}');"/>
+					<input type="button" value="삭제하기" class="btn btn-default" 
+						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
+		</c:if>
+				</td>
+			</tr>
+			<c:set var="i" value="${i+1}"/>
+		</c:forEach>	
+	</table>
+	<style>  
+		#updatePro{
+		 display: none;
+		}
+	</style>
+	
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+	
+	function comment (b) {
+		 var commentUpdate = document.getElementById("commentUpdate"+b);
+		 
+		 commentUpdate.submit();
+	}
+	
+	
+	
+	function updateActive(a) {
 
+		//수정시 입력하는 화면 활성화
+		$("#updateActive"+a).removeAttr("disabled");
+		
+		//수정하기 버튼 안보이게
+		document.getElementById("update"+a).style.display = 'none';
+
+		//수정완료 버튼 보이게 
+		document.getElementById("updatePro"+a).style.display = 'block';
+	}
+	
+	</script>
+	
+	<!-- 로그인 세션값이 있어야 댓글작성 form이 노출되도록 수정 -->
+	<c:if test="${not empty sessionScope.id}">
+	
+	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
+		<table id="tblAddComment" class="table table-bordered" >
+			<tr>
+				<td><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
+				
+				
+				<td><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
+			</tr>
+		</table>
+		<input type="hidden" name="pseq" value="<%=b_idx%>" />
+	</form>
+	
+	</c:if>
+	
+</div>
+<!-- 댓글끝------------------------------------ -->    
+    <div style="margin-bottom: 2%">
+      <jsp:include page="list.jsp">
+        <jsp:param value="0" name="nowBlock"/>
+        <jsp:param value="0" name="nowPage"/>
+        <jsp:param value="${list}" name="list"/>
+        <jsp:param value="${count}" name="count"/>
+      </jsp:include>
+    </div>
+  </div>
 
 </body>
 </html>
