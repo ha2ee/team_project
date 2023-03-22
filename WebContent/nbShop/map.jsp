@@ -3,6 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	request.setCharacterEncoding("utf-8");
+	String contextPath = request.getContextPath();
+%>
     <meta charset="utf-8">
     <title>search</title>
    
