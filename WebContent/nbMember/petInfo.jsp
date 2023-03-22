@@ -98,7 +98,7 @@
 	.rightBlock{
 	    padding: 3px 15px 80px 250px;
 	    padding-left: 300px;
-	    width: 100%;
+		width: 1100px;
 	    box-sizing: border-box;
 	    text-align: left;
 	    min-height: 850px;
@@ -360,7 +360,7 @@
 							<span>  
 							
 							<%
-								if(p_img == "pet.png"){
+								if(p_img == "" || p_img == null){
 							%>
  							    <img id="p_img" class="p_img" src="<%=contextPath%>/images/pet.png"> 
 							<%
@@ -440,7 +440,21 @@
 					</dt>
 					<dd class="btn_dd">
 						<div class="saveBtn">
-							<a id="backBtn" href="<%=contextPath%>/member/petChange.me" class="roundBtn whiteBtn">정보 수정하기</a>				
+							
+														
+							<%
+								if(p_name == "" || p_name == null){
+							%>
+							
+							<%
+								}else{
+							%>
+								<a id="backBtn" href="<%=contextPath%>/member/petChange.me" class="roundBtn whiteBtn">정보 수정하기</a>				
+							<%
+								}
+							%>
+							
+							
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<a id="changeBtn" href="<%=contextPath%>/member/petJoin.me" class="roundBtn blueBtn">애완견 등록하기</a>
 						</div>

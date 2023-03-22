@@ -105,20 +105,13 @@ String id = (String)session.getAttribute("id");
 	.rightBlock{
 	    padding: 3px 15px 80px 250px;
 	    padding-left: 300px;
-	    width: 100%;
+	    width: 1100px;
 	    box-sizing: border-box;
 	    text-align: left;
 	    min-height: 850px;
 		
 	} 
 
-	.table{
-		width: 100%;
-	    border-top: 1px solid #d5d5d5;
-	    border-bottom: 1px solid #e9e9e9;
-	
-	}
-	
 	.pet1{
 		font-size: 25px;
 	}
