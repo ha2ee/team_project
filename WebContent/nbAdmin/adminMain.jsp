@@ -15,6 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="${contextPath}/css/adminPage.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/nbBoard/TrainerBoard.css">
 </head>
 <body>
 	<div class="container">
@@ -33,11 +34,11 @@
 					</ul></li>
 			</ul>
 		</aside>
-		<main class="content">
+		<section class="content">
 		<c:out value="${center}" />
 			<h2>관리자 페이지</h2>
 			<jsp:include page="${center}"/>
-		</main>
+		</section>
 	</div>
 	<script src="${contextPath}/js/adminPage.js"></script>
 </body>
