@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>트레이너 조회화면</title>
 </head>
 <body>
 
@@ -27,51 +27,17 @@
 			</tr>
 			<c:forEach var="trMem" items="${requestScope.trMembersList}">
 				<tr>
-					<td><a href="${contextPath}/adm/trMemDetail.adm?trMemberID=${trMem.tr_id}">${trMem.tr_id}</a></td>
+					<td><a class="mem_link" href="${contextPath}/adm/trMemDetail.adm?trMemberID=${trMem.tr_id}">${trMem.tr_id}</a></td>
 					<td>${trMem.tr_name}</td>
 					<td>${trMem.tr_email}</td>
 					<td>${trMem.tr_hp}</td>
 					<td>${trMem.tr_joindate}</td>
-					<td><a href="${contextPath}/adm/delMem.adm?delID=${trMem.tr_id}">트레이너 삭제</a></td>
+					<td><a class="mem_link" href="${contextPath}/adm/delMem.adm?delID=${trMem.tr_id}">트레이너 삭제</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
 
-	<!-- 페이지 넘버 부분 -->
-	<br>
-	<%-- <div id="pageForm">
-		<c:if test="${startPage != 1}">
-			<a href='list.bo?page=${startPage-1}'>[ 이전 ]</a>
-		</c:if>
-
-		<c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
-			<c:if test="${pageNum == spage}">
-                ${pageNum}&nbsp;
-            </c:if>
-			<c:if test="${pageNum != spage}">
-				<a href='list.bo?page=${pageNum}'>${pageNum}&nbsp;</a>
-			</c:if>
-		</c:forEach>
-
-		<c:if test="${endPage != maxPage }">
-			<a href='list.bo?page=${endPage+1 }'>[다음]</a>
-		</c:if>
-	</div> --%>
-
-	<!--  검색 부분 -->
-	<br>
-	<!-- <div id="searchForm">
-		<form>
-			<select name="opt">
-				<option value="0">제목</option>
-				<option value="1">내용</option>
-				<option value="2">제목+내용</option>
-				<option value="3">글쓴이</option>
-			</select> <input type="text" size="20" name="condition" />&nbsp; <input
-				type="submit" value="검색" />
-		</form>
-	</div> -->
 	</div>
 </body>
 </html>

@@ -31,7 +31,6 @@
 
 	String id = (String)session.getAttribute("id");
 %>
-   
 
 <!DOCTYPE html>
 <html>
@@ -183,34 +182,39 @@
           <tr>
             <td>
           <!-- 댓글 표시&수정창 -->
-              <form id="commentUpdate${i}" action="<%=contextPath%>/freeboard/upcomment.do" method="post">
-                <textarea style="width: 100%;background-color: white; resize: none; border: none;" id="updateActive${i}" rows="3" name="commupdate" disabled="disabled">${cdto.content}</textarea>
-                <input type="hidden" value="${cdto.seq}" name ="seq2"/>
-                <input type="hidden" value="<%=b_idx%>" name="b_idx"/>
-              </form>
-              <span>${ cdto.name }. ${ cdto.regdate }</span>
-            </td>
+				<form id="commentUpdate${i}" action="<%=contextPath%>/freeboard/upcomment.do" method="post">
+					<textarea id="updateActive${i}" rows="3" name="commupdate" cols="60" disabled="disabled">${cdto.content}</textarea>
+					<input type="hidden" value="${cdto.seq}" name ="seq2"/>
+					<input type="hidden" value="<%=b_idx%>" name="b_idx"/>
+					</form>
+					<span>${ cdto.name }. ${ cdto.regdate }</span>
+				</td>
             <td>
          <!-- 댓글 작성자만 수정/삭제 버튼이 보이게 처리 c:if -->
               <c:if test="${ id eq cdto.id}">
-                <input id="update${i}" type="button" value="수정하기" onclick="updateActive('${i}')" class="btn btn-default" >
-                <input id="updatePro${i}" type="button" value="수정완료" class="btn btn-default" style="display:none;"
-                       onclick="comment('${i}');"/>
-                <input type="button" value="삭제하기" class="btn btn-default" 
-                       onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
+				<input id="update${i}" type="button" value="수정하기" onclick="updateActive('${i}')" class="btn btn-default" >
+				
+				<input id="updatePro${i}" type="button" value="수정완료" class="btn btn-default" style="display:none;"
+						onclick="comment('${i}');"/>
+					<input type="button" value="삭제하기" class="btn btn-default" 
+						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
               </c:if>
             </td>
           </tr>
         <c:set var="i" value="${i+1}"/>
         </c:forEach>  
       </table>
-      <%
+
+<!--박인섭 부분       <%
         if(id == null){
       %>
           <p>로그인을 해야 댓글 작성이 가능합니다.</p>
       <% 
         }else{
       %>
+-->
+  <!-- 로그인 세션값이 있어야 댓글작성 form이 노출되도록 수정 -->
+  <c:if test="${not empty sessionScope.id}">
       <form method="POST" action="<%=contextPath%>/freeboard/addcomment.do" id="SendComment">
         <table style="border: none;" id="tblAddComment" class="table table-bordered">
           <tr style="border: none;">
@@ -220,9 +224,11 @@
         </table>
         <input type="hidden" name="pseq" value="<%=b_idx%>" />
       </form>
-      <%
+<!--박인섭       <%
         }
       %>
+-->
+  </c:if>
     </div>
   <!-- 댓글끝------------------------------------ -->    
     <div style="margin-bottom: 2%">
@@ -282,6 +288,7 @@
     commentUpdate.submit();
  }
  
+ 
   function updateActive(a) {
     //수정시 입력하는 화면 활성화
     $("#updateActive"+a).removeAttr("disabled");
@@ -290,7 +297,7 @@
     //수정완료 버튼 보이게 
     document.getElementById("updatePro"+a).style.display = 'block';
   }
-  
+
   function submitCmt(id){
     if(!id){
       alert("로그인부터 해라");
@@ -329,6 +336,10 @@
   			}
   		}
 </script>
+
+
+
+
 
 </body>
 </html>

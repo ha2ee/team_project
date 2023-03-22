@@ -138,10 +138,10 @@ public class ReviewController extends HttpServlet {
       
        return;
 //========================글을  작성하는 작업/writePro.fb =============================
+
 //========================글 삭제하기 ================================
       case "/del.rv":
-        
-        int idx = Integer.parseInt( request.getParameter("idx") );
+       int idx = Integer.parseInt( request.getParameter("idx") );
         int result1 = reviewdao.deleteOne(idx);
         
         if(result1 == 1) {
@@ -150,9 +150,19 @@ public class ReviewController extends HttpServlet {
           out.println(0);
         }
 
-        return;
-        
+        return;     
 //========================글 삭제하기 ================================
+//========================QNA================================
+      case "/qna.bo":
+    	  String pageChange = request.getParameter("pageChange");
+    	  request.setAttribute("pageChange", pageChange);
+        request.setAttribute("center", "/nbBoard/QnA.jsp");
+        nextPage = "/nbMain.jsp";
+        break;
+//========================QNA================================
+        
+       
+        
       default:
         break;
     }
