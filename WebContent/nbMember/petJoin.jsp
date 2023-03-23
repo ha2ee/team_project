@@ -351,7 +351,7 @@
 				</div>
 			</div>
 				<div class="saveBtn">
-					<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">취소하기</a>				
+					<a id="backBtn" href="<%=contextPath%>/member/petInfo.me" class="roundBtn whiteBtn">취소하기</a>				
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<a id="joinBtn" 
 					   onclick="check(); return false;" 
