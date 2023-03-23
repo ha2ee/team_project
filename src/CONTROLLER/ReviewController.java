@@ -189,11 +189,11 @@ public class ReviewController extends HttpServlet {
 //      //여기까지
       
 
-      vo= new ReviewVo();
+      vo = new ReviewVo();
       vo.setIdx(idx2);
       vo.setTitle(title1);
       vo.setContext(content1);
-      vo.setTitle(fileName1);
+      vo.setImg(fileName1);
       vo.setImgRealName(fileRealName1);
       
       int result2 = reviewdao.editOnePro(vo);

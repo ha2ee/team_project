@@ -51,7 +51,7 @@ String contextPath = request.getContextPath();
 	            </script>  -->
 	             <br>
 	             <!-- <input type="hidden" name="content11" id="content11"> -->
-	            <div style="width: 1200px; display:flex; justify-content:space-between;  margin:0 auto;  " >
+	            <div style="width: 1200px; display:flex; justify-content:right;  margin:0 auto;  " >
 	             
 <!--                		<div><input type="file" name="fileName" id="fileName"></div> -->
                	

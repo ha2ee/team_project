@@ -185,6 +185,7 @@ public class ReviewDAO {
     try {
       con = ds.getConnection();
       
+      System.out.println(vo.getTitle());
       String sql = "UPDATE REVIEW "
                  + "SET TITLE = ? , CONTEXT = ? "
                  + "WHERE IDX = ?";
@@ -194,7 +195,6 @@ public class ReviewDAO {
       pstmt.setInt(3, vo.getIdx());
       
       result = pstmt.executeUpdate();
-      System.out.println("흠..."+result);
     } catch (Exception e) {
       System.out.println("modifyOnePro 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
       e.printStackTrace();
