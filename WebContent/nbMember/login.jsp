@@ -165,7 +165,7 @@
 						id="noMemLoginbtn" class="btn btn-primary btn-block btn-large">log in.</a>
 					 --%>
 					<div class="joinDiv">
-						<a href="<%=contextPath%>/member/joinCategory.me" class="joinBtn">회원가입</a>
+						<button href="<%=contextPath%>/member/joinCategory.me" class="joinBtn">회원가입</button>
 					</div>
 				</form>
 			</div>
