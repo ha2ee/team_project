@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="VO.ReviewVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,8 +7,6 @@
   request.setCharacterEncoding("UTF-8");
   String contextPath = request.getContextPath(); 
   String reviewUploadPath = contextPath + "/reviewUpload/";
-  System.out.println(contextPath);
-  System.out.println(reviewUploadPath);
   
 %>
 <!doctype html>
@@ -117,6 +116,67 @@
     
   </head>
   <body style="font-size: 15px;">
+<!-- =================================페이징================================= -->
+<% 
+  //페이징 처리 변수
+  int totalRecord = 0; //board테이블에 저장된 글의 총 개수
+  int numPerPage = 9; //한 페이지당 조회해서 보여줄 글 개수
+  int pagePerBlock = 5; //한 블럭당 묶여질 페이지 번호 개수 
+             // 1 2 3 < - 한블럭으로 묶음
+  int totalPage = 0; //총 페이지수
+  int totalBlock = 0; //총 블럭수
+  int nowPage = 0; //현재 사용자에게 보여지고 있는 페이지가 위치한 번호 저장
+  int nowBlock = 0; //클릭한 페이지 번호가 속한 블럭 위치 번호 저장
+  int beginPerPage = 0; //각 페이지마다 보여지는 시작 글번호(맨위의 글번호) 저장
+  
+  //BoardController에서 재요청해서 전달한 request에 담긴 ArrayList배열 꺼내오기
+  //조회된 글들
+  ArrayList list = (ArrayList)request.getAttribute("list");
+  
+  //조회된 총 글 갯수
+  totalRecord = (Integer)request.getAttribute("count");
+  
+  //현재 페이지 번호를 클릭했다면?
+  if( request.getAttribute("nowPage") != null ){
+    nowPage = Integer.parseInt( request.getAttribute("nowPage").toString());
+  }
+  
+  //각 페이지 번호에 보여지는 글 목록의 가장위의 글에 대한 글번호 구하기
+  beginPerPage = nowPage * numPerPage;
+  /*
+    beginPerPage변수 설명
+    예를 들어 한페이지당 보여질 글의 개수가 6개라고 가정할때...
+    1번페이지 일 경우.. 1번페이지에 보여질 시작 글번호는 6이다.
+    nowPage * numPerPage;
+    1페이지 번호 * 한페이지당 보여지는 글의 개수6; = 시작글번호 6
+    
+    2페이지 일 경우.. 2번페이지에 보여질 시작 글번호는 12이다.
+    nowPage * numPerPage;
+    1페이지 번호 * 한페이지당 보여지는 글의 개수6; = 시작글번호 12
+  */
+  
+  //글이 몇개인지에 따른 총 페이지 번호 개수
+  //총 페이지 번호 개수 = 총 글의 갯수 / 한페이지당 보여질 글 개수
+  //참고! 하나의 글이 더 오버할 경우 마지막페이지에 하나의 글을 보여줘야 하기 때문에 올림 처리
+  totalPage = (int)Math.ceil((double)totalRecord/numPerPage);
+    
+  //클릭한 페이지 번호가 속한 블럭 위치 번호 구하기
+  if(request.getAttribute("nowBlock") != null){
+    //BoardController로 부터 전달 받는다.
+    nowBlock = Integer.parseInt(request.getAttribute("nowBlock").toString());
+  }
+  
+  totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
+  
+  String id = (String)session.getAttribute("id");
+
+  
+%>  
+<!-- =================================페이징================================= -->
+  
+  
+  
+  
 <!--  스무스하게 내려갔다 올라가는 슬라이드??? 일단 킵
 <header>
   <div class="collapse bg-dark" id="navbarHeader">
@@ -169,29 +229,41 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="container">
+      
 <!-------------------------응용해보자 ------------------------->
-  <c:forEach var="review" items="${requestScope.list}">
+      <%
+        for(int j = beginPerPage; j < (beginPerPage+numPerPage); j++){
+          if(j == totalRecord){
+            break;
+          }
+          ReviewVo vo =(ReviewVo) list.get(j);
+      %>
         <div class="col item">
           <div class="card shadow-sm">
-           <img alt="dd" src="<%=reviewUploadPath%>${review.img}" style="height: 300px; object-fit: contain;">
+           <img alt="dd" src="<%=reviewUploadPath%><%=vo.getImg()%>" style="height: 300px; object-fit: contain;">
             <div class="card-body">
-              <div class="card-text" style="margin-bottom:0;"><b style="font-size: 15;">${review.title}</b><br><span><c:if test="${empty review.context}"><br></c:if>${review.context}</span></div>
+              <div class="card-text" style="margin-bottom:0;"><b style="font-size: 15;"><%=vo.getTitle()%></b><br><span><%=vo.getContext()%></span></div>
               <input type="checkbox" class="card-content__more-btn">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
 <!--                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
-                  <c:if test="${sessionScope.id eq review.id}">
-                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='<%=contextPath%>/review/edit.rv?idx=${review.idx}'">Edit</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="del(${review.idx})">Delete</button>
-                  </c:if>
+                  <%
+                  if(vo.getId().equals(id)){
+                  %>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='<%=contextPath%>/review/edit.rv?idx=<%=vo.getIdx()%>'">Edit</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="del(<%=vo.getIdx()%>)">Delete</button>
+                  <%
+                  }
+                  %>
                 </div>
-                <small class="text-muted">${review.review_date}</small>
+                <small class="text-muted"><%=vo.getReview_date()%></small>
               </div>
             </div>
           </div>
         </div>
-        
-  </c:forEach>
+        <% 
+        }
+        %>
 <!-------------------------응용해보자 ------------------------->
         
 <!------------------------- 반복 되는 부분인 듯? ------------------------->
@@ -207,6 +279,60 @@
 
       </div>
 </main>
+
+
+<div align="center">
+ <table>
+  <tr align="center"> 
+    <td  colspan="3" align="center">
+    <%   
+      if(totalRecord != 0){//DB에 글이 있다면?
+          
+        if(nowBlock > 0){//현재 클릭한 페이지번호가 속한 블럭위치가 0 보다 크다면?
+    %>      
+          <a href="<%=contextPath%>/review/list.rv?nowBlock=<%=nowBlock-1%>&nowPage=<%=((nowBlock-1) * pagePerBlock)%>">
+            ◀ 이전<%=pagePerBlock%>개
+          </a>
+    <%    }//안쪽 if %>
+      
+        
+    <%
+        for(int i=0; i<pagePerBlock; i++){
+    %>      
+    
+          &nbsp;
+          <a href="<%=contextPath%>/review/list.rv?nowBlock=<%=nowBlock%>&nowPage=<%=(nowBlock * pagePerBlock)+i%>">
+            <%=(nowBlock * pagePerBlock)+i+1 %> 
+            <%if((nowBlock * pagePerBlock)+i+1 == totalPage) break; %>
+          </a>
+          &nbsp;
+    <%      
+        }
+    %>    
+         
+       
+    <%
+        if(totalBlock > nowBlock + 1){
+    %>      
+          
+          <a href="<%=contextPath%>/review/list.rv?nowBlock=<%=nowBlock+1%>&nowPage=<%=((nowBlock+1) * pagePerBlock)%>">
+              ▶ 다음 <%=pagePerBlock%>개
+          </a>
+        
+    <%      
+        }
+    %>     
+          
+        
+        
+    <% }//바깥 if %>
+    
+    </td> 
+  </tr>
+ </table>
+</div>
+
+
 
 
     <script src="../js/review.min.js"></script>

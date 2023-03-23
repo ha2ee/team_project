@@ -79,10 +79,20 @@ public class ReviewController extends HttpServlet {
         String loginid = (String)session.getAttribute("id");
         list = reviewdao.reviewListAll();
 //        vo = reviewdao.boardRead(loginid);
+//        System.out.println(vo);
         
-        request.setAttribute("center", "nbBoard/reviewList.jsp");
-        request.setAttribute("vo", vo);
+        String nowPage = request.getParameter("nowPage");
+        String nowBlock = request.getParameter("nowBlock");
+
+
+        int count = reviewdao.getTotalRecord();
+        
+        request.setAttribute("count", count);
+        request.setAttribute("nowPage", nowPage);
+        request.setAttribute("nowBlock", nowBlock);
+//        request.setAttribute("vo", vo);
         request.setAttribute("list", list);
+        request.setAttribute("center", "nbBoard/reviewList.jsp");
 
         nextPage = "/nbMain.jsp";
         break;
@@ -117,7 +127,7 @@ public class ReviewController extends HttpServlet {
       String title = multipartRequest.getParameter("title");
       String content = multipartRequest.getParameter("editor1");
       String fileName = multipartRequest.getOriginalFileName("fileName");
-      String fileRealName = multipartRequest.getFilesystemName("file");
+      String fileRealName = multipartRequest.getFilesystemName("fileName");
 //      //여기까지
       
 

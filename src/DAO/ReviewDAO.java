@@ -204,6 +204,29 @@ public class ReviewDAO {
     return result;
   }
 
+  public int getTotalRecord() {
+    int count = 0;
+    try {
+      con = ds.getConnection();
+
+      String sql = "SELECT COUNT(*) FROM REVIEW";
+
+      pstmt = con.prepareStatement(sql);
+      rs = pstmt.executeQuery();
+
+      if (rs.next()) {
+        count = rs.getInt(1);
+      }
+
+    } catch (Exception e) {
+      System.out.println("getTotalRecord 메소드에서 에러가 발생하였습니다. 이유는 ? --> " + e);
+      e.printStackTrace();
+    } finally {
+      closeResource();
+    }    
+    return count;
+  }
+
 
  
   
