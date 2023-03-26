@@ -277,6 +277,44 @@ public class MemberController extends HttpServlet {
 //			memberdao.insertTrMemAddress(tr_vo);
 					
 			nextPage = "/nbMain.jsp";
+		
+		// 훈련사 회원가입시 가임승인전 정보 임시 보관
+		} else if (action.equals("/temTr.me")) {
+			
+			System.out.println("MemberController -> temTr.me 호출!");
+			
+			String tr_id = request.getParameter("id");
+			String tr_name = request.getParameter("name");
+			String tr_pw = request.getParameter("pass");
+			String tr_email = request.getParameter("email");
+			String tr_hp = request.getParameter("hp");
+			String tr_gender = request.getParameter("gender");
+			String tr_birth = request.getParameter("birth");
+			String tr_address1 = request.getParameter("address1");
+			String tr_address2 = request.getParameter("address2");
+			String tr_address3 = request.getParameter("address3");
+			String tr_address4 = request.getParameter("address4");
+			String tr_address5 = request.getParameter("address5");
+			
+			TrainerVo tr_vo = new TrainerVo();
+			
+			tr_vo.setTr_id(tr_id);
+			tr_vo.setTr_name(tr_name);
+			tr_vo.setTr_pw(tr_pw);
+			tr_vo.setTr_email(tr_email);
+			tr_vo.setTr_hp(tr_hp);
+			tr_vo.setTr_gender(tr_gender);
+			tr_vo.setTr_birth(tr_birth);
+			tr_vo.setTr_address1(tr_address1);
+			tr_vo.setTr_address2(tr_address2);
+			tr_vo.setTr_address3(tr_address3);
+			tr_vo.setTr_address4(tr_address4);
+			tr_vo.setTr_address5(tr_address5);
+			
+			memberdao.insertTemTr(tr_vo);
+//			memberdao.insertTrMemAddress(tr_vo);
+			
+			nextPage = "/nbMain.jsp";
 
 			
 			

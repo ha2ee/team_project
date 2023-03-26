@@ -187,7 +187,7 @@ public class MemberDAO {
 			pstmt.executeUpdate();
 			
 		}catch (Exception e) {
-			System.out.println("insertTrMember메소드 내부에서 SQL실행 오류" + e);
+			System.out.println("insertMember메소드 내부에서 SQL실행 오류" + e);
 		}finally {
 			closeResource();
 		}
@@ -268,6 +268,50 @@ public class MemberDAO {
 			
 		}catch (Exception e) {
 			System.out.println("insertTrMember메소드 내부에서 SQL실행 오류" + e);
+		}finally {
+			closeResource();
+		}
+		
+	}
+	//---------------------------------------------------
+	
+	//트레이너 회원가입
+	public void insertTemTr(TrainerVo tr_vo) {
+		
+		
+		try {
+			//커넥션 풀에 만들어져 있는 DB와 미리 연결을 맺은 Connection객체 빌려오기
+			//요약 DB연결
+			con = ds.getConnection();
+			//매개변수로 전달 받는 MemberVo객체의 각변수에 저장된 값들을 얻어
+			//insert문장 완성하기
+			String sql = "INSERT INTO TEM_TRAINER(TEM_TR_ID, TEM_TR_NAME, TEM_TR_PW, TEM_TR_EMAIL, TEM_TR_HP, TEM_TR_BIRTH, TEM_TR_GENDER, TEM_TR_ADDRESS1,TEM_TR_ADDRESS2,TEM_TR_ADDRESS3,TEM_TR_ADDRESS4,TEM_TR_ADDRESS5) "
+					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			
+			System.out.println("이미지"+tr_vo.getTr_img());
+			
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, tr_vo.getTr_id() );
+			pstmt.setString(2, tr_vo.getTr_name()  );
+			pstmt.setString(3, tr_vo.getTr_pw() );
+			pstmt.setString(4, tr_vo.getTr_email() );
+			pstmt.setString(5, tr_vo.getTr_hp() );
+			pstmt.setString(6, tr_vo.getTr_birth() );
+			pstmt.setString(7, tr_vo.getTr_gender() );
+			pstmt.setString(8, tr_vo.getTr_address1());
+			pstmt.setString(9, tr_vo.getTr_address2());
+			pstmt.setString(10, tr_vo.getTr_address3());
+			pstmt.setString(11, tr_vo.getTr_address4());
+			pstmt.setString(12, tr_vo.getTr_address5());
+			
+			
+			
+			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			System.out.println("insertTemTr메소드 내부에서 SQL실행 오류" + e);
 		}finally {
 			closeResource();
 		}
