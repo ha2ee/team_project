@@ -81,8 +81,6 @@
 	 		<div class="checkBtn">
  				<input type="button" onclick="find();"  class="idBtn" value="아이디 찾기"/>
  			</div>
-	 		
-	 		
 	 	
 	 	</div>
  	</div>

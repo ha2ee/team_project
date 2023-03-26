@@ -684,6 +684,7 @@ public class MemberController extends HttpServlet {
 					out.println("window.alert('회원님의 아이디는 " +tr_vo.getTr_id()+ " 입니다.');");
 					out.println("window.close();");
 				}
+				 
 				
 				out.println("</script>");
 				return;

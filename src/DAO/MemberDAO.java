@@ -1273,6 +1273,7 @@ public class MemberDAO {
 					tr_vo.setTr_pw(rs.getString("tr_pw"));
 				
 				}else {
+					 
 					
 				}
 			}else {
