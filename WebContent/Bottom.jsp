@@ -9,10 +9,10 @@
 	width: 1920px;
 	margin: 0 auto;
 	}
-	p{
+/* 	p{
 	left: 180px;
     position: relative;
-	}
+	} */
 	col-lg-3 col-md-3 col-sm-3 col-xs-12 > ul{
 	position: relative;
     top: 60px;

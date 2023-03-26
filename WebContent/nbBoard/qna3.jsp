@@ -186,36 +186,22 @@ ul, li, p { list-style:none; padding:0; margin:0; }
  (3) "결제하기" 버튼 클릭하여 결제 재시도</div>
     </li>
     
-    <li class="qa_li">
-        <div class="question">
-            <p class="tit">질문3</p>
-            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
-        </div>
-        <div class="answer">답변3</div>
-    </li>
-    
-    <li class="qa_li">
-        <div class="question">
-            <p class="tit">질문3</p>
-            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
-        </div>
-        <div class="answer">답변3</div>
-    </li>
-    
-    <li class="qa_li">
-        <div class="question">
-            <p class="tit">질문3</p>
-            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
-        </div>
-        <div class="answer">답변3</div>
-    </li>
+   
     
         
 </ul>
 
 다른 도움이 필요하신가요?
-<button type="button" class="btn btn-outline-primary">1:1 문의하기</button>
-
+<button onclick="javascript:addChannel()" class="btn btn-outline-primary">1:1 문의하기</button>
+ 
+ <script type="text/javascript">
+        function addChannel() {
+        	  Kakao.Channel.addChannel({
+        	    channelPublicId: '_Xpekxj',
+        	  });
+        	}
+        
+        </script>
 
 </body>
 </html>

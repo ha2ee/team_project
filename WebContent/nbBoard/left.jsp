@@ -37,15 +37,15 @@ ul, li, p { list-style:none; padding:0; margin:0; }
 <body>
 
 
-<h1 align="center"><b>자주 묻는 질문</b></h1>
+<h1 align="center" style="font-size:50px"><b>자주 묻는 질문</b></h1>
 
 
-<button type="button" class="btn btn-outline-primary" id="qna1" onclick="test(1)">자주묻는질문</button>
-<button type="button" class="btn btn-outline-primary" id="qna2" onclick="test(2)">회원서비스</button>
-<button type="button" class="btn btn-outline-primary" id="qna3" onclick="test(3)">주문/결제</button>
-<button type="button" class="btn btn-outline-primary" id="qna4" onclick="test(4)">배송</button>
-<button type="button" class="btn btn-outline-primary" id="qna5" onclick="test(5)">취소/반품/교환</button>
-<button type="button" class="btn btn-outline-primary" id="qna6" onclick="test(6)">사이트이용/혜택</button>
+<button type="button" class="btn btn-primary btn-lg" id="qna1" onclick="test(1)">자주묻는질문</button>
+<button type="button" class="btn btn-primary btn-lg" id="qna2" onclick="test(2)">회원서비스</button>
+<button type="button" class="btn btn-primary btn-lg" id="qna3" onclick="test(3)">주문/결제</button>
+<button type="button" class="btn btn-primary btn-lg" id="qna4" onclick="test(4)">배송</button>
+<button type="button" class="btn btn-primary btn-lg" id="qna5" onclick="test(5)">취소/반품/교환</button>
+<button type="button" class="btn btn-primary btn-lg" id="qna6" onclick="test(6)">사이트이용/혜택</button>
 <c:choose>
 	<c:when test="<%=select == null %>">
 <jsp:include page="qna1.jsp"/>
