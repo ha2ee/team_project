@@ -647,19 +647,83 @@ public class MemberController extends HttpServlet {
 				
 				return;
 				
-		} else if (result == 1) {
-			out.println("<script>");
-			out.println("window.alert('사진을 등록 하였습니다.');");
-			out.println("location.href='/TeamProject/member/petInfo.me'");
-			out.println("</script>");				
+			} else if (result == 1) {
+				out.println("<script>");
+				out.println("window.alert('사진을 등록 하였습니다.');");
+				out.println("location.href='/TeamProject/member/petInfo.me'");
+				out.println("</script>");				
+				
+				return;
+			}	
+		
+		//아이디 찾기 
+		} else if(action.equals("/findId.me")) {
 			
-			return;
+			System.out.println("nbMemberController -> /findId.me 요청!");
+
+			String name = request.getParameter("name");
+			String hp = request.getParameter("hp");
+
+			MemberVo mem_vo = memberdao.findMemId(name, hp);
+			TrainerVo tr_vo = memberdao.findTrId(name, hp);
 			
-		}
+			if(mem_vo == null && tr_vo == null) {
+				out.println("<script>");
+				out.println("window.alert('입력하신 정보가 일치 하지 않습니다.');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+				
+				return;
+				
+			} else if(mem_vo != null || tr_vo != null) {
+				out.println("<script>");
+				if(tr_vo == null) {
+					out.println("window.alert('회원님의 아이디는 " +mem_vo.getMem_id()+ " 입니다.');");
+					out.println("window.close();");
+				}else if((mem_vo == null)){
+					out.println("window.alert('회원님의 아이디는 " +tr_vo.getTr_id()+ " 입니다.');");
+					out.println("window.close();");
+				}
+				
+				out.println("</script>");
+				return;
+			}	
+				
+		} else if(action.equals("/findPw.me")) {
 			
-		}
+			System.out.println("nbMemberController -> /findPw.me 요청!");
+
+			String id = request.getParameter("id");
+			String hp = request.getParameter("hp");
+			
+			MemberVo mem_vo = memberdao.findMemPw(id, hp);
+			TrainerVo tr_vo = memberdao.findTrPw(id, hp);
+			
+			if(mem_vo == null && tr_vo == null) {
+				out.println("<script>");
+				out.println("window.alert('입력하신 정보가 일치 하지 않습니다.');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+				
+				return;
+				
+			} else if(mem_vo != null || tr_vo != null) {
+				out.println("<script>");
+				if(tr_vo == null) {
+					out.println("window.alert('회원님의 비밀번호는 " +mem_vo.getMem_pw()+ " 입니다.');");
+					out.println("window.close();");
+				}else if((mem_vo == null)){
+					out.println("window.alert('회원님의 비밀번호는 " +tr_vo.getTr_pw()+ " 입니다.');");
+					out.println("window.close();");
+				}
+				
+				out.println("</script>");
+				return;
+			
+			}
 			
 		
+		}
 		// 포워딩 (디스패처 방식)
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);

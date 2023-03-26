@@ -1137,5 +1137,161 @@ public class MemberDAO {
 		}
 		return petResult;
 	}
+
+	public MemberVo findMemId(String name, String hp) {
 		
+		MemberVo mem_vo = null;
+		
+		try {
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+			String sql = "SELECT * FROM YS_MEMBER WHERE MEM_NAME=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			
+			
+			if(rs.next()) {
+				
+				if(hp.equals(rs.getString("MEM_HP"))) {
+					
+					mem_vo =  new MemberVo();
+					mem_vo.setMem_id(rs.getString("mem_id"));
+					System.out.println("이름 전화번호 일치");
+				}else {
+					
+				}
+			}else {
+
+			}
+	
+		} catch (Exception e) {
+			System.out.println("findMemId 메소드 내부에서 오류!");
+			e.printStackTrace();
+		}finally {
+			closeResource();
+		}
+		
+		return mem_vo;
+		
+	}
+	
+	public TrainerVo findTrId(String name, String hp) {
+		
+		TrainerVo tr_vo = null;
+		
+		try {
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+			String sql = "SELECT * FROM MEMBER_TRAINER WHERE TR_NAME=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				//
+				if(hp.equals(rs.getString("TR_HP"))) {
+					
+					tr_vo =  new TrainerVo();
+					tr_vo.setTr_id(rs.getString("tr_id"));
+				}else {
+					
+				}
+			}else {
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("findTrId 메소드 내부에서 오류!");
+			e.printStackTrace();
+		}finally {
+			closeResource();
+		}
+		
+		return tr_vo;
+		
+	}
+
+	public MemberVo findMemPw(String id, String hp) {
+
+		MemberVo mem_vo = null;
+		
+		try {
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+			String sql = "SELECT * FROM YS_MEMBER WHERE MEM_ID=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			
+			if(rs.next()) {
+				
+				if(hp.equals(rs.getString("MEM_HP"))) {
+					
+					mem_vo =  new MemberVo();
+					mem_vo.setMem_pw(rs.getString("mem_pw"));
+
+				}else {
+					
+				}
+			}else {
+
+			}
+	
+		} catch (Exception e) {
+			System.out.println("findMemId 메소드 내부에서 오류!");
+			e.printStackTrace();
+		}finally {
+			closeResource();
+		}
+		
+		return mem_vo;
+	}
+
+	public TrainerVo findTrPw(String id, String hp) {
+
+		TrainerVo tr_vo = null;
+		
+		try {
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+			String sql = "SELECT * FROM MEMBER_TRAINER WHERE TR_ID=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				//
+				if(hp.equals(rs.getString("TR_HP"))) {
+					
+					tr_vo =  new TrainerVo();
+					tr_vo.setTr_pw(rs.getString("tr_pw"));
+				
+				}else {
+					
+				}
+			}else {
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("findTrId 메소드 내부에서 오류!");
+			e.printStackTrace();
+		}finally {
+			closeResource();
+		}
+		
+		return tr_vo;
+	
+	
+	
+	}
+
+
+	
 }

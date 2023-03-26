@@ -19,7 +19,7 @@
 		%>
 	
 	<style type="text/css">
-	@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+/* 	@import url(https://fonts.googleapis.com/css?family=Open+Sans); */
 	
 	.login {
 		margin-left: auto;
@@ -118,9 +118,18 @@
 	    width: 330px;	
 	}
 			
-			
+	.findId,.findPw{
+		color: #337ab7;
+	}		
 	
-	
+	input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+	 	 transition: background-color 5000s ease-in-out 0s;
+		 -webkit-transition: background-color 9999s ease-out;
+    	 -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+   }
 	
 	</style>
 	<meta charset="UTF-8">
@@ -143,29 +152,29 @@
 				</div>
 		 -->
 				<div class="login">
-				<form method="post" action="<%=contextPath%>/member/loginPro.me">
+				<form method="post" >
 					
 					<div>
 						<input id="memLoginId" type="text" name="memLoginId" placeholder="아이디" /> 
 					</div>	
-<!-- 					
-					<div>	
-						<input id="MemLoginHp" type="text" name="memLoginHp" placeholder="전화번호" /> 
-					</div>	
- -->
+				
 					<div>	
 						<input id="memLoginPw" type="password" name="memLoginPw" placeholder="비밀번호" /> 
 					</div>	
+					<div style="text-align: right;">
+						<a class="findId" onclick="findId()">아이디 찾기</a>/
+						<a class="findPw" onclick="findPw()">비밀번호 찾기</a>
+					</div>
+					
 					
 					<div class="loginDiv">
 						<button id="memLoginbtn" type="submit" class="loginBtn">log in.</button> 
 					</div>	
 						
-<%-- 					<a href="<%=contextPath%>/member/noMemLoginPro.me"
-						id="noMemLoginbtn" class="btn btn-primary btn-block btn-large">log in.</a>
-					 --%>
 					<div class="joinDiv">
-						<button href="<%=contextPath%>/member/joinCategory.me" class="joinBtn">회원가입</button>
+						<a href="<%=contextPath%>/member/joinCategory.me"  id="joinBtn" class="joinBtn" style="text-decoration: none;"> 
+							<p style="margin-top: 9px;">회원가입</p>
+						</a>
 					</div>
 				</form>
 			</div>
@@ -174,47 +183,58 @@
 </html>
 	
 	<script type="text/javascript">
-	/*		
- 		$("#memLogin").click(function() {
-			
-			$("#memLoginId").show();
-			$("#MemLoginHp").hide();
-			$("#noMemLoginbtn").hide();
-			$("#memLoginbtn").show();
-			
-		});
-		
-		$("#noMemLogin").click(function() {
-			
-			$("#MemLoginHp").show();
-			$("#memLoginId").hide();
-			$("#memLoginbtn").hide();
-			$("#noMemLoginbtn").show();
-		});
-		
-		$(function(){
-			$("#MemLoginHp").hide();
-			$("#noMemLoginbtn").hide();
-			
-		});
-	 */
-	
+
 		  $("#memLoginbtn").mouseover(function(){
 
 	    	$("#memLoginbtn").css("background-color", "#f2deded6");
 		    $("#memLoginbtn").css("color", "white");
 		    $("#memLoginbtn").css("border", "0px");
 				
-			  });
+		  });
 
 		  $("#memLoginbtn").mouseout(function(){
 
 		    $("#memLoginbtn").css("background-color", "transparent");
 		    $("#memLoginbtn").css("color", "black");
 		    $("#memLoginbtn").css("border", "1px solid #231815");
+			  
+		  });
+	
+		  $("#memLoginbtn").click(function(){
+		 	
+			  $("form").attr("action", "<%=contextPath%>/member/loginPro.me");
+				  
+		  });
+	
+		  
+		  
+		  
+		  $("#joinBtn").mouseover(function(){
+
+	    	$("#joinBtn").css("background-color", "#E0E0F8");
+				
 			  });
-	
-	
+
+		  $("#joinBtn").mouseout(function(){
+
+		    $("#joinBtn").css("background-color", "white");
+			  });
+		
+	   
+		  function findId(){
+	        var url = "<%=contextPath%>/nbMember/findId.jsp";
+	        var name = "아이디 찾기	";
+	        var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+	        window.open(url, name, option);
+	    }
+		 
+		  function findPw(){
+	        var url = "<%=contextPath%>/nbMember/findPw.jsp";
+	        var name = "비밀번호 찾기	";
+	        var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+	        window.open(url, name, option);
+	    }
+		  
 	</script>
 	
 	
