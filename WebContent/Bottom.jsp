@@ -45,9 +45,9 @@
                             <li><a href="<%=request.getContextPath()%>/nb/Main">Home </a></li>
                             <li><a href="<%=request.getContextPath()%>/nb/Intro.do?center=/nbCompany/intro.jsp">회사 소개 </a></li>
                             <li><a href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강 신청 </a></li>
-                            <li><a href="<%=request.getContextPath()%>/nb/free.bo?center=/nbBoard/freeboard.jsp">자유 게시판 </a></li>
-                            <li><a href="<%=request.getContextPath()%>/nb/trainer.bo?center=/nbBoard/trainerboard.jsp">훈련사 상담 </a></li>
-                            <li> <a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
+                            <li><a href="<%=request.getContextPath()%>/freeboard/list.fb">자유 게시판 </a></li>
+                            <li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담 </a></li>
+                            <li> <a href="<%=request.getContextPath()%>/review/qna.bo">Q&A</a></li>
                             <li> <a href="<%=request.getContextPath()%>/nb/navi.do?center=/nbCompany/navi.jsp">오시는 길</a></li>
                         </ul>
                     </div>
