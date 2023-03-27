@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.Vector;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -483,18 +484,39 @@ public class MemberController extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			String memberid	= (String)session.getAttribute("id");
+			List<PetVo> list = memberdao.selectTrAllPet(memberid);
 			
 			MemberVo mem_vo = memberdao.memRead(memberid);
-			PetVo pet_vo = memberdao.petRead(memberid);
-			request.setAttribute("mem_vo", mem_vo);
-			request.setAttribute("pet_vo", pet_vo);
-			request.setAttribute("center", "nbMember/petInfo.jsp");
+//			PetVo pet_vo = memberdao.petRead(memberid);
 			
-			System.out.println(pet_vo.getP_img());
+			request.setAttribute("mem_vo", mem_vo);
+//			request.setAttribute("pet_vo", pet_vo);
+			request.setAttribute("center", "nbMember/petList.jsp");
+			request.setAttribute("petList", list);
 			
 			// 메인화면 view 주소
 			nextPage = "/nbMain.jsp";
 		
+		//펫 상세 정보 요청화면			  
+		} else if (action.equals("/petDetailInfo.me")) {
+			
+			System.out.println("nbMemberController -> /petDetailInfo.me 요청!");
+			
+			HttpSession session = request.getSession();
+			String memberid	= (String)session.getAttribute("id");
+			
+			String p_name = request.getParameter("p_name");
+			
+			MemberVo mem_vo = memberdao.memRead(memberid);
+			PetVo pet_vo = memberdao.petRead(memberid,p_name);
+			
+			request.setAttribute("mem_vo", mem_vo);
+			request.setAttribute("pet_vo", pet_vo);
+			request.setAttribute("center", "nbMember/petInfo.jsp");
+			
+			// 메인화면 view 주소
+			nextPage = "/nbMain.jsp";
+			
 		//회원정보 조회 화면 요청
 		} else if (action.equals("/info.me")) {
 			
@@ -562,10 +584,11 @@ public class MemberController extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			String memberid	= (String)session.getAttribute("id");
-			
+			String p_name = request.getParameter("p_name");
 			
 			MemberVo mem_vo = memberdao.memRead(memberid);
-			PetVo pet_vo = memberdao.petRead(memberid);
+			PetVo pet_vo = memberdao.petRead(memberid,p_name);
+			
 			request.setAttribute("mem_vo", mem_vo);
 			request.setAttribute("pet_vo", pet_vo);
 			request.setAttribute("center", "nbMember/petChange.jsp");
@@ -590,7 +613,7 @@ public class MemberController extends HttpServlet {
 			
 			
 		    int result = memberdao.petInfoChange(p_name, p_age, p_weight, p_type, p_gender, p_op, P_mem_id);
-			
+			System.out.println(result);
 		    if(result == 0) {
 				out.println("<script>");
 				out.println("window.alert('수정실패 하였습니다.');");
@@ -608,7 +631,35 @@ public class MemberController extends HttpServlet {
 				return;
 		    	
 		    }
-		  
+		
+	    //펫 정보 삭제
+		} else if(action.equals("/delPet.me")) {
+			
+			HttpSession session = request.getSession();
+			String memberId = ((String)session.getAttribute("id"));
+			String p_name = request.getParameter("p_name");
+			
+			boolean result = memberdao.petDelete(memberId,p_name);
+
+			if (result == false) {
+				
+				
+				out.println("<script>");
+				out.println("window.alert('삭제 되었습니다.');");
+				out.println("location.href='/TeamProject/member/petInfo.me'");
+				out.println("</script>");
+		
+				return;
+
+			} else if (result == true)  {
+				
+				return;
+
+			}
+			
+			
+			
+			
 		//회원,트레이너 사진 등록,업데이트    
 		} else if(action.equals("/imgUpdate.me")) {
 			

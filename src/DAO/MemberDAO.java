@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -973,15 +975,14 @@ public class MemberDAO {
 	}
 
 	//펫 정보 조회
-	public PetVo petRead(String memberid) {
-		String sql = "SELECT * FROM PET WHERE P_MEM_ID=?";
+	public PetVo petRead(String memberid, String p_name) {
+		String sql = "SELECT * FROM PET WHERE P_MEM_ID='"+memberid+"'AND P_NAME='"+p_name+"'";;
 		
 		PetVo pet_vo = null;
 		try {
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
 
-				pstmt.setString(1, memberid);
 				
 				rs = pstmt.executeQuery();
 					rs.next();
@@ -1006,24 +1007,23 @@ public class MemberDAO {
 
 	//펫 정보 수정
 	public int petInfoChange(String p_name, String p_age, String p_weight, String p_type, String p_gender, String p_op, String P_mem_id) {
-		
 		int result = 0; //
 		
 		try {
 			con = ds.getConnection();
 			
-			String query = "update PET set p_name='" + p_name + "',"
-									   + " p_age='" + p_age + "',"
+			String query = "update PET set p_age='" + p_age + "',"
 									   + " p_weight='" + p_weight + "',"
 					   				   + " p_type='" + p_type + "',"
 					   				   + " p_gender='" + p_gender + "',"
 					   				   + " p_op='" + p_op + "'"
-									   + " WHERE P_mem_id ='"+ P_mem_id +"'";
-
+									   + " WHERE P_MEM_ID='"+P_mem_id+"'AND P_NAME='"+p_name+"'";
+											
 			
 			pstmt = con.prepareStatement(query);
 			result = pstmt.executeUpdate();
 			
+			System.out.println("dao :"+result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1181,7 +1181,8 @@ public class MemberDAO {
 		}
 		return petResult;
 	}
-
+	
+	//아이디찾기(회원 DB 조회)
 	public MemberVo findMemId(String name, String hp) {
 		
 		MemberVo mem_vo = null;
@@ -1220,7 +1221,7 @@ public class MemberDAO {
 		return mem_vo;
 		
 	}
-	
+	//아이디찾기(트레이너 DB 조회)
 	public TrainerVo findTrId(String name, String hp) {
 		
 		TrainerVo tr_vo = null;
@@ -1257,7 +1258,7 @@ public class MemberDAO {
 		return tr_vo;
 		
 	}
-
+	//비밀번호찾기(회원 DB 조회)
 	public MemberVo findMemPw(String id, String hp) {
 
 		MemberVo mem_vo = null;
@@ -1295,7 +1296,8 @@ public class MemberDAO {
 		
 		return mem_vo;
 	}
-
+	
+	//비밀번호찾기(트레이너 DB 조회)
 	public TrainerVo findTrPw(String id, String hp) {
 
 		TrainerVo tr_vo = null;
@@ -1336,6 +1338,75 @@ public class MemberDAO {
 	
 	
 	}
+	
+	//모든 펫 정보 조회
+	public List<PetVo> selectTrAllPet(String memberid) {
+		List<PetVo> list = new ArrayList<>();
+		PetVo pet_vo = null;
+		
+		try {
+            con = ds.getConnection();
+            String query = "SELECT * from pet where p_mem_id =?";
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1, memberid);
+			rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+            	pet_vo = new PetVo();
+                pet_vo.setP_name(rs.getString("p_name"));
+                pet_vo.setP_age(rs.getInt("p_age"));
+                pet_vo.setP_gender(rs.getString("p_gender"));
+                pet_vo.setP_type(rs.getString("p_type"));
+                pet_vo.setP_op(rs.getString("p_op"));
+                pet_vo.setP_weight(rs.getInt("p_weight"));
+            	pet_vo.setP_img(rs.getString("p_img"));
+            	pet_vo.setP_mem_id(rs.getString("p_mem_id"));
+
+            	list.add(pet_vo);
+            }
+            
+		 }catch (SQLException e) {
+			System.out.println("selectTrAllPet메소드에서 오류");
+			e.printStackTrace();
+			
+		} finally {
+			closeResource();
+		}
+		 return list;
+	}
+
+	public boolean petDelete(String memberId, String p_name) {
+		
+		boolean result = true; //
+		
+		try {
+			con = ds.getConnection();
+			String query = "DELETE FROM PET  WHERE P_MEM_ID='"+memberId+"'AND P_NAME='"+p_name+"'";
+			pstmt = con.prepareStatement(query);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				System.out.println("삭제됨");
+				result = false;
+			}
+				System.out.println("안됨");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		
+		} finally {
+			//5. 자원해제 
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("memDelete메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+		}
+		
+		return result;
+		
+	}
+
 
 
 	
