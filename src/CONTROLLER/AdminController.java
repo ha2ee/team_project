@@ -98,6 +98,12 @@ public class AdminController extends HttpServlet {
 				request.setAttribute("trMembersList", trList);
 				//============================================================
 				
+				//자유게시판 목록
+				ArrayList<FreeBoardVo> fbList = adminDAO.fbListAll();
+				request.setAttribute("fbList", fbList);
+				//============================================================
+				
+				
 				//훈련사 상담 목록
 				ArrayList<TrainerBoardVo> trBoardList = adminDAO.getBoardList();
 				request.setAttribute("trBoardList", trBoardList);

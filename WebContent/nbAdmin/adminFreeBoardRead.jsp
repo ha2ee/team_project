@@ -127,34 +127,6 @@
     </div>
     
     
-    <div style="margin-left: 12%; display: flex; flex-direction: column;">
-      <div>
-      
-       <%
-        if((String)request.getAttribute("likeCheck")=="0"){ //좋아요를 안 눌렀다면?
-      %>
-         <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
-          <i class="fa-regular fa-heart fa-4x" id="likeimggg"></i>
-        </button>
-         <%
-        } else{ //좋아요를 눌렀다면?
-        %>
-        <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
-          <i class="fa-solid fa-heart fa-4x" id="likeimggg"></i>
-        </button>
-        
-        <%
-        }
-        %>
-         
-      </div>
-      
-      
-      <div>
-        <p id="countLike" style="font-size: 30px"><%=like%></p>
-      </div>
-    </div>
-    
     
     </div>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>    

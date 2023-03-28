@@ -56,7 +56,28 @@
 				</c:forEach>
 			</table>
 		</div>
-		<div class="centerBox_3"><h3>자유게시판</h3><a class="seeMore" href="${contextPath}/adm/freeBoardList.adm">&#43;</a><hr></div>
+		<div class="centerBox_3"><h3>자유게시판</h3><a class="seeMore" href="${contextPath}/adm/freeBoardList.adm">&#43;</a><hr>
+			<table class="center_memTable" >
+	            <tr>
+	                <th>제목</th>
+	                <th>작성자</th>
+	                <th>작성일</th>
+	            </tr>
+			<c:forEach var="freeBoard" items="${requestScope.fbList}" varStatus="vs" begin="0" end="7" step="1">
+	            <tr class="freeBoard2">
+	                <td>
+	                    <a class="link" href="freeBoardRead.adm?b_idx=${freeBoard.b_idx}&nowBlock=0&nowPage=0" >
+	                    	<b>${freeBoard.b_title}</b>
+	                    </a>
+	                </td>
+	                <td>
+	                		${freeBoard.b_nickname}
+	                </td>
+	                <td>${freeBoard.b_date}</td>
+	            </tr>
+	        </c:forEach>
+	        </table>
+		</div>
 		<div class="centerBox_4"><h3>훈련사 상담</h3><a class="seeMore" href="${contextPath}/adm/trBoardList.adm">&#43;</a><hr>
 		<table class="center_memTable" >
             <tr>
