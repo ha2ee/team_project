@@ -42,7 +42,7 @@ $(document).ready(function(){
 </script>
 <style>
 @import url('http://fonts.googleapis.com/earlyaccess/notosanskr.css');
-ul, li, p { list-style:none; padding:0; margin:0; }
+/* ul, li, p { list-style:none; padding:0; margin:0; } */
 .listWrap { font-family:'Noto Sans KR', sans-serif; margin-bottom:20px; }
 .listWrap .qa_li { position:relative; display:block; padding:0; border-bottom:1px solid #ededed; cursor:pointer; }
 /* .listWrap .qa_li:first-child { border-top:1px solid #a6a6a6; } */
