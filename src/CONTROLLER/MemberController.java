@@ -543,20 +543,25 @@ public class MemberController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String memberid = (String)session.getAttribute("id");
 		
-		String p_name = request.getParameter("p_name");
-
-		String p_age = request.getParameter("p_age");
-
-		String p_gender = request.getParameter("p_gender");
-
-		String p_type = request.getParameter("p_type");
-
-		String p_op = request.getParameter("p_op");
-
-		String p_weight = request.getParameter("p_weight");
-
-		String p_img = request.getParameter("imageFileName");
-
+		String directory = request.getServletContext().getRealPath("petImg");
+		File dir = new File(directory);
+		if (!dir.exists()) dir.mkdirs();
+		
+		int maxSize = 1024 * 1024 * 100;
+		String encoding = "utf-8";
+		
+		MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
+		
+		String fileName = multipartRequest.getOriginalFileName("petImageFileName");
+		
+		int img_result = memberdao.petImgUpdate(memberid,fileName);
+		
+		String p_name = multipartRequest.getParameter("p_name");
+		String p_age = multipartRequest.getParameter("p_age");
+		String p_gender = multipartRequest.getParameter("p_gender");
+		String p_type = multipartRequest.getParameter("p_type");
+		String p_op = multipartRequest.getParameter("p_op");
+		String p_weight = multipartRequest.getParameter("p_weight");
 		
 		PetVo pet_vo = new PetVo();
 			  pet_vo.setP_name(p_name);
@@ -565,7 +570,6 @@ public class MemberController extends HttpServlet {
 			  pet_vo.setP_type(p_type);
 			  pet_vo.setP_op(p_op);
 			  pet_vo.setP_weight(Integer.parseInt(p_weight));
-			  pet_vo.setP_img(p_img);
 			  pet_vo.setP_mem_id(memberid);
 		
 		  boolean result = memberdao.petJoin(pet_vo);
@@ -813,6 +817,35 @@ public class MemberController extends HttpServlet {
 			}
 			
 		
+		//트레이너 가입 승인시 임시테이블에서 트레이너 테이블로 이동
+		} else if(action.equals("/temTrJoin.me")) {
+			
+			
+			String tr_id = request.getParameter("Tr_id");
+			
+			boolean addResult = memberdao.temTrAdd(tr_id);
+			boolean delResult = memberdao.temTrdel(tr_id);
+			
+			if (addResult == false || delResult == false) {
+				
+				HttpSession session_ = request.getSession();
+				session_.invalidate(); // 세션에 저장된 아이디 제거
+				
+				out.println("<script>");
+				out.println("window.alert('가입 승인 되었습니다.');");
+				out.println("location.href='http://localhost:8090/TeamProject/adm/temTrManage.adm'");
+				out.println("</script>");
+		
+				return;
+
+			} else if (addResult == true && delResult == true) {
+				
+				return;
+
+			}
+				
+
+			
 		}
 		// 포워딩 (디스패처 방식)
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);

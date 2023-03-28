@@ -320,11 +320,19 @@ public class AdminController extends HttpServlet {
 				
 				return;
 				
-			}
 			
-		
-		
-		
+			//임시 회원DB 정보 조회
+			} else if (action.equals("/temTrManage.adm")) {
+				List<TrainerVo> list = adminDAO.selectTemTrAllMember();
+
+				center = "/nbAdmin/adminTemTrMem.jsp";
+				
+				request.setAttribute("center", center);
+				request.setAttribute("trMembersList", list);
+				
+				nextPage = "/nbAdmin/adminMain.jsp";
+	
+			}
 		
 			//포워딩 (디스패처 방식)
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);

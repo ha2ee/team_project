@@ -1115,9 +1115,9 @@ public class MemberDAO {
 	}
 	
 	//펫 사진 등록,업데이트
-	public int petImgUpdate(String p_mem_id, String fileName) {
+	public int petImgUpdate(String memberid, String fileName) {
 		
-		System.out.println(p_mem_id);
+		System.out.println(memberid);
 		System.out.println(fileName);
 		
 		int result = 0; //
@@ -1126,7 +1126,7 @@ public class MemberDAO {
 			con = ds.getConnection();
 			
 			String query = "update PET set p_img='" + fileName + "'"
-					+ " WHERE p_mem_id ='"+ p_mem_id +"'";
+					+ " WHERE p_mem_id ='"+ memberid +"'";
 			
 			
 			pstmt = con.prepareStatement(query);
@@ -1158,8 +1158,8 @@ public class MemberDAO {
 		try {
 			con = ds.getConnection();
 			
-			String query = "update YS_MEMBER set p_img='네'"
-					+ " WHERE p_mem_id ='"+ memberid +"'";
+			String query = "update YS_MEMBER set mem_pet='네'"
+					+ " WHERE mem_id ='"+ memberid +"'";
 			
 			
 			pstmt = con.prepareStatement(query);
@@ -1406,6 +1406,72 @@ public class MemberDAO {
 		return result;
 		
 	}
+	
+	
+	
+	public boolean temTrAdd(String tr_id) {
+		
+		boolean mem_result = true; //
+		
+		try {
+			con = ds.getConnection();
+			String sql = "INSERT INTO MEMBER_TRAINER SELECT * FROM tem_trainer WHERE tem_tr_id ='"+tr_id+"'";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			System.out.println("temTrAdd메소드 내부에서 SQL실행 오류" + e);
+		}finally {
+			closeResource();
+		}
+		
+		
+		return mem_result;
+	}
+	
+	
+	//트레이너 임시테이블 정보 삭제
+	public boolean temTrdel(String tr_id) {
+		
+		boolean mem_result = true; //
+			
+			try {
+				//1. 커넥션풀(DataSource)에서 Connection객체 얻기
+				con = ds.getConnection();
+				//2. DELETE 문 만들기 
+				//-> 매개변수로 전달 받는  id에 해당되는 회원 삭제 시키는 DELETE문 
+				String query = "DELETE FROM TEM_TRAINER WHERE TEM_TR_ID=?";
+				//문법    DELETE FROM 삭제할테이블명 WHERE 조건열=조건값;
+				
+				//3. DELETE SQL문을 실행할  PreparedStatement객체 얻기
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, tr_id);
+				rs = pstmt.executeQuery();
+	
+				if(rs.next()) {
+					System.out.println("삭제됨");
+					mem_result = false;
+				}
+					System.out.println("안됨");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			
+			} finally {
+				//5. 자원해제 
+				try {
+					closeResource();
+				} catch (Exception e) {
+					System.out.println("temTrdel메소드 내부에서 SQL실행 오류" + e );
+					e.printStackTrace();
+				}	
+			}
+			
+			return mem_result;
+			
+		}
+
+
 
 
 
