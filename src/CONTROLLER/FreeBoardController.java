@@ -20,10 +20,12 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import DAO.CommentDAO;
 import DAO.FreeBoardDAO;
 import DAO.MemberDAO;
+import DAO.TrainerDAO;
 import VO.CommentVO;
 import VO.FreeBoardVo;
 import VO.LikeVo;
 import VO.MemberVo;
+import VO.TrainerVo;
 
 
 // 게시판 관련 기능 요청이 들어오면 호출되는 사장님(컨트롤러)
@@ -39,13 +41,16 @@ public class FreeBoardController extends HttpServlet {
 
   // MemberVo객체를 저장할 참조변수 선언
 //   MemberVo membervo;
-
+   TrainerVo trainerVo;
+   TrainerDAO trainerdao;
   @Override
   public void init() throws ServletException {
     boarddao = new FreeBoardDAO();
      memberdao = new MemberDAO();
     // membervo = new MemberVo();
     commentvo = new CommentVO();
+    trainerVo = new TrainerVo(); 
+    trainerdao = new TrainerDAO();
   }
 
   @Override
@@ -121,7 +126,11 @@ public class FreeBoardController extends HttpServlet {
 //      //요청한 값 얻기
         String memberid   = (String)session.getAttribute("id");
         String nickname = memberdao.getMemNickName(memberid);
-        
+        if(nickname ==null) {
+          trainerVo = trainerdao.trainerOne(memberid);
+          nickname = trainerVo.getTr_name();
+        }
+        System.out.println(nickname);
       
 //      //업로드 작업 중...
       String directory = request.getServletContext().getRealPath("upload");
@@ -140,7 +149,7 @@ public class FreeBoardController extends HttpServlet {
       String fileRealName = multipartRequest.getFilesystemName("fileName");
 //      //여기까지
       
-
+      
       vo= new FreeBoardVo();
       vo.setB_id(memberid);
       vo.setB_nickname(nickname);
