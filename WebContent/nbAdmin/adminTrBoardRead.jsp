@@ -75,7 +75,7 @@
     	
     <div class="post-buttons">
 		<input type="button" value="목록으로" onclick="location.href='trBoardList.adm?page=${pageNum}'" id="list" />
-			<input type="button" value="삭제하기" onclick="javascript:tbDelete('<%=tb_idx%>','${vo.tb_level}');" id="delete"/>
+			<input type="button" value="삭제하기" onclick="javascript:admTbDelete('<%=tb_idx%>','${vo.tb_level}');" id="delete"/>
     </div>
     </div>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>    
