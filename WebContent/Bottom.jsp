@@ -9,10 +9,11 @@
 	width: 1920px;
 	margin: 0 auto;
 	}
+
 	.copyright{
 	left: 180px;
     position: relative;
-	}
+	} 
 	col-lg-3 col-md-3 col-sm-3 col-xs-12 > ul{
 	position: relative;
     top: 60px;
@@ -64,7 +65,7 @@
                                 <li><i class="fa fa-envelope"></i>admin@nb.co.kr</li>
                             </ul>
                         </div>
-                        <a style="border-radius: 20px; border:0; background:#FFB2D9; left: 120px; top: 10px; "href="#" class="btn btn-primary btn-sm" >1:1 상담하기<br></a></div>
+                        <a style="border-radius: 20px; border:0; background:#FFB2D9; left: 120px; top: 10px;" "href="javascript:addChannel()" class="btn btn-primary btn-sm" >1:1 상담하기<br></a></div>
                 </div>
                 <!-- footer-contactinfo-close -->
                 <!-- footer-about-start -->
@@ -92,6 +93,14 @@
             </div>
         </div>
         <!-- footer-address-close -->
+        <script type="text/javascript">
+        function addChannel() {
+        	  Kakao.Channel.addChannel({
+        	    channelPublicId: '_Xpekxj',
+        	  });
+        	}
+        
+        </script>
     </div>
     <!-- footer close -->
     </div>

@@ -44,8 +44,8 @@
 					<div>아직 어떤 프로그램을 들어야 할지 모르시나요?</div>
 					<div>
 					<br>
-						<a href="#">상담신청하기</a>
-						<br>
+						<a style="border-radius: 20px; font-size: 20px;height: 33px; border:0; background:#FFB2D9;" href="javascript:addChannel()" class="btn btn-primary btn-sm">1:1 상담하기<br></a>
+						<br><br><br>
 					</div>
 				</div>
 				<div>
@@ -53,11 +53,11 @@
 				<h1><img src="<%=request.getContextPath()%>/images/qna2.png">고객센터</h1>
 				</div>
 				1800-6358<br>
-				<h3>보듬교육 고객센터</h3><br>
+				<h3>늘봄교육 고객센터</h3><br>
 				업무시간 : 10:00 - 18:00<br>
 				점심시간 : 13:00 - 14:00<br>
 				토요일, 일요일, 공휴일 휴무입니다.<br>
-				<h3>보듬숍 고객센터</h3><br>
+				<h3>늘봄숍 고객센터</h3><br>
 				업무시간 : 10:00 - 18:00<br>
 				점심시간 : 13:00 - 14:00<br>
 				토요일, 일요일, 공휴일 휴무입니다.
@@ -67,6 +67,14 @@
 			</td>
 		</tr>
 	</table>
+	<script type="text/javascript">
+	function addChannel() {
+		  Kakao.Channel.addChannel({
+		    channelPublicId: '_Xpekxj',
+		  });
+		}
+	
+	</script>
 	</div>
 </body>
 </html>

@@ -81,6 +81,33 @@
 		</div>
 
 		<div id="bigdiv"> 
+			<form name="mailform" action="MAILTO:kisschu@naver.com" method="post" enctype="text/plain" >
+			<div id="middlediv">
+				<h2>무엇이든 물어보세요!</h2>
+				<br>
+				<div id="askname" class="mb-3" >
+					<input type="text" class="form-control" id="formGroupExampleInput"
+						placeholder="이름" name="name">
+				</div>
+				<div id="askemail" class="mb-3">
+					<input type="text" class="form-control" id="formGroupExampleInput2"
+						placeholder="이메일" name="email">
+				</div>
+				<div id="askhp" class="mb-3">
+					<input type="text" class="form-control" id="formGroupExampleInput3"
+						placeholder="전화번호" name="hp">
+				</div>
+				<div id="askcontent" class="mb-3">
+					<textarea class="form-control" id="exampleFormControlTextarea1"
+						rows="8" placeholder="하고싶은말을 적어주세요." name="text"></textarea>
+				</div>
+
+				<div>
+					<input type="submit" value="제출" class="btn btn-light" >
+					
+				</div>
+			</div>
+			</form>
 			<div id="map" style="width: 500px; height: 300px;">
 
 			<script type="text/javascript"
