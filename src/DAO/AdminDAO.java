@@ -12,6 +12,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import VO.FreeBoardVo;
 import VO.MemberVo;
 import VO.PetVo;
 import VO.TrainerBoardVo;
@@ -136,6 +137,43 @@ public class AdminDAO {
 		}
 		 return list;
 	}		
+	
+	//자유게시판 모든 글 조회
+	public ArrayList<FreeBoardVo> fbListAll() {
+	    ArrayList<FreeBoardVo> list = new ArrayList<>();
+	    FreeBoardVo vo;
+	    try {
+	      con = ds.getConnection();
+
+	      String sql = "SELECT * FROM FREE_BOARD order by b_idx desc";
+
+	      pstmt = con.prepareStatement(sql);
+	      rs = pstmt.executeQuery();
+	      while (rs.next()) {
+	        vo = new FreeBoardVo(
+	                             rs.getInt("b_idx"),
+	                             rs.getString("b_id"), 
+	                             rs.getString("b_nickname"),
+	                             rs.getString("b_title"), 
+	                             rs.getString("b_content"), 
+	                             rs.getDate("b_date"),
+	                             rs.getInt("b_cnt"), 
+	                             rs.getString("b_file"),
+	                             rs.getString("b_realfile") ,
+	                             rs.getInt("b_like")
+	                             );
+	        list.add(vo);
+	      }
+
+	    } catch (Exception e) {
+	      System.out.println("fbListAll 메소드에서 에러가 발생하였습니다. 이유는 ? --> " + e);
+	      e.printStackTrace();
+	    } finally {
+	      closeResource();
+	    }
+	    return list;
+	  }
+	
 	
 	
 	
@@ -556,4 +594,69 @@ public class AdminDAO {
         return result;
     } // end getMemberListCount
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	// 모든 회원 조회
+	public List<TrainerVo> selectTemTrAllMember () {
+		 List<TrainerVo> list = new ArrayList<>();
+
+		 try {
+			con = ds.getConnection();
+			String query = "SELECT * from TEM_TRAINER";
+			pstmt = con.prepareStatement(query);
+			rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+            	trainerVO = new TrainerVo();
+            	trainerVO.setTr_id(rs.getString("tem_tr_id"));
+            	trainerVO.setTr_name(rs.getString("tem_tr_name"));
+            	trainerVO.setTr_img(rs.getString("tem_tr_img"));
+            	trainerVO.setTr_pw(rs.getString("tem_tr_pw"));
+            	trainerVO.setTr_email(rs.getString("tem_tr_email"));
+            	trainerVO.setTr_hp(rs.getString("tem_tr_hp"));
+            	trainerVO.setTr_birth(rs.getString("tem_tr_birth"));
+            	trainerVO.setTr_gender(rs.getString("tem_tr_gender"));
+            	trainerVO.setTr_joindate(rs.getDate("tem_tr_joindate"));
+            	trainerVO.setTr_address1(rs.getString("tem_tr_address1"));
+            	trainerVO.setTr_address2(rs.getString("tem_tr_address2"));
+            	trainerVO.setTr_address3(rs.getString("tem_tr_address3"));
+            	trainerVO.setTr_address4(rs.getString("tem_tr_address4"));
+            	trainerVO.setTr_address5(rs.getString("tem_tr_address5"));
+            	list.add(trainerVO);
+            	
+            }
+            
+		 }catch (SQLException e) {
+			System.out.println("selectTemTrAllMember메소드에서 오류");
+			e.printStackTrace();
+			
+		} finally {
+			closeResource();
+		}
+		 return list;
+	}
+    
+    
+    
+    
+    
 }

@@ -11,105 +11,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자센터페이지</title>
 <style type="text/css">
-.center_Container {
-	position:relative;
-	width:1200px;
-	min-width : 1200px;
-	height : 800px;
-	min-height : 800px;
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	margin: 0 auto;
-}
-
-.link {
-text-decoration: none;
-color : #000;
-display : inline-block;
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
-width: 150px;
-}
-
-.link:hover {
-text-decoration: underline;
-}
-
-
-.center_Container>div {
-	width:600px;
-	height: 50%;
-	box-sizing: border-box;
-	border: 1px solid #888;
-	text-align: center;
-}
-
-.center_Container>div:nth-child(1) {
-	background: #fcc;
-}
-
-.center_Container>div:nth-child(2) {
-	background: #cfc;
-}
-
-.center_Container>div:nth-child(3) {
-	background: #fcf;
-	width: 400px;
-	height : 50%;
-}
-
-.center_Container>div:nth-child(4) {
-	background-color: #cff;
-	width: 400px;
-	height : 50%;
-}
-.center_Container>div:nth-child(5) {
-	background: #888;
-	width: 400px;
-	height : 50%;
-}
-
-.seeMore {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  position:relative;
-  top : -45px;
-  right : 15px;
-  text-decoration: none;
-}
-
-.seeMore:hover,
-.seeMore:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.center_memTable,.center_trTable, .center_trBoardTable {
-	border-collapse: collapse;
-	margin : 0 auto;
-}
-
-.center_memTable th, .center_memTable td, .center_trTable th, .center_trTable td {
-	text-align: center;
-	border-bottom: 1px solid #888;
-	width : 20%;
-	height:30px;
-}
-.center_memTable th, .center_trTable th{
-	background-color: #EAEAEA;
-}
 
 </style>
 </head>
 <body>
-	center 페이지
 	<div class="center_Container">
 		<div class="centerBox_1"><h3>회원목록</h3><a class="seeMore" href="${contextPath}/adm/memManage.adm">&#43;</a><hr>
 		<table class="center_memTable" >
@@ -149,7 +56,28 @@ text-decoration: underline;
 				</c:forEach>
 			</table>
 		</div>
-		<div class="centerBox_3"><h3>자유게시판</h3><a class="seeMore" href="${contextPath}/adm/memManage.adm">&#43;</a><hr></div>
+		<div class="centerBox_3"><h3>자유게시판</h3><a class="seeMore" href="${contextPath}/adm/freeBoardList.adm">&#43;</a><hr>
+			<table class="center_memTable" >
+	            <tr>
+	                <th>제목</th>
+	                <th>작성자</th>
+	                <th>작성일</th>
+	            </tr>
+			<c:forEach var="freeBoard" items="${requestScope.fbList}" varStatus="vs" begin="0" end="7" step="1">
+	            <tr class="freeBoard2">
+	                <td>
+	                    <a class="link" href="freeBoardRead.adm?b_idx=${freeBoard.b_idx}&nowBlock=0&nowPage=0" >
+	                    	<b>${freeBoard.b_title}</b>
+	                    </a>
+	                </td>
+	                <td>
+	                		${freeBoard.b_nickname}
+	                </td>
+	                <td>${freeBoard.b_date}</td>
+	            </tr>
+	        </c:forEach>
+	        </table>
+		</div>
 		<div class="centerBox_4"><h3>훈련사 상담</h3><a class="seeMore" href="${contextPath}/adm/trBoardList.adm">&#43;</a><hr>
 		<table class="center_memTable" >
             <tr>

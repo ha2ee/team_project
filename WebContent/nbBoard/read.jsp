@@ -30,14 +30,7 @@
   //   int seqnum = Integer.parseInt(cvo.getSeq());
 
 	String id = (String)session.getAttribute("id");
-  
-   if (id == null || id.equals("")) {
-      %>      
-      <script>    
-          alert("로그인을 해야 댓글을 작성 할 수 있습니다."); 
-          history.back(); 
-      </script>
-  <%}%>
+  %>
   
 <!--  	String likeCheck = (String)request.getAttribute("likeCheck");
   System.out.println("ㅇㅇㅇㅇ:" +likeCheck );
@@ -115,10 +108,10 @@ div.filedownload {
 
 /* 	댓글 CSS */
 	
-	#tblAddCommnet, #tblListComment { width: 700px; margin: 15px auto; }
+	#tblAddCommnet, #tblListComment { margin: 15px auto; }
 	
 	#tblAddComment { margin-top: 30px; }
-	#tblAddComment td:nth-child(1) { width: 600px; }
+/* 	#tblAddComment td:nth-child(1) { width: 600px; } */
 	#tblAddComment td:nth-child(2) { width: 100px; }
 	
 	#tblListComment td:nth-child(1) { width: 600px; }
@@ -137,8 +130,6 @@ div.filedownload {
 		color: #AAA;
 		font-size: 11px;
 	}
-	
-
 	/* 	댓글 CSS 끝*/
 		#updatePro{
      display: none;
@@ -189,7 +180,15 @@ div.filedownload {
 	</div>
   	</c:if>
  --%>    	
+ 
+ 
     <div class="post-buttons">
+    
+    
+    <c:if test="${not empty vo.b_realfile}">
+      <a href="<%=contextPath%>/freeboard/download.fb?idx=<%=b_idx%>"><%=file%></a>
+    </c:if>
+    
 		<input type="button" value="목록으로" onclick="location.href='list.fb?nowPage=0&nowBlock=0'" id="list" />
        
         <!-- 수정,삭제는 세션아이디와 조회한 글의 작성자아이디가 동일할때만 노출시키기 필요 -->
@@ -201,34 +200,32 @@ div.filedownload {
     </div>
     
     
-    <div style="margin-left: 12%; display: flex; flex-direction: column;">
-      <div>
-      
+    <div style="display: flex; flex-direction: column;">
+       <div>
        <%
         if((String)request.getAttribute("likeCheck")=="0"){ //좋아요를 안 눌렀다면?
       %>
-         <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
+         <a id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
+
           <i class="fa-regular fa-heart fa-4x" id="likeimggg"></i>
-        </button>
+        </a>
          <%
         } else{ //좋아요를 눌렀다면?
         %>
-        <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
+        <a id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
           <i class="fa-solid fa-heart fa-4x" id="likeimggg"></i>
-        </button>
+        </a>
         
+
         <%
         }
         %>
-         
       </div>
-      
-      
       <div>
         <p id="countLike" style="font-size: 30px"><%=like%></p>
       </div>
     </div>
-
+  <input type="hidden" id="like_check" value="${like.like_check}">
 <script type="text/javascript">
   const b_idx = <%=vo.getB_idx()%>
   var originLikeCount = <%=like%>
@@ -246,21 +243,23 @@ div.filedownload {
                         id : id
                       },
               success : function(data) {
-                   /*     if(data=originLikeCount-1){
-                           $("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
-                                     $("#countLike").text(data);
-  
-                                     } else{
-                                     $("#countLike").text(data);
-                                     $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
+                var arr=data.split("l");
+                var arr1 = arr[0];
+                var arr2 = arr[1];
+//                         if(data==originLikeCount-1){
+//                            $("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
+//                                      $("#countLike").text(data);
+//                                      } else{
+//                                      $("#countLike").text(data);
+//                                      $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
                                     
-                                     } */
-  
-                      $("#countLike").text(data);
-                      $("#topLike").text(data);
-                      if (data > originLikeCount) {
-                        $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
-                      } else if (data <= originLikeCount) {
+//                                      } 
+  									
+                      $("#countLike").text(arr1);
+                      $("#topLike").text(arr1);
+                      if ( arr2 == 8 ) {
+                        $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");//이제 좋아요 누른 경우;
+                      } else if (arr2 == 9) {
                         $("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
                       }
                       }
@@ -319,14 +318,9 @@ function tbDelete(tb_idx){
 
  <!-- 댓글시작------------------------------------ -->  
  
- <!-- 댓글수정 -->
- 
- 
- <!-- 끝----댓글수정 -->
- 
 <div style="margin: 0 77;">
 
-	<table id="tblListComment" class="table table-bordered">
+	<table id="tblListComment" class="table table-bordered" style="border:none;">
 	
 		<c:if test="${ clist.size() == 0 }">
 			<tr>
@@ -340,22 +334,22 @@ function tbDelete(tb_idx){
 				<td>
 				<!-- 댓글 표시&수정창 -->
 				<form id="commentUpdate${i}" action="<%=contextPath%>/freeboard/upcomment.do" method="post">
-					<textarea id="updateActive${i}" rows="3" name="commupdate" cols="60" disabled="disabled">${cdto.content}</textarea>
+					<textarea style="width: 100%;background-color: white; resize: none; border: none;" 
+							id="updateActive${i}" rows="3" name="commupdate" cols="60" disabled="disabled">${cdto.content}</textarea>
 					<input type="hidden" value="${cdto.seq}" name ="seq2"/>
 					<input type="hidden" value="<%=b_idx%>" name="b_idx"/>
 					</form>
 					<span>${ cdto.name }. ${ cdto.regdate }</span>
 				</td>
-				<td>
+				<td style="border: none;">
 		<!-- 댓글 작성자만 수정/삭제 버튼이 보이게 처리 c:if -->
 		<c:if test="${ id eq cdto.id}">
-				<input id="update${i}" type="button" value="수정하기" onclick="updateActive('${i}')" class="btn btn-default" >
-				
-				<input id="updatePro${i}" type="button" value="수정완료" class="btn btn-default" style="display:none;"
-						onclick="comment('${i}');"/>
-					<input type="button" value="삭제하기" class="btn btn-default" 
-						onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
-		</c:if>
+                <input id="update${i}" type="button" value="수정하기" onclick="updateActive('${i}')" class="btn btn-default" >
+                <input id="updatePro${i}" type="button" value="수정완료" class="btn btn-default" style="display:none;"
+                       onclick="comment('${i}');"/>
+                <input type="button" value="삭제하기" class="btn btn-default"
+                       onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';"/>
+              </c:if>
 				</td>
 			</tr>
 			<c:set var="i" value="${i+1}"/>
@@ -392,16 +386,22 @@ function tbDelete(tb_idx){
 	
 	</script>
 	
+	<!-- 로그인 세션값이 있어야 댓글작성 form이 노출되도록 수정 -->
+	<c:if test="${not empty sessionScope.id}">
 	
 	<form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
-		<table id="tblAddComment" class="table table-bordered" >
-			<tr>
-				<td><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
-				<td><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
+		  <table style="border: none;" id="tblAddComment" class="table table-bordered">
+			<tr style="border: none;">
+				 <td style="border: none;"><input type="text" name="content" id="content" class="form-control" required placeholder="댓글을 작성하세요. "/></td>
+				
+				
+				 <td style="border: none;"><input type="submit" value="댓글쓰기" class="btn btn-primary" /></td>
 			</tr>
 		</table>
 		<input type="hidden" name="pseq" value="<%=b_idx%>" />
 	</form>
+	
+	</c:if>
 	
 </div>
 <!-- 댓글끝------------------------------------ -->    

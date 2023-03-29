@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DAO.MemberDAO;
 import DAO.OrderDAO;
 import VO.MemberVo;
 import VO.PetVo;
@@ -38,6 +39,9 @@ public class nbController extends HttpServlet{
 	// 회원,펫 정보를 조회할 각 vo를 호출
 	MemberVo membervo;
 	PetVo petvo;
+	
+	// 회원정보 호출 dao
+	MemberDAO memberdao = new MemberDAO();	
 	
 	@Override
 	public void init() throws ServletException {
@@ -297,6 +301,17 @@ public class nbController extends HttpServlet{
 		}else if(action.equals("/mypage.me")) {
 			
 			System.out.println("mypage.me 호출!");
+
+			HttpSession session = request.getSession();
+			String memberid	= (String)session.getAttribute("id");
+			
+			MemberVo mem_vo = memberdao.memRead(memberid);
+			TrainerVo tr_vo = memberdao.trRead(memberid);
+			
+			
+			request.setAttribute("mem_vo", mem_vo);
+			request.setAttribute("tr_vo", tr_vo);
+			
 			
 			String center = request.getParameter("center");
 			
@@ -307,7 +322,7 @@ public class nbController extends HttpServlet{
 		} else if (action.equals("/trainer.bo")) {
 			
 			System.out.println("trainer.bo 훈련사 상담 게시판 호출!");
-			
+
 			String center = request.getParameter("center");
 			
 			request.setAttribute("center", center);

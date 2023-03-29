@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 //	Session내장객체 메모리 영역에 session값 얻기
 String id = (String)session.getAttribute("id");
@@ -163,7 +164,14 @@ $(document).ready(function(){
 					}else{//로그인 O
 				%>
 				   <li><a href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
-	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+				   <c:choose>
+				   	<c:when test="${id eq 'admin'}">
+				   	<li><a href="<%=request.getContextPath()%>/adm/adminMain" class="btn">관리자페이지</a></li>
+				   	</c:when>
+				   	<c:otherwise>
+				   	<li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+				   	</c:otherwise>
+				   </c:choose>
 <%-- 	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li> --%>
 	               <li><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
 
@@ -190,8 +198,8 @@ $(document).ready(function(){
 				<!-- 			 1-2)	메뉴 버튼 -->
 				<a href="<%=request.getContextPath()%>/nb/Intro.do?center=/nbCompany/intro.jsp"> 늘 봄이란?</a>
 				<a class = "edu_btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp"> 수강 신청 </a>
-				<a href="<%=request.getContextPath()%>/nb/free.bo?center=/nbBoard/freeboard.jsp"> 소통 하기</a>
-				<a href="<%=request.getContextPath()%>/nb/pet.shop?center=/nbShop/pet.jsp"> 늘 봄샵</a>
+				<a href="<%=request.getContextPath()%>/freeboard/list.fb"> 소통 하기</a>
+				<a href="<%=request.getContextPath()%>/tb/list.bo"> 고객 센터</a>
 
 
 
@@ -233,20 +241,17 @@ $(document).ready(function(){
 		<div id = mega_wrapper>
 			<ul class="list_lnb_01">
 				<li><a href="<%=request.getContextPath()%>/nb/Intro.do?center=/nbCompany/intro.jsp">회사 소개</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/ci.do?center=/nbCompany/ci.jsp"> C I</a></li>
 				<li><a href="<%=request.getContextPath()%>/nb/navi.do?center=/nbCompany/navi.jsp">오시는 길</a></li>
 			</ul>
 			<ul class="list_lnb_02">
 				<li><a class="edu_btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강신청 가기</a></li>
+				<li><a href="<%=request.getContextPath()%>/review/list.rv?nowBlock=0&nowPage=0">수강 후기</a></li>
 			</ul>
 			<ul class="list_lnb_03">
-				<li><a href="<%=request.getContextPath()%>/freeboard/list.fb">자유 게시판</a></li>
-				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
-				<li><a href="<%=request.getContextPath()%>/review/list.rv">수강 후기</a></li>
-				<li><a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
 			</ul>
 			<ul class="list_lnb_04">
-				<li><a href="<%=request.getContextPath()%>/nb/pet.shop?center=/nbShop/pet.jsp"> 샵으로 이동 </a></li>
+				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
+				<li><a href="<%=request.getContextPath()%>/review/qna.bo">Q&A</a></li>
 		 </ul>
 		 </div>
 	</div>	

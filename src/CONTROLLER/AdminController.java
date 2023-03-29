@@ -15,9 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.AdminDAO;
+import DAO.CommentDAO;
+import DAO.FreeBoardDAO;
 import DAO.MemberDAO;
 import DAO.TrainerBoardDAO;
 import DAO.TrainerDAO;
+import VO.CommentVO;
+import VO.FreeBoardVo;
 import VO.MemberVo;
 import VO.TrainerBoardVo;
 import VO.TrainerVo;
@@ -29,6 +33,9 @@ public class AdminController extends HttpServlet {
 		TrainerBoardVo trainerboardVO;
 		TrainerDAO trainerdao;
 		TrainerVo trainerVO;
+		
+		FreeBoardDAO freeboarddao;
+		FreeBoardVo freeboardVO;
 		
 		MemberDAO memberDAO;
 		MemberVo memberVO;
@@ -44,6 +51,7 @@ public class AdminController extends HttpServlet {
 			trainerdao = new TrainerDAO();
 			trainerboarddao = new TrainerBoardDAO();
 			trainerboardVO = new TrainerBoardVo();
+			freeboarddao = new FreeBoardDAO();
 		}
 		
 		
@@ -89,6 +97,12 @@ public class AdminController extends HttpServlet {
 				List<TrainerVo> trList = adminDAO.selectTrAllMember();
 				request.setAttribute("trMembersList", trList);
 				//============================================================
+				
+				//자유게시판 목록
+				ArrayList<FreeBoardVo> fbList = adminDAO.fbListAll();
+				request.setAttribute("fbList", fbList);
+				//============================================================
+				
 				
 				//훈련사 상담 목록
 				ArrayList<TrainerBoardVo> trBoardList = adminDAO.getBoardList();
@@ -303,6 +317,26 @@ public class AdminController extends HttpServlet {
 					request.setAttribute("imageUrls", imageUrls);
 					nextPage = "/nbAdmin/adminMain.jsp";
 					
+			} else if (action.equals("/trBoardDelete.adm")) {
+				
+				String delete_result = "";
+		    	  String delete_idx = request.getParameter("tb_idx");
+		    	  String DBDelete_result = "";
+		    	  try {
+		    		  delete_result = trainerboarddao.deleteFile(request);
+		    		  DBDelete_result = trainerboarddao.tbDBDelete(delete_idx);
+						out = response.getWriter();
+						if(delete_result.equals("삭제성공")) {
+						out.write(delete_result); //Ajax 글삭제에 성공하면 "삭제성공" 반환 , 실패하면 "삭제실패" 반환
+						} else {
+							out.write(DBDelete_result);
+						}
+						return;
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+			
 			} else if (action.equals("/delMem.adm")) {
 				String delID = request.getParameter("delID");
 				adminDAO.delMem(delID);
@@ -320,11 +354,84 @@ public class AdminController extends HttpServlet {
 				
 				return;
 				
-			}
+
+			} else if (action.equals("/freeBoardList.adm")) {
+				
+				String nowPage = request.getParameter("nowPage");
+				String nowBlock = request.getParameter("nowBlock");
+				
+				request.setAttribute("nowPage", nowPage);
+				request.setAttribute("nowBlock", nowBlock);
+				
+				ArrayList<FreeBoardVo> list = freeboarddao.boardListAll();
+				int count = freeboarddao.getTotalRecord();
+				request.setAttribute("count", count);
+				request.setAttribute("list", list);
+				request.setAttribute("center", "/nbAdmin/adminFreeBoardList.jsp");
+				
+				nextPage = "/nbAdmin/adminMain.jsp";
 			
-		
-		
-		
+			} else if (action.equals("/freeBoardRead.adm")) {
+				String nowBlock = request.getParameter("nowBlock");
+		        String nowPage = request.getParameter("nowPage");
+
+		        int b_idx = Integer.parseInt(request.getParameter("b_idx"));
+
+		        freeboardVO = freeboarddao.boardRead(b_idx);
+		        ArrayList<FreeBoardVo> list = freeboarddao.boardListAll();
+		        int count = freeboarddao.getTotalRecord();
+//		        HttpSession session = request.getSession();
+		        
+		        // 댓글 목록 가져오기
+		        CommentDAO commnetdao = new CommentDAO();
+		        ArrayList<CommentVO> clist = commnetdao.listComment(b_idx);
+		        
+		        id   = (String)session.getAttribute("id");
+		        System.out.println(id);
+		        
+		        String likeCheck = freeboarddao.checkLikeBeforeRead(id,b_idx);
+		        
+		        request.setAttribute("clist", clist);
+		        request.setAttribute("count", count);
+		        request.setAttribute("list", list);
+		        request.setAttribute("vo", freeboardVO);
+		        request.setAttribute("likeCheck", likeCheck);
+		        request.setAttribute("center", "/nbAdmin/adminFreeBoardRead.jsp");
+		        request.setAttribute("nowBlock", nowBlock);
+		        request.setAttribute("nowPage", nowPage);
+		        nextPage = "/nbAdmin/adminMain.jsp";
+			
+			} else if (action.equals("/fbDelete.adm")) {
+				int idx1 = Integer.parseInt( request.getParameter("fb_idx")  );
+		        int result3 = freeboarddao.deleteOne(idx1);
+		        
+		        if(result3 == 1) {
+		          out.println(1);
+		        } else {
+		          out.println(0);
+		        }
+		        
+		    //게시글 삭제 버튼 눌렀을때 게시글 삭제전 댓글 전체 삭제 부터 해야함.    
+		    
+		        CommentDAO allDel_dao = new CommentDAO();
+		 		
+		 		//현재 글번호를 이용하여 댓글 테이블에서 부모글번호 댓글 전체 삭제
+		 		allDel_dao.delAllComment(idx1); // 부모글번호
+
+		        return;
+
+		        //임시 회원DB 정보 조회
+			} else if (action.equals("/temTrManage.adm")) {
+				List<TrainerVo> list = adminDAO.selectTemTrAllMember();
+
+				center = "/nbAdmin/adminTemTrMem.jsp";
+				
+				request.setAttribute("center", center);
+				request.setAttribute("trMembersList", list);
+				
+				nextPage = "/nbAdmin/adminMain.jsp";
+	
+			}
 		
 			//포워딩 (디스패처 방식)
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
