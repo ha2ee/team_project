@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -187,7 +189,7 @@ public class MemberDAO {
 			pstmt.executeUpdate();
 			
 		}catch (Exception e) {
-			System.out.println("insertTrMember메소드 내부에서 SQL실행 오류" + e);
+			System.out.println("insertMember메소드 내부에서 SQL실행 오류" + e);
 		}finally {
 			closeResource();
 		}
@@ -268,6 +270,50 @@ public class MemberDAO {
 			
 		}catch (Exception e) {
 			System.out.println("insertTrMember메소드 내부에서 SQL실행 오류" + e);
+		}finally {
+			closeResource();
+		}
+		
+	}
+	//---------------------------------------------------
+	
+	//트레이너 회원가입
+	public void insertTemTr(TrainerVo tr_vo) {
+		
+		
+		try {
+			//커넥션 풀에 만들어져 있는 DB와 미리 연결을 맺은 Connection객체 빌려오기
+			//요약 DB연결
+			con = ds.getConnection();
+			//매개변수로 전달 받는 MemberVo객체의 각변수에 저장된 값들을 얻어
+			//insert문장 완성하기
+			String sql = "INSERT INTO TEM_TRAINER(TEM_TR_ID, TEM_TR_NAME, TEM_TR_PW, TEM_TR_EMAIL, TEM_TR_HP, TEM_TR_BIRTH, TEM_TR_GENDER, TEM_TR_ADDRESS1,TEM_TR_ADDRESS2,TEM_TR_ADDRESS3,TEM_TR_ADDRESS4,TEM_TR_ADDRESS5) "
+					+" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			
+			System.out.println("이미지"+tr_vo.getTr_img());
+			
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, tr_vo.getTr_id() );
+			pstmt.setString(2, tr_vo.getTr_name()  );
+			pstmt.setString(3, tr_vo.getTr_pw() );
+			pstmt.setString(4, tr_vo.getTr_email() );
+			pstmt.setString(5, tr_vo.getTr_hp() );
+			pstmt.setString(6, tr_vo.getTr_birth() );
+			pstmt.setString(7, tr_vo.getTr_gender() );
+			pstmt.setString(8, tr_vo.getTr_address1());
+			pstmt.setString(9, tr_vo.getTr_address2());
+			pstmt.setString(10, tr_vo.getTr_address3());
+			pstmt.setString(11, tr_vo.getTr_address4());
+			pstmt.setString(12, tr_vo.getTr_address5());
+			
+			
+			
+			//PreparedStatement실행객체메모리에 설정된 insert전체 문장을 DB의 테이블에 실행!
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			System.out.println("insertTemTr메소드 내부에서 SQL실행 오류" + e);
 		}finally {
 			closeResource();
 		}
@@ -929,15 +975,14 @@ public class MemberDAO {
 	}
 
 	//펫 정보 조회
-	public PetVo petRead(String memberid) {
-		String sql = "SELECT * FROM PET WHERE P_MEM_ID=?";
+	public PetVo petRead(String memberid, String p_name) {
+		String sql = "SELECT * FROM PET WHERE P_MEM_ID='"+memberid+"'AND P_NAME='"+p_name+"'";;
 		
 		PetVo pet_vo = null;
 		try {
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
 
-				pstmt.setString(1, memberid);
 				
 				rs = pstmt.executeQuery();
 					rs.next();
@@ -962,24 +1007,23 @@ public class MemberDAO {
 
 	//펫 정보 수정
 	public int petInfoChange(String p_name, String p_age, String p_weight, String p_type, String p_gender, String p_op, String P_mem_id) {
-		
 		int result = 0; //
 		
 		try {
 			con = ds.getConnection();
 			
-			String query = "update PET set p_name='" + p_name + "',"
-									   + " p_age='" + p_age + "',"
+			String query = "update PET set p_age='" + p_age + "',"
 									   + " p_weight='" + p_weight + "',"
 					   				   + " p_type='" + p_type + "',"
 					   				   + " p_gender='" + p_gender + "',"
 					   				   + " p_op='" + p_op + "'"
-									   + " WHERE P_mem_id ='"+ P_mem_id +"'";
-
+									   + " WHERE P_MEM_ID='"+P_mem_id+"'AND P_NAME='"+p_name+"'";
+											
 			
 			pstmt = con.prepareStatement(query);
 			result = pstmt.executeUpdate();
 			
+			System.out.println("dao :"+result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1071,9 +1115,9 @@ public class MemberDAO {
 	}
 	
 	//펫 사진 등록,업데이트
-	public int petImgUpdate(String p_mem_id, String fileName) {
+	public int petImgUpdate(String memberid, String fileName) {
 		
-		System.out.println(p_mem_id);
+		System.out.println(memberid);
 		System.out.println(fileName);
 		
 		int result = 0; //
@@ -1082,7 +1126,7 @@ public class MemberDAO {
 			con = ds.getConnection();
 			
 			String query = "update PET set p_img='" + fileName + "'"
-					+ " WHERE p_mem_id ='"+ p_mem_id +"'";
+					+ " WHERE p_mem_id ='"+ memberid +"'";
 			
 			
 			pstmt = con.prepareStatement(query);
@@ -1114,8 +1158,8 @@ public class MemberDAO {
 		try {
 			con = ds.getConnection();
 			
-			String query = "update YS_MEMBER set p_img='네'"
-					+ " WHERE p_mem_id ='"+ memberid +"'";
+			String query = "update YS_MEMBER set mem_pet='네'"
+					+ " WHERE mem_id ='"+ memberid +"'";
 			
 			
 			pstmt = con.prepareStatement(query);
@@ -1137,5 +1181,299 @@ public class MemberDAO {
 		}
 		return petResult;
 	}
+	
+	//아이디찾기(회원 DB 조회)
+	public MemberVo findMemId(String name, String hp) {
 		
+		MemberVo mem_vo = null;
+		
+		try {
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+			String sql = "SELECT * FROM YS_MEMBER WHERE MEM_NAME=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			
+			
+			if(rs.next()) {
+				
+				if(hp.equals(rs.getString("MEM_HP"))) {
+					
+					mem_vo =  new MemberVo();
+					mem_vo.setMem_id(rs.getString("mem_id"));
+					System.out.println("이름 전화번호 일치");
+				}else {
+					
+				}
+			}else {
+
+			}
+	
+		} catch (Exception e) {
+			System.out.println("findMemId 메소드 내부에서 오류!");
+			e.printStackTrace();
+		}finally {
+			closeResource();
+		}
+		
+		return mem_vo;
+		
+	}
+	//아이디찾기(트레이너 DB 조회)
+	public TrainerVo findTrId(String name, String hp) {
+		
+		TrainerVo tr_vo = null;
+		
+		try {
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+			String sql = "SELECT * FROM MEMBER_TRAINER WHERE TR_NAME=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				//
+				if(hp.equals(rs.getString("TR_HP"))) {
+					
+					tr_vo =  new TrainerVo();
+					tr_vo.setTr_id(rs.getString("tr_id"));
+				}else {
+					
+				}
+			}else {
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("findTrId 메소드 내부에서 오류!");
+			e.printStackTrace();
+		}finally {
+			closeResource();
+		}
+		
+		return tr_vo;
+		
+	}
+	//비밀번호찾기(회원 DB 조회)
+	public MemberVo findMemPw(String id, String hp) {
+
+		MemberVo mem_vo = null;
+		
+		try {
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+			String sql = "SELECT * FROM YS_MEMBER WHERE MEM_ID=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			
+			if(rs.next()) {
+				
+				if(hp.equals(rs.getString("MEM_HP"))) {
+					
+					mem_vo =  new MemberVo();
+					mem_vo.setMem_pw(rs.getString("mem_pw"));
+
+				}else {
+					
+				}
+			}else {
+
+			}
+	
+		} catch (Exception e) {
+			System.out.println("findMemId 메소드 내부에서 오류!");
+			e.printStackTrace();
+		}finally {
+			closeResource();
+		}
+		
+		return mem_vo;
+	}
+	
+	//비밀번호찾기(트레이너 DB 조회)
+	public TrainerVo findTrPw(String id, String hp) {
+
+		TrainerVo tr_vo = null;
+		
+		try {
+			//DB접속
+			con = ds.getConnection();
+			//매개변수 login_id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+			String sql = "SELECT * FROM MEMBER_TRAINER WHERE TR_ID=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				//
+				if(hp.equals(rs.getString("TR_HP"))) {
+					
+					tr_vo =  new TrainerVo();
+					tr_vo.setTr_pw(rs.getString("tr_pw"));
+				
+				}else {
+					 
+					
+				}
+			}else {
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("findTrId 메소드 내부에서 오류!");
+			e.printStackTrace();
+		}finally {
+			closeResource();
+		}
+		
+		return tr_vo;
+	
+	
+	
+	}
+	
+	//모든 펫 정보 조회
+	public List<PetVo> selectTrAllPet(String memberid) {
+		List<PetVo> list = new ArrayList<>();
+		PetVo pet_vo = null;
+		
+		try {
+            con = ds.getConnection();
+            String query = "SELECT * from pet where p_mem_id =?";
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1, memberid);
+			rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+            	pet_vo = new PetVo();
+                pet_vo.setP_name(rs.getString("p_name"));
+                pet_vo.setP_age(rs.getInt("p_age"));
+                pet_vo.setP_gender(rs.getString("p_gender"));
+                pet_vo.setP_type(rs.getString("p_type"));
+                pet_vo.setP_op(rs.getString("p_op"));
+                pet_vo.setP_weight(rs.getInt("p_weight"));
+            	pet_vo.setP_img(rs.getString("p_img"));
+            	pet_vo.setP_mem_id(rs.getString("p_mem_id"));
+
+            	list.add(pet_vo);
+            }
+            
+		 }catch (SQLException e) {
+			System.out.println("selectTrAllPet메소드에서 오류");
+			e.printStackTrace();
+			
+		} finally {
+			closeResource();
+		}
+		 return list;
+	}
+
+	public boolean petDelete(String memberId, String p_name) {
+		
+		boolean result = true; //
+		
+		try {
+			con = ds.getConnection();
+			String query = "DELETE FROM PET  WHERE P_MEM_ID='"+memberId+"'AND P_NAME='"+p_name+"'";
+			pstmt = con.prepareStatement(query);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				System.out.println("삭제됨");
+				result = false;
+			}
+				System.out.println("안됨");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		
+		} finally {
+			//5. 자원해제 
+			try {
+				closeResource();
+			} catch (Exception e) {
+				System.out.println("memDelete메소드 내부에서 SQL실행 오류" + e );
+				e.printStackTrace();
+			}	
+		}
+		
+		return result;
+		
+	}
+	
+	
+	
+	public boolean temTrAdd(String tr_id) {
+		
+		boolean mem_result = true; //
+		
+		try {
+			con = ds.getConnection();
+			String sql = "INSERT INTO MEMBER_TRAINER SELECT * FROM tem_trainer WHERE tem_tr_id ='"+tr_id+"'";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			System.out.println("temTrAdd메소드 내부에서 SQL실행 오류" + e);
+		}finally {
+			closeResource();
+		}
+		
+		
+		return mem_result;
+	}
+	
+	
+	//트레이너 임시테이블 정보 삭제
+	public boolean temTrdel(String tr_id) {
+		
+		boolean mem_result = true; //
+			
+			try {
+				//1. 커넥션풀(DataSource)에서 Connection객체 얻기
+				con = ds.getConnection();
+				//2. DELETE 문 만들기 
+				//-> 매개변수로 전달 받는  id에 해당되는 회원 삭제 시키는 DELETE문 
+				String query = "DELETE FROM TEM_TRAINER WHERE TEM_TR_ID=?";
+				//문법    DELETE FROM 삭제할테이블명 WHERE 조건열=조건값;
+				
+				//3. DELETE SQL문을 실행할  PreparedStatement객체 얻기
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, tr_id);
+				rs = pstmt.executeQuery();
+	
+				if(rs.next()) {
+					System.out.println("삭제됨");
+					mem_result = false;
+				}
+					System.out.println("안됨");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			
+			} finally {
+				//5. 자원해제 
+				try {
+					closeResource();
+				} catch (Exception e) {
+					System.out.println("temTrdel메소드 내부에서 SQL실행 오류" + e );
+					e.printStackTrace();
+				}	
+			}
+			
+			return mem_result;
+			
+		}
+
+
+
+
+
+	
 }

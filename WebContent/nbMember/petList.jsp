@@ -3,6 +3,8 @@
 <%@page import="VO.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>	
 <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
@@ -14,16 +16,6 @@
 	
 	String mem_name = mem_vo.getMem_name();	
 	String mem_img = mem_vo.getMem_img();
-	
-	PetVo pet_vo = (PetVo)request.getAttribute("pet_vo");
-	
-	String p_name = pet_vo.getP_name();	
-	int p_age = pet_vo.getP_age();
-	String p_gender = pet_vo.getP_gender();
-	String p_type = pet_vo.getP_type();
-	String p_op = pet_vo.getP_op();
-	int p_weight = pet_vo.getP_weight();
-	String p_img = pet_vo.getP_img();
 	
 	String id = (String)session.getAttribute("id");
 
@@ -48,7 +40,7 @@
 	    padding: 0px 20px 0px;
 	    box-sizing: border-box;
 	    position: relative;
-	    height: 1000;
+	    height: 700px;
 	}
 	
 		.leftBlock {
@@ -222,7 +214,8 @@
 	}
 	
 	.saveBtn{
-		margin-left: -50px;
+		text-align: center;
+  	 	margin-top: 300px;
 	}
 	
 	.petBtn{
@@ -299,6 +292,37 @@
 		border-radius: 50%;
 	}	
 	
+		
+		/* 게시판 목록 테이블의 스타일 */
+		.board-table {
+		  width: 100%;
+		  border-collapse: collapse; /* 테두리 합치기 */
+		  border-top: 2px solid #ddd; /* 상단 테두리 지정 */
+		}
+		
+		/* 게시판 목록 테이블의 th와 td 스타일 */
+		.board-table th, .board-table td {
+		  padding: 10px 20px; 
+/* 		  text-align: center;  */
+		  border-bottom: 1px solid #ddd; 
+		}
+		
+		/* 게시판 목록 테이블의 th 스타일 */
+		.board-table th {
+		  background-color: #f5f5f5; /* 배경색 지정 */
+		}
+		
+		/* 게시판 목록 테이블의 td > a 스타일 */
+		.board-table td > a {
+		  color: #333; /* 링크 색상 지정 */
+		  text-decoration: none; /* 밑줄 제거 */
+		  font-weight: bold; /* 글씨체 굵기 지정 */
+		}
+		
+		/*마우스 올리면 색 변환*/
+		.board-table td:nth-child(2) a:hover {
+		  color: #f44336;
+		}
 	
 </style>
 
@@ -334,7 +358,7 @@
 				</div>
 			
 			</div>
-			
+<%-- 			
 			
 			<%
 			if(p_name == ""){
@@ -344,7 +368,7 @@
 			<% 	
 			}	
 			%>
-			
+ --%>
 			<div class="rightBlock">
 				
 
@@ -353,7 +377,26 @@
 				
 			 	<p class="title">반려견 정보</p>
 				
+			    <div class="board-table">
+			        <table class="board-table" >
+						<tr>
+							<th>자세히 보기</th>
+							<th>애완견 이름</th>
+							<th>애완견 정보 수정</th>
+							<th>애완견 정보 삭제</th>
+						</tr>
+						<c:forEach var="pet" items="${requestScope.petList}">
+							<tr>
+								<td><a class="mem_link" href="${contextPath}/member/petDetailInfo.me?p_name=${pet.p_name}">상세 정보 보기</a></td>
+								<td>${pet.p_name}</td>
+								<td><a class="mem_link" href="${contextPath}/member/petChange.me?p_name=${pet.p_name}">펫정보 수정하기</a></td>
+								<td><a class="mem_link" href="${contextPath}/member/delPet.me?p_name=${pet.p_name}"">펫정보 삭제하기</a></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
 				
+				<%--
 				<dl class="teble">
 					<dt class="img_dt">
 						<span>사진</span>
@@ -442,7 +485,6 @@
 					<dt class="btn_dt">
 					</dt>
 					<dd class="btn_dd">
-<%-- 						
 						<div class="saveBtn">
 							
 														
@@ -462,10 +504,18 @@
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<a id="changeBtn" href="<%=contextPath%>/member/petJoin.me" class="roundBtn blueBtn">애완견 등록하기</a>
 						</div>
- --%>
 					</dd>				
 				</dl> 
-			
+				--%>
+						<div class="saveBtn">
+							
+														
+							<a id="backBtn" href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="roundBtn whiteBtn">뒤로가기</a>				
+							
+							
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a id="changeBtn" href="<%=contextPath%>/member/petJoin.me" class="roundBtn blueBtn">애완견 등록하기</a>
+						</div>
 			</div>
 		</div>
 	</form>
