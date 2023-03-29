@@ -6,6 +6,8 @@
  <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
+	String memImgPath = contextPath + "/memImg/";
+
 %>
 
 <%
@@ -52,6 +54,7 @@
 		    padding: 0px 20px 0px;
 		    box-sizing: border-box;
 		    position: relative;
+		    height: 600px;
 		}
 		
 		
@@ -61,7 +64,7 @@
 			height: 36px;
 			border-radius: 10px;
 			border: 1px solid #231815;
-			
+			padding-left: 10px;	
 		}
 				
 		.leftBlock {
@@ -80,7 +83,10 @@
 		}
 		
 		.userImg{
-			border-radius: 70%
+			border-radius: 70%;
+			height: 158px;
+		    border: 1px solid #231815;
+	    	width: 150px;
 		}
 		
 		.userName,.userId{
@@ -110,10 +116,10 @@
 		.rightBlock{
 		    padding: 35px 15px 80px 250px;
 		    padding-left: 250px;
-		    width: 100%;
+			width: 1100px;
 		    box-sizing: border-box;
 		    text-align: left;
-		    min-height: 650px;
+		    min-height: 520px;
 			
 		} 
 		
@@ -137,7 +143,7 @@
 		}
 	
 		.p_name,.p_age,.p_gender,.p_type,
-		.p_weight,.p_op{
+		.p_weight,.p_op,.p_img{
 			
 			font-size: 15px;
 		
@@ -169,8 +175,8 @@
 			width: 100%;
    		 	display: inline-block;
     		position: relative;
-			margin-left: 90px;
-			margin-top: -100px;
+			margin-left: 9%;
+			margin-top: -40px;
 			font-size: 13px;
 		}
 		
@@ -207,12 +213,23 @@
 		
 		a:hover {
  	 	text-decoration: none;
-	}
+		}
 		
 		.div{
 			height: 30px;	
 			font-size: 15px;
 		}
+		
+		.p_img{
+			width: 131px;
+			height: 131px;
+		
+		}
+		
+		.p_name{
+			margin-top: 8px;
+		}
+		
 		
 	</style>
 
@@ -224,7 +241,17 @@
 			<div class="leftBlock">
 				<div class= "userInfo">
 					<div class="profile">
-						<img src="<%=contextPath%>/images/profile.png" class="userImg">
+					<%
+						if(mem_img == "profile.png" || tr_img == "profile.png"){
+					%>
+  						<img src="<%=contextPath%>/images/profile.png" class="userImg">  
+					<%
+						}else{
+					%>
+						<img src="<%=memImgPath+mem_img+tr_img%>" class="userImg">
+					<%
+						}
+					%>
 					</div>
 				</div>
 				<div class="user" >
@@ -245,7 +272,25 @@
 				<div class="line"></div>
 				<br><br>
 				<div class="rightBlock2">	
-					
+					<div class="p_img">
+						<label>반려견 사진</a></label><br>
+						<div style="border: 1px solid #d7d7d7;
+					                width: 140px;
+					                height: 140px;">
+							 <span>  
+							    <img id="p_img" class="p_img" src="<%=contextPath%>/images/pet.png">
+							 </span>	
+					     	
+					     	<div class="imgBtn">
+						     	<label for="images" class="drop-container">
+					     		<input id="imgBtn" type="file"  name="petImageFileName"  onchange="readURL(this);" />
+							</div>
+							<div class="div">	
+								<p id="imgInput"></p>
+							</div>
+						</div>
+					</div>
+					<br><br><br><br><br>
 					<div class="p_name">
 						<label>반려견 이름</a></label><br>
 						<input type="text" name="p_name" id="p_name" >
@@ -266,6 +311,8 @@
 					<br>
 					
 					
+				</div>
+				<div class="rightBlock3">
 					<div class="p_weight">
 						<label>반려견 몸무게</a></label><br>
 						<input type="text" name="p_weight" id="p_weight">
@@ -274,8 +321,7 @@
 						<p id="wdightInput"></p>
 					</div>		
 					<br>
-					
-					
+									
 					<div class="p_type">
 						<label>반려견 견종</a></label><br>
 						<input type="text" name="p_type" id="p_type">
@@ -284,11 +330,8 @@
 						<p id="typeInput"></p>
 					</div>		
 					<br>
-
-				
-				
-				</div>
-				<div class="rightBlock3">
+					
+					
 					<div class="p_gender">
 						<label>성별</label><br>
 							<select class="p_gender" name="p_gender" id="p_gender">
@@ -314,23 +357,11 @@
 						<p id="opInput"></p>
 					</div>
 					<br>
-					<div class="upload">
-						<div style="border: 1px solid #d7d7d7;
-					                width: 140px;
-					                height: 140px;">
-							 <span>  
-							    <img id="p_img" class="p_img" src="<%=contextPath%>/images/pet.png">
-							 </span>	
-					     	
-					     	<div class="imgBtn">
-						     	<input type="file"  name="imageFileName"  onchange="readURL(this);" />
-							</div>
-						</div>
-					</div>
+
 				</div>
 			</div>
 				<div class="saveBtn">
-					<a id="backBtn" href="javascript:history.go(-1);" class="roundBtn whiteBtn">취소하기</a>				
+					<a id="backBtn" href="<%=contextPath%>/member/petInfo.me" class="roundBtn whiteBtn">취소하기</a>				
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<a id="joinBtn" 
 					   onclick="check(); return false;" 
@@ -375,6 +406,46 @@
 
 		  
 		});
+	
+	
+    function readURL(input) { // <- <input type="file">태그를 매개변수로 전달 받는다.
+	 	
+	 	 //크롬 웹브라우저의 F12 눌러 개발자모드창을 열어서 console탭에 띄운 로그메세지를 확인 한다.
+	 	  console.log(input);
+	    	  console.log(input.files)
+	    	//참고.
+	    	//<input type="file">인 태그객체의 files메소드를 호출하면
+	    	//FileList라는 배열이 생성 되면서 FileList배열 내부의 0번쨰 인덱스 위치에
+	    	//아래에서 선택한(업로드할) 파일 정보들을 key:value쌍으로 저장한 File객체가 저장되어 있음
+	    	  
+	   	//FileList라는 배열이 존재하고...
+	   	//FileList라는 배열의 0번째 인덱스 위치에 아래에서 파일을 업로드하기 위해서 선택한 File객체가 저장되어 있다면?
+	   	//요약 : 아래의 <input type="file">태그에서 업로드를 하기 위한 파일을 선택 했다면?
+	       if (input.files && input.files[0]) {
+	     	  
+	     	  //파일을 문자 단위로 읽어들일 통로 생성 
+	 	      var reader = new FileReader();
+	     	     	  
+	 	      //지정한 img태그에 첫번째 파일 input에 첨부한 파일에 대한 File객체를 읽어드립니다. 
+	 	      reader.readAsDataURL(input.files[0]);
+	     	  
+	     	  //업로드 하기 위해 선택한 파일을 모두 읽어 들였다면?
+	 	      reader.onload = function (ProgressEvent) {
+	     		 //읽어들인 File객체의 정보는 매개변수로 넘어오는 ProgressEvent객체내부의?
+	     		 //target속성에 대응되는 객체(JSON객체 데이터형식)로 저장 되어 있다.
+	     		 console.log(ProgressEvent);
+	     		  
+	  		    //id가 preview인 <img>태그를 선택해 
+	  		    //attr메서드를 이용해 파일 첨부시 미리보기 이미지를 나타내기 위해
+	  		    //src속성값에  new FileReader()객체를 이용하여 읽어들인 첨부할 File객체정보를 지정하여
+	  		    //추가 함으로써 이미지 파일의 미리보기기능이 가능 한 것입니다.
+	 	        $('#p_img').attr('src', ProgressEvent.target.result);
+	 	        
+	           }
+	     	
+	       }
+	  			
+	  }
 	</script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	

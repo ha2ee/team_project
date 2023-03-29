@@ -10,11 +10,11 @@
 </head>
 <title>Slider</title>
 <!-- 3 Bootstrap core CSS --> 
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=contextPath%>css/bootstrap.min.css" rel="stylesheet">
 
 
- <script src="js/jquery-3.5.1.min.js"></script>
-  <script src="js/slick.js"></script>
+ <script src="<%=contextPath%>/js/jquery-3.5.1.min.js"></script>
+  <script src="<%=contextPath%>/js/slick.js"></script>
 
  <style>
  	*{margin:0; padding:0}
@@ -335,9 +335,11 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/run_prettify.js"></script>
+
+<script src="<%=contextPath%>/js/jquery.min.js"></script>
+<script src="<%=contextPath%>/js/bootstrap.min.js"></script>
+<script src="<%=contextPath%>/js/run_prettify.js"></script>
+
 
 </div>
 </div>
@@ -374,17 +376,30 @@
 		  <iframe width="500" height="380" src="https://www.youtube.com/embed/aFojR9xDl30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
 		  </li>
 		<li class="slider2">
+
 		    	<iframe width="500" height="380" src="https://www.youtube.com/embed/skxf5OEpoxk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 	    </li>
 		<li class="slider3">
 				<iframe width="500" height="380" src="https://www.youtube.com/embed/S9WWAMjDF8E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 			</li>
 		    <li class="slider4">
+
 		    	<iframe width="560" height="315" src="https://www.youtube.com/embed/V7c5SUIuswE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 			</li>
 		</ul>
+
+
     </div>
 </div>
+
+
+
+
+
+
+
+
 
 </body>
 </html>

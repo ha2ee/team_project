@@ -160,7 +160,10 @@
 </style>
 </head>
 <body>
-<form action="<%=contextPath%>/member/trJoinPro.me" class="form">	
+<%-- 
+<form action="<%=contextPath%>/member/trJoinPro.me" class="form">	 
+--%>
+<form action="<%=contextPath%>/member/temTr.me" class="form">	
 	<div>
 		<div align="center" ><!-- class="row justify-content-left" -->
 			<h1>회원가입 </h1>
@@ -308,6 +311,7 @@
 				</div>						
 			</div>
 			<div class="join">
+<!-- 				
 				<div class="heigthD">
 					<label><strong>&nbsp;닉네임</strong></label><br><br> 
 					<input type="text" 
@@ -317,6 +321,17 @@
 						   placeholder="사용할 닉네임을 적어주세요".">
 				    <p id="nickInput"></p> 
 				</div>
+				 -->
+				<div class="heigthD">
+					<label><strong>&nbsp;이름</strong></label><br><br> 
+					<input type="text" 
+						   id="name" 
+						   name="name"
+						   class="form-control"
+						   placeholder="가입할 이름을 적어주세요."> 
+					<p id="nameInput"></p>
+				</div>
+				
 				<div class="heigthD" style="margin-left: 40px;">
 					<label><strong>&nbsp;비밀번호 확인</strong></label><br><br> 
 					<input type="password" 
@@ -328,6 +343,7 @@
 				</div>						
 			</div>
 			<div class="join">
+<!-- 				
 				<div class="heigthD">
 					<label><strong>&nbsp;이름</strong></label><br><br> 
 					<input type="text" 
@@ -336,6 +352,12 @@
 						   class="form-control"
 						   placeholder="가입할 이름을 적어주세요."> 
 					<p id="nameInput"></p>
+				</div>
+				 -->
+				<div class="heigthD" >
+					<%-- name속성값 address1 부터 ~~ address5 까지 입력되어 있는 주소를 모두 합쳐서 DB에 address열에  INSERT 하자. --%>
+					<label><strong>&nbsp;주소</strong></label><br><br>	
+					<input type="text" id="sample4_postcode" name="address1" class="form-control" placeholder="우편번호" readonly><br><br>	
 				</div>
 				<div class="heigthD" style="margin-left: 40px;">	
 					<label><strong>&nbsp;핸드폰번호</strong></label><br><br>
@@ -348,11 +370,19 @@
 				</div>
 			</div>
 			<div  class="join">
+<%-- 				
 				<div class="heigthD" >
-					<%-- name속성값 address1 부터 ~~ address5 까지 입력되어 있는 주소를 모두 합쳐서 DB에 address열에  INSERT 하자. --%>
+					name속성값 address1 부터 ~~ address5 까지 입력되어 있는 주소를 모두 합쳐서 DB에 address열에  INSERT 하자.
 					<label><strong>&nbsp;주소</strong></label><br><br>	
 					<input type="text" id="sample4_postcode" name="address1" class="form-control" placeholder="우편번호" readonly><br><br>	
 				</div>					
+				 --%>
+				
+				<div class="heigthD">
+					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="margin-top:-16px; background-color:#BDBDBD;"
+					id="sample4_find"><br><br>					<!-- class="form-control" --> 
+				</div>	
+				
 				<div class="heigthD" id="selbox" style="margin-left: 40px;">
 					<label><strong>&nbsp;생년월일</strong></label><br><br>
 						<input type="text" 
@@ -364,11 +394,22 @@
 				</div>	
 			</div>
 			<div  class="join">
+<!-- 				
 				<div class="heigthD">
 					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="margin-top:-16px; background-color:#BDBDBD;"
-					id="sample4_find"><br><br>					<!-- class="form-control" --> 
+					id="sample4_find"><br><br>					class="form-control" 
 				</div>					
-				<div class="heigthD" style="margin-left: 40px;">
+				 -->
+				<div style="margin-top: -63px;">
+					<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3" readonly><br><br>		
+					<span id="guide" style="color:#999; display:none;"></span>
+					<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소"  readonly><br><br>		
+					<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address4" ><br><br>		
+					<input type="text" id="sample4_extraAddress" placeholder="참고항목"  name="address5" readonly>
+				    <p id="addressInput"></p> 
+				</div>	
+				<div class="heigthD" style="margin-left: 40px;
+										    margin-bottom: 43px;">
 					<label><strong>&nbsp;Email</strong></label><br><br>
 						<input type="email" 
 							   id="email" 
@@ -382,9 +423,8 @@
 			
 			<div  class="join">
 				<div class="heigthD" style="">
-					<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소" style="margin-top: -59px;" readonly><br><br>		
 				</div>					
-				<div style="margin-left: 30px; width: 120px; height: 90px;">
+				<div style="margin-left: 430px; margin-top: -78px; width: 120px; height: 90px;">
 						<label><strong>&nbsp;&nbsp;성별</strong></label><br>
 							<select class="gender" name="gender" id="gender" style="width:90px;height:38px;">
 								<option>선택</option>
@@ -409,20 +449,14 @@
 
 
 
-			<div class="join" style="margin-right: -40px; ">
-				<div style="margin-top: -102px;">
-					<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="address3" readonly><br><br>		
-					<span id="guide" style="color:#999; display:none;"></span>
-					<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="address4" ><br><br>		
-					<input type="text" id="sample4_extraAddress" placeholder="참고항목"  name="address5" readonly>
-				    <p id="addressInput"></p> 
-				</div>	
+			<div class="join" style="">
+
 				<div style="width: 480px;">
 					<a href="#"
 					   onclick="check(); return false;" 
 					   type="button" 
 					   style="text-decoration: none;
-					   		  margin-left: 235px;	"
+					   		  margin-left: 570px;	"
 					   class="btn btn-outline-warning";
 					   id="joinBtn";
 					>회원가입</a>

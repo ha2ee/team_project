@@ -4,6 +4,20 @@
 	
 	function check(event) {
     	
+		
+        var src = $("#p_img").attr("src");
+        if(src == "/TeamProject/images/pet.png"){
+			$("#imgInput").text("사진을 등록하여 주세요!").css("color","red");
+        	
+        }else{
+			$("#imgInput").text(" ");
+        }
+	 
+
+		 
+		//====================================================================================================
+		
+		
     	var name = $("#p_name");
     	var nameValue = name.val();
     	
@@ -110,14 +124,14 @@
     	alert("애완견 정보가 등록 되었습니다.");
     	
     	
-    	$("form").submit();
+        $("form").attr("enctype", "multipart/form-data");
+        $("form").submit();
 	}
 		
 	function petInfoChange(){
+		$("form").attr("action", "http://localhost:8090/TeamProject/member/petChangePro.me");
+        $("form").submit();	
 		
-		
-		
-    	$("form").submit();
 		
 	}
 

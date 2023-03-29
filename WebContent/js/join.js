@@ -421,8 +421,19 @@
     		}
 	
 	    	
-   	    	alert("회원가입이 완료 되었습니다.");
+	    		if($("#nickname").val() == "" || $("#nickname").val() == null){
+	    			
+	    			alert("관리자의 승인을 기다려 주세요.");
+	    			
+	    		}else if($("#nickname").val() != "" || $("#nickname").val() != null){
+	    			
+	    			alert("회원가입이 완료 되었습니다.");
+	    		
+	    		}
+	    	
    	    	
+   	    	
+   	    		
    	    	
    	    	$("form").submit();
 	}

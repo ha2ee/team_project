@@ -81,10 +81,5 @@ $('.owl-carousel').owlCarousel({
     }
 })
 
-      
-
-	
-
-
 
 
