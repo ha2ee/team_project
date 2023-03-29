@@ -197,37 +197,34 @@
    .slider1, .slider2, .slider3, .slider4{
     background: #fff8d263;
     }
-   	.slider1 > a> img{
+   	.slider1 > iframe{
 	position: relative;
-    left: 0px;
+    left: 50px;
     height: 380px;
-    width: 450px;
+    width: 685px;
     top: 10px;
     margin: 0 auto;
     }
-    .slider1 > a> img:hover{
-    
-    }
-    .slider2 > a> img{
+    .slider2 > iframe{
 	position: relative;
 	background-size: cover;
-    left: 70px;
+    left: -50px;
     height: 380px;
-    width: 450px;
+    width: 685px;
     top: 10px;
 	}
-	.slider3 > a> img{
+	.slider3 > iframe{
 	position: relative;
     left: 50px;
     height: 380px;
-    width: 450px;
+    width: 685px;
     top: 10px;
 	}
-	.slider4 > a> img{
+	.slider4 > iframe{
 	position: relative;
-    left: 50px;
+    left: -50px;
     height: 380px;
-    width: 450px;
+    width: 685px;
     top: 10px;
 	}
 	.bx-wrapper .bx-pager.bx-default-pager a{
@@ -331,16 +328,18 @@
 
 <div id="text2">
 <a href="<%=request.getContextPath()%>/nbShop/map.jsp">
-<i class="fa-solid fa-store fa-10x"></i>
+<i class="fa-solid fa-store fa-10x"></i> 
 </a>
 <i class="fa fa-arrow-up">&nbsp;&nbsp;클릭해보세요</i>
 </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <script src="<%=contextPath%>/js/jquery.min.js"></script>
 <script src="<%=contextPath%>/js/bootstrap.min.js"></script>
 <script src="<%=contextPath%>/js/run_prettify.js"></script>
+
 
 </div>
 </div>
@@ -353,12 +352,11 @@
     <script>
     $(document).ready(function(){
         $('.slider').bxSlider({
-          slideWidth: 500,
-          minSlides: 3,
+          minSlides: 2,
           maxSlides: 4,
-          slideWidth: 800,
+          slideWidth: 1000,
           touchEnabled: false,
-          moveSlides: 1,
+          moveSlides: 2,
           infiniteLoop: false,
 		  hideControlOnEnd: true,
 		  controls: false
@@ -368,30 +366,30 @@
 
   </head>
   <body>
-
-<div class="bx-wrapper" style="border:#fff8d263;  height: 485px; background: #fff8d263;" >
+<!--  <img src="< %=contextPath%>/images/slider5.png" alt="slide5"> -->
+<div class="bx-wrapper" style="border:#fff8d263; height: 485px; background: #fff8d263;">
     
-    <span style="font-size: 40px; font-weight: 700;">교육영상</span> <br>
-    <span style="font-size: 20px; font-weight: 600;">유튜브로 연결됩니다!</span>
+    <span style="font-size: 40px; font-weight: 700;">교육영상</span>
     
     <ul class="slider" style="border: none; box-shadow: none; background: #fff8d263;">
    		<li class="slider1">
-		   <a href="https://youtu.be/aFojR9xDl30"><img src="<%=contextPath%>/images/slider5.png" alt="slide5">
-		   </a>
-		</li>
+		  <iframe width="500" height="380" src="https://www.youtube.com/embed/aFojR9xDl30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
+		  </li>
 		<li class="slider2">
-				<a href="https://youtu.be/skxf5OEpoxk"><img src="<%=contextPath%>/images/slider8.png" alt="slide6">
-	    		</a>
+
+		    	<iframe width="500" height="380" src="https://www.youtube.com/embed/skxf5OEpoxk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 	    </li>
 		<li class="slider3">
-				<a href="https://youtu.be/S9WWAMjDF8E"><img src="<%=contextPath%>/images/slider6.png" alt="slide7">
-				</a>
+				<iframe width="500" height="380" src="https://www.youtube.com/embed/S9WWAMjDF8E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 			</li>
 		    <li class="slider4">
-		    	<a href="https://youtu.be/V7c5SUIuswE"><img src="<%=contextPath%>/images/slider7.png" alt="slide8">
-	    		</a>
-	    	</li>
-    	</ul>
+
+		    	<iframe width="560" height="315" src="https://www.youtube.com/embed/V7c5SUIuswE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			</li>
+		</ul>
+
+
     </div>
 </div>
 
