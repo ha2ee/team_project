@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 //	Session내장객체 메모리 영역에 session값 얻기
 String id = (String)session.getAttribute("id");
@@ -163,7 +164,14 @@ $(document).ready(function(){
 					}else{//로그인 O
 				%>
 				   <li><a href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
-	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+				   <c:choose>
+				   	<c:when test="${id eq 'admin'}">
+				   	<li><a href="<%=request.getContextPath()%>/adm/adminMain" class="btn">관리자페이지</a></li>
+				   	</c:when>
+				   	<c:otherwise>
+				   	<li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+				   	</c:otherwise>
+				   </c:choose>
 <%-- 	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li> --%>
 	               <li><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
 
