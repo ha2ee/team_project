@@ -264,12 +264,12 @@
 <img src="<%=contextPath%>/images/slider1.png" alt="slide1">
 <div class="carousel-caption">
 <div class="image-text1">
-<h4 style="font-weight:bold">늘봄샵</h4>
+<h4 style="font-weight:bold">훈련사 상담</h4>
 	__________________________ <br>
-<h1>내 반려견에게</h1> 
-<h3>필요한것은 뭘까요?</h3> <br>
-<a style="text-decoration: none" href="<%=contextPath%>/nbShop/pet.jsp">
-<button>늘봄샵 바로가기</button></a>
+<h1>반려견에게</h1> 
+<h3>필요한 훈련은 뭘까요?</h3> <br>
+<a style="text-decoration: none" href="<%=contextPath%>/nbShop/">
+<button>상담하러가기</button></a>
 </div>
 </div>
 </div>
@@ -281,7 +281,7 @@
 	__________________________ <br>
 <h1>함께 살아가기 위한</h1> 
 <h3>수업을 받아보세요!</h3> <br>
-<a style="text-decoration: none" href="<%=contextPath%>/nbShop/trainer.jsp">
+<a style="text-decoration: none" href="<%=contextPath%>/nb/edureservation.do">
 <button>수강신청 바로가기</button></a>
 </div>
 </div>
@@ -295,7 +295,7 @@
 	__________________________ <br>
 <h1>수강후기를</h1> 
 <h3>들려주세요!</h3> <br>
- <a style="text-decoration: none" href="<%=contextPath%>/nbBoard/">
+ <a style="text-decoration: none" href="<%=contextPath%>/nb/">
 <button>수강후기 바로가기</button></a>  
 </div>
 </div>
