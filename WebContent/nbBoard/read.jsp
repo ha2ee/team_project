@@ -206,15 +206,15 @@ div.filedownload {
        <%
         if((String)request.getAttribute("likeCheck")=="0"){ //좋아요를 안 눌렀다면?
       %>
-         <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
+         <a id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
           <i class="fa-regular fa-heart fa-4x" id="likeimggg"></i>
-        </button>
+        </a>
          <%
         } else{ //좋아요를 눌렀다면?
         %>
-        <button id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
+        <a id="likeimgg" onclick="javascript:clickLike('<%=id%>')" > 
           <i class="fa-solid fa-heart fa-4x" id="likeimggg"></i>
-        </button>
+        </a>
         
         <%
         }
@@ -227,7 +227,7 @@ div.filedownload {
         <p id="countLike" style="font-size: 30px"><%=like%></p>
       </div>
     </div>
-
+  <input type="hidden" id="like_check" value="${like.like_check}">
 <script type="text/javascript">
   const b_idx = <%=vo.getB_idx()%>
   var originLikeCount = <%=like%>
@@ -245,21 +245,23 @@ div.filedownload {
                         id : id
                       },
               success : function(data) {
-                   /*     if(data=originLikeCount-1){
-                           $("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
-                                     $("#countLike").text(data);
-  
-                                     } else{
-                                     $("#countLike").text(data);
-                                     $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
+                var arr=data.split("l");
+                var arr1 = arr[0];
+                var arr2 = arr[1];
+//                         if(data==originLikeCount-1){
+//                            $("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
+//                                      $("#countLike").text(data);
+//                                      } else{
+//                                      $("#countLike").text(data);
+//                                      $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
                                     
-                                     } */
-  
-                      $("#countLike").text(data);
-                      $("#topLike").text(data);
-                      if (data > originLikeCount) {
-                        $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");
-                      } else if (data <= originLikeCount) {
+//                                      } 
+  									
+                      $("#countLike").text(arr1);
+                      $("#topLike").text(arr1);
+                      if ( arr2 == 8 ) {
+                        $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");//이제 좋아요 누른 경우;
+                      } else if (arr2 == 9) {
                         $("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
                       }
                       }

@@ -238,13 +238,14 @@ public class FreeBoardController extends HttpServlet {
           System.out.println("이미 있네요...삭제할게요~ ㅋㅋ");
           boarddao.deleteLike(id3, b_idx2);
           int result3 = boarddao.getOnlyLikeCount(b_idx2);
-          out2.print(result3);
+          
+          out2.print(result3+"l"+9);
         
         } else { // 테이블에 없다면?
           boolean result2 = boarddao.insertLikeBoard(b_idx2, id3);
           if (result2 == true) {
             int result4 = boarddao.getOnlyLikeCount(b_idx2);
-            out2.print(result4);
+            out2.print(result4+"l"+8);
             System.out.println("like투입성공");
           } else {
             System.out.println("like투입실패");
