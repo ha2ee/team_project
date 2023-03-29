@@ -75,29 +75,17 @@
 					</div>
 				</div>
 				<div class = "myPageRight mptr">
-					<div onclick="location.href ='<%=contextPath%>/nbMain.jsp'">
-						<img class = "mypageImg" alt="" src="<%=contextPath%>/images/deli.png">&nbsp;&nbsp;&nbsp;주문 조회
+					<div onclick="location.href ='<%=contextPath%>/nb/edu.do?center=/nbShop/trainer.jsp'">
+							<img class = "mypageImg" alt="" src="<%=contextPath%>/images/lesson.png">&nbsp;&nbsp;&nbsp;수강 신청
 					</div>
-					<div>
-						<img class = "mypageImg" alt="" src="<%=contextPath%>/images/cart.png">&nbsp;&nbsp;&nbsp;장바구니
+					<div onclick="location.href='<%=contextPath%>/nb/cart.do?id=master&center=/nbShop/cart.jsp'">
+						<img class = "mypageImg" alt="" src="<%=contextPath%>/images/cart.png">&nbsp;&nbsp;&nbsp;예약 정보
 					</div>
-					<div onclick="location.href = '<%=contextPath%>/nbBoard/trainerboard.jsp'">
+					<div onclick="location.href = '<%=contextPath%>/tb/list.bo'">
 						<img class = "mypageImg" alt="" src="<%=contextPath%>/images/info.png">&nbsp;&nbsp;&nbsp;훈련사 상담
 					</div>
 				</div> 
 			</div>	 
-			<div class ="myPageBottom">
-				<div class = "myPageLeft mpbl">
-					<div>
-					<img class = "mypageImg" alt="" src="<%=contextPath%>/images/lessonlist.png">&nbsp;&nbsp;&nbsp;레슨 목록
-					</div>
-				</div>
-				<div class ="myPageRight mpbr">
-					<div>
-					<img class = "mypageImg" alt="" src="<%=contextPath%>/images/lesson.png">&nbsp;&nbsp;&nbsp;레슨 신청
-					</div>
-				</div>
-			</div>
 		 </div>
 	 </div>
 	 
