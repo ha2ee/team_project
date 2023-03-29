@@ -419,9 +419,8 @@ public class AdminController extends HttpServlet {
 		 		allDel_dao.delAllComment(idx1); // 부모글번호
 
 		        return;
-			}
-			
-			//임시 회원DB 정보 조회
+
+		        //임시 회원DB 정보 조회
 			} else if (action.equals("/temTrManage.adm")) {
 				List<TrainerVo> list = adminDAO.selectTemTrAllMember();
 
