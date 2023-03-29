@@ -344,9 +344,6 @@ public class nbController extends HttpServlet{
 			request.setAttribute("center", center);
 
 			nextPage = "/nbMain.jsp";
-			
-		}else if(action.equals("/")) {
-			
 		}
 		//포워딩 (디스패처 방식)
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
