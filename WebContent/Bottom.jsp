@@ -9,7 +9,7 @@
 	width: 1920px;
 	margin: 0 auto;
 	}
-	p{
+	.copyright{
 	left: 180px;
     position: relative;
 	}
@@ -45,9 +45,9 @@
                             <li><a href="<%=request.getContextPath()%>/nb/Main">Home </a></li>
                             <li><a href="<%=request.getContextPath()%>/nb/Intro.do?center=/nbCompany/intro.jsp">회사 소개 </a></li>
                             <li><a href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강 신청 </a></li>
-                            <li><a href="<%=request.getContextPath()%>/nb/free.bo?center=/nbBoard/freeboard.jsp">자유 게시판 </a></li>
-                            <li><a href="<%=request.getContextPath()%>/nb/trainer.bo?center=/nbBoard/trainerboard.jsp">훈련사 상담 </a></li>
-                            <li> <a href="<%=request.getContextPath()%>/nb/qna.bo?center=/nbBoard/qna.jsp">Q&A</a></li>
+                            <li><a href="<%=request.getContextPath()%>/freeboard/list.fb">자유 게시판 </a></li>
+                            <li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담 </a></li>
+                            <li> <a href="<%=request.getContextPath()%>/review/qna.bo">Q&A</a></li>
                             <li> <a href="<%=request.getContextPath()%>/nb/navi.do?center=/nbCompany/navi.jsp">오시는 길</a></li>
                         </ul>
                     </div>
@@ -79,7 +79,7 @@
                     <div class="footer-line"></div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                    <p>Copyright 2021. <i class="fa fa-love"></i><a href="<%=request.getContextPath()%>/nb/Main">nb All rights reserved</a>
+                    <p class="copyright">Copyright 2021. <i class="fa fa-love"></i><a href="<%=request.getContextPath()%>/nb/Main">nb All rights reserved</a>
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
