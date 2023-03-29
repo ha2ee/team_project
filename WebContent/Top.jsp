@@ -237,7 +237,7 @@ $(document).ready(function(){
 			</ul>
 			<ul class="list_lnb_02">
 				<li><a class="edu_btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강신청 가기</a></li>
-				<li><a href="<%=request.getContextPath()%>/review/list.rv">수강 후기</a></li>
+				<li><a href="<%=request.getContextPath()%>/review/list.rv?nowBlock=0&nowPage=0">수강 후기</a></li>
 			</ul>
 			<ul class="list_lnb_03">
 			</ul>

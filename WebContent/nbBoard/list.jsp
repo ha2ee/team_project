@@ -200,7 +200,7 @@
     </div>
 </div>    
 
-<div align="center" style="margin-right: 10%">
+<div align="center">
  <table>
   <tr align="center"> 
     <td  colspan="3" align="center">
