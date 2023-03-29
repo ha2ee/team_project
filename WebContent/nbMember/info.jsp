@@ -321,7 +321,7 @@
 				</dd>			
 				<dd class="btn_dd">
 					<div class="saveBtn">
-						<a id="backBtn" href="javascript:history.go(-1),location.reload();" class="roundBtn whiteBtn">뒤로가기</a>				
+						<a id="backBtn" href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="roundBtn whiteBtn">뒤로가기</a>				
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a id="changeBtn" href="<%=contextPath%>/member/changeInfo.me" class="roundBtn blueBtn">수정하기</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

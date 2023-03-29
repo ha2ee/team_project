@@ -26,9 +26,10 @@
 				<li><a href="${contextPath}/adm/adminMain">관리자 메인으로</a></li>
 				<li><a href="${contextPath}/adm/memManage.adm">회원 리스트 관리</a></li>
 				<li><a href="${contextPath}/adm/trManage.adm">훈련사 리스트 관리</a></li>
+				<li><a href="${contextPath}/adm/temTrManage.adm">훈련사 가입 승인</a></li>
 				<li><a href="#" onclick="return false;"class="board_manage">게시판 관리</a>
 					<ul class="submenu">
-						<li><a href="#">자유게시판</a></li>
+						<li><a href="${contextPath}/adm/freeBoardList.adm">자유게시판</a></li>
 						<li><a href="${contextPath}/adm/trBoardList.adm">훈련사 상담 게시판</a></li>
 						<li><a href="#">수강 후기 게시판</a></li>
 					</ul></li>

@@ -142,6 +142,7 @@ public class FreeBoardDAO {
         vo.setB_date(rs.getDate("b_date"));
         vo.setB_cnt(rs.getInt("b_cnt"));
         vo.setB_file(rs.getString("b_file"));
+        vo.setB_realfile(rs.getString("b_realfile"));
         vo.setB_like(rs.getInt("b_like"));
       }
 
@@ -429,6 +430,7 @@ public class FreeBoardDAO {
         vo.setB_nickname(rs.getString("b_nickname"));
         vo.setB_title(rs.getString("b_title"));
         vo.setB_file(rs.getString("b_file"));
+        vo.setB_realfile(rs.getString("b_realfile"));
         vo.setB_idx(rs.getInt("b_idx"));
       }
       

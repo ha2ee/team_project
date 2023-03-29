@@ -515,7 +515,7 @@ String id = (String)session.getAttribute("id");
 						</dt>
 						<dd class="btn_dd">
 							<div class="saveBtn">
-								<a id="backBtn" href="javascript:history.go(-1),location.reload();" class="roundBtn whiteBtn">취소하기</a>				
+								<a id="backBtn" href="<%=contextPath%>/member/info.me" class="roundBtn whiteBtn">취소하기</a>				
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<a id="changeBtn" 
 								   href="#" 

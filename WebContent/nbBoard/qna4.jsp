@@ -42,7 +42,7 @@ $(document).ready(function(){
 </script>
 <style>
 @import url('http://fonts.googleapis.com/earlyaccess/notosanskr.css');
-ul, li, p { list-style:none; padding:0; margin:0; }
+/* ul, li, p { list-style:none; padding:0; margin:0; } */
 .listWrap { font-family:'Noto Sans KR', sans-serif; margin-bottom:20px; }
 .listWrap .qa_li { position:relative; display:block; padding:0; border-bottom:1px solid #ededed; cursor:pointer; }
 /* .listWrap .qa_li:first-child { border-top:1px solid #a6a6a6; } */
@@ -72,53 +72,21 @@ ul, li, p { list-style:none; padding:0; margin:0; }
 -  마이페이지 > 주문 · 배송 페이지에는 CJ대한통운 운송장 번호가 확인되지만 실제 배송은 타 택배사를 통해 진행됩니다.<br>
 - 타 택배 발송 완료 후, 문자로 실제 배송 정보를 전달드립니다.</div>
     </li>
-    <li class="qa_li">
-        <div class="question">
-            <p class="tit">질문2</p>
-            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
-        </div>
-        <div class="answer">답변2</div>
-    </li>
-    <li class="qa_li">
-        <div class="question">
-            <p class="tit">질문3</p>
-            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
-        </div>
-        <div class="answer">답변3</div>
-    </li>
-        <li class="qa_li">
-        <div class="question">
-            <p class="tit">질문3</p>
-            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
-        </div>
-        <div class="answer">답변3</div>
-    </li>
-        <li class="qa_li">
-        <div class="question">
-            <p class="tit">질문3</p>
-            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
-        </div>
-        <div class="answer">답변3</div>
-    </li>
-        <li class="qa_li">
-        <div class="question">
-            <p class="tit">질문3</p>
-            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
-        </div>
-        <div class="answer">답변3</div>
-    </li>
-        <li class="qa_li">
-        <div class="question">
-            <p class="tit">질문3</p>
-            <p class="iconDiv"><img src="https://happyjung.diskn.com/data/lecture/icon_jquery_faq2_icon_arrow.png"></p>
-        </div>
-        <div class="answer">답변3</div>
-    </li>
+    
         
 </ul>
 
 다른 도움이 필요하신가요?
-<button type="button" class="btn btn-outline-primary">1:1 문의하기</button>
+<button onclick="javascript:addChannel()" class="btn btn-outline-primary">1:1 문의하기</button>
+ 
+ <script type="text/javascript">
+        function addChannel() {
+        	  Kakao.Channel.addChannel({
+        	    channelPublicId: '_Xpekxj',
+        	  });
+        	}
+        
+        </script>
 
 
 </body>

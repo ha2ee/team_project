@@ -96,7 +96,7 @@
 		width: 1100px;
 	    box-sizing: border-box;
 	    text-align: left;
-	    min-height: 850px;
+	    min-height: 900px;
 		
 	} 
 
@@ -160,7 +160,7 @@
 	.name_dt,.age_dt,.weight_dt,
 	.type_dt,.op_dt,.gender_dt,
 	.btn_dt{
-		padding-top: 37px;
+		padding-top: 28px;
 		border-top: 1px solid #e9e9e9;
 	    display: table-cell;
 	    position: relative;
@@ -363,7 +363,7 @@
 					</dt>
 					<dd class="name_dd">
 						<div class="name_div">
-							<input type="text" name="p_name" class="p_name" value="<%=p_name%>">
+							<input type="text" name="p_name" class="p_name" value="<%=p_name%>" readonly>
 						</div>
 					</dd>				
 					<dt class="age_dt">
@@ -422,7 +422,7 @@
 					</dt>
 					<dd class="btn_dd">
 						<div class="saveBtn">
-							<a id="backBtn" href="javascript:history.go(-1),location.reload();" class="roundBtn whiteBtn">취소하기</a>				
+							<a id="backBtn" href="<%=contextPath%>/member/petInfo.me" class="roundBtn whiteBtn">취소하기</a>				
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<a id="changeBtn" 
 							   href="#" 
