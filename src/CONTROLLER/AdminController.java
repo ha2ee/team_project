@@ -18,11 +18,13 @@ import DAO.AdminDAO;
 import DAO.CommentDAO;
 import DAO.FreeBoardDAO;
 import DAO.MemberDAO;
+import DAO.ReviewDAO;
 import DAO.TrainerBoardDAO;
 import DAO.TrainerDAO;
 import VO.CommentVO;
 import VO.FreeBoardVo;
 import VO.MemberVo;
+import VO.ReviewVo;
 import VO.TrainerBoardVo;
 import VO.TrainerVo;
 
@@ -36,6 +38,9 @@ public class AdminController extends HttpServlet {
 		
 		FreeBoardDAO freeboarddao;
 		FreeBoardVo freeboardVO;
+		
+		ReviewDAO reviewdao;
+		ReviewVo reviewVO;
 		
 		MemberDAO memberDAO;
 		MemberVo memberVO;
@@ -52,6 +57,7 @@ public class AdminController extends HttpServlet {
 			trainerboarddao = new TrainerBoardDAO();
 			trainerboardVO = new TrainerBoardVo();
 			freeboarddao = new FreeBoardDAO();
+			reviewdao = new ReviewDAO();
 		}
 		
 		
@@ -86,7 +92,10 @@ public class AdminController extends HttpServlet {
 			String id = "";
 			HttpSession session = request.getSession();
 			id = (String) session.getAttribute("id");			
-			
+			if(id == null || !id.equals("admin")) {
+				out.print("<script> alert('잘못된접근입니다.');location.href='/TeamProject/nb/Main';</script>;");
+				return;
+			}
 			if (action.equals("/adminMain")) {
 				//회원 목록 
 				List<MemberVo> list = adminDAO.getMemberListMain();
@@ -108,6 +117,13 @@ public class AdminController extends HttpServlet {
 				ArrayList<TrainerBoardVo> trBoardList = adminDAO.getBoardList();
 				request.setAttribute("trBoardList", trBoardList);
 				//============================================================
+				
+				//수강 후기 목록
+				ArrayList<ReviewVo> reviewBoardList = adminDAO.admReviewBoardListAll();
+				request.setAttribute("reviewBoardList", reviewBoardList);
+				
+				//============================================================
+				
 				
 				nextPage = "/nbAdmin/adminMain.jsp";
 				
@@ -431,6 +447,40 @@ public class AdminController extends HttpServlet {
 				
 				nextPage = "/nbAdmin/adminMain.jsp";
 	
+			} else if (action.equals("/reviewBoardList.adm")) {
+				
+		        ArrayList<ReviewVo> rvList = reviewdao.reviewListAll();
+		        
+		        String nowPage = request.getParameter("nowPage");
+		        String nowBlock = request.getParameter("nowBlock");
+		        
+		        int count = reviewdao.getTotalRecord();
+		        
+		        request.setAttribute("count", count);
+		        request.setAttribute("nowPage", nowPage);
+		        request.setAttribute("nowBlock", nowBlock);
+		        request.setAttribute("list", rvList);
+
+				
+				request.setAttribute("center", "/nbAdmin/adminReviewList.jsp");
+				nextPage = "/nbAdmin/adminMain.jsp";
+				
+			} else if (action.equals("/reviewBoardRead.adm")) {
+				String nowBlock = request.getParameter("nowBlock");
+		        String nowPage = request.getParameter("nowPage");
+
+		        String b_idx = request.getParameter("b_idx");
+
+		        reviewVO = adminDAO.admBoardRead(b_idx);
+		        ArrayList<FreeBoardVo> list = adminDAO.admReviewBoardListAll();
+		        int count = adminDAO.admGetTotalRecord();
+		        request.setAttribute("count", count);
+		        request.setAttribute("list", list);
+		        request.setAttribute("vo", reviewVO);
+		        request.setAttribute("center", "/nbAdmin/adminReviewBoardRead.jsp");
+		        request.setAttribute("nowBlock", nowBlock);
+		        request.setAttribute("nowPage", nowPage);
+		        nextPage = "/nbAdmin/adminMain.jsp";
 			}
 		
 			//포워딩 (디스패처 방식)

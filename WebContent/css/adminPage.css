@@ -154,7 +154,7 @@ text-decoration: underline;
 	height : 50%;
 }
 .center_Container>div:nth-child(5) {
-	background: #888;
+	background: #badaf5;
 	width: 400px;
 	height : 50%;
 }
@@ -177,18 +177,18 @@ text-decoration: underline;
   cursor: pointer;
 }
 
-.center_memTable,.center_trTable, .center_trBoardTable {
+.center_Table {
 	border-collapse: collapse;
 	margin : 0 auto;
 }
 
-.center_memTable th, .center_memTable td, .center_trTable th, .center_trTable td {
+.center_Table th, .center_Table td{
 	text-align: center;
 	border-bottom: 1px solid #888;
 	width : 20%;
 	height:30px;
 }
-.center_memTable th, .center_trTable th{
+.center_Table th{
 	background-color: #EAEAEA;
 }
   

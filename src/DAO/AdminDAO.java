@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import VO.FreeBoardVo;
 import VO.MemberVo;
 import VO.PetVo;
+import VO.ReviewVo;
 import VO.TrainerBoardVo;
 import VO.TrainerVo;
 
@@ -61,6 +62,101 @@ public class AdminDAO {
 				e.printStackTrace();
 			}
 	}
+	
+	//리뷰 게시판 글 조회
+	public int admGetTotalRecord() {
+	    int count = 0;
+	    try {
+	      con = ds.getConnection();
+
+	      String sql = "SELECT COUNT(*) FROM REVIEW";
+
+	      pstmt = con.prepareStatement(sql);
+	      rs = pstmt.executeQuery();
+
+	      if (rs.next()) {
+	        count = rs.getInt(1);
+	      }
+
+	    } catch (Exception e) {
+	      System.out.println("admGetTotalRecord 메소드에서 에러가 발생하였습니다. 이유는 ? --> " + e);
+	      e.printStackTrace();
+	    } finally {
+	      closeResource();
+	    }
+
+	    return count;
+	  }
+	
+	
+	
+	//리뷰게시판 글조회
+	public ArrayList admReviewBoardListAll() {
+	    ArrayList list = new ArrayList();
+	    ReviewVo vo;
+	    try {
+	      con = ds.getConnection();
+
+	      String sql = "SELECT * FROM REVIEW order by idx desc";
+
+	      pstmt = con.prepareStatement(sql);
+	      rs = pstmt.executeQuery();
+    	  while(rs.next()) {
+	  	    	vo = new ReviewVo();
+	  	    	vo.setIdx(rs.getInt("idx"));
+	  	        vo.setId(rs.getString("id"));
+	  	        vo.setImg(rs.getString("img"));
+	  	        vo.setImgRealName(rs.getString("imgRealName"));
+	  	        vo.setTitle(rs.getString("title"));
+	  	        vo.setContext(rs.getString("context"));
+	  	        vo.setReview_date(rs.getDate("review_date"));
+	                            
+	        list.add(vo);
+	      }
+
+	    } catch (Exception e) {
+	      System.out.println("admReviewBoardListAll 메소드에서 에러가 발생하였습니다. 이유는 ? --> " + e);
+	      e.printStackTrace();
+	    } finally {
+	      closeResource();
+	    }
+	    return list;
+	  }
+	
+	
+	//리뷰게시판 글 조회
+	public ReviewVo admBoardRead(String b_idx) {
+	    ReviewVo vo = null;
+	    try {
+	      con = ds.getConnection();
+	      
+	      String sql = "SELECT * FROM REVIEW WHERE IDX = ?";
+	      pstmt = con.prepareStatement(sql);
+	      pstmt.setString(1, b_idx);
+	      rs = pstmt.executeQuery();
+	      while(rs.next()) {
+	    	vo = new ReviewVo();
+	    	vo.setIdx(rs.getInt("idx"));
+	        vo.setId(rs.getString("id"));
+	        vo.setImg(rs.getString("img"));
+	        vo.setImgRealName(rs.getString("imgRealName"));
+	        vo.setTitle(rs.getString("title"));
+	        vo.setContext(rs.getString("context"));
+	        vo.setReview_date(rs.getDate("review_date"));
+	        
+	      }
+	      
+	    } catch (Exception e) {
+	      System.out.println("boardRead 메소드에서 에러가 발생하였습니다. 이유는 ? --> " +e);
+	      e.printStackTrace();
+	    } finally {
+	      closeResource();
+	    }
+	    return vo;
+	  }
+	
+	
+	
 
 	// 모든 회원 조회
 	public List<MemberVo> selectAllMember () {

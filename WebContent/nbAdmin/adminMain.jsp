@@ -31,7 +31,7 @@
 					<ul class="submenu">
 						<li><a href="${contextPath}/adm/freeBoardList.adm">자유게시판</a></li>
 						<li><a href="${contextPath}/adm/trBoardList.adm">훈련사 상담 게시판</a></li>
-						<li><a href="#">수강 후기 게시판</a></li>
+						<li><a href="${contextPath}/adm/reviewBoardList.adm">수강 후기 게시판</a></li>
 					</ul></li>
 			</ul>
 		</aside>
