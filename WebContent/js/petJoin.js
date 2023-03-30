@@ -9,6 +9,7 @@
         if(src == "/TeamProject/images/pet.png"){
 			$("#imgInput").text("사진을 등록하여 주세요!").css("color","red");
         	
+			return false;
         }else{
 			$("#imgInput").text(" ");
         }

@@ -6,14 +6,14 @@
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
 %>
-   
+	
 <%
 // https://nameybs.tistory.com/37?category=810277
 // 체크박스 체크한  <input>항목 얻고  체크한 값 얻어 사용
 
 %>    
-   
-    
+	
+	    
 <%-- 문서에 작성되는 언어 타입을 HTML로 하여 이파일은 HTML이 적힌 파일 이다 라고 웹브라우저에 알려주는 코드
 	 요약 : 문서 코드 타입.
  --%>    
@@ -23,154 +23,22 @@
 <%--이 부분은 웹페이지에서 사용되는 언어는 영어다 ~ 라고 웹브라우저에 알려주는 역할을 하는 코드.  --%>
 <html>
 <head>
-
+	
 <%-- 웹브라우저에 다양한 문자가 꺠지지 않게 처리 하기 위해 문자처리 방식을 웹브라우저에 알려주는 코드 --%>
-<meta charset="utf-8">
 
 <%-- 
 	반응형 웹페이지를 적용해 주는 부분입니다. 모바일이나 데스크탑은 해상도가 다른데,
 	각 해상도에 맞춘 웹페이지를 보여주게 설정 하는 코드 입니다.
     content="width=device-width"  이부분은  각 기기의 해상도의 너비에 맞게  사이트 화면의 너비를 자동으로 맞추겠다~라는 뜻	                           
  --%>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Bootstrap CSS -->
+	
+<!-- <!-- Bootstrap CSS -->
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-	crossorigin="anonymous">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<link href="<%=contextPath%>/css/member.css" rel="stylesheet">
 
 <title>회원가입</title>
-
-<style type="text/css">
-
-
-	#pass,#nickname,#checkpass,#name,
-	#hp,.birth,#email,#sample4_postcode,
-	#sample4_find,#sample4_detailAddress,
-	#sample4_extraAddress,#sample4_jibunAddress,
-	#sample4_roadAddress
-	{
-	  width: 400px;
-	  height: 40px;
-	  font-size: 15px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	}
-	
-	#id{
-	  width: 300px;
-	  height: 32px;
-	  font-size: 15px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	  float : left;
-	}
-	
-	
-	#checkBtn{
-	  width: 90px;
-	  height: 32px;
-	  font-size: 12px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 8px;
-	  background-color: rgb(233, 233, 233);
-/* 	  margin-left: 15px;	 */
-	}
-	
-/* 	#jbtn{
-	  width: 135px;
-	  height: 40px;
-	  font-size: 28px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
- 	  padding-left: 5px; 
-	  background-color: rgb(233, 233, 233);
-	} */
-	
-	
-	.gender,.pet{
-	  width: 100px;
-	  height: 32px;
-	  font-size: 12px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	  margin-left: 15px;	
-	  float : left;
-	}
-  	
-	.join{
-		display: flex;     
-
-		align-items: center;   
-
-		justify-content: center;   
-	
-	}
-	
-
-	/* #Photo{
-	  display: inline-block;
-	  padding: .5em .75em;
-	  color: black;
-	  font-size: inherit;
-	  line-height: normal;
-	  vertical-align: middle;
-	  background-color: #BDBDBD;
-	  cursor: pointer;
-	  border: 1px solid #ebebeb;
-	  border-bottom-color: #e2e2e2;
-	  border-radius: .25em;
-	} */
-
-	#ex_file	{  /* 파일 필드 숨기기 */
-	  position: absolute;
-	  width: 1px;
-	  height: 1px;
-	  padding: 0;
-	  margin: -1px;
-	  overflow: hidden;
-	  clip:rect(0,0,0,0);
-	  border: 0;
-	}
-
- 	#preview{
-    width: auto;
-    max-width: 60%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    border: none;
-    line-height: normal;
-    vertical-align: middle;
-}
-
-	.heigthD{
-		height: 100px;
-	}
-	
-	#joinBtn{
-		margin-top: 130;
-		margin-left: 320; 
-	
-	
-	}
-	
-		
-</style>
 </head>
 <body>
 <form action="<%=contextPath%>/member/memJoinPro.me" class="form">	

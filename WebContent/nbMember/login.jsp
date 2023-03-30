@@ -168,7 +168,7 @@
 					
 					
 					<div class="loginDiv">
-						<button id="memLoginbtn" type="submit" class="loginBtn">log in.</button> 
+						<button id="memLoginbtn" type="submit" class="loginBtn">로그인</button> 
 					</div>	
 						
 					<div class="joinDiv">

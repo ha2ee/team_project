@@ -397,8 +397,8 @@
 					<dd class="gender_dd">
 						<div class="gender_div">
 							<select class="p_gender" name="p_gender" id="p_gender" value="<%=p_gender%>">
-								<option value="남아">남아</option>
-								<option value="여아">여아</option>
+								<option value="남">남</option>
+								<option value="여">여</option>
 							</select>
 						<input id="hidden_gen" type="hidden" value="<%=p_gender%>">
 						</div>
@@ -412,6 +412,7 @@
 							<select class="p_op" name="p_op" id="p_op" value="<%=p_op%>">
 								<option value="했음">했음</option>
 								<option value="안했음">안했음</option>
+								<option value="모름">모름</option>
 						<input id="hidden_op" type="hidden" value="<%=p_op%>">
 							</select>
 							
@@ -443,26 +444,30 @@
 		
 		$(function() {
 			
-			if($("#hidden_gen").val() == "남아" ){
+			if($("#hidden_gen").val() == "남" ){
 
-				$("#p_gender").val("남아").prop("selected", true);
+				$("#p_gender").val("남").prop("selected", true);
 					
-			}else if ($("#hidden_gen").val() == "여아"){
+			}else if ($("#hidden_gen").val() == "여"){
 				
-				$("#p_gender").val("여아").prop("selected", true);
+				$("#p_gender").val("여").prop("selected", true);
 				
 			}
 
-			if($("#hidden_op").val() == "했음" ){
+			if($("#hidden_op").val() == "예" ){
 	
-				$("#p_op").val("했음").prop("selected", true);
+				$("#p_op").val("예").prop("selected", true);
 					
-			}else if($("#hidden_op").val() == "안했음"){
+			}else if($("#hidden_op").val() == "아니오"){
 				
-				$("#p_op").val("안했음").prop("selected", true);
+				$("#p_op").val("아니오").prop("selected", true);
 			
+			}else if($("#hidden_op").val() == "모름"){
 				
+				$("#p_op").val("모름").prop("selected", true);
 			}
+		
+		
 		});
 	
 	

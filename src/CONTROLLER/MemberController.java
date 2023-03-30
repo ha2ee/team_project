@@ -575,6 +575,7 @@ public class MemberController extends HttpServlet {
 		  boolean result = memberdao.petJoin(pet_vo);
 		  int mem_pet = memberdao.mem_pet(memberid);	  
 		  
+
 		  System.out.println("애완견 보유:"+mem_pet);
 		  
 		// 메인화면 view 주소
@@ -731,7 +732,7 @@ public class MemberController extends HttpServlet {
 			String fileName = multipartRequest.getOriginalFileName("petImageFileName");
 			
 			int result = memberdao.petImgUpdate(P_mem_id,fileName);
-			
+			System.out.println(result);
 			if(result == 0) {
 				out.println("<script>");
 				out.println("window.alert('수정실패 하였습니다.');");
@@ -740,7 +741,7 @@ public class MemberController extends HttpServlet {
 				
 				return;
 				
-			} else if (result == 1) {
+			} else if (result != 1) {
 				out.println("<script>");
 				out.println("window.alert('사진을 등록 하였습니다.');");
 				out.println("location.href='/TeamProject/member/petInfo.me'");
@@ -845,8 +846,53 @@ public class MemberController extends HttpServlet {
 			}
 				
 
+		//승인전 트레이너 상세 정보 요청
+		} else if (action.equals("/temTrMemDetail.me")) {
+			String trMemID = request.getParameter("trMemberID");
+
+			TrainerVo trainerVO = memberdao.temTrOne(trMemID);
+			
+			String center = "/nbAdmin/adminTemTrMemDetail.jsp";
+			
+			request.setAttribute("center", center);
+			request.setAttribute("trainerVo", trainerVO);
+			
+			nextPage = "/nbAdmin/adminMain.jsp";		
+		
+		
+		} else if(action.equals("/temTrDel.me")) {
+			
+			String trMemID = request.getParameter("Tr_id");
+
+			boolean result  = memberdao.temTrDel(trMemID);
+			
+			System.out.println(result);
+			if (result == true) {
+							
+				out.println("<script>");
+				out.println("window.alert('삭제 되었습니다.');");
+				out.println("location.href='http://localhost:8090/TeamProject/adm/temTrManage.adm'");
+				out.println("</script>");
+		
+				return;
+
+			} else if (result == true) {
+				out.println("<script>");
+				out.println("window.alert('삭제 실패 되었습니다.');");
+				out.println("location.href='http://localhost:8090/TeamProject/adm/temTrManage.adm'");
+				out.println("</script>");
+				return;
+
+			}
+			
+			
 			
 		}
+		
+		
+		
+		
+		
 		// 포워딩 (디스패처 방식)
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);

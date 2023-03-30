@@ -1471,6 +1471,85 @@ public class MemberDAO {
 			
 		}
 
+	public TrainerVo temTrOne(String trMemID) {
+		
+		TrainerVo trainervo = null;
+		
+		try {
+	
+			//DB접속
+			con = ds.getConnection();
+			// 매개변수 id로 받는 입력한 아이디에 해당되는 행을 조회 SELECT문
+			String sql = "select * from TEM_TRAINER where TEM_TR_ID= ?" ;
+			
+			pstmt = con.prepareStatement(sql);
+			
+			// sql문이 잘들어갔는지출력해보기
+//			System.out.println(sql);
+			pstmt.setString(1, trMemID);
+			
+			rs = pstmt.executeQuery();
+	
+			if (rs.next()) {
+				
+				trainervo = new TrainerVo();
+				trainervo.setTr_id(rs.getString("tem_tr_id"));
+				trainervo.setTr_name(rs.getString("tem_tr_name"));
+				trainervo.setTr_img(rs.getString("tem_tr_img"));
+				trainervo.setTr_pw(rs.getString("tem_tr_pw"));
+				trainervo.setTr_email(rs.getString("tem_tr_email"));
+				trainervo.setTr_hp(rs.getString("tem_tr_hp"));
+				trainervo.setTr_birth(rs.getString("tem_tr_birth"));
+				trainervo.setTr_gender(rs.getString("tem_tr_gender"));
+				trainervo.setTr_joindate(rs.getDate("tem_tr_joindate"));
+				trainervo.setTr_address1(rs.getString("tem_tr_address1"));
+				trainervo.setTr_address2(rs.getString("tem_tr_address2"));
+				trainervo.setTr_address3(rs.getString("tem_tr_address3"));
+				trainervo.setTr_address4(rs.getString("tem_tr_address4"));
+				trainervo.setTr_address5(rs.getString("tem_tr_address5"));
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("temTrOne 메소드 내부에서 오류!");
+			e.printStackTrace();
+		}finally {
+			closeResource();
+		}
+		
+		//BoardController로 전달 
+		return trainervo;
+		}
+
+	public boolean temTrDel(String trMemID) {
+		
+		boolean tem_result = false; //
+		
+		try {
+			con = ds.getConnection();
+			String query = "DELETE FROM TEM_TRAINER WHERE TEM_TR_ID= ?";
+
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, trMemID);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				tem_result = true;
+			} 
+				
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		
+		} finally {
+			
+		}
+		
+		return tem_result;
+		
+		
+	}
 
 
 
