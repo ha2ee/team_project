@@ -20,7 +20,13 @@
 	String tr_name = tr_vo.getTr_name();
 	String tr_img = tr_vo.getTr_img();
 	String id = (String)session.getAttribute("id");
-%>	
+    if (id == null || id.equals("")) {
+        %>      
+        <script>    
+            alert("잘못된 접근입니다."); 
+            history.back(); 
+        </script>
+<%}%>
 
 <!DOCTYPE html>
 <html>
