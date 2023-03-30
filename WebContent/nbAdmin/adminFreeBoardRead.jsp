@@ -89,44 +89,10 @@
 	        </div>
 	      </div>
 	
-<%-- 	<c:if test="${not empty vo.b_file || not empty imageUrls}">
-	<div align="left" class="filedownload">첨부파일<br>
-
-	다운로드할 폴더번호 경로와 다운로드 할 파일명 전달
-	<c:choose>
-		<c:when test="${vo.tb_level==0}">
-			<c:if test="${not empty vo.tb_file}">
-			<a href="<%=contextPath%>/tb/download.bo?tbidx=<%=tb_idx%>&fileName=<%=file%>" class="download"><%=file%></a>&nbsp;&nbsp;
-			</c:if>
-		</c:when>
-		<c:when test="${vo.tb_level>0}"> 
-			<c:if test="${not empty vo.tb_file}">
-			<a href="<%=contextPath%>/uploadFile/TrainerBoardFile/reply_tb_idx${vo.tb_idx}/<%=file%>" download class="download"><%=file%></a>&nbsp;&nbsp;
-			</c:if>
-		</c:when>
-	</c:choose>
-		CKEDITOR로 입력한 이미지 다운로드 링크생성
-		<c:if test="${not empty imageUrls}">
-			<c:forEach var="imageUrls" items="${imageUrls}">
-				<c:set var="imageUrl" value="${imageUrls}"/>
-				<c:set value="${fn:split(imageUrl, '/')}" var="imageNameTemp" />
-				<c:set var="imageName" value="${imageNameTemp[fn:length(imageNameTemp)-1]}"/>
-				<a href="${imageUrls}" download="${imageName}"  class="download" >${imageName}</a>&nbsp;&nbsp;
-			</c:forEach> 
-		</c:if>
-		CKEDITOR로 입력한 이미지 다운로드 링크생성 끝
-	</div>
-  	</c:if>
- --%>    	
     <div class="post-buttons">
 		<input type="button" value="목록으로" onclick="location.href='/TeamProject/adm/freeBoardList.adm?nowPage=0&nowBlock=0'" id="list" />
-       
-        <!-- 수정,삭제는 세션아이디와 조회한 글의 작성자아이디가 동일할때만 노출시키기 필요 -->
 			<input type="button" value="삭제하기" onclick="javascript:fbDelete('<%=b_idx%>');" id="delete"/>
-       
     </div>
-    
-    
     
     </div>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>    
