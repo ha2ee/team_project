@@ -91,6 +91,64 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
 <style>
+html {
+    width: 100%;
+    height: 2050px;
+}
+
+body {
+    height: 1780px;
+    width: 100%;
+
+}
+
+		/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
+	
+	#login_box > li > a:hover {
+	
+	  background: #fff5f3;
+	  text-decoration: none;
+	  border-radius: 20px;
+	  transition : 0.3s;
+	}
+
+	
+	#login_box > li > a {
+	
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 auto;
+    letter-spacing: .75px;
+    border: transparent;
+    position: relative;
+    display: inline-block;
+    background: #fff;
+    color: black;
+    transition: 0.3s;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    line-height: 40px;
+    
+	}
+	
+	#login_box > li {
+	
+/*     border: 1px solid blue; */
+    float: left;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    height: 50px;
+    width: 122px;
+    left: 0px;
+    padding: 0;
+    
+	}
+
   #mem_address > a > input#mem_address5::placeholder {
   color : #ccc;
   font-weight: bold;
@@ -103,6 +161,115 @@
   font-size : 12px;
   
   }
+  
+  /*  Bottom CSS 설정 */
+ 
+ 
+ .footer_wrap {
+    width: 1920px;
+    margin: 0 auto;
+    height: 500px;
+    position: relative;
+    top: 0;
+    left: 0;
+    background: #f1d3d73b;
+}
+
+#top_line {
+
+	position: relative;
+    margin: 0;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 100%;
+    border-top: 1px solid #f2dede;
+
+}
+
+#bottom_line {
+
+	position: relative;
+    margin: 0;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 100%;
+    border-top: 1px solid #f2dede;
+
+}
+
+.footer {
+
+    margin: 0 auto;
+    height: 80%;
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.footer > div {
+
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+    border: 0.1pt dotted #f2dede;
+    float: left;
+
+}
+
+.useful_links {
+
+    display: inline-block;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 5px;
+
+}
+
+.contactinfo {
+
+display: inline-block;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 642px;
+
+}
+
+.about-start {
+
+    display: inline-block;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 1280px;
+
+
+}
+
+.footer-title {
+    margin-bottom: 40px;
+    color: #777;
+}
+
+.copyright {
+    margin: 0 auto;
+    left: 0;
+    top: 0;
+    position: relative;
+    width: 100%;
+    height: 30px;
+}
+
+#link{
+
+color : navy;
+
+}
+ 
 </style>
 <meta charset="UTF-8">
 <!--  	 edu_reservation.css CSS 셋팅 -->
@@ -161,7 +328,6 @@
 					<h3 id="h3title">- 반려견 예약 정보 -</h3>
 				</div>
 				<div id = "pet_check">
-					<a id ="petcheck1" class = btn  onclick="openChild2()">반려견 정보 추가하기</a>
 					<a id ="petcheck2" class = btn onclick="openChild()">반려견 정보 가져오기</a>
 					<input type="hidden" id="pInput" name="id" value="<%=id_%>"/>
 				</div>
@@ -254,9 +420,8 @@
 		<div id ="reservationBtnWrapper">
 			<div id = "res_box">
 				<a id ="nb_backbtn" class = btn href="#">일정 다시선택하기 </a>
-				<a id = "nb_submitbtn" type="submit" class = "btn"  onclick="document.getElementById('form').submit();" >예약 확정</a>
+				<a id = "nb_submitbtn" type="submit" class = "btn" >예약 확정</a>
 <!-- 				<a id = "nb_submitbtn" type="submit" class = "btn" >예약 하기</a> -->
-				<a id = "nb_shopbtn" class= "btn" href="<%=request.getContextPath()%>/nb/pet.shop?center=/nbShop/pet.jsp">늘봄 샵으로</a>
 			</div>
 		</div>
 	</div>
@@ -271,21 +436,7 @@
 
 var openWindow;
 
-function openChild2() {
-	
-	alert("팝업창이 열립니다");
-	
-	window.name = "parentForm";
-	
-	var popupX = (window.screen.width/2)-(750/2);
-	var popupY = (window.screen.height/2)-(500/2);
-	
-	openWindow = window.open("<%=request.getContextPath()%>/nbOrder/petPopup.od", "childForm", "height=500, width=750, left="+popupX+", top="+popupY+", screenX="+popupX+", screenY="+popupY+" resizable=no, scrollbars=no");
-	
-}
-
 function openChild() {
-	
 	alert("팝업창이 열립니다");
 	
 	window.name = "parentForm";
@@ -309,18 +460,6 @@ function openChild() {
 		$("#pet_op_box").css("display", "none");
 		$("#nb_submitbtn").css("display", "none");
 
-		
-		// 2) 반려견 정보 추가하기 버튼을 눌렸을 때 팝업창이 나오게 한다.
-		
-		$("#petcheck1").on("click", function(){
-		
-			$("#pet_img_name").css("display", "block");
-			$("#pet_img_box").css("display", "block");
-			$("#pet_info_box").css("display", "block");
-			$("#pet_op_box").css("display", "block");
-			$("#pet_info_box > a > input").attr("readonly", true);
-
-		})
 	
 		// 3) 반려견 정보 가져오기 버튼을 눌렸을 때 팝업창이 나오게 한다.
 		
@@ -357,8 +496,17 @@ function openChild() {
 		
 		
 		$("#nb_submitbtn").on("click", function(){
-		
-			alert("결제를 위해 장바구니로 이동합니다!! ");
+			
+			if(window.confirm("수강 예약을 확정하시겠습니까?") == true){
+				
+				alert("결제를 위해 장바구니로 이동합니다")
+				
+				document.getElementById('form').submit();
+				
+			}else{
+				
+				return false;
+			}
 		})
 		
 		

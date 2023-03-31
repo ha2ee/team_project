@@ -193,170 +193,14 @@
 				<!-- 예약 삭제 -->
 				<div id="cart_del_box">	
 					<div id="cart_del${j}">
-						<a type="button" id="cartDel${j}"  href="<%=request.getContextPath()%>/nbOrder/eduDel.od?id=<%=id_%>&edu_num=${vo.edu_num}"  onclick='window.confirm("정말 삭제하시겠습니까?")'>예약 삭제</a>
+						<a type="button" id="cartDel${j}"  href="<%=request.getContextPath()%>/nbOrder/eduDel.od?id=<%=id_%>&edu_num=${vo.edu_num}"  onclick='return window.confirm("정말 삭제하시겠습니까?")'>예약 삭제</a>
 					</div>
 				</div>
 			</div>	
 		<c:set var="j" value="${j+1}" /> 
 	</c:forEach>
 	</div>
-		
-				
-				
 
-			<div id="nbshopResultBox">
-				<div id="nbtitleBox">
-					<div id="nbtitle">늘봄 샵 정보</div>
-					<div id="nbfilter">
-						<div id="filterOrder" style="width : 30%;">물품 정보</div>
-						<div id="filterMem">주문자 정보</div>
-						<div id="filterCost">금액 정보</div>
-						<div id="filterInfo" style="width : 20%;">비고</div>
-					</div>
-				</div>
-
-				<div id="orderBox" >
-					<div id="order_num" >
-						<a id="orderNum">주문번호</a>
-					</div>
-					<div id="order_img" >
-						<a id="orderImg">물품사진</a>
-					</div>
-					<div id="order_product" >
-						<a id="orderProduct">물품명</a>
-					</div>
-				</div>
-				
-				<div id="memBox" >
-					<div id="mem_name" >
-						<a id="memName">이름</a>
-					</div>
-					<div id="mem_hp" >
-						<a id="memHp">전화번호</a>
-					</div>
-					<div id="mem_email" >
-						<a id="memEmail">이메일</a>
-					</div>
-				</div>
-				
-				<div id="costBox" >
-					<div id="order_date">
-						<a id="orderDate">주문일</a>
-					</div>
-					<div id="order_cpt">
-						<a id="orderCpt">수량</a>
-					</div>
-					<div id="order_price">
-						<a id="orderPrice">금액</a>
-					</div>
-				</div>
-				
-				<div id="nbInfoBox">
-					<div id="order_Info">
-						<a id="orderInfo">상세보기</a>
-					</div>
-					
-					<div id="nbCart_mod">
-						<a id="nbcartMod">수정</a>
-					</div>
-					
-					<div id="nbCart_del">
-						<a id="nbcartDel">비우기</a>
-					</div>
-				</div>
-				
-<!-- 	늘봄 샵 관련 vector 구문 -->
-<%-- 	<c:set var="h" value="1"/> --%>
-		<div id="shop_res_box">
-<%-- 	<c:forEach var="vo"  items="${vector}" >			 --%>
-				
-				<!-- 주문 번호 -->
-				<div id="order_num_box">
-					<div id="order_num1">
-						<input type="text" id="orderNum1" value="test" readonly="readonly"  />
-					</div>
-				</div>
-				
-				<!-- 물품 사진 -->
-				<div id="order_img_box">
-					<div id="order_img1">
-						<input type="image" class="gallery" id="orderImg1"  src="" readonly="readonly"  />
-					</div>
-				</div>
-				
-				<!-- 물품 품명 -->
-				<div id ="order_product_box">
-					<div id="order_product1">
-						<input type="text" id="orderProduct1" value="test" readonly="readonly"  />
-					</div>
-				</div>
-				
-				<!-- 구매자 명 -->
-				<div id="mem_name_box">	
-					<div id="mem_name1">
-						<input type="text" id="memName1" value="test" readonly="readonly"  />
-					</div>
-				</div>
-				
-				<!-- 구매자 번호 -->
-				<div id="mem_hp_box">
-					<div id="mem_hp1">
-						<input type="text" id="memHp1" value="test" readonly="readonly"  />
-					</div>
-				</div>
-				
-				<!-- 구매자 이메일-->
-				<div id="mem_email_box">
-					<div id="mem_email1">
-						<input type="text" id="memEmail1" value="test" readonly="readonly"  />
-					</div>
-				</div>
-				
-				<!-- 구매 날짜 -->
-				<div id="order_date_box">
-					<div id="order_date1">
-						<input type="text" id="orderDate1" value="test" readonly="readonly"  />
-					</div>
-				</div>
-				
-				<!-- 구매 갯수 -->
-				<div id="order_cpt_box">
-					<div id="order_cpt1">
-						<input type="text" id="orderCpt1" value="test" readonly="readonly" />
-					</div>
-				</div>
-				
-				<!-- 구매 금액 -->
-				<div id="order_price_box">
-					<div id="order_price1">
-						<input type="text" id="orderPrice1" value="test" readonly="readonly" />
-					</div>
-				</div>
-		
-				<!-- 상세 보기 -->
-				<div id="order_info_box">
-					<div id="order_info1">
-						<input class="btn" type="button" id="orderInfo1" value="상세보기" />
-					</div>
-				</div>
-				
-				<!-- 수정 -->
-				<div id="nbcart_mod_box">
-					<div id="nbcart_mod1">
-						<input class="btn" type="button" id="nbcartMod1" value="수정" />
-					</div>
-				</div>
-				
-				<!-- 비우기 -->
-				<div id="nbcart_del_box">
-					<div id="nbcart_del1">
-						<input class="btn" type="button" id="nbcartDel1" value="비우기" />
-					</div>
-				</div>
-<%-- 		<c:set var="h" value="${h+1}" />  --%>
-		</div>
-<%-- 	</c:forEach> --%>
-				
 			</div>
 		</div>
 	</div>
@@ -370,17 +214,17 @@
 			<div id ="edu_shop_price">
 				<a style="width: 50% " >수강 금액</a>
 				<a style="width: 50% ">샵 금액</a>
-				<input id="eduPrice" type="text" value="" readonly="readonly" />
-				<input type="text" value="" readonly="readonly"  />
+				<input id="eduPrice" type="text" value="" placeholder=" " readonly="readonly" />
+				<input type="text" value="" placeholder=" " readonly="readonly"  />
 			</div>
 			<div id="edu_shop_total_price">
 				<a>총 금액</a>
-				<input type="text" value="" readonly="readonly"  />
+				<input type="text" value="" placeholder=" " readonly="readonly"  />
 			</div>
 		</div>
 
 		<div id="confirm_box">
-			<a type="button"  class="btn" href="<%=request.getContextPath()%>/nbOrder/eduAlldel.od?id=<%=id_%>"  onclick='window.confirm("수강 예약과 물품이 리스트에서 모두 삭제됩니다")'>모두 삭제하기</a>
+			<a type="button"  class="btn" href="<%=request.getContextPath()%>/nbOrder/eduAlldel.od?id=<%=id_%>"  onclick='return window.confirm("수강 예약과 물품이 리스트에서 모두 삭제됩니다")'>모두 삭제하기</a>
 			<a type="button"  class="btn" >결제 하기</a>
 		</div>
 
@@ -584,12 +428,9 @@ $(document).ready(function(){
 	// 수강 신청 가격을 해당 구문에 넣기
 	$("#eduPrice").attr("value", edu_price);
 	
-	// 샵 금액 (작성중)
-	
-	var shop_price = 0;
 	
 	// 수강금액 + 샵금액 = 총금액 계산 하기
-	$("#edu_shop_total_price > input").attr("value", (edu_price+shop_price));
+	$("#edu_shop_total_price > input").attr("value", edu_price);
 
 })
 

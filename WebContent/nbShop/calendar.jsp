@@ -31,6 +31,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 %>
 <html>
 <head>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
@@ -39,6 +40,60 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 <!--  	 calendar CSS 셋팅 -->
  	<link href="<%=request.getContextPath()%>/css/calendar.css" rel="stylesheet">
 <style type="text/css">
+		/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
+	
+	#login_box > li > a:hover {
+	
+	  background: #fff5f3;
+	  text-decoration: none;
+	  border-radius: 20px;
+	  transition : 0.3s;
+	}
+
+	
+	#login_box > li > a {
+	
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 auto;
+    letter-spacing: .75px;
+    border: transparent;
+    position: relative;
+    display: inline-block;
+    background: #fff;
+    color: black;
+    transition: 0.3s;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    line-height: 40px;
+    
+	}
+	
+	#login_box > li {
+	
+/*     border: 1px solid blue; */
+    float: left;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    height: 50px;
+    width: 122px;
+    left: 0px;
+    padding: 0;
+    
+	}
+	
+
+	
+	#link{
+
+color : navy;
+
+}
 </style>
 <script type="text/javascript">
 
@@ -48,6 +103,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 
     var today = new Date(); // @param 전역 변수, 오늘 날짜 / 내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
     var date = new Date();  // @param 전역 변수, today의 Date를 세어주는 역할
+    var calday = new Date();
     var realMonth = today.getMonth()+1;
     var resultcnt = 0;
     var resultprice = 0;
@@ -558,10 +614,10 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 
     		//현재 보이는 창이 현재달 이면
     		var dmon = document.getElementById("calMonth").innerText = autoLeftPad((today.getMonth() + 1), 2);
+    		var thisMonth = moment(lastDate2).format('MM');
+
     		
-    		console.log(dmon);
-    		
-    		if(dmon == 03){
+    		if(dmon == thisMonth){
     			
     			//예약 정보를 초기화 시킨다.
         		$("#result > div > input").attr("value", "");
@@ -770,7 +826,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
     		// 다음달 마지막날을 구해서 가져오고,
     		var nextmonthlastday = new Date(today.getFullYear(), today.getMonth()+1, 0);
     		// 다음달 오늘날을 구해서
-    		var nextmonthtoday = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+    		var nextmonthtoday = new Date(today.getFullYear(), today.getMonth()+1, today.getDate()+7);
     		
     		// 방법1) 포맷형식을 바꾼다.
     		var nmld = moment(nextmonthlastday).format('YYYY-MM-DD');
@@ -1021,7 +1077,7 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 		<div id = "btnBox2">
       		<div id = "Totalsubmit">
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp" >이전 페이지로</a> 
-         	<button id="submitbtn" type="submit" style="font-weight : 400; padding : 6px 12px; margin : 0 10px; font-size : 22px; border-radius: 20px; border:0px; " >예약 신청</button>
+         	<button id="submitbtn" type="submit" style="font-weight : bold; padding : 6px 12px; margin : 0 10px; font-size : 22px; border-radius: 20px; border:0px; " >예약 신청</button>
          	<a class = "btn" href="<%=request.getContextPath()%>/nb/Main" >홈으로</a>
         	</div>
         </div>
