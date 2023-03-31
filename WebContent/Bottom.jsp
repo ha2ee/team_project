@@ -20,7 +20,7 @@
     <div id ="top_line"></div>
     <div class="footer">
                 <!-- footer-useful links-start -->
-                <div class="useful_links">
+                <div id= "useful_links" class="useful_links">
                     <div class="footer-widget">
                         <h4 class="footer-title" >( 바로 가기 )</h4>
                         <ul>
@@ -37,7 +37,7 @@
                 </div>
                 <!-- footer-useful links-close -->
                 <!-- footer-contactinfo-start -->
-                <div class=" contactinfo">
+                <div id= "contactinfo"  class=" contactinfo">
                     <div class="footer-widget">
                         <h4 class="footer-title"><br>( 늘 봄 고객지원 )<br></h4>
                         <div class="">
@@ -51,7 +51,7 @@
                 </div>
                 <!-- footer-contactinfo-close -->
                 <!-- footer-about-start -->
-                <div class="about-start">
+                <div id= "about-start"  class="about-start">
                     <div class="footer-widget">
                         <h4 class="footer-title" ><br>( 참고 )</h4>
                         <p >본 홈페이지는 1920x1080 해상도에 최적화 되어 있습니다. </p>

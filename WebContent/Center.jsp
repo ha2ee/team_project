@@ -10,11 +10,7 @@
 </head>
 <title>Slider</title>
 <!-- 3 Bootstrap core CSS --> 
-<link href="<%=contextPath%>css/bootstrap.min.css" rel="stylesheet">
-
-
- <script src="<%=contextPath%>/js/jquery-3.5.1.min.js"></script>
-  <script src="<%=contextPath%>/js/slick.js"></script>
+<link href="<%=contextPath%>/css/bootstrap.min.css" rel="stylesheet">
 
  <style>
  	*{margin:0; padding:0}
@@ -338,8 +334,6 @@
 
 <script src="<%=contextPath%>/js/jquery.min.js"></script>
 <script src="<%=contextPath%>/js/bootstrap.min.js"></script>
-<script src="<%=contextPath%>/js/run_prettify.js"></script>
-
 
 </div>
 </div>

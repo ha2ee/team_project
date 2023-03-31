@@ -127,27 +127,38 @@ body {
     background: #fff;
     color: black;
     transition: 0.3s;
-    height: 100%;
-    width: 100%;
+    height: 40%;
+    width: 70%;
     top: 0;
     left: 0;
-    line-height: 40px;
+    line-height: 20px;
+    padding: 10px;
+/*     border: 1px solid red; */
+    border-radius: 20px;
     
 	}
 	
 	#login_box > li {
 	
 /*     border: 1px solid blue; */
+    
     float: left;
     position: relative;
     text-align: center;
     margin: 0 auto;
-    height: 50px;
-    width: 122px;
-    left: 0px;
+    height: 44px;
+    width: 115px;
+    left: 5px;
     padding: 0;
-    
-	}
+}
+
+#mega_wrapper > ul {
+    border: 1px solid white;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    float: left;
+}
 
   #mem_address > a > input#mem_address5::placeholder {
   color : #ccc;
@@ -219,7 +230,7 @@ body {
 
 }
 
-.useful_links {
+#useful_links {
 
     display: inline-block;
     margin: 0 auto;
@@ -229,7 +240,7 @@ body {
 
 }
 
-.contactinfo {
+#contactinfo {
 
 display: inline-block;
     margin: 0 auto;
@@ -239,7 +250,7 @@ display: inline-block;
 
 }
 
-.about-start {
+#about-start {
 
     display: inline-block;
     margin: 0 auto;

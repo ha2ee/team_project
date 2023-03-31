@@ -89,10 +89,18 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 	
 
 	
-	#link{
+#link{
 
 color : navy;
 
+}
+
+#mega_wrapper > ul {
+    border: 1px solid white;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    float: left;
 }
 </style>
 <script type="text/javascript">
