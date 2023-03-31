@@ -17,12 +17,15 @@
   <script src="<%=contextPath%>/js/slick.js"></script>
 
  <style>
+ 	
  	*{margin:0; padding:0}
+ 	
  	.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
     display: block;
     width: 100%;
     height: 500px;
     }
+    
     .carousel-indicators {
     position: relative;
     top: 480px;
@@ -37,7 +40,6 @@
     }
     .carousel-example-generic{
     width: 100%;
-    
     }
     .image-text1{
     position: relative;
@@ -112,7 +114,13 @@
 	top : 0;
 	left : 0;
 	width : 100%;
-    height: 400px;
+    height: 350px;
+    }
+    
+    @media(max-width: 1023px){
+    .map > img{
+    width: 100%
+    }
     }
     .image-text5{
     position: relative;
@@ -125,7 +133,7 @@
     #text1{
     position: relative;
     margin: 0 auto;
-    top: -30px;
+    top: 16px;
     left: -30px;
     width: 100px;
     height: 42px;
@@ -135,7 +143,7 @@
     #text1-1{
     position: relative;
     margin: 0 auto;
-    top: -33px;
+    top: 17px;
     left: -10px;
     width: 261px;
     height: 38px;
@@ -153,7 +161,7 @@
     #text2 > a{
     position: absolute;
     margin: 0 auto;
-    top: -40px;
+    top: -30px;
     left: 90px;
     width: 50%;
     height: 145px;
@@ -161,7 +169,7 @@
     #text2 > i{
     position: relative;
     margin: 0 auto;
-    top: 115px;
+    top: 125px;
     left: 5px;
     width: 50%;
     height: 19px;
@@ -188,11 +196,11 @@
 	}
     .bx-wrapper .bx-pager {
     position: relative;
-    top: 380px;
+    top: 385px;
     border: none; 
     box-shadow: none;
     background: #fff8d263;
-    height: 115px;
+    height: 110px;
     }
    .slider1, .slider2, .slider3, .slider4{
     background: #fff8d263;
@@ -229,8 +237,11 @@
 	}
 	.bx-wrapper .bx-pager.bx-default-pager a{
 	position: relative;
-	top: 30px;
-    }
+	top: 0px;
+	}
+    
+   
+    <%--#ffe0fa--%>
 </style> 
 
 <script src="https://kit.fontawesome.com/0ec4758f24.js" crossorigin="anonymous"></script>
@@ -268,7 +279,7 @@
 	__________________________ <br>
 <h1>반려견에게</h1> 
 <h3>필요한 훈련은 뭘까요?</h3> <br>
-<a style="text-decoration: none" href="<%=contextPath%>/nbShop/">
+<a style="text-decoration: none" href="<%=contextPath%>/tb/list.bo">
 <button>상담하러가기</button></a>
 </div>
 </div>
@@ -281,8 +292,9 @@
 	__________________________ <br>
 <h1>함께 살아가기 위한</h1> 
 <h3>수업을 받아보세요!</h3> <br>
-<a style="text-decoration: none" href="<%=contextPath%>/nb/edureservation.do">
-<button>수강신청 바로가기</button></a>
+<a style="text-decoration: none" href="<%=contextPath%>/nb/edu.do?center=/nbShop/trainer.jsp">
+	<button>수강신청 바로가기</button>
+</a>
 </div>
 </div>
 </div>
@@ -295,7 +307,7 @@
 	__________________________ <br>
 <h1>수강후기를</h1> 
 <h3>들려주세요!</h3> <br>
- <a style="text-decoration: none" href="<%=contextPath%>/nb/">
+ <a style="text-decoration: none" href="<%=contextPath%>/review/list.rv">
 <button>수강후기 바로가기</button></a>  
 </div>
 </div>
@@ -309,7 +321,7 @@
 	__________________________ <br>
 <h1>자유롭게</h1> 
 <h3>소통해봐요!</h3> <br>
- <a style="text-decoration: none" href="<%=contextPath%>/nbBoard/list.jsp">
+ <a style="text-decoration: none" href="<%=contextPath%>/freeboard/list.fb">
 <button>소통하러가기</button></a>  
 </div>
 </div>
@@ -334,16 +346,13 @@
 </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</div>
+</div>
+</div>
 
 <script src="<%=contextPath%>/js/jquery.min.js"></script>
 <script src="<%=contextPath%>/js/bootstrap.min.js"></script>
 <script src="<%=contextPath%>/js/run_prettify.js"></script>
-
-
-</div>
-</div>
-</div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -352,6 +361,7 @@
     <script>
     $(document).ready(function(){
         $('.slider').bxSlider({
+          speed: 1000,
           minSlides: 2,
           maxSlides: 4,
           slideWidth: 1000,
@@ -359,7 +369,8 @@
           moveSlides: 2,
           infiniteLoop: false,
 		  hideControlOnEnd: true,
-		  controls: false
+		  controls: false,
+		  pager: true
          });
       });
     </script>
@@ -392,13 +403,6 @@
 
     </div>
 </div>
-
-
-
-
-
-
-
 
 
 </body>
