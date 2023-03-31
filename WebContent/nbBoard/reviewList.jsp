@@ -176,7 +176,7 @@
       overflow: hidden;
       }
       
-      .card-content__more-btn {
+  .card-content__more-btn {
   appearance: none;
   border: 1px solid black;
   padding: 0.5em;
@@ -302,7 +302,7 @@
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">수강 후기</h1>
-        <p class="lead text-muted" style="font-size: 15px;">샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라</p>
+        <p class="lead text-muted" style="font-size: 15px;"></p>
         <p>
           <a class="btn btn-primary my-2" onclick="clickWrite('${sessionScope.id}')" style="font-size: 15;">수강후기 작성</a>
 <!--           <a href="#" class="btn btn-secondary my-2" style="font-size: 15">추가할 액션?</a> -->
