@@ -11,6 +11,53 @@
 <head>
     <title>전체 게시글</title>
     <style type="text/css">
+    
+    		/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
+	
+	#login_box > li > a:hover {
+	
+	  background: #fff5f3;
+	  text-decoration: none;
+	  border-radius: 20px;
+	  transition : 0.3s;
+	}
+
+	
+	#login_box > li > a {
+	
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 auto;
+    letter-spacing: .75px;
+    border: transparent;
+    position: relative;
+    display: inline-block;
+    background: #fff;
+    color: black;
+    transition: 0.3s;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    line-height: 40px;
+    
+	}
+	
+	#login_box > li {
+	
+/*     border: 1px solid blue; */
+    float: left;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    height: 50px;
+    width: 122px;
+    left: 0px;
+    padding: 0;
+    
+	}
     	/* 게시판을 감싸는 div의 스타일 */
 		.board-wrap {
 		  margin: 20px auto; /* 중앙 정렬 */

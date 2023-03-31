@@ -13,6 +13,34 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 
+ #top_line{
+
+    position: relative;
+    border-bottom: #F2DEE0 1px solid;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    padding: 0px;
+    margin: 0 auto;
+    background: #fff5f3;
+
+	}
+
+.footer-line {
+    position: relative;
+    border-bottom: #F2DEE0 1px solid;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    padding: 0px;
+    margin: 0 auto;
+    background: #fff5f3;
+	}
+
 
 
 </style>

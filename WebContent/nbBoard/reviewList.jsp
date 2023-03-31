@@ -29,6 +29,92 @@
 <link href="../css/review.css" rel="stylesheet">
 
     <style>
+    
+    
+    #mega_wrapper > ul {
+    border: 1px solid white;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    float: left;
+	}
+	
+	.list_lnb_01 {
+    margin-left: 50px;
+    width: 220px;
+	}
+	
+	.list_lnb_02 {
+    margin-left: 40px;
+    width: 170px;
+	}
+    
+    .list_lnb_04 {
+    margin-left: 55px;
+    width: 170px;
+	}
+		/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
+	
+	
+	#login_box > li > a:hover {
+	
+	  background: #fff5f3;
+	  text-decoration: none;
+	  border-radius: 20px;
+	  transition : 0.3s;
+	}
+
+	
+	#login_box > li > a {
+	
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 auto;
+    letter-spacing: .75px;
+    border: transparent;
+    position: relative;
+    display: inline-block;
+    background: #fff;
+    color: black;
+    transition: 0.3s;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    line-height: 40px;
+    
+	}
+	
+	#login_box > li {
+	
+/*     border: 1px solid blue; */
+    
+    float: left;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    height: 50px;
+    width: 105px;
+    left: 0;
+    padding: 0;
+    
+	}
+	
+	#login_box {
+/*     border: 1px solid rebeccapurple; */
+    margin: 0 auto 0 auto;
+    position: relative;
+    width: 250px;
+    height: 100px;
+    top: -1px;
+    left: 475px;
+    right: 0;
+    text-align: center;
+}
+	
+    
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -90,7 +176,7 @@
       overflow: hidden;
       }
       
-      .card-content__more-btn {
+  .card-content__more-btn {
   appearance: none;
   border: 1px solid black;
   padding: 0.5em;
@@ -216,7 +302,7 @@
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">수강 후기</h1>
-        <p class="lead text-muted" style="font-size: 15px;">샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라샬라</p>
+        <p class="lead text-muted" style="font-size: 15px;"></p>
         <p>
           <a class="btn btn-primary my-2" onclick="clickWrite('${sessionScope.id}')" style="font-size: 15;">수강후기 작성</a>
 <!--           <a href="#" class="btn btn-secondary my-2" style="font-size: 15">추가할 액션?</a> -->
