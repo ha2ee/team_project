@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 //	Session내장객체 메모리 영역에 session값 얻기
 String id = (String)session.getAttribute("id");
@@ -10,6 +9,3167 @@ String ContextPath = request.getContextPath();
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+/*  나눔 고딕 글꼴 임포트 */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+/* 나눔 고딕 CSS 설정 */
+
+
+/* 와이드 해상도 (1921px ~)	*/
+@media all and (min-width:1921px){
+
+
+/* 공통 적용 사항 */ 
+
+
+	* {
+			font-family: 'Nanum Gothic', sans-serif;
+	}
+		
+
+		/* 중앙정렬을 위한 테이블 CSS 설정 */
+	/*  header 영역이 항상 TOP쪽에 표시될 수 있도록 CSS 추가  */
+	  
+	.nb_top {
+	  position : fixed;
+	  width : 100%;
+	  height : 100px;
+	  margin : 0 auto 0 auto; 
+	  align-content : center;
+	  background-color : white;
+	  text-align: center;
+	  z-index: 3;
+	}
+	/* 커스텀 로고 영역 */
+	@import url(https://fonts.googleapis.com/css?family=Lato:400,300,900);
+	body{
+		padding-top : 250px;
+	}
+	#center{
+		z-index: 2;
+	}
+	#header, #middle, #footer {
+		width : 100%;
+		margin : 0 auto;
+		text-align: center;
+		top : 0;
+		left : 0;
+	}
+	#header {
+		position : fixed;
+		left : 0;
+		right : 0;
+		top : 0;
+		height : 250px;
+		background-color : white;
+		z-index: 3;
+		
+	}
+	#middle {
+		position : relative;
+		display: contents;
+		text-align : center;
+		z-index: 2;
+		
+	}
+	#footer {
+		height: 100%;
+		display : contents;
+		text-align: center;
+		position : relative;
+		height : auto;
+		z-index: 1;
+	}
+	
+	/* Slider */
+	#textSlider.row {
+		position: fixed;
+		left : 0;
+		right : 0;
+		top : 0;
+		width : 100%;
+		height:100px;
+		margin : 0 auto 0 auto;
+	}
+	#textSlider div {
+		
+		left : 0px;
+		right : 0;
+		position : relative;
+		width : 1200px;
+		color: black;
+		text-transform: uppercase;
+		margin : 0 auto 0 auto;
+		font-weight : bold;
+	}
+	.scroller {
+	   height: 100px;
+	   overflow: hidden;
+	}
+	/* scroller 안에 .inner 클래스 안에 p 태그 지정 해서 line-height: 1.0줌 */
+	.scroller .inner p{
+			
+			padding-top : 7px; 
+			margin : 0 auto 0 auto;
+			line-height: 0.85;
+			left: -30px;
+			right : 0;
+			top : -5px;
+			height : 100px;
+	}
+	.scroller .inner { 
+		
+		font-size : 65pt;
+		animation: 10s normal infinite running scroll; }
+		
+	@keyframes scroll {
+	   0%  	{margin-top: 0px;}
+	   15% 	{margin-top: 0px;}
+	   25%  {margin-top: -70pt;}
+	   40%  {margin-top: -70pt;}
+	   
+	   50%  {margin-top: -140pt;}
+	   65%  {margin-top: -140pt;}
+	   75%  {margin-top: -210pt;}
+	   90%  {margin-top: -210pt;}
+	   
+	   100% {margin-top: 0px;}
+	}
+	/* 로고 에 대한 CSS 설정 */
+	#menu1 {
+		
+		left : 0;
+		right : 0;
+		margin : 0 auto 0 auto;
+		position : fixed;
+		height : 100px;
+		width : 100%;
+		text-align : center;
+		background-color: white;
+	}
+	/*  @ 네브바 + 날씨 API CSS 설정 */
+	#menu2 {
+	/*   border : 1px solid red; */
+		
+		position : fixed;
+		top : 100px;
+		background-color: white;
+		width : 100%;
+		height : 150px;
+		align-items : center;
+		list-style : none;
+		left : 0;
+		right : 0;
+	}
+	/* 네브 박스 CSS  설정 */
+		
+	#nav_box {
+		height : 100%;
+		width : 100%;
+		position : relative;
+		margin : 0 auto 0 auto;
+		z-index : 5;
+	}
+	/* @ 네브바에 대한 CSS 설정 */
+	#main_menu {
+	/* 	border : 1px solid black; */
+		
+		left: 0;
+		right:0;
+		top : 0;
+		position: relative;
+		height: 150px;
+		width : 1200px;
+	}
+	/* 로그인에 대한 CSS 설정 */
+	#nb_login {
+		position : fixed;
+		top : 0;
+		left : 0;
+		right : 0;
+		height: 100px;
+		width : 100%;
+	}
+	#nb_box{
+		margin : 0 auto 0 auto;
+		text-align: center;
+		height : 100%;
+		width :  1200px;	
+		position: relative;
+		top : 0;
+	}
+	#login_box {
+			
+			margin : 0 auto 0 auto;
+			position: relative;
+			width : 250px;
+			height : 100px;
+			top : -1px;
+			left : 475px;
+			right : 0;
+			text-align: center;
+			
+	}
+	#login_box > li {
+		
+		float : left;
+		position: relative;
+		text-align: center;
+		margin : 0 auto 0 auto;
+		padding : 10px;
+		left : 20px;
+	}
+	#login_box > li >a {
+		
+		color : black;
+		font-size : 15px;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		font-weight: bold;
+	}
+		
+	/* 	1) "메뉴"에 대한 CSS 설정 */
+	#list_gnb {
+	/* 	border : 1px solid red; */
+		position : relative;
+		margin : 0 auto 0 auto;
+		padding : 0;
+		list-style: none;
+		width : 950px;
+		height : 150px;
+		top : 0;
+		left : -125px;
+		right : 0;
+	}
+	/*  1-1) 메뉴의 정렬에 대한 CSS 설정 */
+	#list_gnb > li {
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto 0 auto;
+		height : 150px;
+		width:1200px;
+	}
+	/* 1-2) 메뉴 버튼이 활성화 되었을때, CSS 디자인 */
+	/* 1-3) 버튼 하나하나에 대한 CSS 디자인 */
+	#list_gnb > li > a {
+		
+		top : 65px;
+		position : relative;
+	 	font-weight : 400;
+	 	color : black; 
+		text-align: center;
+		left : -150px;
+		padding : 15px;
+		font-size : 37px;
+		color : black;
+		text-decoration: none;
+		left : -130px;
+		margin : 15px;
+		transition : 0.3s;
+	}
+	/* 1-4) 버튼 하나하나가 활성화 되었을 CSS 디자인 */
+	 #list_gnb > li > a:hover { 
+	/*  	border-bottom: 3px solid #ffebcd;  */
+		border : silver;
+	 	background-color: #fff5f3;
+	 	border-radius: 30px;
+	 	transition : 0.3s;
+	 } 
+	/* 1-5) 나열된 메뉴가 활성화 되었을 때 메가메뉴를 어떻게 컨트롤 할건지에 대한 CSS 디자인 */
+	/* .list_gnb > li:hover #mega-menu { */
+	/* 	opacity: 1; */
+		
+	/* } */
+	/* 드롭  된 큰 메뉴에 대한 스타일 조정 */
+	#mega-menu {
+	
+	/* 	border : 1px solid red; */
+		
+	 	font-weight : 900;
+		width : 100%;
+		height : 170px;
+		background: white;
+		position : relative;
+		top : 249px;
+		left : 0;
+		right : 0;
+		border-radius: 3px;
+		display : none;
+		
+	}
+	#mega_wrapper{
+		
+	/*  	border : 1px solid red;  */
+		
+		left: 0;
+		right : 0;
+		position : relative;
+		top : 0;
+		width : 1200px;
+		height : 100%;
+		margin : 0 auto 0 auto;
+		
+	}
+	
+	#mega_wrapper > ul {
+    border: 1px solid white;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    float: left;
+}
+
+	/* 드롭 된 메뉴 전체의 스타일 조정 */
+	#mega_wrapper > ul >li{
+		padding : 8px;
+		text-align : center;
+		transition : 0.3s;
+	}
+	#mega_wrapper > ul >li:hover{
+		border-radius :20px;
+		background-color : #fff5f3;
+		text-align : center;
+		transition : 0.3s;
+	}
+	/* 드롭 된 메뉴의 간격 조정 */
+	.list_lnb_01 {
+	 	margin-left : 140px;  
+	 		width: 130px;
+	}
+	.list_lnb_02 {
+	 	margin-left : 90px; 
+	 	width : 150px;
+	}
+	.list_lnb_03 {
+	 	margin-left : 80px; 
+	 		width: 130px;
+	}
+	.list_lnb_04 {
+	 	margin-left : 65px; 
+	 		width: 130px;
+	}
+	/* 드롭 된 메뉴의 스타일 조정 */
+	#mega_wrapper > ul >li > a{
+		font-size : 17px;
+	 	font-weight : inherit;
+		text-align : center;
+		color : black;
+		text-decoration: none;
+	}
+	/* 드롭다운 버튼 구현을 위한 style 임포트 끝*/
+	 .nb_top > .login1 > ul{
+		left: 940;
+		position :  relative;
+		height: 100px;
+		width: 200px;
+		left :  940px;
+		list-style: none;
+	}
+	 .nb_top >  .login1 > ul > li > a {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size : 15px;
+		text-transform: uppercase;
+		font-weight : 700;
+		padding: 7px 21px;
+		margin-bottom : 4px;
+		letter-spacing: .75px;
+		border-radius : 3px;
+		border : transparent;
+		transition : 0.3s;
+		position : relative;
+		display: inline-block;
+		background : #fff;
+	}
+	 .nb_top > .login1 > ul > li > a:hover {
+		border-radius : 20px;
+		background-color : #fff5f3;
+		transition : 0.3s;
+	}
+	
+	.inner p {
+	  background-color :white;
+	}
+	
+	/* header 영역 고정 완료 */
+	/*  날씨 구현 관련 CSS 설정  */
+		#weatherWrapper {
+		position : relative;
+		top : -150px;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 100%;
+		height : 150px;
+		}
+		#weatherbox{
+		
+	/* 	border : 1px solid green; */
+		
+		position : relative;
+		top : 0;
+		left : 475px;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 150px;
+		}
+		
+		#todayweather{
+		
+	/* 	border : 1px solid green; */
+		
+		position : relative;
+		text-align : center;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 30px;
+		font-size : 20px;
+		background : #fff5f3;
+		border-radius : 5px;
+		color : #9e9e9e;
+		}
+		
+		#topTitle{
+		
+	/* 	border : 1px solid blue; */
+		
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 25px;
+		border-radius: 5px;
+		font-weight : 600;
+		}
+		
+		#topTitle > div{
+		
+	/* 	border : 1px solid red; */
+		
+		float:left;
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 1px;
+		right : 0;
+		margin : 0 auto;
+		width : calc(96%/4);
+		height : 100%;
+		}
+		
+		#weatherBody{
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 25px;
+		font-size : 13px;
+		
+		}
+		
+		#weatherBody > div{
+		
+	/* 	border : 1px solid red; */
+		
+		float:left;
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 1px;
+		right : 0;
+		margin : 0 auto;
+		width : calc(96%/4);
+		height : 100%;
+		}
+		
+		#weatherFooter {
+		
+	/* 	border : 1px solid red; */
+		
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 100%;
+		height : 65px;
+		
+		}
+		
+		
+		#weatherResult {
+		
+	/* 	border : 1px solid red; */
+		
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 246px;
+		height : 100%;
+		border-radius: 5px;
+		}
+		
+		
+		#weatherResult > img {
+		
+	/* 	border : 1px solid orange; */
+		
+		text-align : center;
+		position : relative;
+		top : 2px;
+		left : 2px;
+		right : 0;
+		margin : 0 auto;
+		width : 70px;
+		height : 96%;
+		border-radius: 5px;
+		}
+		
+	/* 	날씨에 대한 결과값 계산 후 출력할 곳 */
+		
+		#weatherzone {
+		
+	/* 	border : 1px solid blue; */
+		
+		text-align : center;
+		position : relative;
+		top : -13px;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 169px;
+		height : calc(60px / 2);
+		border-radius: 5px;
+		border: 1px dotted white;
+		
+		}
+		
+		#weatherzone2 {
+		
+	/* 	border : 1px solid blue; */
+		
+		text-align : center;
+		position : relative;
+		top : -28px;
+		left : 37px;
+		right : 0;
+		margin : 0 auto;
+		width : 169px;
+		height : calc(60px / 2);
+		border-radius: 5px;
+		border: 1px dotted white;
+		
+		}
+		/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
+	.btn:hover {
+	
+	  background: #fff5f3;
+	  text-decoration: none;
+	  border-radius: 20px;
+	  transition : 0.3s;
+	}
+	
+	.btn:focus {
+	  outline: none;
+	  transition : 0.3s;
+	}
+	
+	.btn {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size : 15px;
+		text-transform: uppercase;
+		font-weight : 700;
+		padding: 7px 21px;
+		margin-bottom : 4px;
+		letter-spacing: .75px;
+		border-radius : 3px;
+		border : transparent;
+		position : relative;
+		display: inline-block;
+		background : #fff;
+		color : black;
+		transition : 0.3s;
+	}
+
+	#hamburger {
+	
+		display : none;
+	}
+	
+	#quickmenubox > #quickmenu, 
+	#quickmenubox > #quickmenu > ul,
+	#quckmenubox > #quickmenu > ul > li {
+	
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		padding:0;margin:0
+	
+	}
+	
+	#quickmenu > ul > li > a {
+		text-decoration:none;
+	}
+	
+	#quickmenubox {
+		
+	/*     width: 100px; */
+	/*     height: 200px; */
+	/*     margin: 0 auto; */
+	/*     position: relative; */
+	/*     top: 600px; */
+	/*     left: 1200px; */
+	/*     right: 0; */
+	    
+	}
+		
+	#quickmenu {
+		
+		position:absolute;
+		width:130px;
+		top:110%;
+		margin-top:-50px;
+		right:10px;
+		background:#fff;
+		z-index : 7;
+		border-radius: 10px;
+		border: 1px dotted #f2dede;
+	}
+	
+	#quickmenu > ul {
+		position:relative;
+		float:left;
+		width:100%;
+		display:inline-block;
+		*display:inline;
+	}
+	
+	#quickmenu > ul > li {
+		float:left;
+		width:100%;
+		border-bottom:1px solid #ddd;
+		text-align:center;
+		display:inline-block;
+		*display:inline;
+	}
+	
+	#quickmenu > ul > li > a {
+		position:relative;
+		float:left;
+		width:100%;
+		height:100%;
+		line-height:30px;
+		text-align:center;
+		color:#999;
+		font-size:15px;
+	}
+	
+	#quickmenu > ul > li > a:hover {
+		color:#000;
+		border : 1px dotted #lightpink;
+		background : aliceblue;
+		border-radius : 5px;
+		transition : 2s;
+	
+	}
+	#chaticon {
+		
+		color: lightpink;
+		transition : 0.4s;
+	}
+	
+	#chaticon:hover {
+		transition : 0.4s;
+		color : navy;
+	}
+	
+	#quickmenu > ul > li:last-child {
+		border-bottom:0;
+	}
+	
+
+}
+
+/* PC (해상도 1200px ~ 1920px) */ 
+@media all and (min-width:1200px) and (max-width: 1920px) {
+
+/* 공통 적용 사항 */ 
+
+
+	* {
+			font-family: 'Nanum Gothic', sans-serif;
+	}
+		
+
+		/* 중앙정렬을 위한 테이블 CSS 설정 */
+	/*  header 영역이 항상 TOP쪽에 표시될 수 있도록 CSS 추가  */
+	  
+	.nb_top {
+	  position : fixed;
+	  width : 100%;
+	  height : 100px;
+	  margin : 0 auto 0 auto; 
+	  align-content : center;
+	  background-color : white;
+	  text-align: center;
+	  z-index: 3;
+	}
+	/* 커스텀 로고 영역 */
+	@import url(https://fonts.googleapis.com/css?family=Lato:400,300,900);
+	body{
+		padding-top : 250px;
+	}
+	#center{
+		z-index: 2;
+	}
+	#header, #middle, #footer {
+		width : 100%;
+		margin : 0 auto;
+		text-align: center;
+	}
+	#header {
+		position : fixed;
+		left : 0;
+		right : 0;
+		top : 0;
+		height : 200px;
+		background-color : white;
+		z-index: 3;
+		
+	}
+	#middle {
+		position : relative;
+		display: contents;
+		text-align : center;
+		z-index: 2;
+		
+	}
+	#footer {
+		top : 500px;
+		height: 100%;
+		display : contents;
+		text-align: center;
+		position : relative;
+		height : auto;
+		z-index: 1;
+	}
+	
+	/* Slider */
+	#textSlider.row {
+		position: fixed;
+		left : 0;
+		right : 0;
+		top : 0;
+		width : 100%;
+		height:100px;
+		margin : 0 auto 0 auto;
+	}
+	#textSlider div {
+		
+		left : 0px;
+		right : 0;
+		position : relative;
+		width : 1200px;
+		color: black;
+		text-transform: uppercase;
+		margin : 0 auto 0 auto;
+		font-weight : bold;
+	}
+	.scroller {
+	   height: 100px;
+	   overflow: hidden;
+	}
+	/* scroller 안에 .inner 클래스 안에 p 태그 지정 해서 line-height: 1.0줌 */
+	.scroller .inner p{
+			
+			padding-top : 7px; 
+			margin : 0 auto 0 auto;
+			line-height: 0.85;
+			left: -30px;
+			right : 0;
+			top : -5px;
+			height : 100px;
+	}
+	.scroller .inner { 
+		
+		font-size : 65pt;
+		animation: 10s normal infinite running scroll; }
+		
+	@keyframes scroll {
+	   0%  	{margin-top: 0px;}
+	   15% 	{margin-top: 0px;}
+	   25%  {margin-top: -70pt;}
+	   40%  {margin-top: -70pt;}
+	   
+	   50%  {margin-top: -140pt;}
+	   65%  {margin-top: -140pt;}
+	   75%  {margin-top: -210pt;}
+	   90%  {margin-top: -210pt;}
+	   
+	   100% {margin-top: 0px;}
+	}
+	/* 로고 에 대한 CSS 설정 */
+	#menu1 {
+		
+		left : 0;
+		right : 0;
+		margin : 0 auto 0 auto;
+		position : fixed;
+		height : 100px;
+		width : 100%;
+		text-align : center;
+		background-color: white;
+	}
+	/*  @ 네브바 + 날씨 API CSS 설정 */
+	#menu2 {
+	/*   border : 1px solid red; */
+		
+		position : fixed;
+		top : 100px;
+		background-color: white;
+		width : 100%;
+		height : 150px;
+		align-items : center;
+		list-style : none;
+		left : 0;
+		right : 0;
+	}
+	/* 네브 박스 CSS  설정 */
+		
+	#nav_box {
+		height : 100%;
+		width : 100%;
+		position : relative;
+		margin : 0 auto 0 auto;
+		z-index : 5;
+	}
+	/* @ 네브바에 대한 CSS 설정 */
+	#main_menu {
+	/* 	border : 1px solid black; */
+		
+		left: 0;
+		right:0;
+		top : 0;
+		position: relative;
+		height: 150px;
+		width : 1200px;
+	}
+	/* 로그인에 대한 CSS 설정 */
+	#nb_login {
+		position : fixed;
+		top : 110px;
+		left : 0;
+		right : 0;
+		height: 80px;
+		width : 100%;
+	}
+	#nb_box{
+		margin : 0 auto 0 auto;
+		text-align: center;
+		height : 100%;
+		width :  100%;	
+		position: relative;
+		top : 0;
+	}
+	#login_box {
+			
+		margin: 0 auto 0 auto;
+	    position: relative;
+	    width: 450px;
+	    height: 100%;
+	    top: 0;
+	    left: 150px;
+	    right: 0;
+	    text-align: center;
+	    
+/* 	    border: 1px solid red; */
+			
+	}
+	#login_box > li {
+		
+		float : left;
+		position: relative;
+		text-align: center;
+		margin : 0 auto 0 auto;
+		padding : 10px;
+		left : 20px;
+		top : 10px;
+	}
+	#login_box > li >a {
+		
+		color : black;
+		font-size : 15px;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		font-weight: bold;
+	}
+		
+	/* 	1) "메뉴"에 대한 CSS 설정 */
+	#list_gnb {
+	/* 	border : 1px solid red; */
+		position : relative;
+		margin : 0 auto 0 auto;
+		padding : 0;
+		list-style: none;
+		width : 950px;
+		height : 150px;
+		top : 0;
+		left : -125px;
+		right : 0;
+	}
+	/*  1-1) 메뉴의 정렬에 대한 CSS 설정 */
+	#list_gnb > li {
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto 0 auto;
+		height : 150px;
+		width:1200px;
+	}
+	/* 1-2) 메뉴 버튼이 활성화 되었을때, CSS 디자인 */
+	/* 1-3) 버튼 하나하나에 대한 CSS 디자인 */
+	#list_gnb > li > a {
+		
+		top : 65px;
+		position : relative;
+	 	font-weight : 400;
+	 	color : black; 
+		text-align: center;
+		left : -150px;
+		padding : 15px;
+		font-size : 37px;
+		color : black;
+		text-decoration: none;
+		left : -130px;
+		margin : 15px;
+		transition : 0.3s;
+	}
+	/* 1-4) 버튼 하나하나가 활성화 되었을 CSS 디자인 */
+	 #list_gnb > li > a:hover { 
+	/*  	border-bottom: 3px solid #ffebcd;  */
+		border : silver;
+	 	background-color: #fff5f3;
+	 	border-radius: 30px;
+	 	transition : 0.3s;
+	 } 
+	/* 1-5) 나열된 메뉴가 활성화 되었을 때 메가메뉴를 어떻게 컨트롤 할건지에 대한 CSS 디자인 */
+	/* .list_gnb > li:hover #mega-menu { */
+	/* 	opacity: 1; */
+		
+	/* } */
+	/* 드롭  된 큰 메뉴에 대한 스타일 조정 */
+	#mega-menu {
+	
+	/* 	border : 1px solid red; */
+		
+	 	font-weight : 900;
+		width : 100%;
+		height : 170px;
+		background: white;
+		position : relative;
+		top : 249px;
+		left : 0;
+		right : 0;
+		border-radius: 3px;
+		display : none;
+		
+	}
+	#mega_wrapper{
+		
+	/*  	border : 1px solid red;  */
+		
+		left: 0;
+		right : 0;
+		position : relative;
+		top : 0;
+		width : 1200px;
+		height : 100%;
+		margin : 0 auto 0 auto;
+		
+	}
+	/* 드롭  된 각 메뉴에 대한 스타일 조정 */
+	#mega_wrapper > ul {
+		text-align : center;
+		color : black;
+		font-size : 16px;
+		float : left;
+	}
+	/* 드롭 된 메뉴 전체의 스타일 조정 */
+	#mega_wrapper > ul >li{
+		padding : 8px;
+		text-align : center;
+		transition : 0.3s;
+	}
+	#mega_wrapper > ul >li:hover{
+		border-radius :20px;
+		background-color : #fff5f3;
+		text-align : center;
+		transition : 0.3s;
+	}
+	/* 드롭 된 메뉴의 간격 조정 */
+	.list_lnb_01 {
+	 	margin-left : 140px;  
+	 		width: 120px;
+	}
+	.list_lnb_02 {
+	 	margin-left : 90px; 
+	 	width : 150px;
+	}
+	.list_lnb_03 {
+	 	margin-left : 80px; 
+	 		width: 130px;
+	}
+	.list_lnb_04 {
+	 	margin-left : 85px; 
+	 		width: 130px;
+	}
+	/* 드롭 된 메뉴의 스타일 조정 */
+	#mega_wrapper > ul >li > a{
+		font-size : 17px;
+	 	font-weight : inherit;
+		text-align : center;
+		color : black;
+		text-decoration: none;
+	}
+	/* 드롭다운 버튼 구현을 위한 style 임포트 끝*/
+	 .nb_top > .login1 > ul{
+		left: 940;
+		position :  relative;
+		height: 100px;
+		width: 200px;
+		left :  940px;
+		list-style: none;
+	}
+	 .nb_top >  .login1 > ul > li > a {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size : 15px;
+		text-transform: uppercase;
+		font-weight : 700;
+		padding: 7px 21px;
+		margin-bottom : 4px;
+		letter-spacing: .75px;
+		border-radius : 3px;
+		border : transparent;
+		transition : 0.3s;
+		position : relative;
+		display: inline-block;
+		background : #fff;
+	}
+	 .nb_top > .login1 > ul > li > a:hover {
+		border-radius : 20px;
+		background-color : #fff5f3;
+		transition : 0.3s;
+	}
+	.inner p {
+	  background-color :white;
+	}
+	/* header 영역 고정 완료 */
+	/*  날씨 구현 관련 CSS 설정  */
+		#weatherWrapper {
+		position : relative;
+		top : -150px;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 100%;
+		height : 150px;
+		}
+		#weatherbox{
+		
+	/* 	border : 1px solid green; */
+		
+		position : relative;
+		top : 0;
+		left : 475px;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 150px;
+		}
+		
+		#todayweather{
+		
+	/* 	border : 1px solid green; */
+		
+		position : relative;
+		text-align : center;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 30px;
+		font-size : 20px;
+		background : #fff5f3;
+		border-radius : 5px;
+		color : #9e9e9e;
+		}
+		
+		#topTitle{
+		
+	/* 	border : 1px solid blue; */
+		
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 25px;
+		border-radius: 5px;
+		font-weight : 600;
+		}
+		
+		#topTitle > div{
+		
+	/* 	border : 1px solid red; */
+		
+		float:left;
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 1px;
+		right : 0;
+		margin : 0 auto;
+		width : calc(96%/4);
+		height : 100%;
+		}
+		
+		#weatherBody{
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 25px;
+		font-size : 13px;
+		
+		}
+		
+		#weatherBody > div{
+		
+	/* 	border : 1px solid red; */
+		
+		float:left;
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 1px;
+		right : 0;
+		margin : 0 auto;
+		width : calc(96%/4);
+		height : 100%;
+		}
+		
+		#weatherFooter {
+		
+	/* 	border : 1px solid red; */
+		
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 100%;
+		height : 65px;
+		
+		}
+		
+		
+		#weatherResult {
+		
+	/* 	border : 1px solid red; */
+		
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 246px;
+		height : 100%;
+		border-radius: 5px;
+		}
+		
+		
+		#weatherResult > img {
+		
+	/* 	border : 1px solid orange; */
+		
+		text-align : center;
+		position : relative;
+		top : 2px;
+		left : 2px;
+		right : 0;
+		margin : 0 auto;
+		width : 70px;
+		height : 96%;
+		border-radius: 5px;
+		}
+		
+	/* 	날씨에 대한 결과값 계산 후 출력할 곳 */
+		
+		#weatherzone {
+		
+	/* 	border : 1px solid blue; */
+		
+		text-align : center;
+		position : relative;
+		top : -13px;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 169px;
+		height : calc(60px / 2);
+		border-radius: 5px;
+		border: 1px dotted white;
+		
+		}
+		
+		#weatherzone2 {
+		
+	/* 	border : 1px solid blue; */
+		
+		text-align : center;
+		position : relative;
+		top : -28px;
+		left : 37px;
+		right : 0;
+		margin : 0 auto;
+		width : 169px;
+		height : calc(60px / 2);
+		border-radius: 5px;
+		border: 1px dotted white;
+		
+		}
+		/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
+	.btn:hover {
+	  background: #fff5f3;
+	  text-decoration: none;
+	  border-radius: 20px;
+	  transition : 0.3s;
+	}
+	.btn:focus {
+	  outline: none;
+	  transition : 0.3s;
+	}
+	.btn {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size : 15px;
+		text-transform: uppercase;
+		font-weight : 700;
+		padding: 7px 21px;
+		margin-bottom : 4px;
+		letter-spacing: .75px;
+		border-radius : 3px;
+		border : transparent;
+		position : relative;
+		display: inline-block;
+		background : #fff;
+		color : black;
+		transition : 0.3s;
+	}
+	
+	#hamburger {
+	
+		display : none;
+	}
+
+	
+	#quickmenu > ul > li > a {
+		text-decoration:none;
+	}
+	
+	#quickmenubox {
+		
+	/*     width: 100px; */
+	/*     height: 200px; */
+	/*     margin: 0 auto; */
+	/*     position: relative; */
+	/*     top: 600px; */
+	/*     left: 1200px; */
+	/*     right: 0; */
+	    
+	}
+		
+	#quickmenu {
+		
+		position:absolute;
+		width:130px;
+		top:140%;
+		margin-top:-50px;
+		right:10px;
+		background:#fff;
+		z-index : 7;
+		border-radius: 10px;
+		border: 1px dotted #f2dede;
+	}
+	
+	#quickmenu > ul {
+		position:relative;
+		float:left;
+		width:100%;
+		display:inline-block;
+		*display:inline;
+	}
+	
+	#quickmenu > ul > li {
+		float:left;
+		width:100%;
+		border-bottom:1px solid #ddd;
+		text-align:center;
+		display:inline-block;
+		*display:inline;
+	}
+	
+	#quickmenu > ul > li > a {
+		position:relative;
+		float:left;
+		width:100%;
+		height:100%;
+		line-height:30px;
+		text-align:center;
+		color:#999;
+		font-size: 15px;
+	}
+	
+	#quickmenu > ul > li > a:hover {
+		color:#000;
+		border : 1px dotted #lightpink;
+		background : aliceblue;
+		border-radius : 5px;
+		transition : 2s;
+	
+	}
+	#chaticon {
+		
+		color: lightpink;
+		transition : 0.4s;
+	}
+	
+	#chaticon:hover {
+		transition : 0.4s;
+		color : navy;
+	}
+	
+	#quickmenu > ul > li:last-child {
+		border-bottom:0;
+	}
+	
+	.footer_wrap {
+    width: 100%;
+    margin: 0 auto;
+    height: 500px;
+    position: relative;
+    top: 0;
+    left: 0;
+    background: #f1d3d73b;
+	}
+
+} 
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1199px)*/ 
+@media all and (min-width:768px) and (max-width:1199px) {
+
+/* 공통 적용 사항 */ 
+
+
+	* {
+			font-family: 'Nanum Gothic', sans-serif;
+	}
+		
+	
+		/* 중앙정렬을 위한 테이블 CSS 설정 */
+	/*  header 영역이 항상 TOP쪽에 표시될 수 있도록 CSS 추가  */
+	  
+	.nb_top {
+	
+/* 		border : 1px solid red; */
+	
+	  position : fixed;
+	  width : 100%;
+	  height : 100px;
+	  margin : 0 auto 0 auto; 
+	  align-content : center;
+	  background-color : white;
+	  text-align: center;
+	  z-index: 3;
+	  top : 0;
+	  left : 0;
+	}
+	/* 커스텀 로고 영역 */
+	@import url(https://fonts.googleapis.com/css?family=Lato:400,300,900);
+	body{
+		padding-top : 200px;
+	}
+	#center{
+		z-index: 2;
+	}
+	#header, #middle, #footer {
+		width : 100%;
+		margin : 0 auto;
+		text-align: center;
+	}
+	#header {
+	
+/* 		border : 1px solid red; */
+	
+		position : fixed;
+		left : 0;
+		right : 0;
+		top : 0;
+		height : 200px;
+		background-color : white;
+		z-index: 3;
+		
+		
+	}
+	#middle {
+		position : relative;
+		display: contents;
+		text-align : center;
+		z-index: 2;
+		
+	}
+	#footer {
+		top : 500px;
+		height: 100%;
+		display : contents;
+		text-align: center;
+		position : relative;
+		height : auto;
+		z-index: 1;
+	}
+	
+	/* Slider */
+	#textSlider.row {
+		position: fixed;
+		left : 0;
+		right : 0;
+		top : 0;
+		width : 100%;
+		height:100px;
+		margin : 0 auto 0 auto;
+	}
+	#textSlider div {
+		
+		left : 0px;
+		right : 0;
+		position : relative;
+		width : 100%;
+		color: black;
+		text-transform: uppercase;
+		margin : 0 auto 0 auto;
+		font-weight : bold;
+	}
+	.scroller {
+	   height: 100px;
+	   overflow: hidden;
+	}
+	/* scroller 안에 .inner 클래스 안에 p 태그 지정 해서 line-height: 1.0줌 */
+	.scroller .inner p{
+			
+			padding-top : 7px; 
+			margin : 0 auto 0 auto;
+			line-height: 0.85;
+			left: -30px;
+			right : 0;
+			top : -5px;
+			height : 100px;
+	}
+	.scroller .inner { 
+		
+		font-size : 65pt;
+		animation: 10s normal infinite running scroll; }
+		
+	@keyframes scroll {
+	   0%  	{margin-top: 0px;}
+	   15% 	{margin-top: 0px;}
+	   25%  {margin-top: -70pt;}
+	   40%  {margin-top: -70pt;}
+	   
+	   50%  {margin-top: -140pt;}
+	   65%  {margin-top: -140pt;}
+	   75%  {margin-top: -210pt;}
+	   90%  {margin-top: -210pt;}
+	   
+	   100% {margin-top: 0px;}
+	}
+	/* 로고 에 대한 CSS 설정 */
+	#menu1 {
+		
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto 0 auto;
+		position : fixed;
+		height : 100px;
+		width : 100%;
+		text-align : center;
+		background-color: white;
+	}
+	/*  @ 네브바 + 날씨 API CSS 설정 */
+	#menu2 {
+	/*   border : 1px solid red; */
+		
+		display : none;
+	}
+	/* 네브 박스 CSS  설정 */
+		
+	#nav_box {
+		height : 100%;
+		width : 100%;
+		position : relative;
+		margin : 0 auto 0 auto;
+		z-index : 5;
+	}
+	/* @ 네브바에 대한 CSS 설정 */
+	#main_menu {
+	/* 	border : 1px solid black; */
+		
+		left: 0;
+		right:0;
+		top : 0;
+		position: relative;
+		height: 150px;
+		width : 1200px;
+	}
+	/* 로그인에 대한 CSS 설정 */
+	#nb_login {
+	    position: absolute;
+	    top: 100px;
+	    height: 100px;
+	    width: 450px;
+	    right: 25%;
+	    margin-right: -7%;
+	}
+	
+	#nb_box{
+		margin : 0 auto 0 auto;
+		text-align: center;
+		height : 100%;
+		width :  100%;	
+		position: relative;
+		top : 0;
+	}
+	#login_box {
+			
+	margin: 0 auto 0 auto;
+    position: relative;
+    width: 460px;
+    height: 100px;
+    top: 0;
+    left: 150px;
+    right: 0;
+    text-align: center;
+    z-index : 3;
+
+			
+	}
+	#login_box > li {
+		
+		top : 20px;
+		left : 15px;
+		float : left;
+		position: relative;
+		text-align: center;
+		margin : 0 auto 0 auto;
+		padding : 10px;
+		left : 20px;
+	}
+	#login_box > li >a {
+		
+		color : black;
+		font-size : 15px;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		font-weight: bold;
+	}
+		
+	/* 	1) "메뉴"에 대한 CSS 설정 */
+	#list_gnb {
+	/* 	border : 1px solid red; */
+		position : relative;
+		margin : 0 auto 0 auto;
+		padding : 0;
+		list-style: none;
+		width : 950px;
+		height : 150px;
+		top : 0;
+		left : -125px;
+		right : 0;
+	}
+	/*  1-1) 메뉴의 정렬에 대한 CSS 설정 */
+	#list_gnb > li {
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto 0 auto;
+		height : 150px;
+		width:1200px;
+	}
+	/* 1-2) 메뉴 버튼이 활성화 되었을때, CSS 디자인 */
+	/* 1-3) 버튼 하나하나에 대한 CSS 디자인 */
+	#list_gnb > li > a {
+		
+		top : 65px;
+		position : relative;
+	 	font-weight : 400;
+	 	color : black; 
+		text-align: center;
+		left : -150px;
+		padding : 15px;
+		font-size : 37px;
+		color : black;
+		text-decoration: none;
+		left : -130px;
+		margin : 15px;
+		transition : 0.3s;
+	}
+	/* 1-4) 버튼 하나하나가 활성화 되었을 CSS 디자인 */
+	 #list_gnb > li > a:hover { 
+	/*  	border-bottom: 3px solid #ffebcd;  */
+		border : silver;
+	 	background-color: #fff5f3;
+	 	border-radius: 30px;
+	 	transition : 0.3s;
+	 } 
+	/* 1-5) 나열된 메뉴가 활성화 되었을 때 메가메뉴를 어떻게 컨트롤 할건지에 대한 CSS 디자인 */
+	/* .list_gnb > li:hover #mega-menu { */
+	/* 	opacity: 1; */
+		
+	/* } */
+	/* 드롭  된 큰 메뉴에 대한 스타일 조정 */
+	#mega-menu {
+	
+	/* 	border : 1px solid red; */
+		
+	 	font-weight : 900;
+		width : 100%;
+		height : 400px;
+		background: white;
+		position : relative;
+		top : 199px;
+		left : 0;
+		right : 0;
+		border-radius: 3px;
+		display : none;
+		
+	}
+	#mega_wrapper{
+		
+	/*  	border : 1px solid red;  */
+		
+		left: 0;
+		right : 0;
+		position : relative;
+		top : 0;
+		width : 100%;
+		height : 100%;
+		margin : 0 auto 0 auto;
+		
+	}
+	/* 드롭  된 각 메뉴에 대한 스타일 조정 */
+	#mega_wrapper > ul {
+	    text-align: center;
+	    color: black;
+	    font-size: 16px;
+	    float: left;
+	    width: 100%;
+	    height: 33%;
+	    margin: 0 auto;
+	    
+/* 	    border: 1px solid blue; */
+	}
+	/* 드롭 된 메뉴 전체의 스타일 조정 */
+	#mega_wrapper > ul >li{
+ 	   padding: 8px;
+	    text-align: center;
+	    transition: 0.3s;
+	    width: 150px;
+	    margin: 20px auto;
+	    height: 40px;
+	}
+	#mega_wrapper > ul >li:hover{
+		border-radius :20px;
+		background-color : #fff5f3;
+		text-align : center;
+		transition : 0.3s;
+	}
+	/* 드롭 된 메뉴의 간격 조정 */
+	.list_lnb_01 {
+	 	margin-left : 140px;  
+	 		width: 130px;
+	}
+	.list_lnb_02 {
+	 	margin-left : 90px; 
+	 	width : 150px;
+	}
+	.list_lnb_03 {
+	 	margin-left : 80px; 
+	 		width: 130px;
+	}
+	
+	#list_lnb_03 {
+	 	display : none;
+	}
+	.list_lnb_04 {
+	 	margin-left : 65px; 
+	 		width: 130px;
+	}
+	/* 드롭 된 메뉴의 스타일 조정 */
+	#mega_wrapper > ul >li > a{
+		font-size : 17px;
+	 	font-weight : inherit;
+		text-align : center;
+		color : black;
+		text-decoration: none;
+	}
+	/* 드롭다운 버튼 구현을 위한 style 임포트 끝*/
+	 .nb_top > .login1 > ul{
+		left: 940;
+		position :  relative;
+		height: 100px;
+		width: 200px;
+		left :  940px;
+		list-style: none;
+	}
+	 .nb_top >  .login1 > ul > li > a {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size : 15px;
+		text-transform: uppercase;
+		font-weight : 700;
+		padding: 7px 21px;
+		margin-bottom : 4px;
+		letter-spacing: .75px;
+		border-radius : 3px;
+		border : transparent;
+		transition : 0.3s;
+		position : relative;
+		display: inline-block;
+		background : #fff;
+	}
+	 .nb_top > .login1 > ul > li > a:hover {
+		border-radius : 20px;
+		background-color : #fff5f3;
+		transition : 0.3s;
+	}
+	.inner p {
+	  background-color :white;
+	}
+	/* header 영역 고정 완료 */
+	/*  날씨 구현 관련 CSS 설정  */
+		#weatherWrapper {
+		position : relative;
+		top : -150px;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 100%;
+		height : 150px;
+		}
+		#weatherbox{
+		
+	/* 	border : 1px solid green; */
+		
+		position : relative;
+		top : 0;
+		left : 475px;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 150px;
+		}
+		
+		#todayweather{
+		
+	/* 	border : 1px solid green; */
+		
+		position : relative;
+		text-align : center;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 30px;
+		font-size : 20px;
+		background : #fff5f3;
+		border-radius : 5px;
+		color : #9e9e9e;
+		}
+		
+		#topTitle{
+		
+	/* 	border : 1px solid blue; */
+		
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 25px;
+		border-radius: 5px;
+		font-weight : 600;
+		}
+		
+		#topTitle > div{
+		
+	/* 	border : 1px solid red; */
+		
+		float:left;
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 1px;
+		right : 0;
+		margin : 0 auto;
+		width : calc(96%/4);
+		height : 100%;
+		}
+		
+		#weatherBody{
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 25px;
+		font-size : 13px;
+		
+		}
+		
+		#weatherBody > div{
+		
+	/* 	border : 1px solid red; */
+		
+		float:left;
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 1px;
+		right : 0;
+		margin : 0 auto;
+		width : calc(96%/4);
+		height : 100%;
+		}
+		
+		#weatherFooter {
+		
+	/* 	border : 1px solid red; */
+		
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 100%;
+		height : 65px;
+		
+		}
+		
+		
+		#weatherResult {
+		
+	/* 	border : 1px solid red; */
+		
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 246px;
+		height : 100%;
+		border-radius: 5px;
+		}
+		
+		
+		#weatherResult > img {
+		
+	/* 	border : 1px solid orange; */
+		
+		text-align : center;
+		position : relative;
+		top : 2px;
+		left : 2px;
+		right : 0;
+		margin : 0 auto;
+		width : 70px;
+		height : 96%;
+		border-radius: 5px;
+		}
+		
+	/* 	날씨에 대한 결과값 계산 후 출력할 곳 */
+		
+		#weatherzone {
+		
+	/* 	border : 1px solid blue; */
+		
+		text-align : center;
+		position : relative;
+		top : -13px;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 169px;
+		height : calc(60px / 2);
+		border-radius: 5px;
+		border: 1px dotted white;
+		
+		}
+		
+		#weatherzone2 {
+		
+	/* 	border : 1px solid blue; */
+		
+		text-align : center;
+		position : relative;
+		top : -28px;
+		left : 37px;
+		right : 0;
+		margin : 0 auto;
+		width : 169px;
+		height : calc(60px / 2);
+		border-radius: 5px;
+		border: 1px dotted white;
+		
+		}
+		/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
+	.btn:hover {
+	  background: #fff5f3;
+	  text-decoration: none;
+	  border-radius: 20px;
+	  transition : 0.3s;
+	}
+	.btn:focus {
+	  outline: none;
+	  transition : 0.3s;
+	}
+	.btn {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size : 15px;
+		text-transform: uppercase;
+		font-weight : 700;
+		padding: 7px 21px;
+		margin-bottom : 4px;
+		letter-spacing: .75px;
+		border-radius : 3px;
+		border : transparent;
+		position : relative;
+		display: inline-block;
+		background : #fff;
+		color : black;
+		transition : 0.3s;
+	}
+	
+	#hamburger {
+	
+	    position: relative;
+	    display: block;
+	    top: 100px;
+	    left: 50%;
+	    right: 0;
+	    width: 100%;
+	    height: 100px;
+	    margin: 0 auto;
+	    z-index: 4;
+	    margin-left: -90%;
+	}
+	
+	#hamburger > a {
+	
+    position: relative;
+    
+    display: inline-block;
+    top: 10px;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    border: 1px dashed pink;
+    border-radius: 20px;
+    color: hotpink;
+    z-index: 4;
+    transition: 0.4s;
+    margin: 0 auto;
+
+	
+		
+	}
+	
+	#hamburger > a:hover {
+
+	border : 1px solid navy;
+	color : navy;
+	transition : 0.4s;
+	
+		
+	}
+	
+	#hamburger > a > i:hover {
+
+	border : 1px solid navy;
+	color : navy;
+	transition : 0.4s;
+	
+		
+	}
+	
+	#hamburger > a > i::before {
+	
+		position : relative;
+		
+		top : 0;
+		left : 0;
+		right : 0;
+		width : 100%;
+		height : 100%;
+		margin : 0 auto;
+	
+	}
+	
+		#hamburger > a > i {
+	
+		position : relative;
+		
+		display : inline-block;
+		padding : 10px;
+		top : 0;
+		left : 0;
+		right : 0;
+		width : 100%;
+		height : 100%;
+		margin : 0 auto;
+		font-size : 60px;
+		transition : 0.4s;
+	
+	}
+	
+	
+	#quickmenubox > #quickmenu, 
+	#quickmenubox > #quickmenu > ul,
+	#quckmenubox > #quickmenu > ul > li {
+	
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		padding:0;margin:0
+	
+	}
+	
+	#quickmenu > ul > li > a {
+		text-decoration:none;
+	}
+	
+	#quickmenubox {
+		
+	/*     width: 100px; */
+	/*     height: 200px; */
+	/*     margin: 0 auto; */
+	/*     position: relative; */
+	/*     top: 600px; */
+	/*     left: 1200px; */
+	/*     right: 0; */
+	    
+	}
+		
+	#quickmenu {
+		
+		display : none;
+	}
+	
+	#quickmenu > ul {
+		position:relative;
+		float:left;
+		width:100%;
+		display:inline-block;
+		*display:inline;
+	}
+	
+	#quickmenu > ul > li {
+		float:left;
+		width:100%;
+		border-bottom:1px solid #ddd;
+		text-align:center;
+		display:inline-block;
+		*display:inline;
+	}
+	
+	#quickmenu > ul > li > a {
+		position:relative;
+		float:left;
+		width:100%;
+		height:100%;
+		line-height:30px;
+		text-align:center;
+		color:#999;
+		font-size:9.5pt;
+	}
+	
+	#quickmenu > ul > li > a:hover {
+		color:#000;
+		border : 1px dotted #lightpink;
+		background : aliceblue;
+		border-radius : 5px;
+		transition : 2s;
+	
+	}
+	#chaticon {
+		
+		color: lightpink;
+		transition : 0.4s;
+	}
+	
+	#chaticon:hover {
+		transition : 0.4s;
+		color : navy;
+	}
+	
+	#quickmenu > ul > li:last-child {
+		border-bottom:0;
+	}
+	
+	.footer_wrap {
+    width: 100%;
+    margin: 0 auto;
+    height: 500px;
+    position: relative;
+    top: 0;
+    left: 0;
+    background: #f1d3d73b;
+	}
+
+
+} 
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/ 
+@media all and (max-width:767px) {
+
+
+/* 공통 적용 사항 */ 
+
+
+	* {
+			font-family: 'Nanum Gothic', sans-serif;
+	}
+		
+
+	
+		/* 중앙정렬을 위한 테이블 CSS 설정 */
+	/*  header 영역이 항상 TOP쪽에 표시될 수 있도록 CSS 추가  */
+	  
+	.nb_top {
+	  position : fixed;
+	  width : 100%;
+	  height : 100px;
+	  margin : 0 auto 0 auto; 
+	  align-content : center;
+	  background-color : white;
+	  text-align: center;
+	  z-index: 3;
+	}
+	/* 커스텀 로고 영역 */
+	@import url(https://fonts.googleapis.com/css?family=Lato:400,300,900);
+	body{
+		padding-top : 200px;
+	}
+	#center{
+		z-index: 2;
+	}
+	#header, #middle, #footer {
+		width : 100%;
+		margin : 0 auto;
+		text-align: center;
+	}
+	#header {
+		position : fixed;
+		left : 0;
+		right : 0;
+		top : 0;
+		height : 200px;
+		background-color : white;
+		z-index: 3;
+		
+	}
+	#middle {
+		position : relative;
+		display: contents;
+		text-align : center;
+		z-index: 2;
+		
+	}
+	#footer {
+		top : 500px;
+		height: 100%;
+		display : contents;
+		text-align: center;
+		position : relative;
+		height : auto;
+		z-index: 1;
+	}
+	
+	/* Slider */
+	#textSlider.row {
+		position: fixed;
+		left : 0;
+		right : 0;
+		top : 0;
+		width : 100%;
+		height:100px;
+		margin : 0 auto 0 auto;
+	}
+	#textSlider div {
+		
+	    left: 0px;
+	    right: 0;
+	    position: relative;
+	    width: 100%;
+	    color: black;
+	    text-transform: uppercase;
+	    margin: 0 auto;
+	    font-weight: bold;
+	    font-size: 40px;
+	}
+	.scroller {
+	   height: 100px;
+	   overflow: hidden;
+	}
+	/* scroller 안에 .inner 클래스 안에 p 태그 지정 해서 line-height: 1.0줌 */
+	.scroller .inner p{
+			
+			padding-top : 7px; 
+			margin : 0 auto 0 auto;
+			line-height: 0.85;
+			left: -30px;
+			right : 0;
+			top : -5px;
+			height : 100px;
+	}
+	.scroller .inner { 
+		
+		font-size : 65pt;
+		animation: 10s normal infinite running scroll; }
+		
+	@keyframes scroll {
+	   0%  	{margin-top: 0px;}
+	   15% 	{margin-top: 0px;}
+	   25%  {margin-top: -70pt;}
+	   40%  {margin-top: -70pt;}
+	   
+	   50%  {margin-top: -140pt;}
+	   65%  {margin-top: -140pt;}
+	   75%  {margin-top: -210pt;}
+	   90%  {margin-top: -210pt;}
+	   
+	   100% {margin-top: 0px;}
+	}
+	/* 로고 에 대한 CSS 설정 */
+	#menu1 {
+		
+		left : 0;
+		right : 0;
+		margin : 0 auto 0 auto;
+		position : fixed;
+		height : 100px;
+		width : 100%;
+		text-align : center;
+		background-color: white;
+	}
+	/*  @ 네브바 + 날씨 API CSS 설정 */
+	#menu2 {
+	/*   border : 1px solid red; */
+		
+		display : none;
+	}
+	/* 네브 박스 CSS  설정 */
+		
+	#nav_box {
+		height : 100%;
+		width : 100%;
+		position : relative;
+		margin : 0 auto 0 auto;
+		z-index : 5;
+	}
+	/* @ 네브바에 대한 CSS 설정 */
+	#main_menu {
+	/* 	border : 1px solid black; */
+		
+		left: 0;
+		right:0;
+		top : 0;
+		position: relative;
+		height: 150px;
+		width : 1200px;
+	}
+	/* 로그인에 대한 CSS 설정 */
+	#nb_login {
+	    position: absolute;
+	    top: 100px;
+	    height: 100px;
+	    width: 450px;
+	    right: -5%;
+	    margin-right: -7%;
+	}
+	
+	#nb_box{
+		margin : 0 auto 0 auto;
+		text-align: center;
+		height : 100%;
+		width :  100%;	
+		position: relative;
+		top : 0;
+	}
+	#login_box {
+	    margin: 0 auto 0 auto;
+	    position: relative;
+	    width: 100%;
+	    height: 100%;
+	    top: 0px;
+	    left: 0;
+	    right: 0;
+	    text-align: center;
+	    z-index: 3;
+/* 	    border: 1px solid red; */
+	}
+	
+	.login1 {
+	
+		    float: left;
+		    position: relative;
+		    text-align: center;
+		    margin: 0 auto 0 auto;
+		    padding: 5px;
+		    left: 30px;
+		/*     border: 1px solid red; */
+		    height: 45px;
+		    top: 25px;
+		    width: 80px;
+	}
+	
+		#login2 {
+	    font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+		#login3 {
+	    font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+		#login4 {
+	    font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+		#login5 {
+	    font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+		#login6 {
+	    font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+		#login7 {
+   		 font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+
+		#cart {
+	    font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+		
+	/* 	1) "메뉴"에 대한 CSS 설정 */
+	#list_gnb {
+	/* 	border : 1px solid red; */
+		position : relative;
+		margin : 0 auto 0 auto;
+		padding : 0;
+		list-style: none;
+		width : 950px;
+		height : 150px;
+		top : 0;
+		left : -125px;
+		right : 0;
+	}
+	/*  1-1) 메뉴의 정렬에 대한 CSS 설정 */
+	#list_gnb > li {
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto 0 auto;
+		height : 150px;
+		width:1200px;
+	}
+	
+	/* 1-2) 메뉴 버튼이 활성화 되었을때, CSS 디자인 */
+	/* 1-3) 버튼 하나하나에 대한 CSS 디자인 */
+	#list_gnb > li > a {
+		
+		top : 65px;
+		position : relative;
+	 	font-weight : 400;
+	 	color : black; 
+		text-align: center;
+		left : -150px;
+		padding : 15px;
+		font-size : 37px;
+		color : black;
+		text-decoration: none;
+		left : -130px;
+		margin : 15px;
+		transition : 0.3s;
+	}
+	/* 1-4) 버튼 하나하나가 활성화 되었을 CSS 디자인 */
+	 #list_gnb > li > a:hover { 
+	/*  	border-bottom: 3px solid #ffebcd;  */
+		border : silver;
+	 	background-color: #fff5f3;
+	 	border-radius: 30px;
+	 	transition : 0.3s;
+	 } 
+	/* 1-5) 나열된 메뉴가 활성화 되었을 때 메가메뉴를 어떻게 컨트롤 할건지에 대한 CSS 디자인 */
+	/* .list_gnb > li:hover #mega-menu { */
+	/* 	opacity: 1; */
+		
+	/* } */
+	/* 드롭  된 큰 메뉴에 대한 스타일 조정 */
+	#mega-menu {
+	
+	/* 	border : 1px solid red; */
+		
+	 	font-weight : 900;
+		width : 100%;
+		height : 400px;
+		background: white;
+		position : relative;
+		top : 199px;
+		left : 0;
+		right : 0;
+		border-radius: 3px;
+		display : none;
+		
+	}
+	#mega_wrapper{
+		
+	/*  	border : 1px solid red;  */
+		
+		left: 0;
+		right : 0;
+		position : relative;
+		top : 0;
+		width : 100%;
+		height : 100%;
+		margin : 0 auto 0 auto;
+		
+	}
+	/* 드롭  된 각 메뉴에 대한 스타일 조정 */
+	#mega_wrapper > ul {
+	    text-align: center;
+	    color: black;
+	    font-size: 16px;
+	    float: left;
+	    width: 100%;
+	    height: 33%;
+	    margin: 0 auto;
+	    
+/* 	    border: 1px solid blue; */
+	}
+	/* 드롭 된 메뉴 전체의 스타일 조정 */
+	#mega_wrapper > ul >li{
+ 	   padding: 8px;
+	    text-align: center;
+	    transition: 0.3s;
+	    width: 150px;
+	    margin: 20px auto;
+	    height: 40px;
+	}
+	#mega_wrapper > ul >li:hover{
+		border-radius :20px;
+		background-color : #fff5f3;
+		text-align : center;
+		transition : 0.3s;
+	}
+	/* 드롭 된 메뉴의 간격 조정 */
+	.list_lnb_01 {
+	 	margin-left : 140px;  
+	 		width: 130px;
+	}
+	.list_lnb_02 {
+	 	margin-left : 90px; 
+	 	width : 150px;
+	}
+	.list_lnb_03 {
+	 	margin-left : 80px; 
+	 		width: 130px;
+	}
+	
+	#list_lnb_03 {
+	 	display : none;
+	}
+	.list_lnb_04 {
+	 	margin-left : 65px; 
+	 		width: 130px;
+	}
+	/* 드롭 된 메뉴의 스타일 조정 */
+	#mega_wrapper > ul >li > a{
+		font-size : 17px;
+	 	font-weight : inherit;
+		text-align : center;
+		color : black;
+		text-decoration: none;
+	}
+	/* 드롭다운 버튼 구현을 위한 style 임포트 끝*/
+	 .nb_top > .login1 > ul{
+		left: 940;
+		position :  relative;
+		height: 100px;
+		width: 200px;
+		left :  940px;
+		list-style: none;
+	}
+	 .nb_top >  .login1 > ul > li > a {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size : 15px;
+		text-transform: uppercase;
+		font-weight : 700;
+		padding: 7px 21px;
+		margin-bottom : 4px;
+		letter-spacing: .75px;
+		border-radius : 3px;
+		border : transparent;
+		transition : 0.3s;
+		position : relative;
+		display: inline-block;
+		background : #fff;
+	}
+	 .nb_top > .login1 > ul > li > a:hover {
+		border-radius : 20px;
+		background-color : #fff5f3;
+		transition : 0.3s;
+	}
+	.inner p {
+	  background-color :white;
+	}
+	/* header 영역 고정 완료 */
+	/*  날씨 구현 관련 CSS 설정  */
+		#weatherWrapper {
+		position : relative;
+		top : -150px;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 100%;
+		height : 150px;
+		}
+		#weatherbox{
+		
+	/* 	border : 1px solid green; */
+		
+		position : relative;
+		top : 0;
+		left : 475px;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 150px;
+		}
+		
+		#todayweather{
+		
+	/* 	border : 1px solid green; */
+		
+		position : relative;
+		text-align : center;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 30px;
+		font-size : 20px;
+		background : #fff5f3;
+		border-radius : 5px;
+		color : #9e9e9e;
+		}
+		
+		#topTitle{
+		
+	/* 	border : 1px solid blue; */
+		
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 25px;
+		border-radius: 5px;
+		font-weight : 600;
+		}
+		
+		#topTitle > div{
+		
+	/* 	border : 1px solid red; */
+		
+		float:left;
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 1px;
+		right : 0;
+		margin : 0 auto;
+		width : calc(96%/4);
+		height : 100%;
+		}
+		
+		#weatherBody{
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 25px;
+		font-size : 13px;
+		
+		}
+		
+		#weatherBody > div{
+		
+	/* 	border : 1px solid red; */
+		
+		float:left;
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 1px;
+		right : 0;
+		margin : 0 auto;
+		width : calc(96%/4);
+		height : 100%;
+		}
+		
+		#weatherFooter {
+		
+	/* 	border : 1px solid red; */
+		
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 100%;
+		height : 65px;
+		
+		}
+		
+		
+		#weatherResult {
+		
+	/* 	border : 1px solid red; */
+		
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 246px;
+		height : 100%;
+		border-radius: 5px;
+		}
+		
+		
+		#weatherResult > img {
+		
+	/* 	border : 1px solid orange; */
+		
+		text-align : center;
+		position : relative;
+		top : 2px;
+		left : 2px;
+		right : 0;
+		margin : 0 auto;
+		width : 70px;
+		height : 96%;
+		border-radius: 5px;
+		}
+		
+	/* 	날씨에 대한 결과값 계산 후 출력할 곳 */
+		
+		#weatherzone {
+		
+	/* 	border : 1px solid blue; */
+		
+		text-align : center;
+		position : relative;
+		top : -13px;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 169px;
+		height : calc(60px / 2);
+		border-radius: 5px;
+		border: 1px dotted white;
+		
+		}
+		
+		#weatherzone2 {
+		
+	/* 	border : 1px solid blue; */
+		
+		text-align : center;
+		position : relative;
+		top : -28px;
+		left : 37px;
+		right : 0;
+		margin : 0 auto;
+		width : 169px;
+		height : calc(60px / 2);
+		border-radius: 5px;
+		border: 1px dotted white;
+		
+		}
+		/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
+	.btn:hover {
+	  background: #fff5f3;
+	  text-decoration: none;
+	  border-radius: 20px;
+	  transition : 0.3s;
+	}
+	.btn:focus {
+	  outline: none;
+	  transition : 0.3s;
+	}
+	.btn {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size : 15px;
+		text-transform: uppercase;
+		font-weight : 700;
+		padding: 7px 21px;
+		margin-bottom : 4px;
+		letter-spacing: .75px;
+		border-radius : 3px;
+		border : transparent;
+		position : relative;
+		display: inline-block;
+		background : #fff;
+		color : black;
+		transition : 0.3s;
+	}
+	
+	#hamburger {
+	    position: relative;
+	    display: block;
+	    top: 100px;
+	    left: 50%;
+	    right: 0;
+	    width: 100%;
+	    height: 100px;
+	    margin: 0 auto;
+	    z-index: 4;
+	    margin-left: -90%;
+	}
+	
+	#hamburger > a {
+	    position: relative;
+	    display: flex;
+	    top: 15px;
+	    right: 0;
+	    left: 0px;
+	    margin: 0 auto;
+	    border: 2px dashed pink;
+	    border-radius: 20px;
+	    color: hotpink;
+	    z-index: 4;
+	    transition: 0.4s;
+	    width: 60px;
+	    padding: 0;
+	    height: 70px;
+	}
+	
+	#hamburger > a:hover {
+
+	border : 1px solid navy;
+	color : navy;
+	transition : 0.4s;
+	
+		
+	}
+	
+	#hamburger > a > i:hover {
+
+	border : 1px solid navy;
+	color : navy;
+	transition : 0.4s;
+	
+		
+	}
+	
+	#hamburger > a > i::before {
+	    position: relative;
+	    top: 0px;
+	    left: 0;
+	    right: 0;
+	    width: 100%;
+	    height: 75%;
+	    margin: 0 auto;
+	}
+	
+	
+	#hamburger > a > i {
+	    position: relative;
+	    display: flex;
+	    padding: 0;
+	    top: 0;
+	    left: 0px;
+	    top: 8px;
+	    width: 100%;
+	    height: 100%;
+	    margin: 0 auto;
+	    font-size: 50px;
+	    transition: 0.4s;
+	}
+	
+	#quickmenubox > #quickmenu, 
+	#quickmenubox > #quickmenu > ul,
+	#quckmenubox > #quickmenu > ul > li {
+	
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		padding:0;margin:0
+	
+	}
+	
+	#quickmenu > ul > li > a {
+		text-decoration:none;
+	}
+	
+	#quickmenubox {
+		
+	/*     width: 100px; */
+	/*     height: 200px; */
+	/*     margin: 0 auto; */
+	/*     position: relative; */
+	/*     top: 600px; */
+	/*     left: 1200px; */
+	/*     right: 0; */
+	    
+	}
+		
+	#quickmenu {
+		
+		display : none;
+	}
+	
+	#quickmenu > ul {
+		position:relative;
+		float:left;
+		width:100%;
+		display:inline-block;
+		*display:inline;
+	}
+	
+	#quickmenu > ul > li {
+		float:left;
+		width:100%;
+		border-bottom:1px solid #ddd;
+		text-align:center;
+		display:inline-block;
+		*display:inline;
+	}
+	
+	#quickmenu > ul > li > a {
+		position:relative;
+		float:left;
+		width:100%;
+		height:100%;
+		line-height:30px;
+		text-align:center;
+		color:#999;
+		font-size:9.5pt;
+	}
+	
+	#quickmenu > ul > li > a:hover {
+		color:#000;
+		border : 1px dotted #lightpink;
+		background : aliceblue;
+		border-radius : 5px;
+		transition : 2s;
+	
+	}
+	#chaticon {
+		
+		color: lightpink;
+		transition : 0.4s;
+	}
+	
+	#chaticon:hover {
+		transition : 0.4s;
+		color : navy;
+	}
+	
+	#quickmenu > ul > li:last-child {
+		border-bottom:0;
+	}
+	
+	.footer_wrap {
+	    width: 100%;
+	    margin: 0 auto;
+	    height: 500px;
+	    position: relative;
+	    top: 0;
+	    left: 0;
+	    background: #f1d3d73b;
+	}
+	
+	.footer > div {
+	    margin: 0 auto;
+	    position: relative;
+	    top: 0;
+	    left: 10px;
+	    width: calc(97%/3);
+	    height: 100%;
+	    border: 0.1pt dotted #f2dede;
+	    float: left;
+	}
+	
+	h4 {
+    font-size: 15px;
+	}
+	
+	.footer-widget > ul > li {
+    margin-bottom: 10px;
+	}
+	
+	.footer-widget > ul > li > a {
+    font-size: 10px;
+    color: #9a9da0;
+    text-transform: uppercase;
+    letter-spacing: .75px;
+    font-weight: 600;
+    line-height: 1;
+	}
+	
+	footer-widget > p {
+	font-size : 10px;
+	
+	}
+
+} 
+
+
+
+
+
+</style>
+
+<!--          			# 부트스트랩 플러그인  관련 -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Digital marketing courses website template that can help you boost your business courses website and its completely free.">
+    <meta name="keywords" content="seo,free website template, free responsive website template, seo marketing, search engine optimization, web analytics">
+	
+<!-- 	Fontawesome 셋팅 -->
+	<script src="https://kit.fontawesome.com/4536cebc99.js" crossorigin="anonymous"></script>
+<!--  	 Top CSS 셋팅 -->
+<%--  	<link href="<%=request.getContextPath()%>/css/Top.css" rel="stylesheet"> --%>
+   
+<!--  	 quickmenu CSS 셋팅 -->
+<%--  	<link href="<%=request.getContextPath()%>/css/quickmenu.css" rel="stylesheet"> --%>
+    <!-- Bootstrap -->
+<%--     <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet"> --%>
+    <!-- Style CSS -->
+    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+    <!-- 구글 폰트 -->
+<!--     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"> -->
+<!--     FontAwesome CSS -->
+<%--     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/fontello.css"> --%>
+<%--     <link href="<%=request.getContextPath()%>/css/font-awesome.min.css" rel="stylesheet"> --%>
+    <link href="<%=request.getContextPath()%>/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/owl.theme.default.css" rel="stylesheet">
+
+<!--          			# 부트스트랩 플러그인  관련 -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!--          			# 홈버튼 플러그인  관련 -->
+<i class="bi bi-house"></i>
+</svg>
+
+<title>Top.jsp</title>
+
+<!--          			# 플러그인  관련 -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<%=request.getContextPath()%>/js/jquery.min.js" type="text/javascript"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/js/menumaker.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/slider.js"></script>
 <script>
 //메인 메뉴에 마우스가 올려지면 토글하는 함수 생성
 $(document).ready(function(){
@@ -20,7 +3180,7 @@ $(document).ready(function(){
 		<%
 			if(id == null){
 		%> 
-				alert("회원만 로그인 후 수강신청 가능합니다!");
+				alert("로그인 후 수강신청 가능합니다!");
 				location.replace("<%=request.getContextPath()%>/member/login.me");
 				return false;
 			
@@ -34,7 +3194,7 @@ $(document).ready(function(){
 		<%
 			if(id == null){
 		%> 
-				alert("회원 또는 비회원 조회로 가능합니다.");
+				alert("로그인 후 조회 가능합니다.");
 				location.replace("<%=request.getContextPath()%>/member/login.me");
 				return false;
 			
@@ -68,69 +3228,6 @@ $(document).ready(function(){
 	
 });
 </script>
-
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
-  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
-<script>
-  Kakao.init('083d7283f7089c6f3d424efd747489e9'); // 사용하려는 앱의 JavaScript 키 입력
-</script>
-
-<style>
-/*  나눔 고딕 글꼴 임포트 */
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-/* 나눔 고딕 CSS 설정 */
-</style>
-
-<!--          			# 부트스트랩 플러그인  관련 -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Digital marketing courses website template that can help you boost your business courses website and its completely free.">
-    <meta name="keywords" content="seo,free website template, free responsive website template, seo marketing, search engine optimization, web analytics">
-	
-<!-- 	Fontawesome 셋팅 -->
-	<script src="https://kit.fontawesome.com/4536cebc99.js" crossorigin="anonymous"></script>
-<!--  	 Top CSS 셋팅 -->
- 	<link href="<%=request.getContextPath()%>/css/Top.css" rel="stylesheet">
-   
-<!--  	 quickmenu CSS 셋팅 -->
- 	<link href="<%=request.getContextPath()%>/css/quickmenu.css" rel="stylesheet">
-   
-    <!-- Bootstrap -->
-    <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Style CSS -->
-    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
-    <!-- 구글 폰트 -->
-<!--     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"> -->
-<!--     FontAwesome CSS -->
-<%--     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/fontello.css"> --%>
-<%--     <link href="<%=request.getContextPath()%>/css/font-awesome.min.css" rel="stylesheet"> --%>
-    <link href="<%=request.getContextPath()%>/css/owl.carousel.min.css" rel="stylesheet">
-    <link href="<%=request.getContextPath()%>/css/owl.theme.default.css" rel="stylesheet">
-
-<!--          			# 부트스트랩 플러그인  관련 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!--          			# 홈버튼 플러그인  관련 -->
-<i class="bi bi-house"></i>
-</svg>
-
-<title>Top.jsp</title>
-
-<!--          			# 플러그인  관련 -->
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="<%=request.getContextPath()%>/js/jquery.min.js" type="text/javascript"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<%=request.getContextPath()%>/js/menumaker.js" type="text/javascript"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.sticky.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/slider.js"></script>
 </head>    
 <body>    
  <div class="nb_top" >
@@ -155,25 +3252,18 @@ $(document).ready(function(){
 					if(id == null){
 				%>	
 
-				   <li><a href="<%=request.getContextPath()%>/member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
-	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
-	               <li><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
+				   <li class="login1"><a id="login2"href="<%=request.getContextPath()%>/member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
+	               <li class= "login1"><a id="login3"href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+	               <li class= "login1"><a id="login4"href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
+	               <li class= "login1"><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
 
 				<%
 					}else{//로그인 O
 				%>
-				   <li><a href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
-				   <c:choose>
-				   	<c:when test="${id eq 'admin'}">
-				   	<li><a href="<%=request.getContextPath()%>/adm/adminMain" class="btn">관리자페이지</a></li>
-				   	</c:when>
-				   	<c:otherwise>
-				   	<li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-				   	</c:otherwise>
-				   </c:choose>
-<%-- 	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li> --%>
-	               <li><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
+				<li class="login1" ><a id="login5" href="<%=request.getContextPath()%>/nb/Main" class="btn">[ 홈 ]</a></li>
+				   <li class="login1"><a id="login6" href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
+	               <li class="login1"><a id="login7" href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+	               <li class="login1"><a  id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
 
 				<%
 					}
@@ -199,7 +3289,7 @@ $(document).ready(function(){
 				<a href="<%=request.getContextPath()%>/nb/Intro.do?center=/nbCompany/intro.jsp"> 늘 봄이란?</a>
 				<a class = "edu_btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp"> 수강 신청 </a>
 				<a href="<%=request.getContextPath()%>/freeboard/list.fb"> 소통 하기</a>
-				<a href="<%=request.getContextPath()%>/tb/list.bo"> 고객 센터</a>
+				<a href="<%=request.getContextPath()%>/review/qna.bo"> 고객 센터</a>
 
 
 
@@ -245,9 +3335,10 @@ $(document).ready(function(){
 			</ul>
 			<ul class="list_lnb_02">
 				<li><a class="edu_btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강신청 가기</a></li>
-				<li><a href="<%=request.getContextPath()%>/review/list.rv?nowBlock=0&nowPage=0">수강 후기</a></li>
+				<li><a href="<%=request.getContextPath()%>/review/list.rv">수강 후기</a></li>
 			</ul>
-			<ul class="list_lnb_03">
+			<ul id = "list_lnb_03" class="list_lnb_03">
+
 			</ul>
 			<ul class="list_lnb_04">
 				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
@@ -267,8 +3358,8 @@ $(document).ready(function(){
 	<div id="quickmenubox">
 		<div id="quickmenu">
 			<ul>
-				<li><a href="">늘봄 샵</a></li>
-				<li><a href="">늘봄 후기</a></li>
+				<li><a href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강 신청</a></li>
+				<li><a href="<%=request.getContextPath()%>/review/list.rv">수강 후기</a></li>
 				<li><a id="add-channel-button" href="javascript:addChannel()"><br><i style="font-size: 55px;"id="chaticon" class="fa-solid fa-paw"></i><br>1:1 채팅문의</a></li>
 			</ul>
 		</div>

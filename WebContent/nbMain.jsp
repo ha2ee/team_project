@@ -40,6 +40,109 @@
 	font-family : 'Nanum Gothic', sans-serif;
 }
 
+ html {
+  height : 100%;
+ }
+ footer {
+ 
+     top: 50px;
+    position: relative;
+    margin: 0 auto;
+    left: 0;
+    width: 100%;
+    height: 500px;
+
+ }
+ 
+ 
+ .footer_wrap {
+    width: 1920px;
+    margin: 0 auto;
+    height: 500px;
+    position: relative;
+    top: 0;
+    left: 0;
+    background: #f1d3d73b;
+}
+
+#top_line {
+
+	position: relative;
+    margin: 0;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 100%;
+    border-top: 1px solid #f2dede;
+
+}
+
+#bottom_line {
+
+	position: relative;
+    margin: 0;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 100%;
+    border-top: 1px solid #f2dede;
+
+}
+
+.footer {
+
+    margin: 0 auto;
+    height: 80%;
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.footer > div {
+
+    margin: 0 auto;
+    position: relative;
+    top: 0;
+    left: 10px;
+    width: calc(99%/3);
+    height: 100%;
+    border: 0.1pt dotted #f2dede;
+    float: left;
+
+}
+
+.footer-title {
+    margin-bottom: 40px;
+    color: #9a9da0;
+}
+
+.copyright {
+    margin: 0 auto;
+    left: 0;
+    top: 0;
+    position: relative;
+    width: 100%;
+    height: 30px;
+}
+
+
+#qna {
+	
+	background : #f2dede;
+	border-radius : 10px;
+	border : 1px solid #f2dede;
+	color : #ff8119;
+
+}
+
+#qna:hover {
+
+	background : lightpink;
+	border-radius : 20px;
+	color : red;
+
+}
 </style>
 <title>ProjectMain.jsp</title>
 </head>

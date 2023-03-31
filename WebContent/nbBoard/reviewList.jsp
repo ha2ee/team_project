@@ -29,6 +29,92 @@
 <link href="../css/review.css" rel="stylesheet">
 
     <style>
+    
+    
+    #mega_wrapper > ul {
+    border: 1px solid white;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    float: left;
+	}
+	
+	.list_lnb_01 {
+    margin-left: 50px;
+    width: 220px;
+	}
+	
+	.list_lnb_02 {
+    margin-left: 40px;
+    width: 170px;
+	}
+    
+    .list_lnb_04 {
+    margin-left: 55px;
+    width: 170px;
+	}
+		/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
+	
+	
+	#login_box > li > a:hover {
+	
+	  background: #fff5f3;
+	  text-decoration: none;
+	  border-radius: 20px;
+	  transition : 0.3s;
+	}
+
+	
+	#login_box > li > a {
+	
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 auto;
+    letter-spacing: .75px;
+    border: transparent;
+    position: relative;
+    display: inline-block;
+    background: #fff;
+    color: black;
+    transition: 0.3s;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    line-height: 40px;
+    
+	}
+	
+	#login_box > li {
+	
+/*     border: 1px solid blue; */
+    
+    float: left;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    height: 50px;
+    width: 105px;
+    left: 0;
+    padding: 0;
+    
+	}
+	
+	#login_box {
+/*     border: 1px solid rebeccapurple; */
+    margin: 0 auto 0 auto;
+    position: relative;
+    width: 250px;
+    height: 100px;
+    top: -1px;
+    left: 475px;
+    right: 0;
+    text-align: center;
+}
+	
+    
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
