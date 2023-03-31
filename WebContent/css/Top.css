@@ -1,841 +1,1284 @@
+
+/* 공통 적용 사항 */ 
+
+
 * {
-	font-family: 'Nanum Gothic', sans-serif;
-}
-/* 중앙정렬을 위한 테이블 CSS 설정 */
-/*  header 영역이 항상 TOP쪽에 표시될 수 있도록 CSS 추가  */
-  
-.nb_top {
-  position : fixed;
-  width : 100%;
-  height : 100px;
-  margin : 0 auto 0 auto; 
-  align-content : center;
-  background-color : white;
-  text-align: center;
-  z-index: 3;
-}
-/* 커스텀 로고 영역 */
-@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
-@import url(https://fonts.googleapis.com/css?family=Lato:400,300,900);
-body{
-	padding-top : 250px;
-}
-#center{
-	z-index: 2;
-}
-#header, #middle, #footer {
-	width : 100%;
-	margin : 0 auto 0 auto;
-	text-align: center;
-}
-#header {
-	position : fixed;
-	left : 0;
-	right : 0;
-	top : 0;
-	height : 250px;
-	background-color : white;
-	z-index: 3;
-	
-}
-#middle {
-	position : relative;
-	display: contents;
-	text-align : center;
-	z-index: 2;
-	
-}
-#footer {
-	top : 500px;
-	height: 500px;
-	display : contents;
-	text-align: center;
-	position : relative;
-	height : auto;
-	z-index: 1;
-}
-/* Slider */
-#textSlider.row {
-	position: fixed;
-	left : 0;
-	right : 0;
-	top : 0;
-	width : 100%;
-	height:100px;
-	margin : 0 auto 0 auto;
-}
-#textSlider div {
-	
-	left : 0px;
-	right : 0;
-	position : relative;
-	width : 1200px;
-	color: black;
-	text-transform: uppercase;
-	margin : 0 auto 0 auto;
-}
-.scroller {
-   height: 100px;
-   overflow: hidden;
-}
-/* scroller 안에 .inner 클래스 안에 p 태그 지정 해서 line-height: 1.0줌 */
-.scroller .inner p{
-		
-		padding-top : 7px; 
-		margin : 0 auto 0 auto;
-		line-height: 0.85;
-		left: -30px;
-		right : 0;
-		top : -5px;
-		height : 100px;
-}
-.scroller .inner { 
-	
-	font-size : 65pt;
-	animation: 10s normal infinite running scroll; }
-	
-@keyframes scroll {
-   0%  	{margin-top: 0px;}
-   15% 	{margin-top: 0px;}
-   25%  {margin-top: -70pt;}
-   40%  {margin-top: -70pt;}
-   
-   50%  {margin-top: -140pt;}
-   65%  {margin-top: -140pt;}
-   75%  {margin-top: -210pt;}
-   90%  {margin-top: -210pt;}
-   
-   100% {margin-top: 0px;}
-}
-/* 로고 에 대한 CSS 설정 */
-#menu1 {
-	
-	left : 0;
-	right : 0;
-	margin : 0 auto 0 auto;
-	position : fixed;
-	height : 100px;
-	width : 100%;
-	text-align : center;
-	background-color: white;
-}
-/*  @ 네브바 + 날씨 API CSS 설정 */
-#menu2 {
-/*   border : 1px solid red; */
-	
-	position : fixed;
-	top : 100px;
-	background-color: white;
-	width : 100%;
-	height : 150px;
-	align-items : center;
-	list-style : none;
-	left : 0;
-	right : 0;
-}
-/* 네브 박스 CSS  설정 */
-	
-#nav_box {
-	height : 100%;
-	width : 100%;
-	position : relative;
-	margin : 0 auto 0 auto;
-	z-index : 5;
-}
-/* @ 네브바에 대한 CSS 설정 */
-#main_menu {
-/* 	border : 1px solid black; */
-	
-	left: 0;
-	right:0;
-	top : 0;
-	position: relative;
-	height: 150px;
-	width : 1200px;
-}
-/* 로그인에 대한 CSS 설정 */
-#nb_login {
-	position : fixed;
-	top : 0;
-	left : 0;
-	right : 0;
-	height: 100px;
-	width : 100%;
-}
-#nb_box{
-	margin : 0 auto 0 auto;
-	text-align: center;
-	height : 100%;
-	width :  1200px;	
-	position: relative;
-	top : 0;
-}
-#login_box {
-		
-		margin : 0 auto 0 auto;
-		position: relative;
-		width : 250px;
-		height : 100px;
-		top : -1px;
-		left : 475px;
-		right : 0;
-		text-align: center;
-		
-}
-#login_box > li {
-	
-	float : left;
-	position: relative;
-	text-align: center;
-	margin : 0 auto 0 auto;
-	padding : 10px;
-	left : 20px;
-}
-#login_box > li >a {
-	
-	color : black;
-	font-size : 15px;
-	position : relative;
-	top : 0;
-	left : 0;
-	right : 0;
-}
-	
-/* 	1) "메뉴"에 대한 CSS 설정 */
-#list_gnb {
-/* 	border : 1px solid red; */
-	position : relative;
-	margin : 0 auto 0 auto;
-	padding : 0;
-	list-style: none;
-	width : 950px;
-	height : 150px;
-	top : 0;
-	left : -125px;
-	right : 0;
-}
-/*  1-1) 메뉴의 정렬에 대한 CSS 설정 */
-#list_gnb > li {
-	position : relative;
-	top : 0;
-	left : 0;
-	right : 0;
-	margin : 0 auto 0 auto;
-	height : 150px;
-	width:1200px;
-}
-/* 1-2) 메뉴 버튼이 활성화 되었을때, CSS 디자인 */
-/* 1-3) 버튼 하나하나에 대한 CSS 디자인 */
-#list_gnb > li > a {
-	
-	top : 65px;
-	position : relative;
- 	font-weight : 400;
- 	color : black; 
-	text-align: center;
-	left : -150px;
-	padding : 15px;
-	font-size : 37px;
-	color : black;
-	text-decoration: none;
-	left : -130px;
-	margin : 15px;
-	transition : 0.3s;
-}
-/* 1-4) 버튼 하나하나가 활성화 되었을 CSS 디자인 */
- #list_gnb > li > a:hover { 
-/*  	border-bottom: 3px solid #ffebcd;  */
-	border : silver;
- 	background-color: #fff5f3;
- 	border-radius: 30px;
- 	transition : 0.3s;
- } 
-/* 1-5) 나열된 메뉴가 활성화 되었을 때 메가메뉴를 어떻게 컨트롤 할건지에 대한 CSS 디자인 */
-/* .list_gnb > li:hover #mega-menu { */
-/* 	opacity: 1; */
-	
-/* } */
-/* 드롭  된 큰 메뉴에 대한 스타일 조정 */
-#mega-menu {
-
-/* 	border : 1px solid red; */
-	
- 	font-weight : 900;
-	width : 100%;
-	height : 170px;
-	background: white;
-	position : relative;
-	top : 249px;
-	left : 0;
-	right : 0;
-	border-radius: 3px;
-	display : none;
-	
-}
-#mega_wrapper{
-	
-/*  	border : 1px solid red;  */
-	
-	left: 0;
-	right : 0;
-	position : relative;
-	top : 0;
-	width : 1200px;
-	height : 100%;
-	margin : 0 auto 0 auto;
-	
-}
-/* 드롭  된 각 메뉴에 대한 스타일 조정 */
-#mega_wrapper > ul {
-	text-align : center;
-	color : black;
-	font-size : 16px;
-	float : left;
-}
-/* 드롭 된 메뉴 전체의 스타일 조정 */
-#mega_wrapper > ul >li{
-	padding : 8px;
-	text-align : center;
-	transition : 0.3s;
-}
-#mega_wrapper > ul >li:hover{
-	border-radius :20px;
-	background-color : #fff5f3;
-	text-align : center;
-	transition : 0.3s;
-}
-/* 드롭 된 메뉴의 간격 조정 */
-.list_lnb_01 {
- 	margin-left : 140px;  
- 		width: 130px;
-}
-.list_lnb_02 {
- 	margin-left : 90px; 
- 	width : 150px;
-}
-.list_lnb_03 {
- 	margin-left : 80px; 
- 		width: 130px;
-}
-.list_lnb_04 {
- 	margin-left : 65px; 
- 		width: 130px;
-}
-/* 드롭 된 메뉴의 스타일 조정 */
-#mega_wrapper > ul >li > a{
-	font-size : 17px;
- 	font-weight : inherit;
-	text-align : center;
-	color : black;
-	text-decoration: none;
-}
-/* 드롭다운 버튼 구현을 위한 style 임포트 끝*/
- .nb_top > .login1 > ul{
-	left: 940;
-	position :  relative;
-	height: 100px;
-	width: 200px;
-	left :  940px;
-	list-style: none;
-}
- .nb_top >  .login1 > ul > li > a {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size : 15px;
-	text-transform: uppercase;
-	font-weight : 700;
-	padding: 7px 21px;
-	margin-bottom : 4px;
-	letter-spacing: .75px;
-	border-radius : 3px;
-	border : transparent;
-	transition : 0.3s;
-	position : relative;
-	display: inline-block;
-	background : #fff;
-}
- .nb_top > .login1 > ul > li > a:hover {
-	border-radius : 20px;
-	background-color : #fff5f3;
-	transition : 0.3s;
-}
-.inner p {
-  background-color :white;
-}
-/* header 영역 고정 완료 */
-/*  날씨 구현 관련 CSS 설정  */
-	#weatherWrapper {
-	position : relative;
-	top : -150px;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 100%;
-	height : 150px;
-	}
-	#weatherbox{
-	
-/* 	border : 1px solid green; */
-	
-	position : relative;
-	top : 0;
-	left : 475px;
-	right : 0;
-	margin : 0 auto;
-	width : 250px;
-	height : 150px;
-	}
-	
-	#todayweather{
-	
-/* 	border : 1px solid green; */
-	
-	position : relative;
-	text-align : center;
-	top : 0;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 250px;
-	height : 30px;
-	font-size : 20px;
-	background : #fff5f3;
-	border-radius : 5px;
-	color : #9e9e9e;
-	}
-	
-	#topTitle{
-	
-/* 	border : 1px solid blue; */
-	
-	position : relative;
-	top : 0;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 250px;
-	height : 25px;
-	border-radius: 5px;
-	font-weight : 600;
-	}
-	
-	#topTitle > div{
-	
-/* 	border : 1px solid red; */
-	
-	float:left;
-	text-align : center;
-	position : relative;
-	top : 0;
-	left : 1px;
-	right : 0;
-	margin : 0 auto;
-	width : calc(96%/4);
-	height : 100%;
-	}
-	
-	#weatherBody{
-	text-align : center;
-	position : relative;
-	top : 0;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 250px;
-	height : 25px;
-	font-size : 13px;
-	
-	}
-	
-	#weatherBody > div{
-	
-/* 	border : 1px solid red; */
-	
-	float:left;
-	text-align : center;
-	position : relative;
-	top : 0;
-	left : 1px;
-	right : 0;
-	margin : 0 auto;
-	width : calc(96%/4);
-	height : 100%;
-	}
-	
-	#weatherFooter {
-	
-/* 	border : 1px solid red; */
-	
-	text-align : center;
-	position : relative;
-	top : 0;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 100%;
-	height : 65px;
-	
+		font-family: 'Nanum Gothic', sans-serif;
 	}
 	
 	
-	#weatherResult {
 	
-/* 	border : 1px solid red; */
+/* PC (해상도 1024px)*/ 
+@media all and (min-width:1024px) {
 	
-	text-align : center;
-	position : relative;
-	top : 0;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 246px;
-	height : 100%;
-	border-radius: 5px;
-	}
-	
-	
-	#weatherResult > img {
-	
-/* 	border : 1px solid orange; */
-	
-	text-align : center;
-	position : relative;
-	top : 2px;
-	left : 2px;
-	right : 0;
-	margin : 0 auto;
-	width : 70px;
-	height : 96%;
-	border-radius: 5px;
-	}
-	
-/* 	날씨에 대한 결과값 계산 후 출력할 곳 */
-	
-	#weatherzone {
-	
-/* 	border : 1px solid blue; */
-	
-	text-align : center;
-	position : relative;
-	top : -13px;
-	left : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 169px;
-	height : calc(60px / 2);
-	border-radius: 5px;
-	border: 1px dotted white;
-	
-	}
-	
-	#weatherzone2 {
-	
-/* 	border : 1px solid blue; */
-	
-	text-align : center;
-	position : relative;
-	top : -28px;
-	left : 37px;
-	right : 0;
-	margin : 0 auto;
-	width : 169px;
-	height : calc(60px / 2);
-	border-radius: 5px;
-	border: 1px dotted white;
-	
-	}
-	/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
-.btn:hover {
-  background: #fff5f3;
-  text-decoration: none;
-  border-radius: 20px;
-  transition : 0.3s;
-}
-.btn:focus {
-  outline: none;
-  transition : 0.3s;
-}
-.btn {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size : 15px;
-	text-transform: uppercase;
-	font-weight : 700;
-	padding: 7px 21px;
-	margin-bottom : 4px;
-	letter-spacing: .75px;
-	border-radius : 3px;
-	border : transparent;
-	position : relative;
-	display: inline-block;
-	background : #fff;
-	color : black;
-	transition : 0.3s;
-}
-
-
-@media (max-width: 768px){
-	
-	#header{
-	height : 200px;
-	
-	}
-	
-	body{
-	padding-top : 200px;
-	
-	}
-	
+		/* 중앙정렬을 위한 테이블 CSS 설정 */
+	/*  header 영역이 항상 TOP쪽에 표시될 수 있도록 CSS 추가  */
+	  
 	.nb_top {
-	
-/* 	border : 1px solid red; */
-	
-    width: 100%;
-    background-color: white;
-    margin: 0 auto;
-    left: 0;
-    top: 0;
-    
+	  position : fixed;
+	  width : 100%;
+	  height : 100px;
+	  margin : 0 auto 0 auto; 
+	  align-content : center;
+	  background-color : white;
+	  text-align: center;
+	  z-index: 3;
+	}
+	/* 커스텀 로고 영역 */
+	@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
+	@import url(https://fonts.googleapis.com/css?family=Lato:400,300,900);
+	body{
+		padding-top : 250px;
+	}
+	#center{
+		z-index: 2;
+	}
+	#header, #middle, #footer {
+		width : 100%;
+		margin : 0 auto 0 auto;
+		text-align: center;
+	}
+	#header {
+		position : fixed;
+		left : 0;
+		right : 0;
+		top : 0;
+		height : 250px;
+		background-color : white;
+		z-index: 3;
+		
+	}
+	#middle {
+		position : relative;
+		display: contents;
+		text-align : center;
+		z-index: 2;
+		
+	}
+	#footer {
+		top : 500px;
+		height: 500px;
+		display : contents;
+		text-align: center;
+		position : relative;
+		height : auto;
+		z-index: 1;
 	}
 	
+	/* Slider */
+	#textSlider.row {
+		position: fixed;
+		left : 0;
+		right : 0;
+		top : 0;
+		width : 100%;
+		height:100px;
+		margin : 0 auto 0 auto;
+	}
+	#textSlider div {
+		
+		left : 0px;
+		right : 0;
+		position : relative;
+		width : 1200px;
+		color: black;
+		text-transform: uppercase;
+		margin : 0 auto 0 auto;
+		font-weight : bold;
+	}
+	.scroller {
+	   height: 100px;
+	   overflow: hidden;
+	}
+	/* scroller 안에 .inner 클래스 안에 p 태그 지정 해서 line-height: 1.0줌 */
+	.scroller .inner p{
+			
+			padding-top : 7px; 
+			margin : 0 auto 0 auto;
+			line-height: 0.85;
+			left: -30px;
+			right : 0;
+			top : -5px;
+			height : 100px;
+	}
+	.scroller .inner { 
+		
+		font-size : 65pt;
+		animation: 10s normal infinite running scroll; }
+		
+	@keyframes scroll {
+	   0%  	{margin-top: 0px;}
+	   15% 	{margin-top: 0px;}
+	   25%  {margin-top: -70pt;}
+	   40%  {margin-top: -70pt;}
+	   
+	   50%  {margin-top: -140pt;}
+	   65%  {margin-top: -140pt;}
+	   75%  {margin-top: -210pt;}
+	   90%  {margin-top: -210pt;}
+	   
+	   100% {margin-top: 0px;}
+	}
+	/* 로고 에 대한 CSS 설정 */
 	#menu1 {
-	
-/* 	border : 1px solid red; */
-	
-    position: relative;
-    width: 100%;
-    text-align: center;
-    background-color: white;
-    top: 0;
-    left: 0;
-    margin: 0 auto;
+		
+		left : 0;
+		right : 0;
+		margin : 0 auto 0 auto;
+		position : fixed;
+		height : 100px;
+		width : 100%;
+		text-align : center;
+		background-color: white;
 	}
-	
+	/*  @ 네브바 + 날씨 API CSS 설정 */
 	#menu2 {
-		display : none;
+	/*   border : 1px solid red; */
+		
+		position : fixed;
+		top : 100px;
+		background-color: white;
+		width : 100%;
+		height : 150px;
+		align-items : center;
+		list-style : none;
+		left : 0;
+		right : 0;
 	}
-	
+	/* 네브 박스 CSS  설정 */
+		
+	#nav_box {
+		height : 100%;
+		width : 100%;
+		position : relative;
+		margin : 0 auto 0 auto;
+		z-index : 5;
+	}
+	/* @ 네브바에 대한 CSS 설정 */
+	#main_menu {
+	/* 	border : 1px solid black; */
+		
+		left: 0;
+		right:0;
+		top : 0;
+		position: relative;
+		height: 150px;
+		width : 1200px;
+	}
+	/* 로그인에 대한 CSS 설정 */
+	#nb_login {
+		position : fixed;
+		top : 0;
+		left : 0;
+		right : 0;
+		height: 100px;
+		width : 100%;
+	}
+	#nb_box{
+		margin : 0 auto 0 auto;
+		text-align: center;
+		height : 100%;
+		width :  1200px;	
+		position: relative;
+		top : 0;
+	}
+	#login_box {
+			
+			margin : 0 auto 0 auto;
+			position: relative;
+			width : 250px;
+			height : 100px;
+			top : -1px;
+			left : 475px;
+			right : 0;
+			text-align: center;
+			
+	}
+	#login_box > li {
+		
+		float : left;
+		position: relative;
+		text-align: center;
+		margin : 0 auto 0 auto;
+		padding : 10px;
+		left : 20px;
+	}
+	#login_box > li >a {
+		
+		color : black;
+		font-size : 15px;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+	}
+		
+	/* 	1) "메뉴"에 대한 CSS 설정 */
+	#list_gnb {
+	/* 	border : 1px solid red; */
+		position : relative;
+		margin : 0 auto 0 auto;
+		padding : 0;
+		list-style: none;
+		width : 950px;
+		height : 150px;
+		top : 0;
+		left : -125px;
+		right : 0;
+	}
+	/*  1-1) 메뉴의 정렬에 대한 CSS 설정 */
+	#list_gnb > li {
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto 0 auto;
+		height : 150px;
+		width:1200px;
+	}
+	/* 1-2) 메뉴 버튼이 활성화 되었을때, CSS 디자인 */
+	/* 1-3) 버튼 하나하나에 대한 CSS 디자인 */
+	#list_gnb > li > a {
+		
+		top : 65px;
+		position : relative;
+	 	font-weight : 400;
+	 	color : black; 
+		text-align: center;
+		left : -150px;
+		padding : 15px;
+		font-size : 37px;
+		color : black;
+		text-decoration: none;
+		left : -130px;
+		margin : 15px;
+		transition : 0.3s;
+	}
+	/* 1-4) 버튼 하나하나가 활성화 되었을 CSS 디자인 */
+	 #list_gnb > li > a:hover { 
+	/*  	border-bottom: 3px solid #ffebcd;  */
+		border : silver;
+	 	background-color: #fff5f3;
+	 	border-radius: 30px;
+	 	transition : 0.3s;
+	 } 
+	/* 1-5) 나열된 메뉴가 활성화 되었을 때 메가메뉴를 어떻게 컨트롤 할건지에 대한 CSS 디자인 */
+	/* .list_gnb > li:hover #mega-menu { */
+	/* 	opacity: 1; */
+		
+	/* } */
+	/* 드롭  된 큰 메뉴에 대한 스타일 조정 */
 	#mega-menu {
 	
-/* 	border: 1px solid red; */
-    
-    position: relative;
-    display: block;
-    top: 100px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    display : none;
-	
+	/* 	border : 1px solid red; */
+		
+	 	font-weight : 900;
+		width : 100%;
+		height : 170px;
+		background: white;
+		position : relative;
+		top : 249px;
+		left : 0;
+		right : 0;
+		border-radius: 3px;
+		display : none;
+		
 	}
-	
-	#mega_wrapper {
-	
-/*     border: 1px solid red; */
-    
-    left: 0;
-    right: 0;
-    position: relative;
-    top: 0;
-    width: 768px;
-    height: 100%;
-    margin: 0 auto 0 auto;
+	#mega_wrapper{
+		
+	/*  	border : 1px solid red;  */
+		
+		left: 0;
+		right : 0;
+		position : relative;
+		top : 0;
+		width : 1200px;
+		height : 100%;
+		margin : 0 auto 0 auto;
+		
 	}
-	
+	/* 드롭  된 각 메뉴에 대한 스타일 조정 */
+	#mega_wrapper > ul {
+		text-align : center;
+		color : black;
+		font-size : 16px;
+		float : left;
+	}
+	/* 드롭 된 메뉴 전체의 스타일 조정 */
+	#mega_wrapper > ul >li{
+		padding : 8px;
+		text-align : center;
+		transition : 0.3s;
+	}
+	#mega_wrapper > ul >li:hover{
+		border-radius :20px;
+		background-color : #fff5f3;
+		text-align : center;
+		transition : 0.3s;
+	}
+	/* 드롭 된 메뉴의 간격 조정 */
 	.list_lnb_01 {
-	
-/* 	border : 1px solid red; */
-	
-	margin-left: 3px;
-    width: 130px;
+	 	margin-left : 140px;  
+	 		width: 130px;
 	}
-	
 	.list_lnb_02 {
-	
-/* 	border : 1px solid red; */
-	
-	margin-left: 72px;
-    width: 130px;
+	 	margin-left : 90px; 
+	 	width : 150px;
 	}
-	
 	.list_lnb_03 {
-	
-/* 	border : 1px solid red; */
-	
-	margin-left: 72px;
-    width: 130px;
+	 	margin-left : 80px; 
+	 		width: 130px;
 	}
-	
 	.list_lnb_04 {
-	
-/* 	border : 1px solid red; */
-	
-    margin-left: 72px;
-    width: 130px;
+	 	margin-left : 65px; 
+	 		width: 130px;
 	}
-	
-	
-	#textSlider {
-	
-/* 	border : 1px solid red; */
-	
-    left: 0px;
-    right: 0;
-    position: relative;
-    width: 100%;
-    color: black;
-    text-transform: uppercase;
-    margin: 0 auto 0 auto;
-	
+	/* 드롭 된 메뉴의 스타일 조정 */
+	#mega_wrapper > ul >li > a{
+		font-size : 17px;
+	 	font-weight : inherit;
+		text-align : center;
+		color : black;
+		text-decoration: none;
 	}
-
-	#textSlider div {
-	left: 0px;
-    right: 0;
-    position: relative;
-    width: 768px;
-    color: black;
-    text-transform: uppercase;
-    margin: 0 auto 0 auto;
+	/* 드롭다운 버튼 구현을 위한 style 임포트 끝*/
+	 .nb_top > .login1 > ul{
+		left: 940;
+		position :  relative;
+		height: 100px;
+		width: 200px;
+		left :  940px;
+		list-style: none;
 	}
-	
-	#nb_login {
-	
-/* 	border : 1px solid red; */
-	
-    position: fixed;
-    top: 99px;
-    left: 0;
-    right: 0;
-    height: 100px;
-    width: 100%;
+	 .nb_top >  .login1 > ul > li > a {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size : 15px;
+		text-transform: uppercase;
+		font-weight : 700;
+		padding: 7px 21px;
+		margin-bottom : 4px;
+		letter-spacing: .75px;
+		border-radius : 3px;
+		border : transparent;
+		transition : 0.3s;
+		position : relative;
+		display: inline-block;
+		background : #fff;
 	}
-
-	#nb_box {
-	
-/* 	border : 1px solid red; */
-	
-    margin: 0 auto 0 auto;
-    text-align: center;
-    height: 100%;
-    width: 100%;
-    position: relative;
-    top: 0;
+	 .nb_top > .login1 > ul > li > a:hover {
+		border-radius : 20px;
+		background-color : #fff5f3;
+		transition : 0.3s;
 	}
-	
-	#login_box {
-	
-/* 	border : 1px solid red; */
-	
-    margin: 0 auto 0 auto;
-    position: relative;
-    width: 500px;
-    height: 100px;
-    top: -1px;
-    left: 0;
-    right: 0;
-    text-align: center;
+	.inner p {
+	  background-color :white;
 	}
-	
-	#login_box > li {
-	
-/* 	border : 1px solid red; */
-	
-    float: left;
-    position: relative;
-    text-align: center;
-    margin: 0 auto 0 auto;
-    padding: 10px;
-	left: 40px;
-    top: 20px;
+	/* header 영역 고정 완료 */
+	/*  날씨 구현 관련 CSS 설정  */
+		#weatherWrapper {
+		position : relative;
+		top : -150px;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 100%;
+		height : 150px;
+		}
+		#weatherbox{
+		
+	/* 	border : 1px solid green; */
+		
+		position : relative;
+		top : 0;
+		left : 475px;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 150px;
+		}
+		
+		#todayweather{
+		
+	/* 	border : 1px solid green; */
+		
+		position : relative;
+		text-align : center;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 30px;
+		font-size : 20px;
+		background : #fff5f3;
+		border-radius : 5px;
+		color : #9e9e9e;
+		}
+		
+		#topTitle{
+		
+	/* 	border : 1px solid blue; */
+		
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 25px;
+		border-radius: 5px;
+		font-weight : 600;
+		}
+		
+		#topTitle > div{
+		
+	/* 	border : 1px solid red; */
+		
+		float:left;
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 1px;
+		right : 0;
+		margin : 0 auto;
+		width : calc(96%/4);
+		height : 100%;
+		}
+		
+		#weatherBody{
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 250px;
+		height : 25px;
+		font-size : 13px;
+		
+		}
+		
+		#weatherBody > div{
+		
+	/* 	border : 1px solid red; */
+		
+		float:left;
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 1px;
+		right : 0;
+		margin : 0 auto;
+		width : calc(96%/4);
+		height : 100%;
+		}
+		
+		#weatherFooter {
+		
+	/* 	border : 1px solid red; */
+		
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 100%;
+		height : 65px;
+		
+		}
+		
+		
+		#weatherResult {
+		
+	/* 	border : 1px solid red; */
+		
+		text-align : center;
+		position : relative;
+		top : 0;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 246px;
+		height : 100%;
+		border-radius: 5px;
+		}
+		
+		
+		#weatherResult > img {
+		
+	/* 	border : 1px solid orange; */
+		
+		text-align : center;
+		position : relative;
+		top : 2px;
+		left : 2px;
+		right : 0;
+		margin : 0 auto;
+		width : 70px;
+		height : 96%;
+		border-radius: 5px;
+		}
+		
+	/* 	날씨에 대한 결과값 계산 후 출력할 곳 */
+		
+		#weatherzone {
+		
+	/* 	border : 1px solid blue; */
+		
+		text-align : center;
+		position : relative;
+		top : -13px;
+		left : 0;
+		right : 0;
+		margin : 0 auto;
+		width : 169px;
+		height : calc(60px / 2);
+		border-radius: 5px;
+		border: 1px dotted white;
+		
+		}
+		
+		#weatherzone2 {
+		
+	/* 	border : 1px solid blue; */
+		
+		text-align : center;
+		position : relative;
+		top : -28px;
+		left : 37px;
+		right : 0;
+		margin : 0 auto;
+		width : 169px;
+		height : calc(60px / 2);
+		border-radius: 5px;
+		border: 1px dotted white;
+		
+		}
+		/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
+	.btn:hover {
+	  background: #fff5f3;
+	  text-decoration: none;
+	  border-radius: 20px;
+	  transition : 0.3s;
 	}
-	
-	#login_box > li >a {
-	
-/* 	border : 1px solid red; */
-	
-    color: black;
-    font-size: 15px;
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    
+	.btn:focus {
+	  outline: none;
+	  transition : 0.3s;
 	}
-	
-	#quickmenu {
-	
-	width : 60px;
-	
-	}
-	
-	#quickmenu > ul > li > a {
-	
-    font-size: 10px;
-}
-	
-	#chaticon {
-	
-	font-size: 35px;
-	
+	.btn {
+		font-family: 'Nanum Gothic', sans-serif;
+		font-size : 15px;
+		text-transform: uppercase;
+		font-weight : 700;
+		padding: 7px 21px;
+		margin-bottom : 4px;
+		letter-spacing: .75px;
+		border-radius : 3px;
+		border : transparent;
+		position : relative;
+		display: inline-block;
+		background : #fff;
+		color : black;
+		transition : 0.3s;
 	}
 	
 	#hamburger {
 	
-/*     border: 1px solid blue; */
-	
-    position: fixed;
-    top: 110px;
-    left: -620px;
-    right: 0;
-    height: 80px;
-    width: 80px;
-    margin: 0 auto;
-    z-index : 7;
-    
+		display : none;
 	}
 	
-	#hamburger > a {
+	#quickmenubox > #quickmenu, 
+	#quickmenubox > #quickmenu > ul,
+	#quckmenubox > #quickmenu > ul > li {
 	
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    border-radius: 20px;
-  	transition : 0.3s;
-    border: 1px dotted pink;
-    
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		padding:0;margin:0
+	
 	}
 	
-	#hamburgerbtn{
-	
-    margin: 0 auto;
-    font-size: 50px;
-    color: lightpink;
-	top: 15px;
-    position: relative;
-    
+	#quickmenu > ul > li > a {
+		text-decoration:none;
 	}
 	
- 	#hamburger > a:hover #hamburgerbtn{
+	#quickmenubox {
+		
+	/*     width: 100px; */
+	/*     height: 200px; */
+	/*     margin: 0 auto; */
+	/*     position: relative; */
+	/*     top: 600px; */
+	/*     left: 1200px; */
+	/*     right: 0; */
+	    
+	}
+		
+	#quickmenu {
+		
+		position:absolute;
+		width:90px;
+		top:50%;
+		margin-top:-50px;
+		right:10px;
+		background:#fff;
+		z-index : 7;
+		border-radius: 10px;
+		border: 1px dotted #f2dede;
+	}
+	
+	#quickmenu > ul {
+		position:relative;
+		float:left;
+		width:100%;
+		display:inline-block;
+		*display:inline;
+	}
+	
+	#quickmenu > ul > li {
+		float:left;
+		width:100%;
+		border-bottom:1px solid #ddd;
+		text-align:center;
+		display:inline-block;
+		*display:inline;
+	}
+	
+	#quickmenu > ul > li > a {
+		position:relative;
+		float:left;
+		width:100%;
+		height:100%;
+		line-height:30px;
+		text-align:center;
+		color:#999;
+		font-size:9.5pt;
+	}
+	
+	#quickmenu > ul > li > a:hover {
+		color:#000;
+		border : 1px dotted #lightpink;
+		background : aliceblue;
+		border-radius : 5px;
+		transition : 2s;
+	
+	}
+	#chaticon {
+		
+		color: lightpink;
+		transition : 0.4s;
+	}
+	
+	#chaticon:hover {
+		transition : 0.4s;
+		color : navy;
+	}
+	
+	#quickmenu > ul > li:last-child {
+		border-bottom:0;
+	}
+
+} 
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1023px) {
+
+} 
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/ 
+@media all and (max-width:767px) {
+
+}
+
+
+/* 768px 너비에서 화면  */
+/* @media (min-width: 769px) and (max-width: 992px){ */
+	
+/* 	#header{ */
+/* 	height : 230px; */
+/* 	width : 768px; */
+/* 	} */
+	
+/* 	body{ */
+/* 	padding-top : 200px; */
+/* 	width : 768px; */
+/* 	} */
+	
+/* 	.nb_top { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/*     width: 100%; */
+/*     background-color: white; */
+/*     margin: 0 auto; */
+/*     left: 0; */
+/*     top: 0; */
+    
+/* 	} */
+	
+/* 	#menu1 { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/*     position: relative; */
+/*     width: 100%; */
+/*     text-align: center; */
+/*     background-color: white; */
+/*     top: 0; */
+/*     left: 0; */
+/*     margin: 0 auto; */
+/* 	} */
+	
+/* 	#menu2 { */
+/* 		display : none; */
+/* 	} */
+	
+/* 	#mega-menu { */
+	
+/* /* 	border: 1px solid red; */ */
+    
+/*     position: relative; */
+/*     display: block; */
+/*     top: 100px; */
+/*     left: 0; */
+/*     right: 0; */
+/*     margin: 0 auto; */
+/*     display : none; */
+	
+/* 	} */
+	
+/* 	#mega_wrapper { */
+	
+/* /*     border: 1px solid red; */ */
+    
+/*     left: 0; */
+/*     right: 0; */
+/*     position: relative; */
+/*     top: 0; */
+/*     width: 768px; */
+/*     height: 100%; */
+/*     margin: 0 auto 0 auto; */
+/* 	} */
+	
+/* 	.list_lnb_01 { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/* 	margin-left: 3px; */
+/*     width: 130px; */
+/* 	} */
+	
+/* 	.list_lnb_02 { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/* 	margin-left: 72px; */
+/*     width: 130px; */
+/* 	} */
+	
+/* 	.list_lnb_03 { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/* 	margin-left: 72px; */
+/*     width: 130px; */
+/* 	} */
+	
+/* 	.list_lnb_04 { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/*     margin-left: 72px; */
+/*     width: 130px; */
+/* 	} */
+	
+	
+/* 	#textSlider { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/*     left: 0px; */
+/*     right: 0; */
+/*     position: relative; */
+/*     width: 100%; */
+/*     color: black; */
+/*     text-transform: uppercase; */
+/*     margin: 0 auto 0 auto; */
+	
+/* 	} */
+
+/* 	#textSlider div { */
+/* 	left: 0px; */
+/*     right: 0; */
+/*     position: relative; */
+/*     width: 768px; */
+/*     color: black; */
+/*     text-transform: uppercase; */
+/*     margin: 0 auto 0 auto; */
+/*     font-weight : bold; */
+/* 	} */
+	
+/* 	#nb_login { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/*     position: fixed; */
+/*     top: 99px; */
+/*     left: 0; */
+/*     right: 0; */
+/*     height: 100px; */
+/*     width: 100%; */
+/* 	} */
+
+/* 	#nb_box { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/*     margin: 0 auto 0 auto; */
+/*     text-align: center; */
+/*     height: 100%; */
+/*     width: 100%; */
+/*     position: relative; */
+/*     top: 0; */
+/* 	} */
+	
+/* 	#login_box { */
+	
+/* /*     border: 1px solid red; */ */
+
+/*     margin: 0 auto 0 auto; */
+/*     position: relative; */
+/*     width: 100%; */
+/*     height: 100px; */
+/*     top: -1px; */
+/*     left: 0; */
+/*     right: 0; */
+/*     text-align: center; */
+    
+/* 	} */
+	
+/* 	#login_box > li { */
+	
+/* /*     border: 1px solid red; */ */
+    
+/*     float: left; */
+/*     position: relative; */
+/*     text-align: center; */
+/*     margin: 0 auto 0 auto; */
+/*     padding: 5px; */
+/*     left: 140px; */
+/*     top: 25px; */
+/*     width: 150px; */
+/*     height : 60px; */
+    
+/* 	} */
+	
+/* 	#login_box > li >a { */
+	
+/* /*     border: 1px solid red; */ */
+    
+/*     color: black; */
+/*     position: relative; */
+/*     top: 0; */
+/*     left: 0; */
+/*     right: 0; */
+/*     margin: 0 auto; */
+/*     width: 100%; */
+/*     height: 100%; */
+/*     padding: 5px; */
+/*     font-size: 20px; */
+    
+/* 	} */
+	
+/* 	#quickmenu { */
+	
+/* 	display : block; */
+/* 	width : 60px; */
+	
+/* 	} */
+	
+/* 	#quickmenu > ul > li > a { */
+	
+/*     font-size: 10px; */
+/* 	} */
+	
+/* 	#chaticon { */
+	
+/* 	font-size: 35px; */
+	
+/* 	} */
+	
+/* 	#hamburger { */
+	
+/* /*     border: 1px solid blue; */ */
+	
+/* 	display : block; */
+	
+/*     position: fixed; */
+/*     top: 110px; */
+/*     left: -620px; */
+/*     right: 0; */
+/*     height: 80px; */
+/*     width: 80px; */
+/*     margin: 0 auto; */
+/*     z-index : 7; */
+    
+/* 	} */
+	
+/* 	#hamburger > a { */
+	
+/*     display: block; */
+/*     width: 100%; */
+/*     height: 100%; */
+/*     position: relative; */
+/*     top: 0; */
+/*     left: 0; */
+/*     right: 0; */
+/*     margin: 0 auto; */
+/*     border-radius: 20px; */
+/*   	transition : 0.3s; */
+/*     border: 1px dotted pink; */
+    
+/* 	} */
+	
+/* 	#hamburgerbtn { */
+	
+/*     margin: 0 auto; */
+/*     font-size: 50px; */
+/*     color: lightpink; */
+/* 	top: 15px; */
+/*     position: relative; */
+    
+/* 	} */
+	
+/*  	#hamburger > a:hover #hamburgerbtn { */
  	
-   	transition : 0.4s;
-	color : navy;
-	}
+/*    	transition : 0.4s; */
+/* 	color : navy; */
+/* 	} */
 	
-    #hamburger > a:hover{
+/*     #hamburger > a:hover { */
     
-   	border : 1px dotted #ff80c0;
-    background : aliceblue;
-   	transition : 0.4s;
-	color : navy;
+/*    	border : 1px dotted #ff80c0; */
+/*     background : aliceblue; */
+/*    	transition : 0.4s; */
+/* 	color : navy; */
 
-	}
-}
+/* 	} */
+/* } */
 
-@media (max-width: 375px){
+/* 모바일 너비에서 화면  */
+/* @media (max-device-width: 768px){ */
 	
+/* 	#header{ */
+/* 	height : 100px; */
+/* 	width : 100%; */
 	
-}
+/* 	} */
+	
+/* 	body{ */
+/* 	padding-top : 100px; */
+/* 	width : 100%; */
+	
+/* 	} */
+	
+/* 	.nb_top { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/*     width: 100%; */
+/*     height : 50px; */
+/*     background-color: white; */
+/*     margin: 0 auto; */
+/*     left: 0; */
+/*     top: 0; */
+    
+/* 	} */
+	
+/* 	#menu1 { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/*     position: relative; */
+/*     width: 100%; */
+/*     height : 100%; */
+/*     text-align: center; */
+/*     background-color: white; */
+/*     top: 0; */
+/*     left: 0; */
+/*     margin: 0 auto; */
+/* 	} */
+	
+/* 	#menu2 { */
+/* 		display : none; */
+/* 	} */
+	
+/* 	#mega-menu { */
+	
+/* /*     border: 1px solid red; */ */
+    
+/*     position: relative; */
+/*     display: block; */
+/*     top: 50px; */
+/*     left: 0; */
+/*     right: 0; */
+/*     margin: 0 auto; */
+/*     display: none; */
+/*     width: 320px; */
+/*     height: 932px; */
+    
+/* 	} */
+	
+/* 	#mega_wrapper { */
+	
+/* /*     border: 1px solid red; */ */
+    
+/*     left: 0; */
+/*     right: 0; */
+/*     position: relative; */
+/*     top: 0; */
+/*     width: 100%; */
+/*     height: 100%; */
+/*     margin: 0 auto 0 auto; */
+/* 	} */
+	
+/* 	.list_lnb_01 { */
+	
+/* /*     border: 1px solid red; */ */
+    
+/*     margin: 0 auto; */
+/*     width: 100%; */
+/*     position: relative; */
+/*     top: 10px; */
+/*     left: 10px; */
+    
+/* 	} */
+	
+/* #mega_wrapper > ul > li { */
+	
+/*     position: relative; */
+/*     text-align: center; */
+/*     transition: 0.3s; */
+/*     width: 150px; */
+/*     height: 30px; */
+    
+/* /*     border: 1px solid red; */ */
+
+/*     margin: 10px auto; */
+/*     line-height: 12px; */
+    
+/* } */
+
+/* #mega_wrapper > ul > li > a { */
+	
+/* 	font-size: 12px; */
+/*     font-weight: inherit; */
+/*     text-align: center; */
+/*     color: black; */
+/*     text-decoration: none; */
+    
+/* } */
+	
+/* 	.list_lnb_02 { */
+	
+/* /*     border: 1px solid red; */ */
+    
+/*     margin: 0 auto; */
+/*     width: 100%; */
+/*     position: relative; */
+/*     top: 10px; */
+/*     left: 10px; */
+    
+/* 	} */
+	
+/* 	.list_lnb_03 { */
+	
+/* /*     border: 1px solid red; */ */
+
+/*     margin: 0 auto; */
+/*     width: 100%; */
+/*     position: relative; */
+/*     top: 10px; */
+/*     left: 10px; */
+    
+/* 	} */
+	
+/* 	.list_lnb_04 { */
+	
+/* /*     border: 1px solid red; */ */
+    
+/*     margin: 0 auto; */
+/*     width: 100%; */
+/*     position: relative; */
+/*     top: 10px; */
+/*     left: 10px; */
+    
+/* 	} */
+	
+/* 	#textSlider.row { */
+	
+/*     position: fixed; */
+    
+/*     left: 0; */
+/*     right: 0; */
+/*     top: 0; */
+/*     width: 100%; */
+/*     height: 50px; */
+/*     margin: 0 auto 0 auto; */
+	
+/* 	} */
+	
+/* 	#textSlider { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/*     left: 0px; */
+/*     right: 0; */
+/*     position: relative; */
+/*     width: 100%; */
+/*     color: black; */
+/*     text-transform: uppercase; */
+/*     margin: 0 auto 0 auto; */
+	
+/* 	} */
+
+/* 	#textSlider div { */
+	
+/*     left: 0px; */
+/*     right: 0; */
+/*     position: relative; */
+/*     width: 100%; */
+/*     color: black; */
+/*     text-transform: uppercase; */
+/*     margin: 0 auto; */
+/*     font-size: 40px; */
+/*     height: 50px; */
+	
+/* 	font-weight : bold; */
+    
+/* 	} */
+	
+/* 	.scroller .inner p { */
+	
+/*     margin: 0 auto 0 auto; */
+/*     left: -30px; */
+/*     right: 0; */
+/*     top: -5px; */
+/*     height: 95px; */
+	
+/* 	} */
+	
+/* 	#nb_login { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/*     position: fixed; */
+/*     top: 50px; */
+/*     left: 0; */
+/*     right: 0; */
+/*     height: 50px; */
+/*     width: 100%; */
+/* 	} */
+
+/* 	#nb_box { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/*     margin: 0 auto 0 auto; */
+/*     text-align: center; */
+/*     height: 100%; */
+/*     width: 100%; */
+/*     position: relative; */
+/*     top: 0; */
+/* 	} */
+	
+/* 	#login_box { */
+	
+/* /* 	border : 1px solid red; */ */
+	
+/*     margin: 0 auto 0 auto; */
+/*     position: relative; */
+/*     width: 100%; */
+/*     height: 100%; */
+/*     top: 1px; */
+/*     left: 0; */
+/*     right: 0; */
+/*     text-align: center; */
+/* 	} */
+	
+/* 	#login_box > li { */
+	
+/* /* 	border: 1px solid red; */ */
+	
+/*     float: left; */
+/*     position: relative; */
+/*     text-align: center; */
+/*     margin: 0 auto 0 auto; */
+/*     left: 70px; */
+/*     top: 5px; */
+/*     height: 40px; */
+/*     width: 60px; */
+/*     padding: 0; */
+/* } */
+    
+/* 	} */
+	
+/* 	#login_box > li >a { */
+	
+/* /*     border: 1px solid red; */ */
+    
+/*     color: black; */
+/*     font-size: 10px; */
+/*     position: relative; */
+/*     top: 5px; */
+/*     left: 0; */
+/*     right: 0; */
+/*     margin: 0 auto; */
+/*     width: 100%; */
+/*     padding: 5px; */
+    
+/* 	} */
+	
+/* 	#quickmenu { */
+	
+/* 	display : none; */
+	
+/* 	} */
+
+	
+/* 	#hamburger  { */
+	
+/*     border: 1px solid blue; */
+    
+/*    	display : block; */
+/*     position: fixed; */
+/*     top: 56px; */
+/*     left: -250px; */
+/*     right: 0; */
+/*     height: 40px; */
+/*     width: 40px; */
+/*     margin: 0 auto; */
+/*     z-index: 7; */
+    
+/* 	} */
+	
+/* 	#hamburgerbtn { */
+	
+/*     margin: 0 auto; */
+/*     font-size: 30px; */
+/*     color: lightpink; */
+/* 	top: 5px; */
+/*     position: relative; */
+    
+/* 	} */
+
+	
+/* 	.carousel { */
+	
+/*     width: 320px; */
+/*     top: -20px; */
+/*     position: relative; */
+/* 	} */
+	
+/* } */
