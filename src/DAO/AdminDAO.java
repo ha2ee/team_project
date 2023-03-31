@@ -12,6 +12,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import VO.FreeBoardVo;
 import VO.MemberVo;
 import VO.PetVo;
 import VO.TrainerBoardVo;
@@ -136,6 +137,43 @@ public class AdminDAO {
 		}
 		 return list;
 	}		
+	
+	//자유게시판 모든 글 조회
+	public ArrayList<FreeBoardVo> fbListAll() {
+	    ArrayList<FreeBoardVo> list = new ArrayList<>();
+	    FreeBoardVo vo;
+	    try {
+	      con = ds.getConnection();
+
+	      String sql = "SELECT * FROM FREE_BOARD order by b_idx desc";
+
+	      pstmt = con.prepareStatement(sql);
+	      rs = pstmt.executeQuery();
+	      while (rs.next()) {
+	        vo = new FreeBoardVo(
+	                             rs.getInt("b_idx"),
+	                             rs.getString("b_id"), 
+	                             rs.getString("b_nickname"),
+	                             rs.getString("b_title"), 
+	                             rs.getString("b_content"), 
+	                             rs.getDate("b_date"),
+	                             rs.getInt("b_cnt"), 
+	                             rs.getString("b_file"),
+	                             rs.getString("b_realfile") ,
+	                             rs.getInt("b_like")
+	                             );
+	        list.add(vo);
+	      }
+
+	    } catch (Exception e) {
+	      System.out.println("fbListAll 메소드에서 에러가 발생하였습니다. 이유는 ? --> " + e);
+	      e.printStackTrace();
+	    } finally {
+	      closeResource();
+	    }
+	    return list;
+	  }
+	
 	
 	
 	

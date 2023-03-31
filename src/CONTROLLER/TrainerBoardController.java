@@ -274,7 +274,7 @@ public class TrainerBoardController extends HttpServlet{
 					} else {
 						out.write(DBDelete_result);
 					}
-					return;
+					return; 
 					
 				} catch (Exception e) {
 					e.printStackTrace();

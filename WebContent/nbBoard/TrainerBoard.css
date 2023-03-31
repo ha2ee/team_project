@@ -119,7 +119,7 @@
 	  color: white;
 	}
 	
-	#pageForm a:first-child, #pageForm a:last-child {
+/* 	#pageForm a:first-child, #pageForm a:last-child {
 	  background-color: #f5f5f5;
 	}
 	
@@ -131,7 +131,7 @@
 	  display: inline-block;
 	  color: #f44336;
 	  padding: 5px 10px;
-	}
+	} */
 	
 	/* 검색 부분 스타일 */
 	#searchForm {
@@ -228,6 +228,8 @@
 	border : none;
 	color : white;
 	background-color: #EDAF8C;
+	cursor: pointer;
+	font-size: 14px;
 }
 
 a.download {
@@ -259,8 +261,14 @@ div.filedownload {
 		/* 게시판 목록 테이블의 th와 td 스타일 */
 		.board-table th, .board-table td {
 		  padding: 10px 20px; 
+
  		  text-align: center;  
+
 		  border-bottom: 1px solid #ddd; 
+		}
+		
+		.board-table td:nth-child(2) {
+		text-align : left;
 		}
 		
 		/* 게시판 목록 테이블의 th 스타일 */
@@ -292,4 +300,5 @@ div.filedownload {
 		  font-weight: bold;
 		  cursor: pointer;
 		}
+          
           
