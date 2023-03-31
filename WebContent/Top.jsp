@@ -314,13 +314,15 @@ String ContextPath = request.getContextPath();
 		margin : 0 auto 0 auto;
 		
 	}
-	/* 드롭  된 각 메뉴에 대한 스타일 조정 */
+	
 	#mega_wrapper > ul {
-		text-align : center;
-		color : black;
-		font-size : 16px;
-		float : left;
-	}
+    border: 1px solid white;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    float: left;
+}
+
 	/* 드롭 된 메뉴 전체의 스타일 조정 */
 	#mega_wrapper > ul >li{
 		padding : 8px;

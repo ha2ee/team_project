@@ -152,14 +152,6 @@ body {
     padding: 0;
 }
 
-#mega_wrapper > ul {
-    border: 1px solid white;
-    text-align: center;
-    color: black;
-    font-size: 16px;
-    float: left;
-}
-
   #mem_address > a > input#mem_address5::placeholder {
   color : #ccc;
   font-weight: bold;
@@ -172,6 +164,18 @@ body {
   font-size : 12px;
   
   }
+  
+  .scroller .inner p {
+    padding-top: 7px;
+    margin: 0 auto;
+    line-height: 0.9;
+    left: -30px;
+    right: 0;
+    top: -5px;
+    height: 92px;
+/*     border: 1px solid red; */
+}
+  
   
   /*  Bottom CSS 설정 */
  
