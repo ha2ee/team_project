@@ -18,6 +18,11 @@ String ContextPath = request.getContextPath();
 /* 와이드 해상도 (1921px ~)	*/
 @media all and (min-width:1921px){
 
+#loginhomebtn{
+
+	display: none;
+}
+
 
 /* 공통 적용 사항 */ 
 
@@ -708,6 +713,11 @@ String ContextPath = request.getContextPath();
 
 /* PC (해상도 1200px ~ 1920px) */ 
 @media all and (min-width:1200px) and (max-width: 1920px) {
+
+#loginhomebtn{
+
+	display: none;
+}
 
 /* 공통 적용 사항 */ 
 
@@ -3260,7 +3270,7 @@ $(document).ready(function(){
 				<%
 					}else{//로그인 O
 				%>
-				<li class="login1" ><a id="login5" href="<%=request.getContextPath()%>/nb/Main" class="btn">[ 홈 ]</a></li>
+				<li id="loginhomebtn" class="login1" ><a id="login5" href="<%=request.getContextPath()%>/nb/Main" class="btn">[ 홈 ]</a></li>
 				   <li class="login1"><a id="login6" href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
 	               <li class="login1"><a id="login7" href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
 	               <li class="login1"><a  id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>

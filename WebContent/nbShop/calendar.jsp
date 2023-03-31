@@ -787,7 +787,9 @@ color : navy;
 	    		var list = <%=list%>;
 	    		var list2 =<%=list2%>;
 	    		
-	    		var monthtoday = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+	    		var today1 = new Date();
+	    		
+	    		var monthtoday = new Date(today1.getFullYear(), today1.getMonth(), today1.getDate()+7);
 	    		var mtd = moment(monthtoday).format('DD');
 	    		
 	    		// for 문을 돌려서 카트에 담긴 날짜와 일치하는 날짜를 가져온다.

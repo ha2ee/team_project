@@ -92,6 +92,7 @@
 		border-radius: 10px;
 	    border: 1px solid #231815;
 		font-weight: bold;
+		cursor: pointer;
 	}
 
 	.loginDiv{
