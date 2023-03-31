@@ -44,7 +44,6 @@
 
 	<link href="<%=contextPath%>/css/trMember.css" rel="stylesheet">
   
-  
 </head>
 <body>
 <%-- 
