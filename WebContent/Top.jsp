@@ -342,7 +342,7 @@ String ContextPath = request.getContextPath();
 	}
 	/* 드롭 된 메뉴의 간격 조정 */
 	.list_lnb_01 {
-	 	margin-left : 140px;  
+	 	margin-left : 120px;  
 	 		width: 130px;
 	}
 	.list_lnb_02 {
@@ -354,7 +354,7 @@ String ContextPath = request.getContextPath();
 	 		width: 130px;
 	}
 	.list_lnb_04 {
-	 	margin-left : 65px; 
+	 	margin-left : 85px; 
 	 		width: 130px;
 	}
 	/* 드롭 된 메뉴의 스타일 조정 */
@@ -883,32 +883,30 @@ String ContextPath = request.getContextPath();
 	/* 로그인에 대한 CSS 설정 */
 	#nb_login {
 		position : fixed;
-		top : 110px;
+		top : 0;
 		left : 0;
 		right : 0;
-		height: 80px;
+		height: 100px;
 		width : 100%;
 	}
 	#nb_box{
 		margin : 0 auto 0 auto;
 		text-align: center;
 		height : 100%;
-		width :  100%;	
+		width :  1200px;	
 		position: relative;
 		top : 0;
 	}
 	#login_box {
 			
-		margin: 0 auto 0 auto;
-	    position: relative;
-	    width: 450px;
-	    height: 100%;
-	    top: 0;
-	    left: 150px;
-	    right: 0;
-	    text-align: center;
-	    
-/* 	    border: 1px solid red; */
+			margin : 0 auto 0 auto;
+			position: relative;
+			width : 250px;
+			height : 100px;
+			top : -1px;
+			left : 475px;
+			right : 0;
+			text-align: center;
 			
 	}
 	#login_box > li {
@@ -919,7 +917,6 @@ String ContextPath = request.getContextPath();
 		margin : 0 auto 0 auto;
 		padding : 10px;
 		left : 20px;
-		top : 10px;
 	}
 	#login_box > li >a {
 		
@@ -1037,7 +1034,7 @@ String ContextPath = request.getContextPath();
 	}
 	/* 드롭 된 메뉴의 간격 조정 */
 	.list_lnb_01 {
-	 	margin-left : 140px;  
+	 	margin-left : 130px;  
 	 		width: 120px;
 	}
 	.list_lnb_02 {
@@ -1584,20 +1581,21 @@ String ContextPath = request.getContextPath();
 		position: relative;
 		top : 0;
 	}
+	
 	#login_box {
 			
-	margin: 0 auto 0 auto;
+    margin: 0 auto 0 auto;
     position: relative;
-    width: 460px;
+    width: 100%;
     height: 100px;
     top: 0;
-    left: 150px;
+    left: 0;
     right: 0;
     text-align: center;
-    z-index : 3;
+    z-index: 3;
 
-			
 	}
+	
 	#login_box > li {
 		
 		top : 20px;
@@ -2003,13 +2001,12 @@ String ContextPath = request.getContextPath();
 	}
 	
 	#hamburger {
-	
 	    position: relative;
 	    display: block;
 	    top: 100px;
-	    left: 50%;
+	    left: 90%;
 	    right: 0;
-	    width: 100%;
+	    width: 20%;
 	    height: 100px;
 	    margin: 0 auto;
 	    z-index: 4;
@@ -2025,9 +2022,9 @@ String ContextPath = request.getContextPath();
     right: 0;
     width: 80px;
     height: 80px;
-    border: 1px dashed pink;
+    border: 2px dashed pink;
     border-radius: 20px;
-    color: hotpink;
+    color: #f5cccc;
     z-index: 4;
     transition: 0.4s;
     margin: 0 auto;
@@ -2038,7 +2035,8 @@ String ContextPath = request.getContextPath();
 	
 	#hamburger > a:hover {
 
-	border : 1px solid navy;
+ 	border : 1px dashed navy; 
+
 	color : navy;
 	transition : 0.4s;
 	
@@ -2047,7 +2045,8 @@ String ContextPath = request.getContextPath();
 	
 	#hamburger > a > i:hover {
 
-	border : 1px solid navy;
+/* 	border : 1px solid navy; */
+
 	color : navy;
 	transition : 0.4s;
 	
@@ -2346,7 +2345,7 @@ String ContextPath = request.getContextPath();
 	    top: 100px;
 	    height: 100px;
 	    width: 450px;
-	    right: -5%;
+	    right: 5%;
 	    margin-right: -7%;
 	}
 	
@@ -2371,18 +2370,30 @@ String ContextPath = request.getContextPath();
 /* 	    border: 1px solid red; */
 	}
 	
-	.login1 {
+		.login1:hover {
+		border-radius : 20px;
+		transition : 0.4s;
+	}
+	#login5:hover, #login6:hover, #login7:hover, #cart:hover {
+		border-radius : 20px;
+		background : #fff5f3;
+		transition : 0.4s;
+	}
 	
-		    float: left;
-		    position: relative;
-		    text-align: center;
-		    margin: 0 auto 0 auto;
-		    padding: 5px;
-		    left: 30px;
-		/*     border: 1px solid red; */
-		    height: 45px;
-		    top: 25px;
-		    width: 80px;
+	.login1 {
+	    float: left;
+	    position: relative;
+	    text-align: center;
+	    margin: 0 10px;
+	    padding: 0px;
+	    left: 10px;
+	   
+/* 	    border: 1px solid red; */
+
+	    height: 45px;
+	    top: 25px;
+	    width: 80px;
+	    line-height: 50px;
 	}
 	
 		#login2 {
@@ -2402,7 +2413,7 @@ String ContextPath = request.getContextPath();
 	    width: 100%;
 	    top: 0;
 	    left: 0;
-	    line-height: 30px;
+	    line-height: 40px;
 	    padding: 0;
 	    border-radius: 10px;
 /* 	    border: 1px solid blue; */
@@ -2424,7 +2435,7 @@ String ContextPath = request.getContextPath();
 	    width: 100%;
 	    top: 0;
 	    left: 0;
-	    line-height: 30px;
+	    line-height: 40px;
 	    padding: 0;
 	    border-radius: 10px;
 /* 	    border: 1px solid blue; */
@@ -2446,7 +2457,7 @@ String ContextPath = request.getContextPath();
 	    width: 100%;
 	    top: 0;
 	    left: 0;
-	    line-height: 30px;
+	    line-height: 40px;
 	    padding: 0;
 	    border-radius: 10px;
 /* 	    border: 1px solid blue; */
@@ -2468,7 +2479,7 @@ String ContextPath = request.getContextPath();
 	    width: 100%;
 	    top: 0;
 	    left: 0;
-	    line-height: 30px;
+	    line-height: 40px;
 	    padding: 0;
 	    border-radius: 10px;
 /* 	    border: 1px solid blue; */
@@ -2490,7 +2501,7 @@ String ContextPath = request.getContextPath();
 	    width: 100%;
 	    top: 0;
 	    left: 0;
-	    line-height: 30px;
+	    line-height: 40px;
 	    padding: 0;
 	    border-radius: 10px;
 /* 	    border: 1px solid blue; */
@@ -2512,7 +2523,7 @@ String ContextPath = request.getContextPath();
 	    width: 100%;
 	    top: 0;
 	    left: 0;
-	    line-height: 30px;
+	    line-height: 40px;
 	    padding: 0;
 	    border-radius: 10px;
 /* 	    border: 1px solid blue; */
@@ -2535,7 +2546,7 @@ String ContextPath = request.getContextPath();
 	    width: 100%;
 	    top: 0;
 	    left: 0;
-	    line-height: 30px;
+	    line-height: 40px;
 	    padding: 0;
 	    border-radius: 10px;
 /* 	    border: 1px solid blue; */
@@ -2923,14 +2934,14 @@ String ContextPath = request.getContextPath();
 		color : black;
 		transition : 0.3s;
 	}
-	
+		
 	#hamburger {
 	    position: relative;
 	    display: block;
 	    top: 100px;
-	    left: 50%;
+	    left: 90%;
 	    right: 0;
-	    width: 100%;
+	    width: 20%;
 	    height: 100px;
 	    margin: 0 auto;
 	    z-index: 4;
@@ -2946,29 +2957,31 @@ String ContextPath = request.getContextPath();
 	    margin: 0 auto;
 	    border: 2px dashed pink;
 	    border-radius: 20px;
-	    color: hotpink;
+	    color: #f5cccc;
 	    z-index: 4;
 	    transition: 0.4s;
 	    width: 60px;
 	    padding: 0;
 	    height: 70px;
+	    text-decoration : none;
 	}
 	
 	#hamburger > a:hover {
 
-	border : 1px solid navy;
+	border : 2px dashed navy;
 	color : navy;
 	transition : 0.4s;
+	text-decoration: none;
 	
 		
 	}
 	
 	#hamburger > a > i:hover {
 
-	border : 1px solid navy;
+/* 	border : 1px solid navy; */
 	color : navy;
 	transition : 0.4s;
-	
+	text-decoration: none;
 		
 	}
 	
@@ -2978,10 +2991,9 @@ String ContextPath = request.getContextPath();
 	    left: 0;
 	    right: 0;
 	    width: 100%;
-	    height: 75%;
+	    height: 100%;
 	    margin: 0 auto;
 	}
-	
 	
 	#hamburger > a > i {
 	    position: relative;
@@ -2989,24 +3001,16 @@ String ContextPath = request.getContextPath();
 	    padding: 0;
 	    top: 0;
 	    left: 0px;
-	    top: 8px;
+	    top: 10px;
 	    width: 100%;
-	    height: 100%;
+	    height: 70%;
 	    margin: 0 auto;
 	    font-size: 50px;
 	    transition: 0.4s;
 	}
 	
-	#quickmenubox > #quickmenu, 
-	#quickmenubox > #quickmenu > ul,
-	#quckmenubox > #quickmenu > ul > li {
+
 	
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-		padding:0;margin:0
-	
-	}
 	
 	#quickmenu > ul > li > a {
 		text-decoration:none;

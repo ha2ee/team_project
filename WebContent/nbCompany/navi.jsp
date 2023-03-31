@@ -99,7 +99,7 @@ html {
  
  
  .footer_wrap {
-    width: 1920px;
+    width: 100%;
     margin: 0 auto;
     height: 500px;
     position: relative;
