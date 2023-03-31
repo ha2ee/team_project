@@ -1028,7 +1028,7 @@ String ContextPath = request.getContextPath();
 	/* 드롭 된 메뉴의 간격 조정 */
 	.list_lnb_01 {
 	 	margin-left : 140px;  
-	 		width: 130px;
+	 		width: 120px;
 	}
 	.list_lnb_02 {
 	 	margin-left : 90px; 
@@ -1039,7 +1039,7 @@ String ContextPath = request.getContextPath();
 	 		width: 130px;
 	}
 	.list_lnb_04 {
-	 	margin-left : 65px; 
+	 	margin-left : 85px; 
 	 		width: 130px;
 	}
 	/* 드롭 된 메뉴의 스타일 조정 */
@@ -1296,17 +1296,7 @@ String ContextPath = request.getContextPath();
 	
 		display : none;
 	}
-	
-	#quickmenubox > #quickmenu, 
-	#quickmenubox > #quickmenu > ul,
-	#quckmenubox > #quickmenu > ul > li {
-	
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-		padding:0;margin:0
-	
-	}
+
 	
 	#quickmenu > ul > li > a {
 		text-decoration:none;
@@ -1387,6 +1377,16 @@ String ContextPath = request.getContextPath();
 	#quickmenu > ul > li:last-child {
 		border-bottom:0;
 	}
+	
+	.footer_wrap {
+    width: 100%;
+    margin: 0 auto;
+    height: 500px;
+    position: relative;
+    top: 0;
+    left: 0;
+    background: #f1d3d73b;
+	}
 
 } 
 
@@ -1406,7 +1406,7 @@ String ContextPath = request.getContextPath();
 	  
 	.nb_top {
 	
-		border : 1px solid red;
+/* 		border : 1px solid red; */
 	
 	  position : fixed;
 	  width : 100%;
@@ -1434,7 +1434,7 @@ String ContextPath = request.getContextPath();
 	}
 	#header {
 	
-		border : 1px solid red;
+/* 		border : 1px solid red; */
 	
 		position : fixed;
 		left : 0;
@@ -1558,13 +1558,14 @@ String ContextPath = request.getContextPath();
 	}
 	/* 로그인에 대한 CSS 설정 */
 	#nb_login {
-		position : fixed;
-		top : 100px;
-		left : 0;
-		right : 0;
-		height: 100px;
-		width : 100%;
+	    position: absolute;
+	    top: 100px;
+	    height: 100px;
+	    width: 450px;
+	    right: 25%;
+	    margin-right: -7%;
 	}
+	
 	#nb_box{
 		margin : 0 auto 0 auto;
 		text-align: center;
@@ -1670,7 +1671,7 @@ String ContextPath = request.getContextPath();
 		
 	 	font-weight : 900;
 		width : 100%;
-		height : 600px;
+		height : 400px;
 		background: white;
 		position : relative;
 		top : 199px;
@@ -1687,7 +1688,7 @@ String ContextPath = request.getContextPath();
 		left: 0;
 		right : 0;
 		position : relative;
-		top : 10px;
+		top : 0;
 		width : 100%;
 		height : 100%;
 		margin : 0 auto 0 auto;
@@ -1695,41 +1696,52 @@ String ContextPath = request.getContextPath();
 	}
 	/* 드롭  된 각 메뉴에 대한 스타일 조정 */
 	#mega_wrapper > ul {
-	
 	    text-align: center;
 	    color: black;
 	    font-size: 16px;
 	    float: left;
-	    position: relative;
-	    left: 0;
-	    right: 0;
-	    margin: 0 auto;
 	    width: 100%;
-	    height: 30%;
-    
+	    height: 33%;
+	    margin: 0 auto;
+	    
+/* 	    border: 1px solid blue; */
 	}
 	/* 드롭 된 메뉴 전체의 스타일 조정 */
 	#mega_wrapper > ul >li{
-		
-		position : relative;
-		margin : 0 auto;
-		left : 0;
-		top : 0;
-		height : 25%;
-		width : 25%;
-		padding : 8px;
-		text-align : center;
-		transition : 0.3s;
-		
+ 	   padding: 8px;
+	    text-align: center;
+	    transition: 0.3s;
+	    width: 150px;
+	    margin: 20px auto;
+	    height: 40px;
 	}
-	
 	#mega_wrapper > ul >li:hover{
 		border-radius :20px;
 		background-color : #fff5f3;
 		text-align : center;
 		transition : 0.3s;
 	}
-
+	/* 드롭 된 메뉴의 간격 조정 */
+	.list_lnb_01 {
+	 	margin-left : 140px;  
+	 		width: 130px;
+	}
+	.list_lnb_02 {
+	 	margin-left : 90px; 
+	 	width : 150px;
+	}
+	.list_lnb_03 {
+	 	margin-left : 80px; 
+	 		width: 130px;
+	}
+	
+	#list_lnb_03 {
+	 	display : none;
+	}
+	.list_lnb_04 {
+	 	margin-left : 65px; 
+	 		width: 130px;
+	}
 	/* 드롭 된 메뉴의 스타일 조정 */
 	#mega_wrapper > ul >li > a{
 		font-size : 17px;
@@ -2003,7 +2015,7 @@ String ContextPath = request.getContextPath();
     right: 0;
     width: 80px;
     height: 80px;
-    border: 1px solid pink;
+    border: 1px dashed pink;
     border-radius: 20px;
     color: hotpink;
     z-index: 4;
@@ -2144,6 +2156,16 @@ String ContextPath = request.getContextPath();
 	
 	#quickmenu > ul > li:last-child {
 		border-bottom:0;
+	}
+	
+	.footer_wrap {
+    width: 100%;
+    margin: 0 auto;
+    height: 500px;
+    position: relative;
+    top: 0;
+    left: 0;
+    background: #f1d3d73b;
 	}
 
 
@@ -2310,57 +2332,203 @@ String ContextPath = request.getContextPath();
 	}
 	/* 로그인에 대한 CSS 설정 */
 	#nb_login {
-		position : fixed;
-		top : 100px;
-		left : 0;
-		right : 0;
-		height: 100px;
-		width : 100%;
+	    position: absolute;
+	    top: 100px;
+	    height: 100px;
+	    width: 450px;
+	    right: -5%;
+	    margin-right: -7%;
 	}
+	
 	#nb_box{
 		margin : 0 auto 0 auto;
 		text-align: center;
 		height : 100%;
-		width :  1200px;	
+		width :  100%;	
 		position: relative;
 		top : 0;
 	}
 	#login_box {
-			
-			margin : 0 auto 0 auto;
-			position: relative;
-			width : 240px;
-			height : 100px;
-			top : -1px;
-			left : -400px;
-			right : 0;
-			text-align: center;
-			z-index : 3;
-			
-	}
-	#login_box > li {
-		
-	    float: left;
-	    position: relative;
-	    text-align: center;
 	    margin: 0 auto 0 auto;
-	    padding: 10px;
-	    left: 30px;
-/* 	    border: 1px solid red; */
-	    height: 45px;
-	    top: 5px;
-	}
-	#login_box > li >a {
-		
-	    color: black;
-	    font-size: 10px;
 	    position: relative;
-	    top: 0;
-	    left: 0;
-	    right: 0;
 	    width: 100%;
 	    height: 100%;
-	    font-weight: bold;
+	    top: 0px;
+	    left: 0;
+	    right: 0;
+	    text-align: center;
+	    z-index: 3;
+/* 	    border: 1px solid red; */
+	}
+	
+	.login1 {
+	
+		    float: left;
+		    position: relative;
+		    text-align: center;
+		    margin: 0 auto 0 auto;
+		    padding: 5px;
+		    left: 30px;
+		/*     border: 1px solid red; */
+		    height: 45px;
+		    top: 25px;
+		    width: 80px;
+	}
+	
+		#login2 {
+	    font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+		#login3 {
+	    font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+		#login4 {
+	    font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+		#login5 {
+	    font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+		#login6 {
+	    font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+		#login7 {
+   		 font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
+	}
+
+		#cart {
+	    font-family: 'Nanum Gothic', sans-serif;
+	    font-size: 15px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    margin: 0 auto;
+	    letter-spacing: .75px;
+	    border: transparent;
+	    position: relative;
+	    display: inline-block;
+	    background: #fff;
+	    color: black;
+	    transition: 0.3s;
+	    height: 100%;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 30px;
+	    padding: 0;
+	    border-radius: 10px;
+/* 	    border: 1px solid blue; */
 	}
 		
 	/* 	1) "메뉴"에 대한 CSS 설정 */
@@ -2386,6 +2554,7 @@ String ContextPath = request.getContextPath();
 		height : 150px;
 		width:1200px;
 	}
+	
 	/* 1-2) 메뉴 버튼이 활성화 되었을때, CSS 디자인 */
 	/* 1-3) 버튼 하나하나에 대한 CSS 디자인 */
 	#list_gnb > li > a {
@@ -2424,7 +2593,7 @@ String ContextPath = request.getContextPath();
 		
 	 	font-weight : 900;
 		width : 100%;
-		height : 300px;
+		height : 400px;
 		background: white;
 		position : relative;
 		top : 199px;
@@ -2449,16 +2618,24 @@ String ContextPath = request.getContextPath();
 	}
 	/* 드롭  된 각 메뉴에 대한 스타일 조정 */
 	#mega_wrapper > ul {
-		text-align : center;
-		color : black;
-		font-size : 16px;
-		float : left;
+	    text-align: center;
+	    color: black;
+	    font-size: 16px;
+	    float: left;
+	    width: 100%;
+	    height: 33%;
+	    margin: 0 auto;
+	    
+/* 	    border: 1px solid blue; */
 	}
 	/* 드롭 된 메뉴 전체의 스타일 조정 */
 	#mega_wrapper > ul >li{
-		padding : 8px;
-		text-align : center;
-		transition : 0.3s;
+ 	   padding: 8px;
+	    text-align: center;
+	    transition: 0.3s;
+	    width: 150px;
+	    margin: 20px auto;
+	    height: 40px;
 	}
 	#mega_wrapper > ul >li:hover{
 		border-radius :20px;
@@ -2478,6 +2655,10 @@ String ContextPath = request.getContextPath();
 	.list_lnb_03 {
 	 	margin-left : 80px; 
 	 		width: 130px;
+	}
+	
+	#list_lnb_03 {
+	 	display : none;
 	}
 	.list_lnb_04 {
 	 	margin-left : 65px; 
@@ -2734,37 +2915,33 @@ String ContextPath = request.getContextPath();
 	}
 	
 	#hamburger {
-	
-		position : fixed;
-		
-		display : block;
-		top : 100px;
-		left : -210px;
-		right : 0;
-		width : 90px;
-		height : 100px;
-		margin : 0 auto;
-		z-index : 3;
+	    position: relative;
+	    display: block;
+	    top: 100px;
+	    left: 50%;
+	    right: 0;
+	    width: 100%;
+	    height: 100px;
+	    margin: 0 auto;
+	    z-index: 4;
+	    margin-left: -90%;
 	}
 	
 	#hamburger > a {
-	
-		position : relative;
-		
-		display : inline-block;
-		top : 10px;
-		left : 0;
-		right : 0;
-		width : 50px;
-		height : 50px;
-		margin : 0 auto;
-		border : 1px solid pink;
-		border-radius: 20px;
-		color : hotpink;
-		z-index : 4;
-		transition : 0.4s;
-	
-		
+	    position: relative;
+	    display: flex;
+	    top: 15px;
+	    right: 0;
+	    left: 0px;
+	    margin: 0 auto;
+	    border: 2px dashed pink;
+	    border-radius: 20px;
+	    color: hotpink;
+	    z-index: 4;
+	    transition: 0.4s;
+	    width: 60px;
+	    padding: 0;
+	    height: 70px;
 	}
 	
 	#hamburger > a:hover {
@@ -2786,34 +2963,29 @@ String ContextPath = request.getContextPath();
 	}
 	
 	#hamburger > a > i::before {
-	
-		position : relative;
-		
-		top : 0;
-		left : 0;
-		right : 0;
-		width : 100%;
-		height : 100%;
-		margin : 0 auto;
-	
+	    position: relative;
+	    top: 0px;
+	    left: 0;
+	    right: 0;
+	    width: 100%;
+	    height: 75%;
+	    margin: 0 auto;
 	}
 	
-		#hamburger > a > i {
 	
-		position : relative;
-		
-		display : inline-block;
-		padding : 10px;
-		top : 0;
-		left : 0;
-		right : 0;
-		width : 100%;
-		height : 100%;
-		margin : 0 auto;
-		font-size : 30px;
-		transition : 0.4s;
-	
-	}	
+	#hamburger > a > i {
+	    position: relative;
+	    display: flex;
+	    padding: 0;
+	    top: 0;
+	    left: 0px;
+	    top: 8px;
+	    width: 100%;
+	    height: 100%;
+	    margin: 0 auto;
+	    font-size: 50px;
+	    transition: 0.4s;
+	}
 	
 	#quickmenubox > #quickmenu, 
 	#quickmenubox > #quickmenu > ul,
@@ -2896,6 +3068,49 @@ String ContextPath = request.getContextPath();
 	
 	#quickmenu > ul > li:last-child {
 		border-bottom:0;
+	}
+	
+	.footer_wrap {
+	    width: 100%;
+	    margin: 0 auto;
+	    height: 500px;
+	    position: relative;
+	    top: 0;
+	    left: 0;
+	    background: #f1d3d73b;
+	}
+	
+	.footer > div {
+	    margin: 0 auto;
+	    position: relative;
+	    top: 0;
+	    left: 10px;
+	    width: calc(97%/3);
+	    height: 100%;
+	    border: 0.1pt dotted #f2dede;
+	    float: left;
+	}
+	
+	h4 {
+    font-size: 15px;
+	}
+	
+	.footer-widget > ul > li {
+    margin-bottom: 10px;
+	}
+	
+	.footer-widget > ul > li > a {
+    font-size: 10px;
+    color: #9a9da0;
+    text-transform: uppercase;
+    letter-spacing: .75px;
+    font-weight: 600;
+    line-height: 1;
+	}
+	
+	footer-widget > p {
+	font-size : 10px;
+	
 	}
 
 } 
@@ -3037,18 +3252,18 @@ $(document).ready(function(){
 					if(id == null){
 				%>	
 
-				   <li><a href="<%=request.getContextPath()%>/member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
-	               <li><a href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-	               <li><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
-	               <li><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
+				   <li class="login1"><a id="login2"href="<%=request.getContextPath()%>/member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
+	               <li class= "login1"><a id="login3"href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+	               <li class= "login1"><a id="login4"href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
+	               <li class= "login1"><a id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
 
 				<%
 					}else{//로그인 O
 				%>
-				   <li><a href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
-	               <li><a  href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
-	               <li style="display : none;"><a href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
-	               <li><a  id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
+				<li class="login1" ><a id="login5" href="<%=request.getContextPath()%>/nb/Main" class="btn">[ 홈 ]</a></li>
+				   <li class="login1"><a id="login6" href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
+	               <li class="login1"><a id="login7" href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li>
+	               <li class="login1"><a  id="cart" href="<%=request.getContextPath()%>/nb/cart.do?id=<%=id%>&center=/nbShop/cart.jsp" class="btn">장바구니</a></li>
 
 				<%
 					}
@@ -3122,7 +3337,7 @@ $(document).ready(function(){
 				<li><a class="edu_btn" href="<%=request.getContextPath()%>/nb/edu.do?center=/nbShop/trainer.jsp">수강신청 가기</a></li>
 				<li><a href="<%=request.getContextPath()%>/review/list.rv">수강 후기</a></li>
 			</ul>
-			<ul class="list_lnb_03">
+			<ul id = "list_lnb_03" class="list_lnb_03">
 
 			</ul>
 			<ul class="list_lnb_04">
