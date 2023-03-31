@@ -10,7 +10,7 @@
 </head>
 <title>Slider</title>
 <!-- 3 Bootstrap core CSS --> 
-<link href="<%=contextPath%>/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=contextPath%>/css/bootstrap_center.css" rel="stylesheet">
 
  <style>
  	
@@ -348,7 +348,6 @@
 
 <script src="<%=contextPath%>/js/jquery.min.js"></script>
 <script src="<%=contextPath%>/js/bootstrap.min.js"></script>
-<script src="<%=contextPath%>/js/run_prettify.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
