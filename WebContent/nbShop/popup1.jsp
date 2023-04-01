@@ -225,6 +225,8 @@ function returnPet(){
 
 
 	// 부모창의 Id값을 가져와서 현재창의 Value 값을 전달한다.
+	opener.document.getElementById("edu_img").src = document.getElementById("petImg").src;
+	opener.document.getElementById("pet_img").src = document.getElementById("petImg").src;
 	opener.document.getElementById("pet_name").value = document.getElementById("petName").value;
 	opener.document.getElementById("edu_img_name").value = document.getElementById("petName").value;
 	opener.document.getElementById("pet_type").value = document.getElementById("petType").value;
@@ -260,7 +262,7 @@ function returnPet(){
 	
 	// 부모창의 예약하기 버튼을 보이게 하고 , 최종 예약정보의 사진도 바꿔준다.
 	opener.document.getElementById("nb_submitbtn").style.display = "block";
-	opener.document.getElementById("pet_edu_img").value = "${contextPath}/nbShop/img/"+petimg;
+	opener.document.getElementById("pet_edu_img").value = petimg;
 
 		alert(petname+" 의 정보 불러오기 완료!");
 		

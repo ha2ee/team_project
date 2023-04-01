@@ -615,6 +615,9 @@ color : navy;
     		//현재 보이는 창이 현재달 이면
     		var dmon = document.getElementById("calMonth").innerText = autoLeftPad((today.getMonth() + 1), 2);
     		var thisMonth = moment(lastDate2).format('MM');
+    		
+    		console.log("dmon :"+dmon);
+    		console.log("thisMonth : "+thisMonth);
 
     		
     		if(dmon == thisMonth){
@@ -640,6 +643,8 @@ color : navy;
        	    	totalresult = 0;
        	    	
        	        this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+       	        
+       	        console.log("this.today :"+this.today);
        	        buildCalendar();    // @param 명월 캘린더 출력 요청
 
 	    		// 예약 된 날짜를 가져온다.

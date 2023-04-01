@@ -248,13 +248,13 @@ try {
 con = ds.getConnection();
 //매개변수 tr_name으로 받는 입력한 이름에 해당되는 행을 조회 SELECT문
 //sql = tr_name 값으로 선택 된 훈련사의 예약 된 일정들을 조회해 온다.
-String sql = "SELECT TO_CHAR(date1, 'DD') from edu_order where tr_name=? AND NOT date1 IS NULL "
-+"union SELECT TO_CHAR(date2, 'DD') from edu_order where tr_name=? AND NOT date2 IS NULL "
-+"union SELECT TO_CHAR(date3, 'DD') from edu_order where tr_name=? AND NOT date3 IS NULL "
-+ "union SELECT TO_CHAR(date4, 'DD') from edu_order where tr_name=? AND NOT date4 IS NULL "
-+ "union SELECT TO_CHAR(date5, 'DD') from edu_order where tr_name=? AND NOT date5 IS NULL "
-+ "union SELECT TO_CHAR(date6, 'DD') from edu_order where tr_name=? AND NOT date6 IS NULL "
-+ "union SELECT TO_CHAR(date7, 'DD') from edu_order where tr_name=? AND NOT date7 IS NULL";
+String sql = "SELECT TO_CHAR(date1, 'DD') from edu_order where sysdate <= TO_DATE(date1, 'YY/MM/DD') AND tr_name=? AND NOT date1 IS NULL "
++"union SELECT TO_CHAR(date2, 'DD') from edu_order where sysdate <= TO_DATE(date2, 'YY/MM/DD') AND tr_name=? AND NOT date2 IS NULL "
++"union SELECT TO_CHAR(date3, 'DD') from edu_order where sysdate <= TO_DATE(date3, 'YY/MM/DD') AND tr_name=? AND NOT date3 IS NULL "
++ "union SELECT TO_CHAR(date4, 'DD') from edu_order where sysdate <= TO_DATE(date4, 'YY/MM/DD') AND tr_name=? AND NOT date4 IS NULL "
++ "union SELECT TO_CHAR(date5, 'DD') from edu_order where sysdate <= TO_DATE(date5, 'YY/MM/DD') AND tr_name=? AND NOT date5 IS NULL "
++ "union SELECT TO_CHAR(date6, 'DD') from edu_order where sysdate <= TO_DATE(date6, 'YY/MM/DD') AND tr_name=? AND NOT date6 IS NULL "
++ "union SELECT TO_CHAR(date7, 'DD') from edu_order where sysdate <= TO_DATE(date7, 'YY/MM/DD') AND tr_name=? AND NOT date7 IS NULL";
 
 pstmt = con.prepareStatement(sql);
 pstmt.setString(1, tr_name);
@@ -305,13 +305,13 @@ try {
 con = ds.getConnection();
 //매개변수 tr_name으로 받는 입력한 이름에 해당되는 행을 조회 SELECT문
 //sql = tr_name 값으로 선택 된 훈련사의 예약 된 일정들을 조회해 온다.
-String sql = "SELECT TO_CHAR(date1, 'DD') from cart_edu where tr_name=? AND NOT date1 IS NULL "
-+"union SELECT TO_CHAR(date2, 'DD') from cart_edu where tr_name=? AND NOT date2 IS NULL "
-+"union SELECT TO_CHAR(date3, 'DD') from cart_edu where tr_name=? AND NOT date3 IS NULL "
-+ "union SELECT TO_CHAR(date4, 'DD') from cart_edu where tr_name=? AND NOT date4 IS NULL "
-+ "union SELECT TO_CHAR(date5, 'DD') from cart_edu where tr_name=? AND NOT date5 IS NULL "
-+ "union SELECT TO_CHAR(date6, 'DD') from cart_edu where tr_name=? AND NOT date6 IS NULL "
-+ "union SELECT TO_CHAR(date7, 'DD') from cart_edu where tr_name=? AND NOT date7 IS NULL";
+String sql = "SELECT TO_CHAR(date1, 'DD') from cart_edu where sysdate <= TO_DATE(date1, 'YY/MM/DD') AND tr_name=? AND NOT date1 IS NULL "
++"union SELECT TO_CHAR(date2, 'DD') from cart_edu where sysdate <= TO_DATE(date2, 'YY/MM/DD') AND tr_name=? AND NOT date2 IS NULL "
++"union SELECT TO_CHAR(date3, 'DD') from cart_edu where sysdate <= TO_DATE(date3, 'YY/MM/DD') AND tr_name=? AND NOT date3 IS NULL "
++ "union SELECT TO_CHAR(date4, 'DD') from cart_edu where sysdate <= TO_DATE(date4, 'YY/MM/DD') AND tr_name=? AND NOT date4 IS NULL "
++ "union SELECT TO_CHAR(date5, 'DD') from cart_edu where sysdate <= TO_DATE(date5, 'YY/MM/DD') AND tr_name=? AND NOT date5 IS NULL "
++ "union SELECT TO_CHAR(date6, 'DD') from cart_edu where sysdate <= TO_DATE(date6, 'YY/MM/DD') AND tr_name=? AND NOT date6 IS NULL "
++ "union SELECT TO_CHAR(date7, 'DD') from cart_edu where sysdate <= TO_DATE(date7, 'YY/MM/DD') AND tr_name=? AND NOT date7 IS NULL";
 
 pstmt = con.prepareStatement(sql);
 pstmt.setString(1, tr_name);
@@ -440,7 +440,8 @@ try {
 con = ds.getConnection();
 
 //sql 문을 이용해 select 하기
-String sql = "select * from cart_edu where edu_id=? order by edu_num asc";
+
+String sql = "select * from cart_edu where sysdate <= TO_DATE(date1, 'YY/MM/DD') OR sysdate <= TO_DATE(date2, 'YY/MM/DD') OR sysdate <= TO_DATE(date3, 'YY/MM/DD') OR sysdate <= TO_DATE(date4, 'YY/MM/DD') OR sysdate <= TO_DATE(date5, 'YY/MM/DD') OR sysdate <= TO_DATE(date6, 'YY/MM/DD') OR sysdate <= TO_DATE(date7, 'YY/MM/DD') AND edu_id=? order by edu_num asc";
 
 //sql문을 pstmt 객체에 저장
 pstmt = con.prepareStatement(sql);
@@ -498,7 +499,7 @@ System.out.println(vector);
 
 
 } catch (Exception e) {
-System.out.println("OrderDAO -> ClickTrainer 메소드 내부에서 오류!");
+System.out.println("OrderDAO -> checkCartedu 메소드 내부에서 오류!");
 e.printStackTrace();
 
 } finally {
