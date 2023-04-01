@@ -296,5 +296,13 @@
 
 }
 
+	#mega_wrapper > ul {
+	    border: 1px solid white;
+	    text-align: center;
+	    color: black;
+	    font-size: 16px;
+	    float: left;
+	}
+
 @charset "utf-8";
 /* CSS Document */
