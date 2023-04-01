@@ -11,38 +11,9 @@
 <html>
 <head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!--  	 trainer CSS 셋팅 -->
+<link href="<%=request.getContextPath()%>/css/trainer.css" rel="stylesheet">
 <style>
-
- #top_line{
-
-    position: relative;
-    border-bottom: #F2DEE0 1px solid;
-    display: inline-block;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 10px;
-    padding: 0px;
-    margin: 0 auto;
-    background: #fff5f3;
-
-	}
-
-.footer-line {
-    position: relative;
-    border-bottom: #F2DEE0 1px solid;
-    display: inline-block;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 10px;
-    padding: 0px;
-    margin: 0 auto;
-    background: #fff5f3;
-	}
-
-
-
 </style>
 
 <!--  # 캐러셀 사용을 위한 임포트  -->
@@ -52,8 +23,6 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <meta charset="utf-8">
-<!--  	 trainer CSS 셋팅 -->
- 	<link href="<%=request.getContextPath()%>/css/trainer.css" rel="stylesheet">
 <script type="text/javascript"  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
 <meta charset="UTF-8">
