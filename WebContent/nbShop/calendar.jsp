@@ -793,14 +793,6 @@ color : navy;
     	// 다음 버튼을 눌렀을 때,
     	$("#next").on("click", function (){
     		
-    		
-			//예약 정보를 초기화 시킨다.
-    		$("#result > div > input").attr("value", "");
-   	        $("#totalcnt > input").attr("value", "");
-   	    	$("#tr_price > input").attr("value", "");
-   	    	$("#tr_totalprice > input").attr("value", "");
-   	    	resultcnt = 0;
-   	    	totalresult = 0;
    	    	
    	        this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
    	        
