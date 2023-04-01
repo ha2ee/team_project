@@ -39,16 +39,35 @@ body{
 }
 
 @media (max-width: 767px){
-#mega-menu {
-    /* border: 1px solid red; */
-    font-weight: 900;
-    width: 100%;
-    height: 400px;
-    background: white;
-    position: relative;
-    top: 199px;
-    left: 0;
-    right: 0;
-    border-radius: 3px;
-    display: none;
+	
+	#mega-menu {
+	    /* border: 1px solid red; */
+	    font-weight: 900;
+	    width: 100%;
+	    height: 400px;
+	    background: white;
+	    position: relative;
+	    top: 199px;
+	    left: 0;
+	    right: 0;
+	    border-radius: 3px;
+	    display: none;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1199px){
+	
+	#mega-menu {
+	    /* border: 1px solid red; */
+	    font-weight: 900;
+	    width: 100%;
+	    height: 400px;
+	    background: white;
+	    position: relative;
+	    top: 199px;
+	    left: 0;
+	    right: 0;
+	    border-radius: 3px;
+	    display: none;
+	}
 }
