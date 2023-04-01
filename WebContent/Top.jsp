@@ -1675,20 +1675,19 @@ String ContextPath = request.getContextPath();
 	/* 드롭  된 큰 메뉴에 대한 스타일 조정 */
 	#mega-menu {
 	
-	/* 	border : 1px solid red; */
-		
-	 	font-weight : 900;
-		width : 100%;
-		height : 400px;
-		background: white;
-		position : relative;
-		top : 199px;
-		left : 0;
-		right : 0;
-		border-radius: 3px;
-		display : none;
-		
+/* 	    border: 1px solid red; */
+	    font-weight: 900;
+	    width: 100%;
+	    height: 400px;
+	    background: white;
+	    position: relative;
+	    top: 199px;
+	    left: 0;
+	    right: 0;
+	    border-radius: 3px;
+	    display: none;
 	}
+	
 	#mega_wrapper{
 		
 	/*  	border : 1px solid red;  */

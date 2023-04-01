@@ -58,6 +58,14 @@
     padding: 0;
     
 	}
+	
+	#mega_wrapper > ul {
+    border: 1px solid white;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    float: left;
+	}
     	/* 게시판을 감싸는 div의 스타일 */
 		.board-wrap {
 		  margin: 20px auto; /* 중앙 정렬 */
