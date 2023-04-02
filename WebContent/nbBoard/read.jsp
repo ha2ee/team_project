@@ -34,7 +34,6 @@
   <meta charset="UTF-8">
   <title>게시글 상세</title>
   <link href="../css/Team_FreeBoard.css" rel="stylesheet" type="text/css" />
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <body>
@@ -68,13 +67,13 @@
         <%
           if ((String) request.getAttribute("likeCheck") == "0") { //좋아요를 안 눌렀다면?
         %>
-        <a id="likeimgg" onclick="javascript:clickLike('<%=id%>')">
+        <a id="likeimgg" onclick="javascript:clickLike('<%=id%>','<%=b_idx%>')">
           <i class="fa-regular fa-heart fa-4x" id="likeimggg"></i>
         </a>
         <%
           } else { //좋아요를 눌렀다면?
         %>
-        <a id="likeimgg" onclick="javascript:clickLike('<%=id%>')">
+        <a id="likeimgg" onclick="javascript:clickLike('<%=id%>','<%=b_idx%>')">
           <i class="fa-solid fa-heart fa-4x" id="likeimggg"></i>
         </a>
         <%
@@ -159,81 +158,6 @@
     </div>
   </div>
 
-    <script type="text/javascript">
-      const b_idx = <%=vo.getB_idx()%>
-      var originLikeCount = <%=like%>
-  
-      function clickLike(id){
-        if(id == "null"){
-          alert("로그인부터 해라");
-        } else{
-          $.ajax({
-                  url: "<%=contextPath%>/freeboard/like.fb",
-                  async : true,
-                  type : 'POST',
-                  data : {
-                            b_idx : b_idx,
-                            id : id
-                          },
-                  success : function(data) {
-                    var arr=data.split("l");
-                    var arr1 = arr[0];
-                    var arr2 = arr[1];
-                      $("#countLike").text(arr1);
-                      $("#topLike").text(arr1);
-                      
-                      if ( arr2 == 8 ) {
-                        $("#likeimggg").attr("class","fa-solid fa-heart fa-4x");//이제 좋아요 누른 경우;
-                      } else if (arr2 == 9) {
-                        $("#likeimggg").attr("class","fa-regular fa-heart fa-4x"); //이미 좋아요 누른 경우;
-                      }
-                  }
-            });
-        }
-      }
-    //삭제하기를 눌렀을때 ajax로 삭제 처리하기
-      function del(b_idx){
-      			var result = window.confirm("정말로 글을 삭제하시겠습니까?");
-      			if(result == true){//확인 버튼 클릭
-      				//비동기방식으로 글삭제 요청!
-      				$.ajax({
-      					type : "post",
-      					async : true,
-      					url : "<%=contextPath%>/freeboard/del.fb",
-      					data : {b_idx : b_idx},
-      					dataType : "text",
-      					success : function(data){
-      						if(data=="삭제성공"){
-      							alert("삭제 성공!");
-      							//강제로 클릭 이벤트 발생시키는 부분
-      							location.href="<%=contextPath%>/freeboard/list.fb";
-      									} else {//"삭제실패"
-      										alert("삭제에 실패했습니다.")
-      										location.reload();
-      									}
-      								},
-      								error : function() {
-      									alert("비동기 통신 장애");
-      								}
-      							});
-      				} else {//취소 버튼을 눌렀을때
-      					return false;
-      				}
-      			}      
-      
-		function comment(b) {
-			var commentUpdate = document.getElementById("commentUpdate" + b);
-			commentUpdate.submit();
-		}
-
-		function updateActive(a) {
-			//수정시 입력하는 화면 활성화
-			$("#updateActive" + a).removeAttr("disabled");
-			//수정하기 버튼 안보이게
-			document.getElementById("update" + a).style.display = 'none';
-			//수정완료 버튼 보이게 
-			document.getElementById("updatePro" + a).style.display = 'block';
-		}
-    </script>
+    <script src="../js/Team_freeboard.js"></script>
 </body>
 </html>

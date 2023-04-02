@@ -43,15 +43,6 @@ String id = (String) session.getAttribute("id");
     </div>
   </div> <br>
   
-  <script type="text/javascript">
-  	CKEDITOR.replace('editor1', {
-  		height : 500
-  	});
-  	
-		function fnsubmit() {
-			//		$("#content11").attr("value",str);
-			$("form").submit();
-		}
-  </script>
+  <script src="../js/Team_freeboard.js"></script>
 </body>
 </html>

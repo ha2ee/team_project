@@ -25,12 +25,10 @@ html > body {
 }
 /*스타일 시작*/
 .Contents-Box {
-	
 /*   height: 900px; */
   color: #010101;
   padding: 0px 20px;
   margin : 5% 5% 0 5%;
-  
 /*   width: 80%; */
 }
 /*제목, 삭제버튼*/
@@ -90,10 +88,6 @@ html > body {
   justify-content: center;
   align-items: center;
 }
-
-
-
-
 .Contents-Box > .List-Box > ul > li:first-child {
   width: 5%;
 }
@@ -111,7 +105,6 @@ html > body {
 .Contents-Box > .List-Box > ul > li:nth-child(5) {
   width: 7.5%;
 }
-
 .Contents-Box > .List-Box > ul > li:last-child {
   width: 7.5%;
 }
@@ -194,7 +187,6 @@ html > body {
   background-color: #4F6884;
 }
 
-
 /* list's css */
 /*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
   #login_box > li > a:hover {
@@ -260,7 +252,6 @@ html > body {
      text-decoration: none; /* 밑줄 제거 */
       font-weight: bold; /* 글씨체 굵기 지정 */
     }
-    
     .board-table td:nth-child(5),.board-table td:nth-child(6),.board-table td:nth-child(1) {
     padding-left: 30px;
     }
@@ -325,8 +316,8 @@ html > body {
       border: none;
       color: white;
       background-color: #EDAF8C;
+      cursor: pointer;
     }
-    
     /* 	댓글 CSS */
     #tblAddCommnet, #tblListComment {
       margin: 15px auto;
@@ -377,12 +368,10 @@ html > body {
       margin-left: 50px;
       width: 220px;
     }
-  
     .list_lnb_02 {
       margin-left: 40px;
       width: 170px;
     }
-      
       .list_lnb_04 {
       margin-left: 55px;
       width: 170px;
@@ -412,7 +401,6 @@ html > body {
       top: 0;
       left: 0;
       line-height: 40px;
-      
     }
     #login_box > li {
       float: left;
@@ -423,7 +411,6 @@ html > body {
       width: 105px;
       left: 0;
       padding: 0;
-      
     }
     #login_box {
       margin: 0 auto 0 auto;
@@ -469,7 +456,6 @@ html > body {
       height: 2.75rem;
       overflow-y: hidden;
     }
-  
     .nav-scroller .nav {
       display: flex;
       flex-wrap: nowrap;
@@ -487,7 +473,6 @@ html > body {
    -webkit-box-orient: vertical; 
     overflow: hidden;
     }
-        
     .card-content__more-btn {
     appearance: none;
     border: 1px solid black;
@@ -559,12 +544,3 @@ html > body {
       font-weight: bold;
     }
 /* reviewWrite's css */
-
-
-
-
-
-
-
-
-

@@ -7,7 +7,6 @@
   request.setCharacterEncoding("UTF-8");
   String contextPath = request.getContextPath(); 
   String reviewUploadPath = contextPath + "/reviewUpload/";
-  
 %>
 <!doctype html>
 <html lang="en">
@@ -143,48 +142,7 @@
     </tr>
    </table>
 </div>
-
     <script src="../js/review.min.js"></script>
-    <script type="text/javascript">
-      const fullContent = document.querySelector("#container"); // 전체를 둘러싼 컨텐츠 정보획득
-
-      function clickWrite(id){
-        if(!id){
-          alert("로그인 후 작성이 가능합니다.");
-        }else{
-          location.href='<%=contextPath%>/review/write.rv';
-        }
-      }
-      
-      function del(idx){
-        var result = window.confirm("정말로 글을 삭제하시겠습니까?");
-
-        if(result == true){//확인 버튼 클릭
-            //비동기방식으로 글삭제 요청!
-   				$.ajax({
-   					type : "post",
-   					async : true,
-   					url : "<%=contextPath%>/review/del.rv",
-   					data : {idx : idx},
-   					dataType : "text",
-   					success : function(data){
-   						if(data==1){
-   							alert("삭제 성공!");
-   							//강제로 클릭 이벤트 발생시키는 부분
-   							location.href="<%=contextPath%>/review/list.rv";
-   						}else{//"삭제실패"
-   							alert("삭제에 실패했습니다.")
-   							location.reload();
-   						}
-   					},
-   					error : function(){
-   						alert("비동기 통신 장애");
-   					}
-   				});
-   			}else{//취소 버튼을 눌렀을때
-   				return false;
-   			}
-   		}
-    </script>
+    <script src="../js/Team_freeboard.js"></script>
   </body>
 </html>
