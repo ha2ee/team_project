@@ -154,7 +154,7 @@ text-decoration: underline;
 	height : 50%;
 }
 .center_Container>div:nth-child(5) {
-	background: #888;
+	background: #badaf5;
 	width: 400px;
 	height : 50%;
 }
@@ -177,18 +177,18 @@ text-decoration: underline;
   cursor: pointer;
 }
 
-.center_memTable,.center_trTable, .center_trBoardTable {
+.center_Table {
 	border-collapse: collapse;
 	margin : 0 auto;
 }
 
-.center_memTable th, .center_memTable td, .center_trTable th, .center_trTable td {
+.center_Table th, .center_Table td{
 	text-align: center;
 	border-bottom: 1px solid #888;
 	width : 20%;
 	height:30px;
 }
-.center_memTable th, .center_trTable th{
+.center_Table th{
 	background-color: #EAEAEA;
 }
   
@@ -292,3 +292,36 @@ display: inline;
 .mem_link:hover {
 	text-decoration: underline;
 }
+
+
+
+/*관리자페이지 자유게시판 댓글 css*/
+#tblAddCommnet, #tblListComment {
+      margin: 15px auto;
+    }
+    #tblAddComment {
+      margin-top: 30px;
+    }
+    /* 	#tblAddComment td:nth-child(1) { width: 600px; } */
+    #tblAddComment td:nth-child(2) {
+      width: 100px;
+    }
+    #tblListComment td:nth-child(1) {
+      width: 600px;
+    }
+    #tblListComment td:nth-child(2) {
+      width: 100px;
+    }
+    #tblListComment td {
+      position: relative;
+      left: 0;
+      top: 0;
+    }
+    #tblListComment td span {
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
+      color: #AAA;
+      font-size: 11px;
+    }
+/*관리자페이지 자유게시판 댓글 css*/    

@@ -12,14 +12,11 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자센터페이지</title>
-<style type="text/css">
-
-</style>
 </head>
 <body>
 	<div class="center_Container">
 		<div class="centerBox_1"><h3>회원목록</h3><a class="seeMore" href="${contextPath}/adm/memManage.adm">&#43;</a><hr>
-		<table class="center_memTable" >
+		<table class="center_Table" >
 			<tr>
 				<th>회원 아이디</th>
 				<th>회원 이름</th>
@@ -39,7 +36,7 @@
 			</table>
 		</div>
 		<div class="centerBox_2"><h3>트레이너 목록</h3><a class="seeMore" href="${contextPath}/adm/trManage.adm">&#43;</a><hr>
-			<table class="center_trTable" >
+			<table class="center_Table" >
 				<tr>
 					<th>트레이너 아이디</th>
 					<th>트레이너 이름</th>
@@ -57,14 +54,14 @@
 			</table>
 		</div>
 		<div class="centerBox_3"><h3>자유게시판</h3><a class="seeMore" href="${contextPath}/adm/freeBoardList.adm">&#43;</a><hr>
-			<table class="center_memTable" >
+			<table class="center_Table" >
 	            <tr>
 	                <th>제목</th>
-	                <th>작성자</th>
+	                <th>닉네임</th>
 	                <th>작성일</th>
 	            </tr>
 			<c:forEach var="freeBoard" items="${requestScope.fbList}" varStatus="vs" begin="0" end="7" step="1">
-	            <tr class="freeBoard2">
+	            <tr>
 	                <td>
 	                    <a class="link" href="freeBoardRead.adm?b_idx=${freeBoard.b_idx}&nowBlock=0&nowPage=0" >
 	                    	<b>${freeBoard.b_title}</b>
@@ -79,14 +76,14 @@
 	        </table>
 		</div>
 		<div class="centerBox_4"><h3>훈련사 상담</h3><a class="seeMore" href="${contextPath}/adm/trBoardList.adm">&#43;</a><hr>
-		<table class="center_memTable" >
+		<table class="center_Table" >
             <tr>
                 <th>제목</th>
-                <th>작성자</th>
+                <th>작성자이름</th>
                 <th>작성일</th>
             </tr>
 		<c:forEach var="trBoard" items="${requestScope.trBoardList}">
-            <tr class="trBoard2">
+            <tr>
                 <td>
 	               	<c:if test="${trBoard.tb_level > 0}">
 	                	:RE
@@ -116,7 +113,28 @@
         </table>
 		
 		</div>
-		<div class="centerBox_5"><h3>수강 후기</h3><a class="seeMore" href="${contextPath}/adm/memManage.adm">&#43;</a><hr></div>
+		<div class="centerBox_5"><h3>수강 후기</h3><a class="seeMore" href="${contextPath}/adm/reviewBoardList.adm">&#43;</a><hr>
+			<table class="center_Table" >
+	            <tr>
+	                <th>제목</th>
+	                <th>아이디</th>
+	                <th>작성일</th>
+	            </tr>
+			<c:forEach var="reviewBoard" items="${requestScope.reviewBoardList}" varStatus="vs" begin="0" end="7" step="1">
+	            <tr class="freeBoard2">
+	                <td>
+	                    <a class="link" href="reviewBoardRead.adm?b_idx=${reviewBoard.idx}&nowBlock=0&nowPage=0" >
+	                    	<b>${reviewBoard.title}</b>
+	                    </a>
+	                </td>
+	                <td>
+	                		${reviewBoard.id}
+	                </td>
+	                <td>${reviewBoard.review_date}</td>
+	            </tr>
+	        </c:forEach>
+	        </table>
+		</div>
 	</div>
 	
 	
