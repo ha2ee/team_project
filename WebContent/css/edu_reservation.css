@@ -8,12 +8,13 @@
     position: relative;
     left: 0;
     right: 0;
-    top: 10px;
+    top: 0;
     margin: 0 auto;
     color: #ff191966;
     padding: 10px;
     border-radius: 20px;
     background: #f2dede6b;
+    line-height: 50px;
 }
 
 /*  1) 예약자 CSS 설정 */
@@ -107,7 +108,7 @@
 	position :relative;
 	text-align :center;
 	width : 150px;
-	height : 30px;
+	height : 15px;
 	margin : 0 auto;
 	left : 490px;
 	right : 0;
@@ -396,38 +397,19 @@
 	text-align :center;
 	height : 30px;
 	margin : 0 10px;
-	left : 390px;
+	left : 490px;
 	right : 0;
-	top : 2px;
+	top : -70px;
 	background : aliceblue;
 	border-radius: 10px;
 	transition : all 0.5s;
 	font-weight : bold;
 	color : #ff5722;
+	line-height : 30px;
 	
 	
 }
 
-#petcheck1 {
-
- 	border : 1px dashed #ff811959;
-	
-	position :relative;
-	text-align :center;
-	width : 170px;
-	height : 30px;
-	margin : 0 auto;
-	left : 350px;
-	right : 0;
-	top : 2px;
-	background : aliceblue;
-	border-radius: 10px;
-	transition : all 0.5s;
-	font-weight : bold;
-	color : #ff5722;
-	
-
-}
 
 #petcheck2 {
 
@@ -446,23 +428,18 @@
 	transition : all 0.5s;
 	font-weight : bold;
 	color : #ff5722;
+	cursor : pointer;
 	
 
 }
 
-#pet_box > #pet_check > #petcheck1:hover {
-
-	background : #fff5f3;
-	border-radius: 15px;
-	transition : all 0.5s;
-	
-}
 
 #pet_box > #pet_check > #petcheck2:hover {
 
 	background : #fff5f3;
 	border-radius: 15px;
 	transition : all 0.5s;
+	color : red;
 	
 }
 
@@ -484,8 +461,7 @@ position: relative;
 
 #pet_box > #pet_name_box {
  
-    border: 1px solid #fff5f373;
-    
+/*     border: 1px solid #fff5f373; */
     position: relative;
     text-align: center;
     width: 250px;
@@ -493,14 +469,14 @@ position: relative;
     margin: 0 auto;
     left: -474px;
     right: 0;
-    top: 1px;
+    top: -8px;
     border-radius: 10px;
 
 }
 
 #pet_img_name {
 
-    border: 1px solid #fff5f373;
+/*     border: 1px solid #d9534f; */
     display: block;
     position: relative;
     text-align: center;
@@ -517,24 +493,26 @@ position: relative;
     padding: 5px;
     font-weight: bold;
     text-decoration: none;
+    line-height: 40px;
+    
 
 }
 
 #pet_img_box > #pet_img {
 
-	border : 1px solid #fff5f373;
-	
-	vertical-align : middle;
-	position :relative;
-	text-align :center;
-	width : 200px;
-	height : 200px;
-	margin : 0 auto;
-	left : 0;
-	right : 0;
-	top : 4px;
-	padding : 10px;
-	border-radius: 100px;
+/* border: 1px solid #fff5f373; */
+
+    vertical-align: middle;
+    position: relative;
+    text-align: center;
+    width: 180px;
+    height: 160px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 15px;
+    padding: 10px;
+    border-radius: 100px;
     box-shadow: 0px 0px 10px 1px lightsalmon;
 
 }
@@ -559,12 +537,12 @@ input#file-upload-button {
 	
 	position: relative;
     text-align: center;
-    width: 820px;
+    width: 780px;
     height: 265px;
     margin: 0 auto;
     left: 65px;
     right: 0;
-    top: -264px;
+    top: -279px;
 
 }
 
@@ -575,7 +553,7 @@ input#file-upload-button {
 	display : block;
 	position :relative;
 	text-align :center;
-	width : 163px;
+	width : 140px;
 	height : 35px;
 	margin : 0 auto;
 	left : -6px;
@@ -589,6 +567,7 @@ input#file-upload-button {
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
+	line-height : 40px;
 
 }
 
@@ -620,9 +599,9 @@ input#file-upload-button {
     width: 133px;
     height: 265px;
     margin: 0 auto;
-    left: 533px;
+    left: 513px;
     right: 0;
-    top: -529px;
+    top: -547px;
 
 }
 
@@ -633,7 +612,7 @@ input#file-upload-button {
 	display : block;
 	position :relative;
 	text-align :center;
-	width : 133px;
+	width : 118px;
 	height : 35px;
 	margin : 0 auto;
 	left : -1px;
@@ -646,7 +625,7 @@ input#file-upload-button {
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
-	
+	line-height : 35px;
 
 }
 
@@ -807,7 +786,7 @@ input#file-upload-button {
 
 #tr_img_name {
 
-	border : 1px solid #fff5f373;
+/* 	border : 1px solid #fff5f373; */
 	
 	display : block;
 	position :relative;
@@ -833,18 +812,18 @@ input#file-upload-button {
 
 	border : 1px solid #fff5f373;
 	
-	vertical-align : middle;
-	position :relative;
-	text-align :center;
-	width : 200px;
-	height : 200px;
-	margin : 0 auto;
-	left : 0;
-	right : 0;
-	top : 4px;
-	padding : 10px;
-	border-radius: 100px;
-	box-shadow: 0px 0px 10px 1px lightsalmon;
+    vertical-align: middle;
+    position: relative;
+    text-align: center;
+    width: 180px;
+    height: 160px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 15px;
+    padding: 10px;
+    border-radius: 100px;
+    box-shadow: 0px 0px 10px 1px lightsalmon;
 
 }
 
@@ -858,7 +837,7 @@ input#file-upload-button {
 	width : 160px;
 	height : 240px;
 	margin : 0 auto;
-	left : -263px;
+	left : -273px;
 	right : 0;
 	top : -240px;
 
@@ -871,9 +850,9 @@ input#file-upload-button {
 	display : block;
 	position :relative;
 	text-align :center;
-	width : 158px;
-	height : 35px;
-	margin : 45px auto;
+	width : 145px;
+	height : 30px;
+	margin : 39px auto;
 	left : 0;
 	right : 0;
 	top : -45px;
@@ -884,6 +863,7 @@ input#file-upload-button {
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
+	line-height : 30px;
 
 }
 
@@ -898,7 +878,7 @@ input#file-upload-button {
 	margin : 10px auto;
 	left : 0;
 	right : 0;
-	top : 2px;
+	top : 0;
 	border-radius : 15px;
 	color : #80c880;
 	
@@ -915,33 +895,34 @@ input#file-upload-button {
     position: relative;
     text-align: center;
     width: 160px;
-    height: 240px;
+    height: 243px;
     margin: 0 auto;
-    left: -96px;
+    left: -106px;
     right: 0;
-    top: -480px;
+    top: -489px;
 }
 
 #tr_date_box > a {
 
 	border : 1px solid #fff5f373;
 	
-	display : block;
-	position :relative;
-	text-align :center;
-	width : 158px;
-	height : 35px;
-	margin : 0px auto;
-	left : 0;
-	right : 0;
-	top : 0;
-	font-size : 18px;
-	background : #fff5f3;
-	border-radius: 5px;
-	color : #ff572282;
-	padding : 5px;
-	font-weight : bold;
-	text-decoration: none;
+    display: block;
+    position: relative;
+    text-align: center;
+    width: 142px;
+    height: 30px;
+    margin: 0px auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    font-size: 18px;
+    background: #fff5f3;
+    border-radius: 5px;
+    color: #ff572282;
+    padding: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 30px;
 
 }
 
@@ -949,17 +930,16 @@ input#file-upload-button {
 
 	border : 1px solid #fff5f373;
 	
-	position :relative;
-	text-align :center;
-	width : 140px;
-	height : 25px;
-	margin : 2px auto;
-	left : 1px;
-	right : 0;
-	top : 0;
-	border-radius : 15px;
-	color : #5cb85cc7;
-	
+    position: relative;
+    text-align: center;
+    width: 140px;
+    height: 24px;
+    margin: 2px auto;
+    left: 1px;
+    right: 0;
+    top: 0;
+    border-radius: 15px;
+    color: #5cb85cc7;
 
 }
 
@@ -967,56 +947,54 @@ input#file-upload-button {
  
 	border : 1px solid #fff5f373;
 	
-	position :relative;
-	text-align :center;
-	width : 250px;
-	height : 38px;
-	margin : 0 auto;
-	left : 115px;
-	right : 0;
-	top : -720px;
+    position: relative;
+    text-align: center;
+    width: 250px;
+    height: 50px;
+    margin: 0 auto;
+    left: 105px;
+    right: 0;
+    top: -739px;
 
 }
 
  #edu_name_box > a {
  
-	border : 1px solid #fff5f373;
-	
-	display : block;
-	position :relative;
-	text-align :center;
-	width : 123px;
-	height : 35px;
-	margin : 0 auto;
-    left: 0px;
+/*     border: 1px solid #fff5f373; */
+    display: block;
+    position: relative;
+    text-align: center;
+    width: 120px;
+    height: 25px;
+    margin: 0 auto;
+    left: 0;
     right: 0;
-    top: 1px;
-	float : left;
-	font-size : 18px;
-	background : #fff5f3;
-	border-radius: 5px;
-	color : #ff572282;
-	padding : 5px;
-	font-weight : bold;
-	text-decoration: none;
+    top: 8px;
+    float: left;
+    font-size: 18px;
+    background: #fff5f3;
+    border-radius: 5px;
+    color: #ff572282;
+    padding: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 20px;
 
  }
  
  #edu_name_box > a > input {
  
-	border : 1px solid #fff5f373;
-	
-	position: relative;
+/*     border: 1px solid #fff5f373; */
+    position: relative;
     text-align: center;
-    width: 123px;
-    height: 35px;
+    width: 110px;
+    height: 40px;
     margin: 0 auto;
-    left: 121px;
+    left: 135px;
     right: 0;
-    top: -32px;
-    color : #4caf50cf;
+    top: -29px;
+    color: #4caf50cf;
     border-radius: 10px;
-
 }
 
 
@@ -1025,14 +1003,14 @@ input#file-upload-button {
  
 	border : 1px solid #fff5f373;
 	
-	position :relative;
-	text-align :center;
-	width : 250px;
-	height : 202px;
-	margin : 0 auto;
-	left : 115px;
-	right : 0;
-	top : -720px;
+    position: relative;
+    text-align: center;
+    width: 250px;
+    height: 192px;
+    margin: 0 auto;
+    left: 105px;
+    right: 0;
+    top: -740px;
 
 }
 
@@ -1064,17 +1042,17 @@ input#file-upload-button {
 
 	border : 1px solid #fff5f373;
 	
-	vertical-align : middle;
-	position :relative;
-	text-align :center;
-	width : 180px;
-	height : 180px;
-	margin : 0 auto;
-	left : 0;
-	right : 0;
-	top : 11px;
-	padding : 10px;
-	border-radius: 100px;
+	vertical-align: middle;
+    position: relative;
+    text-align: center;
+    width: 170px;
+    height: 150px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 11px;
+    padding: 10px;
+    border-radius: 100px;
     box-shadow: 0px 0px 10px 1px lightsalmon;
 
 }
@@ -1087,11 +1065,11 @@ input#file-upload-button {
     position: relative;
     text-align: center;
     width: 330px;
-    height: 240px;
+    height: 245px;
     margin: 0 auto;
     left: 411px;
     right: 0;
-    top: -960px;
+    top: -990px;
 }
 
 #tr_result_box > #tr_totalcnt_box {
@@ -1116,10 +1094,10 @@ input#file-upload-button {
 	display : block;
 	position :relative;
 	text-align :center;
-	width : 158px;
+	width : 143px;
 	height : 35px;
 	margin : 0px auto;
-	left : 0;
+	left : 1px;
 	right : 0;
 	top : 0;
 	font-size : 18px;
@@ -1129,6 +1107,7 @@ input#file-upload-button {
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
+	line-height : 30px;
 
 }
 
@@ -1159,9 +1138,9 @@ input#file-upload-button {
     width: 160px;
     height: 240px;
     margin: 0 auto;
-    left: 86px;
+    left: 83px;
     right: 0;
-    top: -240px;
+    top: -244px;
 
 }
 
@@ -1172,7 +1151,7 @@ input#file-upload-button {
 	display : block;
 	position :relative;
 	text-align :center;
-	width : 158px;
+	width : 146px;
 	height : 35px;
 	margin : 0px auto;
 	left : 0;
@@ -1185,6 +1164,7 @@ input#file-upload-button {
 	padding : 5px;
 	font-weight : bold;
 	text-decoration: none;
+	line-height : 30px;
 
 }
 
@@ -1256,12 +1236,14 @@ input#file-upload-button {
     margin: 0 auto;
     left: -300px;
     right: 0;
-    top: -390px;
+    top: -420px;
     background : #cccccc21;
     border-radius: 10px;
     transition: all 0.5s;
     color: black;
     font-size : 22px;
+    line-height : 50px;
+    
 
 }
 
@@ -1270,6 +1252,7 @@ input#file-upload-button {
 	background : #fff5f3;
 	border-radius: 20px;
 	transition : all 0.5s;
+	color : red;
 
 }
 
@@ -1284,12 +1267,14 @@ input#file-upload-button {
     margin: 0 auto;
     left: -280px;
     right: 0;
-    top: -390px;
+    top: -420px;
     background : #cccccc21;
     border-radius: 10px;
     transition: all 0.5s;
     color: black;
     font-size : 22px;
+    line-height : 50px;
+    cursor : pointer;
 	
 }
 
@@ -1298,33 +1283,5 @@ input#file-upload-button {
 	background : #fff5f3;
 	border-radius: 20px;
 	transition : all 0.5s;
-
-}
-
-#nb_shopbtn {
-
-    /* border: 1px solid red; */
-    
-    position: relative;
-    text-align: center;
-    width: 150px;
-    height: 50px;
-    margin: 0 auto;
-    left: -260px;
-    right: 0;
-    top: -390px;
-    background : #cccccc21;
-    border-radius: 10px;
-    transition: all 0.5s;
-    color: black;
-    font-size : 22px;
-
-}
-
-#nb_shopbtn:hover {
-
-	background : #fff5f3;
-	border-radius: 20px;
-	transition : all 0.5s;
-
+	color : red;
 }
