@@ -41,6 +41,6 @@
       </form>
     </div>
   </div> <br>
-  <script src="../js/Team_freeboard.js"></script>
+  <script src="../js/TeamFreeBoard.js"></script>
 </body>
 </html>

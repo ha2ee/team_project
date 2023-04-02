@@ -13,7 +13,7 @@ function clickWrite(id){
   }
 }
 
-function del(idx){
+function del_rv(idx){
   var result = window.confirm("정말로 글을 삭제하시겠습니까?");
   if(result == true){//확인 버튼 클릭
       //비동기방식으로 글삭제 요청!

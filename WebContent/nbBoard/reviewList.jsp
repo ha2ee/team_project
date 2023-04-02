@@ -86,7 +86,7 @@
                   if(vo.getId().equals(id)){
                   %>
                     <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='<%=contextPath%>/review/edit.rv?idx=<%=vo.getIdx()%>'">Edit</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="del(<%=vo.getIdx()%>)">Delete</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="del_rv(<%=vo.getIdx()%>)">Delete</button>
                   <%
                   }
                   %>
@@ -144,6 +144,6 @@
    </table>
 </div>
     <script src="../js/review.min.js"></script>
-    <script src="../js/Team_freeboard.js"></script>
+    <script src="../js/TeamFreeBoard.js"></script>
   </body>
 </html>

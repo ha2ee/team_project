@@ -28,6 +28,7 @@
 
   String id = (String) session.getAttribute("id");
 %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -157,7 +158,7 @@
       </jsp:include>
     </div>
   </div>
-
-    <script src="../js/Team_freeboard.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
+    <script src="${contextPath}/js/TeamFreeBoard.js"></script>
 </body>
 </html>
