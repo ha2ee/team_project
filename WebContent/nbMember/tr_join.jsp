@@ -43,121 +43,11 @@
 <title>회원가입</title>
 
 <style type="text/css">
-	#pass,#nickname,#checkpass,#name,
-	#hp,.birth,#email,#sample4_postcode,
-	#sample4_find,#sample4_detailAddress,
-	#sample4_extraAddress,#sample4_jibunAddress,
-	#sample4_roadAddress
-	{
-	  width: 400px;
-	  height: 40px;
-	  font-size: 15px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	}
+
 	
-	#id{
-	  width: 300px;
-	  height: 32px;
-	  font-size: 15px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	  float : left;
-	}
-	
-	
-	#checkBtn{
-	  width: 90px;
-	  height: 32px;
-	  font-size: 12px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 8px;
-	  background-color: rgb(233, 233, 233);
-/* 	  margin-left: 15px;	 */
-	}
-	
-/* 	#jbtn{
-	  width: 135px;
-	  height: 40px;
-	  font-size: 28px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
- 	  padding-left: 5px; 
-	  background-color: rgb(233, 233, 233);
-	} */
-	
-	
-	.gender,.pet{
-	  width: 100px;
-	  height: 32px;
-	  font-size: 12px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	  margin-left: 15px;	
-	  float : left;
-	}
-  	
-	.join{
-		display: flex;     
-		align-items: center;   
-		justify-content: center;   
-	
-	}
-	
-	/* #Photo{
-	  display: inline-block;
-	  padding: .5em .75em;
-	  color: black;
-	  font-size: inherit;
-	  line-height: normal;
-	  vertical-align: middle;
-	  background-color: #BDBDBD;
-	  cursor: pointer;
-	  border: 1px solid #ebebeb;
-	  border-bottom-color: #e2e2e2;
-	  border-radius: .25em;
-	} */
-	#ex_file	{  /* 파일 필드 숨기기 */
-	  position: absolute;
-	  width: 1px;
-	  height: 1px;
-	  padding: 0;
-	  margin: -1px;
-	  overflow: hidden;
-	  clip:rect(0,0,0,0);
-	  border: 0;
-	}
- 	#preview{
-    max-width: 60%;
-    margin: 0;
-    padding: 0;
-    border: none;
-    line-height: normal;
-    vertical-align: middle;
-	width : 150px; 
-	height :160px;
- 	margin-left : -210px; 
- 	margin-bottom: -20px; 
-}
-	.heigthD{
-		height: 100px;	
-	
-	}
-	
-		
 </style>
+<link rel="stylesheet" href="<%=contextPath%>/css/tr_join.css">
+
 </head>
 <body>
 <%-- 
@@ -291,12 +181,12 @@
 							   name="id"
 							   class="form-control"
 							   placeholder="가입할 아이디를 적어주세요."
-							   style="width: 280px;">
+							   ">
 						<button id="checkBtn" type="button">중복체크</button>					
 				    </div>
 					<br>
 					<div style="height: 15px;" >
-				    	<p id="idInput" style="margin-top:-5px;"></p> 
+				    	<p id="idInput" style="margin-top:-13px;"></p> 
 					</div>
 				</div>
 					
@@ -456,7 +346,9 @@
 					   onclick="check(); return false;" 
 					   type="button" 
 					   style="text-decoration: none;
-					   		  margin-left: 570px;	"
+					   		  margin-left: 570px;
+				   		      width: 90px;
+					   		  	"
 					   class="btn btn-outline-warning";
 					   id="joinBtn";
 					>회원가입</a>

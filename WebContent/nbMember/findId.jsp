@@ -10,53 +10,10 @@
 	String contextPath = request.getContextPath();
 %>
 
-<style type="text/css">
 	
-	.total{
-   		width: 450px;
-	    height: 365px;
-	    font-size: 16px;
-	    margin-left: 16px;
-		margin-top: 55px;
-	}
 	
-	.input{
-	    height: 23%;
-	    font-size: 16px;
-	    margin-top: 4%;
-	    margin-left: 22%;
-	}
-
-	#name,#hp{
-	    padding-left: 4px;
-	    width: 160px;
-	    height: 21px;
-	    margin-left: 43px;
-		
-	}
 	
-	.idBtn {
-		width: 84%;
-	    height: 50px;
-	    margin-left: 98px;
-	    margin-top: -14px;
-	}
-	
-	.guide{
-		margin-left: 22%;
-	}
-	
-	.checkBtn{
-    	width: 300px;
-    	height: 50px;
-	}
-	
-	.message{
-	    margin-left: 117px;
-	    height: 46px;
-		}
-	
-</style>
+	<link rel="stylesheet" href="<%=contextPath%>/css/findId.css">
 
 </head>
 <body>

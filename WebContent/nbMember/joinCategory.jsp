@@ -24,61 +24,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	
-
+	<link rel="stylesheet" href="<%=contextPath%>/css/joinCategory.css">
 	
-		
-
-
-	<style type="text/css">
-
-		.join_total{
-			width: 1200px;
-			margin-left: auto;
-			margin-right: auto;
-		}
-		
-		
-		.join_top{
-			width: 100%px;
-			height: 140px;
-			padding: 50px;
-			background-color: #FBE44F;
-			border-radius: 15px;
-			
-		}
-		
-		#guide{
-			color: black;
-			font-size: 22px;
-			font-weight: 700px;
-		}
-		
-		.join_mid{
-			position:relative;
-			width: 100%;
-			overflow:hidden;
-			box-sizing: border-box;
-		
-		}
-		#join_mid_L,#join_mid_R{
-			float: left;
-			width: 50%;
-			height: 250px;
-			box-sizing: border-box;
-			font-size: 50px;
-			border: none;
-			margin-bottom: 50px;
-			margin-top: 50px;
-		}
-	
-				
-		
-			
-		
-	
-	
-	</style>
-
 </head>
 <body>
 	<div class="join_total">
