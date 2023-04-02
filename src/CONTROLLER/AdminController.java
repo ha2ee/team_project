@@ -18,11 +18,13 @@ import DAO.AdminDAO;
 import DAO.CommentDAO;
 import DAO.FreeBoardDAO;
 import DAO.MemberDAO;
+import DAO.ReviewDAO;
 import DAO.TrainerBoardDAO;
 import DAO.TrainerDAO;
 import VO.CommentVO;
 import VO.FreeBoardVo;
 import VO.MemberVo;
+import VO.ReviewVo;
 import VO.TrainerBoardVo;
 import VO.TrainerVo;
 
@@ -36,6 +38,10 @@ public class AdminController extends HttpServlet {
 		
 		FreeBoardDAO freeboarddao;
 		FreeBoardVo freeboardVO;
+		CommentDAO commentdao;
+		
+		ReviewDAO reviewdao;
+		ReviewVo reviewVO;
 		
 		MemberDAO memberDAO;
 		MemberVo memberVO;
@@ -52,6 +58,8 @@ public class AdminController extends HttpServlet {
 			trainerboarddao = new TrainerBoardDAO();
 			trainerboardVO = new TrainerBoardVo();
 			freeboarddao = new FreeBoardDAO();
+			reviewdao = new ReviewDAO();
+			commentdao = new CommentDAO();
 		}
 		
 		
@@ -86,7 +94,10 @@ public class AdminController extends HttpServlet {
 			String id = "";
 			HttpSession session = request.getSession();
 			id = (String) session.getAttribute("id");			
-			
+			if(id == null || !id.equals("admin")) {
+				out.print("<script> alert('잘못된접근입니다.');location.href='/TeamProject/nb/Main';</script>;");
+				return;
+			}
 			if (action.equals("/adminMain")) {
 				//회원 목록 
 				List<MemberVo> list = adminDAO.getMemberListMain();
@@ -108,6 +119,13 @@ public class AdminController extends HttpServlet {
 				ArrayList<TrainerBoardVo> trBoardList = adminDAO.getBoardList();
 				request.setAttribute("trBoardList", trBoardList);
 				//============================================================
+				
+				//수강 후기 목록
+				ArrayList<ReviewVo> reviewBoardList = adminDAO.admReviewBoardListAll();
+				request.setAttribute("reviewBoardList", reviewBoardList);
+				
+				//============================================================
+				
 				
 				nextPage = "/nbAdmin/adminMain.jsp";
 				
@@ -403,6 +421,11 @@ public class AdminController extends HttpServlet {
 			
 			} else if (action.equals("/fbDelete.adm")) {
 				int idx1 = Integer.parseInt( request.getParameter("fb_idx")  );
+				System.out.println(idx1);
+				
+		 		//댓글 먼저 삭제해야함.
+				commentdao.delAllComment(idx1); // 부모글번호
+				
 		        int result3 = freeboarddao.deleteOne(idx1);
 		        
 		        if(result3 == 1) {
@@ -431,6 +454,70 @@ public class AdminController extends HttpServlet {
 				
 				nextPage = "/nbAdmin/adminMain.jsp";
 	
+			} else if (action.equals("/reviewBoardList.adm")) {
+				
+		        ArrayList<ReviewVo> rvList = reviewdao.reviewListAll();
+		        
+		        String nowPage = request.getParameter("nowPage");
+		        String nowBlock = request.getParameter("nowBlock");
+		        
+		        int count = reviewdao.getTotalRecord();
+		        
+		        request.setAttribute("count", count);
+		        request.setAttribute("nowPage", nowPage);
+		        request.setAttribute("nowBlock", nowBlock);
+		        request.setAttribute("list", rvList);
+
+				
+				request.setAttribute("center", "/nbAdmin/adminReviewList.jsp");
+				nextPage = "/nbAdmin/adminMain.jsp";
+				
+			} else if (action.equals("/reviewBoardRead.adm")) {
+				String nowBlock = request.getParameter("nowBlock");
+		        String nowPage = request.getParameter("nowPage");
+
+		        String b_idx = request.getParameter("b_idx");
+
+		        reviewVO = adminDAO.admBoardRead(b_idx);
+		        ArrayList<FreeBoardVo> list = adminDAO.admReviewBoardListAll();
+		        int count = adminDAO.admGetTotalRecord();
+		        request.setAttribute("count", count);
+		        request.setAttribute("list", list);
+		        request.setAttribute("vo", reviewVO);
+		        request.setAttribute("center", "/nbAdmin/adminReviewBoardRead.jsp");
+		        request.setAttribute("nowBlock", nowBlock);
+		        request.setAttribute("nowPage", nowPage);
+		        nextPage = "/nbAdmin/adminMain.jsp";
+			
+			} else if (action.equals("/delAdmComment.adm")) {
+		  		String del_idx = request.getParameter("pseq"); // 보고있던 글번호(= 작성중인 댓글의 부모 글번호)
+		  		String d_seq = request.getParameter("seq"); // 삭제할 글번호
+		  		
+		  		// 2. DB 작업 > DAO 위임 > delete
+		  		int d_result = adminDAO.delAdmFbComment(d_seq);
+		  		
+		  		// 3. 결과 후 처리
+		  		if (d_result == 1) {
+		  			response.sendRedirect("/TeamProject/adm/freeBoardRead.adm?b_idx=" + del_idx); //보고 있던 글번호를 가지고 돌아가기
+		 			return;
+		  		} else {
+		  			
+		  			response.setCharacterEncoding("UTF-8");
+		  			
+		  			PrintWriter writer = response.getWriter();			
+		  			
+		  			writer.print("<html>");
+		  			writer.print("<body>");
+		  			writer.print("<script>");
+		  			writer.print("alert('댓글 삭제 실패');");
+		  			writer.print("history.back();");
+		  			writer.print("</script>");
+		  			writer.print("</body>");
+		  			writer.print("</html>");
+		  			
+		  			writer.close();
+		  			return;
+		  		}
 			}
 		
 			//포워딩 (디스패처 방식)
