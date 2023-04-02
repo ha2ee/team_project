@@ -41,15 +41,7 @@ String title = vo.getB_title();
       </form>
     </div>
   </div> <br>
-
-  <script type="text/javascript">
-			function fnsubmit() {
-				$("form").submit();
-			}
-			
-			CKEDITOR.replace('editor1', {
-				height : 500
-			});
-		</script>
+  
+  <script src="../js/TeamFreeBoard.js"></script>
 </body>
 </html>

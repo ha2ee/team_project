@@ -10,7 +10,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link href="../css/Team_FreeBoard.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -42,25 +41,6 @@
       </form>
     </div>
   </div> <br>
-  
-  <script type="text/javascript">
-			function frmsubmit() {
-				//		$("#content11").attr("value",str);
-				if (!$("#fileName").val()) {
-					alert("이미지를 첨부해주세요");
-				} else {
-					$("form").submit();
-				}
-			}
-			$('.DOC_TEXT').keyup(function(e) {
-				var content = $(this).val();
-				$('#counter').html("(" + content.length + " / 최대 1000자)"); //글자수 실시간 카운팅
-				if (content.length > 1000) {
-					alert("최대 1000자까지 입력 가능합니다.");
-					$(this).val(content.substring(0, 1000));
-					$('#counter').html("(1000 / 최대 1000자)");
-				}
-			});
-		</script>
+  <script src="../js/TeamFreeBoard.js"></script>
 </body>
 </html>
