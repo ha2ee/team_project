@@ -292,3 +292,36 @@ display: inline;
 .mem_link:hover {
 	text-decoration: underline;
 }
+
+
+
+/*관리자페이지 자유게시판 댓글 css*/
+#tblAddCommnet, #tblListComment {
+      margin: 15px auto;
+    }
+    #tblAddComment {
+      margin-top: 30px;
+    }
+    /* 	#tblAddComment td:nth-child(1) { width: 600px; } */
+    #tblAddComment td:nth-child(2) {
+      width: 100px;
+    }
+    #tblListComment td:nth-child(1) {
+      width: 600px;
+    }
+    #tblListComment td:nth-child(2) {
+      width: 100px;
+    }
+    #tblListComment td {
+      position: relative;
+      left: 0;
+      top: 0;
+    }
+    #tblListComment td span {
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
+      color: #AAA;
+      font-size: 11px;
+    }
+/*관리자페이지 자유게시판 댓글 css*/    

@@ -63,6 +63,31 @@ public class AdminDAO {
 			}
 	}
 	
+	//자유게시판 댓글 삭제
+	//댓글 삭제기능
+	public int delAdmFbComment(String b_idx) {
+		
+		try {
+			con = ds.getConnection();
+			String sql = "delete from tblComment where seq = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, b_idx);
+			
+			return pstmt.executeUpdate(); // 성공시 1 실패시 0
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+		      closeResource();
+	    }
+		
+		return 0;
+	}
+	
+	
+	
 	//리뷰 게시판 글 조회
 	public int admGetTotalRecord() {
 	    int count = 0;
