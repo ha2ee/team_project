@@ -147,8 +147,8 @@
 					<dd class="op_dd">
 						<div class="op_div">
 							<select class="p_op" name="p_op" id="p_op" value="<%=p_op%>">
-								<option value="했음">했음</option>
-								<option value="안했음">안했음</option>
+								<option value="예">예</option>
+								<option value="아니오">아니오</option>
 								<option value="모름">모름</option>
 						<input id="hidden_op" type="hidden" value="<%=p_op%>">
 							</select>
@@ -191,13 +191,13 @@
 				
 			}
 
-			if($("#hidden_op").val() == "했음" ){
+			if($("#hidden_op").val() == "예" ){
 	
-				$("#p_op").val("했음").prop("selected", true);
+				$("#p_op").val("예").prop("selected", true);
 					
-			}else if($("#hidden_op").val() == "안했음"){
+			}else if($("#hidden_op").val() == "아니오"){
 				
-				$("#p_op").val("안했음").prop("selected", true);
+				$("#p_op").val("아니오").prop("selected", true);
 			
 			}else if($("#hidden_op").val() == "모름"){
 				

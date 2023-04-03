@@ -543,6 +543,11 @@ public class MemberController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String memberid = (String)session.getAttribute("id");
 		
+		
+		
+		
+		
+		
 		String directory = request.getServletContext().getRealPath("petImg");
 		File dir = new File(directory);
 		if (!dir.exists()) dir.mkdirs();
@@ -552,16 +557,13 @@ public class MemberController extends HttpServlet {
 		
 		MultipartRequest multipartRequest = new MultipartRequest(request, directory,maxSize,encoding,new DefaultFileRenamePolicy());
 		
-		String fileName = multipartRequest.getOriginalFileName("petImageFileName");
-		
-		int img_result = memberdao.petImgUpdate(memberid,fileName);
-		
 		String p_name = multipartRequest.getParameter("p_name");
 		String p_age = multipartRequest.getParameter("p_age");
 		String p_gender = multipartRequest.getParameter("p_gender");
 		String p_type = multipartRequest.getParameter("p_type");
 		String p_op = multipartRequest.getParameter("p_op");
 		String p_weight = multipartRequest.getParameter("p_weight");
+		String fileName = multipartRequest.getOriginalFileName("petImageFileName");
 		
 		PetVo pet_vo = new PetVo();
 			  pet_vo.setP_name(p_name);
@@ -574,6 +576,8 @@ public class MemberController extends HttpServlet {
 		
 		  boolean result = memberdao.petJoin(pet_vo);
 		  int mem_pet = memberdao.mem_pet(memberid);	  
+		  int img_result = memberdao.petImgUpdate(memberid,fileName);
+
 		  
 		  System.out.println("애완견 보유:"+mem_pet);
 		  
