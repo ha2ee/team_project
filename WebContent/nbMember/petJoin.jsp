@@ -39,200 +39,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+		<link rel="stylesheet" href="<%=contextPath%>/css/petJoin.css">
 	
-
-	
-		
-
-
-	<style type="text/css">
-
-		.pet_total{
-		    max-width: 1240px;
-		    margin: 0 auto;
-		    text-align: center;
-		    padding: 0px 20px 0px;
-		    box-sizing: border-box;
-		    position: relative;
-		    height: 600px;
-		}
-		
-		
-		#p_name,#p_age,#p_gender,#p_type,
-		#p_weight,#p_op{
-			width: 350px;
-			height: 36px;
-			border-radius: 10px;
-			border: 1px solid #231815;
-			padding-left: 10px;	
-		}
-				
-		.leftBlock {
-		    width: 220px;
-		    margin-right: 30px;
-	 	    position: absolute; 
-		    box-sizing: border-box;
-		    border: 1px solid #d7d7d7;
-		    border-top: 3px solid #fff5f3;
-		    margin-top: 35px;
-		}	
-		
-		.userInfo{
-		    padding: 30px;
-				
-		}
-		
-		.userImg{
-			border-radius: 70%;
-			height: 158px;
-		    border: 1px solid #231815;
-	    	width: 150px;
-		}
-		
-		.userName,.userId{
-			font-size: 15px;
-    		color: #555;
-    		margin-bottom: 6px;
-		}
-		
-		.user{
-			display: inline-block;
-    		width: 100%;
-  			padding: 0 20px 30px;
-		}
-		
-		.myInfo,.petInfo{
-			font-size: 13px;
-		    color: #555;
-		    float: left;
-		    width: 48%;
-		    margin-right: 2%;
-		    height: 30px;
-		    line-height: 28px;
-		    background: #eaeaea;
-		    border-radius: 50px;
-		}
-		
-		.rightBlock{
-		    padding: 35px 15px 80px 250px;
-		    padding-left: 250px;
-			width: 1100px;
-		    box-sizing: border-box;
-		    text-align: left;
-		    min-height: 520px;
-			
-		} 
-		
-		.rightBlock2,.rightBlock3{
-	    	width: 40%;
-  		  	float: left;		
-		    margin-left: 60px;
-		}
-		
-		.pet_add{
-		    font-size: 20px;
-   	 		display: inline-block;
-   			font-weight: bold;
-		    margin-top: -14px;
-		}
-		
-		.line{
-	    	border-bottom: 1px solid #231815;
- 		 	padding-bottom: 15px;
-  			 height: 18px;
-		}
-	
-		.p_name,.p_age,.p_gender,.p_type,
-		.p_weight,.p_op,.p_img{
-			
-			font-size: 15px;
-		
-		}
-		
-		
-		.upload{
-		    display: inline-block;
-		    width: 100%;
-			
-		}
-
-		.imgBtn{
-		    line-height: 29px;
-			margin-left: 170px;	
-			margin-top: -32px;		
-  		 	color: #fff !important;
-			}
-		
-		.p_img{
-			margin-left: 4px;
-    		margin-top: 4;
-		}
-	
-		.saveBtn{
-		    padding-top: 30px;
-			margin: 30px 0px 0;
-	    	text-align: center;
-			width: 100%;
-   		 	display: inline-block;
-    		position: relative;
-			margin-left: 9%;
-			margin-top: -40px;
-			font-size: 13px;
-		}
-		
-		a:link{
-			text-decoration: none;			
-		}
-			
-		.roundBtn {
-			border-radius: 50px;
-    		display: inline-block;
-		    text-align: center;
-		    transition: all 0.3s ease 0s;
-		    height: 43px;
-		    line-height: 41px;
-		    cursor: pointer;
-			width: 172px;
-		}
-
-		.whiteBtn {
-			background: transparent;
-    		border: 1px solid #231815;
-  			box-sizing: border-box;
-			color: black;
-			
-		}
-		
-		.blueBtn {
-			background: #061f5c;
-    		box-sizing: border-box;
-   			color: #fff;
-			border: 1px solid #231815;
-		
-		}
-		
-		a:hover {
- 	 	text-decoration: none;
-		}
-		
-		.div{
-			height: 30px;	
-			font-size: 15px;
-		}
-		
-		.p_img{
-			width: 131px;
-			height: 131px;
-		
-		}
-		
-		.p_name{
-			margin-top: 8px;
-		}
-		
-		
-	</style>
-
 </head>
 <body>
 	<form method="post" action="<%=contextPath%>/member/petJoinPro.me">
@@ -290,7 +98,7 @@
 							</div>
 						</div>
 					</div>
-					<br><br><br><br><br>
+					<br><br><br><br>
 					<div class="p_name">
 						<label>반려견 이름</a></label><br>
 						<input type="text" name="p_name" id="p_name" >
@@ -336,8 +144,8 @@
 						<label>성별</label><br>
 							<select class="p_gender" name="p_gender" id="p_gender">
 								<option>선택</option>
-								<option>남아</option>
-								<option>여아</option>
+								<option>남</option>
+								<option>여</option>
 							</select>
 					</div>
 					<div class="div">
@@ -351,6 +159,7 @@
 								<option>선택</option>
 								<option>했음</option>
 								<option>안했음</option>
+								<option>모름</option>
 							</select>
 					</div>
 					<div class="div">	

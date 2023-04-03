@@ -1,0 +1,111 @@
+@charset "UTF-8";
+	.login {
+		margin-left: auto;
+		margin-right: auto;
+		width: 330px;
+		height: 350px;
+	}
+	
+	#memLoginId, #memLoginPw, #MemLoginHp {
+	    display: inline-block;
+	    width: 100%;
+	    height: 44px;
+	    padding: 0 14px 2px;
+	    color: #000;
+	    font-size: 14px;
+	    line-height: 42px;
+	    letter-spacing: -0.01em;
+	    font-family: "Noto Sans KR", sans-serif;
+	    background-color: #fff;
+	    border: 1px solid #d5d5d5;
+	    border-radius: 10px;
+	    box-sizing: border-box;
+	    transition: border-color 0.2s ease-out;
+	    outline: none;
+	}
+	
+	#memLoginPw{
+	    border-top-left-radius: 0;
+   	 	border-top-right-radius: 0;
+	    border-top : 0px;
+	    
+	}
+	
+	
+	#memLoginId,#MemLoginHp{
+	   	border-bottom-left-radius: 0;
+   	 	border-bottom-right-radius: 0;
+	}
+	
+	#loginType {
+		width: 330px;
+		height: 50px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	#memLogin, #noMemLogin {
+		width: 163px;
+		height: 44px;
+		margin-left: auto;
+		margin-right: auto;
+		border-width: 1px 1px 1px 1px;
+		color: #333;
+	}
+	
+	.total{
+	    flex: 1 0 auto;
+	    width: 100%;
+	    padding: 50px 0 100px;
+	    min-height: calc(100vh - 54px - 68px - 250px);
+	}
+	
+	.loginBtn,.joinBtn{
+	    color: black;
+	    background-color: white ;
+	    border: 2px solid #fff;
+	    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    	width: 100%;
+	    height: 50px;
+		border-radius: 10px;
+	    border: 1px solid #231815;
+		font-weight: bold;
+	}
+
+	.loginDiv{
+	    margin-top: 20px;
+	    width: 330px;
+	}
+	
+	.fa-solid,.fa-paw{
+		color: lightpink;
+	}
+	
+	.joinBtn{
+		width: 100%;
+   		display: inline-block;
+	    color: #474c98;
+    	border: 1px solid #5055b1;
+    	background: #fff;
+    	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+		text-decoration: none;
+	}
+	
+	.joinDiv{
+	    margin-top: 33px;
+	    width: 330px;	
+	}
+			
+	.findId,.findPw{
+		color: #337ab7;
+		cursor:pointer;
+	}		
+	
+	input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+	 	 transition: background-color 5000s ease-in-out 0s;
+		 -webkit-transition: background-color 9999s ease-out;
+    	 -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+   }

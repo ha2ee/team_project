@@ -45,133 +45,12 @@
 
 <style type="text/css">
 
-
-	#pass,#nickname,#checkpass,#name,
-	#hp,.birth,#email,#sample4_postcode,
-	#sample4_find,#sample4_detailAddress,
-	#sample4_extraAddress,#sample4_jibunAddress,
-	#sample4_roadAddress
-	{
-	  width: 400px;
-	  height: 40px;
-	  font-size: 15px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	}
-	
-	#id{
-	  width: 300px;
-	  height: 32px;
-	  font-size: 15px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	  float : left;
-	}
-	
-	
-	#checkBtn{
-	  width: 90px;
-	  height: 32px;
-	  font-size: 12px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 8px;
-	  background-color: rgb(233, 233, 233);
-/* 	  margin-left: 15px;	 */
-	}
-	
-/* 	#jbtn{
-	  width: 135px;
-	  height: 40px;
-	  font-size: 28px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
- 	  padding-left: 5px; 
-	  background-color: rgb(233, 233, 233);
-	} */
-	
-	
-	.gender,.pet{
-	  width: 100px;
-	  height: 32px;
-	  font-size: 12px;
-	  border: 0;
-	  border-radius: 15px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	  margin-left: 15px;	
-	  float : left;
-	}
-  	
-	.join{
-		display: flex;     
-
-		align-items: center;   
-
-		justify-content: center;   
-	
-	}
-	
-
-	/* #Photo{
-	  display: inline-block;
-	  padding: .5em .75em;
-	  color: black;
-	  font-size: inherit;
-	  line-height: normal;
-	  vertical-align: middle;
-	  background-color: #BDBDBD;
-	  cursor: pointer;
-	  border: 1px solid #ebebeb;
-	  border-bottom-color: #e2e2e2;
-	  border-radius: .25em;
-	} */
-
-	#ex_file	{  /* 파일 필드 숨기기 */
-	  position: absolute;
-	  width: 1px;
-	  height: 1px;
-	  padding: 0;
-	  margin: -1px;
-	  overflow: hidden;
-	  clip:rect(0,0,0,0);
-	  border: 0;
-	}
-
- 	#preview{
-    width: auto;
-    max-width: 60%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    border: none;
-    line-height: normal;
-    vertical-align: middle;
-}
-
-	.heigthD{
-		height: 100px;
-	}
-	
-	#joinBtn{
-		margin-top: 130;
-		margin-left: 320; 
-	
-	
-	}
-	
-		
 </style>
+
+<link rel="stylesheet" href="<%=contextPath%>/css/mem_join.css">
+
 </head>
+
 <body>
 <form action="<%=contextPath%>/member/memJoinPro.me" class="form">	
 	<div>
@@ -306,7 +185,7 @@
 				    </div>
 					<br>
 					<div style="height: 15px;" >
-				    	<p id="idInput" style="margin-top:-5px;"></p> 
+				    	<p id="idInput" style="margin-top:-13px;"></p> 
 					</div>
 				</div>
 					
@@ -408,7 +287,7 @@
 					</div>
 					<div style="margin-left: 30px; width: 260px; height: 90px;">	
 						<label>
-							<strong style="margin-right: 133px;">
+							<strong style="margin-right: 133px;  font-size: 13px;">
 								&nbsp;&nbsp;애완견을 키우나요?
 							</strong>
 						</label>
@@ -419,7 +298,7 @@
 								<option>아니요</option>
 							</select>
 							<p id="genderInput" style="font-size: 13px;"></p>
-							<p id="petInput" style="font-size: 13px;"></p>
+							<p id="petInput" style="margin-left: 118px; font-size: 13px;" ></p>
 					</div>	
 			</div>
 

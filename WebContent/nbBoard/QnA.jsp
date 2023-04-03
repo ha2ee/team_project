@@ -1,12 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+  request.setCharacterEncoding("UTF-8");
+  String contextPath = request.getContextPath(); %>
+  
 <!DOCTYPE html>
+
+
 
 <html>
 <head>
 <style>
 	
-	    #mega_wrapper > ul {
+#mega_wrapper > ul {
     border: 1px solid white;
     text-align: center;
     color: black;
@@ -103,6 +109,9 @@
 </head>
 
 <body>
+
+
+
 <div style="margin: 0 auto; width:1200px;">
 	<table cellpadding="0" cellspacing="0">
 		<tr>

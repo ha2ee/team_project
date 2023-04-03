@@ -1,0 +1,47 @@
+@charset "UTF-8";
+	
+	.total{
+   		width: 500px;
+	    height: 365px;
+	    font-size: 16px;
+	    margin-left: -6%;
+	}
+	
+	.input{
+	    height: 23%;
+	    font-size: 16px;
+	    margin-top: 4%;
+	    margin-left: 22%;
+	}
+
+	#pass,#checkpass {
+	    padding-left: 4px;
+	    width: 160px;
+	    height: 21px;
+	    margin-left: 22px;
+		
+	}
+	
+	.pwBtn {
+   	    background-color: #ff00194f;
+	    padding: 21px;
+	    text-decoration: none;
+	    color: black;
+	    margin-top: 109px;
+	    margin-left: 66px;
+	}
+	
+	.guide{
+		margin-left: 22%;
+	}
+	
+	.checkBtn{
+		width:	30%; 
+		height: 20%; 
+		float: right;
+	}
+	
+	.message{
+	    margin-left: 117px;
+	    height: 46px;
+		}

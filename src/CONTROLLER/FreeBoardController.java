@@ -333,6 +333,17 @@ public class FreeBoardController extends HttpServlet {
   		String pseq = request.getParameter("pseq"); // 보고있던 글번호(= 작성중인 댓글의 부모 글번호)
   		String c_content = request.getParameter("content");
   		
+  		
+/*  		String memberid2   = (String)session.getAttribute("id");
+  	    String nickname2 = memberdao.getMemNickName(memberid2);
+  	    
+  	  if(nickname2 ==null) {
+          trainerVo = trainerdao.trainerOne(memberid2);
+          nickname2 = trainerVo.getTr_name();
+        }    */
+  	    
+  		
+  		
   		// 2. DB 작업 > DAO 위임 > insert
   		CommentDAO dao = new CommentDAO();
   		
@@ -343,7 +354,7 @@ public class FreeBoardController extends HttpServlet {
 //  		commentvo.setId(testUser);
   		commentvo.setPseq(pseq);
   		commentvo.setContent(c_content);
-  		
+//  		commentvo.setNickname(nickname2);
   		int c_result = dao.addComment(commentvo); // 1, 0		
   		
   		// 3. 돌아가기 > read.fb?b_idx=
@@ -360,7 +371,7 @@ public class FreeBoardController extends HttpServlet {
   			writer.print("<html>");
   			writer.print("<body>");
   			writer.print("<script>");
-  			writer.print("alert('댓글 쓰기 실패');");
+  			writer.print("alert('관리자 작성 금지');");
   			writer.print("history.back();");
   			writer.print("</script>");
   			writer.print("</body>");
@@ -378,6 +389,12 @@ public class FreeBoardController extends HttpServlet {
     		String up_idx = request.getParameter("b_idx"); // 보고있던 글번호(= 작성중인 댓글의 부모 글번호)
     		String seq = request.getParameter("seq2"); // 수정할 댓글번호
     		String comment = request.getParameter("commupdate");
+    		
+    		
+    		
+    		
+    		
+    		
     		
     		// 2. DB 작업 > DAO 위임 > update
     		CommentDAO commentdao1 = new CommentDAO();

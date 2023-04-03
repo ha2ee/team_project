@@ -13,11 +13,27 @@ public class CommentVO {
 	private String content;
 	private String regdate;
 	private String pseq;
-	private String name; // 추가멤버 (이름) 
+	private String name;
+	private String nickname;// 추가멤버 (이름) 
 	
 	public CommentVO() {
 	}
 	
+	
+	
+	public CommentVO(String seq, String id, String content, String regdate, String pseq, String name, String nickname) {
+		super();
+		this.seq = seq;
+		this.id = id;
+		this.content = content;
+		this.regdate = regdate;
+		this.pseq = pseq;
+		this.name = name;
+		this.nickname = nickname;
+	}
+
+
+
 	public CommentVO(String seq, String id, String content, String regdate, String pseq, String name) {
 		this.seq = seq;
 		this.id = id;
@@ -73,6 +89,14 @@ public class CommentVO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	

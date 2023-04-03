@@ -35,46 +35,75 @@ public class CommentDAO {
 	}
 	
 	//댓글 리스트 조회
-	public ArrayList<CommentVO> listComment(int b_idx) {
-		
-		try {
-			con = ds.getConnection();
-			// 부모글 번호를 조건으로 받기
-			String sql = "select c.*, (select mem_name from ys_member where mem_id = c.id) as name "
-					+ "from tblComment c where pseq = ? order by seq asc";
+		public ArrayList<CommentVO> listComment(int b_idx) {
 			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, b_idx);
-			
-			rs = pstmt.executeQuery();
-			
-			ArrayList<CommentVO> clist = new ArrayList<CommentVO>(); 
-			
-			while ( rs.next() ) {
+			try {
+				con = ds.getConnection();
+				//이름이 있는지 확인
+				boolean tableCheck = false;
 				
-				CommentVO cvo = new CommentVO();
+				// 부모글 번호를 조건으로 받기
+				String sql = "select c.*, (select mem_name from ys_member where mem_id = c.id) as name "
+						+ "from tblComment c where pseq = ? order by seq asc";
 				
-				cvo.setSeq(rs.getString("seq"));
-				cvo.setContent(rs.getString("content"));
-				cvo.setId(rs.getString("id"));
-				cvo.setRegdate(rs.getString("regdate"));
-				cvo.setPseq(rs.getString("pseq"));
-				cvo.setName(rs.getString("name"));
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, b_idx);
+					
+					rs = pstmt.executeQuery();
+
+					ArrayList<CommentVO> clist = new ArrayList<CommentVO>(); 
 				
-				clist.add(cvo);
+				while ( rs.next() ) {
+					if(rs.getString("name") == null) {
+						tableCheck = true;
+						break;
+					}
+					CommentVO cvo = new CommentVO();
+					
+					cvo.setSeq(rs.getString("seq"));
+					cvo.setContent(rs.getString("content"));
+					cvo.setId(rs.getString("id"));
+					cvo.setRegdate(rs.getString("regdate"));
+					cvo.setPseq(rs.getString("pseq"));
+					cvo.setName(rs.getString("name"));
+					
+					clist.add(cvo);
+				}
 				
-			}
+				if(tableCheck) {
+					sql = "select c.*, (select tr_name from member_trainer where tr_id = c.id) as name "
+							+ "from tblComment c where pseq = ? order by seq asc";
+					
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, b_idx);
+						
+						rs = pstmt.executeQuery();
+						
+						while ( rs.next() ) {
+							CommentVO cvo = new CommentVO();
+							
+							cvo.setSeq(rs.getString("seq"));
+							cvo.setContent(rs.getString("content"));
+							cvo.setId(rs.getString("id"));
+							cvo.setRegdate(rs.getString("regdate"));
+							cvo.setPseq(rs.getString("pseq"));
+							cvo.setName(rs.getString("name"));
+							
+							clist.add(cvo);
+						}
+				}
+				
+				return clist;
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+			      closeResource();
+		    }
 			
-			return clist;
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-		      closeResource();
-	    }
-		
-		return null;
-	}
+			return null;
+		}
+
 	
 	//댓글 추가기능
 	public int addComment(CommentVO vo) {
