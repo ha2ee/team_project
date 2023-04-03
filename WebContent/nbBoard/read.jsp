@@ -63,7 +63,7 @@
         <input type="button" value="삭제하기" onclick="javascript:del('<%=b_idx%>');" id="delete"/>
       </c:if>
     </div>
-    <div style="display: flex; flex-direction: column;">
+    <div id="likeDiv">
       <div>
         <%
           if ((String) request.getAttribute("likeCheck") == "0") { //좋아요를 안 눌렀다면?
@@ -82,19 +82,18 @@
         %>
       </div>
       <div>
-        <p id="countLike" style="font-size: 30px"><%=like%></p>
+        <p id="countLike"><%=like%></p>
       </div>
     </div>
     <input type="hidden" id="like_check" value="${like.like_check}">
   </div>
-  <div style="margin-bottom: 2%">
+  <div>
     <!-- 댓글시작-------------------------------------->
-    <div style="margin: 0 77;">
-      <table id="tblListComment" class="table table-bordered"
-        style="border: none;">
+    <div id="CommentDiv">
+      <table id="tblListComment" class="table table-bordered">
         <c:if test="${ clist.size() == 0 }">
           <tr>
-            <td colspan="2">댓글이 없습니다.</td>
+            <td colspan="2" id="comment0">댓글이 없습니다.</td>
           </tr>
         </c:if>
         <c:set var="i" value="0" />
@@ -102,18 +101,15 @@
           <tr>
             <td>
               <!-- 댓글 표시&수정창 -->
-              <form id="commentUpdate${i}"
-                action="<%=contextPath%>/freeboard/upcomment.do"
-                method="post">
-                <textarea
-                  style="width: 100%; background-color: white; resize: none; border: none;"
-                  id="updateActive${i}" rows="3" name="commupdate"
-                  cols="60" disabled="disabled">${cdto.content}</textarea>
+              <form id="commentUpdate${i}" action="<%=contextPath%>/freeboard/upcomment.do"
+                    method="post">
+                <textarea id="updateActive${i}" rows="3" name="commupdate" class="commentTextarea"
+                          cols="60" disabled="disabled">${cdto.content}</textarea>
                 <input type="hidden" value="${cdto.seq}" name="seq2" />
                 <input type="hidden" value="<%=b_idx%>" name="b_idx" />
               </form> <span>${ cdto.name }. ${ cdto.regdate }</span>
             </td>
-            <td style="border: none;">
+            <td>
               <!-- 댓글 작성자만 수정/삭제 버튼이 보이게 처리 c:if --> <c:if
                 test="${ id eq cdto.id}">
                 <input id="update${i}" type="button" value="수정하기"
@@ -121,9 +117,8 @@
                 <input id="updatePro${i}" type="button" value="수정완료"
                        class="btn btn-default" style="display: none;"
                        onclick="comment('${i}');" />
-                <input type="button" value="삭제하기"
-                  class="btn btn-default"
-                  onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';" />
+                <input type="button" value="삭제하기" class="btn btn-default"
+                       onclick="location.href='<%=contextPath%>/freeboard/delcomment.do?seq=${ cdto.seq }&pseq=<%=b_idx%>';" />
               </c:if>
             </td>
           </tr>
@@ -132,19 +127,20 @@
       </table>
       <!-- 로그인 세션값이 있어야 댓글작성 form이 노출되도록 수정 -->
       <c:if test="${not empty sessionScope.id}">
-        <form method="POST"
-          action="<%=contextPath%>/freeboard/addcomment.do">
+        <form method="POST" action="<%=contextPath%>/freeboard/addcomment.do">
           <table style="border: none;" id="tblAddComment"
-            class="table table-bordered">
+                 class="table table-bordered">
             <tr style="border: none;">
-              <td style="border: none;"><input type="text"
-                name="content" id="content" class="form-control"
-                required placeholder="댓글을 작성하세요. " /></td>
-              <td style="border: none;"><input type="submit"
-                value="댓글쓰기" class="btn btn-primary" /></td>
+              <td style="border: none;">
+                <input type="text" name="content" id="content" class="form-control"
+                       required placeholder="댓글을 작성하세요. "/>
+              </td>
+              <td style="border: none;">
+                <input type="submit" value="댓글쓰기" class="btn btn-primary"/>
+              </td>
             </tr>
           </table>
-          <input type="hidden" name="pseq" value="<%=b_idx%>" />
+          <input type="hidden" name="pseq" value="<%=b_idx%>"/>
         </form>
       </c:if>
     </div>

@@ -47,7 +47,7 @@
                                 <li><i class="fa fa-envelope"></i>admin@nb.co.kr</li>
                             </ul>
                         </div>
-                        <a id = "qna" href="#" class="btn btn-primary btn-sm" >1:1 상담하기<br></a></div>
+                        <a id = "qna" href="javascript:addChannel()" class="btn btn-primary btn-sm" >1:1 상담하기<br></a></div>
                 </div>
                 <!-- footer-contactinfo-close -->
                 <!-- footer-about-start -->
@@ -67,5 +67,12 @@
       <a id = "link" href ="<%=request.getContextPath()%>/nb/Main"> nb All rights reserved</a>
       </p>
     </div>
+    
+    <script type="text/javascript">
+    function addChannel() {
+      Kakao.Channel.addChannel({ channelPublicId: '_Xpekxj',
+      });
+    }
+    </script>
 </body>
 </html>

@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+		<%
+		request.setCharacterEncoding("utf-8");
+		String contextPath = request.getContextPath();
+	%>
 <!DOCTYPE html>
 <html>
 <head>
-	
+<link rel="stylesheet" href="<%=contextPath%>/css/login.css">
 	
 	
 	<!-- Bootstrap CSS -->
@@ -13,15 +17,10 @@
 		crossorigin="anonymous"> -->
 	
 	
-	<%
-		request.setCharacterEncoding("utf-8");
-		String contextPath = request.getContextPath();
-	%>
+
 	
 	<meta charset="UTF-8">
-	<title>intro.jsp</title>
-			<link rel="stylesheet" href="<%=contextPath%>/css/login.css">
-		
+	<title>intro.jsp</title>		
 	</head>
 		<body>
 			<h1><i style="font-size: 36px;"  class="fa-solid fa-paw"></i>늘봄</h1>

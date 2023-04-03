@@ -347,7 +347,7 @@
 					   type="button" 
 					   style="text-decoration: none;
 					   		  margin-left: 570px;
-				   		      width: 90px;
+				   		      width: 93px;
 					   		  	"
 					   class="btn btn-outline-warning";
 					   id="joinBtn";

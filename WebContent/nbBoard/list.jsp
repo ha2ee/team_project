@@ -9,8 +9,8 @@
 %>
 <html>
 <head>
+ <link href="../css/Team_FreeBoard.css" rel="stylesheet" type="text/css" />
     <title>전체 게시글</title>
-    <link href="../css/Team_FreeBoard.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <!-- =================================페이징================================= -->

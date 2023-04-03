@@ -40,60 +40,6 @@ List<String> list2 = (List<String>)request.getAttribute("list2");
 <!--  	 calendar CSS 셋팅 -->
  	<link href="<%=request.getContextPath()%>/css/calendar.css" rel="stylesheet">
 <style type="text/css">
-		/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
-	
-	#login_box > li > a:hover {
-	
-	  background: #fff5f3;
-	  text-decoration: none;
-	  border-radius: 20px;
-	  transition : 0.3s;
-	}
-
-	
-	#login_box > li > a {
-	
-    font-family: 'Nanum Gothic', sans-serif;
-    font-size: 15px;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin: 0 auto;
-    letter-spacing: .75px;
-    border: transparent;
-    position: relative;
-    display: inline-block;
-    background: #fff;
-    color: black;
-    transition: 0.3s;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    line-height: 40px;
-    
-	}
-	
-	#login_box > li {
-	
-/*     border: 1px solid blue; */
-    float: left;
-    position: relative;
-    text-align: center;
-    margin: 0 auto;
-    height: 50px;
-    width: 122px;
-    left: 0px;
-    padding: 0;
-    
-	}
-	
-
-	
-#link{
-
-color : navy;
-
-}
 </style>
 <script type="text/javascript">
 
@@ -166,6 +112,10 @@ color : navy;
                 
         this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
         buildCalendar();    // @param 명월 캘린더 출력 요청
+        
+        
+        
+        
 
     }
 
@@ -615,6 +565,10 @@ color : navy;
     		//현재 보이는 창이 현재달 이면
     		var dmon = document.getElementById("calMonth").innerText = autoLeftPad((today.getMonth() + 1), 2);
     		var thisMonth = moment(lastDate2).format('MM');
+    		
+    		console.log("dmon :"+dmon);
+    		console.log("nextmonth :"+nextmonth);
+    		console.log("thisMonth : "+thisMonth);
 
     		
     		if(dmon == thisMonth){
@@ -640,6 +594,8 @@ color : navy;
        	    	totalresult = 0;
        	    	
        	        this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+       	        
+       	        console.log("this.today :"+this.today);
        	        buildCalendar();    // @param 명월 캘린더 출력 요청
 
 	    		// 예약 된 날짜를 가져온다.
@@ -783,114 +739,126 @@ color : navy;
     	// 다음 버튼을 눌렀을 때,
     	$("#next").on("click", function (){
     		
-	    		// 예약 된 날짜를 가져온다.
-	    		var list = <%=list%>;
-	    		var list2 =<%=list2%>;
-	    		
-	    		var monthtoday = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
-	    		var mtd = moment(monthtoday).format('DD');
-	    		
-	    		// for 문을 돌려서 카트에 담긴 날짜와 일치하는 날짜를 가져온다.
-        		for(var i =0; i < list2.length; i++){
+   	    	
+   	        this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+   	        
+   	        console.log("this.today :"+this.today);
+   	        buildCalendar();    // @param 명월 캘린더 출력 요청
 
-        			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
-        			for(var j=1; j < 32; j++ ){
-        				
+    		// 예약 된 날짜를 가져온다.
+    		var list = <%=list%>;
+    		var list2 =<%=list2%>;
+    		
+    		var monthtoday = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+    		var mtd = moment(monthtoday).format('DD');
+    		
+    		// for 문을 돌려서 카트에 담긴 날짜와 일치하는 날짜를 가져온다.
+    		for(var i =0; i < list2.length; i++){
 
-        				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
-        				if(list2[i].toString() == j.toString()) {
-        					
-        					$("#c"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+    			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
+    			for(var j=1; j < 32; j++ ){
+    				
 
-        				}
-       				}
-       			}
-	    		
-	    		// for 문을 돌려서 예약날짜와 일치하는 날짜를 가져온다.
-	    		for(var i =0; i < list.length; i++){
-
-	    			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
-	    			for(var j=1; j < 32; j++ ){
-
-	    				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
-	    				if(list[i].toString() == j.toString() ){
-	    					
-	    					$("#c"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
-						
+    				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
+    				if(list2[i].toString() == j.toString()) {
     					
-		   				}
-		   			}
-		   		}
-
-	    		
-    		// 다음달 마지막날을 구해서 가져오고,
-    		var nextmonthlastday = new Date(today.getFullYear(), today.getMonth()+1, 0);
-    		// 다음달 오늘날을 구해서
-    		var nextmonthtoday = new Date(today.getFullYear(), today.getMonth()+1, today.getDate()+7);
-    		
-    		// 방법1) 포맷형식을 바꾼다.
-    		var nmld = moment(nextmonthlastday).format('YYYY-MM-DD');
-    		var nmldint = moment(nextmonthlastday).format('DD');
-
-    		var nmtd = moment(nextmonthtoday).format('YYYY-MM-DD');
-    		
-    		console.log(nmld);
-    		console.log(nmtd);
-    		
-    		// 시작날짜+1일과 마지막 날을 구해서 그 사이 날짜 구해서 배열에 저장하기	
-    		function getDateRange(startDate, endDate, listDate){
-    	
-    	        var dateMove = new Date(startDate);
-    	        	
-    	        var strDate = startDate;
- 
-    	
-    	        if (startDate == endDate){
-    	
-    	            var strDate = dateMove.toISOString().slice(0,10);
-    	            
-    	            listDate.push(strDate);
-
-    	            
-    	        }else{
-    	
-    	            while (strDate < endDate){
-    	
-    	                var strDate = dateMove.toISOString().slice(0, 10);
-    	                
-    	                listDate.push(strDate.slice(8,10));
-
-    	                dateMove.setDate(dateMove.getDate() + 1);
-
-    	
-    	            }
-    	
-    	        }
-    	
-    	        return listDate;
-    	
-    	    }
-
-        	var listDate = [];
-        	// 함수 호출 구문
-        	getDateRange(nmtd, nmld, listDate);
- 
-        		// 16부터 시작
-    			for(var i=listDate[0]; i <= nmldint; i++){
-    				// 1부터 시작
-    				for(var j=1; j < 32; j++ ){
-						
-    					// 만약에 일치하는 값이 있을때, 해당 컬럼 색상을 변경 시킨다.
-    					if(i == j){
-    						$("#c"+i).css("font-size", "16px").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white").text(i);
-    					}
+    					$("#c"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
     					
+    					// 만약에 현재일+7일보다 낮은 숫자에 예약이 있을경우
+   						if(mtd > list2[i]) {
+   	                        $("#c"+list2[i]).css("font-size", "16px").css("color", "E5E5E5").text(list2[i]);
+   							
+
+                  		 }
+   						
+   						
     				}
-        		}
+   				}
+   			}
+    		
+    		// for 문을 돌려서 예약날짜와 일치하는 날짜를 가져온다.
+    		for(var i =0; i < list.length; i++){
 
-        		
-        		
+    			// 캘린더의 날짜를 1부터 ~31일까지 가져온다.
+    			for(var j=1; j < 32; j++ ){
 
+    				// 만약에 일치하는 값이 있을때, 해당 컬럼을 예약불가 처리 한다.
+    				if(list[i].toString() == j.toString() ){
+    					
+    					$("#c"+j).css("cursor" , "text").css("pointer-events" , "none").css("background", "#ffffff").text("수업 있음!").css("color", "#e9a9e7").css("font-size","12px");
+					
+					
+	   				}
+	   			}
+	   		}
+
+    		
+		// 다음달 마지막날을 구해서 가져오고,
+		var nextmonthlastday = new Date(today.getFullYear(), today.getMonth()+1, 0);
+		// 다음달 오늘날을 구해서
+		var nextmonthtoday = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+		
+		// 방법1) 포맷형식을 바꾼다.
+		var nmld = moment(nextmonthlastday).format('YYYY-MM-DD');
+		var nmldint = moment(nextmonthlastday).format('DD');
+
+		var nmtd = moment(nextmonthtoday).format('YYYY-MM-DD');
+		
+		console.log(nmld);
+		console.log(nmtd);
+		
+		// 시작날짜+1일과 마지막 날을 구해서 그 사이 날짜 구해서 배열에 저장하기	
+		function getDateRange(startDate, endDate, listDate){
+	
+	        var dateMove = new Date(startDate);
+	        	
+	        var strDate = startDate;
+
+	
+	        if (startDate == endDate){
+	
+	            var strDate = dateMove.toISOString().slice(0,10);
+	            
+	            listDate.push(strDate);
+
+	            
+	        }else{
+	
+	            while (strDate < endDate){
+	
+	                var strDate = dateMove.toISOString().slice(0, 10);
+	                
+	                listDate.push(strDate.slice(8,10));
+
+	                dateMove.setDate(dateMove.getDate() + 1);
+
+	
+	            }
+	
+	        }
+	
+	        return listDate;
+	
+	    }
+
+    	var listDate = [];
+    	// 함수 호출 구문
+    	getDateRange(nmtd, nmld, listDate);
+
+    		// 16부터 시작
+			for(var i=listDate[0]; i <= nmldint; i++){
+				// 1부터 시작
+				for(var j=1; j < 32; j++ ){
+					
+					// 만약에 일치하는 값이 있을때, 해당 컬럼 색상을 변경 시킨다.
+					if(i == j){
+						$("#c"+i).css("font-size", "16px").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white").text(i);
+					}
+					
+				}
+    		}// 복붙함
+
+    	})
    			
     		// 당월 마지막 날짜에서 현재날짜를 뺀 값이 0이면
     		if (diffday == 0){
@@ -937,7 +905,7 @@ color : navy;
 				$("#c1").css("color", "#e5e5e5").css("cursor" , "text").css("pointer-events" , "none").css("background", "white");
 			}
     		
-    	})
+    	
     	
     });
     

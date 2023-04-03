@@ -1,5 +1,38 @@
 
+
+
 /*  # CSS 사용을 위한 임포트  */
+
+
+ #top_line{
+
+    position: relative;
+    border-bottom: #F2DEE0 1px solid;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    padding: 0px;
+    margin: 0 auto;
+    background: #fff5f3;
+
+	}
+
+.footer-line {
+    position: relative;
+    border-bottom: #F2DEE0 1px solid;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    padding: 0px;
+    margin: 0 auto;
+    background: #fff5f3;
+	}
+
+
 
 
 .post-slide{
@@ -243,14 +276,14 @@
 
 /* 로그인에 대한 CSS 설정 */
 
-#nb_login {
-	position : fixed;
-	top : 0;
-	left : 0;
-	right : 0;
-	height: 100px;
-	width : 100%;
-}
+/* #nb_login { */
+/*     position: absolute; */
+/*     top: 100px; */
+/*     height: 100px; */
+/*     width: 450px; */
+/*     right: 25%; */
+/*     margin-right: -7%; */
+/* } */
 
 #nb_box{
 
@@ -262,6 +295,14 @@
 	top : 0;
 
 }
+
+	#mega_wrapper > ul {
+	    border: 1px solid white;
+	    text-align: center;
+	    color: black;
+	    font-size: 16px;
+	    float: left;
+	}
 
 @charset "utf-8";
 /* CSS Document */

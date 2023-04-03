@@ -7,238 +7,11 @@
 	request.setCharacterEncoding("utf-8");
 	String contextPath = request.getContextPath();
 %>
-</head>
 <title>Slider</title>
+</head>
 <!-- 3 Bootstrap core CSS --> 
 <link href="<%=contextPath%>/css/bootstrap_center.css" rel="stylesheet">
-
- <style>
- 	
- 	*{margin:0; padding:0}
- 	
- 	.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
-    display: block;
-    width: 100%;
-    height: 500px;
-    }
-    
-    .carousel-indicators {
-    position: relative;
-    top: 480px;
-    bottom: 480px;
-    left: 85%;
-    z-index: 15;
-    width: 160px;
-    padding-left: 0;
-    margin-left: -35%;
-    text-align: center;
-    list-style: none;
-    }
-    .carousel-example-generic{
-    width: 100%;
-    }
-    .image-text1{
-    position: relative;
-    top: -110px;
-    bottom: 500px;
-    right: 40%;			
-    z-index: 1;
-    width: 50%;
-    padding-left: 0;
-    list-style: none;
-    color: black;
-    }
-    .image-text2{
-    position: relative;
-    top: -110px;
-    bottom: 500px;
-    right: 35%;			
-    z-index: 1;
-    width: 50%;
-    padding-left: 0;
-    list-style: none;
-    color: black;
-    }
-    .image-text3{
-    position: relative;
-    top: -110px;
-    bottom: 500px;
-    right: 40%;			
-    z-index: 1;
-    width: 50%;
-    padding-left: 0;
-    list-style: none;
-    color: black;
-    }
-    .image-text4{
-    position: relative;
-    top: -110px;
-    bottom: 500px;
-    right: 40%;			
-    z-index: 1;
-    width: 50%;
-    padding-left: 0;
-    list-style: none;
-    color: black;
-    }
-    button{
-    position: relative;
-    width: 200px;
-    height: 40px;
-    color: black; 
-    border-radius: 20px; 
-    background-color:transparent; 
-    font-size: 16px;
-    font-weight: bold;
-    }
-    button:hover{
-    background-color:navy;
-    color:white;
-    transition:0.4s;
-    }
-    .map{
-    position: relative;
-    margin : 0 auto;
-	top : 0;
-	left : 0;
-	width : 100%;
-    height: 350px;
-    }
-    .map > img{
-    position: relative;
-    margin : 0 auto;
-	top : 0;
-	left : 0;
-	width : 100%;
-    height: 350px;
-    }
-    
-    @media(max-width: 1023px){
-    .map > img{
-    width: 100%
-    }
-    }
-    .image-text5{
-    position: relative;
-    margin: 0 auto;
-    top: -343px;
-    left: -645px;
-    width: 500px;
-    height: 294px;
-    } 
-    #text1{
-    position: relative;
-    margin: 0 auto;
-    top: 16px;
-    left: -30px;
-    width: 100px;
-    height: 42px;
-    font-size: 30px;
-    font-weight: bold;
-    }
-    #text1-1{
-    position: relative;
-    margin: 0 auto;
-    top: 17px;
-    left: -10px;
-    width: 261px;
-    height: 38px;
-    font-size: 27px;
-    font-weight: 600;
-	}
-    #text2{
-    position: absolute;
-    margin: 0 auto;
-    top: 148px;
-    left: 122px;
-    width: 341px;
-    height: 189px; 
-     }
-    #text2 > a{
-    position: absolute;
-    margin: 0 auto;
-    top: -30px;
-    left: 90px;
-    width: 50%;
-    height: 145px;
-	}
-    #text2 > i{
-    position: relative;
-    margin: 0 auto;
-    top: 125px;
-    left: 5px;
-    width: 50%;
-    height: 19px;
-    font-size: 16px;
-    font-weight: bold;
-    }
-     #text2 >a{
-     color: #ffd4db;
-     transition:0.4s;
-     }
-    #text2 >a:hover{
-    color:navy;
-    transition:0.4s;
-	}
-	.center_wrap, .slider{
-	width: 1920px;
-	margin: 0 auto;
-	}
-	.bx-wrapper{
-	margin: 0 auto;
-	width: 1920px;
-	height: 500px;
-	background: #fff8d263;
-	}
-    .bx-wrapper .bx-pager {
-    position: relative;
-    top: 385px;
-    border: none; 
-    box-shadow: none;
-    background: #fff8d263;
-    height: 110px;
-    }
-   .slider1, .slider2, .slider3, .slider4{
-    background: #fff8d263;
-    }
-   	.slider1 > iframe{
-	position: relative;
-    left: 50px;
-    height: 380px;
-    width: 685px;
-    top: 10px;
-    margin: 0 auto;
-    }
-    .slider2 > iframe{
-	position: relative;
-	background-size: cover;
-    left: -50px;
-    height: 380px;
-    width: 685px;
-    top: 10px;
-	}
-	.slider3 > iframe{
-	position: relative;
-    left: 50px;
-    height: 380px;
-    width: 685px;
-    top: 10px;
-	}
-	.slider4 > iframe{
-	position: relative;
-    left: -50px;
-    height: 380px;
-    width: 685px;
-    top: 10px;
-	}
-	.bx-wrapper .bx-pager.bx-default-pager a{
-	position: relative;
-	top: 0px;
-	}
-    
-   
-    <%--#ffe0fa--%>
-</style> 
+<link href="<%=contextPath%>/css/center.css" rel="stylesheet">
 
 <script src="https://kit.fontawesome.com/0ec4758f24.js" crossorigin="anonymous"></script>
 
@@ -373,11 +146,11 @@
   </head>
   <body>
 <!--  <img src="< %=contextPath%>/images/slider5.png" alt="slide5"> -->
-<div class="bx-wrapper" style="border:#fff8d263; height: 485px; background: #fff8d263;">
+<div class="bx-wrapper" style="border:#fff8d263; background: #fff8d263;">
     
     <span style="font-size: 40px; font-weight: 700;">교육영상</span>
     
-    <ul class="slider" style="border: none; box-shadow: none; background: #fff8d263;">
+    <ul class="slider">
    		<li class="slider1">
 		  <iframe width="500" height="380" src="https://www.youtube.com/embed/aFojR9xDl30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
 		  </li>
@@ -391,7 +164,7 @@
 			</li>
 		    <li class="slider4">
 
-		    	<iframe width="560" height="315" src="https://www.youtube.com/embed/V7c5SUIuswE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+		    	<iframe width="500" height="380" src="https://www.youtube.com/embed/V7c5SUIuswE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 			</li>
 		</ul>
 

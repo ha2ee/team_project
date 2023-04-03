@@ -1116,7 +1116,6 @@ public class MemberDAO {
 	
 	//펫 사진 등록,업데이트
 	public int petImgUpdate(String memberid, String fileName) {
-		
 		System.out.println(memberid);
 		System.out.println(fileName);
 		
@@ -1364,7 +1363,6 @@ public class MemberDAO {
 
             	list.add(pet_vo);
             }
-            
 		 }catch (SQLException e) {
 			System.out.println("selectTrAllPet메소드에서 오류");
 			e.printStackTrace();

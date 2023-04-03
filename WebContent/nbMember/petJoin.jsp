@@ -157,8 +157,8 @@
 						<label>중성화 수술 </label><br>
 							<select class="p_op" name="p_op" id="p_op">
 								<option>선택</option>
-								<option>했음</option>
-								<option>안했음</option>
+								<option>예</option>
+								<option>아니오</option>
 								<option>모름</option>
 							</select>
 					</div>

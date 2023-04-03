@@ -124,7 +124,7 @@ footer {
     
     position: relative;
     display: inline-block;
-    width: 99%;
+    width: 98%;
     height: 30px;
     top: 0;
     left: 0px;
@@ -141,47 +141,42 @@ footer {
 
 }
 
-#pet_name_box > a {
 	
+#pet_name_box > a {
     display: inline-block;
     position: relative;
     top: 0;
     margin: 0 3px;
-    left: 0;
-    width: 70px;
+    left: -10px;
+    width: 63px;
     top: 0;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
 }
 
  
 #pet_info_box {
-
-
+	
     border: 1px dashed #ffc0c0;
     position: relative;
-    width: 645px;
+    width: 615px;
     height: 80px;
-    top: 32px;
-    left: 0px;
-    right: 0;
-    margin: 0 auto;
-}
-
-
-#pet_img {
-	
-border: 1px dotted #cccccc;
-
-    position: relative;
-    width: 75px;
-    height: 75px;
-    top: -29px;
+    top: 28px;
     left: 0;
     right: 0;
-    margin: 3px 1px;
+    margin: 5px auto;
+}
+
+#pet_img {
+    border: 1px dotted #cccccc;
+    position: relative;
+    width: 69px;
+    height: 72px;
+    top: -21px;
+    left: 0;
+    right: 0;
+    margin: 0px auto;
     float: left;
-    font-size: 10px;
     border-radius: 20px;
     background: aliceblue;
     font-weight: bold;
@@ -190,16 +185,13 @@ border: 1px dotted #cccccc;
     text-align: center;
 }
 
-
-
 #pet_info_box > input {
 	
     border: 1px dotted #cccccc;
-    
     position: relative;
-    width: 66 px;
-    height: 75px;
-    top: -31px;
+    width: 60px;
+    height: 76px;
+    top: -22px;
     left: 0;
     right: 0;
     margin: 2px 4px;
@@ -208,14 +200,13 @@ border: 1px dotted #cccccc;
     margin-bottom: 2px;
     margin-left: 4px;
     float: left;
-    font-size: 10px;
+    font-size: 15px;
     border-radius: 20px;
     background: aliceblue;
     font-weight: bold;
     color: darkblue;
     text-decoration: none;
     text-align: center;
-	
 }
 
 #select_box {

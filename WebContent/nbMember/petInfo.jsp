@@ -101,6 +101,7 @@
 							<%
 								}else{
 							%>
+							
 								<img src="<%=petImgPath+p_img%>" class="p_img" id="p_img"> 
 							<%
 								}

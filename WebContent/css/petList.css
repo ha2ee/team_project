@@ -278,7 +278,7 @@
 		
 		/* 게시판 목록 테이블의 th와 td 스타일 */
 		.board-table th, .board-table td {
-		  padding: 10px 20px; 
+		  padding: 10px 47px; 
 /* 		  text-align: center;  */
 		  border-bottom: 1px solid #ddd; 
 		}
