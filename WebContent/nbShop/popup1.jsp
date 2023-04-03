@@ -128,7 +128,7 @@
 		<c:forEach var="vo" items="${vector}">
 				<div id = "pet_info_box">
 					<input class = "pet_chk" onclick="checkOnlyOne(this)" id="pet_chk" name= "pet_chk" type="checkbox" value="${vo.p_name}" />
-					<img id = "pet_img" name = "pet_img${j}" src="<%=request.getContextPath()%>/nbShop/img/${vo.p_img}" />
+					<img id = "pet_img" name = "pet_img${j}" src="<%=request.getContextPath()%>/petImg/${vo.p_img}" />
 					<input id = "pet_name" name = "pet_name${j}" type="text" value="${vo.p_name}" readonly />
 					<input id = "pet_type" name = "pet_type${j}" type="text" value="${vo.p_type}" readonly />
 					<input id = "pet_age" name = "pet_age${j}" type="text"  value="${vo.p_age}"  readonly />
@@ -136,7 +136,6 @@
 					<input id="pet_gender" name= "pet_gender${j}" type="text" value="${vo.p_gender}"  readonly />
 					<input id="pet_op" name= "pet_op${j}" type="text" value="${vo.p_op}" readonly />
 				</div>
-
 			<c:set var="j" value="${j+1}" /> 
 			</c:forEach>
 			</div>
@@ -217,7 +216,7 @@ function returnPet(){
 	// 각 변수의 값을 input에다가 저장 시킨다.
 	document.getElementById("petName").value = petname;
 	document.getElementById("petType").value = pettype;
-	document.getElementById("petImg").src = "${contextPath}/nbShop/img/"+petimg;
+	document.getElementById("petImg").src = "${contextPath}/petImg/"+petimg;
 	document.getElementById("petAge").value = petage;
 	document.getElementById("petWeight").value = petweight;
 	document.getElementById("petGender").value = petgender;

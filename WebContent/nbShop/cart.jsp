@@ -135,7 +135,7 @@
 				<!--반려견 사진 -->
 				<div id="pet_img_box">	
 					<div id="pet_img${j}">
-						<input type="image" class="gallery"  id="petImg${j}" src="<%=request.getContextPath()%>/nbShop/img/${vo.pet_img}"  readonly="readonly" />
+						<input type="image" class="gallery"  id="petImg${j}" src="<%=request.getContextPath()%>/petImg/${vo.pet_img}"  readonly="readonly" />
 					</div>
 				</div>
 				
@@ -303,7 +303,7 @@
 		<div id= "pop_pet_box">
 			<div id= "pop_pet_img${a}" style="width: 200px; height : 200px; margin : 0 auto; position : relative; left: 0; top :0;">
 				<a id="pop11" style="width : 100%; height : 50px; line-height: 50px;">반려견 사진</a>
-				<img style="width : 100%; height : 150px; border-radius: 20px;" id="popPetImg${a}" src="<%=request.getContextPath()%>/nbShop/img/${vo.pet_img}"  />
+				<img style="width : 100%; height : 150px; border-radius: 20px;" id="popPetImg${a}" src="<%=request.getContextPath()%>/petImg/${vo.pet_img}"  />
 				<input type="hidden" name="pet_img"  value="${vo.pet_img}" />
 			</div>
 			<div id= "pop_pet_name${a}">
