@@ -63,6 +63,11 @@ String ContextPath = request.getContextPath();
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.sticky.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/slider.js"></script>
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+            integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
+    <script>
+      Kakao.init('083d7283f7089c6f3d424efd747489e9'); // 사용하려는 앱의 JavaScript 키 입력
+    </script>
 <script>
 //메인 메뉴에 마우스가 올려지면 토글하는 함수 생성
 $(document).ready(function(){
