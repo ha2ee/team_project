@@ -134,8 +134,8 @@
 					<dd class="gender_dd">
 						<div class="gender_div">
 							<select class="p_gender" name="p_gender" id="p_gender" value="<%=p_gender%>">
-								<option value="남아">남</option>
-								<option value="여아">여</option>
+								<option value="남">남</option>
+								<option value="여">여</option>
 							</select>
 						<input id="hidden_gen" type="hidden" value="<%=p_gender%>">
 						</div>
