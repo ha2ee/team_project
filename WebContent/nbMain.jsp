@@ -58,9 +58,9 @@
  .footer_wrap {
     width: 1920px;
     margin: 0 auto;
-    height: 500px;
+    height: 550px;
     position: relative;
-    top: 0;
+    top: -52px;
     left: 0;
     background: #f1d3d73b;
 }
