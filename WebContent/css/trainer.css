@@ -277,12 +277,12 @@
 /* 로그인에 대한 CSS 설정 */
 
 #nb_login {
-	position : fixed;
-	top : 0;
-	left : 0;
-	right : 0;
-	height: 100px;
-	width : 100%;
+    position: absolute;
+    top: 100px;
+    height: 100px;
+    width: 450px;
+    right: 25%;
+    margin-right: -7%;
 }
 
 #nb_box{
