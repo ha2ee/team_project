@@ -1,10 +1,7 @@
 package DAO;
 
 import java.sql.Connection;
-
-
-
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -355,9 +352,19 @@ public class OrderDAO {
 		System.out.println("OrderDAO -> insertCartedu 메소드 호출!");
 		
 		try {
+			
+			//커넥션 풀 연결
+			con = ds.getConnection();
+			
+//			String sql = "select date1, date2, date3, date4, date5, date6 date7"
+//			
+//			Date date1 = eduordervo.getDate1();
+//			
+//			if(date1.equals(obj))
+//			
+			
 		
-		//커넥션 풀 연결
-		con = ds.getConnection();
+
 		
 		//매개변수로 전달받은 eduOrderVo의 각 변수에 저장되어 전달받은 값들을
 		//sql 문을 이용해 insert 하기
