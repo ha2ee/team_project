@@ -64,7 +64,7 @@
     list-style: none;
     color: black;
     }
-    button{
+    .slide1_item,.slide2_item,.slide3_item,.slide4_item{
     position: relative;
     width: 200px;
     height: 40px;
@@ -74,12 +74,12 @@
     font-size: 16px;
     font-weight: bold;
     }
-    button:hover{
+    .slide1_item:hover,.slide2_item:hover,.slide3_item:hover,.slide4_item:hover{
     background-color:navy;
     color:white;
     transition:0.4s;
     }
-    .map{
+    .doghospital_map{
     position: relative;
     margin : 0 auto;
 	top : 0;
@@ -87,7 +87,7 @@
 	width : 1920px;
     height: 500px;
     }
-    .map > img{
+    .doghospital_map > img{
     position: relative;
     width : 100%;
     height: 500px;
