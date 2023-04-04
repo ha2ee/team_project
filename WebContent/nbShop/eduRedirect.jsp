@@ -36,7 +36,7 @@
     position: relative;
     z-index: 100;
     top: 0;
-    left: 20%;
+    left: 0;
 }
 
 
@@ -64,7 +64,7 @@
 %>
 
     <div id="loading">
-        <img id="loading-image" src="${contextPath}img/Pacman.gif" alt="Loading..." />
+        <img id="loading-image" src="http://localhost:8090/TeamProject/nbShop/img/Pacman.gif" alt="Loading..." />
     </div>
     <div>
     	<a id="text">장바구니로 이동중입니다!!</a>

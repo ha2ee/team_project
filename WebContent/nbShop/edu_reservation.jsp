@@ -320,7 +320,7 @@ function openChild() {
 			
 			if(window.confirm("수강 예약을 확정하시겠습니까?") == true){
 				
-				alert("< 장바구니로 이동중입니다 !! >");
+				alert("< 장바구니로 이동합니다 !! >");
 				
 				document.getElementById('form').submit();
 				

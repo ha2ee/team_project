@@ -80,14 +80,14 @@
     
 	}
 	
-	#login_box {
-/*     border: 1px solid rebeccapurple; */
+#login_box {
+    /* border: 1px solid rebeccapurple; */
     margin: 0 auto 0 auto;
     position: relative;
-    width: 250px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     top: -1px;
-    left: 475px;
+    left: 0;
     right: 0;
     text-align: center;
 }
