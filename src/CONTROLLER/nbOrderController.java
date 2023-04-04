@@ -71,9 +71,7 @@ throws ServletException, IOException {
 //한글처리
 request.setCharacterEncoding("utf-8");
 //웹브라우저로 응답할 데이터 종류 설정
-response.setContentType("text/html;charset=utf-8");
-//웹브라우저와 연결된 출력 스트림 통로 만들기
-PrintWriter out = response.getWriter();
+response.setContentType("text/html; charset=utf-8");
 //서블릿으로 요청한 주소를 request에서 얻기
 String action = request.getPathInfo();//2단계 요청 주소
 System.out.println("요청한 주소 : "+action);
@@ -130,7 +128,7 @@ nextPage = "/nbShop/popup1.jsp";
 break;
 
 
-// #2 /goCart.od <- 수강신청 페이지 -> 예약하기 버튼을 눌렀을 때, (작성 중)
+// #2 /goCart.od <- 수강신청 페이지 -> 예약하기 버튼을 눌렀을 때,
 case "/goCart.od":
 
 
@@ -172,7 +170,7 @@ String edu_totalprice = request.getParameter("edu_totalprice");
 eduOrderVo eduordervo = new eduOrderVo();
 
 // 3) 예약정보를 list로 저장시킨다.
-List<String> list = new ArrayList();
+List<String> list = new ArrayList<String>();
 
 // *1) 회원 정보
 eduordervo.setEdu_id(edu_id);
@@ -220,10 +218,13 @@ request.setAttribute("vector", vector);
 request.setAttribute("list", list);
 request.setAttribute("id", edu_id);
 
-//request에 "center" 값을 이용해서 cart.jsp로 이동 시킴
-request.setAttribute("center", "nbShop/cart.jsp");
-
+// 메인페이지로 나가기
 nextPage = "/nbMain.jsp";
+
+////request에 "center" 값을 이용해서 cart.jsp로 이동 시킴
+//request.setAttribute("center", "nbShop/cart.jsp");
+
+
 
 break;
 
