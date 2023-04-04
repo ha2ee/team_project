@@ -24,6 +24,7 @@
     left: 0;
     height: 500px;
     width: 100%;
+    max-width : 1200px;
     margin: 0 auto;
     border-radius: 20px;
     box-shadow: 0 0 10px 10px pink;
@@ -31,8 +32,8 @@
 
 #loading-image {
     margin: 0 auto;
-    height: 100%;
-    width: 50%;
+    height: 500px;
+    width: 500px;
     position: relative;
     z-index: 100;
     top: 0;
