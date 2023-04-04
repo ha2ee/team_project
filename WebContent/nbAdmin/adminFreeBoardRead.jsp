@@ -56,37 +56,6 @@
     </div>
     
     </div>
-<script type="text/javascript">
-//삭제하기를 눌렀을때 ajax로 삭제 처리하기
-      function fbDel(b_idx){
-      			var result = window.confirm("정말로 글을 삭제하시겠습니까?");
-      			if(result == true){//확인 버튼 클릭
-      				//비동기방식으로 글삭제 요청!
-      				$.ajax({
-      					type : "post",
-      					async : true,
-      					url : "<%=contextPath%>/adm/fbDelete.adm",
-      					data : {fb_idx : b_idx},
-      					dataType : "text",
-      					success : function(data){
-      						if(data== 1){
-      							alert("삭제 성공!");
-      							location.href="<%=contextPath%>/adm/freeBoardList.adm";
-      									} else {//"삭제실패"
-      										alert("삭제에 실패했습니다.")
-      										location.reload();
-      									}
-      								},
-      								error : function() {
-      									alert("비동기 통신 장애");
-      								}
-      							});
-      				} else {//취소 버튼을 눌렀을때
-      					return false;
-      				}
-      			}      
-
-</script>    
     
 <div style="margin-bottom: 2%">
 
