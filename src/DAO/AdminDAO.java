@@ -334,6 +334,7 @@ public class AdminDAO {
 						                     + " MEM_PW='" + vo.getMem_pw() + "',"
 						                     + " MEM_EMAIL='" + vo.getMem_email() + "',"
 						                     + " MEM_HP='" + vo.getMem_hp() + "',"
+						                     + " MEM_PET='" + vo.getMem_pet() + "',"
 				  						     + " MEM_ADDRESS1='" + vo.getMem_address1() + "',"
 										 	 + " MEM_ADDRESS2='" + vo.getMem_address2() + "',"
 										 	 + " MEM_ADDRESS3='" + vo.getMem_address3() + "',"

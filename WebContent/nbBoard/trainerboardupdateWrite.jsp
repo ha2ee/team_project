@@ -53,12 +53,14 @@
                 <td>내용</td>
                 <td><textarea name="content" id="content" ><%=tbo.getTb_content() %></textarea></td>
             </tr>
-			<%if (tbo.getTb_file() == null) {//파일이 첨부되어 있지 않을때만 파일 첨부가 가능하게 만든다.  %>
+            <c:choose>
+            <c:when test="${empty tvo.tb_file}">
             <tr>
                 <td>파일</td>
                 <td><input type="file" name="file"/></td>
             </tr>
-            <%} else {%>
+            </c:when>
+            <c:otherwise>
             <tr>
             	 <td>파일</td>
                 <td><span id="attachFile">파일이 첨부 되어 있습니다.(파일명 : <%=tbo.getTb_file()%>)</span> 
@@ -67,7 +69,8 @@
                 </td>
                
             </tr>
-            <%} %>
+            </c:otherwise>
+            </c:choose>
         </table>
         <br>
         <input type="button" value="글수정" onclick="checkEditor();" />

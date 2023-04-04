@@ -72,7 +72,7 @@
 	</table>
 	
 <button onclick="openModal()">정보수정하기</button>
-<a id="delMem" href="${contextPath}/adm/delMem.adm?delID=${trainerVo.tr_id}">트레이너삭제하기</a>
+<button id="delMem" onclick="location.href='${contextPath}/adm/delMem.adm?delID=${trainerVo.tr_id}'">트레이너삭제하기</button>
 <div id="memModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
