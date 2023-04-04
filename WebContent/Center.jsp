@@ -7,13 +7,15 @@
 	request.setCharacterEncoding("utf-8");
 	String contextPath = request.getContextPath();
 %>
+
 <title>Slider</title>
-</head>
-<!-- 3 Bootstrap core CSS --> 
+
 <link href="<%=contextPath%>/css/bootstrap_center.css" rel="stylesheet">
-<link href="<%=contextPath%>/css/center.css" rel="stylesheet">
+<!-- center.css연결 -->
+<link href="<%=request.getContextPath()%>/css/center.css" rel="stylesheet">
 
 <script src="https://kit.fontawesome.com/0ec4758f24.js" crossorigin="anonymous"></script>
+</head>
 
 <body>
 <!-- Images Slider Start -->
@@ -49,7 +51,7 @@
 <h1>반려견에게</h1> 
 <h3>필요한 훈련은 뭘까요?</h3> <br>
 <a style="text-decoration: none" href="<%=contextPath%>/tb/list.bo">
-<button>상담하러가기</button></a>
+<button class="slide1_item">상담하러가기</button></a>
 </div>
 </div>
 </div>
@@ -62,7 +64,7 @@
 <h1>함께 살아가기 위한</h1> 
 <h3>수업을 받아보세요!</h3> <br>
 <a style="text-decoration: none" href="<%=contextPath%>/nb/edu.do?center=/nbShop/trainer.jsp">
-	<button>수강신청 바로가기</button>
+	<button class="slide2_item">수강신청 바로가기</button>
 </a>
 </div>
 </div>
@@ -77,7 +79,7 @@
 <h1>수강후기를</h1> 
 <h3>들려주세요!</h3> <br>
  <a style="text-decoration: none" href="<%=contextPath%>/review/list.rv">
-<button>수강후기 바로가기</button></a>  
+<button class="slide3_item">수강후기 바로가기</button></a>  
 </div>
 </div>
 </div>
@@ -91,12 +93,16 @@
 <h1>자유롭게</h1> 
 <h3>소통해봐요!</h3> <br>
  <a style="text-decoration: none" href="<%=contextPath%>/freeboard/list.fb">
-<button>소통하러가기</button></a>  
+<button class="slide4_item">소통하러가기</button></a>  
 </div>
 </div>
 </div>
 
-<div class="map">
+</div>
+</div>
+</div>
+
+<div class="doghospital_map">
 <img src="<%=contextPath%>/images/doghospital.png" alt="searchMap">
 <div class="image-text5">
 <div  id="text1">
@@ -115,19 +121,13 @@
 </div>
 </div>
 
-</div>
-</div>
-</div>
 
-<script src="<%=contextPath%>/js/jquery.min.js"></script>
-<script src="<%=contextPath%>/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
     <script>
-    $(document).ready(function(){
+     $(document).ready(function(){
         $('.slider').bxSlider({
           speed: 1000,
           minSlides: 2,
@@ -143,14 +143,11 @@
       });
     </script>
 
-  </head>
-  <body>
-<!--  <img src="< %=contextPath%>/images/slider5.png" alt="slide5"> -->
-<div class="bx-wrapper" style="border:#fff8d263; background: #fff8d263;">
+ 	<div class="bx-wrapper" style="border:#fff8d263; background: #fff8d263;">
     
     <span style="font-size: 40px; font-weight: 700;">교육영상</span>
     
-    <ul class="slider">
+    <ul class="slider" >
    		<li class="slider1">
 		  <iframe width="500" height="380" src="https://www.youtube.com/embed/aFojR9xDl30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
 		  </li>

@@ -42,5 +42,6 @@
 		</section>
 	</div>
 	<script src="${contextPath}/js/adminPage.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </body>
 </html>

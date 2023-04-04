@@ -80,7 +80,7 @@
 	</table>
 	
 <button onclick="openModal()">정보수정하기</button>
-<a id="delMem" href="${contextPath}/adm/delMem.adm?delID=${memberVO.mem_id}">회원삭제하기</a>
+<button id="delMem" onclick="location.href='${contextPath}/adm/delMem.adm?delID=${memberVO.mem_id}'">회원삭제하기</button>
 
 
 <div id="memModal" class="modal">
