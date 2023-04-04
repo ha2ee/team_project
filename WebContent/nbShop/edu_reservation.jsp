@@ -111,7 +111,7 @@
 	<!-- 	주문예약 들어갈 항목 -->
 	
 <!-- 	내용을 입력하고 예약하기 버튼을 눌렀을 때 /nbOrder/goCart.od 호출 -->
-	<form method = "post" action="<%=contextPath%>/nbOrder/goCart.od" id="form">	
+	<form method = "post" action="<%=contextPath%>/nbOrder/goCart.od" id="form" >	
 	<input type="hidden" name="tr_img"	value="<%=tr_img %>" />
 	<input type="hidden" name="pet_edu_img" id="pet_edu_img" />
 	<div id = "reservationBox" >
@@ -241,7 +241,7 @@
 		<div id ="reservationBtnWrapper">
 			<div id = "res_box">
 				<a id ="nb_backbtn" class = btn href="#">일정 다시선택하기 </a>
-				<a id = "nb_submitbtn" type="submit" class = "btn" >예약 확정</a>
+				<a id = "nb_submitbtn" type="button" class = "btn" >예약 확정</a>
 <!-- 				<a id = "nb_submitbtn" type="submit" class = "btn" >예약 하기</a> -->
 			</div>
 		</div>
@@ -320,14 +320,18 @@ function openChild() {
 			
 			if(window.confirm("수강 예약을 확정하시겠습니까?") == true){
 				
-				alert("<장바구니>로 가서 결제 하셔야 최종 주문완료됩니다!");
+				alert("< 장바구니로 이동중입니다 !! >");
 				
 				document.getElementById('form').submit();
 				
+
 			}else{
 				
 				return false;
 			}
+			
+<%-- 			location.replace("<%=request.getContextPath()%>/nb/cart.do?id=<%=id_%>&center=nbShop/cart.jsp"); --%>
+			
 		})
 		
 		

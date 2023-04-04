@@ -218,12 +218,13 @@ request.setAttribute("vector", vector);
 request.setAttribute("list", list);
 request.setAttribute("id", edu_id);
 
-// 메인페이지로 나가기
+
+
+//request에 "center" 값을 이용해서 cart.jsp로 이동 시킴
+request.setAttribute("center", "nbShop/eduRedirect.jsp");
+
+//메인페이지로 나가기
 nextPage = "/nbMain.jsp";
-
-////request에 "center" 값을 이용해서 cart.jsp로 이동 시킴
-//request.setAttribute("center", "nbShop/cart.jsp");
-
 
 
 break;
