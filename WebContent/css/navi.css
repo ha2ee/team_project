@@ -5,13 +5,6 @@ html {
 
 		/*  로그인,회원가입,마이페이지,장바구니 버튼 백그라운드 컬러변경 시 사용 */
 		
-	#mega_wrapper > ul {
-	    border: 1px solid white;
-	    text-align: center;
-	    color: black;
-	    font-size: 16px;
-	    float: left;
-	}
 	
 	#login_box > li > a:hover {
 	
@@ -95,7 +88,8 @@ html {
 /*  Bottom CSS 설정 */
  
  
- .footer_wrap {
+.footer_wrap {
+    max-width: 1920px;
     width: 100%;
     margin: 0 auto;
     height: 500px;
@@ -178,4 +172,16 @@ color : navy;
 	    color: black;
 	    font-size: 16px;
 	    float: left;
+	}
+
+
+	.scroller .inner p {
+	    padding-top: 0;
+	    margin: 0 auto 0 auto;
+	    line-height: 85px;
+	    left: 0;
+	    right: 0;
+	    top: 0;
+	    height: 100px;
+	    position: relative;
 	}
