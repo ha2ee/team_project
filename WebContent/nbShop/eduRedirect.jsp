@@ -49,6 +49,7 @@
     text-align: center;
     margin: 0 auto;
     width: 100%;
+    max-width : 1200px;
     display: inline-block;
     border: 5px solid deeppink;
     border-radius: 20px;
