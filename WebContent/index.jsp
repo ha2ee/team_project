@@ -40,7 +40,6 @@
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/js/menumaker.js" type="text/javascript"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.sticky.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/sticky-header.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/slider.js"></script>
     

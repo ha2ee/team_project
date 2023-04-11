@@ -704,6 +704,9 @@
 /* PC (해상도 1200px ~ 1920px) */ 
 @media all and (min-width:1200px) and (max-width: 1920px) {
 
+	
+	
+	
 #loginhomebtn{
 
 	display: none;

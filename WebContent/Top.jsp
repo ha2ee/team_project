@@ -149,7 +149,7 @@ $(document).ready(function(){
 	<%				
 					if(id == null){
 				%>	
-
+				   <li id="loginhomebtn" class="login1" ><a id="login5" href="<%=request.getContextPath()%>/nb/Main" class="btn">   홈   </a></li>
 				   <li class="login1"><a id="login2"href="<%=request.getContextPath()%>/member/login.me?center=/nbMember/login.jsp" class="btn">로그인</a></li>
 <%-- 	               <li class= "login1"><a id="login3"href="<%=request.getContextPath()%>/nb/mypage.me?center=/nbMember/mypage.jsp" class="btn">마이페이지</a></li> --%>
 	               <li class= "login1"><a id="login4"href="<%=request.getContextPath()%>/member/joinCategory.me?center=/nbMember/join.jsp" class="btn">회원가입</a></li>
@@ -158,7 +158,7 @@ $(document).ready(function(){
 				<%
 					}else{//로그인 O
 				%>
-				<li id="loginhomebtn" class="login1" ><a id="login5" href="<%=request.getContextPath()%>/nb/Main" class="btn">[ 홈 ]</a></li>
+				<li id="loginhomebtn" class="login1" ><a id="login5" href="<%=request.getContextPath()%>/nb/Main" class="btn">   홈   </a></li>
 				   <li class="login1"><a id="login6" href="<%=request.getContextPath()%>/member/logout.me" class="btn">로그아웃</a></li>
 				   <c:choose>
 				   		<c:when test="${id eq 'admin'}">
