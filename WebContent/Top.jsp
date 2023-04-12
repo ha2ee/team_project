@@ -243,7 +243,7 @@ $(document).ready(function(){
 				<li><a href="<%=request.getContextPath()%>/review/list.rv">수강 후기</a></li>
 			</ul>
 			<ul id = "list_lnb_03" class="list_lnb_03">
-
+				<li></li>
 			</ul>
 			<ul class="list_lnb_04">
 				<li><a href="<%=request.getContextPath()%>/tb/list.bo">훈련사 상담</a></li>
