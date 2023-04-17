@@ -65,13 +65,17 @@
 ![NeulBomDB](https://user-images.githubusercontent.com/115638416/232485402-5f1d2323-eeb8-462d-8765-387a402e4e46.png)
 
 ## 이미지 자료
+### 담당파트
+![image](https://user-images.githubusercontent.com/115638416/232501695-f7ded26c-6494-4a9d-af62-81d908e82d7e.png)
+![image](https://user-images.githubusercontent.com/115638416/232501818-83a7dad5-f1b9-4925-9264-d99b0fad5502.png)
+
+### 전체
 ![image](https://user-images.githubusercontent.com/115638416/232540955-efdb8f98-7d34-47bc-b4f1-49bcc3ca0a32.png)
 ![image](https://user-images.githubusercontent.com/115638416/232541686-a507b852-f7aa-446e-9e0e-ddea7cc4b32f.png)
 ![image](https://user-images.githubusercontent.com/115638416/232541789-01802d63-2505-4499-864f-8e354795dd3d.png)
 ![image](https://user-images.githubusercontent.com/115638416/232541889-2de916e4-43c6-47aa-9360-c45e6526fe46.png)
 
-![image](https://user-images.githubusercontent.com/115638416/232501695-f7ded26c-6494-4a9d-af62-81d908e82d7e.png)
-![image](https://user-images.githubusercontent.com/115638416/232501818-83a7dad5-f1b9-4925-9264-d99b0fad5502.png)
+
 
 
 
