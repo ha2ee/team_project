@@ -62,7 +62,7 @@
   * 관리자 메인 페이지에서 최근 등록된 회원, 트레이너, 글 확인 가능
 
 ## 🔖DB 구성
-다운로드 sql파일 링크 : https://drive.google.com/file/d/1Hewy69zmj_K9XEGttFy0kBzkF4oL0rvo/view?usp=share_link
+다운로드 sql파일 링크 : https://drive.google.com/file/d/14GJ9OJPpcnoi_0qAl_LGcqHyA9a4l1Kj/view?usp=share_link
 
 * YS_MEMBER
   * 아이디, 이름, 닉네임, 회원사진, 비밀번호, 이메일, 휴대전화번호, 생일, 성별, 가입일자, 펫 유무, 주소를 갖습니다.
