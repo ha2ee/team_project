@@ -13,7 +13,7 @@
 * 담당 파트 : 답글형 게시판(훈련사 상담) 및 관리자 페이지 구현
 * 사용 기술
     * Tool : eclipse, github
-    * Tech : JAVA / JavaScript / CSS / jQuery / JSP / Servlet MVC2 / HTML
+    * Tech : JAVA / JavaScript / CSS / jQuery / JSP / Servlet MVC / HTML
     * DB : ORACLE 11XE SQL Developer
     * Server : Tomcat 9.0
 
