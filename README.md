@@ -90,6 +90,8 @@
 
 ## 이미지 자료
 ### 담당파트
+![image](https://user-images.githubusercontent.com/115638416/232920732-5d47c210-3479-46f0-9900-dcdd5112d4fd.png)
+
 ![image](https://user-images.githubusercontent.com/115638416/232501695-f7ded26c-6494-4a9d-af62-81d908e82d7e.png)
 ![image](https://user-images.githubusercontent.com/115638416/232501818-83a7dad5-f1b9-4925-9264-d99b0fad5502.png)
 
