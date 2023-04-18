@@ -62,7 +62,31 @@
   * 관리자 메인 페이지에서 최근 등록된 회원, 트레이너, 글 확인 가능
 
 ## 🔖DB 구성
-![NeulBomDB](https://user-images.githubusercontent.com/115638416/232485402-5f1d2323-eeb8-462d-8765-387a402e4e46.png)
+다운로드 sql파일 링크 : https://drive.google.com/file/d/1Hewy69zmj_K9XEGttFy0kBzkF4oL0rvo/view?usp=share_link
+
+* YS_MEMBER
+  * 아이디, 이름, 닉네임, 회원사진, 비밀번호, 이메일, 휴대전화번호, 생일, 성별, 가입일자, 펫 유무, 주소를 갖습니다.
+* PET
+  * 펫 이미지, 나이, 성별, 품종, 중성화 수술 여부, 무게, 펫사진, 회원 아이디를 갖습니다. YS_MEMBER 테이블에 종속성을 가집니다.
+* MEMBER_TRAINER
+  * 아이디, 이름, 트레이너 사진, 비밀번호, 이메일, 휴대전화 번호, 생일, 성별, 가입일, 주소를 갖습니다.
+* TEM_TRAINER
+  * 트레이너 회원 가입 전 임시 보관 테이블로 관리자 페이지에서 가입 승인 되면 자동 삭제 되는 임시 테이블입니다.
+* FREE_BOARD
+  * 자유게시판 테이블이며 인덱스, 아이디, 닉네임, 제목, 내용, 작성일, 조회수, 업로드파일명, 실제파일명, 좋아요 컬럼을 갖습니다.
+  * LIKE_TABLE
+    * 좋아요 테이블로 FREE_BOARD에 종속성을 가집니다.
+  * TBLCOMMENT는 댓글 테이블로 FREE_BOARD, YS_MEMBER, MEMBER_TRAINER 테이블에 종속성을 가집니다.
+* REVIEW
+  * 수강 후기 게시판 테이블이며, 인덱스, 아이디, 이미지파일명, 실제이미지 파일명, 제목, 내용, 작성일을 갖습니다.
+* TRAINER_BOARD
+  * 훈련사 상담 게시판으로 인덱스, 작성자 아이디, 이름, 제목, 내용, 들여쓰기를 적용을 위해 그룹, 레벨을 작성, 작성일, 조회수, 업로드 파일명을 갖습니다.
+* CART_EDU, EDU_CART
+  * 수강신청을 위한 테이블입니다. 수강 신청자 정보와 주소, 펫 정보와 훈련사 정보, 수강 신청일, 횟수, 가격을 컬럼으로 갖습니다.
+![image](https://user-images.githubusercontent.com/115638416/232683018-ad9568a2-7f13-4ffc-8d37-40ee2d7c06f3.png)
+
+
+
 
 ## 이미지 자료
 ### 담당파트
