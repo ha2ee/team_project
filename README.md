@@ -70,7 +70,7 @@ Tomcat 9.0, jdk, jre 10버전을 기준으로 작성 된 프로젝트로 해당 
   * 관리자 메인 페이지에서 최근 등록된 회원, 트레이너, 글 확인 가능
 
 ## 🔖DB 구성
-다운로드 sql파일 링크 : https://drive.google.com/file/d/1L3PVkuDxWOatKfTUmo6vZ-kM8YHXpH3b/view?usp=share_link
+다운로드 sql파일 링크 : https://drive.google.com/file/d/1lPvf-Yb4UcnVTnWmbzy1q8NSARDPccCk/view?usp=share_link
 
 * YS_MEMBER
   * 아이디, 이름, 닉네임, 회원사진, 비밀번호, 이메일, 휴대전화번호, 생일, 성별, 가입일자, 펫 유무, 주소를 갖습니다.
