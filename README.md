@@ -12,7 +12,15 @@ Tomcat 9.0, jdk, jre 10버전을 기준으로 작성 된 프로젝트로 해당 
 ![image](https://user-images.githubusercontent.com/115638416/233226631-d87632bf-4095-4f90-b2f1-7d075e09bde5.png)
 ![image](https://user-images.githubusercontent.com/115638416/233226659-c739c022-e799-46a3-9425-31575c41ae67.png)
 ![image](https://user-images.githubusercontent.com/115638416/233227660-d3917d0f-55bd-4fa2-9f24-bdec5fc7a7d1.png)
-
+     
+      <Resource
+       name="jdbc/oracle"
+       auth="Container"
+       type="javax.sql.DataSource"
+       driverClassName="oracle.jdbc.driver.OracleDriver"
+       username="유저명"
+       password="패스워드"
+       url="jdbc:oracle:thin:@localhost:1521:xe"/> 
 
 
 ## 📌프로젝트 소개 
